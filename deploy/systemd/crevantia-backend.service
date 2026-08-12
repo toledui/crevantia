@@ -1,0 +1,20 @@
+[Unit]
+Description=Crevantia API (NestJS)
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=crevantia
+Group=crevantia
+WorkingDirectory=/var/www/crevantia
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/npm run start:backend
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

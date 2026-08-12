@@ -1,0 +1,363 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum UserStatus {
+  PENDING_VERIFICATION
+  ACTIVE
+  DISABLED
+  LOCKED
+}
+
+enum TestVersionStatus {
+  DRAFT
+  VALIDATING
+  PUBLISHED
+  ARCHIVED
+}
+
+enum QuestionType {
+  SHORT_TEXT
+  NUMBER
+  DATE
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  CATALOG
+  PAIRED
+  LIKERT
+}
+
+enum AssignmentType {
+  PURCHASE
+  ADMIN_FREE
+  PROMOTIONAL
+  SUPPORT_REPLACEMENT
+}
+
+enum AssignmentStatus {
+  PENDING
+  AVAILABLE
+  IN_PROGRESS
+  COMPLETED
+  EXPIRED
+  REVOKED
+}
+
+enum AttemptStatus {
+  CREATED
+  IN_PROGRESS
+  PAUSED
+  SUBMITTED
+  SCORING
+  SCORED
+  REPORT_GENERATING
+  COMPLETED
+  FAILED
+  INVALIDATED
+}
+
+model User {
+  id                  String                    @id @default(cuid())
+  email               String                    @unique @db.VarChar(191)
+  passwordHash        String                    @db.VarChar(255)
+  firstName           String                    @db.VarChar(100)
+  lastName            String                    @db.VarChar(150)
+  status              UserStatus                @default(PENDING_VERIFICATION)
+  emailVerifiedAt     DateTime?
+  failedLoginAttempts Int                       @default(0)
+  lockedUntil         DateTime?
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @updatedAt
+  roles               UserRole[]
+  sessions            Session[]
+  resetTokens         PasswordResetToken[]
+  verificationTokens  EmailVerificationToken[]
+  consents            ConsentAcceptance[]
+  assignments         Assignment[]
+  auditLogs           AuditLog[]                @relation("AuditActor")
+}
+
+model Role {
+  id          String           @id @default(cuid())
+  code        String           @unique @db.VarChar(50)
+  name        String           @db.VarChar(100)
+  description String?          @db.VarChar(255)
+  isSystem    Boolean          @default(false)
+  users       UserRole[]
+  permissions RolePermission[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Permission {
+  id          String           @id @default(cuid())
+  code        String           @unique @db.VarChar(100)
+  description String?          @db.VarChar(255)
+  roles       RolePermission[]
+  createdAt   DateTime         @default(now())
+}
+
+model UserRole {
+  userId     String
+  roleId     String
+  assignedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+}
+
+model RolePermission {
+  roleId      String
+  permissionId String
+  role        Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission  Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model Session {
+  id               String    @id @default(cuid())
+  userId           String
+  refreshTokenHash String    @db.Char(64)
+  userAgent        String?   @db.VarChar(500)
+  ipHash           String?   @db.Char(64)
+  expiresAt        DateTime
+  lastUsedAt       DateTime  @default(now())
+  revokedAt        DateTime?
+  createdAt        DateTime  @default(now())
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([expiresAt])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique @db.Char(64)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model EmailVerificationToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique @db.Char(64)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model MailSettings {
+  id                String   @id @default("smtp") @db.VarChar(20)
+  enabled           Boolean  @default(false)
+  host              String   @db.VarChar(255)
+  port              Int      @default(587)
+  secure            Boolean  @default(false)
+  username          String?  @db.VarChar(191)
+  passwordEncrypted String?  @db.Text
+  fromName          String   @default("Crevantia") @db.VarChar(100)
+  fromAddress       String   @db.VarChar(191)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model ConsentAcceptance {
+  id              String   @id @default(cuid())
+  userId          String
+  consentType     String   @db.VarChar(50)
+  documentVersion String   @db.VarChar(30)
+  acceptedAt      DateTime @default(now())
+  ipHash          String?  @db.Char(64)
+  userAgent       String?  @db.VarChar(500)
+  user            User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, consentType])
+}
+
+model Test {
+  id          String        @id @default(cuid())
+  code        String        @unique @db.VarChar(50)
+  slug        String        @unique @db.VarChar(100)
+  name        String        @db.VarChar(160)
+  description String?       @db.Text
+  isActive    Boolean       @default(true)
+  versions    TestVersion[]
+  assignments Assignment[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model TestVersion {
+  id           String            @id @default(cuid())
+  testId       String
+  version      Int
+  status       TestVersionStatus @default(DRAFT)
+  language     String            @default("es-MX") @db.VarChar(10)
+  estimatedMin Int?
+  labels       Json?
+  publishedAt  DateTime?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  test         Test              @relation(fields: [testId], references: [id], onDelete: Restrict)
+  sections     Section[]
+  assignments  Assignment[]
+  attempts     Attempt[]
+
+  @@unique([testId, version])
+  @@index([testId, status])
+}
+
+model Section {
+  id            String      @id @default(cuid())
+  testVersionId String
+  code          String      @db.VarChar(50)
+  title         String      @db.VarChar(180)
+  description   String?     @db.Text
+  instructions  String?     @db.Text
+  order         Int
+  testVersion   TestVersion @relation(fields: [testVersionId], references: [id], onDelete: Cascade)
+  questions     Question[]
+
+  @@unique([testVersionId, code])
+  @@unique([testVersionId, order])
+}
+
+model Question {
+  id            String         @id @default(cuid())
+  sectionId     String
+  code          String         @db.VarChar(80)
+  type          QuestionType
+  prompt        String         @db.Text
+  helpText      String?        @db.Text
+  order         Int
+  required      Boolean        @default(true)
+  config        Json?
+  section       Section        @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  statements    Statement[]
+  answerOptions AnswerOption[]
+  responses     Response[]
+  pairResponses PairResponse[]
+
+  @@unique([sectionId, code])
+  @@unique([sectionId, order])
+}
+
+model Statement {
+  id         String       @id @default(cuid())
+  questionId String
+  code       String       @db.VarChar(80)
+  text       String       @db.Text
+  order      Int
+  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  mostIn     PairResponse[] @relation("MostStatement")
+  leastIn    PairResponse[] @relation("LeastStatement")
+
+  @@unique([questionId, code])
+  @@unique([questionId, order])
+}
+
+model AnswerOption {
+  id         String   @id @default(cuid())
+  questionId String
+  value      String   @db.VarChar(100)
+  label      String   @db.VarChar(255)
+  order      Int
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, value])
+}
+
+model Assignment {
+  id            String           @id @default(cuid())
+  userId        String
+  testId        String
+  testVersionId String
+  type          AssignmentType
+  status        AssignmentStatus @default(AVAILABLE)
+  expiresAt     DateTime?
+  reason        String?          @db.VarChar(500)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  user          User             @relation(fields: [userId], references: [id], onDelete: Restrict)
+  test          Test             @relation(fields: [testId], references: [id], onDelete: Restrict)
+  testVersion   TestVersion      @relation(fields: [testVersionId], references: [id], onDelete: Restrict)
+  attempt       Attempt?
+
+  @@index([userId, status])
+}
+
+model Attempt {
+  id            String        @id @default(cuid())
+  assignmentId  String        @unique
+  testVersionId String
+  status        AttemptStatus @default(CREATED)
+  startedAt     DateTime?
+  pausedAt      DateTime?
+  submittedAt   DateTime?
+  completedAt   DateTime?
+  lastActivityAt DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  assignment    Assignment    @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  testVersion   TestVersion   @relation(fields: [testVersionId], references: [id], onDelete: Restrict)
+  responses     Response[]
+  pairResponses PairResponse[]
+}
+
+model Response {
+  id          String   @id @default(cuid())
+  attemptId   String
+  questionId  String
+  value       Json
+  version     Int      @default(1)
+  operationId String   @unique @db.VarChar(100)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  attempt     Attempt  @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, questionId])
+}
+
+model PairResponse {
+  id              String    @id @default(cuid())
+  attemptId       String
+  questionId      String
+  mostStatementId String
+  leastStatementId String
+  version         Int       @default(1)
+  operationId     String    @unique @db.VarChar(100)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  attempt         Attempt   @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  question        Question  @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  mostStatement   Statement @relation("MostStatement", fields: [mostStatementId], references: [id], onDelete: Restrict)
+  leastStatement  Statement @relation("LeastStatement", fields: [leastStatementId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, questionId])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  action     String   @db.VarChar(100)
+  entityType String   @db.VarChar(80)
+  entityId   String?  @db.VarChar(191)
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  actor      User?    @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+}

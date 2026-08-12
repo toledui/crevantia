@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crevantia · Reproductor de evaluación</title>
+  <style>
+    :root{
+      --night:#080B12;
+      --indigo:#302B78;
+      --cyan:#00C2E8;
+      --honey:#D6A94F;
+      --ivory:#F4F2EC;
+      --bluegray:#9CA6B8;
+      --paper:#FFFFFF;
+      --soft:#F7F7F5;
+      --line:#E2E5EA;
+      --text:#222733;
+      --muted:#6F7887;
+      --success:#247F68;
+      --danger:#B65555;
+      --shadow:0 18px 50px rgba(8,11,18,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#F1F2F3 0%,var(--ivory) 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    button,input{font:inherit}
+    button{cursor:pointer}
+
+    .player{
+      min-height:100vh;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      min-height:78px;
+      background:rgba(255,255,255,.95);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+      display:grid;
+      grid-template-columns:auto minmax(260px,1fr) auto;
+      align-items:center;
+      gap:24px;
+      padding:14px 28px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:210px;
+    }
+
+    .brand img{
+      width:155px;
+      max-height:40px;
+      object-fit:contain;
+      object-position:left center;
+    }
+
+    .assessment-meta{
+      min-width:0;
+    }
+
+    .assessment-meta small{
+      color:var(--bluegray);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-weight:800;
+    }
+
+    .assessment-meta strong{
+      display:block;
+      margin-top:4px;
+      font-size:14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      color:var(--night);
+    }
+
+    .top-progress{
+      display:grid;
+      grid-template-columns:auto minmax(160px,420px) auto;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .top-progress span,
+    .top-progress b{
+      font-size:12px;
+    }
+
+    .top-progress span{color:var(--muted)}
+    .top-progress b{color:var(--indigo)}
+
+    .progress-track{
+      height:8px;
+      background:#E9ECF0;
+      border-radius:999px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .progress-track i{
+      display:block;
+      height:100%;
+      width:38%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--indigo),var(--cyan));
+      transition:width .35s ease;
+    }
+
+    .top-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .save-state{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:var(--success);
+      font-size:11px;
+      white-space:nowrap;
+    }
+
+    .save-state:before{
+      content:"";
+      width:8px;height:8px;border-radius:50%;
+      background:var(--success);
+      box-shadow:0 0 0 4px rgba(36,127,104,.10);
+    }
+
+    .ghost-btn,.icon-btn{
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--night);
+      border-radius:12px;
+      font-weight:800;
+    }
+
+    .ghost-btn{
+      padding:10px 14px;
+      font-size:12px;
+    }
+
+    .icon-btn{
+      width:40px;height:40px;
+      display:grid;place-items:center;
+    }
+
+    .workspace{
+      width:min(100%,1440px);
+      margin:0 auto;
+      padding:34px 28px 110px;
+      display:grid;
+      grid-template-columns:250px minmax(0,1fr) 280px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .side-panel{
+      position:sticky;
+      top:106px;
+      background:rgba(255,255,255,.82);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(8,11,18,.04);
+      overflow:hidden;
+    }
+
+    .side-head{
+      padding:18px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .side-head h3{
+      margin:0 0 4px;
+      font-size:14px;
+      color:var(--night);
+    }
+
+    .side-head p{
+      margin:0;
+      font-size:11px;
+      line-height:1.45;
+      color:var(--muted);
+    }
+
+    .section-list{
+      padding:10px;
+    }
+
+    .section-item{
+      width:100%;
+      border:0;
+      background:transparent;
+      border-radius:12px;
+      padding:12px;
+      text-align:left;
+      display:grid;
+      grid-template-columns:32px 1fr auto;
+      align-items:center;
+      gap:10px;
+      color:#5D6674;
+      transition:.18s ease;
+      margin:3px 0;
+    }
+
+    .section-item:hover{background:#F4F5F7}
+    .section-item.active{
+      background:#EEEDF8;
+      color:var(--indigo);
+      box-shadow:inset 3px 0 0 var(--indigo);
+    }
+
+    .section-number{
+      width:30px;height:30px;border-radius:10px;
+      display:grid;place-items:center;
+      background:#F0F2F5;
+      font-size:11px;
+      font-weight:900;
+    }
+
+    .section-item.active .section-number{
+      background:var(--indigo);
+      color:#fff;
+    }
+
+    .section-copy strong{
+      display:block;
+      font-size:12px;
+    }
+
+    .section-copy small{
+      font-size:10px;
+      color:#8A93A0;
+    }
+
+    .section-status{
+      font-size:10px;
+      font-weight:800;
+      color:var(--success);
+    }
+
+    .question-card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .question-head{
+      padding:22px 28px;
+      border-bottom:1px solid #EEF0F3;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      background:#FCFCFB;
+    }
+
+    .question-label{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .question-number{
+      width:42px;height:42px;border-radius:13px;
+      display:grid;place-items:center;
+      background:var(--night);
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+    }
+
+    .question-label span{
+      font-size:11px;
+      color:var(--bluegray);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:800;
+    }
+
+    .flag-btn{
+      border:1px solid var(--line);
+      background:#fff;
+      color:#707988;
+      border-radius:11px;
+      padding:9px 12px;
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .flag-btn.active{
+      border-color:rgba(214,169,79,.45);
+      color:#8C671D;
+      background:#FCF7EA;
+    }
+
+    .question-body{
+      padding:40px 42px 46px;
+    }
+
+    .instruction{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      color:#7E8795;
+      background:#F4F5F7;
+      border-radius:999px;
+      padding:8px 11px;
+      margin-bottom:24px;
+    }
+
+    .question-text{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(24px,2.3vw,34px);
+      line-height:1.45;
+      letter-spacing:-.015em;
+      color:#20242C;
+      margin:0 0 34px;
+      max-width:900px;
+    }
+
+    .answers{
+      display:grid;
+      gap:13px;
+    }
+
+    .answer{
+      position:relative;
+      display:grid;
+      grid-template-columns:30px 1fr;
+      align-items:center;
+      gap:14px;
+      min-height:62px;
+      padding:14px 18px;
+      border:1px solid #DDE1E7;
+      background:#fff;
+      border-radius:14px;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .answer:hover{
+      border-color:#BFC6D2;
+      background:#FAFAF9;
+      transform:translateY(-1px);
+    }
+
+    .answer input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .radio{
+      width:24px;height:24px;border-radius:50%;
+      border:2px solid #B8C0CC;
+      display:grid;place-items:center;
+    }
+
+    .radio:after{
+      content:"";
+      width:10px;height:10px;border-radius:50%;
+      background:var(--cyan);
+      opacity:0;
+      transform:scale(.5);
+      transition:.15s ease;
+    }
+
+    .answer.selected{
+      border-color:var(--indigo);
+      background:#F5F4FB;
+      box-shadow:0 0 0 3px rgba(48,43,120,.07);
+    }
+
+    .answer.selected .radio{
+      border-color:var(--indigo);
+    }
+
+    .answer.selected .radio:after{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    .answer-copy strong{
+      display:block;
+      font-size:15px;
+      line-height:1.45;
+      color:#323743;
+    }
+
+    .answer-copy small{
+      display:block;
+      margin-top:3px;
+      font-size:11px;
+      color:#8992A0;
+    }
+
+    .question-footer{
+      padding:18px 28px;
+      border-top:1px solid #EEF0F3;
+      background:#FCFCFB;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .nav-btn{
+      border-radius:12px;
+      padding:12px 18px;
+      font-weight:900;
+      font-size:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--night);
+    }
+
+    .nav-btn.primary{
+      border-color:var(--indigo);
+      background:var(--indigo);
+      color:#fff;
+      min-width:148px;
+    }
+
+    .nav-btn:disabled{
+      opacity:.45;
+      cursor:not-allowed;
+    }
+
+    .keyboard-hint{
+      font-size:10px;
+      color:#9AA3B0;
+    }
+
+    .keyboard-hint kbd{
+      border:1px solid #DCE1E7;
+      background:#fff;
+      padding:3px 6px;
+      border-radius:5px;
+      font-family:inherit;
+      color:#66707E;
+    }
+
+    .review-panel{
+      padding:16px;
+    }
+
+    .summary-card{
+      background:#F8F8F6;
+      border:1px solid #ECEEEA;
+      border-radius:14px;
+      padding:14px;
+      margin-bottom:12px;
+    }
+
+    .summary-card strong{
+      display:block;
+      color:var(--night);
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .summary-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:11px;
+      padding:5px 0;
+      color:#6E7785;
+    }
+
+    .summary-row b{color:var(--night)}
+
+    .question-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:7px;
+      margin-top:12px;
+    }
+
+    .q-dot{
+      aspect-ratio:1;
+      border:1px solid #DDE2E8;
+      border-radius:8px;
+      background:#fff;
+      display:grid;place-items:center;
+      font-size:10px;
+      font-weight:800;
+      color:#6F7886;
+    }
+
+    .q-dot.done{
+      background:#EAF5F1;
+      color:var(--success);
+      border-color:#CFE8DF;
+    }
+
+    .q-dot.current{
+      background:var(--indigo);
+      color:#fff;
+      border-color:var(--indigo);
+    }
+
+    .q-dot.flagged{
+      background:#FCF7EA;
+      color:#936D20;
+      border-color:#E7D3A5;
+    }
+
+    .legend{
+      display:grid;
+      gap:8px;
+      margin-top:14px;
+    }
+
+    .legend span{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:10px;
+      color:#7C8592;
+    }
+
+    .legend i{
+      width:9px;height:9px;border-radius:3px;
+      background:#fff;border:1px solid #DDE2E8;
+    }
+
+    .legend .done{background:#EAF5F1;border-color:#CFE8DF}
+    .legend .current{background:var(--indigo);border-color:var(--indigo)}
+    .legend .flagged{background:#FCF7EA;border-color:#E7D3A5}
+
+    .pause-box{
+      border-top:1px solid var(--line);
+      padding:16px;
+    }
+
+    .pause-box button{
+      width:100%;
+      border:1px solid #DCE1E7;
+      background:#fff;
+      border-radius:12px;
+      padding:11px;
+      font-size:11px;
+      font-weight:900;
+      color:var(--night);
+    }
+
+    .bottombar{
+      position:fixed;
+      left:0;right:0;bottom:0;
+      z-index:18;
+      min-height:70px;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(15px);
+      border-top:1px solid var(--line);
+      display:none;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 16px;
+    }
+
+    .mobile-progress{
+      min-width:0;
+      flex:1;
+    }
+
+    .mobile-progress strong{
+      display:block;
+      font-size:12px;
+      margin-bottom:6px;
+    }
+
+    .mobile-progress small{
+      color:var(--muted);
+      font-size:10px;
+    }
+
+    .mobile-next{
+      border:0;
+      border-radius:12px;
+      padding:12px 16px;
+      background:var(--indigo);
+      color:#fff;
+      font-weight:900;
+      font-size:12px;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      display:none;
+      place-items:center;
+      padding:20px;
+      background:rgba(8,11,18,.48);
+      backdrop-filter:blur(5px);
+    }
+
+    .modal.open{display:grid}
+
+    .modal-card{
+      width:min(100%,480px);
+      background:#fff;
+      border-radius:20px;
+      padding:28px;
+      box-shadow:0 28px 80px rgba(8,11,18,.28);
+    }
+
+    .modal-card h3{
+      margin:0 0 10px;
+      font-size:21px;
+    }
+
+    .modal-card p{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:13px;
+      margin:0 0 22px;
+    }
+
+    .modal-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+    }
+
+    @media(max-width:1180px){
+      .workspace{
+        grid-template-columns:220px minmax(0,1fr);
+      }
+      .right-panel{display:none}
+    }
+
+    @media(max-width:860px){
+      .topbar{
+        grid-template-columns:1fr auto;
+        padding:12px 16px;
+      }
+
+      .brand{min-width:0}
+      .brand img{width:135px}
+      .assessment-meta{display:none}
+      .top-progress{display:none}
+      .save-state{display:none}
+
+      .workspace{
+        grid-template-columns:1fr;
+        padding:18px 14px 100px;
+      }
+
+      .left-panel{display:none}
+      .question-body{padding:28px 22px 34px}
+      .question-footer{display:none}
+      .bottombar{display:flex}
+    }
+
+    @media(max-width:560px){
+      .topbar{min-height:64px}
+      .ghost-btn{display:none}
+      .question-card{border-radius:16px}
+      .question-head{padding:16px}
+      .question-body{padding:24px 16px 28px}
+      .question-text{font-size:23px;line-height:1.5}
+      .answer{
+        grid-template-columns:26px 1fr;
+        min-height:66px;
+        padding:14px;
+      }
+      .answer-copy strong{font-size:14px}
+      .keyboard-hint{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="player">
+    <header class="topbar">
+      <div class="brand">
+        <img src="https://api.thagencia.com/wp-content/uploads/2026/07/logo-crevantia-1.png" alt="Crevantia" />
+        <div class="assessment-meta">
+          <small>Evaluación activa</small>
+          <strong>Perfil Integral C-500</strong>
+        </div>
+      </div>
+
+      <div class="top-progress">
+        <span>Pregunta 191 de 500</span>
+        <div class="progress-track"><i id="topProgress"></i></div>
+        <b id="progressPercent">38%</b>
+      </div>
+
+      <div class="top-actions">
+        <span class="save-state" id="saveState">Guardado automático</span>
+        <button class="ghost-btn" id="pauseBtn">Guardar y salir</button>
+        <button class="icon-btn" aria-label="Ayuda">?</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="side-panel left-panel">
+        <div class="side-head">
+          <h3>Secciones de la prueba</h3>
+          <p>Tu avance se conserva automáticamente en cada respuesta.</p>
+        </div>
+        <div class="section-list">
+          <button class="section-item">
+            <span class="section-number">1</span>
+            <span class="section-copy"><strong>Información general</strong><small>20 preguntas</small></span>
+            <span class="section-status">Completa</span>
+          </button>
+          <button class="section-item">
+            <span class="section-number">2</span>
+            <span class="section-copy"><strong>Entorno y preferencias</strong><small>120 preguntas</small></span>
+            <span class="section-status">Completa</span>
+          </button>
+          <button class="section-item active">
+            <span class="section-number">3</span>
+            <span class="section-copy"><strong>Comportamiento habitual</strong><small>180 preguntas</small></span>
+            <span class="section-status">51 de 180</span>
+          </button>
+          <button class="section-item">
+            <span class="section-number">4</span>
+            <span class="section-copy"><strong>Situaciones laborales</strong><small>130 preguntas</small></span>
+            <span class="section-status">Pendiente</span>
+          </button>
+          <button class="section-item">
+            <span class="section-number">5</span>
+            <span class="section-copy"><strong>Revisión final</strong><small>50 preguntas</small></span>
+            <span class="section-status">Pendiente</span>
+          </button>
+        </div>
+      </aside>
+
+      <section class="question-card">
+        <div class="question-head">
+          <div class="question-label">
+            <span class="question-number" id="questionNumber">191</span>
+            <span>Comportamiento habitual</span>
+          </div>
+          <button class="flag-btn" id="flagBtn">☆ Marcar para revisar</button>
+        </div>
+
+        <div class="question-body">
+          <span class="instruction">Selecciona la opción que mejor describa tu comportamiento habitual.</span>
+
+          <h1 class="question-text" id="questionText">
+            Cuando tengo que resolver una situación inesperada, suelo analizar primero todas las posibilidades antes de actuar.
+          </h1>
+
+          <div class="answers" id="answers">
+            <label class="answer">
+              <input type="radio" name="answer" value="1" />
+              <span class="radio"></span>
+              <span class="answer-copy"><strong>Totalmente en desacuerdo</strong><small>Esta afirmación casi nunca me describe.</small></span>
+            </label>
+
+            <label class="answer">
+              <input type="radio" name="answer" value="2" />
+              <span class="radio"></span>
+              <span class="answer-copy"><strong>En desacuerdo</strong><small>La afirmación me describe en pocas ocasiones.</small></span>
+            </label>
+
+            <label class="answer">
+              <input type="radio" name="answer" value="3" />
+              <span class="radio"></span>
+              <span class="answer-copy"><strong>Ni de acuerdo ni en desacuerdo</strong><small>Depende de la situación.</small></span>
+            </label>
+
+            <label class="answer">
+              <input type="radio" name="answer" value="4" />
+              <span class="radio"></span>
+              <span class="answer-copy"><strong>De acuerdo</strong><small>La afirmación me describe con frecuencia.</small></span>
+            </label>
+
+            <label class="answer">
+              <input type="radio" name="answer" value="5" />
+              <span class="radio"></span>
+              <span class="answer-copy"><strong>Totalmente de acuerdo</strong><small>La afirmación me describe casi siempre.</small></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-footer">
+          <button class="nav-btn" id="prevBtn">← Pregunta anterior</button>
+          <span class="keyboard-hint">Usa <kbd>1</kbd>–<kbd>5</kbd> para responder y <kbd>→</kbd> para avanzar</span>
+          <button class="nav-btn primary" id="nextBtn" disabled>Siguiente pregunta →</button>
+        </div>
+      </section>
+
+      <aside class="side-panel right-panel">
+        <div class="side-head">
+          <h3>Revisión rápida</h3>
+          <p>Consulta respuestas pendientes o marcadas sin abandonar esta sección.</p>
+        </div>
+        <div class="review-panel">
+          <div class="summary-card">
+            <strong>Sección 3</strong>
+            <div class="summary-row"><span>Respondidas</span><b>50</b></div>
+            <div class="summary-row"><span>Pendientes</span><b>129</b></div>
+            <div class="summary-row"><span>Marcadas</span><b>3</b></div>
+          </div>
+
+          <div class="question-grid">
+            <button class="q-dot done">181</button>
+            <button class="q-dot done">182</button>
+            <button class="q-dot done">183</button>
+            <button class="q-dot flagged">184</button>
+            <button class="q-dot done">185</button>
+            <button class="q-dot done">186</button>
+            <button class="q-dot done">187</button>
+            <button class="q-dot done">188</button>
+            <button class="q-dot done">189</button>
+            <button class="q-dot done">190</button>
+            <button class="q-dot current">191</button>
+            <button class="q-dot">192</button>
+            <button class="q-dot">193</button>
+            <button class="q-dot">194</button>
+            <button class="q-dot">195</button>
+          </div>
+
+          <div class="legend">
+            <span><i class="done"></i> Respondida</span>
+            <span><i class="current"></i> Pregunta actual</span>
+            <span><i class="flagged"></i> Marcada para revisar</span>
+          </div>
+        </div>
+
+        <div class="pause-box">
+          <button id="pauseBtnSide">Guardar avance y continuar después</button>
+        </div>
+      </aside>
+    </main>
+
+    <div class="bottombar">
+      <div class="mobile-progress">
+        <strong>Pregunta 191 de 500</strong>
+        <div class="progress-track"><i style="width:38%"></i></div>
+        <small>Tu avance se guarda automáticamente</small>
+      </div>
+      <button class="mobile-next" id="mobileNext" disabled>Siguiente</button>
+    </div>
+  </div>
+
+  <div class="modal" id="pauseModal">
+    <div class="modal-card">
+      <h3>Tu avance está guardado</h3>
+      <p>Puedes salir con tranquilidad. Cuando vuelvas, la evaluación continuará desde esta misma pregunta y conservará todas tus respuestas.</p>
+      <div class="modal-actions">
+        <button class="nav-btn" id="closeModal">Seguir respondiendo</button>
+        <button class="nav-btn primary">Salir de la evaluación</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const answers = [...document.querySelectorAll('.answer')];
+    const nextBtn = document.getElementById('nextBtn');
+    const mobileNext = document.getElementById('mobileNext');
+    const flagBtn = document.getElementById('flagBtn');
+    const saveState = document.getElementById('saveState');
+    const pauseModal = document.getElementById('pauseModal');
+    const pauseButtons = [document.getElementById('pauseBtn'), document.getElementById('pauseBtnSide')];
+    const closeModal = document.getElementById('closeModal');
+
+    function selectAnswer(index){
+      answers.forEach((answer, i) => {
+        const selected = i === index;
+        answer.classList.toggle('selected', selected);
+        answer.querySelector('input').checked = selected;
+      });
+
+      nextBtn.disabled = false;
+      mobileNext.disabled = false;
+      saveState.textContent = 'Guardando…';
+
+      setTimeout(() => {
+        saveState.textContent = 'Guardado automático';
+      }, 650);
+    }
+
+    answers.forEach((answer, index) => {
+      answer.addEventListener('click', () => selectAnswer(index));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (['1','2','3','4','5'].includes(event.key)) {
+        selectAnswer(Number(event.key) - 1);
+      }
+      if (event.key === 'ArrowRight' && !nextBtn.disabled) {
+        simulateNext();
+      }
+    });
+
+    flagBtn.addEventListener('click', () => {
+      flagBtn.classList.toggle('active');
+      flagBtn.textContent = flagBtn.classList.contains('active')
+        ? '★ Marcada para revisar'
+        : '☆ Marcar para revisar';
+    });
+
+    function simulateNext(){
+      saveState.textContent = 'Respuesta guardada';
+      setTimeout(() => saveState.textContent = 'Guardado automático', 900);
+    }
+
+    nextBtn.addEventListener('click', simulateNext);
+    mobileNext.addEventListener('click', simulateNext);
+
+    pauseButtons.forEach(button => button.addEventListener('click', () => {
+      pauseModal.classList.add('open');
+    }));
+
+    closeModal.addEventListener('click', () => pauseModal.classList.remove('open'));
+    pauseModal.addEventListener('click', event => {
+      if (event.target === pauseModal) pauseModal.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

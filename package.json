@@ -1,0 +1,31 @@
+{
+  "name": "crevantia",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start:frontend": "npm run start --workspace frontend",
+    "start:backend": "npm run start --workspace backend",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "format": "prettier --write .",
+    "db:generate": "npm run prisma:generate --workspace backend",
+    "db:migrate": "npm run prisma:migrate --workspace backend --",
+    "db:deploy": "npm run prisma:deploy --workspace backend",
+    "db:status": "npm run prisma:status --workspace backend",
+    "db:seed": "npm run prisma:seed --workspace backend"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
