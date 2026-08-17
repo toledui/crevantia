@@ -5,7 +5,7 @@ import { CurrentUser } from '../../common/current-user.decorator';
 import { Permissions } from '../../common/permissions.decorator';
 import { PermissionsGuard } from '../../common/permissions.guard';
 import { MailService } from './mail.service';
-import { UpdateMailSettingsDto } from './mail-settings.dto';
+import { TestMailSettingsDto, UpdateMailSettingsDto } from './mail-settings.dto';
 
 @Controller('admin/settings/mail')
 @UseGuards(AccessTokenGuard, PermissionsGuard)
@@ -22,5 +22,7 @@ export class MailSettingsController {
   }
 
   @Post('test')
-  test(@CurrentUser() user: AuthenticatedUser) { return this.mail.testSettings(user.sub); }
+  test(@CurrentUser() user: AuthenticatedUser, @Body() dto: TestMailSettingsDto) {
+    return this.mail.testSettings(user.sub, dto.email);
+  }
 }

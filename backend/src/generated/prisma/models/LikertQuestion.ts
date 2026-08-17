@@ -256,6 +256,7 @@ export type LikertQuestionWhereInput = {
   section?: Prisma.XOR<Prisma.AssessmentSectionScalarRelationFilter, Prisma.AssessmentSectionWhereInput>
   optionSet?: Prisma.XOR<Prisma.LikertOptionSetScalarRelationFilter, Prisma.LikertOptionSetWhereInput>
   answers?: Prisma.LikertAnswerListRelationFilter
+  scoringRules?: Prisma.LikertScoringRuleListRelationFilter
 }
 
 export type LikertQuestionOrderByWithRelationInput = {
@@ -273,6 +274,7 @@ export type LikertQuestionOrderByWithRelationInput = {
   section?: Prisma.AssessmentSectionOrderByWithRelationInput
   optionSet?: Prisma.LikertOptionSetOrderByWithRelationInput
   answers?: Prisma.LikertAnswerOrderByRelationAggregateInput
+  scoringRules?: Prisma.LikertScoringRuleOrderByRelationAggregateInput
   _relevance?: Prisma.LikertQuestionOrderByRelevanceInput
 }
 
@@ -295,6 +297,7 @@ export type LikertQuestionWhereUniqueInput = Prisma.AtLeast<{
   section?: Prisma.XOR<Prisma.AssessmentSectionScalarRelationFilter, Prisma.AssessmentSectionWhereInput>
   optionSet?: Prisma.XOR<Prisma.LikertOptionSetScalarRelationFilter, Prisma.LikertOptionSetWhereInput>
   answers?: Prisma.LikertAnswerListRelationFilter
+  scoringRules?: Prisma.LikertScoringRuleListRelationFilter
 }, "id" | "assessmentVersionId_code">
 
 export type LikertQuestionOrderByWithAggregationInput = {
@@ -343,6 +346,7 @@ export type LikertQuestionCreateInput = {
   section: Prisma.AssessmentSectionCreateNestedOneWithoutLikertQuestionsInput
   optionSet: Prisma.LikertOptionSetCreateNestedOneWithoutQuestionsInput
   answers?: Prisma.LikertAnswerCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionUncheckedCreateInput = {
@@ -357,6 +361,7 @@ export type LikertQuestionUncheckedCreateInput = {
   scoringStatus?: $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionUpdateInput = {
@@ -371,6 +376,7 @@ export type LikertQuestionUpdateInput = {
   section?: Prisma.AssessmentSectionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   optionSet?: Prisma.LikertOptionSetUpdateOneRequiredWithoutQuestionsNestedInput
   answers?: Prisma.LikertAnswerUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateInput = {
@@ -385,6 +391,7 @@ export type LikertQuestionUncheckedUpdateInput = {
   scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionCreateManyInput = {
@@ -624,6 +631,20 @@ export type EnumScoringSpecificationStatusFieldUpdateOperationsInput = {
   set?: $Enums.ScoringSpecificationStatus
 }
 
+export type LikertQuestionCreateNestedOneWithoutScoringRulesInput = {
+  create?: Prisma.XOR<Prisma.LikertQuestionCreateWithoutScoringRulesInput, Prisma.LikertQuestionUncheckedCreateWithoutScoringRulesInput>
+  connectOrCreate?: Prisma.LikertQuestionCreateOrConnectWithoutScoringRulesInput
+  connect?: Prisma.LikertQuestionWhereUniqueInput
+}
+
+export type LikertQuestionUpdateOneRequiredWithoutScoringRulesNestedInput = {
+  create?: Prisma.XOR<Prisma.LikertQuestionCreateWithoutScoringRulesInput, Prisma.LikertQuestionUncheckedCreateWithoutScoringRulesInput>
+  connectOrCreate?: Prisma.LikertQuestionCreateOrConnectWithoutScoringRulesInput
+  upsert?: Prisma.LikertQuestionUpsertWithoutScoringRulesInput
+  connect?: Prisma.LikertQuestionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LikertQuestionUpdateToOneWithWhereWithoutScoringRulesInput, Prisma.LikertQuestionUpdateWithoutScoringRulesInput>, Prisma.LikertQuestionUncheckedUpdateWithoutScoringRulesInput>
+}
+
 export type LikertQuestionCreateNestedOneWithoutAnswersInput = {
   create?: Prisma.XOR<Prisma.LikertQuestionCreateWithoutAnswersInput, Prisma.LikertQuestionUncheckedCreateWithoutAnswersInput>
   connectOrCreate?: Prisma.LikertQuestionCreateOrConnectWithoutAnswersInput
@@ -649,6 +670,7 @@ export type LikertQuestionCreateWithoutAssessmentVersionInput = {
   section: Prisma.AssessmentSectionCreateNestedOneWithoutLikertQuestionsInput
   optionSet: Prisma.LikertOptionSetCreateNestedOneWithoutQuestionsInput
   answers?: Prisma.LikertAnswerCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionUncheckedCreateWithoutAssessmentVersionInput = {
@@ -662,6 +684,7 @@ export type LikertQuestionUncheckedCreateWithoutAssessmentVersionInput = {
   scoringStatus?: $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionCreateOrConnectWithoutAssessmentVersionInput = {
@@ -717,6 +740,7 @@ export type LikertQuestionCreateWithoutSectionInput = {
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutLikertQuestionsInput
   optionSet: Prisma.LikertOptionSetCreateNestedOneWithoutQuestionsInput
   answers?: Prisma.LikertAnswerCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionUncheckedCreateWithoutSectionInput = {
@@ -730,6 +754,7 @@ export type LikertQuestionUncheckedCreateWithoutSectionInput = {
   scoringStatus?: $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionCreateOrConnectWithoutSectionInput = {
@@ -769,6 +794,7 @@ export type LikertQuestionCreateWithoutOptionSetInput = {
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutLikertQuestionsInput
   section: Prisma.AssessmentSectionCreateNestedOneWithoutLikertQuestionsInput
   answers?: Prisma.LikertAnswerCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionUncheckedCreateWithoutOptionSetInput = {
@@ -782,6 +808,7 @@ export type LikertQuestionUncheckedCreateWithoutOptionSetInput = {
   scoringStatus?: $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutLikertQuestionInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionCreateOrConnectWithoutOptionSetInput = {
@@ -810,6 +837,78 @@ export type LikertQuestionUpdateManyWithWhereWithoutOptionSetInput = {
   data: Prisma.XOR<Prisma.LikertQuestionUpdateManyMutationInput, Prisma.LikertQuestionUncheckedUpdateManyWithoutOptionSetInput>
 }
 
+export type LikertQuestionCreateWithoutScoringRulesInput = {
+  id?: string
+  code: string
+  order: number
+  text: string
+  required?: boolean
+  scoringStatus?: $Enums.ScoringSpecificationStatus
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutLikertQuestionsInput
+  section: Prisma.AssessmentSectionCreateNestedOneWithoutLikertQuestionsInput
+  optionSet: Prisma.LikertOptionSetCreateNestedOneWithoutQuestionsInput
+  answers?: Prisma.LikertAnswerCreateNestedManyWithoutLikertQuestionInput
+}
+
+export type LikertQuestionUncheckedCreateWithoutScoringRulesInput = {
+  id?: string
+  assessmentVersionId: string
+  sectionId: string
+  optionSetId: string
+  code: string
+  order: number
+  text: string
+  required?: boolean
+  scoringStatus?: $Enums.ScoringSpecificationStatus
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutLikertQuestionInput
+}
+
+export type LikertQuestionCreateOrConnectWithoutScoringRulesInput = {
+  where: Prisma.LikertQuestionWhereUniqueInput
+  create: Prisma.XOR<Prisma.LikertQuestionCreateWithoutScoringRulesInput, Prisma.LikertQuestionUncheckedCreateWithoutScoringRulesInput>
+}
+
+export type LikertQuestionUpsertWithoutScoringRulesInput = {
+  update: Prisma.XOR<Prisma.LikertQuestionUpdateWithoutScoringRulesInput, Prisma.LikertQuestionUncheckedUpdateWithoutScoringRulesInput>
+  create: Prisma.XOR<Prisma.LikertQuestionCreateWithoutScoringRulesInput, Prisma.LikertQuestionUncheckedCreateWithoutScoringRulesInput>
+  where?: Prisma.LikertQuestionWhereInput
+}
+
+export type LikertQuestionUpdateToOneWithWhereWithoutScoringRulesInput = {
+  where?: Prisma.LikertQuestionWhereInput
+  data: Prisma.XOR<Prisma.LikertQuestionUpdateWithoutScoringRulesInput, Prisma.LikertQuestionUncheckedUpdateWithoutScoringRulesInput>
+}
+
+export type LikertQuestionUpdateWithoutScoringRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  text?: Prisma.StringFieldUpdateOperationsInput | string
+  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutLikertQuestionsNestedInput
+  section?: Prisma.AssessmentSectionUpdateOneRequiredWithoutLikertQuestionsNestedInput
+  optionSet?: Prisma.LikertOptionSetUpdateOneRequiredWithoutQuestionsNestedInput
+  answers?: Prisma.LikertAnswerUpdateManyWithoutLikertQuestionNestedInput
+}
+
+export type LikertQuestionUncheckedUpdateWithoutScoringRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sectionId?: Prisma.StringFieldUpdateOperationsInput | string
+  optionSetId?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  text?: Prisma.StringFieldUpdateOperationsInput | string
+  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  answers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutLikertQuestionNestedInput
+}
+
 export type LikertQuestionCreateWithoutAnswersInput = {
   id?: string
   code: string
@@ -821,6 +920,7 @@ export type LikertQuestionCreateWithoutAnswersInput = {
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutLikertQuestionsInput
   section: Prisma.AssessmentSectionCreateNestedOneWithoutLikertQuestionsInput
   optionSet: Prisma.LikertOptionSetCreateNestedOneWithoutQuestionsInput
+  scoringRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionUncheckedCreateWithoutAnswersInput = {
@@ -834,6 +934,7 @@ export type LikertQuestionUncheckedCreateWithoutAnswersInput = {
   required?: boolean
   scoringStatus?: $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutLikertQuestionInput
 }
 
 export type LikertQuestionCreateOrConnectWithoutAnswersInput = {
@@ -863,6 +964,7 @@ export type LikertQuestionUpdateWithoutAnswersInput = {
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   section?: Prisma.AssessmentSectionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   optionSet?: Prisma.LikertOptionSetUpdateOneRequiredWithoutQuestionsNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateWithoutAnswersInput = {
@@ -876,6 +978,7 @@ export type LikertQuestionUncheckedUpdateWithoutAnswersInput = {
   required?: Prisma.BoolFieldUpdateOperationsInput | boolean
   scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionCreateManyAssessmentVersionInput = {
@@ -901,6 +1004,7 @@ export type LikertQuestionUpdateWithoutAssessmentVersionInput = {
   section?: Prisma.AssessmentSectionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   optionSet?: Prisma.LikertOptionSetUpdateOneRequiredWithoutQuestionsNestedInput
   answers?: Prisma.LikertAnswerUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateWithoutAssessmentVersionInput = {
@@ -914,6 +1018,7 @@ export type LikertQuestionUncheckedUpdateWithoutAssessmentVersionInput = {
   scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateManyWithoutAssessmentVersionInput = {
@@ -951,6 +1056,7 @@ export type LikertQuestionUpdateWithoutSectionInput = {
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   optionSet?: Prisma.LikertOptionSetUpdateOneRequiredWithoutQuestionsNestedInput
   answers?: Prisma.LikertAnswerUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateWithoutSectionInput = {
@@ -964,6 +1070,7 @@ export type LikertQuestionUncheckedUpdateWithoutSectionInput = {
   scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateManyWithoutSectionInput = {
@@ -1001,6 +1108,7 @@ export type LikertQuestionUpdateWithoutOptionSetInput = {
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   section?: Prisma.AssessmentSectionUpdateOneRequiredWithoutLikertQuestionsNestedInput
   answers?: Prisma.LikertAnswerUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateWithoutOptionSetInput = {
@@ -1014,6 +1122,7 @@ export type LikertQuestionUncheckedUpdateWithoutOptionSetInput = {
   scoringStatus?: Prisma.EnumScoringSpecificationStatusFieldUpdateOperationsInput | $Enums.ScoringSpecificationStatus
   sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   answers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutLikertQuestionNestedInput
+  scoringRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutLikertQuestionNestedInput
 }
 
 export type LikertQuestionUncheckedUpdateManyWithoutOptionSetInput = {
@@ -1035,10 +1144,12 @@ export type LikertQuestionUncheckedUpdateManyWithoutOptionSetInput = {
 
 export type LikertQuestionCountOutputType = {
   answers: number
+  scoringRules: number
 }
 
 export type LikertQuestionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   answers?: boolean | LikertQuestionCountOutputTypeCountAnswersArgs
+  scoringRules?: boolean | LikertQuestionCountOutputTypeCountScoringRulesArgs
 }
 
 /**
@@ -1058,6 +1169,13 @@ export type LikertQuestionCountOutputTypeCountAnswersArgs<ExtArgs extends runtim
   where?: Prisma.LikertAnswerWhereInput
 }
 
+/**
+ * LikertQuestionCountOutputType without action
+ */
+export type LikertQuestionCountOutputTypeCountScoringRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LikertScoringRuleWhereInput
+}
+
 
 export type LikertQuestionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1074,6 +1192,7 @@ export type LikertQuestionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   section?: boolean | Prisma.AssessmentSectionDefaultArgs<ExtArgs>
   optionSet?: boolean | Prisma.LikertOptionSetDefaultArgs<ExtArgs>
   answers?: boolean | Prisma.LikertQuestion$answersArgs<ExtArgs>
+  scoringRules?: boolean | Prisma.LikertQuestion$scoringRulesArgs<ExtArgs>
   _count?: boolean | Prisma.LikertQuestionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["likertQuestion"]>
 
@@ -1098,6 +1217,7 @@ export type LikertQuestionInclude<ExtArgs extends runtime.Types.Extensions.Inter
   section?: boolean | Prisma.AssessmentSectionDefaultArgs<ExtArgs>
   optionSet?: boolean | Prisma.LikertOptionSetDefaultArgs<ExtArgs>
   answers?: boolean | Prisma.LikertQuestion$answersArgs<ExtArgs>
+  scoringRules?: boolean | Prisma.LikertQuestion$scoringRulesArgs<ExtArgs>
   _count?: boolean | Prisma.LikertQuestionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1108,6 +1228,7 @@ export type $LikertQuestionPayload<ExtArgs extends runtime.Types.Extensions.Inte
     section: Prisma.$AssessmentSectionPayload<ExtArgs>
     optionSet: Prisma.$LikertOptionSetPayload<ExtArgs>
     answers: Prisma.$LikertAnswerPayload<ExtArgs>[]
+    scoringRules: Prisma.$LikertScoringRulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1464,6 +1585,7 @@ export interface Prisma__LikertQuestionClient<T, Null = never, ExtArgs extends r
   section<T extends Prisma.AssessmentSectionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentSectionDefaultArgs<ExtArgs>>): Prisma.Prisma__AssessmentSectionClient<runtime.Types.Result.GetResult<Prisma.$AssessmentSectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   optionSet<T extends Prisma.LikertOptionSetDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LikertOptionSetDefaultArgs<ExtArgs>>): Prisma.Prisma__LikertOptionSetClient<runtime.Types.Result.GetResult<Prisma.$LikertOptionSetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   answers<T extends Prisma.LikertQuestion$answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LikertQuestion$answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikertAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  scoringRules<T extends Prisma.LikertQuestion$scoringRulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LikertQuestion$scoringRulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikertScoringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1872,6 +1994,30 @@ export type LikertQuestion$answersArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.LikertAnswerScalarFieldEnum | Prisma.LikertAnswerScalarFieldEnum[]
+}
+
+/**
+ * LikertQuestion.scoringRules
+ */
+export type LikertQuestion$scoringRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LikertScoringRule
+   */
+  select?: Prisma.LikertScoringRuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LikertScoringRule
+   */
+  omit?: Prisma.LikertScoringRuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LikertScoringRuleInclude<ExtArgs> | null
+  where?: Prisma.LikertScoringRuleWhereInput
+  orderBy?: Prisma.LikertScoringRuleOrderByWithRelationInput | Prisma.LikertScoringRuleOrderByWithRelationInput[]
+  cursor?: Prisma.LikertScoringRuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LikertScoringRuleScalarFieldEnum | Prisma.LikertScoringRuleScalarFieldEnum[]
 }
 
 /**

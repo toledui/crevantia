@@ -39,6 +39,7 @@ export type AssessmentVersionSumAggregateOutputType = {
 export type AssessmentVersionMinAggregateOutputType = {
   id: string | null
   assessmentId: string | null
+  defaultNormSetId: string | null
   version: number | null
   versionCode: string | null
   language: string | null
@@ -54,6 +55,7 @@ export type AssessmentVersionMinAggregateOutputType = {
 export type AssessmentVersionMaxAggregateOutputType = {
   id: string | null
   assessmentId: string | null
+  defaultNormSetId: string | null
   version: number | null
   versionCode: string | null
   language: string | null
@@ -69,6 +71,7 @@ export type AssessmentVersionMaxAggregateOutputType = {
 export type AssessmentVersionCountAggregateOutputType = {
   id: number
   assessmentId: number
+  defaultNormSetId: number
   version: number
   versionCode: number
   language: number
@@ -97,6 +100,7 @@ export type AssessmentVersionSumAggregateInputType = {
 export type AssessmentVersionMinAggregateInputType = {
   id?: true
   assessmentId?: true
+  defaultNormSetId?: true
   version?: true
   versionCode?: true
   language?: true
@@ -112,6 +116,7 @@ export type AssessmentVersionMinAggregateInputType = {
 export type AssessmentVersionMaxAggregateInputType = {
   id?: true
   assessmentId?: true
+  defaultNormSetId?: true
   version?: true
   versionCode?: true
   language?: true
@@ -127,6 +132,7 @@ export type AssessmentVersionMaxAggregateInputType = {
 export type AssessmentVersionCountAggregateInputType = {
   id?: true
   assessmentId?: true
+  defaultNormSetId?: true
   version?: true
   versionCode?: true
   language?: true
@@ -230,6 +236,7 @@ export type AssessmentVersionGroupByArgs<ExtArgs extends runtime.Types.Extension
 export type AssessmentVersionGroupByOutputType = {
   id: string
   assessmentId: string
+  defaultNormSetId: string | null
   version: number
   versionCode: string
   language: string
@@ -269,6 +276,7 @@ export type AssessmentVersionWhereInput = {
   NOT?: Prisma.AssessmentVersionWhereInput | Prisma.AssessmentVersionWhereInput[]
   id?: Prisma.StringFilter<"AssessmentVersion"> | string
   assessmentId?: Prisma.StringFilter<"AssessmentVersion"> | string
+  defaultNormSetId?: Prisma.StringNullableFilter<"AssessmentVersion"> | string | null
   version?: Prisma.IntFilter<"AssessmentVersion"> | number
   versionCode?: Prisma.StringFilter<"AssessmentVersion"> | string
   language?: Prisma.StringFilter<"AssessmentVersion"> | string
@@ -281,6 +289,7 @@ export type AssessmentVersionWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"AssessmentVersion"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssessmentVersion"> | Date | string
   assessment?: Prisma.XOR<Prisma.AssessmentScalarRelationFilter, Prisma.AssessmentWhereInput>
+  defaultNormSet?: Prisma.XOR<Prisma.NormSetNullableScalarRelationFilter, Prisma.NormSetWhereInput> | null
   sections?: Prisma.AssessmentSectionListRelationFilter
   demographicFields?: Prisma.DemographicFieldListRelationFilter
   pairQuestions?: Prisma.PairQuestionListRelationFilter
@@ -295,6 +304,7 @@ export type AssessmentVersionWhereInput = {
 export type AssessmentVersionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   assessmentId?: Prisma.SortOrder
+  defaultNormSetId?: Prisma.SortOrderInput | Prisma.SortOrder
   version?: Prisma.SortOrder
   versionCode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -307,6 +317,7 @@ export type AssessmentVersionOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   assessment?: Prisma.AssessmentOrderByWithRelationInput
+  defaultNormSet?: Prisma.NormSetOrderByWithRelationInput
   sections?: Prisma.AssessmentSectionOrderByRelationAggregateInput
   demographicFields?: Prisma.DemographicFieldOrderByRelationAggregateInput
   pairQuestions?: Prisma.PairQuestionOrderByRelationAggregateInput
@@ -327,6 +338,7 @@ export type AssessmentVersionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AssessmentVersionWhereInput[]
   NOT?: Prisma.AssessmentVersionWhereInput | Prisma.AssessmentVersionWhereInput[]
   assessmentId?: Prisma.StringFilter<"AssessmentVersion"> | string
+  defaultNormSetId?: Prisma.StringNullableFilter<"AssessmentVersion"> | string | null
   version?: Prisma.IntFilter<"AssessmentVersion"> | number
   versionCode?: Prisma.StringFilter<"AssessmentVersion"> | string
   language?: Prisma.StringFilter<"AssessmentVersion"> | string
@@ -339,6 +351,7 @@ export type AssessmentVersionWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"AssessmentVersion"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssessmentVersion"> | Date | string
   assessment?: Prisma.XOR<Prisma.AssessmentScalarRelationFilter, Prisma.AssessmentWhereInput>
+  defaultNormSet?: Prisma.XOR<Prisma.NormSetNullableScalarRelationFilter, Prisma.NormSetWhereInput> | null
   sections?: Prisma.AssessmentSectionListRelationFilter
   demographicFields?: Prisma.DemographicFieldListRelationFilter
   pairQuestions?: Prisma.PairQuestionListRelationFilter
@@ -353,6 +366,7 @@ export type AssessmentVersionWhereUniqueInput = Prisma.AtLeast<{
 export type AssessmentVersionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   assessmentId?: Prisma.SortOrder
+  defaultNormSetId?: Prisma.SortOrderInput | Prisma.SortOrder
   version?: Prisma.SortOrder
   versionCode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -377,6 +391,7 @@ export type AssessmentVersionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AssessmentVersionScalarWhereWithAggregatesInput | Prisma.AssessmentVersionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"AssessmentVersion"> | string
   assessmentId?: Prisma.StringWithAggregatesFilter<"AssessmentVersion"> | string
+  defaultNormSetId?: Prisma.StringNullableWithAggregatesFilter<"AssessmentVersion"> | string | null
   version?: Prisma.IntWithAggregatesFilter<"AssessmentVersion"> | number
   versionCode?: Prisma.StringWithAggregatesFilter<"AssessmentVersion"> | string
   language?: Prisma.StringWithAggregatesFilter<"AssessmentVersion"> | string
@@ -404,6 +419,7 @@ export type AssessmentVersionCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -418,6 +434,7 @@ export type AssessmentVersionCreateInput = {
 export type AssessmentVersionUncheckedCreateInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -454,6 +471,7 @@ export type AssessmentVersionUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -468,6 +486,7 @@ export type AssessmentVersionUpdateInput = {
 export type AssessmentVersionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -493,6 +512,7 @@ export type AssessmentVersionUncheckedUpdateInput = {
 export type AssessmentVersionCreateManyInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -524,6 +544,7 @@ export type AssessmentVersionUpdateManyMutationInput = {
 export type AssessmentVersionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -571,6 +592,7 @@ export type AssessmentVersionAssessmentIdVersionCodeCompoundUniqueInput = {
 export type AssessmentVersionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assessmentId?: Prisma.SortOrder
+  defaultNormSetId?: Prisma.SortOrder
   version?: Prisma.SortOrder
   versionCode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -592,6 +614,7 @@ export type AssessmentVersionAvgOrderByAggregateInput = {
 export type AssessmentVersionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assessmentId?: Prisma.SortOrder
+  defaultNormSetId?: Prisma.SortOrder
   version?: Prisma.SortOrder
   versionCode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -607,6 +630,7 @@ export type AssessmentVersionMaxOrderByAggregateInput = {
 export type AssessmentVersionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assessmentId?: Prisma.SortOrder
+  defaultNormSetId?: Prisma.SortOrder
   version?: Prisma.SortOrder
   versionCode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -775,6 +799,48 @@ export type AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInp
   update?: Prisma.XOR<Prisma.XOR<Prisma.AssessmentVersionUpdateToOneWithWhereWithoutScoringKeyVersionsInput, Prisma.AssessmentVersionUpdateWithoutScoringKeyVersionsInput>, Prisma.AssessmentVersionUncheckedUpdateWithoutScoringKeyVersionsInput>
 }
 
+export type AssessmentVersionCreateNestedManyWithoutDefaultNormSetInput = {
+  create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput> | Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput[] | Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput[]
+  connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput | Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput[]
+  createMany?: Prisma.AssessmentVersionCreateManyDefaultNormSetInputEnvelope
+  connect?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+}
+
+export type AssessmentVersionUncheckedCreateNestedManyWithoutDefaultNormSetInput = {
+  create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput> | Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput[] | Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput[]
+  connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput | Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput[]
+  createMany?: Prisma.AssessmentVersionCreateManyDefaultNormSetInputEnvelope
+  connect?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+}
+
+export type AssessmentVersionUpdateManyWithoutDefaultNormSetNestedInput = {
+  create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput> | Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput[] | Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput[]
+  connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput | Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput[]
+  upsert?: Prisma.AssessmentVersionUpsertWithWhereUniqueWithoutDefaultNormSetInput | Prisma.AssessmentVersionUpsertWithWhereUniqueWithoutDefaultNormSetInput[]
+  createMany?: Prisma.AssessmentVersionCreateManyDefaultNormSetInputEnvelope
+  set?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  disconnect?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  delete?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  connect?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  update?: Prisma.AssessmentVersionUpdateWithWhereUniqueWithoutDefaultNormSetInput | Prisma.AssessmentVersionUpdateWithWhereUniqueWithoutDefaultNormSetInput[]
+  updateMany?: Prisma.AssessmentVersionUpdateManyWithWhereWithoutDefaultNormSetInput | Prisma.AssessmentVersionUpdateManyWithWhereWithoutDefaultNormSetInput[]
+  deleteMany?: Prisma.AssessmentVersionScalarWhereInput | Prisma.AssessmentVersionScalarWhereInput[]
+}
+
+export type AssessmentVersionUncheckedUpdateManyWithoutDefaultNormSetNestedInput = {
+  create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput> | Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput[] | Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput[]
+  connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput | Prisma.AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput[]
+  upsert?: Prisma.AssessmentVersionUpsertWithWhereUniqueWithoutDefaultNormSetInput | Prisma.AssessmentVersionUpsertWithWhereUniqueWithoutDefaultNormSetInput[]
+  createMany?: Prisma.AssessmentVersionCreateManyDefaultNormSetInputEnvelope
+  set?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  disconnect?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  delete?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  connect?: Prisma.AssessmentVersionWhereUniqueInput | Prisma.AssessmentVersionWhereUniqueInput[]
+  update?: Prisma.AssessmentVersionUpdateWithWhereUniqueWithoutDefaultNormSetInput | Prisma.AssessmentVersionUpdateWithWhereUniqueWithoutDefaultNormSetInput[]
+  updateMany?: Prisma.AssessmentVersionUpdateManyWithWhereWithoutDefaultNormSetInput | Prisma.AssessmentVersionUpdateManyWithWhereWithoutDefaultNormSetInput[]
+  deleteMany?: Prisma.AssessmentVersionScalarWhereInput | Prisma.AssessmentVersionScalarWhereInput[]
+}
+
 export type AssessmentVersionCreateNestedOneWithoutReportMappingVersionsInput = {
   create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutReportMappingVersionsInput, Prisma.AssessmentVersionUncheckedCreateWithoutReportMappingVersionsInput>
   connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutReportMappingVersionsInput
@@ -817,6 +883,7 @@ export type AssessmentVersionCreateWithoutAttemptsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -830,6 +897,7 @@ export type AssessmentVersionCreateWithoutAttemptsInput = {
 export type AssessmentVersionUncheckedCreateWithoutAttemptsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -881,6 +949,7 @@ export type AssessmentVersionUpdateWithoutAttemptsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -894,6 +963,7 @@ export type AssessmentVersionUpdateWithoutAttemptsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutAttemptsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -928,6 +998,7 @@ export type AssessmentVersionCreateWithoutAssessmentInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -941,6 +1012,7 @@ export type AssessmentVersionCreateWithoutAssessmentInput = {
 
 export type AssessmentVersionUncheckedCreateWithoutAssessmentInput = {
   id?: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -995,6 +1067,7 @@ export type AssessmentVersionScalarWhereInput = {
   NOT?: Prisma.AssessmentVersionScalarWhereInput | Prisma.AssessmentVersionScalarWhereInput[]
   id?: Prisma.StringFilter<"AssessmentVersion"> | string
   assessmentId?: Prisma.StringFilter<"AssessmentVersion"> | string
+  defaultNormSetId?: Prisma.StringNullableFilter<"AssessmentVersion"> | string | null
   version?: Prisma.IntFilter<"AssessmentVersion"> | number
   versionCode?: Prisma.StringFilter<"AssessmentVersion"> | string
   language?: Prisma.StringFilter<"AssessmentVersion"> | string
@@ -1022,6 +1095,7 @@ export type AssessmentVersionCreateWithoutSectionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
   optionSets?: Prisma.LikertOptionSetCreateNestedManyWithoutAssessmentVersionInput
@@ -1035,6 +1109,7 @@ export type AssessmentVersionCreateWithoutSectionsInput = {
 export type AssessmentVersionUncheckedCreateWithoutSectionsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1086,6 +1161,7 @@ export type AssessmentVersionUpdateWithoutSectionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
   optionSets?: Prisma.LikertOptionSetUpdateManyWithoutAssessmentVersionNestedInput
@@ -1099,6 +1175,7 @@ export type AssessmentVersionUpdateWithoutSectionsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutSectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1134,6 +1211,7 @@ export type AssessmentVersionCreateWithoutDemographicFieldsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
   optionSets?: Prisma.LikertOptionSetCreateNestedManyWithoutAssessmentVersionInput
@@ -1147,6 +1225,7 @@ export type AssessmentVersionCreateWithoutDemographicFieldsInput = {
 export type AssessmentVersionUncheckedCreateWithoutDemographicFieldsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1198,6 +1277,7 @@ export type AssessmentVersionUpdateWithoutDemographicFieldsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
   optionSets?: Prisma.LikertOptionSetUpdateManyWithoutAssessmentVersionNestedInput
@@ -1211,6 +1291,7 @@ export type AssessmentVersionUpdateWithoutDemographicFieldsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutDemographicFieldsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1246,6 +1327,7 @@ export type AssessmentVersionCreateWithoutPairQuestionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   optionSets?: Prisma.LikertOptionSetCreateNestedManyWithoutAssessmentVersionInput
@@ -1259,6 +1341,7 @@ export type AssessmentVersionCreateWithoutPairQuestionsInput = {
 export type AssessmentVersionUncheckedCreateWithoutPairQuestionsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1310,6 +1393,7 @@ export type AssessmentVersionUpdateWithoutPairQuestionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   optionSets?: Prisma.LikertOptionSetUpdateManyWithoutAssessmentVersionNestedInput
@@ -1323,6 +1407,7 @@ export type AssessmentVersionUpdateWithoutPairQuestionsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutPairQuestionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1358,6 +1443,7 @@ export type AssessmentVersionCreateWithoutOptionSetsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -1371,6 +1457,7 @@ export type AssessmentVersionCreateWithoutOptionSetsInput = {
 export type AssessmentVersionUncheckedCreateWithoutOptionSetsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1422,6 +1509,7 @@ export type AssessmentVersionUpdateWithoutOptionSetsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -1435,6 +1523,7 @@ export type AssessmentVersionUpdateWithoutOptionSetsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutOptionSetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1470,6 +1559,7 @@ export type AssessmentVersionCreateWithoutLikertQuestionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -1483,6 +1573,7 @@ export type AssessmentVersionCreateWithoutLikertQuestionsInput = {
 export type AssessmentVersionUncheckedCreateWithoutLikertQuestionsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1534,6 +1625,7 @@ export type AssessmentVersionUpdateWithoutLikertQuestionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -1547,6 +1639,7 @@ export type AssessmentVersionUpdateWithoutLikertQuestionsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutLikertQuestionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1582,6 +1675,7 @@ export type AssessmentVersionCreateWithoutScoringKeyVersionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -1595,6 +1689,7 @@ export type AssessmentVersionCreateWithoutScoringKeyVersionsInput = {
 export type AssessmentVersionUncheckedCreateWithoutScoringKeyVersionsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1646,6 +1741,7 @@ export type AssessmentVersionUpdateWithoutScoringKeyVersionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -1659,6 +1755,7 @@ export type AssessmentVersionUpdateWithoutScoringKeyVersionsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutScoringKeyVersionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1680,7 +1777,7 @@ export type AssessmentVersionUncheckedUpdateWithoutScoringKeyVersionsInput = {
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
 }
 
-export type AssessmentVersionCreateWithoutReportMappingVersionsInput = {
+export type AssessmentVersionCreateWithoutDefaultNormSetInput = {
   id?: string
   version: number
   versionCode: string
@@ -1701,12 +1798,90 @@ export type AssessmentVersionCreateWithoutReportMappingVersionsInput = {
   likertQuestions?: Prisma.LikertQuestionCreateNestedManyWithoutAssessmentVersionInput
   scoringKeyVersions?: Prisma.ScoringKeyVersionCreateNestedManyWithoutAssessmentVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
+  reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+}
+
+export type AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput = {
+  id?: string
+  assessmentId: string
+  version: number
+  versionCode: string
+  language?: string
+  status?: $Enums.ConfigurationStatus
+  intro?: string | null
+  estimatedMinutes?: number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sections?: Prisma.AssessmentSectionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  demographicFields?: Prisma.DemographicFieldUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  pairQuestions?: Prisma.PairQuestionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  optionSets?: Prisma.LikertOptionSetUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  likertQuestions?: Prisma.LikertQuestionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+}
+
+export type AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput = {
+  where: Prisma.AssessmentVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput>
+}
+
+export type AssessmentVersionCreateManyDefaultNormSetInputEnvelope = {
+  data: Prisma.AssessmentVersionCreateManyDefaultNormSetInput | Prisma.AssessmentVersionCreateManyDefaultNormSetInput[]
+  skipDuplicates?: boolean
+}
+
+export type AssessmentVersionUpsertWithWhereUniqueWithoutDefaultNormSetInput = {
+  where: Prisma.AssessmentVersionWhereUniqueInput
+  update: Prisma.XOR<Prisma.AssessmentVersionUpdateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedUpdateWithoutDefaultNormSetInput>
+  create: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput>
+}
+
+export type AssessmentVersionUpdateWithWhereUniqueWithoutDefaultNormSetInput = {
+  where: Prisma.AssessmentVersionWhereUniqueInput
+  data: Prisma.XOR<Prisma.AssessmentVersionUpdateWithoutDefaultNormSetInput, Prisma.AssessmentVersionUncheckedUpdateWithoutDefaultNormSetInput>
+}
+
+export type AssessmentVersionUpdateManyWithWhereWithoutDefaultNormSetInput = {
+  where: Prisma.AssessmentVersionScalarWhereInput
+  data: Prisma.XOR<Prisma.AssessmentVersionUpdateManyMutationInput, Prisma.AssessmentVersionUncheckedUpdateManyWithoutDefaultNormSetInput>
+}
+
+export type AssessmentVersionCreateWithoutReportMappingVersionsInput = {
+  id?: string
+  version: number
+  versionCode: string
+  language?: string
+  status?: $Enums.ConfigurationStatus
+  intro?: string | null
+  estimatedMinutes?: number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
+  sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
+  demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
+  pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
+  optionSets?: Prisma.LikertOptionSetCreateNestedManyWithoutAssessmentVersionInput
+  likertQuestions?: Prisma.LikertQuestionCreateNestedManyWithoutAssessmentVersionInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionCreateNestedManyWithoutAssessmentVersionInput
+  attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutReportMappingVersionsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1758,6 +1933,7 @@ export type AssessmentVersionUpdateWithoutReportMappingVersionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -1771,6 +1947,7 @@ export type AssessmentVersionUpdateWithoutReportMappingVersionsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutReportMappingVersionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1806,6 +1983,7 @@ export type AssessmentVersionCreateWithoutResultRunsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
   sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
   demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
   pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
@@ -1819,6 +1997,7 @@ export type AssessmentVersionCreateWithoutResultRunsInput = {
 export type AssessmentVersionUncheckedCreateWithoutResultRunsInput = {
   id?: string
   assessmentId: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1870,6 +2049,7 @@ export type AssessmentVersionUpdateWithoutResultRunsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -1883,6 +2063,7 @@ export type AssessmentVersionUpdateWithoutResultRunsInput = {
 export type AssessmentVersionUncheckedUpdateWithoutResultRunsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1906,6 +2087,7 @@ export type AssessmentVersionUncheckedUpdateWithoutResultRunsInput = {
 
 export type AssessmentVersionCreateManyAssessmentInput = {
   id?: string
+  defaultNormSetId?: string | null
   version: number
   versionCode: string
   language?: string
@@ -1932,6 +2114,7 @@ export type AssessmentVersionUpdateWithoutAssessmentInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
   sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
   demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
   pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
@@ -1945,6 +2128,7 @@ export type AssessmentVersionUpdateWithoutAssessmentInput = {
 
 export type AssessmentVersionUncheckedUpdateWithoutAssessmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1969,6 +2153,89 @@ export type AssessmentVersionUncheckedUpdateWithoutAssessmentInput = {
 
 export type AssessmentVersionUncheckedUpdateManyWithoutAssessmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  versionCode?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AssessmentVersionCreateManyDefaultNormSetInput = {
+  id?: string
+  assessmentId: string
+  version: number
+  versionCode: string
+  language?: string
+  status?: $Enums.ConfigurationStatus
+  intro?: string | null
+  estimatedMinutes?: number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AssessmentVersionUpdateWithoutDefaultNormSetInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  versionCode?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
+  demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
+  pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
+  optionSets?: Prisma.LikertOptionSetUpdateManyWithoutAssessmentVersionNestedInput
+  likertQuestions?: Prisma.LikertQuestionUpdateManyWithoutAssessmentVersionNestedInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionUpdateManyWithoutAssessmentVersionNestedInput
+  attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
+  reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+}
+
+export type AssessmentVersionUncheckedUpdateWithoutDefaultNormSetInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  versionCode?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sections?: Prisma.AssessmentSectionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  demographicFields?: Prisma.DemographicFieldUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  pairQuestions?: Prisma.PairQuestionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  optionSets?: Prisma.LikertOptionSetUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  likertQuestions?: Prisma.LikertQuestionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+}
+
+export type AssessmentVersionUncheckedUpdateManyWithoutDefaultNormSetInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
   version?: Prisma.IntFieldUpdateOperationsInput | number
   versionCode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2088,6 +2355,7 @@ export type AssessmentVersionCountOutputTypeCountResultRunsArgs<ExtArgs extends 
 export type AssessmentVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   assessmentId?: boolean
+  defaultNormSetId?: boolean
   version?: boolean
   versionCode?: boolean
   language?: boolean
@@ -2100,6 +2368,7 @@ export type AssessmentVersionSelect<ExtArgs extends runtime.Types.Extensions.Int
   createdAt?: boolean
   updatedAt?: boolean
   assessment?: boolean | Prisma.AssessmentDefaultArgs<ExtArgs>
+  defaultNormSet?: boolean | Prisma.AssessmentVersion$defaultNormSetArgs<ExtArgs>
   sections?: boolean | Prisma.AssessmentVersion$sectionsArgs<ExtArgs>
   demographicFields?: boolean | Prisma.AssessmentVersion$demographicFieldsArgs<ExtArgs>
   pairQuestions?: boolean | Prisma.AssessmentVersion$pairQuestionsArgs<ExtArgs>
@@ -2117,6 +2386,7 @@ export type AssessmentVersionSelect<ExtArgs extends runtime.Types.Extensions.Int
 export type AssessmentVersionSelectScalar = {
   id?: boolean
   assessmentId?: boolean
+  defaultNormSetId?: boolean
   version?: boolean
   versionCode?: boolean
   language?: boolean
@@ -2130,9 +2400,10 @@ export type AssessmentVersionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AssessmentVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "assessmentId" | "version" | "versionCode" | "language" | "status" | "intro" | "estimatedMinutes" | "sourceMetadata" | "configurationHash" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["assessmentVersion"]>
+export type AssessmentVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "assessmentId" | "defaultNormSetId" | "version" | "versionCode" | "language" | "status" | "intro" | "estimatedMinutes" | "sourceMetadata" | "configurationHash" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["assessmentVersion"]>
 export type AssessmentVersionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assessment?: boolean | Prisma.AssessmentDefaultArgs<ExtArgs>
+  defaultNormSet?: boolean | Prisma.AssessmentVersion$defaultNormSetArgs<ExtArgs>
   sections?: boolean | Prisma.AssessmentVersion$sectionsArgs<ExtArgs>
   demographicFields?: boolean | Prisma.AssessmentVersion$demographicFieldsArgs<ExtArgs>
   pairQuestions?: boolean | Prisma.AssessmentVersion$pairQuestionsArgs<ExtArgs>
@@ -2149,6 +2420,7 @@ export type $AssessmentVersionPayload<ExtArgs extends runtime.Types.Extensions.I
   name: "AssessmentVersion"
   objects: {
     assessment: Prisma.$AssessmentPayload<ExtArgs>
+    defaultNormSet: Prisma.$NormSetPayload<ExtArgs> | null
     sections: Prisma.$AssessmentSectionPayload<ExtArgs>[]
     demographicFields: Prisma.$DemographicFieldPayload<ExtArgs>[]
     pairQuestions: Prisma.$PairQuestionPayload<ExtArgs>[]
@@ -2162,6 +2434,7 @@ export type $AssessmentVersionPayload<ExtArgs extends runtime.Types.Extensions.I
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     assessmentId: string
+    defaultNormSetId: string | null
     version: number
     versionCode: string
     language: string
@@ -2514,6 +2787,7 @@ readonly fields: AssessmentVersionFieldRefs;
 export interface Prisma__AssessmentVersionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   assessment<T extends Prisma.AssessmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentDefaultArgs<ExtArgs>>): Prisma.Prisma__AssessmentClient<runtime.Types.Result.GetResult<Prisma.$AssessmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  defaultNormSet<T extends Prisma.AssessmentVersion$defaultNormSetArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$defaultNormSetArgs<ExtArgs>>): Prisma.Prisma__NormSetClient<runtime.Types.Result.GetResult<Prisma.$NormSetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sections<T extends Prisma.AssessmentVersion$sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssessmentSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   demographicFields<T extends Prisma.AssessmentVersion$demographicFieldsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$demographicFieldsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DemographicFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pairQuestions<T extends Prisma.AssessmentVersion$pairQuestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$pairQuestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PairQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2554,6 +2828,7 @@ export interface Prisma__AssessmentVersionClient<T, Null = never, ExtArgs extend
 export interface AssessmentVersionFieldRefs {
   readonly id: Prisma.FieldRef<"AssessmentVersion", 'String'>
   readonly assessmentId: Prisma.FieldRef<"AssessmentVersion", 'String'>
+  readonly defaultNormSetId: Prisma.FieldRef<"AssessmentVersion", 'String'>
   readonly version: Prisma.FieldRef<"AssessmentVersion", 'Int'>
   readonly versionCode: Prisma.FieldRef<"AssessmentVersion", 'String'>
   readonly language: Prisma.FieldRef<"AssessmentVersion", 'String'>
@@ -2910,6 +3185,25 @@ export type AssessmentVersionDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many AssessmentVersions to delete.
    */
   limit?: number
+}
+
+/**
+ * AssessmentVersion.defaultNormSet
+ */
+export type AssessmentVersion$defaultNormSetArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NormSet
+   */
+  select?: Prisma.NormSetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NormSet
+   */
+  omit?: Prisma.NormSetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NormSetInclude<ExtArgs> | null
+  where?: Prisma.NormSetWhereInput
 }
 
 /**

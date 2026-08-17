@@ -85,6 +85,7 @@ export const ModelName = {
   ScoringKey: 'ScoringKey',
   ScoringKeyVersion: 'ScoringKeyVersion',
   Scale: 'Scale',
+  LikertScoringRule: 'LikertScoringRule',
   ReactiveScoringRule: 'ReactiveScoringRule',
   Composite: 'Composite',
   CompositeComponent: 'CompositeComponent',
@@ -425,6 +426,7 @@ export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof
 export const AssessmentVersionScalarFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
+  defaultNormSetId: 'defaultNormSetId',
   version: 'version',
   versionCode: 'versionCode',
   language: 'language',
@@ -583,6 +585,19 @@ export const ScaleScalarFieldEnum = {
 export type ScaleScalarFieldEnum = (typeof ScaleScalarFieldEnum)[keyof typeof ScaleScalarFieldEnum]
 
 
+export const LikertScoringRuleScalarFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  likertQuestionId: 'likertQuestionId',
+  scaleId: 'scaleId',
+  weight: 'weight',
+  reverse: 'reverse',
+  scoreMap: 'scoreMap'
+} as const
+
+export type LikertScoringRuleScalarFieldEnum = (typeof LikertScoringRuleScalarFieldEnum)[keyof typeof LikertScoringRuleScalarFieldEnum]
+
+
 export const ReactiveScoringRuleScalarFieldEnum = {
   id: 'id',
   scoringKeyVersionId: 'scoringKeyVersionId',
@@ -635,6 +650,7 @@ export type DerivedMetricScalarFieldEnum = (typeof DerivedMetricScalarFieldEnum)
 export const DerivedMetricVersionScalarFieldEnum = {
   id: 'id',
   derivedMetricId: 'derivedMetricId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
   version: 'version',
   calculationType: 'calculationType',
   sourceScaleId: 'sourceScaleId',
@@ -1127,6 +1143,7 @@ export type AssessmentOrderByRelevanceFieldEnum = (typeof AssessmentOrderByRelev
 export const AssessmentVersionOrderByRelevanceFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
+  defaultNormSetId: 'defaultNormSetId',
   versionCode: 'versionCode',
   language: 'language',
   intro: 'intro',
@@ -1252,6 +1269,16 @@ export const ScaleOrderByRelevanceFieldEnum = {
 export type ScaleOrderByRelevanceFieldEnum = (typeof ScaleOrderByRelevanceFieldEnum)[keyof typeof ScaleOrderByRelevanceFieldEnum]
 
 
+export const LikertScoringRuleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  likertQuestionId: 'likertQuestionId',
+  scaleId: 'scaleId'
+} as const
+
+export type LikertScoringRuleOrderByRelevanceFieldEnum = (typeof LikertScoringRuleOrderByRelevanceFieldEnum)[keyof typeof LikertScoringRuleOrderByRelevanceFieldEnum]
+
+
 export const ReactiveScoringRuleOrderByRelevanceFieldEnum = {
   id: 'id',
   scoringKeyVersionId: 'scoringKeyVersionId',
@@ -1294,6 +1321,7 @@ export type DerivedMetricOrderByRelevanceFieldEnum = (typeof DerivedMetricOrderB
 export const DerivedMetricVersionOrderByRelevanceFieldEnum = {
   id: 'id',
   derivedMetricId: 'derivedMetricId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
   sourceScaleId: 'sourceScaleId'
 } as const
 

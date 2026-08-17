@@ -12,11 +12,44 @@ export interface ScoringRule {
   scoreIfLess: number;
 }
 
+export interface LikertScoringDefinition {
+  questionCode: string;
+  scaleCode: string;
+  weight: number;
+  reverse: boolean;
+  minValue: number;
+  maxValue: number;
+  scoreMap?: Record<string, number> | null;
+}
+
+export interface LikertScore {
+  questionCode: string;
+  scaleCode: string;
+  answerValue: number;
+  appliedScore: number;
+}
+
 export interface CompositeDefinition {
   code: string;
   aggregationMethod:
     "ARITHMETIC_MEAN" | "WEIGHTED_MEAN" | "SUM" | "DIRECT_SCALE" | "TWO_AXIS";
   components: Array<{ scaleCode: string; weight: number; order: number }>;
+}
+
+export interface DerivedMetricDefinition {
+  code: string;
+  calculationType:
+    | "ARITHMETIC_MEAN"
+    | "WEIGHTED_MEAN"
+    | "SUM"
+    | "DIRECT_SCALE"
+    | "CUSTOM_DECLARATIVE";
+  sourceScaleCode?: string | null;
+  sources?: Array<{
+    targetType: "SCALE" | "COMPOSITE";
+    targetCode: string;
+    weight?: number;
+  }>;
 }
 
 export interface NormDefinition {
@@ -96,6 +129,7 @@ export function calculateReactiveContributions(
 
 export function calculateScaleScores(
   contributions: ReactiveScore[],
+  likertContributions: LikertScore[] = [],
 ): Map<string, number> {
   const scores = new Map<string, number>();
   for (const contribution of contributions)
@@ -103,7 +137,35 @@ export function calculateScaleScores(
       contribution.scaleCode,
       (scores.get(contribution.scaleCode) ?? 0) + contribution.appliedScore,
     );
+  for (const contribution of likertContributions)
+    scores.set(
+      contribution.scaleCode,
+      (scores.get(contribution.scaleCode) ?? 0) + contribution.appliedScore,
+    );
   return scores;
+}
+
+export function calculateLikertContributions(
+  answers: Array<{ questionCode: string; value: number }>,
+  rules: LikertScoringDefinition[],
+): LikertScore[] {
+  const answerByQuestion = new Map(
+    answers.map((answer) => [answer.questionCode, answer.value]),
+  );
+  return rules.map((rule) => {
+    const value = answerByQuestion.get(rule.questionCode);
+    if (value === undefined)
+      throw new Error(`INCOMPLETE_LIKERT_ANSWER:${rule.questionCode}`);
+    const mapped = rule.scoreMap?.[String(value)];
+    const baseScore =
+      mapped ?? (rule.reverse ? rule.maxValue + rule.minValue - value : value);
+    return {
+      questionCode: rule.questionCode,
+      scaleCode: rule.scaleCode,
+      answerValue: value,
+      appliedScore: baseScore * rule.weight,
+    };
+  });
 }
 
 export function calculateCompositeScore(
@@ -160,14 +222,21 @@ export function resolveDecile(
 export function calculateAssessment(input: {
   answers: Array<{ pairCode: string; selectedMoreReactiveCode: string }>;
   rules: ScoringRule[];
+  likertAnswers?: Array<{ questionCode: string; value: number }>;
+  likertRules?: LikertScoringDefinition[];
   composites: CompositeDefinition[];
+  derivedMetricDefinitions?: DerivedMetricDefinition[];
   norms: NormDefinition[];
 }) {
   const contributions = calculateReactiveContributions(
     input.answers,
     input.rules,
   );
-  const scaleScores = calculateScaleScores(contributions);
+  const likertContributions = calculateLikertContributions(
+    input.likertAnswers ?? [],
+    input.likertRules ?? [],
+  );
+  const scaleScores = calculateScaleScores(contributions, likertContributions);
   const normMap = new Map(
     input.norms.map((norm) => [`${norm.targetType}:${norm.targetCode}`, norm]),
   );
@@ -204,7 +273,64 @@ export function calculateAssessment(input: {
       }
     }
   }
-  return { contributions, scales, composites, derivedMetrics };
+  const compositeScores = new Map(
+    composites.map((score) => [score.targetCode, score.rawScore]),
+  );
+  for (const definition of input.derivedMetricDefinitions ?? []) {
+    const rawScore = calculateDerivedMetric(
+      definition,
+      scaleScores,
+      compositeScores,
+    );
+    derivedMetrics.push(
+      normalized("DERIVED_METRIC", definition.code, rawScore, normMap),
+    );
+  }
+  return {
+    contributions,
+    likertContributions,
+    scales,
+    composites,
+    derivedMetrics,
+  };
+}
+
+export function calculateDerivedMetric(
+  definition: DerivedMetricDefinition,
+  scaleScores: ReadonlyMap<string, number>,
+  compositeScores: ReadonlyMap<string, number>,
+) {
+  if (definition.sourceScaleCode) {
+    const direct = scaleScores.get(definition.sourceScaleCode);
+    if (direct === undefined)
+      throw new Error(`DERIVED_SCALE_SCORE_MISSING:${definition.code}`);
+    return direct;
+  }
+  const sources = definition.sources ?? [];
+  if (!sources.length)
+    throw new Error(`DERIVED_METRIC_WITHOUT_SOURCES:${definition.code}`);
+  const values = sources.map((source) => {
+    const value =
+      source.targetType === "SCALE"
+        ? scaleScores.get(source.targetCode)
+        : compositeScores.get(source.targetCode);
+    if (value === undefined)
+      throw new Error(
+        `DERIVED_SOURCE_MISSING:${definition.code}:${source.targetCode}`,
+      );
+    return { value, weight: source.weight ?? 1 };
+  });
+  if (definition.calculationType === "SUM")
+    return values.reduce((sum, item) => sum + item.value * item.weight, 0);
+  if (definition.calculationType === "WEIGHTED_MEAN") {
+    const totalWeight = values.reduce((sum, item) => sum + item.weight, 0);
+    if (!totalWeight) throw new Error(`DERIVED_ZERO_WEIGHT:${definition.code}`);
+    return (
+      values.reduce((sum, item) => sum + item.value * item.weight, 0) /
+      totalWeight
+    );
+  }
+  return values.reduce((sum, item) => sum + item.value, 0) / values.length;
 }
 
 function normalized(

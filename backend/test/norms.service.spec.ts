@@ -83,6 +83,112 @@ describe("Norm lifecycle", () => {
     });
   });
 
+  it("rejects a technical identity correction when the norm has historical results", async () => {
+    const prisma = {
+      normTarget: {
+        findUnique: jest.fn().mockResolvedValue({
+          id: "target",
+          normVersionId: "v2",
+          targetType: NormTargetType.SCALE,
+          targetCode: "DPO-S001",
+          normVersion: { status: ConfigurationStatus.DRAFT },
+          thresholds: [],
+        }),
+      },
+      resultRun: { count: jest.fn().mockResolvedValue(1) },
+    } as unknown as PrismaService;
+    const service = new NormsService(prisma);
+
+    await expect(
+      service.updateTarget("actor", "target", {
+        targetType: NormTargetType.SCALE,
+        targetCode: "DPO-S002",
+        name: "Adaptación",
+        status: "REVIEW_REQUIRED",
+        isBlocked: false,
+      }),
+    ).rejects.toThrow("resultados históricos");
+  });
+
+  it("corrects a draft target identity, rehashes it and records a specific audit action", async () => {
+    const current = {
+      id: "target",
+      normVersionId: "v2",
+      targetType: NormTargetType.SCALE,
+      targetCode: "DPO-S099",
+      name: "Adaptación",
+      status: "REVIEW_REQUIRED",
+      isBlocked: false,
+      validationNotes: null,
+      normVersion: { status: ConfigurationStatus.DRAFT },
+      thresholds: [],
+    };
+    const updated = {
+      ...current,
+      targetCode: "DPO-S001",
+      normVersion: undefined,
+      thresholds: undefined,
+    };
+    let capturedUpdate: unknown;
+    const updateTarget = jest.fn((input: unknown) => {
+      capturedUpdate = input;
+      return Promise.resolve(updated);
+    });
+    let capturedAudit: unknown;
+    const createAudit = jest.fn((input: unknown) => {
+      capturedAudit = input;
+    });
+    const prisma = {
+      normTarget: {
+        findUnique: jest.fn().mockResolvedValue(current),
+        findFirst: jest.fn().mockResolvedValue(null),
+        update: updateTarget,
+      },
+      resultRun: { count: jest.fn().mockResolvedValue(0) },
+      scale: { findUnique: jest.fn().mockResolvedValue({ id: "scale" }) },
+      normVersion: {
+        update: jest.fn(),
+        findUniqueOrThrow: jest.fn().mockResolvedValue({
+          version: 2,
+          lookupMethod: "LAST_LOWER_BOUND_LTE",
+          numericMode: "EXCEL_BINARY64",
+          roundingMode: "NONE_BEFORE_NORM_LOOKUP",
+          targets: [
+            {
+              targetType: NormTargetType.SCALE,
+              targetCode: "DPO-S001",
+              isBlocked: false,
+              thresholds: [],
+            },
+          ],
+        }),
+      },
+      auditLog: { create: createAudit },
+    } as unknown as PrismaService;
+    const service = new NormsService(prisma);
+
+    await expect(
+      service.updateTarget("actor", "target", {
+        targetType: NormTargetType.SCALE,
+        targetCode: " DPO-S001 ",
+        name: "Adaptación",
+        status: "REVIEW_REQUIRED",
+        isBlocked: false,
+      }),
+    ).resolves.toMatchObject({ targetCode: "DPO-S001" });
+    const updateInput = capturedUpdate as {
+      data: { targetType: NormTargetType; targetCode: string };
+    };
+    expect(updateInput.data).toMatchObject({
+      targetType: NormTargetType.SCALE,
+      targetCode: "DPO-S001",
+    });
+    const auditInput = capturedAudit as {
+      data: { action: string };
+    };
+    expect(auditInput.data.action).toBe("NORM_TARGET_IDENTITY_CORRECTED");
+  });
+
   it("clones targets and thresholds into the next draft version", async () => {
     const source = {
       id: "v1",

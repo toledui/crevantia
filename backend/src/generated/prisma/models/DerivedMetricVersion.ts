@@ -37,6 +37,7 @@ export type DerivedMetricVersionSumAggregateOutputType = {
 export type DerivedMetricVersionMinAggregateOutputType = {
   id: string | null
   derivedMetricId: string | null
+  scoringKeyVersionId: string | null
   version: number | null
   calculationType: $Enums.AggregationMethod | null
   sourceScaleId: string | null
@@ -46,6 +47,7 @@ export type DerivedMetricVersionMinAggregateOutputType = {
 export type DerivedMetricVersionMaxAggregateOutputType = {
   id: string | null
   derivedMetricId: string | null
+  scoringKeyVersionId: string | null
   version: number | null
   calculationType: $Enums.AggregationMethod | null
   sourceScaleId: string | null
@@ -55,6 +57,7 @@ export type DerivedMetricVersionMaxAggregateOutputType = {
 export type DerivedMetricVersionCountAggregateOutputType = {
   id: number
   derivedMetricId: number
+  scoringKeyVersionId: number
   version: number
   calculationType: number
   sourceScaleId: number
@@ -75,6 +78,7 @@ export type DerivedMetricVersionSumAggregateInputType = {
 export type DerivedMetricVersionMinAggregateInputType = {
   id?: true
   derivedMetricId?: true
+  scoringKeyVersionId?: true
   version?: true
   calculationType?: true
   sourceScaleId?: true
@@ -84,6 +88,7 @@ export type DerivedMetricVersionMinAggregateInputType = {
 export type DerivedMetricVersionMaxAggregateInputType = {
   id?: true
   derivedMetricId?: true
+  scoringKeyVersionId?: true
   version?: true
   calculationType?: true
   sourceScaleId?: true
@@ -93,6 +98,7 @@ export type DerivedMetricVersionMaxAggregateInputType = {
 export type DerivedMetricVersionCountAggregateInputType = {
   id?: true
   derivedMetricId?: true
+  scoringKeyVersionId?: true
   version?: true
   calculationType?: true
   sourceScaleId?: true
@@ -190,6 +196,7 @@ export type DerivedMetricVersionGroupByArgs<ExtArgs extends runtime.Types.Extens
 export type DerivedMetricVersionGroupByOutputType = {
   id: string
   derivedMetricId: string
+  scoringKeyVersionId: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   sourceScaleId: string | null
@@ -223,24 +230,28 @@ export type DerivedMetricVersionWhereInput = {
   NOT?: Prisma.DerivedMetricVersionWhereInput | Prisma.DerivedMetricVersionWhereInput[]
   id?: Prisma.StringFilter<"DerivedMetricVersion"> | string
   derivedMetricId?: Prisma.StringFilter<"DerivedMetricVersion"> | string
+  scoringKeyVersionId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
   version?: Prisma.IntFilter<"DerivedMetricVersion"> | number
   calculationType?: Prisma.EnumAggregationMethodFilter<"DerivedMetricVersion"> | $Enums.AggregationMethod
   sourceScaleId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
   declarativeConfig?: Prisma.JsonNullableFilter<"DerivedMetricVersion">
   status?: Prisma.EnumConfigurationStatusFilter<"DerivedMetricVersion"> | $Enums.ConfigurationStatus
   derivedMetric?: Prisma.XOR<Prisma.DerivedMetricScalarRelationFilter, Prisma.DerivedMetricWhereInput>
+  scoringKeyVersion?: Prisma.XOR<Prisma.ScoringKeyVersionNullableScalarRelationFilter, Prisma.ScoringKeyVersionWhereInput> | null
   sourceScale?: Prisma.XOR<Prisma.ScaleNullableScalarRelationFilter, Prisma.ScaleWhereInput> | null
 }
 
 export type DerivedMetricVersionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   derivedMetricId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   version?: Prisma.SortOrder
   calculationType?: Prisma.SortOrder
   sourceScaleId?: Prisma.SortOrderInput | Prisma.SortOrder
   declarativeConfig?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   derivedMetric?: Prisma.DerivedMetricOrderByWithRelationInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionOrderByWithRelationInput
   sourceScale?: Prisma.ScaleOrderByWithRelationInput
   _relevance?: Prisma.DerivedMetricVersionOrderByRelevanceInput
 }
@@ -248,22 +259,26 @@ export type DerivedMetricVersionOrderByWithRelationInput = {
 export type DerivedMetricVersionWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   derivedMetricId_version?: Prisma.DerivedMetricVersionDerivedMetricIdVersionCompoundUniqueInput
+  scoringKeyVersionId_derivedMetricId?: Prisma.DerivedMetricVersionScoringKeyVersionIdDerivedMetricIdCompoundUniqueInput
   AND?: Prisma.DerivedMetricVersionWhereInput | Prisma.DerivedMetricVersionWhereInput[]
   OR?: Prisma.DerivedMetricVersionWhereInput[]
   NOT?: Prisma.DerivedMetricVersionWhereInput | Prisma.DerivedMetricVersionWhereInput[]
   derivedMetricId?: Prisma.StringFilter<"DerivedMetricVersion"> | string
+  scoringKeyVersionId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
   version?: Prisma.IntFilter<"DerivedMetricVersion"> | number
   calculationType?: Prisma.EnumAggregationMethodFilter<"DerivedMetricVersion"> | $Enums.AggregationMethod
   sourceScaleId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
   declarativeConfig?: Prisma.JsonNullableFilter<"DerivedMetricVersion">
   status?: Prisma.EnumConfigurationStatusFilter<"DerivedMetricVersion"> | $Enums.ConfigurationStatus
   derivedMetric?: Prisma.XOR<Prisma.DerivedMetricScalarRelationFilter, Prisma.DerivedMetricWhereInput>
+  scoringKeyVersion?: Prisma.XOR<Prisma.ScoringKeyVersionNullableScalarRelationFilter, Prisma.ScoringKeyVersionWhereInput> | null
   sourceScale?: Prisma.XOR<Prisma.ScaleNullableScalarRelationFilter, Prisma.ScaleWhereInput> | null
-}, "id" | "derivedMetricId_version">
+}, "id" | "derivedMetricId_version" | "scoringKeyVersionId_derivedMetricId">
 
 export type DerivedMetricVersionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   derivedMetricId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   version?: Prisma.SortOrder
   calculationType?: Prisma.SortOrder
   sourceScaleId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -282,6 +297,7 @@ export type DerivedMetricVersionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.DerivedMetricVersionScalarWhereWithAggregatesInput | Prisma.DerivedMetricVersionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"DerivedMetricVersion"> | string
   derivedMetricId?: Prisma.StringWithAggregatesFilter<"DerivedMetricVersion"> | string
+  scoringKeyVersionId?: Prisma.StringNullableWithAggregatesFilter<"DerivedMetricVersion"> | string | null
   version?: Prisma.IntWithAggregatesFilter<"DerivedMetricVersion"> | number
   calculationType?: Prisma.EnumAggregationMethodWithAggregatesFilter<"DerivedMetricVersion"> | $Enums.AggregationMethod
   sourceScaleId?: Prisma.StringNullableWithAggregatesFilter<"DerivedMetricVersion"> | string | null
@@ -296,12 +312,14 @@ export type DerivedMetricVersionCreateInput = {
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   status?: $Enums.ConfigurationStatus
   derivedMetric: Prisma.DerivedMetricCreateNestedOneWithoutVersionsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutDerivedMetricVersionsInput
   sourceScale?: Prisma.ScaleCreateNestedOneWithoutDerivedComponentsInput
 }
 
 export type DerivedMetricVersionUncheckedCreateInput = {
   id?: string
   derivedMetricId: string
+  scoringKeyVersionId?: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   sourceScaleId?: string | null
@@ -316,12 +334,14 @@ export type DerivedMetricVersionUpdateInput = {
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
   derivedMetric?: Prisma.DerivedMetricUpdateOneRequiredWithoutVersionsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutDerivedMetricVersionsNestedInput
   sourceScale?: Prisma.ScaleUpdateOneWithoutDerivedComponentsNestedInput
 }
 
 export type DerivedMetricVersionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   derivedMetricId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   sourceScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -332,6 +352,7 @@ export type DerivedMetricVersionUncheckedUpdateInput = {
 export type DerivedMetricVersionCreateManyInput = {
   id?: string
   derivedMetricId: string
+  scoringKeyVersionId?: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   sourceScaleId?: string | null
@@ -350,6 +371,7 @@ export type DerivedMetricVersionUpdateManyMutationInput = {
 export type DerivedMetricVersionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   derivedMetricId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   sourceScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -378,9 +400,15 @@ export type DerivedMetricVersionDerivedMetricIdVersionCompoundUniqueInput = {
   version: number
 }
 
+export type DerivedMetricVersionScoringKeyVersionIdDerivedMetricIdCompoundUniqueInput = {
+  scoringKeyVersionId: string
+  derivedMetricId: string
+}
+
 export type DerivedMetricVersionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   derivedMetricId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrder
   version?: Prisma.SortOrder
   calculationType?: Prisma.SortOrder
   sourceScaleId?: Prisma.SortOrder
@@ -395,6 +423,7 @@ export type DerivedMetricVersionAvgOrderByAggregateInput = {
 export type DerivedMetricVersionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   derivedMetricId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrder
   version?: Prisma.SortOrder
   calculationType?: Prisma.SortOrder
   sourceScaleId?: Prisma.SortOrder
@@ -404,6 +433,7 @@ export type DerivedMetricVersionMaxOrderByAggregateInput = {
 export type DerivedMetricVersionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   derivedMetricId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrder
   version?: Prisma.SortOrder
   calculationType?: Prisma.SortOrder
   sourceScaleId?: Prisma.SortOrder
@@ -412,6 +442,48 @@ export type DerivedMetricVersionMinOrderByAggregateInput = {
 
 export type DerivedMetricVersionSumOrderByAggregateInput = {
   version?: Prisma.SortOrder
+}
+
+export type DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput = {
+  create?: Prisma.XOR<Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput[] | Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.DerivedMetricVersionCreateManyScoringKeyVersionInputEnvelope
+  connect?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+}
+
+export type DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput = {
+  create?: Prisma.XOR<Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput[] | Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.DerivedMetricVersionCreateManyScoringKeyVersionInputEnvelope
+  connect?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+}
+
+export type DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput[] | Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput[]
+  upsert?: Prisma.DerivedMetricVersionUpsertWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionUpsertWithWhereUniqueWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.DerivedMetricVersionCreateManyScoringKeyVersionInputEnvelope
+  set?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  disconnect?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  delete?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  connect?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  update?: Prisma.DerivedMetricVersionUpdateWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionUpdateWithWhereUniqueWithoutScoringKeyVersionInput[]
+  updateMany?: Prisma.DerivedMetricVersionUpdateManyWithWhereWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionUpdateManyWithWhereWithoutScoringKeyVersionInput[]
+  deleteMany?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
+}
+
+export type DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput[] | Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput[]
+  upsert?: Prisma.DerivedMetricVersionUpsertWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionUpsertWithWhereUniqueWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.DerivedMetricVersionCreateManyScoringKeyVersionInputEnvelope
+  set?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  disconnect?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  delete?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  connect?: Prisma.DerivedMetricVersionWhereUniqueInput | Prisma.DerivedMetricVersionWhereUniqueInput[]
+  update?: Prisma.DerivedMetricVersionUpdateWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionUpdateWithWhereUniqueWithoutScoringKeyVersionInput[]
+  updateMany?: Prisma.DerivedMetricVersionUpdateManyWithWhereWithoutScoringKeyVersionInput | Prisma.DerivedMetricVersionUpdateManyWithWhereWithoutScoringKeyVersionInput[]
+  deleteMany?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
 }
 
 export type DerivedMetricVersionCreateNestedManyWithoutSourceScaleInput = {
@@ -498,6 +570,66 @@ export type DerivedMetricVersionUncheckedUpdateManyWithoutDerivedMetricNestedInp
   deleteMany?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
 }
 
+export type DerivedMetricVersionCreateWithoutScoringKeyVersionInput = {
+  id?: string
+  version: number
+  calculationType: $Enums.AggregationMethod
+  declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.ConfigurationStatus
+  derivedMetric: Prisma.DerivedMetricCreateNestedOneWithoutVersionsInput
+  sourceScale?: Prisma.ScaleCreateNestedOneWithoutDerivedComponentsInput
+}
+
+export type DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput = {
+  id?: string
+  derivedMetricId: string
+  version: number
+  calculationType: $Enums.AggregationMethod
+  sourceScaleId?: string | null
+  declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.ConfigurationStatus
+}
+
+export type DerivedMetricVersionCreateOrConnectWithoutScoringKeyVersionInput = {
+  where: Prisma.DerivedMetricVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput>
+}
+
+export type DerivedMetricVersionCreateManyScoringKeyVersionInputEnvelope = {
+  data: Prisma.DerivedMetricVersionCreateManyScoringKeyVersionInput | Prisma.DerivedMetricVersionCreateManyScoringKeyVersionInput[]
+  skipDuplicates?: boolean
+}
+
+export type DerivedMetricVersionUpsertWithWhereUniqueWithoutScoringKeyVersionInput = {
+  where: Prisma.DerivedMetricVersionWhereUniqueInput
+  update: Prisma.XOR<Prisma.DerivedMetricVersionUpdateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedUpdateWithoutScoringKeyVersionInput>
+  create: Prisma.XOR<Prisma.DerivedMetricVersionCreateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedCreateWithoutScoringKeyVersionInput>
+}
+
+export type DerivedMetricVersionUpdateWithWhereUniqueWithoutScoringKeyVersionInput = {
+  where: Prisma.DerivedMetricVersionWhereUniqueInput
+  data: Prisma.XOR<Prisma.DerivedMetricVersionUpdateWithoutScoringKeyVersionInput, Prisma.DerivedMetricVersionUncheckedUpdateWithoutScoringKeyVersionInput>
+}
+
+export type DerivedMetricVersionUpdateManyWithWhereWithoutScoringKeyVersionInput = {
+  where: Prisma.DerivedMetricVersionScalarWhereInput
+  data: Prisma.XOR<Prisma.DerivedMetricVersionUpdateManyMutationInput, Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionInput>
+}
+
+export type DerivedMetricVersionScalarWhereInput = {
+  AND?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
+  OR?: Prisma.DerivedMetricVersionScalarWhereInput[]
+  NOT?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
+  id?: Prisma.StringFilter<"DerivedMetricVersion"> | string
+  derivedMetricId?: Prisma.StringFilter<"DerivedMetricVersion"> | string
+  scoringKeyVersionId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
+  version?: Prisma.IntFilter<"DerivedMetricVersion"> | number
+  calculationType?: Prisma.EnumAggregationMethodFilter<"DerivedMetricVersion"> | $Enums.AggregationMethod
+  sourceScaleId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
+  declarativeConfig?: Prisma.JsonNullableFilter<"DerivedMetricVersion">
+  status?: Prisma.EnumConfigurationStatusFilter<"DerivedMetricVersion"> | $Enums.ConfigurationStatus
+}
+
 export type DerivedMetricVersionCreateWithoutSourceScaleInput = {
   id?: string
   version: number
@@ -505,11 +637,13 @@ export type DerivedMetricVersionCreateWithoutSourceScaleInput = {
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   status?: $Enums.ConfigurationStatus
   derivedMetric: Prisma.DerivedMetricCreateNestedOneWithoutVersionsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutDerivedMetricVersionsInput
 }
 
 export type DerivedMetricVersionUncheckedCreateWithoutSourceScaleInput = {
   id?: string
   derivedMetricId: string
+  scoringKeyVersionId?: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -542,30 +676,19 @@ export type DerivedMetricVersionUpdateManyWithWhereWithoutSourceScaleInput = {
   data: Prisma.XOR<Prisma.DerivedMetricVersionUpdateManyMutationInput, Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutSourceScaleInput>
 }
 
-export type DerivedMetricVersionScalarWhereInput = {
-  AND?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
-  OR?: Prisma.DerivedMetricVersionScalarWhereInput[]
-  NOT?: Prisma.DerivedMetricVersionScalarWhereInput | Prisma.DerivedMetricVersionScalarWhereInput[]
-  id?: Prisma.StringFilter<"DerivedMetricVersion"> | string
-  derivedMetricId?: Prisma.StringFilter<"DerivedMetricVersion"> | string
-  version?: Prisma.IntFilter<"DerivedMetricVersion"> | number
-  calculationType?: Prisma.EnumAggregationMethodFilter<"DerivedMetricVersion"> | $Enums.AggregationMethod
-  sourceScaleId?: Prisma.StringNullableFilter<"DerivedMetricVersion"> | string | null
-  declarativeConfig?: Prisma.JsonNullableFilter<"DerivedMetricVersion">
-  status?: Prisma.EnumConfigurationStatusFilter<"DerivedMetricVersion"> | $Enums.ConfigurationStatus
-}
-
 export type DerivedMetricVersionCreateWithoutDerivedMetricInput = {
   id?: string
   version: number
   calculationType: $Enums.AggregationMethod
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   status?: $Enums.ConfigurationStatus
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutDerivedMetricVersionsInput
   sourceScale?: Prisma.ScaleCreateNestedOneWithoutDerivedComponentsInput
 }
 
 export type DerivedMetricVersionUncheckedCreateWithoutDerivedMetricInput = {
   id?: string
+  scoringKeyVersionId?: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   sourceScaleId?: string | null
@@ -599,9 +722,50 @@ export type DerivedMetricVersionUpdateManyWithWhereWithoutDerivedMetricInput = {
   data: Prisma.XOR<Prisma.DerivedMetricVersionUpdateManyMutationInput, Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutDerivedMetricInput>
 }
 
+export type DerivedMetricVersionCreateManyScoringKeyVersionInput = {
+  id?: string
+  derivedMetricId: string
+  version: number
+  calculationType: $Enums.AggregationMethod
+  sourceScaleId?: string | null
+  declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.ConfigurationStatus
+}
+
+export type DerivedMetricVersionUpdateWithoutScoringKeyVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
+  declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  derivedMetric?: Prisma.DerivedMetricUpdateOneRequiredWithoutVersionsNestedInput
+  sourceScale?: Prisma.ScaleUpdateOneWithoutDerivedComponentsNestedInput
+}
+
+export type DerivedMetricVersionUncheckedUpdateWithoutScoringKeyVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  derivedMetricId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
+  sourceScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+}
+
+export type DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  derivedMetricId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
+  sourceScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+}
+
 export type DerivedMetricVersionCreateManySourceScaleInput = {
   id?: string
   derivedMetricId: string
+  scoringKeyVersionId?: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -615,11 +779,13 @@ export type DerivedMetricVersionUpdateWithoutSourceScaleInput = {
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
   derivedMetric?: Prisma.DerivedMetricUpdateOneRequiredWithoutVersionsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutDerivedMetricVersionsNestedInput
 }
 
 export type DerivedMetricVersionUncheckedUpdateWithoutSourceScaleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   derivedMetricId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -629,6 +795,7 @@ export type DerivedMetricVersionUncheckedUpdateWithoutSourceScaleInput = {
 export type DerivedMetricVersionUncheckedUpdateManyWithoutSourceScaleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   derivedMetricId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -637,6 +804,7 @@ export type DerivedMetricVersionUncheckedUpdateManyWithoutSourceScaleInput = {
 
 export type DerivedMetricVersionCreateManyDerivedMetricInput = {
   id?: string
+  scoringKeyVersionId?: string | null
   version: number
   calculationType: $Enums.AggregationMethod
   sourceScaleId?: string | null
@@ -650,11 +818,13 @@ export type DerivedMetricVersionUpdateWithoutDerivedMetricInput = {
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   declarativeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutDerivedMetricVersionsNestedInput
   sourceScale?: Prisma.ScaleUpdateOneWithoutDerivedComponentsNestedInput
 }
 
 export type DerivedMetricVersionUncheckedUpdateWithoutDerivedMetricInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   sourceScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -664,6 +834,7 @@ export type DerivedMetricVersionUncheckedUpdateWithoutDerivedMetricInput = {
 
 export type DerivedMetricVersionUncheckedUpdateManyWithoutDerivedMetricInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
   calculationType?: Prisma.EnumAggregationMethodFieldUpdateOperationsInput | $Enums.AggregationMethod
   sourceScaleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -676,12 +847,14 @@ export type DerivedMetricVersionUncheckedUpdateManyWithoutDerivedMetricInput = {
 export type DerivedMetricVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   derivedMetricId?: boolean
+  scoringKeyVersionId?: boolean
   version?: boolean
   calculationType?: boolean
   sourceScaleId?: boolean
   declarativeConfig?: boolean
   status?: boolean
   derivedMetric?: boolean | Prisma.DerivedMetricDefaultArgs<ExtArgs>
+  scoringKeyVersion?: boolean | Prisma.DerivedMetricVersion$scoringKeyVersionArgs<ExtArgs>
   sourceScale?: boolean | Prisma.DerivedMetricVersion$sourceScaleArgs<ExtArgs>
 }, ExtArgs["result"]["derivedMetricVersion"]>
 
@@ -690,6 +863,7 @@ export type DerivedMetricVersionSelect<ExtArgs extends runtime.Types.Extensions.
 export type DerivedMetricVersionSelectScalar = {
   id?: boolean
   derivedMetricId?: boolean
+  scoringKeyVersionId?: boolean
   version?: boolean
   calculationType?: boolean
   sourceScaleId?: boolean
@@ -697,9 +871,10 @@ export type DerivedMetricVersionSelectScalar = {
   status?: boolean
 }
 
-export type DerivedMetricVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "derivedMetricId" | "version" | "calculationType" | "sourceScaleId" | "declarativeConfig" | "status", ExtArgs["result"]["derivedMetricVersion"]>
+export type DerivedMetricVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "derivedMetricId" | "scoringKeyVersionId" | "version" | "calculationType" | "sourceScaleId" | "declarativeConfig" | "status", ExtArgs["result"]["derivedMetricVersion"]>
 export type DerivedMetricVersionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   derivedMetric?: boolean | Prisma.DerivedMetricDefaultArgs<ExtArgs>
+  scoringKeyVersion?: boolean | Prisma.DerivedMetricVersion$scoringKeyVersionArgs<ExtArgs>
   sourceScale?: boolean | Prisma.DerivedMetricVersion$sourceScaleArgs<ExtArgs>
 }
 
@@ -707,11 +882,13 @@ export type $DerivedMetricVersionPayload<ExtArgs extends runtime.Types.Extension
   name: "DerivedMetricVersion"
   objects: {
     derivedMetric: Prisma.$DerivedMetricPayload<ExtArgs>
+    scoringKeyVersion: Prisma.$ScoringKeyVersionPayload<ExtArgs> | null
     sourceScale: Prisma.$ScalePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     derivedMetricId: string
+    scoringKeyVersionId: string | null
     version: number
     calculationType: $Enums.AggregationMethod
     sourceScaleId: string | null
@@ -1058,6 +1235,7 @@ readonly fields: DerivedMetricVersionFieldRefs;
 export interface Prisma__DerivedMetricVersionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   derivedMetric<T extends Prisma.DerivedMetricDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DerivedMetricDefaultArgs<ExtArgs>>): Prisma.Prisma__DerivedMetricClient<runtime.Types.Result.GetResult<Prisma.$DerivedMetricPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  scoringKeyVersion<T extends Prisma.DerivedMetricVersion$scoringKeyVersionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DerivedMetricVersion$scoringKeyVersionArgs<ExtArgs>>): Prisma.Prisma__ScoringKeyVersionClient<runtime.Types.Result.GetResult<Prisma.$ScoringKeyVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sourceScale<T extends Prisma.DerivedMetricVersion$sourceScaleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DerivedMetricVersion$sourceScaleArgs<ExtArgs>>): Prisma.Prisma__ScaleClient<runtime.Types.Result.GetResult<Prisma.$ScalePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1090,6 +1268,7 @@ export interface Prisma__DerivedMetricVersionClient<T, Null = never, ExtArgs ext
 export interface DerivedMetricVersionFieldRefs {
   readonly id: Prisma.FieldRef<"DerivedMetricVersion", 'String'>
   readonly derivedMetricId: Prisma.FieldRef<"DerivedMetricVersion", 'String'>
+  readonly scoringKeyVersionId: Prisma.FieldRef<"DerivedMetricVersion", 'String'>
   readonly version: Prisma.FieldRef<"DerivedMetricVersion", 'Int'>
   readonly calculationType: Prisma.FieldRef<"DerivedMetricVersion", 'AggregationMethod'>
   readonly sourceScaleId: Prisma.FieldRef<"DerivedMetricVersion", 'String'>
@@ -1440,6 +1619,25 @@ export type DerivedMetricVersionDeleteManyArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many DerivedMetricVersions to delete.
    */
   limit?: number
+}
+
+/**
+ * DerivedMetricVersion.scoringKeyVersion
+ */
+export type DerivedMetricVersion$scoringKeyVersionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScoringKeyVersion
+   */
+  select?: Prisma.ScoringKeyVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScoringKeyVersion
+   */
+  omit?: Prisma.ScoringKeyVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScoringKeyVersionInclude<ExtArgs> | null
+  where?: Prisma.ScoringKeyVersionWhereInput
 }
 
 /**

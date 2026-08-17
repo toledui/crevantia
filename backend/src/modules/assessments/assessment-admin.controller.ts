@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -105,5 +106,14 @@ export class AssessmentAdminController {
     @Param("versionId") versionId: string,
   ) {
     return this.assessments.archive(user.sub, versionId);
+  }
+
+  @Delete("versions/:versionId")
+  @Permissions("admin.access", "assessment.manage")
+  deleteDraft(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param("versionId") versionId: string,
+  ) {
+    return this.assessments.deleteDraft(user.sub, versionId);
   }
 }

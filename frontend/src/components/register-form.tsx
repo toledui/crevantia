@@ -6,11 +6,12 @@ import { register } from '@/lib/api';
 
 export function RegisterForm() {
   const [message, setMessage] = useState('');
+  const [accountCreated, setAccountCreated] = useState(false);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); setBusy(true); setError(''); setMessage('');
+    event.preventDefault(); setBusy(true); setError(''); setMessage(''); setAccountCreated(false);
     const data = new FormData(event.currentTarget);
     if (data.get('password') !== data.get('confirmPassword')) { setError('Las contraseñas no coinciden.'); setBusy(false); return; }
     try {
@@ -19,8 +20,9 @@ export function RegisterForm() {
         termsAccepted: data.get('termsAccepted') === 'on', privacyAccepted: data.get('privacyAccepted') === 'on',
       });
       setMessage(result.deliveryStatus === 'SENT'
-        ? 'Cuenta creada. Revisa tu correo para confirmar tu cuenta.'
+        ? 'Cuenta creada. Enviamos un enlace a tu correo; debes confirmarlo antes de iniciar sesión.'
         : 'Cuenta creada, pero el correo no pudo enviarse. Solicita un nuevo enlace cuando SMTP esté configurado.');
+      setAccountCreated(true);
       event.currentTarget.reset();
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'No fue posible crear la cuenta.'); }
     finally { setBusy(false); }
@@ -37,6 +39,7 @@ export function RegisterForm() {
         <label className="check consent"><input name="termsAccepted" type="checkbox" required /> Acepto los términos de uso.</label>
         <label className="check consent"><input name="privacyAccepted" type="checkbox" required /> Acepto el aviso de privacidad.</label>
         {error && <p className="form-error" role="alert">{error}</p>}{message && <p className="form-success" role="status">{message}</p>}
+        {accountCreated && <p className="switch-auth">¿No recibiste el mensaje? <Link href="/verificar-correo">Reenviar enlace de confirmación</Link></p>}
         <button className="primary-button" disabled={busy}>{busy ? 'Creando cuenta…' : 'Crear mi cuenta'}<span>→</span></button>
       </form>
       <p className="switch-auth">¿Ya tienes una cuenta? <Link href="/iniciar-sesion">Iniciar sesión</Link></p>

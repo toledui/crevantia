@@ -33,6 +33,7 @@ const versionInclude = {
           optionSet: {
             include: { options: { orderBy: { order: "asc" as const } } },
           },
+          scoringRules: { include: { scale: true } },
         },
       },
     },
@@ -41,10 +42,20 @@ const versionInclude = {
     orderBy: { version: "desc" as const },
     include: {
       rules: { include: { scale: true } },
-      compositeComponents: true,
+      likertRules: { include: { scale: true } },
+      compositeComponents: { include: { composite: true, scale: true } },
+      derivedMetricVersions: {
+        include: { derivedMetric: true, sourceScale: true },
+      },
     },
   },
-  _count: { select: { attempts: true, resultRuns: true } },
+  _count: {
+    select: {
+      attempts: true,
+      resultRuns: true,
+      reportMappingVersions: true,
+    },
+  },
 } satisfies Prisma.AssessmentVersionInclude;
 
 @Injectable()
@@ -100,7 +111,7 @@ export class AssessmentAdminService {
     return {
       items: await this.prisma.scale.findMany({
         orderBy: [{ name: "asc" }, { code: "asc" }],
-        select: { id: true, code: true, name: true },
+        select: { id: true, code: true, name: true, description: true },
       }),
     };
   }
@@ -195,7 +206,23 @@ export class AssessmentAdminService {
           include: versionInclude,
         })
       : null;
-    const nextVersion = (assessment.versions[0]?.version ?? 0) + 1;
+    const deletionAudits = await this.prisma.auditLog.findMany({
+      where: {
+        action: "ASSESSMENT_VERSION_DELETED",
+        entityType: "AssessmentVersion",
+      },
+      select: { after: true },
+    });
+    const highestDeletedVersion = deletionAudits.reduce(
+      (highest, audit) =>
+        Math.max(
+          highest,
+          deletedVersionNumber(audit.after, assessmentId) ?? 0,
+        ),
+      0,
+    );
+    const nextVersion =
+      Math.max(assessment.versions[0]?.version ?? 0, highestDeletedVersion) + 1;
 
     return this.prisma.$transaction(
       async (tx) => {
@@ -205,6 +232,7 @@ export class AssessmentAdminService {
             version: nextVersion,
             versionCode: `${assessment.code}_V${nextVersion}`,
             language: dto.language ?? source?.language ?? "es-MX",
+            defaultNormSetId: source?.defaultNormSetId,
             intro: source?.intro,
             estimatedMinutes: dto.estimatedMinutes ?? source?.estimatedMinutes,
             sourceMetadata: source?.sourceMetadata ?? undefined,
@@ -268,29 +296,66 @@ export class AssessmentAdminService {
       throw new BadRequestException(
         "La clave de puntuación está publicada. Clona esta versión para editarla.",
       );
+    if (
+      dto.normSetId &&
+      !(await this.prisma.normSet.findUnique({
+        where: { id: dto.normSetId },
+        select: { id: true },
+      }))
+    )
+      throw new BadRequestException(
+        "La familia normativa seleccionada no existe.",
+      );
 
     const scaleCodes = [
       ...new Set(
-        dto.sections.flatMap((section) =>
-          section.questions.flatMap((question) =>
-            question.reactives.flatMap((reactive) =>
-              reactive.scoring ? [reactive.scoring.scaleCode] : [],
-            ),
+        [
+          ...dto.sections.flatMap((section) =>
+            section.questions.flatMap((question) => [
+              ...question.reactives.flatMap((reactive) =>
+                reactive.scoring ? [reactive.scoring.scaleCode] : [],
+              ),
+              ...(question.scoring ? [question.scoring.scaleCode] : []),
+            ]),
           ),
-        ),
+          ...(dto.composites?.flatMap((composite) =>
+            composite.components.map((component) => component.scaleCode),
+          ) ?? []),
+          ...(dto.derivedMetrics?.flatMap((metric) =>
+            metric.sourceScaleCode ? [metric.sourceScaleCode] : [],
+          ) ?? []),
+        ].map(normalizeCode),
       ),
     ];
-    const scales = await this.prisma.scale.findMany({
-      where: { code: { in: scaleCodes } },
-      select: { id: true, code: true },
-    });
-    const scaleByCode = new Map(scales.map((scale) => [scale.code, scale.id]));
-    const missingScale = scaleCodes.find((code) => !scaleByCode.has(code));
-    if (missingScale)
-      throw new BadRequestException(`La escala ${missingScale} no existe.`);
-
     await this.prisma.$transaction(
       async (tx) => {
+        for (const scale of dto.scales ?? [])
+          await tx.scale.upsert({
+            where: { code: normalizeCode(scale.code) },
+            create: {
+              code: normalizeCode(scale.code),
+              name: scale.name.trim(),
+              description: scale.description?.trim() || null,
+            },
+            update: {
+              name: scale.name.trim(),
+              description: scale.description?.trim() || null,
+            },
+          });
+        const scales = await tx.scale.findMany({
+          where: { code: { in: scaleCodes } },
+          select: { id: true, code: true },
+        });
+        const scaleByCode = new Map(
+          scales.map((scale) => [scale.code, scale.id]),
+        );
+        const missingScale = scaleCodes.find((code) => !scaleByCode.has(code));
+        if (missingScale)
+          throw new BadRequestException(`La escala ${missingScale} no existe.`);
+
+        await tx.likertScoringRule.deleteMany({
+          where: { scoringKeyVersionId: scoringVersion.id },
+        });
         await tx.reactiveScoringRule.deleteMany({
           where: { scoringKeyVersionId: scoringVersion.id },
         });
@@ -401,7 +466,7 @@ export class AssessmentAdminService {
                 optionSetId = optionSet.id;
                 optionSetByCode.set(optionSetCode, optionSet.id);
               }
-              await tx.likertQuestion.create({
+              const likert = await tx.likertQuestion.create({
                 data: {
                   assessmentVersionId: versionId,
                   sectionId: section.id,
@@ -410,17 +475,97 @@ export class AssessmentAdminService {
                   order: globalQuestionOrder,
                   text: question.text?.trim() ?? "",
                   required: question.required,
-                  scoringStatus:
-                    question.scoringStatus ??
-                    ScoringSpecificationStatus.PENDING_SCORING_SPEC,
+                  scoringStatus: question.scoring
+                    ? ScoringSpecificationStatus.CONFIGURED
+                    : (question.scoringStatus ??
+                      ScoringSpecificationStatus.PENDING_SCORING_SPEC),
                 },
               });
+              if (question.scoring)
+                await tx.likertScoringRule.create({
+                  data: {
+                    scoringKeyVersionId: scoringVersion.id,
+                    likertQuestionId: likert.id,
+                    scaleId: scaleByCode.get(
+                      normalizeCode(question.scoring.scaleCode),
+                    )!,
+                    weight: question.scoring.weight,
+                    reverse: question.scoring.reverse,
+                    scoreMap: asJson(question.scoring.scoreMap),
+                  },
+                });
             }
+          }
+        }
+
+        if (dto.composites) {
+          await tx.compositeComponent.deleteMany({
+            where: { scoringKeyVersionId: scoringVersion.id },
+          });
+          for (const compositeInput of dto.composites) {
+            const composite = await tx.composite.upsert({
+              where: { code: normalizeCode(compositeInput.code) },
+              create: {
+                code: normalizeCode(compositeInput.code),
+                name: compositeInput.name.trim(),
+                description: compositeInput.description?.trim() || null,
+                aggregationMethod: compositeInput.aggregationMethod,
+              },
+              update: {
+                name: compositeInput.name.trim(),
+                description: compositeInput.description?.trim() || null,
+                aggregationMethod: compositeInput.aggregationMethod,
+              },
+            });
+            await tx.compositeComponent.createMany({
+              data: compositeInput.components.map((component) => ({
+                scoringKeyVersionId: scoringVersion.id,
+                compositeId: composite.id,
+                scaleId: scaleByCode.get(normalizeCode(component.scaleCode))!,
+                weight: component.weight,
+                order: component.order,
+                aggregationMethod: compositeInput.aggregationMethod,
+              })),
+            });
+          }
+        }
+
+        if (dto.derivedMetrics) {
+          await tx.derivedMetricVersion.deleteMany({
+            where: { scoringKeyVersionId: scoringVersion.id },
+          });
+          for (const metricInput of dto.derivedMetrics) {
+            const metric = await tx.derivedMetric.upsert({
+              where: { code: normalizeCode(metricInput.code) },
+              create: {
+                code: normalizeCode(metricInput.code),
+                name: metricInput.name.trim(),
+              },
+              update: { name: metricInput.name.trim() },
+            });
+            const latest = await tx.derivedMetricVersion.aggregate({
+              where: { derivedMetricId: metric.id },
+              _max: { version: true },
+            });
+            await tx.derivedMetricVersion.create({
+              data: {
+                derivedMetricId: metric.id,
+                scoringKeyVersionId: scoringVersion.id,
+                version: (latest._max.version ?? 0) + 1,
+                calculationType: metricInput.calculationType,
+                sourceScaleId: metricInput.sourceScaleCode
+                  ? scaleByCode.get(normalizeCode(metricInput.sourceScaleCode))
+                  : null,
+                declarativeConfig: asJson(metricInput.declarativeConfig),
+                status: ConfigurationStatus.DRAFT,
+              },
+            });
           }
         }
 
         const assessmentHash = configurationHash({
           language: dto.language,
+          normSetId: dto.normSetId,
           intro: dto.intro,
           estimatedMinutes: dto.estimatedMinutes,
           demographics: dto.demographics,
@@ -435,11 +580,22 @@ export class AssessmentAdminService {
               })),
             ),
           ),
+          likert: dto.sections.flatMap((section) =>
+            section.questions
+              .filter((question) => question.type === "LIKERT")
+              .map((question) => ({
+                code: question.code,
+                ...question.scoring,
+              })),
+          ),
+          composites: dto.composites,
+          derivedMetrics: dto.derivedMetrics,
         });
         await tx.assessmentVersion.update({
           where: { id: versionId },
           data: {
             language: dto.language,
+            defaultNormSetId: dto.normSetId ?? null,
             intro: dto.intro?.trim() || null,
             estimatedMinutes: dto.estimatedMinutes ?? null,
             configurationHash: assessmentHash,
@@ -505,6 +661,10 @@ export class AssessmentAdminService {
           publishedAt: new Date(),
         },
       }),
+      this.prisma.derivedMetricVersion.updateMany({
+        where: { scoringKeyVersionId: scoring.id },
+        data: { status: ConfigurationStatus.PUBLISHED },
+      }),
       this.prisma.auditLog.create({
         data: {
           actorId,
@@ -558,6 +718,90 @@ export class AssessmentAdminService {
     return { success: true };
   }
 
+  async deleteDraft(actorId: string, versionId: string) {
+    return this.prisma.$transaction(async (tx) => {
+      const version = await tx.assessmentVersion.findUnique({
+        where: { id: versionId },
+        include: {
+          scoringKeyVersions: {
+            select: {
+              status: true,
+              publishedAt: true,
+              _count: { select: { attempts: true, resultRuns: true } },
+            },
+          },
+          _count: {
+            select: {
+              attempts: true,
+              resultRuns: true,
+              reportMappingVersions: true,
+            },
+          },
+        },
+      });
+      if (!version) throw new NotFoundException("La versión no existe.");
+      if (
+        version.status !== ConfigurationStatus.DRAFT ||
+        version.publishedAt ||
+        version.scoringKeyVersions.some(
+          (scoring) =>
+            scoring.status !== ConfigurationStatus.DRAFT ||
+            Boolean(scoring.publishedAt) ||
+            scoring._count.attempts > 0 ||
+            scoring._count.resultRuns > 0,
+        )
+      )
+        throw new BadRequestException(
+          "Solo puede eliminarse un borrador que nunca haya sido publicado.",
+        );
+      if (version._count.attempts || version._count.resultRuns)
+        throw new BadRequestException(
+          "No se puede eliminar una versión con intentos o resultados.",
+        );
+      if (version._count.reportMappingVersions)
+        throw new BadRequestException(
+          "No se puede eliminar una versión vinculada a configuraciones de reporte.",
+        );
+      const versionCount = await tx.assessmentVersion.count({
+        where: { assessmentId: version.assessmentId },
+      });
+      if (versionCount <= 1)
+        throw new BadRequestException(
+          "No se puede eliminar la única versión de la evaluación.",
+        );
+
+      await tx.scoringKeyVersion.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
+      await tx.assessmentVersion.delete({ where: { id: versionId } });
+      await tx.auditLog.create({
+        data: {
+          actorId,
+          action: "ASSESSMENT_VERSION_DELETED",
+          entityType: "AssessmentVersion",
+          entityId: versionId,
+          before: {
+            assessmentId: version.assessmentId,
+            version: version.version,
+            versionCode: version.versionCode,
+            status: version.status,
+          },
+          after: {
+            assessmentId: version.assessmentId,
+            version: version.version,
+            versionCode: version.versionCode,
+            deleted: true,
+          },
+        },
+      });
+      return {
+        success: true,
+        deletedVersion: version.version,
+        deletedVersionCode: version.versionCode,
+      };
+    });
+  }
+
   private async versionDetail(versionId: string) {
     const version = await this.getVersion(versionId);
     return this.presentVersion(version);
@@ -584,6 +828,7 @@ export class AssessmentAdminService {
       version: version.version,
       versionCode: version.versionCode,
       language: version.language,
+      normSetId: version.defaultNormSetId,
       status: version.status,
       intro: version.intro,
       estimatedMinutes: version.estimatedMinutes,
@@ -602,6 +847,21 @@ export class AssessmentAdminService {
             status: scoringVersion.status,
           }
         : null,
+      psychometrics: scoringVersion
+        ? {
+            composites: presentComposites(scoringVersion.compositeComponents),
+            derivedMetrics: scoringVersion.derivedMetricVersions.map(
+              (metric) => ({
+                id: metric.derivedMetric.id,
+                code: metric.derivedMetric.code,
+                name: metric.derivedMetric.name,
+                calculationType: metric.calculationType,
+                sourceScaleCode: metric.sourceScale?.code ?? null,
+                declarativeConfig: metric.declarativeConfig,
+              }),
+            ),
+          }
+        : { composites: [], derivedMetrics: [] },
       demographics: version.demographicFields,
       sections: version.sections.map((section) => ({
         id: section.id,
@@ -646,6 +906,15 @@ export class AssessmentAdminService {
             scoringStatus: question.scoringStatus,
             optionSetCode: question.optionSet.code,
             options: question.optionSet.options,
+            scoring: question.scoringRules[0]
+              ? {
+                  scaleCode: question.scoringRules[0].scale.code,
+                  scaleName: question.scoringRules[0].scale.name,
+                  weight: Number(question.scoringRules[0].weight),
+                  reverse: question.scoringRules[0].reverse,
+                  scoreMap: question.scoringRules[0].scoreMap,
+                }
+              : null,
           })),
         ].sort((left, right) => left.order - right.order),
       })),
@@ -690,6 +959,13 @@ export class AssessmentAdminService {
         warnings.push(
           `${likert.code} está pendiente de especificación de puntuación.`,
         );
+      if (
+        likert.scoringStatus === ScoringSpecificationStatus.CONFIGURED &&
+        !likert.scoringRules.length
+      )
+        errors.push(
+          `${likert.code} está configurada pero no tiene regla Likert.`,
+        );
     }
     return {
       valid: errors.length === 0,
@@ -711,6 +987,34 @@ export class AssessmentAdminService {
   }
 
   private validateDocument(dto: ReplaceAssessmentContentDto) {
+    if (dto.scales)
+      unique(
+        dto.scales.map((scale) => normalizeCode(scale.code)),
+        "Las escalas",
+      );
+    if (dto.composites) {
+      unique(
+        dto.composites.map((composite) => normalizeCode(composite.code)),
+        "Los composites",
+      );
+      for (const composite of dto.composites) {
+        unique(
+          composite.components.map((component) => component.order),
+          `El orden de ${composite.code}`,
+        );
+        unique(
+          composite.components.map((component) =>
+            normalizeCode(component.scaleCode),
+          ),
+          `Las escalas de ${composite.code}`,
+        );
+      }
+    }
+    if (dto.derivedMetrics)
+      unique(
+        dto.derivedMetrics.map((metric) => normalizeCode(metric.code)),
+        "Las métricas derivadas",
+      );
     unique(
       dto.sections.map((section) => normalizeCode(section.code)),
       "Los códigos de sección",
@@ -777,6 +1081,14 @@ export class AssessmentAdminService {
           throw new BadRequestException(
             `${question.code} no admite afirmaciones pareadas.`,
           );
+        if (
+          question.type === "LIKERT" &&
+          question.scoringStatus === ScoringSpecificationStatus.CONFIGURED &&
+          !question.scoring
+        )
+          throw new BadRequestException(
+            `${question.code} requiere una regla de puntuación Likert.`,
+          );
       }
     }
   }
@@ -814,6 +1126,7 @@ export class AssessmentAdminService {
       sectionMap.set(section.id, cloned.id);
     }
     const reactiveMap = new Map<string, string>();
+    const likertMap = new Map<string, string>();
     const optionSetMap = new Map<string, string>();
     for (const section of source.sections) {
       for (const pair of section.pairQuestions) {
@@ -858,7 +1171,7 @@ export class AssessmentAdminService {
           optionSetId = optionSet.id;
           optionSetMap.set(likert.optionSet.id, optionSet.id);
         }
-        await tx.likertQuestion.create({
+        const clonedLikert = await tx.likertQuestion.create({
           data: {
             assessmentVersionId: targetVersionId,
             sectionId: sectionMap.get(section.id)!,
@@ -870,6 +1183,7 @@ export class AssessmentAdminService {
             scoringStatus: likert.scoringStatus,
           },
         });
+        likertMap.set(likert.id, clonedLikert.id);
       }
     }
 
@@ -905,6 +1219,18 @@ export class AssessmentAdminService {
           sourceMetadata: rule.sourceMetadata ?? undefined,
         })),
     });
+    await tx.likertScoringRule.createMany({
+      data: sourceScoring.likertRules
+        .filter((rule) => likertMap.has(rule.likertQuestionId))
+        .map((rule) => ({
+          scoringKeyVersionId: scoring.id,
+          likertQuestionId: likertMap.get(rule.likertQuestionId)!,
+          scaleId: rule.scaleId,
+          weight: rule.weight,
+          reverse: rule.reverse,
+          scoreMap: rule.scoreMap ?? undefined,
+        })),
+    });
     await tx.compositeComponent.createMany({
       data: sourceScoring.compositeComponents.map((component) => ({
         scoringKeyVersionId: scoring.id,
@@ -916,6 +1242,23 @@ export class AssessmentAdminService {
         metadata: component.metadata ?? undefined,
       })),
     });
+    for (const metric of sourceScoring.derivedMetricVersions) {
+      const latest = await tx.derivedMetricVersion.aggregate({
+        where: { derivedMetricId: metric.derivedMetricId },
+        _max: { version: true },
+      });
+      await tx.derivedMetricVersion.create({
+        data: {
+          derivedMetricId: metric.derivedMetricId,
+          scoringKeyVersionId: scoring.id,
+          version: (latest._max.version ?? 0) + 1,
+          calculationType: metric.calculationType,
+          sourceScaleId: metric.sourceScaleId,
+          declarativeConfig: metric.declarativeConfig ?? undefined,
+          status: ConfigurationStatus.DRAFT,
+        },
+      });
+    }
   }
 
   private async assertAssessment(id: string) {
@@ -931,6 +1274,16 @@ export class AssessmentAdminService {
 
 function normalizeCode(value: string) {
   return value.trim().toUpperCase();
+}
+
+function deletedVersionNumber(value: unknown, assessmentId: string) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const record = value as Record<string, unknown>;
+  return record.assessmentId === assessmentId &&
+    typeof record.version === "number" &&
+    Number.isInteger(record.version)
+    ? record.version
+    : null;
 }
 
 function unique(values: Array<string | number>, label: string) {
@@ -952,4 +1305,61 @@ function asJson(
   return value
     ? (JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue)
     : undefined;
+}
+
+function presentComposites(
+  components: Array<{
+    compositeId: string;
+    aggregationMethod: string;
+    weight: unknown;
+    order: number;
+    composite: {
+      id: string;
+      code: string;
+      name: string;
+      description: string | null;
+      aggregationMethod: string;
+    };
+    scale: { code: string; name: string };
+  }>,
+) {
+  const grouped = new Map<
+    string,
+    {
+      id: string;
+      code: string;
+      name: string;
+      description: string | null;
+      aggregationMethod: string;
+      components: Array<{
+        scaleCode: string;
+        scaleName: string;
+        weight: number;
+        order: number;
+      }>;
+    }
+  >();
+  for (const component of components) {
+    const current = grouped.get(component.compositeId) ?? {
+      id: component.composite.id,
+      code: component.composite.code,
+      name: component.composite.name,
+      description: component.composite.description,
+      aggregationMethod: component.aggregationMethod,
+      components: [],
+    };
+    current.components.push({
+      scaleCode: component.scale.code,
+      scaleName: component.scale.name,
+      weight: Number(component.weight),
+      order: component.order,
+    });
+    grouped.set(component.compositeId, current);
+  }
+  return [...grouped.values()].map((composite) => ({
+    ...composite,
+    components: composite.components.sort(
+      (left, right) => left.order - right.order,
+    ),
+  }));
 }

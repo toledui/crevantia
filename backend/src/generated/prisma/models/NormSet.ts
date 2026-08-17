@@ -191,6 +191,7 @@ export type NormSetWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"NormSet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NormSet"> | Date | string
   versions?: Prisma.NormVersionListRelationFilter
+  assessmentVersions?: Prisma.AssessmentVersionListRelationFilter
 }
 
 export type NormSetOrderByWithRelationInput = {
@@ -201,6 +202,7 @@ export type NormSetOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   versions?: Prisma.NormVersionOrderByRelationAggregateInput
+  assessmentVersions?: Prisma.AssessmentVersionOrderByRelationAggregateInput
   _relevance?: Prisma.NormSetOrderByRelevanceInput
 }
 
@@ -215,6 +217,7 @@ export type NormSetWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"NormSet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NormSet"> | Date | string
   versions?: Prisma.NormVersionListRelationFilter
+  assessmentVersions?: Prisma.AssessmentVersionListRelationFilter
 }, "id" | "code">
 
 export type NormSetOrderByWithAggregationInput = {
@@ -249,6 +252,7 @@ export type NormSetCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   versions?: Prisma.NormVersionCreateNestedManyWithoutNormSetInput
+  assessmentVersions?: Prisma.AssessmentVersionCreateNestedManyWithoutDefaultNormSetInput
 }
 
 export type NormSetUncheckedCreateInput = {
@@ -259,6 +263,7 @@ export type NormSetUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   versions?: Prisma.NormVersionUncheckedCreateNestedManyWithoutNormSetInput
+  assessmentVersions?: Prisma.AssessmentVersionUncheckedCreateNestedManyWithoutDefaultNormSetInput
 }
 
 export type NormSetUpdateInput = {
@@ -269,6 +274,7 @@ export type NormSetUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.NormVersionUpdateManyWithoutNormSetNestedInput
+  assessmentVersions?: Prisma.AssessmentVersionUpdateManyWithoutDefaultNormSetNestedInput
 }
 
 export type NormSetUncheckedUpdateInput = {
@@ -279,6 +285,7 @@ export type NormSetUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.NormVersionUncheckedUpdateManyWithoutNormSetNestedInput
+  assessmentVersions?: Prisma.AssessmentVersionUncheckedUpdateManyWithoutDefaultNormSetNestedInput
 }
 
 export type NormSetCreateManyInput = {
@@ -306,6 +313,11 @@ export type NormSetUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type NormSetNullableScalarRelationFilter = {
+  is?: Prisma.NormSetWhereInput | null
+  isNot?: Prisma.NormSetWhereInput | null
 }
 
 export type NormSetOrderByRelevanceInput = {
@@ -346,6 +358,22 @@ export type NormSetScalarRelationFilter = {
   isNot?: Prisma.NormSetWhereInput
 }
 
+export type NormSetCreateNestedOneWithoutAssessmentVersionsInput = {
+  create?: Prisma.XOR<Prisma.NormSetCreateWithoutAssessmentVersionsInput, Prisma.NormSetUncheckedCreateWithoutAssessmentVersionsInput>
+  connectOrCreate?: Prisma.NormSetCreateOrConnectWithoutAssessmentVersionsInput
+  connect?: Prisma.NormSetWhereUniqueInput
+}
+
+export type NormSetUpdateOneWithoutAssessmentVersionsNestedInput = {
+  create?: Prisma.XOR<Prisma.NormSetCreateWithoutAssessmentVersionsInput, Prisma.NormSetUncheckedCreateWithoutAssessmentVersionsInput>
+  connectOrCreate?: Prisma.NormSetCreateOrConnectWithoutAssessmentVersionsInput
+  upsert?: Prisma.NormSetUpsertWithoutAssessmentVersionsInput
+  disconnect?: Prisma.NormSetWhereInput | boolean
+  delete?: Prisma.NormSetWhereInput | boolean
+  connect?: Prisma.NormSetWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NormSetUpdateToOneWithWhereWithoutAssessmentVersionsInput, Prisma.NormSetUpdateWithoutAssessmentVersionsInput>, Prisma.NormSetUncheckedUpdateWithoutAssessmentVersionsInput>
+}
+
 export type NormSetCreateNestedOneWithoutVersionsInput = {
   create?: Prisma.XOR<Prisma.NormSetCreateWithoutVersionsInput, Prisma.NormSetUncheckedCreateWithoutVersionsInput>
   connectOrCreate?: Prisma.NormSetCreateOrConnectWithoutVersionsInput
@@ -360,6 +388,62 @@ export type NormSetUpdateOneRequiredWithoutVersionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.NormSetUpdateToOneWithWhereWithoutVersionsInput, Prisma.NormSetUpdateWithoutVersionsInput>, Prisma.NormSetUncheckedUpdateWithoutVersionsInput>
 }
 
+export type NormSetCreateWithoutAssessmentVersionsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  versions?: Prisma.NormVersionCreateNestedManyWithoutNormSetInput
+}
+
+export type NormSetUncheckedCreateWithoutAssessmentVersionsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  versions?: Prisma.NormVersionUncheckedCreateNestedManyWithoutNormSetInput
+}
+
+export type NormSetCreateOrConnectWithoutAssessmentVersionsInput = {
+  where: Prisma.NormSetWhereUniqueInput
+  create: Prisma.XOR<Prisma.NormSetCreateWithoutAssessmentVersionsInput, Prisma.NormSetUncheckedCreateWithoutAssessmentVersionsInput>
+}
+
+export type NormSetUpsertWithoutAssessmentVersionsInput = {
+  update: Prisma.XOR<Prisma.NormSetUpdateWithoutAssessmentVersionsInput, Prisma.NormSetUncheckedUpdateWithoutAssessmentVersionsInput>
+  create: Prisma.XOR<Prisma.NormSetCreateWithoutAssessmentVersionsInput, Prisma.NormSetUncheckedCreateWithoutAssessmentVersionsInput>
+  where?: Prisma.NormSetWhereInput
+}
+
+export type NormSetUpdateToOneWithWhereWithoutAssessmentVersionsInput = {
+  where?: Prisma.NormSetWhereInput
+  data: Prisma.XOR<Prisma.NormSetUpdateWithoutAssessmentVersionsInput, Prisma.NormSetUncheckedUpdateWithoutAssessmentVersionsInput>
+}
+
+export type NormSetUpdateWithoutAssessmentVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  versions?: Prisma.NormVersionUpdateManyWithoutNormSetNestedInput
+}
+
+export type NormSetUncheckedUpdateWithoutAssessmentVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  versions?: Prisma.NormVersionUncheckedUpdateManyWithoutNormSetNestedInput
+}
+
 export type NormSetCreateWithoutVersionsInput = {
   id?: string
   code: string
@@ -367,6 +451,7 @@ export type NormSetCreateWithoutVersionsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  assessmentVersions?: Prisma.AssessmentVersionCreateNestedManyWithoutDefaultNormSetInput
 }
 
 export type NormSetUncheckedCreateWithoutVersionsInput = {
@@ -376,6 +461,7 @@ export type NormSetUncheckedCreateWithoutVersionsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  assessmentVersions?: Prisma.AssessmentVersionUncheckedCreateNestedManyWithoutDefaultNormSetInput
 }
 
 export type NormSetCreateOrConnectWithoutVersionsInput = {
@@ -401,6 +487,7 @@ export type NormSetUpdateWithoutVersionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessmentVersions?: Prisma.AssessmentVersionUpdateManyWithoutDefaultNormSetNestedInput
 }
 
 export type NormSetUncheckedUpdateWithoutVersionsInput = {
@@ -410,6 +497,7 @@ export type NormSetUncheckedUpdateWithoutVersionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessmentVersions?: Prisma.AssessmentVersionUncheckedUpdateManyWithoutDefaultNormSetNestedInput
 }
 
 
@@ -419,10 +507,12 @@ export type NormSetUncheckedUpdateWithoutVersionsInput = {
 
 export type NormSetCountOutputType = {
   versions: number
+  assessmentVersions: number
 }
 
 export type NormSetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   versions?: boolean | NormSetCountOutputTypeCountVersionsArgs
+  assessmentVersions?: boolean | NormSetCountOutputTypeCountAssessmentVersionsArgs
 }
 
 /**
@@ -442,6 +532,13 @@ export type NormSetCountOutputTypeCountVersionsArgs<ExtArgs extends runtime.Type
   where?: Prisma.NormVersionWhereInput
 }
 
+/**
+ * NormSetCountOutputType without action
+ */
+export type NormSetCountOutputTypeCountAssessmentVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssessmentVersionWhereInput
+}
+
 
 export type NormSetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -451,6 +548,7 @@ export type NormSetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   versions?: boolean | Prisma.NormSet$versionsArgs<ExtArgs>
+  assessmentVersions?: boolean | Prisma.NormSet$assessmentVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.NormSetCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["normSet"]>
 
@@ -468,6 +566,7 @@ export type NormSetSelectScalar = {
 export type NormSetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["normSet"]>
 export type NormSetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   versions?: boolean | Prisma.NormSet$versionsArgs<ExtArgs>
+  assessmentVersions?: boolean | Prisma.NormSet$assessmentVersionsArgs<ExtArgs>
   _count?: boolean | Prisma.NormSetCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -475,6 +574,7 @@ export type $NormSetPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "NormSet"
   objects: {
     versions: Prisma.$NormVersionPayload<ExtArgs>[]
+    assessmentVersions: Prisma.$AssessmentVersionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -824,6 +924,7 @@ readonly fields: NormSetFieldRefs;
 export interface Prisma__NormSetClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   versions<T extends Prisma.NormSet$versionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NormSet$versionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assessmentVersions<T extends Prisma.NormSet$assessmentVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NormSet$assessmentVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssessmentVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1228,6 +1329,30 @@ export type NormSet$versionsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.NormVersionScalarFieldEnum | Prisma.NormVersionScalarFieldEnum[]
+}
+
+/**
+ * NormSet.assessmentVersions
+ */
+export type NormSet$assessmentVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssessmentVersion
+   */
+  select?: Prisma.AssessmentVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssessmentVersion
+   */
+  omit?: Prisma.AssessmentVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssessmentVersionInclude<ExtArgs> | null
+  where?: Prisma.AssessmentVersionWhereInput
+  orderBy?: Prisma.AssessmentVersionOrderByWithRelationInput | Prisma.AssessmentVersionOrderByWithRelationInput[]
+  cursor?: Prisma.AssessmentVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssessmentVersionScalarFieldEnum | Prisma.AssessmentVersionScalarFieldEnum[]
 }
 
 /**

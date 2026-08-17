@@ -275,7 +275,9 @@ export type ScoringKeyVersionWhereInput = {
   scoringKey?: Prisma.XOR<Prisma.ScoringKeyScalarRelationFilter, Prisma.ScoringKeyWhereInput>
   assessmentVersion?: Prisma.XOR<Prisma.AssessmentVersionScalarRelationFilter, Prisma.AssessmentVersionWhereInput>
   rules?: Prisma.ReactiveScoringRuleListRelationFilter
+  likertRules?: Prisma.LikertScoringRuleListRelationFilter
   compositeComponents?: Prisma.CompositeComponentListRelationFilter
+  derivedMetricVersions?: Prisma.DerivedMetricVersionListRelationFilter
   attempts?: Prisma.AttemptListRelationFilter
   resultRuns?: Prisma.ResultRunListRelationFilter
 }
@@ -296,7 +298,9 @@ export type ScoringKeyVersionOrderByWithRelationInput = {
   scoringKey?: Prisma.ScoringKeyOrderByWithRelationInput
   assessmentVersion?: Prisma.AssessmentVersionOrderByWithRelationInput
   rules?: Prisma.ReactiveScoringRuleOrderByRelationAggregateInput
+  likertRules?: Prisma.LikertScoringRuleOrderByRelationAggregateInput
   compositeComponents?: Prisma.CompositeComponentOrderByRelationAggregateInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionOrderByRelationAggregateInput
   attempts?: Prisma.AttemptOrderByRelationAggregateInput
   resultRuns?: Prisma.ResultRunOrderByRelationAggregateInput
   _relevance?: Prisma.ScoringKeyVersionOrderByRelevanceInput
@@ -322,7 +326,9 @@ export type ScoringKeyVersionWhereUniqueInput = Prisma.AtLeast<{
   scoringKey?: Prisma.XOR<Prisma.ScoringKeyScalarRelationFilter, Prisma.ScoringKeyWhereInput>
   assessmentVersion?: Prisma.XOR<Prisma.AssessmentVersionScalarRelationFilter, Prisma.AssessmentVersionWhereInput>
   rules?: Prisma.ReactiveScoringRuleListRelationFilter
+  likertRules?: Prisma.LikertScoringRuleListRelationFilter
   compositeComponents?: Prisma.CompositeComponentListRelationFilter
+  derivedMetricVersions?: Prisma.DerivedMetricVersionListRelationFilter
   attempts?: Prisma.AttemptListRelationFilter
   resultRuns?: Prisma.ResultRunListRelationFilter
 }, "id" | "scoringKeyId_version">
@@ -379,7 +385,9 @@ export type ScoringKeyVersionCreateInput = {
   scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -398,7 +406,9 @@ export type ScoringKeyVersionUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -417,7 +427,9 @@ export type ScoringKeyVersionUpdateInput = {
   scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -436,7 +448,9 @@ export type ScoringKeyVersionUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -668,6 +682,20 @@ export type ScoringKeyVersionUncheckedUpdateManyWithoutScoringKeyNestedInput = {
   deleteMany?: Prisma.ScoringKeyVersionScalarWhereInput | Prisma.ScoringKeyVersionScalarWhereInput[]
 }
 
+export type ScoringKeyVersionCreateNestedOneWithoutLikertRulesInput = {
+  create?: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutLikertRulesInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutLikertRulesInput>
+  connectOrCreate?: Prisma.ScoringKeyVersionCreateOrConnectWithoutLikertRulesInput
+  connect?: Prisma.ScoringKeyVersionWhereUniqueInput
+}
+
+export type ScoringKeyVersionUpdateOneRequiredWithoutLikertRulesNestedInput = {
+  create?: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutLikertRulesInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutLikertRulesInput>
+  connectOrCreate?: Prisma.ScoringKeyVersionCreateOrConnectWithoutLikertRulesInput
+  upsert?: Prisma.ScoringKeyVersionUpsertWithoutLikertRulesInput
+  connect?: Prisma.ScoringKeyVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ScoringKeyVersionUpdateToOneWithWhereWithoutLikertRulesInput, Prisma.ScoringKeyVersionUpdateWithoutLikertRulesInput>, Prisma.ScoringKeyVersionUncheckedUpdateWithoutLikertRulesInput>
+}
+
 export type ScoringKeyVersionCreateNestedOneWithoutRulesInput = {
   create?: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutRulesInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutRulesInput>
   connectOrCreate?: Prisma.ScoringKeyVersionCreateOrConnectWithoutRulesInput
@@ -694,6 +722,22 @@ export type ScoringKeyVersionUpdateOneRequiredWithoutCompositeComponentsNestedIn
   upsert?: Prisma.ScoringKeyVersionUpsertWithoutCompositeComponentsInput
   connect?: Prisma.ScoringKeyVersionWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ScoringKeyVersionUpdateToOneWithWhereWithoutCompositeComponentsInput, Prisma.ScoringKeyVersionUpdateWithoutCompositeComponentsInput>, Prisma.ScoringKeyVersionUncheckedUpdateWithoutCompositeComponentsInput>
+}
+
+export type ScoringKeyVersionCreateNestedOneWithoutDerivedMetricVersionsInput = {
+  create?: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutDerivedMetricVersionsInput>
+  connectOrCreate?: Prisma.ScoringKeyVersionCreateOrConnectWithoutDerivedMetricVersionsInput
+  connect?: Prisma.ScoringKeyVersionWhereUniqueInput
+}
+
+export type ScoringKeyVersionUpdateOneWithoutDerivedMetricVersionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutDerivedMetricVersionsInput>
+  connectOrCreate?: Prisma.ScoringKeyVersionCreateOrConnectWithoutDerivedMetricVersionsInput
+  upsert?: Prisma.ScoringKeyVersionUpsertWithoutDerivedMetricVersionsInput
+  disconnect?: Prisma.ScoringKeyVersionWhereInput | boolean
+  delete?: Prisma.ScoringKeyVersionWhereInput | boolean
+  connect?: Prisma.ScoringKeyVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ScoringKeyVersionUpdateToOneWithWhereWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUpdateWithoutDerivedMetricVersionsInput>, Prisma.ScoringKeyVersionUncheckedUpdateWithoutDerivedMetricVersionsInput>
 }
 
 export type ScoringKeyVersionCreateNestedOneWithoutResultRunsInput = {
@@ -724,7 +768,9 @@ export type ScoringKeyVersionCreateWithoutAttemptsInput = {
   scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
 }
 
@@ -742,7 +788,9 @@ export type ScoringKeyVersionUncheckedCreateWithoutAttemptsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
 
@@ -776,7 +824,9 @@ export type ScoringKeyVersionUpdateWithoutAttemptsInput = {
   scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
 }
 
@@ -794,7 +844,9 @@ export type ScoringKeyVersionUncheckedUpdateWithoutAttemptsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
 
@@ -811,7 +863,9 @@ export type ScoringKeyVersionCreateWithoutAssessmentVersionInput = {
   updatedAt?: Date | string
   scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -829,7 +883,9 @@ export type ScoringKeyVersionUncheckedCreateWithoutAssessmentVersionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -891,7 +947,9 @@ export type ScoringKeyVersionCreateWithoutScoringKeyInput = {
   updatedAt?: Date | string
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -909,7 +967,9 @@ export type ScoringKeyVersionUncheckedCreateWithoutScoringKeyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -940,6 +1000,102 @@ export type ScoringKeyVersionUpdateManyWithWhereWithoutScoringKeyInput = {
   data: Prisma.XOR<Prisma.ScoringKeyVersionUpdateManyMutationInput, Prisma.ScoringKeyVersionUncheckedUpdateManyWithoutScoringKeyInput>
 }
 
+export type ScoringKeyVersionCreateWithoutLikertRulesInput = {
+  id?: string
+  version: number
+  sourceVersion?: string | null
+  status?: $Enums.ConfigurationStatus
+  numericMode?: string
+  engineCompatibility?: string | null
+  configurationHash: string
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
+  assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
+  rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
+  attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
+}
+
+export type ScoringKeyVersionUncheckedCreateWithoutLikertRulesInput = {
+  id?: string
+  scoringKeyId: string
+  assessmentVersionId: string
+  version: number
+  sourceVersion?: string | null
+  status?: $Enums.ConfigurationStatus
+  numericMode?: string
+  engineCompatibility?: string | null
+  configurationHash: string
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+}
+
+export type ScoringKeyVersionCreateOrConnectWithoutLikertRulesInput = {
+  where: Prisma.ScoringKeyVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutLikertRulesInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutLikertRulesInput>
+}
+
+export type ScoringKeyVersionUpsertWithoutLikertRulesInput = {
+  update: Prisma.XOR<Prisma.ScoringKeyVersionUpdateWithoutLikertRulesInput, Prisma.ScoringKeyVersionUncheckedUpdateWithoutLikertRulesInput>
+  create: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutLikertRulesInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutLikertRulesInput>
+  where?: Prisma.ScoringKeyVersionWhereInput
+}
+
+export type ScoringKeyVersionUpdateToOneWithWhereWithoutLikertRulesInput = {
+  where?: Prisma.ScoringKeyVersionWhereInput
+  data: Prisma.XOR<Prisma.ScoringKeyVersionUpdateWithoutLikertRulesInput, Prisma.ScoringKeyVersionUncheckedUpdateWithoutLikertRulesInput>
+}
+
+export type ScoringKeyVersionUpdateWithoutLikertRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  sourceVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  numericMode?: Prisma.StringFieldUpdateOperationsInput | string
+  engineCompatibility?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
+  rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
+  attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
+}
+
+export type ScoringKeyVersionUncheckedUpdateWithoutLikertRulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  sourceVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  numericMode?: Prisma.StringFieldUpdateOperationsInput | string
+  engineCompatibility?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+}
+
 export type ScoringKeyVersionCreateWithoutRulesInput = {
   id?: string
   version: number
@@ -953,7 +1109,9 @@ export type ScoringKeyVersionCreateWithoutRulesInput = {
   updatedAt?: Date | string
   scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -971,7 +1129,9 @@ export type ScoringKeyVersionUncheckedCreateWithoutRulesInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -1005,7 +1165,9 @@ export type ScoringKeyVersionUpdateWithoutRulesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1023,7 +1185,9 @@ export type ScoringKeyVersionUncheckedUpdateWithoutRulesInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1042,6 +1206,8 @@ export type ScoringKeyVersionCreateWithoutCompositeComponentsInput = {
   scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -1060,6 +1226,8 @@ export type ScoringKeyVersionUncheckedCreateWithoutCompositeComponentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
@@ -1094,6 +1262,8 @@ export type ScoringKeyVersionUpdateWithoutCompositeComponentsInput = {
   scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1112,6 +1282,104 @@ export type ScoringKeyVersionUncheckedUpdateWithoutCompositeComponentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+}
+
+export type ScoringKeyVersionCreateWithoutDerivedMetricVersionsInput = {
+  id?: string
+  version: number
+  sourceVersion?: string | null
+  status?: $Enums.ConfigurationStatus
+  numericMode?: string
+  engineCompatibility?: string | null
+  configurationHash: string
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
+  assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
+  rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutScoringKeyVersionInput
+}
+
+export type ScoringKeyVersionUncheckedCreateWithoutDerivedMetricVersionsInput = {
+  id?: string
+  scoringKeyId: string
+  assessmentVersionId: string
+  version: number
+  sourceVersion?: string | null
+  status?: $Enums.ConfigurationStatus
+  numericMode?: string
+  engineCompatibility?: string | null
+  configurationHash: string
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+}
+
+export type ScoringKeyVersionCreateOrConnectWithoutDerivedMetricVersionsInput = {
+  where: Prisma.ScoringKeyVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutDerivedMetricVersionsInput>
+}
+
+export type ScoringKeyVersionUpsertWithoutDerivedMetricVersionsInput = {
+  update: Prisma.XOR<Prisma.ScoringKeyVersionUpdateWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUncheckedUpdateWithoutDerivedMetricVersionsInput>
+  create: Prisma.XOR<Prisma.ScoringKeyVersionCreateWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUncheckedCreateWithoutDerivedMetricVersionsInput>
+  where?: Prisma.ScoringKeyVersionWhereInput
+}
+
+export type ScoringKeyVersionUpdateToOneWithWhereWithoutDerivedMetricVersionsInput = {
+  where?: Prisma.ScoringKeyVersionWhereInput
+  data: Prisma.XOR<Prisma.ScoringKeyVersionUpdateWithoutDerivedMetricVersionsInput, Prisma.ScoringKeyVersionUncheckedUpdateWithoutDerivedMetricVersionsInput>
+}
+
+export type ScoringKeyVersionUpdateWithoutDerivedMetricVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  sourceVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  numericMode?: Prisma.StringFieldUpdateOperationsInput | string
+  engineCompatibility?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
+  rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
+}
+
+export type ScoringKeyVersionUncheckedUpdateWithoutDerivedMetricVersionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  sourceVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  numericMode?: Prisma.StringFieldUpdateOperationsInput | string
+  engineCompatibility?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1130,7 +1398,9 @@ export type ScoringKeyVersionCreateWithoutResultRunsInput = {
   scoringKey: Prisma.ScoringKeyCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutScoringKeyVersionsInput
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutScoringKeyVersionInput
 }
 
@@ -1148,7 +1418,9 @@ export type ScoringKeyVersionUncheckedCreateWithoutResultRunsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   compositeComponents?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScoringKeyVersionInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutScoringKeyVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput
 }
 
@@ -1182,7 +1454,9 @@ export type ScoringKeyVersionUpdateWithoutResultRunsInput = {
   scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
 }
 
@@ -1200,7 +1474,9 @@ export type ScoringKeyVersionUncheckedUpdateWithoutResultRunsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
 
@@ -1231,7 +1507,9 @@ export type ScoringKeyVersionUpdateWithoutAssessmentVersionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   scoringKey?: Prisma.ScoringKeyUpdateOneRequiredWithoutVersionsNestedInput
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1249,7 +1527,9 @@ export type ScoringKeyVersionUncheckedUpdateWithoutAssessmentVersionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1295,7 +1575,9 @@ export type ScoringKeyVersionUpdateWithoutScoringKeyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutScoringKeyVersionsNestedInput
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1313,7 +1595,9 @@ export type ScoringKeyVersionUncheckedUpdateWithoutScoringKeyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   compositeComponents?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
+  derivedMetricVersions?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutScoringKeyVersionNestedInput
 }
@@ -1339,14 +1623,18 @@ export type ScoringKeyVersionUncheckedUpdateManyWithoutScoringKeyInput = {
 
 export type ScoringKeyVersionCountOutputType = {
   rules: number
+  likertRules: number
   compositeComponents: number
+  derivedMetricVersions: number
   attempts: number
   resultRuns: number
 }
 
 export type ScoringKeyVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rules?: boolean | ScoringKeyVersionCountOutputTypeCountRulesArgs
+  likertRules?: boolean | ScoringKeyVersionCountOutputTypeCountLikertRulesArgs
   compositeComponents?: boolean | ScoringKeyVersionCountOutputTypeCountCompositeComponentsArgs
+  derivedMetricVersions?: boolean | ScoringKeyVersionCountOutputTypeCountDerivedMetricVersionsArgs
   attempts?: boolean | ScoringKeyVersionCountOutputTypeCountAttemptsArgs
   resultRuns?: boolean | ScoringKeyVersionCountOutputTypeCountResultRunsArgs
 }
@@ -1371,8 +1659,22 @@ export type ScoringKeyVersionCountOutputTypeCountRulesArgs<ExtArgs extends runti
 /**
  * ScoringKeyVersionCountOutputType without action
  */
+export type ScoringKeyVersionCountOutputTypeCountLikertRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LikertScoringRuleWhereInput
+}
+
+/**
+ * ScoringKeyVersionCountOutputType without action
+ */
 export type ScoringKeyVersionCountOutputTypeCountCompositeComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CompositeComponentWhereInput
+}
+
+/**
+ * ScoringKeyVersionCountOutputType without action
+ */
+export type ScoringKeyVersionCountOutputTypeCountDerivedMetricVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DerivedMetricVersionWhereInput
 }
 
 /**
@@ -1406,7 +1708,9 @@ export type ScoringKeyVersionSelect<ExtArgs extends runtime.Types.Extensions.Int
   scoringKey?: boolean | Prisma.ScoringKeyDefaultArgs<ExtArgs>
   assessmentVersion?: boolean | Prisma.AssessmentVersionDefaultArgs<ExtArgs>
   rules?: boolean | Prisma.ScoringKeyVersion$rulesArgs<ExtArgs>
+  likertRules?: boolean | Prisma.ScoringKeyVersion$likertRulesArgs<ExtArgs>
   compositeComponents?: boolean | Prisma.ScoringKeyVersion$compositeComponentsArgs<ExtArgs>
+  derivedMetricVersions?: boolean | Prisma.ScoringKeyVersion$derivedMetricVersionsArgs<ExtArgs>
   attempts?: boolean | Prisma.ScoringKeyVersion$attemptsArgs<ExtArgs>
   resultRuns?: boolean | Prisma.ScoringKeyVersion$resultRunsArgs<ExtArgs>
   _count?: boolean | Prisma.ScoringKeyVersionCountOutputTypeDefaultArgs<ExtArgs>
@@ -1434,7 +1738,9 @@ export type ScoringKeyVersionInclude<ExtArgs extends runtime.Types.Extensions.In
   scoringKey?: boolean | Prisma.ScoringKeyDefaultArgs<ExtArgs>
   assessmentVersion?: boolean | Prisma.AssessmentVersionDefaultArgs<ExtArgs>
   rules?: boolean | Prisma.ScoringKeyVersion$rulesArgs<ExtArgs>
+  likertRules?: boolean | Prisma.ScoringKeyVersion$likertRulesArgs<ExtArgs>
   compositeComponents?: boolean | Prisma.ScoringKeyVersion$compositeComponentsArgs<ExtArgs>
+  derivedMetricVersions?: boolean | Prisma.ScoringKeyVersion$derivedMetricVersionsArgs<ExtArgs>
   attempts?: boolean | Prisma.ScoringKeyVersion$attemptsArgs<ExtArgs>
   resultRuns?: boolean | Prisma.ScoringKeyVersion$resultRunsArgs<ExtArgs>
   _count?: boolean | Prisma.ScoringKeyVersionCountOutputTypeDefaultArgs<ExtArgs>
@@ -1446,7 +1752,9 @@ export type $ScoringKeyVersionPayload<ExtArgs extends runtime.Types.Extensions.I
     scoringKey: Prisma.$ScoringKeyPayload<ExtArgs>
     assessmentVersion: Prisma.$AssessmentVersionPayload<ExtArgs>
     rules: Prisma.$ReactiveScoringRulePayload<ExtArgs>[]
+    likertRules: Prisma.$LikertScoringRulePayload<ExtArgs>[]
     compositeComponents: Prisma.$CompositeComponentPayload<ExtArgs>[]
+    derivedMetricVersions: Prisma.$DerivedMetricVersionPayload<ExtArgs>[]
     attempts: Prisma.$AttemptPayload<ExtArgs>[]
     resultRuns: Prisma.$ResultRunPayload<ExtArgs>[]
   }
@@ -1806,7 +2114,9 @@ export interface Prisma__ScoringKeyVersionClient<T, Null = never, ExtArgs extend
   scoringKey<T extends Prisma.ScoringKeyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyDefaultArgs<ExtArgs>>): Prisma.Prisma__ScoringKeyClient<runtime.Types.Result.GetResult<Prisma.$ScoringKeyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   assessmentVersion<T extends Prisma.AssessmentVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__AssessmentVersionClient<runtime.Types.Result.GetResult<Prisma.$AssessmentVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   rules<T extends Prisma.ScoringKeyVersion$rulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyVersion$rulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReactiveScoringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  likertRules<T extends Prisma.ScoringKeyVersion$likertRulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyVersion$likertRulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikertScoringRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   compositeComponents<T extends Prisma.ScoringKeyVersion$compositeComponentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyVersion$compositeComponentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompositeComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  derivedMetricVersions<T extends Prisma.ScoringKeyVersion$derivedMetricVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyVersion$derivedMetricVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DerivedMetricVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attempts<T extends Prisma.ScoringKeyVersion$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyVersion$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resultRuns<T extends Prisma.ScoringKeyVersion$resultRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScoringKeyVersion$resultRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2222,6 +2532,30 @@ export type ScoringKeyVersion$rulesArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
+ * ScoringKeyVersion.likertRules
+ */
+export type ScoringKeyVersion$likertRulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LikertScoringRule
+   */
+  select?: Prisma.LikertScoringRuleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LikertScoringRule
+   */
+  omit?: Prisma.LikertScoringRuleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LikertScoringRuleInclude<ExtArgs> | null
+  where?: Prisma.LikertScoringRuleWhereInput
+  orderBy?: Prisma.LikertScoringRuleOrderByWithRelationInput | Prisma.LikertScoringRuleOrderByWithRelationInput[]
+  cursor?: Prisma.LikertScoringRuleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LikertScoringRuleScalarFieldEnum | Prisma.LikertScoringRuleScalarFieldEnum[]
+}
+
+/**
  * ScoringKeyVersion.compositeComponents
  */
 export type ScoringKeyVersion$compositeComponentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2243,6 +2577,30 @@ export type ScoringKeyVersion$compositeComponentsArgs<ExtArgs extends runtime.Ty
   take?: number
   skip?: number
   distinct?: Prisma.CompositeComponentScalarFieldEnum | Prisma.CompositeComponentScalarFieldEnum[]
+}
+
+/**
+ * ScoringKeyVersion.derivedMetricVersions
+ */
+export type ScoringKeyVersion$derivedMetricVersionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DerivedMetricVersion
+   */
+  select?: Prisma.DerivedMetricVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DerivedMetricVersion
+   */
+  omit?: Prisma.DerivedMetricVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DerivedMetricVersionInclude<ExtArgs> | null
+  where?: Prisma.DerivedMetricVersionWhereInput
+  orderBy?: Prisma.DerivedMetricVersionOrderByWithRelationInput | Prisma.DerivedMetricVersionOrderByWithRelationInput[]
+  cursor?: Prisma.DerivedMetricVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DerivedMetricVersionScalarFieldEnum | Prisma.DerivedMetricVersionScalarFieldEnum[]
 }
 
 /**

@@ -188,6 +188,11 @@ export type ScoringKeyVersion = Prisma.ScoringKeyVersionModel
  */
 export type Scale = Prisma.ScaleModel
 /**
+ * Model LikertScoringRule
+ * 
+ */
+export type LikertScoringRule = Prisma.LikertScoringRuleModel
+/**
  * Model ReactiveScoringRule
  * 
  */

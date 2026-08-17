@@ -431,6 +431,7 @@ export const ModelName = {
   ScoringKey: 'ScoringKey',
   ScoringKeyVersion: 'ScoringKeyVersion',
   Scale: 'Scale',
+  LikertScoringRule: 'LikertScoringRule',
   ReactiveScoringRule: 'ReactiveScoringRule',
   Composite: 'Composite',
   CompositeComponent: 'CompositeComponent',
@@ -464,7 +465,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "resultValue" | "reactiveContribution"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "resultValue" | "reactiveContribution"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2712,6 +2713,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LikertScoringRule: {
+      payload: Prisma.$LikertScoringRulePayload<ExtArgs>
+      fields: Prisma.LikertScoringRuleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LikertScoringRuleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LikertScoringRuleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>
+        }
+        findFirst: {
+          args: Prisma.LikertScoringRuleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LikertScoringRuleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>
+        }
+        findMany: {
+          args: Prisma.LikertScoringRuleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>[]
+        }
+        create: {
+          args: Prisma.LikertScoringRuleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>
+        }
+        createMany: {
+          args: Prisma.LikertScoringRuleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.LikertScoringRuleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>
+        }
+        update: {
+          args: Prisma.LikertScoringRuleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>
+        }
+        deleteMany: {
+          args: Prisma.LikertScoringRuleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LikertScoringRuleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.LikertScoringRuleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LikertScoringRulePayload>
+        }
+        aggregate: {
+          args: Prisma.LikertScoringRuleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLikertScoringRule>
+        }
+        groupBy: {
+          args: Prisma.LikertScoringRuleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LikertScoringRuleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LikertScoringRuleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LikertScoringRuleCountAggregateOutputType> | number
+        }
+      }
+    }
     ReactiveScoringRule: {
       payload: Prisma.$ReactiveScoringRulePayload<ExtArgs>
       fields: Prisma.ReactiveScoringRuleFieldRefs
@@ -4243,6 +4310,7 @@ export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof
 export const AssessmentVersionScalarFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
+  defaultNormSetId: 'defaultNormSetId',
   version: 'version',
   versionCode: 'versionCode',
   language: 'language',
@@ -4401,6 +4469,19 @@ export const ScaleScalarFieldEnum = {
 export type ScaleScalarFieldEnum = (typeof ScaleScalarFieldEnum)[keyof typeof ScaleScalarFieldEnum]
 
 
+export const LikertScoringRuleScalarFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  likertQuestionId: 'likertQuestionId',
+  scaleId: 'scaleId',
+  weight: 'weight',
+  reverse: 'reverse',
+  scoreMap: 'scoreMap'
+} as const
+
+export type LikertScoringRuleScalarFieldEnum = (typeof LikertScoringRuleScalarFieldEnum)[keyof typeof LikertScoringRuleScalarFieldEnum]
+
+
 export const ReactiveScoringRuleScalarFieldEnum = {
   id: 'id',
   scoringKeyVersionId: 'scoringKeyVersionId',
@@ -4453,6 +4534,7 @@ export type DerivedMetricScalarFieldEnum = (typeof DerivedMetricScalarFieldEnum)
 export const DerivedMetricVersionScalarFieldEnum = {
   id: 'id',
   derivedMetricId: 'derivedMetricId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
   version: 'version',
   calculationType: 'calculationType',
   sourceScaleId: 'sourceScaleId',
@@ -4945,6 +5027,7 @@ export type AssessmentOrderByRelevanceFieldEnum = (typeof AssessmentOrderByRelev
 export const AssessmentVersionOrderByRelevanceFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
+  defaultNormSetId: 'defaultNormSetId',
   versionCode: 'versionCode',
   language: 'language',
   intro: 'intro',
@@ -5070,6 +5153,16 @@ export const ScaleOrderByRelevanceFieldEnum = {
 export type ScaleOrderByRelevanceFieldEnum = (typeof ScaleOrderByRelevanceFieldEnum)[keyof typeof ScaleOrderByRelevanceFieldEnum]
 
 
+export const LikertScoringRuleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  likertQuestionId: 'likertQuestionId',
+  scaleId: 'scaleId'
+} as const
+
+export type LikertScoringRuleOrderByRelevanceFieldEnum = (typeof LikertScoringRuleOrderByRelevanceFieldEnum)[keyof typeof LikertScoringRuleOrderByRelevanceFieldEnum]
+
+
 export const ReactiveScoringRuleOrderByRelevanceFieldEnum = {
   id: 'id',
   scoringKeyVersionId: 'scoringKeyVersionId',
@@ -5112,6 +5205,7 @@ export type DerivedMetricOrderByRelevanceFieldEnum = (typeof DerivedMetricOrderB
 export const DerivedMetricVersionOrderByRelevanceFieldEnum = {
   id: 'id',
   derivedMetricId: 'derivedMetricId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
   sourceScaleId: 'sourceScaleId'
 } as const
 
@@ -5377,16 +5471,16 @@ export type EnumScoringSpecificationStatusFieldRefInput<$PrismaModel> = FieldRef
 
 
 /**
- * Reference to a field of type 'ScoringPolarity'
+ * Reference to a field of type 'Decimal'
  */
-export type EnumScoringPolarityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ScoringPolarity'>
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
 /**
- * Reference to a field of type 'Decimal'
+ * Reference to a field of type 'ScoringPolarity'
  */
-export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+export type EnumScoringPolarityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ScoringPolarity'>
     
 
 
@@ -5616,6 +5710,7 @@ export type GlobalOmitConfig = {
   scoringKey?: Prisma.ScoringKeyOmit
   scoringKeyVersion?: Prisma.ScoringKeyVersionOmit
   scale?: Prisma.ScaleOmit
+  likertScoringRule?: Prisma.LikertScoringRuleOmit
   reactiveScoringRule?: Prisma.ReactiveScoringRuleOmit
   composite?: Prisma.CompositeOmit
   compositeComponent?: Prisma.CompositeComponentOmit

@@ -440,13 +440,6 @@ export type EnumScoringSpecificationStatusWithAggregatesFilter<$PrismaModel = ne
   _max?: Prisma.NestedEnumScoringSpecificationStatusFilter<$PrismaModel>
 }
 
-export type EnumScoringPolarityFilter<$PrismaModel = never> = {
-  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
-  in?: $Enums.ScoringPolarity[]
-  notIn?: $Enums.ScoringPolarity[]
-  not?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel> | $Enums.ScoringPolarity
-}
-
 export type DecimalFilter<$PrismaModel = never> = {
   equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[]
@@ -456,16 +449,6 @@ export type DecimalFilter<$PrismaModel = never> = {
   gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   not?: Prisma.NestedDecimalFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
-export type EnumScoringPolarityWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
-  in?: $Enums.ScoringPolarity[]
-  notIn?: $Enums.ScoringPolarity[]
-  not?: Prisma.NestedEnumScoringPolarityWithAggregatesFilter<$PrismaModel> | $Enums.ScoringPolarity
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
 }
 
 export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -482,6 +465,23 @@ export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type EnumScoringPolarityFilter<$PrismaModel = never> = {
+  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
+  in?: $Enums.ScoringPolarity[]
+  notIn?: $Enums.ScoringPolarity[]
+  not?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel> | $Enums.ScoringPolarity
+}
+
+export type EnumScoringPolarityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
+  in?: $Enums.ScoringPolarity[]
+  notIn?: $Enums.ScoringPolarity[]
+  not?: Prisma.NestedEnumScoringPolarityWithAggregatesFilter<$PrismaModel> | $Enums.ScoringPolarity
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
 }
 
 export type EnumAggregationMethodFilter<$PrismaModel = never> = {
@@ -985,13 +985,6 @@ export type NestedEnumScoringSpecificationStatusWithAggregatesFilter<$PrismaMode
   _max?: Prisma.NestedEnumScoringSpecificationStatusFilter<$PrismaModel>
 }
 
-export type NestedEnumScoringPolarityFilter<$PrismaModel = never> = {
-  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
-  in?: $Enums.ScoringPolarity[]
-  notIn?: $Enums.ScoringPolarity[]
-  not?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel> | $Enums.ScoringPolarity
-}
-
 export type NestedDecimalFilter<$PrismaModel = never> = {
   equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[]
@@ -1001,16 +994,6 @@ export type NestedDecimalFilter<$PrismaModel = never> = {
   gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
   not?: Prisma.NestedDecimalFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
-export type NestedEnumScoringPolarityWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
-  in?: $Enums.ScoringPolarity[]
-  notIn?: $Enums.ScoringPolarity[]
-  not?: Prisma.NestedEnumScoringPolarityWithAggregatesFilter<$PrismaModel> | $Enums.ScoringPolarity
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
 }
 
 export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -1027,6 +1010,23 @@ export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type NestedEnumScoringPolarityFilter<$PrismaModel = never> = {
+  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
+  in?: $Enums.ScoringPolarity[]
+  notIn?: $Enums.ScoringPolarity[]
+  not?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel> | $Enums.ScoringPolarity
+}
+
+export type NestedEnumScoringPolarityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ScoringPolarity | Prisma.EnumScoringPolarityFieldRefInput<$PrismaModel>
+  in?: $Enums.ScoringPolarity[]
+  notIn?: $Enums.ScoringPolarity[]
+  not?: Prisma.NestedEnumScoringPolarityWithAggregatesFilter<$PrismaModel> | $Enums.ScoringPolarity
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumScoringPolarityFilter<$PrismaModel>
 }
 
 export type NestedEnumAggregationMethodFilter<$PrismaModel = never> = {

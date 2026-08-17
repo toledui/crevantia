@@ -24,6 +24,7 @@ export function MailSettingsPanel() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
+  const [testEmail, setTestEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
@@ -60,7 +61,7 @@ export function MailSettingsPanel() {
 
   async function test() {
     setTesting(true); setMessage(''); setError('');
-    try { setMessage((await apiFetch<{ message: string }>('/admin/settings/mail/test', { method: 'POST' })).message); }
+    try { setMessage((await apiFetch<{ message: string }>('/admin/settings/mail/test', { method: 'POST', body: JSON.stringify({ email: testEmail }) })).message); }
     catch (reason) { setError(reason instanceof Error ? reason.message : 'La prueba SMTP falló.'); }
     finally { setTesting(false); }
   }
@@ -79,8 +80,11 @@ export function MailSettingsPanel() {
       <div className="settings-divider"/>
       <div className="settings-section-head"><div><h2>Remitente</h2><p>Identidad visible en los mensajes enviados por Crevantia.</p></div></div>
       <div className="settings-grid two-columns"><label>Nombre del remitente<input name="fromName" defaultValue={settings.fromName} required/></label><label>Correo del remitente<input name="fromAddress" type="email" defaultValue={settings.fromAddress} placeholder="no-reply@example.com" required/></label></div>
+      <div className="settings-divider"/>
+      <div className="settings-section-head"><div><h2>Prueba real de envío</h2><p>Guarda primero la configuración. Enviaremos un mensaje real usando exactamente estos datos SMTP.</p></div></div>
+      <div className="settings-grid two-columns mail-test-grid"><label>Correo destinatario de prueba<input name="testEmail" type="email" value={testEmail} onChange={(event) => setTestEmail(event.target.value)} placeholder="destino@example.com"/></label><div className="mail-test-action"><button type="button" className="secondary-button" onClick={() => void test()} disabled={testing || !settings.enabled || !testEmail}>{testing ? 'Enviando prueba…' : 'Enviar correo de prueba'}</button></div></div>
       {error && <p className="form-error" role="alert">{error}</p>}{message && <p className="form-success" role="status">{message}</p>}
-      <div className="settings-actions"><button type="button" className="secondary-button" onClick={() => void test()} disabled={testing || !settings.enabled}>{testing ? 'Probando…' : 'Probar conexión y envío'}</button><button className="primary-button compact" disabled={saving}>{saving ? 'Guardando…' : 'Guardar configuración'}</button></div>
+      <div className="settings-actions"><button className="primary-button compact" disabled={saving}>{saving ? 'Guardando…' : 'Guardar configuración'}</button></div>
     </form>}
   </div>;
 }

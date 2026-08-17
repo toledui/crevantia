@@ -22,19 +22,16 @@
     ],
     "qualitySummary": {
       "totalTargets": 94,
-      "validatedStructureTargets": 78,
+      "validatedStructureTargets": 80,
       "reviewRequiredTargets": 14,
-      "blockedTargets": 2,
-      "blockedTargetNames": [
-        "Búsqueda de Significado Psicoproductivo",
-        "Cuadrantes"
-      ],
+      "blockedTargets": 0,
+      "blockedTargetNames": [],
       "duplicateCutPointTargetCount": 14
     },
     "knownWorkbookNotes": [
       "The workbook contains another block labelled xxxGerencial / NORMA 412 that is numerically identical to Global / NORMA 412 in the inspected tables; it is not exported as a separate standard.",
       "The separate Situación Financiera scale norm is present, but the current quadrant formulas use the Salud Financiera norm for the X axis.",
-      "Búsqueda de Significado Psicoproductivo and Cuadrantes have an invalid final output value instead of decile 10 and are blocked."
+      "Client confirmed that the final output label in Búsqueda de Significado Psicoproductivo and Cuadrantes was a capture typo; both were normalized to decile 10 while preserving their original lower bounds and source output metadata."
     ]
   },
   "targets": [
@@ -10899,7 +10896,7 @@
       "name": "Búsqueda de Significado Psicoproductivo",
       "code": "busqueda_de_significado_psicoproductivo",
       "sourceRange": "Equivalencias!CJ16:CK25",
-      "status": "BLOCKED",
+      "status": "VALIDATED_STRUCTURE",
       "thresholds": [
         {
           "ordinal": 1,
@@ -11014,7 +11011,7 @@
           "minRaw": "13.666666666666666",
           "displayMinRaw": "13.666666666667",
           "sourceRaw": "13.666666666666666",
-          "decil": 18.166666666666664,
+          "decil": 10,
           "sourceOutputRaw": "18.166666666666664",
           "sourceCells": {
             "minRaw": "CJ25",
@@ -11022,20 +11019,14 @@
           }
         }
       ],
-      "warnings": [
-        {
-          "code": "INVALID_DECILE_OUTPUT_SEQUENCE",
-          "description": "Expected outputs 1..10, imported values are [1, 2, 3, 4, 5, 6, 7, 8, 9, 18.166666666666664].",
-          "blocksPublication": true
-        }
-      ]
+      "warnings": []
     },
     {
       "targetType": "COMPOSITE",
       "name": "Cuadrantes",
       "code": "cuadrantes",
       "sourceRange": "Equivalencias!CL16:CM25",
-      "status": "BLOCKED",
+      "status": "VALIDATED_STRUCTURE",
       "thresholds": [
         {
           "ordinal": 1,
@@ -11150,7 +11141,7 @@
           "minRaw": "14.5",
           "displayMinRaw": "14.5",
           "sourceRaw": "14.5",
-          "decil": 18.166666666666664,
+          "decil": 10,
           "sourceOutputRaw": "18.166666666666664",
           "sourceCells": {
             "minRaw": "CL25",
@@ -11158,13 +11149,7 @@
           }
         }
       ],
-      "warnings": [
-        {
-          "code": "INVALID_DECILE_OUTPUT_SEQUENCE",
-          "description": "Expected outputs 1..10, imported values are [1, 2, 3, 4, 5, 6, 7, 8, 9, 18.166666666666664].",
-          "blocksPublication": true
-        }
-      ]
+      "warnings": []
     },
     {
       "targetType": "LEGACY_STYLE_PROFILE",

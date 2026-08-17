@@ -1,4 +1,4 @@
-import { Injectable, ServiceUnavailableException } from '@nestjs/common';
+import { Injectable, Logger, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import nodemailer, { type Transporter } from 'nodemailer';
 import { PrismaService } from '../../database/prisma.service';
@@ -7,6 +7,8 @@ import { UpdateMailSettingsDto } from './mail-settings.dto';
 
 @Injectable()
 export class MailService {
+  private readonly logger = new Logger(MailService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly encryption: EncryptionService,
@@ -70,18 +72,28 @@ export class MailService {
     return this.publicSettings();
   }
 
-  async testSettings(actorId: string) {
-    const { transporter, fromName, fromAddress } = await this.transporter();
-    await transporter.verify();
-    await transporter.sendMail({
-      from: { name: fromName, address: fromAddress },
-      to: fromAddress,
-      subject: 'Crevantia · Configuración SMTP correcta',
-      text: 'La conexión SMTP y el envío de correo de Crevantia funcionan correctamente.',
-      html: '<p>La conexión SMTP y el envío de correo de <strong>Crevantia</strong> funcionan correctamente.</p>',
-    });
-    await this.prisma.auditLog.create({ data: { actorId, action: 'MAIL_SETTINGS_TESTED', entityType: 'MailSettings', entityId: 'smtp' } });
-    return { success: true, message: `Correo de prueba enviado a ${fromAddress}.` };
+  async testSettings(actorId: string, recipient: string) {
+    const to = recipient.trim().toLowerCase();
+    try {
+      const { transporter, fromName, fromAddress } = await this.transporter();
+      await transporter.sendMail({
+        from: { name: fromName, address: fromAddress },
+        to,
+        subject: 'Crevantia · Prueba real de envío SMTP',
+        text: 'Este correo confirma que la conexión, autenticación y entrega SMTP de Crevantia funcionan correctamente.',
+        html: '<p>Este correo confirma que la conexión, autenticación y entrega SMTP de <strong>Crevantia</strong> funcionan correctamente.</p>',
+      });
+    } catch (error) {
+      throw this.smtpException(error);
+    }
+    try {
+      await this.prisma.auditLog.create({
+        data: { actorId, action: 'MAIL_SETTINGS_TESTED', entityType: 'MailSettings', entityId: 'smtp', metadata: { recipient: to } },
+      });
+    } catch (error) {
+      this.logger.error('El correo SMTP de prueba se envió, pero no fue posible registrar la auditoría.', error);
+    }
+    return { success: true, message: `Correo de prueba enviado a ${to}. Revisa también la carpeta de spam.` };
   }
 
   async sendVerificationEmail(to: string, firstName: string, token: string) {
@@ -122,6 +134,14 @@ export class MailService {
   private async transporter(): Promise<{ transporter: Transporter; fromName: string; fromAddress: string }> {
     const settings = await this.prisma.mailSettings.findUnique({ where: { id: 'smtp' } });
     if (!settings?.enabled) throw new ServiceUnavailableException('El servicio de correo aún no está configurado.');
+    if (!settings.host.trim()) throw new ServiceUnavailableException('La configuración SMTP está incompleta: falta el servidor.');
+    if (!settings.fromAddress.trim()) throw new ServiceUnavailableException('La configuración SMTP está incompleta: falta el correo remitente.');
+    if (settings.passwordEncrypted && !settings.username?.trim()) {
+      throw new ServiceUnavailableException('La configuración SMTP está incompleta: hay una contraseña guardada, pero falta el usuario SMTP.');
+    }
+    if (settings.username?.trim() && !settings.passwordEncrypted) {
+      throw new ServiceUnavailableException('La configuración SMTP está incompleta: falta la contraseña SMTP.');
+    }
     const password = settings.passwordEncrypted ? this.encryption.decrypt(settings.passwordEncrypted) : undefined;
     return {
       transporter: nodemailer.createTransport({
@@ -136,6 +156,24 @@ export class MailService {
       fromName: settings.fromName,
       fromAddress: settings.fromAddress,
     };
+  }
+
+  private smtpException(error: unknown) {
+    if (error instanceof ServiceUnavailableException) return error;
+    const details = error && typeof error === 'object' ? error as { code?: string; responseCode?: number } : {};
+    if (details.code === 'EAUTH' || details.responseCode === 535) {
+      return new ServiceUnavailableException('El servidor SMTP rechazó la autenticación. Revisa el usuario y la contraseña guardados.');
+    }
+    if (details.code === 'EDNS') {
+      return new ServiceUnavailableException('No fue posible encontrar el servidor SMTP. Revisa el nombre del host.');
+    }
+    if (['ECONNECTION', 'ETIMEDOUT', 'ESOCKET', 'ECONNREFUSED'].includes(details.code ?? '')) {
+      return new ServiceUnavailableException('No fue posible conectar con el servidor SMTP. Revisa host, puerto y la opción SSL/TLS.');
+    }
+    if (details.code === 'EENVELOPE') {
+      return new ServiceUnavailableException('El servidor SMTP rechazó el remitente o el destinatario de la prueba.');
+    }
+    return new ServiceUnavailableException('La prueba SMTP falló. Revisa las credenciales y la configuración del servidor.');
   }
 
   private template(title: string, message: string, button: string, link: string, footer: string) {

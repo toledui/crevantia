@@ -2,16 +2,25 @@
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { apiFetch } from "@/lib/api";
+import { AdminToast } from "@/components/admin-toast";
 
 type Status =
   "DRAFT" | "IN_REVIEW" | "APPROVED" | "PUBLISHED" | "ARCHIVED" | "BLOCKED";
 type ScoringStatus = "CONFIGURED" | "PENDING_SCORING_SPEC";
 type Polarity = "POSITIVE" | "NEGATIVE";
+type AggregationMethod =
+  | "SUM"
+  | "ARITHMETIC_MEAN"
+  | "WEIGHTED_MEAN"
+  | "DIRECT_SCALE"
+  | "TWO_AXIS"
+  | "CUSTOM_DECLARATIVE";
 
 interface Scale {
-  id: string;
+  id?: string;
   code: string;
   name: string;
+  description?: string | null;
 }
 interface Scoring {
   scaleCode: string;
@@ -50,6 +59,13 @@ interface LikertQuestion extends BaseQuestion {
   optionSetCode: string;
   scoringStatus: ScoringStatus;
   options: LikertOption[];
+  scoring: {
+    scaleCode: string;
+    scaleName?: string;
+    weight: number;
+    reverse: boolean;
+    scoreMap?: Record<string, number> | null;
+  } | null;
 }
 type Question = PairQuestion | LikertQuestion;
 interface Section {
@@ -70,11 +86,39 @@ interface Demographic {
   required: boolean;
   config?: Record<string, unknown> | null;
 }
+interface CompositeDefinition {
+  id?: string;
+  code: string;
+  name: string;
+  description?: string | null;
+  aggregationMethod: AggregationMethod;
+  components: Array<{
+    scaleCode: string;
+    scaleName?: string;
+    weight: number;
+    order: number;
+  }>;
+}
+interface DerivedMetricDefinition {
+  id?: string;
+  code: string;
+  name: string;
+  calculationType: AggregationMethod;
+  sourceScaleCode: string | null;
+  declarativeConfig?: {
+    sources?: Array<{
+      targetType: "SCALE" | "COMPOSITE";
+      targetCode: string;
+      weight: number;
+    }>;
+  } | null;
+}
 interface Version {
   id: string;
   version: number;
   versionCode: string;
   language: string;
+  normSetId: string | null;
   status: Status;
   intro: string | null;
   estimatedMinutes: number | null;
@@ -82,8 +126,16 @@ interface Version {
   publishedAt: string | null;
   updatedAt: string;
   editable: boolean;
-  counts: { attempts: number; resultRuns: number };
+  counts: {
+    attempts: number;
+    resultRuns: number;
+    reportMappingVersions: number;
+  };
   scoringVersion: { id: string; version: number; status: Status } | null;
+  psychometrics: {
+    composites: CompositeDefinition[];
+    derivedMetrics: DerivedMetricDefinition[];
+  };
   demographics: Demographic[];
   sections: Section[];
 }
@@ -118,6 +170,11 @@ interface AssessmentListItem {
   isActive: boolean;
   versions: VersionSummary[];
 }
+interface NormSetOption {
+  id: string;
+  code: string;
+  name: string;
+}
 interface Validation {
   valid: boolean;
   errors: string[];
@@ -147,6 +204,7 @@ export function TestsAdminPanel() {
   );
   const [draft, setDraft] = useState<Version | null>(null);
   const [scales, setScales] = useState<Scale[]>([]);
+  const [normSets, setNormSets] = useState<NormSetOption[]>([]);
   const [questionEditor, setQuestionEditor] = useState<QuestionEditor | null>(
     null,
   );
@@ -225,6 +283,12 @@ export function TestsAdminPanel() {
     };
   }, [loadAssessment]);
 
+  useEffect(() => {
+    apiFetch<{ items: NormSetOption[] }>("/norms")
+      .then(({ items }) => setNormSets(items))
+      .catch(() => setNormSets([]));
+  }, []);
+
   function chooseVersion(version: Version) {
     setSelectedVersionId(version.id);
     setDraft(version.editable ? clone(version) : null);
@@ -280,7 +344,7 @@ export function TestsAdminPanel() {
     if (!assessment || !selectedVersion) return;
     startBusy();
     try {
-      const created = await apiFetch<{ id: string }>(
+      const created = await apiFetch<{ id: string; version: number }>(
         `/admin/assessments/${assessment.id}/versions`,
         {
           method: "POST",
@@ -288,7 +352,7 @@ export function TestsAdminPanel() {
         },
       );
       setMessage(
-        `Versión ${selectedVersion.version + 1} creada como borrador editable.`,
+        `Versión ${created.version} creada como borrador editable.`,
       );
       await loadAll(assessment.id, created.id);
     } catch (reason) {
@@ -306,7 +370,7 @@ export function TestsAdminPanel() {
         `/admin/assessments/versions/${draft.id}/content`,
         {
           method: "PUT",
-          body: JSON.stringify(toPayload(draft)),
+          body: JSON.stringify(toPayload(draft, scales)),
         },
       );
       setMessage("Borrador guardado y clave de puntuación sincronizada.");
@@ -375,6 +439,28 @@ export function TestsAdminPanel() {
       );
       setMessage("Versión archivada.");
       await loadAll(assessment.id, selectedVersion.id);
+    } catch (reason) {
+      setError(errorText(reason));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function deleteDraftVersion() {
+    if (!selectedVersion || !assessment) return;
+    if (
+      !window.confirm(
+        `¿Eliminar definitivamente la versión ${selectedVersion.version} (${selectedVersion.versionCode})? Esta acción no se puede deshacer.`,
+      )
+    )
+      return;
+    startBusy();
+    try {
+      await apiFetch(`/admin/assessments/versions/${selectedVersion.id}`, {
+        method: "DELETE",
+      });
+      setMessage(`Borrador v${selectedVersion.version} eliminado.`);
+      await loadAll(assessment.id);
     } catch (reason) {
       setError(errorText(reason));
     } finally {
@@ -600,41 +686,39 @@ export function TestsAdminPanel() {
           + Nueva evaluación
         </button>
       </section>
-      {error && (
-        <p className="form-error" role="alert">
-          {error}
-        </p>
-      )}
-      {message && (
-        <p className="form-success" role="status">
-          {message}
-        </p>
-      )}
+      <AdminToast
+        error={error}
+        message={message}
+        setError={setError}
+        setMessage={setMessage}
+      />
+      <section className="panel tests-catalog-bar" aria-label="Catálogo de evaluaciones">
+        <label>
+          <span>Evaluación</span>
+          <select
+            value={assessment?.id ?? ""}
+            disabled={!items.length || busy}
+            onChange={(event) => void loadAssessment(event.target.value)}
+          >
+            {!items.length && <option value="">Sin evaluaciones</option>}
+            {items.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name} · {item.code}
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="tests-catalog-meta">
+          {assessment && (
+            <span className={assessment.isActive ? "active" : "inactive"}>
+              {assessment.isActive ? "Activa" : "Inactiva"}
+            </span>
+          )}
+          <strong>{assessment?.versions.length ?? 0} versiones</strong>
+          <small>{items.length} evaluaciones configuradas</small>
+        </div>
+      </section>
       <section className="tests-workspace">
-        <aside className="panel tests-catalog">
-          <header>
-            <div>
-              <h2>Catálogo</h2>
-              <p>{items.length} evaluaciones configuradas</p>
-            </div>
-          </header>
-          {items.map((item) => (
-            <button
-              key={item.id}
-              className={assessment?.id === item.id ? "active" : ""}
-              type="button"
-              onClick={() => void loadAssessment(item.id)}
-            >
-              <span>
-                <strong>{item.name}</strong>
-                <small>
-                  {item.code} · {item.isActive ? "Activa" : "Inactiva"}
-                </small>
-              </span>
-              <b>{item.versions.length}</b>
-            </button>
-          ))}
-        </aside>
         <div className="tests-detail">
           {!assessment ? (
             <section className="panel tests-empty">
@@ -795,6 +879,29 @@ export function TestsAdminPanel() {
                           Archivar
                         </button>
                       )}
+                      {selectedVersion.status === "DRAFT" && (
+                        <button
+                          className="danger-button"
+                          disabled={
+                            busy ||
+                            assessment.versions.length <= 1 ||
+                            selectedVersion.counts.attempts > 0 ||
+                            selectedVersion.counts.resultRuns > 0 ||
+                            selectedVersion.counts.reportMappingVersions > 0 ||
+                            Boolean(selectedVersion.publishedAt) ||
+                            (selectedVersion.scoringVersion !== null &&
+                              selectedVersion.scoringVersion.status !== "DRAFT")
+                          }
+                          title={
+                            assessment.versions.length <= 1
+                              ? "La evaluación debe conservar al menos una versión."
+                              : "Solo se elimina un borrador sin intentos, resultados ni dependencias."
+                          }
+                          onClick={() => void deleteDraftVersion()}
+                        >
+                          Eliminar borrador
+                        </button>
+                      )}
                     </div>
                   </section>
                   {!selectedVersion.editable && (
@@ -840,6 +947,27 @@ export function TestsAdminPanel() {
                           />
                         </label>
                         <label className="wide">
+                          Familia normativa
+                          <select
+                            value={draft.normSetId ?? ""}
+                            onChange={(event) =>
+                              setDraft({
+                                ...draft,
+                                normSetId: event.target.value || null,
+                              })
+                            }
+                          >
+                            <option value="">
+                              Sin norma asignada (usar fallback del sistema)
+                            </option>
+                            {normSets.map((norm) => (
+                              <option key={norm.id} value={norm.id}>
+                                {norm.code} · {norm.name}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                        <label className="wide full-width">
                           Introducción
                           <textarea
                             rows={3}
@@ -924,7 +1052,7 @@ export function TestsAdminPanel() {
                                 />{" "}
                                 Obligatorio
                               </label>
-                              <div className="row-actions">
+                              <div className="demographic-order-actions">
                                 <button
                                   disabled={index === 0}
                                   onClick={() => moveDemographic(index, -1)}
@@ -960,6 +1088,12 @@ export function TestsAdminPanel() {
                           ))}
                         </div>
                       </section>
+                      <PsychometricEditor
+                        draft={draft}
+                        scales={scales}
+                        setDraft={setDraft}
+                        setScales={setScales}
+                      />
                       <section className="editor-toolbar">
                         <div>
                           <input
@@ -1251,6 +1385,531 @@ export function TestsAdminPanel() {
   );
 }
 
+function PsychometricEditor({
+  draft,
+  scales,
+  setDraft,
+  setScales,
+}: {
+  draft: Version;
+  scales: Scale[];
+  setDraft: (version: Version) => void;
+  setScales: (scales: Scale[]) => void;
+}) {
+  const composites = draft.psychometrics.composites;
+  const derivedMetrics = draft.psychometrics.derivedMetrics;
+  const updateComposite = (
+    index: number,
+    patch: Partial<CompositeDefinition>,
+  ) =>
+    setDraft({
+      ...draft,
+      psychometrics: {
+        ...draft.psychometrics,
+        composites: composites.map((item, candidate) =>
+          candidate === index ? { ...item, ...patch } : item,
+        ),
+      },
+    });
+  const updateDerived = (
+    index: number,
+    patch: Partial<DerivedMetricDefinition>,
+  ) =>
+    setDraft({
+      ...draft,
+      psychometrics: {
+        ...draft.psychometrics,
+        derivedMetrics: derivedMetrics.map((item, candidate) =>
+          candidate === index ? { ...item, ...patch } : item,
+        ),
+      },
+    });
+  return (
+    <section className="panel psychometric-editor">
+      <header>
+        <div>
+          <h2>Modelo psicométrico</h2>
+          <p>
+            Define escalas, competencias, métricas derivadas y sus fórmulas para
+            esta versión.
+          </p>
+        </div>
+        <span>
+          {scales.length} escalas · {composites.length} composites ·{" "}
+          {derivedMetrics.length} métricas
+        </span>
+      </header>
+      <details>
+        <summary>Escalas disponibles</summary>
+        <div className="psychometric-list scale-definition-list">
+          {scales.map((scale, index) => (
+            <article key={`${scale.code}-${index}`}>
+              <input
+                aria-label="Código de escala"
+                value={scale.code}
+                onChange={(event) => {
+                  const nextCode = event.target.value;
+                  setScales(
+                    scales.map((item, candidate) =>
+                      candidate === index ? { ...item, code: nextCode } : item,
+                    ),
+                  );
+                  setDraft(renameScale(draft, scale.code, nextCode));
+                }}
+              />
+              <input
+                aria-label="Nombre de escala"
+                value={scale.name}
+                onChange={(event) =>
+                  setScales(
+                    scales.map((item, candidate) =>
+                      candidate === index
+                        ? { ...item, name: event.target.value }
+                        : item,
+                    ),
+                  )
+                }
+              />
+              <input
+                aria-label="Descripción de escala"
+                placeholder="Descripción"
+                value={scale.description ?? ""}
+                onChange={(event) =>
+                  setScales(
+                    scales.map((item, candidate) =>
+                      candidate === index
+                        ? { ...item, description: event.target.value }
+                        : item,
+                    ),
+                  )
+                }
+              />
+            </article>
+          ))}
+          <button
+            className="secondary-button"
+            onClick={() =>
+              setScales([
+                ...scales,
+                {
+                  code: uniqueCode(
+                    "NUEVA_ESCALA",
+                    scales.map(({ code }) => code),
+                  ),
+                  name: "Nueva escala",
+                  description: "",
+                },
+              ])
+            }
+          >
+            + Escala
+          </button>
+        </div>
+      </details>
+      <details>
+        <summary>Composites y competencias</summary>
+        <div className="psychometric-list">
+          {composites.map((composite, index) => (
+            <article
+              className="composite-definition"
+              key={`${composite.code}-${index}`}
+            >
+              <div className="psychometric-definition-head">
+                <input
+                  aria-label="Código de composite"
+                  value={composite.code}
+                  onChange={(event) =>
+                    updateComposite(index, { code: event.target.value })
+                  }
+                />
+                <input
+                  aria-label="Nombre de composite"
+                  value={composite.name}
+                  onChange={(event) =>
+                    updateComposite(index, { name: event.target.value })
+                  }
+                />
+                <select
+                  aria-label="Agregación de composite"
+                  value={composite.aggregationMethod}
+                  onChange={(event) =>
+                    updateComposite(index, {
+                      aggregationMethod: event.target
+                        .value as AggregationMethod,
+                    })
+                  }
+                >
+                  <AggregationOptions includeCustom={false} includeTwoAxis />
+                </select>
+                <button
+                  className="danger-link"
+                  onClick={() =>
+                    setDraft({
+                      ...draft,
+                      psychometrics: {
+                        ...draft.psychometrics,
+                        composites: composites.filter(
+                          (_, candidate) => candidate !== index,
+                        ),
+                      },
+                    })
+                  }
+                >
+                  Eliminar
+                </button>
+              </div>
+              {composite.components.map((component, componentIndex) => (
+                <div className="psychometric-source-row" key={componentIndex}>
+                  <select
+                    aria-label="Escala componente"
+                    value={component.scaleCode}
+                    onChange={(event) =>
+                      updateComposite(index, {
+                        components: composite.components.map(
+                          (item, candidate) =>
+                            candidate === componentIndex
+                              ? { ...item, scaleCode: event.target.value }
+                              : item,
+                        ),
+                      })
+                    }
+                  >
+                    {scales.map((scale) => (
+                      <option key={scale.code} value={scale.code}>
+                        {scale.code} · {scale.name}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="number"
+                    step="any"
+                    aria-label="Peso del componente"
+                    value={component.weight}
+                    onChange={(event) =>
+                      updateComposite(index, {
+                        components: composite.components.map(
+                          (item, candidate) =>
+                            candidate === componentIndex
+                              ? { ...item, weight: Number(event.target.value) }
+                              : item,
+                        ),
+                      })
+                    }
+                  />
+                  <button
+                    className="icon-danger"
+                    onClick={() =>
+                      updateComposite(index, {
+                        components: normalizeOrders(
+                          composite.components.filter(
+                            (_, candidate) => candidate !== componentIndex,
+                          ),
+                        ),
+                      })
+                    }
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+              <button
+                className="secondary-button"
+                onClick={() =>
+                  updateComposite(index, {
+                    components: [
+                      ...composite.components,
+                      {
+                        scaleCode: scales[0]?.code ?? "",
+                        weight: 1,
+                        order: composite.components.length + 1,
+                      },
+                    ],
+                  })
+                }
+              >
+                + Componente
+              </button>
+            </article>
+          ))}
+          <button
+            className="secondary-button"
+            onClick={() =>
+              setDraft({
+                ...draft,
+                psychometrics: {
+                  ...draft.psychometrics,
+                  composites: [
+                    ...composites,
+                    {
+                      code: uniqueCode(
+                        "NUEVO_COMPOSITE",
+                        composites.map(({ code }) => code),
+                      ),
+                      name: "Nuevo composite",
+                      aggregationMethod: "ARITHMETIC_MEAN",
+                      components: [
+                        {
+                          scaleCode: scales[0]?.code ?? "",
+                          weight: 1,
+                          order: 1,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              })
+            }
+          >
+            + Composite
+          </button>
+        </div>
+      </details>
+      <details>
+        <summary>Métricas derivadas</summary>
+        <div className="psychometric-list">
+          {derivedMetrics.map((metric, index) => {
+            const sources = metric.declarativeConfig?.sources ?? [];
+            return (
+              <article
+                className="derived-definition"
+                key={`${metric.code}-${index}`}
+              >
+                <div className="psychometric-definition-head">
+                  <input
+                    aria-label="Código de métrica"
+                    value={metric.code}
+                    onChange={(event) =>
+                      updateDerived(index, { code: event.target.value })
+                    }
+                  />
+                  <input
+                    aria-label="Nombre de métrica"
+                    value={metric.name}
+                    onChange={(event) =>
+                      updateDerived(index, { name: event.target.value })
+                    }
+                  />
+                  <select
+                    aria-label="Cálculo de métrica"
+                    value={metric.calculationType}
+                    onChange={(event) =>
+                      updateDerived(index, {
+                        calculationType: event.target
+                          .value as AggregationMethod,
+                      })
+                    }
+                  >
+                    <AggregationOptions includeCustom />
+                  </select>
+                  <button
+                    className="danger-link"
+                    onClick={() =>
+                      setDraft({
+                        ...draft,
+                        psychometrics: {
+                          ...draft.psychometrics,
+                          derivedMetrics: derivedMetrics.filter(
+                            (_, candidate) => candidate !== index,
+                          ),
+                        },
+                      })
+                    }
+                  >
+                    Eliminar
+                  </button>
+                </div>
+                {metric.calculationType === "DIRECT_SCALE" ? (
+                  <select
+                    aria-label="Escala fuente"
+                    value={metric.sourceScaleCode ?? ""}
+                    onChange={(event) =>
+                      updateDerived(index, {
+                        sourceScaleCode: event.target.value,
+                        declarativeConfig: null,
+                      })
+                    }
+                  >
+                    <option value="">Selecciona una escala</option>
+                    {scales.map((scale) => (
+                      <option key={scale.code} value={scale.code}>
+                        {scale.code} · {scale.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <>
+                    {sources.map((source, sourceIndex) => (
+                      <div
+                        className="psychometric-source-row"
+                        key={sourceIndex}
+                      >
+                        <select
+                          value={source.targetType}
+                          aria-label="Tipo de fuente"
+                          onChange={(event) =>
+                            updateDerived(index, {
+                              sourceScaleCode: null,
+                              declarativeConfig: {
+                                sources: sources.map((item, candidate) =>
+                                  candidate === sourceIndex
+                                    ? {
+                                        ...item,
+                                        targetType: event.target.value as
+                                          "SCALE" | "COMPOSITE",
+                                        targetCode:
+                                          event.target.value === "SCALE"
+                                            ? (scales[0]?.code ?? "")
+                                            : (composites[0]?.code ?? ""),
+                                      }
+                                    : item,
+                                ),
+                              },
+                            })
+                          }
+                        >
+                          <option value="SCALE">Escala</option>
+                          <option value="COMPOSITE">Composite</option>
+                        </select>
+                        <select
+                          value={source.targetCode}
+                          aria-label="Fuente"
+                          onChange={(event) =>
+                            updateDerived(index, {
+                              declarativeConfig: {
+                                sources: sources.map((item, candidate) =>
+                                  candidate === sourceIndex
+                                    ? {
+                                        ...item,
+                                        targetCode: event.target.value,
+                                      }
+                                    : item,
+                                ),
+                              },
+                            })
+                          }
+                        >
+                          {(source.targetType === "SCALE"
+                            ? scales
+                            : composites
+                          ).map((item) => (
+                            <option key={item.code} value={item.code}>
+                              {item.code} · {item.name}
+                            </option>
+                          ))}
+                        </select>
+                        <input
+                          type="number"
+                          step="any"
+                          aria-label="Peso de fuente"
+                          value={source.weight}
+                          onChange={(event) =>
+                            updateDerived(index, {
+                              declarativeConfig: {
+                                sources: sources.map((item, candidate) =>
+                                  candidate === sourceIndex
+                                    ? {
+                                        ...item,
+                                        weight: Number(event.target.value),
+                                      }
+                                    : item,
+                                ),
+                              },
+                            })
+                          }
+                        />
+                        <button
+                          className="icon-danger"
+                          onClick={() =>
+                            updateDerived(index, {
+                              declarativeConfig: {
+                                sources: sources.filter(
+                                  (_, candidate) => candidate !== sourceIndex,
+                                ),
+                              },
+                            })
+                          }
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      className="secondary-button"
+                      onClick={() =>
+                        updateDerived(index, {
+                          sourceScaleCode: null,
+                          declarativeConfig: {
+                            sources: [
+                              ...sources,
+                              {
+                                targetType: "SCALE",
+                                targetCode: scales[0]?.code ?? "",
+                                weight: 1,
+                              },
+                            ],
+                          },
+                        })
+                      }
+                    >
+                      + Fuente
+                    </button>
+                  </>
+                )}
+              </article>
+            );
+          })}
+          <button
+            className="secondary-button"
+            onClick={() =>
+              setDraft({
+                ...draft,
+                psychometrics: {
+                  ...draft.psychometrics,
+                  derivedMetrics: [
+                    ...derivedMetrics,
+                    {
+                      code: uniqueCode(
+                        "NUEVA_METRICA",
+                        derivedMetrics.map(({ code }) => code),
+                      ),
+                      name: "Nueva métrica",
+                      calculationType: "DIRECT_SCALE",
+                      sourceScaleCode: scales[0]?.code ?? null,
+                    },
+                  ],
+                },
+              })
+            }
+          >
+            + Métrica derivada
+          </button>
+        </div>
+      </details>
+    </section>
+  );
+}
+
+function AggregationOptions({
+  includeCustom,
+  includeTwoAxis = false,
+}: {
+  includeCustom: boolean;
+  includeTwoAxis?: boolean;
+}) {
+  return (
+    <>
+      <option value="ARITHMETIC_MEAN">Promedio aritmético</option>
+      <option value="WEIGHTED_MEAN">Promedio ponderado</option>
+      <option value="SUM">Suma</option>
+      <option value="DIRECT_SCALE">Escala directa</option>
+      {includeTwoAxis && <option value="TWO_AXIS">Dos ejes</option>}
+      {includeCustom && (
+        <option value="CUSTOM_DECLARATIVE">Fórmula declarativa</option>
+      )}
+    </>
+  );
+}
+
 function QuestionModal({
   editor,
   scales,
@@ -1462,18 +2121,110 @@ function QuestionModal({
                   Estado de puntuación
                   <select
                     value={value.scoringStatus}
-                    onChange={(event) =>
+                    onChange={(event) => {
+                      const status = event.target.value as ScoringStatus;
                       patch({
                         ...value,
-                        scoringStatus: event.target.value as ScoringStatus,
-                      })
-                    }
+                        scoringStatus: status,
+                        scoring:
+                          status === "CONFIGURED"
+                            ? (value.scoring ?? {
+                                scaleCode: scales[0]?.code ?? "",
+                                weight: 1,
+                                reverse: false,
+                              })
+                            : null,
+                      });
+                    }}
                   >
                     <option value="PENDING_SCORING_SPEC">Pendiente</option>
                     <option value="CONFIGURED">Configurada</option>
                   </select>
                 </label>
               </div>
+              {value.scoringStatus === "CONFIGURED" && value.scoring && (
+                <div className="scoring-editor likert-scoring-editor">
+                  <label>
+                    Escala destino
+                    <select
+                      value={value.scoring.scaleCode}
+                      onChange={(event) =>
+                        patch({
+                          ...value,
+                          scoring: {
+                            ...value.scoring!,
+                            scaleCode: event.target.value,
+                          },
+                        })
+                      }
+                    >
+                      <option value="">Selecciona una escala</option>
+                      {scales.map((scale) => (
+                        <option key={scale.code} value={scale.code}>
+                          {scale.code} · {scale.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Peso
+                    <input
+                      type="number"
+                      step="any"
+                      value={value.scoring.weight}
+                      onChange={(event) =>
+                        patch({
+                          ...value,
+                          scoring: {
+                            ...value.scoring!,
+                            weight: Number(event.target.value),
+                          },
+                        })
+                      }
+                    />
+                  </label>
+                  <label className="checkbox-field">
+                    <input
+                      type="checkbox"
+                      checked={value.scoring.reverse}
+                      onChange={(event) =>
+                        patch({
+                          ...value,
+                          scoring: {
+                            ...value.scoring!,
+                            reverse: event.target.checked,
+                          },
+                        })
+                      }
+                    />
+                    Puntuación inversa
+                  </label>
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={() =>
+                      patch({
+                        ...value,
+                        scoring: {
+                          ...value.scoring!,
+                          scoreMap: value.scoring?.scoreMap
+                            ? null
+                            : Object.fromEntries(
+                                value.options.map((option) => [
+                                  String(option.value),
+                                  option.value,
+                                ]),
+                              ),
+                        },
+                      })
+                    }
+                  >
+                    {value.scoring.scoreMap
+                      ? "Usar valores directos"
+                      : "Personalizar valores"}
+                  </button>
+                </div>
+              )}
               <h3>Opciones</h3>
               {value.options.map((option, index) => (
                 <div className="likert-option-row" key={index}>
@@ -1492,6 +2243,31 @@ function QuestionModal({
                       })
                     }
                   />
+                  {value.scoring?.scoreMap && (
+                    <input
+                      type="number"
+                      step="any"
+                      aria-label={`Puntuación de ${option.label}`}
+                      value={
+                        value.scoring.scoreMap[String(option.value)] ??
+                        option.value
+                      }
+                      onChange={(event) =>
+                        patch({
+                          ...value,
+                          scoring: {
+                            ...value.scoring!,
+                            scoreMap: {
+                              ...value.scoring!.scoreMap,
+                              [String(option.value)]: Number(
+                                event.target.value,
+                              ),
+                            },
+                          },
+                        })
+                      }
+                    />
+                  )}
                   <input
                     aria-label="Etiqueta"
                     value={option.label}
@@ -1747,6 +2523,7 @@ function newLikert(section: Section, number: number): LikertQuestion {
     text: "Nueva afirmación",
     optionSetCode: `${code}_OPTIONS`,
     scoringStatus: "PENDING_SCORING_SPEC",
+    scoring: null,
     options: [1, 2, 3, 4, 5].map((value) => ({
       value,
       label: String(value),
@@ -1786,10 +2563,11 @@ function summarize(version: Version | null) {
   };
 }
 
-function toPayload(version: Version) {
+function toPayload(version: Version, scales: Scale[]) {
   return {
     expectedUpdatedAt: version.updatedAt,
     language: version.language,
+    normSetId: version.normSetId ?? undefined,
     intro: version.intro ?? undefined,
     estimatedMinutes: version.estimatedMinutes ?? undefined,
     demographics: version.demographics.map(
@@ -1841,6 +2619,14 @@ function toPayload(version: Version) {
               text: question.text,
               optionSetCode: question.optionSetCode,
               scoringStatus: question.scoringStatus,
+              scoring: question.scoring
+                ? {
+                    scaleCode: question.scoring.scaleCode,
+                    weight: question.scoring.weight,
+                    reverse: question.scoring.reverse,
+                    scoreMap: question.scoring.scoreMap ?? undefined,
+                  }
+                : undefined,
               reactives: [],
               options: question.options.map(({ value, label }, index) => ({
                 value,
@@ -1849,6 +2635,29 @@ function toPayload(version: Version) {
               })),
             },
       ),
+    })),
+    scales: scales.map(({ code, name, description }) => ({
+      code,
+      name,
+      description: description ?? undefined,
+    })),
+    composites: version.psychometrics.composites.map((composite) => ({
+      code: composite.code,
+      name: composite.name,
+      description: composite.description ?? undefined,
+      aggregationMethod: composite.aggregationMethod,
+      components: composite.components.map((component, index) => ({
+        scaleCode: component.scaleCode,
+        weight: component.weight,
+        order: index + 1,
+      })),
+    })),
+    derivedMetrics: version.psychometrics.derivedMetrics.map((metric) => ({
+      code: metric.code,
+      name: metric.name,
+      calculationType: metric.calculationType,
+      sourceScaleCode: metric.sourceScaleCode ?? undefined,
+      declarativeConfig: metric.declarativeConfig ?? undefined,
     })),
   };
 }
@@ -1899,6 +2708,66 @@ function uniqueCode(base: string, existing: string[]) {
   let suffix = 2;
   while (existing.includes(code)) code = `${base}_${suffix++}`;
   return code;
+}
+function renameScale(
+  version: Version,
+  previous: string,
+  next: string,
+): Version {
+  return {
+    ...version,
+    sections: version.sections.map((section) => ({
+      ...section,
+      questions: section.questions.map((question) =>
+        question.type === "PAIR"
+          ? {
+              ...question,
+              reactives: question.reactives.map((reactive) => ({
+                ...reactive,
+                scoring:
+                  reactive.scoring?.scaleCode === previous
+                    ? { ...reactive.scoring, scaleCode: next }
+                    : reactive.scoring,
+              })),
+            }
+          : {
+              ...question,
+              scoring:
+                question.scoring?.scaleCode === previous
+                  ? { ...question.scoring, scaleCode: next }
+                  : question.scoring,
+            },
+      ),
+    })),
+    psychometrics: {
+      composites: version.psychometrics.composites.map((composite) => ({
+        ...composite,
+        components: composite.components.map((component) => ({
+          ...component,
+          scaleCode:
+            component.scaleCode === previous ? next : component.scaleCode,
+        })),
+      })),
+      derivedMetrics: version.psychometrics.derivedMetrics.map((metric) => ({
+        ...metric,
+        sourceScaleCode:
+          metric.sourceScaleCode === previous ? next : metric.sourceScaleCode,
+        declarativeConfig: metric.declarativeConfig
+          ? {
+              ...metric.declarativeConfig,
+              sources: metric.declarativeConfig.sources?.map((source) => ({
+                ...source,
+                targetCode:
+                  source.targetType === "SCALE" &&
+                  source.targetCode === previous
+                    ? next
+                    : source.targetCode,
+              })),
+            }
+          : metric.declarativeConfig,
+      })),
+    },
+  };
 }
 function errorText(reason: unknown) {
   return reason instanceof Error

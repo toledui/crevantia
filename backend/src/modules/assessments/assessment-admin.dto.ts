@@ -18,6 +18,7 @@ import {
   ValidateNested,
 } from "class-validator";
 import {
+  AggregationMethod,
   ScoringPolarity,
   ScoringSpecificationStatus,
 } from "../../generated/prisma/client";
@@ -81,6 +82,13 @@ export class LikertOptionAdminDto {
   @Type(() => Number) @IsInt() @Min(1) order!: number;
 }
 
+export class LikertScoringAdminDto {
+  @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) scaleCode!: string;
+  @Type(() => Number) @IsNumber() weight!: number;
+  @IsBoolean() reverse!: boolean;
+  @IsOptional() @IsObject() scoreMap?: Record<string, number>;
+}
+
 export class AssessmentQuestionAdminDto {
   @IsIn(["PAIR", "LIKERT"]) type!: "PAIR" | "LIKERT";
   @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) code!: string;
@@ -95,6 +103,10 @@ export class AssessmentQuestionAdminDto {
   @IsOptional()
   @IsIn(Object.values(ScoringSpecificationStatus))
   scoringStatus?: ScoringSpecificationStatus;
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => LikertScoringAdminDto)
+  scoring?: LikertScoringAdminDto;
   @IsArray()
   @ArrayMaxSize(2)
   @ValidateNested({ each: true })
@@ -105,6 +117,51 @@ export class AssessmentQuestionAdminDto {
   @ValidateNested({ each: true })
   @Type(() => LikertOptionAdminDto)
   options: LikertOptionAdminDto[] = [];
+}
+
+export class ScaleAdminDto {
+  @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) code!: string;
+  @IsString() @IsNotEmpty() @MaxLength(180) name!: string;
+  @IsOptional() @IsString() @MaxLength(5000) description?: string;
+}
+
+export class CompositeComponentAdminDto {
+  @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) scaleCode!: string;
+  @Type(() => Number) @IsNumber() weight!: number;
+  @Type(() => Number) @IsInt() @Min(1) order!: number;
+}
+
+export class CompositeAdminDto {
+  @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) code!: string;
+  @IsString() @IsNotEmpty() @MaxLength(180) name!: string;
+  @IsOptional() @IsString() @MaxLength(5000) description?: string;
+  @IsIn(Object.values(AggregationMethod))
+  aggregationMethod!: AggregationMethod;
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(100)
+  @ValidateNested({ each: true })
+  @Type(() => CompositeComponentAdminDto)
+  components!: CompositeComponentAdminDto[];
+}
+
+export class DerivedMetricAdminDto {
+  @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) code!: string;
+  @IsString() @IsNotEmpty() @MaxLength(180) name!: string;
+  @IsIn([
+    AggregationMethod.SUM,
+    AggregationMethod.ARITHMETIC_MEAN,
+    AggregationMethod.WEIGHTED_MEAN,
+    AggregationMethod.DIRECT_SCALE,
+    AggregationMethod.CUSTOM_DECLARATIVE,
+  ])
+  calculationType!: AggregationMethod;
+  @IsOptional()
+  @IsString()
+  @MaxLength(80)
+  @Matches(CODE)
+  sourceScaleCode?: string;
+  @IsOptional() @IsObject() declarativeConfig?: Record<string, unknown>;
 }
 
 export class AssessmentSectionAdminDto {
@@ -122,6 +179,7 @@ export class AssessmentSectionAdminDto {
 export class ReplaceAssessmentContentDto {
   @IsString() @IsNotEmpty() expectedUpdatedAt!: string;
   @IsString() @IsNotEmpty() @MaxLength(10) language!: string;
+  @IsOptional() @IsString() normSetId?: string;
   @IsOptional() @IsString() @MaxLength(10000) intro?: string;
   @IsOptional()
   @Type(() => Number)
@@ -140,4 +198,22 @@ export class ReplaceAssessmentContentDto {
   @ValidateNested({ each: true })
   @Type(() => AssessmentSectionAdminDto)
   sections!: AssessmentSectionAdminDto[];
+  @IsOptional()
+  @IsArray()
+  @ArrayMaxSize(500)
+  @ValidateNested({ each: true })
+  @Type(() => ScaleAdminDto)
+  scales?: ScaleAdminDto[];
+  @IsOptional()
+  @IsArray()
+  @ArrayMaxSize(500)
+  @ValidateNested({ each: true })
+  @Type(() => CompositeAdminDto)
+  composites?: CompositeAdminDto[];
+  @IsOptional()
+  @IsArray()
+  @ArrayMaxSize(500)
+  @ValidateNested({ each: true })
+  @Type(() => DerivedMetricAdminDto)
+  derivedMetrics?: DerivedMetricAdminDto[];
 }

@@ -454,6 +454,7 @@ model Assessment {
 model AssessmentVersion {
   id                    String                 @id @default(cuid())
   assessmentId          String
+  defaultNormSetId      String?
   version               Int
   versionCode           String                 @db.VarChar(100)
   language              String                 @default("es-MX") @db.VarChar(10)
@@ -466,6 +467,7 @@ model AssessmentVersion {
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   assessment            Assessment             @relation(fields: [assessmentId], references: [id], onDelete: Restrict)
+  defaultNormSet        NormSet?               @relation(fields: [defaultNormSetId], references: [id], onDelete: SetNull)
   sections              AssessmentSection[]
   demographicFields     DemographicField[]
   pairQuestions         PairQuestion[]
@@ -479,6 +481,7 @@ model AssessmentVersion {
   @@unique([assessmentId, version])
   @@unique([assessmentId, versionCode])
   @@index([assessmentId, status])
+  @@index([defaultNormSetId])
 }
 
 model AssessmentSection {
@@ -602,6 +605,7 @@ model LikertQuestion {
   section             AssessmentSection          @relation(fields: [sectionId], references: [id], onDelete: Restrict)
   optionSet           LikertOptionSet            @relation(fields: [optionSetId], references: [id], onDelete: Restrict)
   answers             LikertAnswer[]
+  scoringRules        LikertScoringRule[]
 
   @@unique([assessmentVersionId, code])
   @@index([sectionId, order])
@@ -618,24 +622,26 @@ model ScoringKey {
 }
 
 model ScoringKeyVersion {
-  id                  String                @id @default(cuid())
-  scoringKeyId        String
-  assessmentVersionId String
-  version             Int
-  sourceVersion       String?               @db.VarChar(100)
-  status              ConfigurationStatus   @default(DRAFT)
-  numericMode         String                @default("EXCEL_BINARY64") @db.VarChar(50)
-  engineCompatibility String?               @db.VarChar(100)
-  configurationHash   String                @db.Char(64)
-  publishedAt         DateTime?
-  createdAt           DateTime              @default(now())
-  updatedAt           DateTime              @updatedAt
-  scoringKey          ScoringKey            @relation(fields: [scoringKeyId], references: [id], onDelete: Restrict)
-  assessmentVersion   AssessmentVersion     @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
-  rules               ReactiveScoringRule[]
-  compositeComponents CompositeComponent[]
-  attempts            Attempt[]
-  resultRuns          ResultRun[]
+  id                    String                 @id @default(cuid())
+  scoringKeyId          String
+  assessmentVersionId   String
+  version               Int
+  sourceVersion         String?                @db.VarChar(100)
+  status                ConfigurationStatus    @default(DRAFT)
+  numericMode           String                 @default("EXCEL_BINARY64") @db.VarChar(50)
+  engineCompatibility   String?                @db.VarChar(100)
+  configurationHash     String                 @db.Char(64)
+  publishedAt           DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  scoringKey            ScoringKey             @relation(fields: [scoringKeyId], references: [id], onDelete: Restrict)
+  assessmentVersion     AssessmentVersion      @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  rules                 ReactiveScoringRule[]
+  likertRules           LikertScoringRule[]
+  compositeComponents   CompositeComponent[]
+  derivedMetricVersions DerivedMetricVersion[]
+  attempts              Attempt[]
+  resultRuns            ResultRun[]
 
   @@unique([scoringKeyId, version])
   @@index([assessmentVersionId, status])
@@ -647,8 +653,25 @@ model Scale {
   name              String                 @db.VarChar(180)
   description       String?                @db.Text
   rules             ReactiveScoringRule[]
+  likertRules       LikertScoringRule[]
   components        CompositeComponent[]
   derivedComponents DerivedMetricVersion[]
+}
+
+model LikertScoringRule {
+  id                  String            @id @default(cuid())
+  scoringKeyVersionId String
+  likertQuestionId    String
+  scaleId             String
+  weight              Decimal           @default(1) @db.Decimal(20, 10)
+  reverse             Boolean           @default(false)
+  scoreMap            Json?
+  scoringKeyVersion   ScoringKeyVersion @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Cascade)
+  likertQuestion      LikertQuestion    @relation(fields: [likertQuestionId], references: [id], onDelete: Restrict)
+  scale               Scale             @relation(fields: [scaleId], references: [id], onDelete: Restrict)
+
+  @@unique([scoringKeyVersionId, likertQuestionId])
+  @@index([scoringKeyVersionId, scaleId])
 }
 
 model ReactiveScoringRule {
@@ -705,27 +728,31 @@ model DerivedMetric {
 }
 
 model DerivedMetricVersion {
-  id                String              @id @default(cuid())
-  derivedMetricId   String
-  version           Int
-  calculationType   AggregationMethod
-  sourceScaleId     String?
-  declarativeConfig Json?
-  status            ConfigurationStatus @default(DRAFT)
-  derivedMetric     DerivedMetric       @relation(fields: [derivedMetricId], references: [id], onDelete: Restrict)
-  sourceScale       Scale?              @relation(fields: [sourceScaleId], references: [id], onDelete: Restrict)
+  id                  String              @id @default(cuid())
+  derivedMetricId     String
+  scoringKeyVersionId String?
+  version             Int
+  calculationType     AggregationMethod
+  sourceScaleId       String?
+  declarativeConfig   Json?
+  status              ConfigurationStatus @default(DRAFT)
+  derivedMetric       DerivedMetric       @relation(fields: [derivedMetricId], references: [id], onDelete: Restrict)
+  scoringKeyVersion   ScoringKeyVersion?  @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Cascade)
+  sourceScale         Scale?              @relation(fields: [sourceScaleId], references: [id], onDelete: Restrict)
 
   @@unique([derivedMetricId, version])
+  @@unique([scoringKeyVersionId, derivedMetricId])
 }
 
 model NormSet {
-  id          String        @id @default(cuid())
-  code        String        @unique @db.VarChar(100)
-  name        String        @db.VarChar(180)
-  description String?       @db.Text
-  versions    NormVersion[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id                 String              @id @default(cuid())
+  code               String              @unique @db.VarChar(100)
+  name               String              @db.VarChar(180)
+  description        String?             @db.Text
+  versions           NormVersion[]
+  assessmentVersions AssessmentVersion[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
 }
 
 model NormVersion {

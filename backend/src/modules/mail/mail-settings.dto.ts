@@ -12,3 +12,6 @@ export class UpdateMailSettingsDto {
   @IsEmail() @MaxLength(191) fromAddress!: string;
 }
 
+export class TestMailSettingsDto {
+  @IsEmail() @MaxLength(191) email!: string;
+}

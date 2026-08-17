@@ -9,6 +9,7 @@ import { PrismaService } from "../../database/prisma.service";
 import {
   AttemptStatus,
   ConfigurationStatus,
+  Prisma,
   ResultRunStatus,
 } from "../../generated/prisma/client";
 import { configurationHash } from "../scoring/configuration-hash";
@@ -16,6 +17,8 @@ import {
   calculateAssessment,
   DPO_ENGINE_VERSION,
   type CompositeDefinition,
+  type DerivedMetricDefinition,
+  type LikertScoringDefinition,
   type NormDefinition,
   type ScoringRule,
 } from "../scoring/scoring-engine";
@@ -113,7 +116,10 @@ export class AssessmentScoringService {
           where: { id: attempt.normVersionId },
         })
       : await this.prisma.normVersion.findFirst({
-          where: { status: ConfigurationStatus.PUBLISHED },
+          where: {
+            status: ConfigurationStatus.PUBLISHED,
+            normSetId: attempt.assessmentVersion.defaultNormSetId ?? undefined,
+          },
           orderBy: { publishedAt: "desc" },
         });
     if (!normVersion || normVersion.status !== ConfigurationStatus.PUBLISHED)
@@ -121,7 +127,13 @@ export class AssessmentScoringService {
         "No existe una norma publicada disponible.",
       );
 
-    const [rulesData, componentsData, normTargets] = await Promise.all([
+    const [
+      rulesData,
+      likertRulesData,
+      componentsData,
+      derivedMetricData,
+      normTargets,
+    ] = await Promise.all([
       this.prisma.reactiveScoringRule.findMany({
         where: { scoringKeyVersionId: scoringVersion.id },
         include: {
@@ -129,10 +141,23 @@ export class AssessmentScoringService {
           scale: { select: { code: true } },
         },
       }),
+      this.prisma.likertScoringRule.findMany({
+        where: { scoringKeyVersionId: scoringVersion.id },
+        include: {
+          likertQuestion: {
+            include: { optionSet: { include: { options: true } } },
+          },
+          scale: { select: { code: true } },
+        },
+      }),
       this.prisma.compositeComponent.findMany({
         where: { scoringKeyVersionId: scoringVersion.id },
         orderBy: [{ compositeId: "asc" }, { order: "asc" }],
         include: { composite: true, scale: { select: { code: true } } },
+      }),
+      this.prisma.derivedMetricVersion.findMany({
+        where: { scoringKeyVersionId: scoringVersion.id },
+        include: { derivedMetric: true, sourceScale: true },
       }),
       this.prisma.normTarget.findMany({
         where: { normVersionId: normVersion.id },
@@ -162,6 +187,29 @@ export class AssessmentScoringService {
       });
       grouped.set(component.composite.code, current);
     }
+    const likertRules: LikertScoringDefinition[] = likertRulesData.map(
+      (rule) => {
+        const values = rule.likertQuestion.optionSet.options.map(
+          (option) => option.value,
+        );
+        return {
+          questionCode: rule.likertQuestion.code,
+          scaleCode: rule.scale.code,
+          weight: Number(rule.weight),
+          reverse: rule.reverse,
+          minValue: Math.min(...values),
+          maxValue: Math.max(...values),
+          scoreMap: jsonNumberMap(rule.scoreMap),
+        };
+      },
+    );
+    const derivedMetricDefinitions: DerivedMetricDefinition[] =
+      derivedMetricData.map((metric) => ({
+        code: metric.derivedMetric.code,
+        calculationType: derivedCalculationType(metric.calculationType),
+        sourceScaleCode: metric.sourceScale?.code ?? null,
+        sources: derivedSources(metric.declarativeConfig),
+      }));
     const norms: NormDefinition[] = normTargets.map((target) => ({
       targetType: target.targetType,
       targetCode: target.targetCode,
@@ -180,7 +228,16 @@ export class AssessmentScoringService {
     const calculation = calculateAssessment({
       answers,
       rules,
+      likertAnswers: attempt.likertAnswers.map((answer) => ({
+        questionCode:
+          likertRulesData.find(
+            (rule) => rule.likertQuestionId === answer.likertQuestionId,
+          )?.likertQuestion.code ?? answer.likertQuestionId,
+        value: answer.value,
+      })),
+      likertRules,
       composites: [...grouped.values()],
+      derivedMetricDefinitions,
       norms,
     });
     const configHash = configurationHash({
@@ -237,11 +294,14 @@ export class AssessmentScoringService {
               inputHash,
               status: ResultRunStatus.COMPLETED,
               isOfficial: true,
-              diagnostics: {
+              diagnostics: asJson({
                 numericMode: scoringVersion.numericMode,
                 roundingMode: normVersion.roundingMode,
-                likertScoringStatus: "PENDING_SCORING_SPEC",
-              },
+                likertScoringStatus: likertRules.length
+                  ? "CONFIGURED"
+                  : "PENDING_SCORING_SPEC",
+                likertContributions: calculation.likertContributions,
+              }),
               values: {
                 create: [
                   ...calculation.scales,
@@ -304,4 +364,58 @@ export class AssessmentScoringService {
       throw error;
     }
   }
+}
+
+function jsonNumberMap(value: unknown): Record<string, number> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const entries = Object.entries(value).filter(
+    (entry): entry is [string, number] =>
+      typeof entry[1] === "number" && Number.isFinite(entry[1]),
+  );
+  return entries.length ? Object.fromEntries(entries) : null;
+}
+
+function derivedCalculationType(
+  value: string,
+): DerivedMetricDefinition["calculationType"] {
+  if (
+    value === "SUM" ||
+    value === "ARITHMETIC_MEAN" ||
+    value === "WEIGHTED_MEAN" ||
+    value === "DIRECT_SCALE" ||
+    value === "CUSTOM_DECLARATIVE"
+  )
+    return value;
+  throw new BadRequestException(
+    `El tipo de métrica derivada ${value} no está soportado.`,
+  );
+}
+
+function derivedSources(value: unknown): DerivedMetricDefinition["sources"] {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+  const sources = (value as Record<string, unknown>).sources;
+  if (!Array.isArray(sources)) return [];
+  return sources.flatMap((entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return [];
+    const source = entry as Record<string, unknown>;
+    if (
+      (source.targetType !== "SCALE" && source.targetType !== "COMPOSITE") ||
+      typeof source.targetCode !== "string"
+    )
+      return [];
+    return [
+      {
+        targetType: source.targetType,
+        targetCode: source.targetCode,
+        weight:
+          typeof source.weight === "number" && Number.isFinite(source.weight)
+            ? source.weight
+            : 1,
+      },
+    ];
+  });
+}
+
+function asJson(value: unknown): Prisma.InputJsonValue {
+  return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
 }

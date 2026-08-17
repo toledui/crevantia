@@ -8,6 +8,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsNumber,
+  IsObject,
   IsOptional,
   IsString,
   Max,
@@ -27,14 +28,34 @@ export class UpdateNormVersionDto {
   @IsOptional() @IsString() @MaxLength(10000) notes?: string;
 }
 
-export class UpdateNormTargetDto {
+export class CreateNormSetDto extends UpdateNormVersionDto {
+  @IsString() @IsNotEmpty() @MaxLength(100) code!: string;
+  @IsOptional() @IsString() @MaxLength(180) setName?: string;
+  @IsOptional() @IsString() @MaxLength(5000) setDescription?: string;
+}
+
+export class UpdateNormSetDto {
+  @IsString() @IsNotEmpty() @MaxLength(180) name!: string;
+  @IsOptional() @IsString() @MaxLength(5000) description?: string;
+}
+
+export class ImportNormDto {
+  @IsObject() payload!: Record<string, unknown>;
+}
+
+class NormTargetDetailsDto {
   @IsString() @IsNotEmpty() @MaxLength(180) name!: string;
   @IsString() @IsNotEmpty() @MaxLength(80) status!: string;
   @IsBoolean() isBlocked!: boolean;
   @IsOptional() @IsString() @MaxLength(10000) validationNotes?: string;
 }
 
-export class CreateNormTargetDto extends UpdateNormTargetDto {
+export class UpdateNormTargetDto extends NormTargetDetailsDto {
+  @IsOptional() @IsEnum(NormTargetType) targetType?: NormTargetType;
+  @IsOptional() @IsString() @IsNotEmpty() @MaxLength(100) targetCode?: string;
+}
+
+export class CreateNormTargetDto extends NormTargetDetailsDto {
   @IsEnum(NormTargetType) targetType!: NormTargetType;
   @IsString() @IsNotEmpty() @MaxLength(100) targetCode!: string;
 }
@@ -49,7 +70,7 @@ export class ThresholdDto {
 
 export class ReplaceThresholdsDto {
   @IsArray()
-  @ArrayMinSize(1)
+  @ArrayMinSize(0)
   @ArrayMaxSize(10)
   @ValidateNested({ each: true })
   @Type(() => ThresholdDto)

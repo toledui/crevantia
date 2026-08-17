@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -14,9 +15,12 @@ import { Permissions } from "../../common/permissions.decorator";
 import { PermissionsGuard } from "../../common/permissions.guard";
 import {
   CreateNormTargetDto,
+  CreateNormSetDto,
+  ImportNormDto,
   ImpactPreviewDto,
   ReplaceThresholdsDto,
   UpdateNormTargetDto,
+  UpdateNormSetDto,
   UpdateNormVersionDto,
 } from "./norms.dto";
 import { NormsService } from "./norms.service";
@@ -28,6 +32,18 @@ export class NormsController {
 
   @Get("norms") @Permissions("norm.read") list() {
     return this.norms.list();
+  }
+  @Post("norms") @Permissions("norm.create") create(
+    @CurrentUser() user: AuthenticatedUser,
+    @Body() dto: CreateNormSetDto,
+  ) {
+    return this.norms.create(user.sub, dto);
+  }
+  @Post("norms/import") @Permissions("norm.create") import(
+    @CurrentUser() user: AuthenticatedUser,
+    @Body() dto: ImportNormDto,
+  ) {
+    return this.norms.import(user.sub, dto.payload);
   }
   @Get("norms/:id") @Permissions("norm.read") detail(@Param("id") id: string) {
     return this.norms.detail(id);
@@ -41,6 +57,21 @@ export class NormsController {
     @Param("versionId") versionId: string,
   ) {
     return this.norms.version(versionId);
+  }
+  @Get("norms/:id/versions/:versionId/export")
+  @Permissions("norm.read")
+  exportVersion(
+    @Param("id") id: string,
+    @Param("versionId") versionId: string,
+  ) {
+    return this.norms.exportVersion(id, versionId);
+  }
+  @Put("norms/:id") @Permissions("norm.edit") updateSet(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param("id") id: string,
+    @Body() dto: UpdateNormSetDto,
+  ) {
+    return this.norms.updateSet(user.sub, id, dto);
   }
   @Post("norms/:id/versions/:versionId/clone")
   @Permissions("norm.create")
@@ -73,6 +104,15 @@ export class NormsController {
     @Body() dto: UpdateNormTargetDto,
   ) {
     return this.norms.updateTarget(user.sub, targetId, dto);
+  }
+  @Delete("norm-versions/:id/targets/:targetId")
+  @Permissions("norm.edit")
+  removeTarget(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param("id") id: string,
+    @Param("targetId") targetId: string,
+  ) {
+    return this.norms.removeTarget(user.sub, id, targetId);
   }
   @Put("norm-targets/:targetId/thresholds")
   @Permissions("norm.edit")
