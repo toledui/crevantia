@@ -23,7 +23,9 @@
     "db:migrate": "npm run prisma:migrate --workspace backend --",
     "db:deploy": "npm run prisma:deploy --workspace backend",
     "db:status": "npm run prisma:status --workspace backend",
-    "db:seed": "npm run prisma:seed --workspace backend"
+    "db:seed": "npm run prisma:seed --workspace backend",
+    "seed:dpo": "npm run seed:dpo --workspace backend",
+    "test:dpo": "npm run test:dpo --workspace backend"
   },
   "devDependencies": {
     "prettier": "^3.6.2"

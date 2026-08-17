@@ -2,14 +2,14 @@ import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
 import { AccessTokenGuard } from '../../common/access-token.guard';
 import type { AuthenticatedUser } from '../../common/auth.types';
 import { CurrentUser } from '../../common/current-user.decorator';
-import { Roles } from '../../common/roles.decorator';
-import { RolesGuard } from '../../common/roles.guard';
+import { Permissions } from '../../common/permissions.decorator';
+import { PermissionsGuard } from '../../common/permissions.guard';
 import { MailService } from './mail.service';
 import { UpdateMailSettingsDto } from './mail-settings.dto';
 
 @Controller('admin/settings/mail')
-@UseGuards(AccessTokenGuard, RolesGuard)
-@Roles('SUPERADMIN')
+@UseGuards(AccessTokenGuard, PermissionsGuard)
+@Permissions('mail.settings.manage')
 export class MailSettingsController {
   constructor(private readonly mail: MailService) {}
 
@@ -24,4 +24,3 @@ export class MailSettingsController {
   @Post('test')
   test(@CurrentUser() user: AuthenticatedUser) { return this.mail.testSettings(user.sub); }
 }
-

@@ -59,28 +59,88 @@ enum AttemptStatus {
   REPORT_GENERATING
   COMPLETED
   FAILED
+  SCORING_ERROR
   INVALIDATED
 }
 
+enum ConfigurationStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+  BLOCKED
+}
+
+enum ScoringPolarity {
+  POSITIVE
+  NEGATIVE
+}
+
+enum AggregationMethod {
+  SUM
+  ARITHMETIC_MEAN
+  WEIGHTED_MEAN
+  DIRECT_SCALE
+  AXIS_X
+  AXIS_Y
+  TWO_AXIS
+  CUSTOM_DECLARATIVE
+}
+
+enum NormTargetType {
+  SCALE
+  COMPOSITE
+  DERIVED_METRIC
+  LEGACY_STYLE_PROFILE
+}
+
+enum NormValidationSeverity {
+  ERROR
+  WARNING
+  INFO
+}
+
+enum ResultRunStatus {
+  CALCULATING
+  COMPLETED
+  FAILED
+}
+
+enum ReactiveSelection {
+  MORE
+  LESS
+}
+
+enum ScoringSpecificationStatus {
+  CONFIGURED
+  PENDING_SCORING_SPEC
+}
+
 model User {
-  id                  String                    @id @default(cuid())
-  email               String                    @unique @db.VarChar(191)
-  passwordHash        String                    @db.VarChar(255)
-  firstName           String                    @db.VarChar(100)
-  lastName            String                    @db.VarChar(150)
-  status              UserStatus                @default(PENDING_VERIFICATION)
-  emailVerifiedAt     DateTime?
-  failedLoginAttempts Int                       @default(0)
-  lockedUntil         DateTime?
-  createdAt           DateTime                  @default(now())
-  updatedAt           DateTime                  @updatedAt
-  roles               UserRole[]
-  sessions            Session[]
-  resetTokens         PasswordResetToken[]
-  verificationTokens  EmailVerificationToken[]
-  consents            ConsentAcceptance[]
-  assignments         Assignment[]
-  auditLogs           AuditLog[]                @relation("AuditActor")
+  id                      String                   @id @default(cuid())
+  email                   String                   @unique @db.VarChar(191)
+  passwordHash            String                   @db.VarChar(255)
+  firstName               String                   @db.VarChar(100)
+  lastName                String                   @db.VarChar(150)
+  status                  UserStatus               @default(PENDING_VERIFICATION)
+  emailVerifiedAt         DateTime?
+  failedLoginAttempts     Int                      @default(0)
+  lockedUntil             DateTime?
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  roles                   UserRole[]
+  sessions                Session[]
+  resetTokens             PasswordResetToken[]
+  verificationTokens      EmailVerificationToken[]
+  consents                ConsentAcceptance[]
+  assignments             Assignment[]
+  auditLogs               AuditLog[]               @relation("AuditActor")
+  normVersionsCreated     NormVersion[]            @relation("NormCreatedBy")
+  normVersionsReviewed    NormVersion[]            @relation("NormReviewedBy")
+  normVersionsApproved    NormVersion[]            @relation("NormApprovedBy")
+  normVersionsPublished   NormVersion[]            @relation("NormPublishedBy")
+  recalculationsRequested ResultRun[]              @relation("ResultRunRequestedBy")
 }
 
 model Role {
@@ -114,10 +174,10 @@ model UserRole {
 }
 
 model RolePermission {
-  roleId      String
+  roleId       String
   permissionId String
-  role        Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  permission  Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
 
   @@id([roleId, permissionId])
 }
@@ -254,12 +314,13 @@ model Question {
 }
 
 model Statement {
-  id         String       @id @default(cuid())
+  id         String         @id @default(cuid())
   questionId String
-  code       String       @db.VarChar(80)
-  text       String       @db.Text
+  code       String         @db.VarChar(80)
+  text       String         @db.Text
   order      Int
-  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  config     Json?
+  question   Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
   mostIn     PairResponse[] @relation("MostStatement")
   leastIn    PairResponse[] @relation("LeastStatement")
 
@@ -298,21 +359,35 @@ model Assignment {
 }
 
 model Attempt {
-  id            String        @id @default(cuid())
-  assignmentId  String        @unique
-  testVersionId String
-  status        AttemptStatus @default(CREATED)
-  startedAt     DateTime?
-  pausedAt      DateTime?
-  submittedAt   DateTime?
-  completedAt   DateTime?
-  lastActivityAt DateTime?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  assignment    Assignment    @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
-  testVersion   TestVersion   @relation(fields: [testVersionId], references: [id], onDelete: Restrict)
-  responses     Response[]
-  pairResponses PairResponse[]
+  id                  String               @id @default(cuid())
+  assignmentId        String               @unique
+  testVersionId       String
+  assessmentVersionId String?
+  scoringKeyVersionId String?
+  normVersionId       String?
+  status              AttemptStatus        @default(CREATED)
+  startedAt           DateTime?
+  pausedAt            DateTime?
+  submittedAt         DateTime?
+  completedAt         DateTime?
+  lastActivityAt      DateTime?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  assignment          Assignment           @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  testVersion         TestVersion          @relation(fields: [testVersionId], references: [id], onDelete: Restrict)
+  responses           Response[]
+  pairResponses       PairResponse[]
+  assessmentVersion   AssessmentVersion?   @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  scoringKeyVersion   ScoringKeyVersion?   @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Restrict)
+  normVersion         NormVersion?         @relation(fields: [normVersionId], references: [id], onDelete: Restrict)
+  forcedChoiceAnswers ForcedChoiceAnswer[]
+  likertAnswers       LikertAnswer[]
+  demographicAnswers  DemographicAnswer[]
+  resultRuns          ResultRun[]
+
+  @@index([assessmentVersionId])
+  @@index([scoringKeyVersionId])
+  @@index([normVersionId])
 }
 
 model Response {
@@ -331,19 +406,19 @@ model Response {
 }
 
 model PairResponse {
-  id              String    @id @default(cuid())
-  attemptId       String
-  questionId      String
-  mostStatementId String
+  id               String    @id @default(cuid())
+  attemptId        String
+  questionId       String
+  mostStatementId  String
   leastStatementId String
-  version         Int       @default(1)
-  operationId     String    @unique @db.VarChar(100)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  attempt         Attempt   @relation(fields: [attemptId], references: [id], onDelete: Restrict)
-  question        Question  @relation(fields: [questionId], references: [id], onDelete: Restrict)
-  mostStatement   Statement @relation("MostStatement", fields: [mostStatementId], references: [id], onDelete: Restrict)
-  leastStatement  Statement @relation("LeastStatement", fields: [leastStatementId], references: [id], onDelete: Restrict)
+  version          Int       @default(1)
+  operationId      String    @unique @db.VarChar(100)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  attempt          Attempt   @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  question         Question  @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  mostStatement    Statement @relation("MostStatement", fields: [mostStatementId], references: [id], onDelete: Restrict)
+  leastStatement   Statement @relation("LeastStatement", fields: [leastStatementId], references: [id], onDelete: Restrict)
 
   @@unique([attemptId, questionId])
 }
@@ -355,9 +430,528 @@ model AuditLog {
   entityType String   @db.VarChar(80)
   entityId   String?  @db.VarChar(191)
   metadata   Json?
+  before     Json?
+  after      Json?
+  reason     String?  @db.VarChar(1000)
   createdAt  DateTime @default(now())
   actor      User?    @relation("AuditActor", fields: [actorId], references: [id], onDelete: SetNull)
 
   @@index([entityType, entityId])
   @@index([actorId, createdAt])
+}
+
+model Assessment {
+  id          String              @id @default(cuid())
+  code        String              @unique @db.VarChar(80)
+  name        String              @db.VarChar(180)
+  description String?             @db.Text
+  isActive    Boolean             @default(true)
+  versions    AssessmentVersion[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model AssessmentVersion {
+  id                    String                 @id @default(cuid())
+  assessmentId          String
+  version               Int
+  versionCode           String                 @db.VarChar(100)
+  language              String                 @default("es-MX") @db.VarChar(10)
+  status                ConfigurationStatus    @default(DRAFT)
+  intro                 String?                @db.Text
+  estimatedMinutes      Int?
+  sourceMetadata        Json?
+  configurationHash     String?                @db.Char(64)
+  publishedAt           DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  assessment            Assessment             @relation(fields: [assessmentId], references: [id], onDelete: Restrict)
+  sections              AssessmentSection[]
+  demographicFields     DemographicField[]
+  pairQuestions         PairQuestion[]
+  optionSets            LikertOptionSet[]
+  likertQuestions       LikertQuestion[]
+  scoringKeyVersions    ScoringKeyVersion[]
+  attempts              Attempt[]
+  reportMappingVersions ReportMappingVersion[]
+  resultRuns            ResultRun[]
+
+  @@unique([assessmentId, version])
+  @@unique([assessmentId, versionCode])
+  @@index([assessmentId, status])
+}
+
+model AssessmentSection {
+  id                  String            @id @default(cuid())
+  assessmentVersionId String
+  code                String            @db.VarChar(80)
+  name                String            @db.VarChar(180)
+  instructions        String?           @db.Text
+  order               Int
+  assessmentVersion   AssessmentVersion @relation(fields: [assessmentVersionId], references: [id], onDelete: Cascade)
+  pairQuestions       PairQuestion[]
+  likertQuestions     LikertQuestion[]
+
+  @@unique([assessmentVersionId, code])
+  @@unique([assessmentVersionId, order])
+}
+
+model DemographicField {
+  id                  String              @id @default(cuid())
+  assessmentVersionId String
+  code                String              @db.VarChar(80)
+  fieldKey            String              @db.VarChar(100)
+  label               String              @db.VarChar(500)
+  type                String              @db.VarChar(50)
+  order               Int
+  required            Boolean             @default(true)
+  config              Json?
+  assessmentVersion   AssessmentVersion   @relation(fields: [assessmentVersionId], references: [id], onDelete: Cascade)
+  answers             DemographicAnswer[]
+
+  @@unique([assessmentVersionId, code])
+  @@unique([assessmentVersionId, fieldKey])
+}
+
+model DemographicAnswer {
+  id                 String           @id @default(cuid())
+  attemptId          String
+  demographicFieldId String
+  value              Json
+  version            Int              @default(1)
+  operationId        String           @unique @db.VarChar(100)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  attempt            Attempt          @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  demographicField   DemographicField @relation(fields: [demographicFieldId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, demographicFieldId])
+  @@index([attemptId])
+}
+
+model PairQuestion {
+  id                  String               @id @default(cuid())
+  assessmentVersionId String
+  sectionId           String
+  code                String               @db.VarChar(80)
+  order               Int
+  required            Boolean              @default(true)
+  status              ConfigurationStatus  @default(DRAFT)
+  sourceMetadata      Json?
+  assessmentVersion   AssessmentVersion    @relation(fields: [assessmentVersionId], references: [id], onDelete: Cascade)
+  section             AssessmentSection    @relation(fields: [sectionId], references: [id], onDelete: Restrict)
+  reactives           Reactive[]
+  answers             ForcedChoiceAnswer[]
+
+  @@unique([assessmentVersionId, code])
+  @@unique([assessmentVersionId, order])
+  @@index([sectionId, order])
+}
+
+model Reactive {
+  id             String                 @id @default(cuid())
+  pairQuestionId String
+  code           String                 @db.VarChar(80)
+  position       Int
+  text           String                 @db.Text
+  pairQuestion   PairQuestion           @relation(fields: [pairQuestionId], references: [id], onDelete: Cascade)
+  scoringRules   ReactiveScoringRule[]
+  selectedMoreIn ForcedChoiceAnswer[]
+  contributions  ReactiveContribution[]
+
+  @@unique([pairQuestionId, position])
+  @@index([pairQuestionId])
+  @@index([code])
+}
+
+model LikertOptionSet {
+  id                  String            @id @default(cuid())
+  assessmentVersionId String
+  code                String            @db.VarChar(80)
+  assessmentVersion   AssessmentVersion @relation(fields: [assessmentVersionId], references: [id], onDelete: Cascade)
+  options             LikertOption[]
+  questions           LikertQuestion[]
+
+  @@unique([assessmentVersionId, code])
+}
+
+model LikertOption {
+  id          String          @id @default(cuid())
+  optionSetId String
+  value       Int
+  label       String          @db.VarChar(255)
+  order       Int
+  optionSet   LikertOptionSet @relation(fields: [optionSetId], references: [id], onDelete: Cascade)
+
+  @@unique([optionSetId, value])
+  @@unique([optionSetId, order])
+}
+
+model LikertQuestion {
+  id                  String                     @id @default(cuid())
+  assessmentVersionId String
+  sectionId           String
+  optionSetId         String
+  code                String                     @db.VarChar(80)
+  order               Int
+  text                String                     @db.Text
+  required            Boolean                    @default(true)
+  scoringStatus       ScoringSpecificationStatus @default(PENDING_SCORING_SPEC)
+  sourceMetadata      Json?
+  assessmentVersion   AssessmentVersion          @relation(fields: [assessmentVersionId], references: [id], onDelete: Cascade)
+  section             AssessmentSection          @relation(fields: [sectionId], references: [id], onDelete: Restrict)
+  optionSet           LikertOptionSet            @relation(fields: [optionSetId], references: [id], onDelete: Restrict)
+  answers             LikertAnswer[]
+
+  @@unique([assessmentVersionId, code])
+  @@index([sectionId, order])
+}
+
+model ScoringKey {
+  id          String              @id @default(cuid())
+  code        String              @unique @db.VarChar(100)
+  name        String              @db.VarChar(255)
+  description String?             @db.Text
+  versions    ScoringKeyVersion[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model ScoringKeyVersion {
+  id                  String                @id @default(cuid())
+  scoringKeyId        String
+  assessmentVersionId String
+  version             Int
+  sourceVersion       String?               @db.VarChar(100)
+  status              ConfigurationStatus   @default(DRAFT)
+  numericMode         String                @default("EXCEL_BINARY64") @db.VarChar(50)
+  engineCompatibility String?               @db.VarChar(100)
+  configurationHash   String                @db.Char(64)
+  publishedAt         DateTime?
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  scoringKey          ScoringKey            @relation(fields: [scoringKeyId], references: [id], onDelete: Restrict)
+  assessmentVersion   AssessmentVersion     @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  rules               ReactiveScoringRule[]
+  compositeComponents CompositeComponent[]
+  attempts            Attempt[]
+  resultRuns          ResultRun[]
+
+  @@unique([scoringKeyId, version])
+  @@index([assessmentVersionId, status])
+}
+
+model Scale {
+  id                String                 @id @default(cuid())
+  code              String                 @unique @db.VarChar(80)
+  name              String                 @db.VarChar(180)
+  description       String?                @db.Text
+  rules             ReactiveScoringRule[]
+  components        CompositeComponent[]
+  derivedComponents DerivedMetricVersion[]
+}
+
+model ReactiveScoringRule {
+  id                  String            @id @default(cuid())
+  scoringKeyVersionId String
+  reactiveId          String
+  scaleId             String
+  polarity            ScoringPolarity
+  fixedWeight         Decimal           @db.Decimal(20, 10)
+  scoreIfMore         Decimal           @db.Decimal(20, 10)
+  scoreIfLess         Decimal           @db.Decimal(20, 10)
+  sourceMetadata      Json?
+  scoringKeyVersion   ScoringKeyVersion @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Cascade)
+  reactive            Reactive          @relation(fields: [reactiveId], references: [id], onDelete: Restrict)
+  scale               Scale             @relation(fields: [scaleId], references: [id], onDelete: Restrict)
+
+  @@unique([scoringKeyVersionId, reactiveId])
+  @@index([scoringKeyVersionId, scaleId])
+  @@index([reactiveId])
+}
+
+model Composite {
+  id                String               @id @default(cuid())
+  code              String               @unique @db.VarChar(80)
+  name              String               @db.VarChar(180)
+  description       String?              @db.Text
+  aggregationMethod AggregationMethod    @default(ARITHMETIC_MEAN)
+  components        CompositeComponent[]
+}
+
+model CompositeComponent {
+  id                  String            @id @default(cuid())
+  scoringKeyVersionId String
+  compositeId         String
+  scaleId             String
+  weight              Decimal           @default(1) @db.Decimal(20, 10)
+  order               Int
+  aggregationMethod   AggregationMethod
+  metadata            Json?
+  scoringKeyVersion   ScoringKeyVersion @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Cascade)
+  composite           Composite         @relation(fields: [compositeId], references: [id], onDelete: Restrict)
+  scale               Scale             @relation(fields: [scaleId], references: [id], onDelete: Restrict)
+
+  @@unique([scoringKeyVersionId, compositeId, scaleId])
+  @@unique([scoringKeyVersionId, compositeId, order])
+  @@index([scaleId])
+}
+
+model DerivedMetric {
+  id       String                 @id @default(cuid())
+  code     String                 @unique @db.VarChar(80)
+  name     String                 @db.VarChar(180)
+  versions DerivedMetricVersion[]
+}
+
+model DerivedMetricVersion {
+  id                String              @id @default(cuid())
+  derivedMetricId   String
+  version           Int
+  calculationType   AggregationMethod
+  sourceScaleId     String?
+  declarativeConfig Json?
+  status            ConfigurationStatus @default(DRAFT)
+  derivedMetric     DerivedMetric       @relation(fields: [derivedMetricId], references: [id], onDelete: Restrict)
+  sourceScale       Scale?              @relation(fields: [sourceScaleId], references: [id], onDelete: Restrict)
+
+  @@unique([derivedMetricId, version])
+}
+
+model NormSet {
+  id          String        @id @default(cuid())
+  code        String        @unique @db.VarChar(100)
+  name        String        @db.VarChar(180)
+  description String?       @db.Text
+  versions    NormVersion[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model NormVersion {
+  id                String              @id @default(cuid())
+  normSetId         String
+  version           Int
+  sourceVersion     String?             @db.VarChar(100)
+  name              String              @db.VarChar(180)
+  description       String?             @db.Text
+  status            ConfigurationStatus @default(DRAFT)
+  populationLabel   String?             @db.VarChar(255)
+  sampleSize        Int?
+  country           String?             @db.VarChar(100)
+  ageRange          String?             @db.VarChar(100)
+  notes             String?             @db.Text
+  lookupMethod      String              @default("LAST_LOWER_BOUND_LTE") @db.VarChar(80)
+  numericMode       String              @default("EXCEL_BINARY64") @db.VarChar(50)
+  roundingMode      String              @default("NONE_BEFORE_NORM_LOOKUP") @db.VarChar(80)
+  validFrom         DateTime?
+  validTo           DateTime?
+  createdById       String?
+  reviewedById      String?
+  approvedById      String?
+  publishedById     String?
+  publishedAt       DateTime?
+  configurationHash String              @db.Char(64)
+  validationStatus  String?             @db.VarChar(80)
+  sourceMetadata    Json?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  normSet           NormSet             @relation(fields: [normSetId], references: [id], onDelete: Restrict)
+  createdBy         User?               @relation("NormCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  reviewedBy        User?               @relation("NormReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
+  approvedBy        User?               @relation("NormApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+  publishedBy       User?               @relation("NormPublishedBy", fields: [publishedById], references: [id], onDelete: SetNull)
+  targets           NormTarget[]
+  validationRuns    NormValidationRun[]
+  attempts          Attempt[]
+  resultRuns        ResultRun[]
+
+  @@unique([normSetId, version])
+  @@index([normSetId, status])
+}
+
+model NormTarget {
+  id               String                @id @default(cuid())
+  normVersionId    String
+  targetType       NormTargetType
+  targetCode       String                @db.VarChar(100)
+  sourceCode       String?               @db.VarChar(100)
+  name             String                @db.VarChar(180)
+  status           String                @db.VarChar(80)
+  isBlocked        Boolean               @default(false)
+  validationNotes  String?               @db.Text
+  sourceReference  String?               @db.VarChar(255)
+  normVersion      NormVersion           @relation(fields: [normVersionId], references: [id], onDelete: Cascade)
+  thresholds       NormThreshold[]
+  validationIssues NormValidationIssue[]
+
+  @@unique([normVersionId, targetType, targetCode])
+  @@index([normVersionId, status])
+}
+
+model NormThreshold {
+  id             String     @id @default(cuid())
+  normTargetId   String
+  decile         Int
+  lowerBound     Decimal    @db.Decimal(30, 17)
+  ordinal        Int
+  sourceMetadata Json?
+  normTarget     NormTarget @relation(fields: [normTargetId], references: [id], onDelete: Cascade)
+
+  @@unique([normTargetId, ordinal])
+  @@unique([normTargetId, decile])
+  @@index([normTargetId, lowerBound])
+}
+
+model NormValidationRun {
+  id            String                @id @default(cuid())
+  normVersionId String
+  hasErrors     Boolean
+  errorCount    Int
+  warningCount  Int
+  infoCount     Int
+  createdAt     DateTime              @default(now())
+  normVersion   NormVersion           @relation(fields: [normVersionId], references: [id], onDelete: Cascade)
+  issues        NormValidationIssue[]
+
+  @@index([normVersionId, createdAt])
+}
+
+model NormValidationIssue {
+  id              String                 @id @default(cuid())
+  validationRunId String
+  normTargetId    String?
+  severity        NormValidationSeverity
+  code            String                 @db.VarChar(100)
+  message         String                 @db.VarChar(1000)
+  metadata        Json?
+  validationRun   NormValidationRun      @relation(fields: [validationRunId], references: [id], onDelete: Cascade)
+  normTarget      NormTarget?            @relation(fields: [normTargetId], references: [id], onDelete: SetNull)
+
+  @@index([validationRunId, severity])
+  @@index([normTargetId])
+}
+
+model ReportMapping {
+  id       String                 @id @default(cuid())
+  code     String                 @unique @db.VarChar(100)
+  name     String                 @db.VarChar(180)
+  versions ReportMappingVersion[]
+}
+
+model ReportMappingVersion {
+  id                  String              @id @default(cuid())
+  reportMappingId     String
+  assessmentVersionId String
+  version             Int
+  status              ConfigurationStatus @default(DRAFT)
+  mappingStatus       String              @default("PENDING_CLIENT_CONFIRMATION") @db.VarChar(80)
+  configuration       Json?
+  configurationHash   String?             @db.Char(64)
+  reportMapping       ReportMapping       @relation(fields: [reportMappingId], references: [id], onDelete: Restrict)
+  assessmentVersion   AssessmentVersion   @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  resultRuns          ResultRun[]
+
+  @@unique([reportMappingId, version])
+}
+
+model ForcedChoiceAnswer {
+  id                     String       @id @default(cuid())
+  attemptId              String
+  pairQuestionId         String
+  selectedMoreReactiveId String
+  version                Int          @default(1)
+  operationId            String       @unique @db.VarChar(100)
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+  attempt                Attempt      @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  pairQuestion           PairQuestion @relation(fields: [pairQuestionId], references: [id], onDelete: Restrict)
+  selectedMoreReactive   Reactive     @relation(fields: [selectedMoreReactiveId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, pairQuestionId])
+  @@index([attemptId])
+  @@index([selectedMoreReactiveId])
+}
+
+model LikertAnswer {
+  id               String         @id @default(cuid())
+  attemptId        String
+  likertQuestionId String
+  value            Int
+  version          Int            @default(1)
+  operationId      String         @unique @db.VarChar(100)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  attempt          Attempt        @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  likertQuestion   LikertQuestion @relation(fields: [likertQuestionId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, likertQuestionId])
+  @@index([attemptId])
+}
+
+model ResultRun {
+  id                         String                 @id @default(cuid())
+  attemptId                  String
+  assessmentVersionId        String
+  scoringKeyVersionId        String
+  normVersionId              String
+  reportMappingVersionId     String?
+  engineVersion              String                 @db.VarChar(50)
+  configurationHash          String                 @db.Char(64)
+  inputHash                  String?                @db.Char(64)
+  status                     ResultRunStatus        @default(CALCULATING)
+  isOfficial                 Boolean                @default(true)
+  recalculationOfResultRunId String?
+  reason                     String?                @db.VarChar(1000)
+  requestedById              String?
+  diagnostics                Json?
+  calculatedAt               DateTime               @default(now())
+  attempt                    Attempt                @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  assessmentVersion          AssessmentVersion      @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  scoringKeyVersion          ScoringKeyVersion      @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Restrict)
+  normVersion                NormVersion            @relation(fields: [normVersionId], references: [id], onDelete: Restrict)
+  reportMappingVersion       ReportMappingVersion?  @relation(fields: [reportMappingVersionId], references: [id], onDelete: Restrict)
+  recalculationOf            ResultRun?             @relation("ResultRunRecalculations", fields: [recalculationOfResultRunId], references: [id], onDelete: Restrict)
+  recalculations             ResultRun[]            @relation("ResultRunRecalculations")
+  requestedBy                User?                  @relation("ResultRunRequestedBy", fields: [requestedById], references: [id], onDelete: SetNull)
+  values                     ResultValue[]
+  contributions              ReactiveContribution[]
+
+  @@index([attemptId, calculatedAt])
+  @@index([normVersionId])
+  @@index([recalculationOfResultRunId])
+}
+
+model ResultValue {
+  id              String         @id @default(cuid())
+  resultRunId     String
+  targetType      NormTargetType
+  targetCode      String         @db.VarChar(100)
+  rawScore        Decimal        @db.Decimal(30, 17)
+  displayScore    Decimal?       @db.Decimal(30, 8)
+  normalizedScore Decimal?       @db.Decimal(30, 17)
+  decile          Int?
+  status          String         @db.VarChar(80)
+  metadata        Json?
+  resultRun       ResultRun      @relation(fields: [resultRunId], references: [id], onDelete: Cascade)
+
+  @@unique([resultRunId, targetType, targetCode])
+  @@index([resultRunId])
+}
+
+model ReactiveContribution {
+  id           String            @id @default(cuid())
+  resultRunId  String
+  reactiveId   String
+  selection    ReactiveSelection
+  scoreIfMore  Decimal           @db.Decimal(20, 10)
+  scoreIfLess  Decimal           @db.Decimal(20, 10)
+  appliedScore Decimal           @db.Decimal(20, 10)
+  scaleId      String
+  resultRun    ResultRun         @relation(fields: [resultRunId], references: [id], onDelete: Cascade)
+  reactive     Reactive          @relation(fields: [reactiveId], references: [id], onDelete: Restrict)
+
+  @@unique([resultRunId, reactiveId])
+  @@index([resultRunId, scaleId])
+  @@index([reactiveId])
 }

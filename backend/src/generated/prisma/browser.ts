@@ -122,3 +122,158 @@ export type PairResponse = Prisma.PairResponseModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model Assessment
+ * 
+ */
+export type Assessment = Prisma.AssessmentModel
+/**
+ * Model AssessmentVersion
+ * 
+ */
+export type AssessmentVersion = Prisma.AssessmentVersionModel
+/**
+ * Model AssessmentSection
+ * 
+ */
+export type AssessmentSection = Prisma.AssessmentSectionModel
+/**
+ * Model DemographicField
+ * 
+ */
+export type DemographicField = Prisma.DemographicFieldModel
+/**
+ * Model DemographicAnswer
+ * 
+ */
+export type DemographicAnswer = Prisma.DemographicAnswerModel
+/**
+ * Model PairQuestion
+ * 
+ */
+export type PairQuestion = Prisma.PairQuestionModel
+/**
+ * Model Reactive
+ * 
+ */
+export type Reactive = Prisma.ReactiveModel
+/**
+ * Model LikertOptionSet
+ * 
+ */
+export type LikertOptionSet = Prisma.LikertOptionSetModel
+/**
+ * Model LikertOption
+ * 
+ */
+export type LikertOption = Prisma.LikertOptionModel
+/**
+ * Model LikertQuestion
+ * 
+ */
+export type LikertQuestion = Prisma.LikertQuestionModel
+/**
+ * Model ScoringKey
+ * 
+ */
+export type ScoringKey = Prisma.ScoringKeyModel
+/**
+ * Model ScoringKeyVersion
+ * 
+ */
+export type ScoringKeyVersion = Prisma.ScoringKeyVersionModel
+/**
+ * Model Scale
+ * 
+ */
+export type Scale = Prisma.ScaleModel
+/**
+ * Model ReactiveScoringRule
+ * 
+ */
+export type ReactiveScoringRule = Prisma.ReactiveScoringRuleModel
+/**
+ * Model Composite
+ * 
+ */
+export type Composite = Prisma.CompositeModel
+/**
+ * Model CompositeComponent
+ * 
+ */
+export type CompositeComponent = Prisma.CompositeComponentModel
+/**
+ * Model DerivedMetric
+ * 
+ */
+export type DerivedMetric = Prisma.DerivedMetricModel
+/**
+ * Model DerivedMetricVersion
+ * 
+ */
+export type DerivedMetricVersion = Prisma.DerivedMetricVersionModel
+/**
+ * Model NormSet
+ * 
+ */
+export type NormSet = Prisma.NormSetModel
+/**
+ * Model NormVersion
+ * 
+ */
+export type NormVersion = Prisma.NormVersionModel
+/**
+ * Model NormTarget
+ * 
+ */
+export type NormTarget = Prisma.NormTargetModel
+/**
+ * Model NormThreshold
+ * 
+ */
+export type NormThreshold = Prisma.NormThresholdModel
+/**
+ * Model NormValidationRun
+ * 
+ */
+export type NormValidationRun = Prisma.NormValidationRunModel
+/**
+ * Model NormValidationIssue
+ * 
+ */
+export type NormValidationIssue = Prisma.NormValidationIssueModel
+/**
+ * Model ReportMapping
+ * 
+ */
+export type ReportMapping = Prisma.ReportMappingModel
+/**
+ * Model ReportMappingVersion
+ * 
+ */
+export type ReportMappingVersion = Prisma.ReportMappingVersionModel
+/**
+ * Model ForcedChoiceAnswer
+ * 
+ */
+export type ForcedChoiceAnswer = Prisma.ForcedChoiceAnswerModel
+/**
+ * Model LikertAnswer
+ * 
+ */
+export type LikertAnswer = Prisma.LikertAnswerModel
+/**
+ * Model ResultRun
+ * 
+ */
+export type ResultRun = Prisma.ResultRunModel
+/**
+ * Model ResultValue
+ * 
+ */
+export type ResultValue = Prisma.ResultValueModel
+/**
+ * Model ReactiveContribution
+ * 
+ */
+export type ReactiveContribution = Prisma.ReactiveContributionModel

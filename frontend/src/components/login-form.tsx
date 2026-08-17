@@ -16,7 +16,7 @@ export function LoginForm() {
     currentUser()
       .then((user) => {
         if (!active) return;
-        router.replace(user.roles.some((role) => role === 'ADMIN' || role === 'SUPERADMIN') ? '/admin' : '/panel');
+        router.replace(user.permissions.includes('admin.access') ? '/admin' : '/panel');
       })
       .catch((reason: unknown) => {
         if (!active) return;
@@ -33,7 +33,7 @@ export function LoginForm() {
     const data = new FormData(event.currentTarget);
     try {
       const user = await login(String(data.get('email')), String(data.get('password')));
-      router.push(user.roles.some((role) => role === 'ADMIN' || role === 'SUPERADMIN') ? '/admin' : '/panel');
+      router.push(user.permissions.includes('admin.access') ? '/admin' : '/panel');
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'No fue posible iniciar sesión.');
     } finally { setBusy(false); }

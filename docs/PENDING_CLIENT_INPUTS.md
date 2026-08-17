@@ -18,6 +18,7 @@ Estos pendientes no bloquean el bootstrap, pero sí bloquean una salida producti
 - Normas, matrices, rangos, deciles y sus fuentes/versiones.
 - Al menos tres casos completos de validación con resultados esperados.
 - Etiquetas definitivas de cada escala.
+- Seis reactivos Likert faltantes: la estructura declara 31, pero el formulario de Gestión de recursos recibido contiene 25.
 
 ## Reportes y contenidos
 
@@ -34,4 +35,3 @@ Estos pendientes no bloquean el bootstrap, pero sí bloquean una salida producti
 - Proveedor SMTP o transaccional y dominio remitente.
 - Dominio, VPS y estrategia de almacenamiento privado.
 - Requisitos de respaldo, restauración y residencia de datos.
-

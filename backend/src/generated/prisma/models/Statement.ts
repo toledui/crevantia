@@ -56,6 +56,7 @@ export type StatementCountAggregateOutputType = {
   code: number
   text: number
   order: number
+  config: number
   _all: number
 }
 
@@ -90,6 +91,7 @@ export type StatementCountAggregateInputType = {
   code?: true
   text?: true
   order?: true
+  config?: true
   _all?: true
 }
 
@@ -185,6 +187,7 @@ export type StatementGroupByOutputType = {
   code: string
   text: string
   order: number
+  config: runtime.JsonValue | null
   _count: StatementCountAggregateOutputType | null
   _avg: StatementAvgAggregateOutputType | null
   _sum: StatementSumAggregateOutputType | null
@@ -216,6 +219,7 @@ export type StatementWhereInput = {
   code?: Prisma.StringFilter<"Statement"> | string
   text?: Prisma.StringFilter<"Statement"> | string
   order?: Prisma.IntFilter<"Statement"> | number
+  config?: Prisma.JsonNullableFilter<"Statement">
   question?: Prisma.XOR<Prisma.QuestionScalarRelationFilter, Prisma.QuestionWhereInput>
   mostIn?: Prisma.PairResponseListRelationFilter
   leastIn?: Prisma.PairResponseListRelationFilter
@@ -227,6 +231,7 @@ export type StatementOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   text?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  config?: Prisma.SortOrderInput | Prisma.SortOrder
   question?: Prisma.QuestionOrderByWithRelationInput
   mostIn?: Prisma.PairResponseOrderByRelationAggregateInput
   leastIn?: Prisma.PairResponseOrderByRelationAggregateInput
@@ -244,6 +249,7 @@ export type StatementWhereUniqueInput = Prisma.AtLeast<{
   code?: Prisma.StringFilter<"Statement"> | string
   text?: Prisma.StringFilter<"Statement"> | string
   order?: Prisma.IntFilter<"Statement"> | number
+  config?: Prisma.JsonNullableFilter<"Statement">
   question?: Prisma.XOR<Prisma.QuestionScalarRelationFilter, Prisma.QuestionWhereInput>
   mostIn?: Prisma.PairResponseListRelationFilter
   leastIn?: Prisma.PairResponseListRelationFilter
@@ -255,6 +261,7 @@ export type StatementOrderByWithAggregationInput = {
   code?: Prisma.SortOrder
   text?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  config?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StatementCountOrderByAggregateInput
   _avg?: Prisma.StatementAvgOrderByAggregateInput
   _max?: Prisma.StatementMaxOrderByAggregateInput
@@ -271,6 +278,7 @@ export type StatementScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<"Statement"> | string
   text?: Prisma.StringWithAggregatesFilter<"Statement"> | string
   order?: Prisma.IntWithAggregatesFilter<"Statement"> | number
+  config?: Prisma.JsonNullableWithAggregatesFilter<"Statement">
 }
 
 export type StatementCreateInput = {
@@ -278,6 +286,7 @@ export type StatementCreateInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   question: Prisma.QuestionCreateNestedOneWithoutStatementsInput
   mostIn?: Prisma.PairResponseCreateNestedManyWithoutMostStatementInput
   leastIn?: Prisma.PairResponseCreateNestedManyWithoutLeastStatementInput
@@ -289,6 +298,7 @@ export type StatementUncheckedCreateInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUncheckedCreateNestedManyWithoutMostStatementInput
   leastIn?: Prisma.PairResponseUncheckedCreateNestedManyWithoutLeastStatementInput
 }
@@ -298,6 +308,7 @@ export type StatementUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   question?: Prisma.QuestionUpdateOneRequiredWithoutStatementsNestedInput
   mostIn?: Prisma.PairResponseUpdateManyWithoutMostStatementNestedInput
   leastIn?: Prisma.PairResponseUpdateManyWithoutLeastStatementNestedInput
@@ -309,6 +320,7 @@ export type StatementUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUncheckedUpdateManyWithoutMostStatementNestedInput
   leastIn?: Prisma.PairResponseUncheckedUpdateManyWithoutLeastStatementNestedInput
 }
@@ -319,6 +331,7 @@ export type StatementCreateManyInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type StatementUpdateManyMutationInput = {
@@ -326,6 +339,7 @@ export type StatementUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type StatementUncheckedUpdateManyInput = {
@@ -334,6 +348,7 @@ export type StatementUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type StatementListRelationFilter = {
@@ -368,6 +383,7 @@ export type StatementCountOrderByAggregateInput = {
   code?: Prisma.SortOrder
   text?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  config?: Prisma.SortOrder
 }
 
 export type StatementAvgOrderByAggregateInput = {
@@ -474,6 +490,7 @@ export type StatementCreateWithoutQuestionInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseCreateNestedManyWithoutMostStatementInput
   leastIn?: Prisma.PairResponseCreateNestedManyWithoutLeastStatementInput
 }
@@ -483,6 +500,7 @@ export type StatementUncheckedCreateWithoutQuestionInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUncheckedCreateNestedManyWithoutMostStatementInput
   leastIn?: Prisma.PairResponseUncheckedCreateNestedManyWithoutLeastStatementInput
 }
@@ -522,6 +540,7 @@ export type StatementScalarWhereInput = {
   code?: Prisma.StringFilter<"Statement"> | string
   text?: Prisma.StringFilter<"Statement"> | string
   order?: Prisma.IntFilter<"Statement"> | number
+  config?: Prisma.JsonNullableFilter<"Statement">
 }
 
 export type StatementCreateWithoutMostInInput = {
@@ -529,6 +548,7 @@ export type StatementCreateWithoutMostInInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   question: Prisma.QuestionCreateNestedOneWithoutStatementsInput
   leastIn?: Prisma.PairResponseCreateNestedManyWithoutLeastStatementInput
 }
@@ -539,6 +559,7 @@ export type StatementUncheckedCreateWithoutMostInInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   leastIn?: Prisma.PairResponseUncheckedCreateNestedManyWithoutLeastStatementInput
 }
 
@@ -552,6 +573,7 @@ export type StatementCreateWithoutLeastInInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   question: Prisma.QuestionCreateNestedOneWithoutStatementsInput
   mostIn?: Prisma.PairResponseCreateNestedManyWithoutMostStatementInput
 }
@@ -562,6 +584,7 @@ export type StatementUncheckedCreateWithoutLeastInInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUncheckedCreateNestedManyWithoutMostStatementInput
 }
 
@@ -586,6 +609,7 @@ export type StatementUpdateWithoutMostInInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   question?: Prisma.QuestionUpdateOneRequiredWithoutStatementsNestedInput
   leastIn?: Prisma.PairResponseUpdateManyWithoutLeastStatementNestedInput
 }
@@ -596,6 +620,7 @@ export type StatementUncheckedUpdateWithoutMostInInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   leastIn?: Prisma.PairResponseUncheckedUpdateManyWithoutLeastStatementNestedInput
 }
 
@@ -615,6 +640,7 @@ export type StatementUpdateWithoutLeastInInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   question?: Prisma.QuestionUpdateOneRequiredWithoutStatementsNestedInput
   mostIn?: Prisma.PairResponseUpdateManyWithoutMostStatementNestedInput
 }
@@ -625,6 +651,7 @@ export type StatementUncheckedUpdateWithoutLeastInInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUncheckedUpdateManyWithoutMostStatementNestedInput
 }
 
@@ -633,6 +660,7 @@ export type StatementCreateManyQuestionInput = {
   code: string
   text: string
   order: number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type StatementUpdateWithoutQuestionInput = {
@@ -640,6 +668,7 @@ export type StatementUpdateWithoutQuestionInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUpdateManyWithoutMostStatementNestedInput
   leastIn?: Prisma.PairResponseUpdateManyWithoutLeastStatementNestedInput
 }
@@ -649,6 +678,7 @@ export type StatementUncheckedUpdateWithoutQuestionInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   mostIn?: Prisma.PairResponseUncheckedUpdateManyWithoutMostStatementNestedInput
   leastIn?: Prisma.PairResponseUncheckedUpdateManyWithoutLeastStatementNestedInput
 }
@@ -658,6 +688,7 @@ export type StatementUncheckedUpdateManyWithoutQuestionInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   text?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
+  config?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 
@@ -706,6 +737,7 @@ export type StatementSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   code?: boolean
   text?: boolean
   order?: boolean
+  config?: boolean
   question?: boolean | Prisma.QuestionDefaultArgs<ExtArgs>
   mostIn?: boolean | Prisma.Statement$mostInArgs<ExtArgs>
   leastIn?: boolean | Prisma.Statement$leastInArgs<ExtArgs>
@@ -720,9 +752,10 @@ export type StatementSelectScalar = {
   code?: boolean
   text?: boolean
   order?: boolean
+  config?: boolean
 }
 
-export type StatementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "questionId" | "code" | "text" | "order", ExtArgs["result"]["statement"]>
+export type StatementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "questionId" | "code" | "text" | "order" | "config", ExtArgs["result"]["statement"]>
 export type StatementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   question?: boolean | Prisma.QuestionDefaultArgs<ExtArgs>
   mostIn?: boolean | Prisma.Statement$mostInArgs<ExtArgs>
@@ -743,6 +776,7 @@ export type $StatementPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     code: string
     text: string
     order: number
+    config: runtime.JsonValue | null
   }, ExtArgs["result"]["statement"]>
   composites: {}
 }
@@ -1120,6 +1154,7 @@ export interface StatementFieldRefs {
   readonly code: Prisma.FieldRef<"Statement", 'String'>
   readonly text: Prisma.FieldRef<"Statement", 'String'>
   readonly order: Prisma.FieldRef<"Statement", 'Int'>
+  readonly config: Prisma.FieldRef<"Statement", 'Json'>
 }
     
 

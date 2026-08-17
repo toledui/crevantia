@@ -1,0 +1,3338 @@
+{
+  "schemaVersion": "1.0.0",
+  "case": {
+    "code": "DPO_EXCEL_EXAMPLE_ANONYMIZED",
+    "description": "Vector de respuestas y resultados esperados extraído del libro de ejemplo, sin nombre, correo ni datos demográficos.",
+    "sourceWorkbook": "_DPO Express V 6.0 Mac 24 (Ejemplo).xlsm",
+    "scoringKeyCode": "DPO_EXPRESS_V6_PAIR_KEY",
+    "normSetCode": "GLOBAL_412",
+    "answerCount": 168
+  },
+  "answers": [
+    {
+      "pairCode": "DPO-P001",
+      "selectedMoreReactiveCode": "DPO-R001"
+    },
+    {
+      "pairCode": "DPO-P002",
+      "selectedMoreReactiveCode": "DPO-R004"
+    },
+    {
+      "pairCode": "DPO-P003",
+      "selectedMoreReactiveCode": "DPO-R005"
+    },
+    {
+      "pairCode": "DPO-P004",
+      "selectedMoreReactiveCode": "DPO-R008"
+    },
+    {
+      "pairCode": "DPO-P005",
+      "selectedMoreReactiveCode": "DPO-R010"
+    },
+    {
+      "pairCode": "DPO-P006",
+      "selectedMoreReactiveCode": "DPO-R011"
+    },
+    {
+      "pairCode": "DPO-P007",
+      "selectedMoreReactiveCode": "DPO-R013"
+    },
+    {
+      "pairCode": "DPO-P008",
+      "selectedMoreReactiveCode": "DPO-R015"
+    },
+    {
+      "pairCode": "DPO-P009",
+      "selectedMoreReactiveCode": "DPO-R017"
+    },
+    {
+      "pairCode": "DPO-P010",
+      "selectedMoreReactiveCode": "DPO-R020"
+    },
+    {
+      "pairCode": "DPO-P011",
+      "selectedMoreReactiveCode": "DPO-R022"
+    },
+    {
+      "pairCode": "DPO-P012",
+      "selectedMoreReactiveCode": "DPO-R023"
+    },
+    {
+      "pairCode": "DPO-P013",
+      "selectedMoreReactiveCode": "DPO-R026"
+    },
+    {
+      "pairCode": "DPO-P014",
+      "selectedMoreReactiveCode": "DPO-R028"
+    },
+    {
+      "pairCode": "DPO-P015",
+      "selectedMoreReactiveCode": "DPO-R030"
+    },
+    {
+      "pairCode": "DPO-P016",
+      "selectedMoreReactiveCode": "DPO-R032"
+    },
+    {
+      "pairCode": "DPO-P017",
+      "selectedMoreReactiveCode": "DPO-R034"
+    },
+    {
+      "pairCode": "DPO-P018",
+      "selectedMoreReactiveCode": "DPO-R035"
+    },
+    {
+      "pairCode": "DPO-P019",
+      "selectedMoreReactiveCode": "DPO-R038"
+    },
+    {
+      "pairCode": "DPO-P020",
+      "selectedMoreReactiveCode": "DPO-R039"
+    },
+    {
+      "pairCode": "DPO-P021",
+      "selectedMoreReactiveCode": "DPO-R042"
+    },
+    {
+      "pairCode": "DPO-P022",
+      "selectedMoreReactiveCode": "DPO-R043"
+    },
+    {
+      "pairCode": "DPO-P023",
+      "selectedMoreReactiveCode": "DPO-R045"
+    },
+    {
+      "pairCode": "DPO-P024",
+      "selectedMoreReactiveCode": "DPO-R048"
+    },
+    {
+      "pairCode": "DPO-P025",
+      "selectedMoreReactiveCode": "DPO-R049"
+    },
+    {
+      "pairCode": "DPO-P026",
+      "selectedMoreReactiveCode": "DPO-R052"
+    },
+    {
+      "pairCode": "DPO-P027",
+      "selectedMoreReactiveCode": "DPO-R054"
+    },
+    {
+      "pairCode": "DPO-P028",
+      "selectedMoreReactiveCode": "DPO-R056"
+    },
+    {
+      "pairCode": "DPO-P029",
+      "selectedMoreReactiveCode": "DPO-R057"
+    },
+    {
+      "pairCode": "DPO-P030",
+      "selectedMoreReactiveCode": "DPO-R059"
+    },
+    {
+      "pairCode": "DPO-P031",
+      "selectedMoreReactiveCode": "DPO-R061"
+    },
+    {
+      "pairCode": "DPO-P032",
+      "selectedMoreReactiveCode": "DPO-R064"
+    },
+    {
+      "pairCode": "DPO-P033",
+      "selectedMoreReactiveCode": "DPO-R066"
+    },
+    {
+      "pairCode": "DPO-P034",
+      "selectedMoreReactiveCode": "DPO-R068"
+    },
+    {
+      "pairCode": "DPO-P035",
+      "selectedMoreReactiveCode": "DPO-R069"
+    },
+    {
+      "pairCode": "DPO-P036",
+      "selectedMoreReactiveCode": "DPO-R072"
+    },
+    {
+      "pairCode": "DPO-P037",
+      "selectedMoreReactiveCode": "DPO-R074"
+    },
+    {
+      "pairCode": "DPO-P038",
+      "selectedMoreReactiveCode": "DPO-R075"
+    },
+    {
+      "pairCode": "DPO-P039",
+      "selectedMoreReactiveCode": "DPO-R077"
+    },
+    {
+      "pairCode": "DPO-P040",
+      "selectedMoreReactiveCode": "DPO-R079"
+    },
+    {
+      "pairCode": "DPO-P041",
+      "selectedMoreReactiveCode": "DPO-R081"
+    },
+    {
+      "pairCode": "DPO-P042",
+      "selectedMoreReactiveCode": "DPO-R083"
+    },
+    {
+      "pairCode": "DPO-P043",
+      "selectedMoreReactiveCode": "DPO-R085"
+    },
+    {
+      "pairCode": "DPO-P044",
+      "selectedMoreReactiveCode": "DPO-R087"
+    },
+    {
+      "pairCode": "DPO-P045",
+      "selectedMoreReactiveCode": "DPO-R090"
+    },
+    {
+      "pairCode": "DPO-P046",
+      "selectedMoreReactiveCode": "DPO-R091"
+    },
+    {
+      "pairCode": "DPO-P047",
+      "selectedMoreReactiveCode": "DPO-R094"
+    },
+    {
+      "pairCode": "DPO-P048",
+      "selectedMoreReactiveCode": "DPO-R095"
+    },
+    {
+      "pairCode": "DPO-P049",
+      "selectedMoreReactiveCode": "DPO-R098"
+    },
+    {
+      "pairCode": "DPO-P050",
+      "selectedMoreReactiveCode": "DPO-R100"
+    },
+    {
+      "pairCode": "DPO-P051",
+      "selectedMoreReactiveCode": "DPO-R102"
+    },
+    {
+      "pairCode": "DPO-P052",
+      "selectedMoreReactiveCode": "DPO-R103"
+    },
+    {
+      "pairCode": "DPO-P053",
+      "selectedMoreReactiveCode": "DPO-R105"
+    },
+    {
+      "pairCode": "DPO-P054",
+      "selectedMoreReactiveCode": "DPO-R107"
+    },
+    {
+      "pairCode": "DPO-P055",
+      "selectedMoreReactiveCode": "DPO-R109"
+    },
+    {
+      "pairCode": "DPO-P056",
+      "selectedMoreReactiveCode": "DPO-R112"
+    },
+    {
+      "pairCode": "DPO-P057",
+      "selectedMoreReactiveCode": "DPO-R113"
+    },
+    {
+      "pairCode": "DPO-P058",
+      "selectedMoreReactiveCode": "DPO-R116"
+    },
+    {
+      "pairCode": "DPO-P059",
+      "selectedMoreReactiveCode": "DPO-R117"
+    },
+    {
+      "pairCode": "DPO-P060",
+      "selectedMoreReactiveCode": "DPO-R120"
+    },
+    {
+      "pairCode": "DPO-P061",
+      "selectedMoreReactiveCode": "DPO-R122"
+    },
+    {
+      "pairCode": "DPO-P062",
+      "selectedMoreReactiveCode": "DPO-R123"
+    },
+    {
+      "pairCode": "DPO-P063",
+      "selectedMoreReactiveCode": "DPO-R126"
+    },
+    {
+      "pairCode": "DPO-P064",
+      "selectedMoreReactiveCode": "DPO-R127"
+    },
+    {
+      "pairCode": "DPO-P065",
+      "selectedMoreReactiveCode": "DPO-R130"
+    },
+    {
+      "pairCode": "DPO-P066",
+      "selectedMoreReactiveCode": "DPO-R132"
+    },
+    {
+      "pairCode": "DPO-P067",
+      "selectedMoreReactiveCode": "DPO-R133"
+    },
+    {
+      "pairCode": "DPO-P068",
+      "selectedMoreReactiveCode": "DPO-R136"
+    },
+    {
+      "pairCode": "DPO-P069",
+      "selectedMoreReactiveCode": "DPO-R138"
+    },
+    {
+      "pairCode": "DPO-P070",
+      "selectedMoreReactiveCode": "DPO-R139"
+    },
+    {
+      "pairCode": "DPO-P071",
+      "selectedMoreReactiveCode": "DPO-R141"
+    },
+    {
+      "pairCode": "DPO-P072",
+      "selectedMoreReactiveCode": "DPO-R143"
+    },
+    {
+      "pairCode": "DPO-P073",
+      "selectedMoreReactiveCode": "DPO-R145"
+    },
+    {
+      "pairCode": "DPO-P074",
+      "selectedMoreReactiveCode": "DPO-R147"
+    },
+    {
+      "pairCode": "DPO-P075",
+      "selectedMoreReactiveCode": "DPO-R150"
+    },
+    {
+      "pairCode": "DPO-P076",
+      "selectedMoreReactiveCode": "DPO-R151"
+    },
+    {
+      "pairCode": "DPO-P077",
+      "selectedMoreReactiveCode": "DPO-R153"
+    },
+    {
+      "pairCode": "DPO-P078",
+      "selectedMoreReactiveCode": "DPO-R156"
+    },
+    {
+      "pairCode": "DPO-P079",
+      "selectedMoreReactiveCode": "DPO-R157"
+    },
+    {
+      "pairCode": "DPO-P080",
+      "selectedMoreReactiveCode": "DPO-R159"
+    },
+    {
+      "pairCode": "DPO-P081",
+      "selectedMoreReactiveCode": "DPO-R161"
+    },
+    {
+      "pairCode": "DPO-P082",
+      "selectedMoreReactiveCode": "DPO-R164"
+    },
+    {
+      "pairCode": "DPO-P083",
+      "selectedMoreReactiveCode": "DPO-R166"
+    },
+    {
+      "pairCode": "DPO-P084",
+      "selectedMoreReactiveCode": "DPO-R168"
+    },
+    {
+      "pairCode": "DPO-P085",
+      "selectedMoreReactiveCode": "DPO-R169"
+    },
+    {
+      "pairCode": "DPO-P086",
+      "selectedMoreReactiveCode": "DPO-R171"
+    },
+    {
+      "pairCode": "DPO-P087",
+      "selectedMoreReactiveCode": "DPO-R174"
+    },
+    {
+      "pairCode": "DPO-P088",
+      "selectedMoreReactiveCode": "DPO-R175"
+    },
+    {
+      "pairCode": "DPO-P089",
+      "selectedMoreReactiveCode": "DPO-R177"
+    },
+    {
+      "pairCode": "DPO-P090",
+      "selectedMoreReactiveCode": "DPO-R179"
+    },
+    {
+      "pairCode": "DPO-P091",
+      "selectedMoreReactiveCode": "DPO-R182"
+    },
+    {
+      "pairCode": "DPO-P092",
+      "selectedMoreReactiveCode": "DPO-R184"
+    },
+    {
+      "pairCode": "DPO-P093",
+      "selectedMoreReactiveCode": "DPO-R185"
+    },
+    {
+      "pairCode": "DPO-P094",
+      "selectedMoreReactiveCode": "DPO-R188"
+    },
+    {
+      "pairCode": "DPO-P095",
+      "selectedMoreReactiveCode": "DPO-R190"
+    },
+    {
+      "pairCode": "DPO-P096",
+      "selectedMoreReactiveCode": "DPO-R191"
+    },
+    {
+      "pairCode": "DPO-P097",
+      "selectedMoreReactiveCode": "DPO-R194"
+    },
+    {
+      "pairCode": "DPO-P098",
+      "selectedMoreReactiveCode": "DPO-R195"
+    },
+    {
+      "pairCode": "DPO-P099",
+      "selectedMoreReactiveCode": "DPO-R198"
+    },
+    {
+      "pairCode": "DPO-P100",
+      "selectedMoreReactiveCode": "DPO-R200"
+    },
+    {
+      "pairCode": "DPO-P101",
+      "selectedMoreReactiveCode": "DPO-R201"
+    },
+    {
+      "pairCode": "DPO-P102",
+      "selectedMoreReactiveCode": "DPO-R203"
+    },
+    {
+      "pairCode": "DPO-P103",
+      "selectedMoreReactiveCode": "DPO-R205"
+    },
+    {
+      "pairCode": "DPO-P104",
+      "selectedMoreReactiveCode": "DPO-R207"
+    },
+    {
+      "pairCode": "DPO-P105",
+      "selectedMoreReactiveCode": "DPO-R210"
+    },
+    {
+      "pairCode": "DPO-P106",
+      "selectedMoreReactiveCode": "DPO-R211"
+    },
+    {
+      "pairCode": "DPO-P107",
+      "selectedMoreReactiveCode": "DPO-R214"
+    },
+    {
+      "pairCode": "DPO-P108",
+      "selectedMoreReactiveCode": "DPO-R215"
+    },
+    {
+      "pairCode": "DPO-P109",
+      "selectedMoreReactiveCode": "DPO-R218"
+    },
+    {
+      "pairCode": "DPO-P110",
+      "selectedMoreReactiveCode": "DPO-R219"
+    },
+    {
+      "pairCode": "DPO-P111",
+      "selectedMoreReactiveCode": "DPO-R221"
+    },
+    {
+      "pairCode": "DPO-P112",
+      "selectedMoreReactiveCode": "DPO-R223"
+    },
+    {
+      "pairCode": "DPO-P113",
+      "selectedMoreReactiveCode": "DPO-R226"
+    },
+    {
+      "pairCode": "DPO-P114",
+      "selectedMoreReactiveCode": "DPO-R227"
+    },
+    {
+      "pairCode": "DPO-P115",
+      "selectedMoreReactiveCode": "DPO-R230"
+    },
+    {
+      "pairCode": "DPO-P116",
+      "selectedMoreReactiveCode": "DPO-R232"
+    },
+    {
+      "pairCode": "DPO-P117",
+      "selectedMoreReactiveCode": "DPO-R234"
+    },
+    {
+      "pairCode": "DPO-P118",
+      "selectedMoreReactiveCode": "DPO-R235"
+    },
+    {
+      "pairCode": "DPO-P119",
+      "selectedMoreReactiveCode": "DPO-R238"
+    },
+    {
+      "pairCode": "DPO-P120",
+      "selectedMoreReactiveCode": "DPO-R240"
+    },
+    {
+      "pairCode": "DPO-P121",
+      "selectedMoreReactiveCode": "DPO-R241"
+    },
+    {
+      "pairCode": "DPO-P122",
+      "selectedMoreReactiveCode": "DPO-R243"
+    },
+    {
+      "pairCode": "DPO-P123",
+      "selectedMoreReactiveCode": "DPO-R245"
+    },
+    {
+      "pairCode": "DPO-P124",
+      "selectedMoreReactiveCode": "DPO-R247"
+    },
+    {
+      "pairCode": "DPO-P125",
+      "selectedMoreReactiveCode": "DPO-R249"
+    },
+    {
+      "pairCode": "DPO-P126",
+      "selectedMoreReactiveCode": "DPO-R252"
+    },
+    {
+      "pairCode": "DPO-P127",
+      "selectedMoreReactiveCode": "DPO-R254"
+    },
+    {
+      "pairCode": "DPO-P128",
+      "selectedMoreReactiveCode": "DPO-R255"
+    },
+    {
+      "pairCode": "DPO-P129",
+      "selectedMoreReactiveCode": "DPO-R257"
+    },
+    {
+      "pairCode": "DPO-P130",
+      "selectedMoreReactiveCode": "DPO-R259"
+    },
+    {
+      "pairCode": "DPO-P131",
+      "selectedMoreReactiveCode": "DPO-R261"
+    },
+    {
+      "pairCode": "DPO-P132",
+      "selectedMoreReactiveCode": "DPO-R263"
+    },
+    {
+      "pairCode": "DPO-P133",
+      "selectedMoreReactiveCode": "DPO-R266"
+    },
+    {
+      "pairCode": "DPO-P134",
+      "selectedMoreReactiveCode": "DPO-R268"
+    },
+    {
+      "pairCode": "DPO-P135",
+      "selectedMoreReactiveCode": "DPO-R269"
+    },
+    {
+      "pairCode": "DPO-P136",
+      "selectedMoreReactiveCode": "DPO-R272"
+    },
+    {
+      "pairCode": "DPO-P137",
+      "selectedMoreReactiveCode": "DPO-R273"
+    },
+    {
+      "pairCode": "DPO-P138",
+      "selectedMoreReactiveCode": "DPO-R275"
+    },
+    {
+      "pairCode": "DPO-P139",
+      "selectedMoreReactiveCode": "DPO-R277"
+    },
+    {
+      "pairCode": "DPO-P140",
+      "selectedMoreReactiveCode": "DPO-R280"
+    },
+    {
+      "pairCode": "DPO-P141",
+      "selectedMoreReactiveCode": "DPO-R282"
+    },
+    {
+      "pairCode": "DPO-P142",
+      "selectedMoreReactiveCode": "DPO-R284"
+    },
+    {
+      "pairCode": "DPO-P143",
+      "selectedMoreReactiveCode": "DPO-R286"
+    },
+    {
+      "pairCode": "DPO-P144",
+      "selectedMoreReactiveCode": "DPO-R287"
+    },
+    {
+      "pairCode": "DPO-P145",
+      "selectedMoreReactiveCode": "DPO-R290"
+    },
+    {
+      "pairCode": "DPO-P146",
+      "selectedMoreReactiveCode": "DPO-R291"
+    },
+    {
+      "pairCode": "DPO-P147",
+      "selectedMoreReactiveCode": "DPO-R294"
+    },
+    {
+      "pairCode": "DPO-P148",
+      "selectedMoreReactiveCode": "DPO-R295"
+    },
+    {
+      "pairCode": "DPO-P149",
+      "selectedMoreReactiveCode": "DPO-R298"
+    },
+    {
+      "pairCode": "DPO-P150",
+      "selectedMoreReactiveCode": "DPO-R299"
+    },
+    {
+      "pairCode": "DPO-P151",
+      "selectedMoreReactiveCode": "DPO-R301"
+    },
+    {
+      "pairCode": "DPO-P152",
+      "selectedMoreReactiveCode": "DPO-R304"
+    },
+    {
+      "pairCode": "DPO-P153",
+      "selectedMoreReactiveCode": "DPO-R305"
+    },
+    {
+      "pairCode": "DPO-P154",
+      "selectedMoreReactiveCode": "DPO-R307"
+    },
+    {
+      "pairCode": "DPO-P155",
+      "selectedMoreReactiveCode": "DPO-R310"
+    },
+    {
+      "pairCode": "DPO-P156",
+      "selectedMoreReactiveCode": "DPO-R312"
+    },
+    {
+      "pairCode": "DPO-P157",
+      "selectedMoreReactiveCode": "DPO-R314"
+    },
+    {
+      "pairCode": "DPO-P158",
+      "selectedMoreReactiveCode": "DPO-R315"
+    },
+    {
+      "pairCode": "DPO-P159",
+      "selectedMoreReactiveCode": "DPO-R318"
+    },
+    {
+      "pairCode": "DPO-P160",
+      "selectedMoreReactiveCode": "DPO-R320"
+    },
+    {
+      "pairCode": "DPO-P161",
+      "selectedMoreReactiveCode": "DPO-R322"
+    },
+    {
+      "pairCode": "DPO-P162",
+      "selectedMoreReactiveCode": "DPO-R324"
+    },
+    {
+      "pairCode": "DPO-P163",
+      "selectedMoreReactiveCode": "DPO-R326"
+    },
+    {
+      "pairCode": "DPO-P164",
+      "selectedMoreReactiveCode": "DPO-R327"
+    },
+    {
+      "pairCode": "DPO-P165",
+      "selectedMoreReactiveCode": "DPO-R329"
+    },
+    {
+      "pairCode": "DPO-P166",
+      "selectedMoreReactiveCode": "DPO-R331"
+    },
+    {
+      "pairCode": "DPO-P167",
+      "selectedMoreReactiveCode": "DPO-R334"
+    },
+    {
+      "pairCode": "DPO-P168",
+      "selectedMoreReactiveCode": "DPO-R336"
+    }
+  ],
+  "expected": {
+    "reactiveContributions": [
+      {
+        "reactiveCode": "DPO-R001",
+        "pairCode": "DPO-P001",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R002",
+        "pairCode": "DPO-P001",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R003",
+        "pairCode": "DPO-P002",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R004",
+        "pairCode": "DPO-P002",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R005",
+        "pairCode": "DPO-P003",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R006",
+        "pairCode": "DPO-P003",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R007",
+        "pairCode": "DPO-P004",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R008",
+        "pairCode": "DPO-P004",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R009",
+        "pairCode": "DPO-P005",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R010",
+        "pairCode": "DPO-P005",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R011",
+        "pairCode": "DPO-P006",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R012",
+        "pairCode": "DPO-P006",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R013",
+        "pairCode": "DPO-P007",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R014",
+        "pairCode": "DPO-P007",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R015",
+        "pairCode": "DPO-P008",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R016",
+        "pairCode": "DPO-P008",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R017",
+        "pairCode": "DPO-P009",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R018",
+        "pairCode": "DPO-P009",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R019",
+        "pairCode": "DPO-P010",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R020",
+        "pairCode": "DPO-P010",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R021",
+        "pairCode": "DPO-P011",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R022",
+        "pairCode": "DPO-P011",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R023",
+        "pairCode": "DPO-P012",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R024",
+        "pairCode": "DPO-P012",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R025",
+        "pairCode": "DPO-P013",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R026",
+        "pairCode": "DPO-P013",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R027",
+        "pairCode": "DPO-P014",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R028",
+        "pairCode": "DPO-P014",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R029",
+        "pairCode": "DPO-P015",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R030",
+        "pairCode": "DPO-P015",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R031",
+        "pairCode": "DPO-P016",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R032",
+        "pairCode": "DPO-P016",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R033",
+        "pairCode": "DPO-P017",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R034",
+        "pairCode": "DPO-P017",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R035",
+        "pairCode": "DPO-P018",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R036",
+        "pairCode": "DPO-P018",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R037",
+        "pairCode": "DPO-P019",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R038",
+        "pairCode": "DPO-P019",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R039",
+        "pairCode": "DPO-P020",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R040",
+        "pairCode": "DPO-P020",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R041",
+        "pairCode": "DPO-P021",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R042",
+        "pairCode": "DPO-P021",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R043",
+        "pairCode": "DPO-P022",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R044",
+        "pairCode": "DPO-P022",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R045",
+        "pairCode": "DPO-P023",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R046",
+        "pairCode": "DPO-P023",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R047",
+        "pairCode": "DPO-P024",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R048",
+        "pairCode": "DPO-P024",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R049",
+        "pairCode": "DPO-P025",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R050",
+        "pairCode": "DPO-P025",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R051",
+        "pairCode": "DPO-P026",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R052",
+        "pairCode": "DPO-P026",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R053",
+        "pairCode": "DPO-P027",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R054",
+        "pairCode": "DPO-P027",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R055",
+        "pairCode": "DPO-P028",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R056",
+        "pairCode": "DPO-P028",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R057",
+        "pairCode": "DPO-P029",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R058",
+        "pairCode": "DPO-P029",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R059",
+        "pairCode": "DPO-P030",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R060",
+        "pairCode": "DPO-P030",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R061",
+        "pairCode": "DPO-P031",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R062",
+        "pairCode": "DPO-P031",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R063",
+        "pairCode": "DPO-P032",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R064",
+        "pairCode": "DPO-P032",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R065",
+        "pairCode": "DPO-P033",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R066",
+        "pairCode": "DPO-P033",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R067",
+        "pairCode": "DPO-P034",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R068",
+        "pairCode": "DPO-P034",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R069",
+        "pairCode": "DPO-P035",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R070",
+        "pairCode": "DPO-P035",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R071",
+        "pairCode": "DPO-P036",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R072",
+        "pairCode": "DPO-P036",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R073",
+        "pairCode": "DPO-P037",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R074",
+        "pairCode": "DPO-P037",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R075",
+        "pairCode": "DPO-P038",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R076",
+        "pairCode": "DPO-P038",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R077",
+        "pairCode": "DPO-P039",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R078",
+        "pairCode": "DPO-P039",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R079",
+        "pairCode": "DPO-P040",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R080",
+        "pairCode": "DPO-P040",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R081",
+        "pairCode": "DPO-P041",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R082",
+        "pairCode": "DPO-P041",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R083",
+        "pairCode": "DPO-P042",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R084",
+        "pairCode": "DPO-P042",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R085",
+        "pairCode": "DPO-P043",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R086",
+        "pairCode": "DPO-P043",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R087",
+        "pairCode": "DPO-P044",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R088",
+        "pairCode": "DPO-P044",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R089",
+        "pairCode": "DPO-P045",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R090",
+        "pairCode": "DPO-P045",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R091",
+        "pairCode": "DPO-P046",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R092",
+        "pairCode": "DPO-P046",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R093",
+        "pairCode": "DPO-P047",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R094",
+        "pairCode": "DPO-P047",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R095",
+        "pairCode": "DPO-P048",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R096",
+        "pairCode": "DPO-P048",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R097",
+        "pairCode": "DPO-P049",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R098",
+        "pairCode": "DPO-P049",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R099",
+        "pairCode": "DPO-P050",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R100",
+        "pairCode": "DPO-P050",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R101",
+        "pairCode": "DPO-P051",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R102",
+        "pairCode": "DPO-P051",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R103",
+        "pairCode": "DPO-P052",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R104",
+        "pairCode": "DPO-P052",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R105",
+        "pairCode": "DPO-P053",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R106",
+        "pairCode": "DPO-P053",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R107",
+        "pairCode": "DPO-P054",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R108",
+        "pairCode": "DPO-P054",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R109",
+        "pairCode": "DPO-P055",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R110",
+        "pairCode": "DPO-P055",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R111",
+        "pairCode": "DPO-P056",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R112",
+        "pairCode": "DPO-P056",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R113",
+        "pairCode": "DPO-P057",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R114",
+        "pairCode": "DPO-P057",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R115",
+        "pairCode": "DPO-P058",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R116",
+        "pairCode": "DPO-P058",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R117",
+        "pairCode": "DPO-P059",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R118",
+        "pairCode": "DPO-P059",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R119",
+        "pairCode": "DPO-P060",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R120",
+        "pairCode": "DPO-P060",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R121",
+        "pairCode": "DPO-P061",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R122",
+        "pairCode": "DPO-P061",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R123",
+        "pairCode": "DPO-P062",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R124",
+        "pairCode": "DPO-P062",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R125",
+        "pairCode": "DPO-P063",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R126",
+        "pairCode": "DPO-P063",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R127",
+        "pairCode": "DPO-P064",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R128",
+        "pairCode": "DPO-P064",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R129",
+        "pairCode": "DPO-P065",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R130",
+        "pairCode": "DPO-P065",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R131",
+        "pairCode": "DPO-P066",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R132",
+        "pairCode": "DPO-P066",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R133",
+        "pairCode": "DPO-P067",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R134",
+        "pairCode": "DPO-P067",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R135",
+        "pairCode": "DPO-P068",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R136",
+        "pairCode": "DPO-P068",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R137",
+        "pairCode": "DPO-P069",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R138",
+        "pairCode": "DPO-P069",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R139",
+        "pairCode": "DPO-P070",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R140",
+        "pairCode": "DPO-P070",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R141",
+        "pairCode": "DPO-P071",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R142",
+        "pairCode": "DPO-P071",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R143",
+        "pairCode": "DPO-P072",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R144",
+        "pairCode": "DPO-P072",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R145",
+        "pairCode": "DPO-P073",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R146",
+        "pairCode": "DPO-P073",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R147",
+        "pairCode": "DPO-P074",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R148",
+        "pairCode": "DPO-P074",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R149",
+        "pairCode": "DPO-P075",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R150",
+        "pairCode": "DPO-P075",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R151",
+        "pairCode": "DPO-P076",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R152",
+        "pairCode": "DPO-P076",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R153",
+        "pairCode": "DPO-P077",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R154",
+        "pairCode": "DPO-P077",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R155",
+        "pairCode": "DPO-P078",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R156",
+        "pairCode": "DPO-P078",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R157",
+        "pairCode": "DPO-P079",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R158",
+        "pairCode": "DPO-P079",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R159",
+        "pairCode": "DPO-P080",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R160",
+        "pairCode": "DPO-P080",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R161",
+        "pairCode": "DPO-P081",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R162",
+        "pairCode": "DPO-P081",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R163",
+        "pairCode": "DPO-P082",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R164",
+        "pairCode": "DPO-P082",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R165",
+        "pairCode": "DPO-P083",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R166",
+        "pairCode": "DPO-P083",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R167",
+        "pairCode": "DPO-P084",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R168",
+        "pairCode": "DPO-P084",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R169",
+        "pairCode": "DPO-P085",
+        "selected": "MORE",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R170",
+        "pairCode": "DPO-P085",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R171",
+        "pairCode": "DPO-P086",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R172",
+        "pairCode": "DPO-P086",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R173",
+        "pairCode": "DPO-P087",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R174",
+        "pairCode": "DPO-P087",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R175",
+        "pairCode": "DPO-P088",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R176",
+        "pairCode": "DPO-P088",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R177",
+        "pairCode": "DPO-P089",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R178",
+        "pairCode": "DPO-P089",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R179",
+        "pairCode": "DPO-P090",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R180",
+        "pairCode": "DPO-P090",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R181",
+        "pairCode": "DPO-P091",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R182",
+        "pairCode": "DPO-P091",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R183",
+        "pairCode": "DPO-P092",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R184",
+        "pairCode": "DPO-P092",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R185",
+        "pairCode": "DPO-P093",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R186",
+        "pairCode": "DPO-P093",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R187",
+        "pairCode": "DPO-P094",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R188",
+        "pairCode": "DPO-P094",
+        "selected": "MORE",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R189",
+        "pairCode": "DPO-P095",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R190",
+        "pairCode": "DPO-P095",
+        "selected": "MORE",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R191",
+        "pairCode": "DPO-P096",
+        "selected": "MORE",
+        "contribution": "5"
+      },
+      {
+        "reactiveCode": "DPO-R192",
+        "pairCode": "DPO-P096",
+        "selected": "LESS",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R193",
+        "pairCode": "DPO-P097",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R194",
+        "pairCode": "DPO-P097",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R195",
+        "pairCode": "DPO-P098",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R196",
+        "pairCode": "DPO-P098",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R197",
+        "pairCode": "DPO-P099",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R198",
+        "pairCode": "DPO-P099",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R199",
+        "pairCode": "DPO-P100",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R200",
+        "pairCode": "DPO-P100",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R201",
+        "pairCode": "DPO-P101",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R202",
+        "pairCode": "DPO-P101",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R203",
+        "pairCode": "DPO-P102",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R204",
+        "pairCode": "DPO-P102",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R205",
+        "pairCode": "DPO-P103",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R206",
+        "pairCode": "DPO-P103",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R207",
+        "pairCode": "DPO-P104",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R208",
+        "pairCode": "DPO-P104",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R209",
+        "pairCode": "DPO-P105",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R210",
+        "pairCode": "DPO-P105",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R211",
+        "pairCode": "DPO-P106",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R212",
+        "pairCode": "DPO-P106",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R213",
+        "pairCode": "DPO-P107",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R214",
+        "pairCode": "DPO-P107",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R215",
+        "pairCode": "DPO-P108",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R216",
+        "pairCode": "DPO-P108",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R217",
+        "pairCode": "DPO-P109",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R218",
+        "pairCode": "DPO-P109",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R219",
+        "pairCode": "DPO-P110",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R220",
+        "pairCode": "DPO-P110",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R221",
+        "pairCode": "DPO-P111",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R222",
+        "pairCode": "DPO-P111",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R223",
+        "pairCode": "DPO-P112",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R224",
+        "pairCode": "DPO-P112",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R225",
+        "pairCode": "DPO-P113",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R226",
+        "pairCode": "DPO-P113",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R227",
+        "pairCode": "DPO-P114",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R228",
+        "pairCode": "DPO-P114",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R229",
+        "pairCode": "DPO-P115",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R230",
+        "pairCode": "DPO-P115",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R231",
+        "pairCode": "DPO-P116",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R232",
+        "pairCode": "DPO-P116",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R233",
+        "pairCode": "DPO-P117",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R234",
+        "pairCode": "DPO-P117",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R235",
+        "pairCode": "DPO-P118",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R236",
+        "pairCode": "DPO-P118",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R237",
+        "pairCode": "DPO-P119",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R238",
+        "pairCode": "DPO-P119",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R239",
+        "pairCode": "DPO-P120",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R240",
+        "pairCode": "DPO-P120",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R241",
+        "pairCode": "DPO-P121",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R242",
+        "pairCode": "DPO-P121",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R243",
+        "pairCode": "DPO-P122",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R244",
+        "pairCode": "DPO-P122",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R245",
+        "pairCode": "DPO-P123",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R246",
+        "pairCode": "DPO-P123",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R247",
+        "pairCode": "DPO-P124",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R248",
+        "pairCode": "DPO-P124",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R249",
+        "pairCode": "DPO-P125",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R250",
+        "pairCode": "DPO-P125",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R251",
+        "pairCode": "DPO-P126",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R252",
+        "pairCode": "DPO-P126",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R253",
+        "pairCode": "DPO-P127",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R254",
+        "pairCode": "DPO-P127",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R255",
+        "pairCode": "DPO-P128",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R256",
+        "pairCode": "DPO-P128",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R257",
+        "pairCode": "DPO-P129",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R258",
+        "pairCode": "DPO-P129",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R259",
+        "pairCode": "DPO-P130",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R260",
+        "pairCode": "DPO-P130",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R261",
+        "pairCode": "DPO-P131",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R262",
+        "pairCode": "DPO-P131",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R263",
+        "pairCode": "DPO-P132",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R264",
+        "pairCode": "DPO-P132",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R265",
+        "pairCode": "DPO-P133",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R266",
+        "pairCode": "DPO-P133",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R267",
+        "pairCode": "DPO-P134",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R268",
+        "pairCode": "DPO-P134",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R269",
+        "pairCode": "DPO-P135",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R270",
+        "pairCode": "DPO-P135",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R271",
+        "pairCode": "DPO-P136",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R272",
+        "pairCode": "DPO-P136",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R273",
+        "pairCode": "DPO-P137",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R274",
+        "pairCode": "DPO-P137",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R275",
+        "pairCode": "DPO-P138",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R276",
+        "pairCode": "DPO-P138",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R277",
+        "pairCode": "DPO-P139",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R278",
+        "pairCode": "DPO-P139",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R279",
+        "pairCode": "DPO-P140",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R280",
+        "pairCode": "DPO-P140",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R281",
+        "pairCode": "DPO-P141",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R282",
+        "pairCode": "DPO-P141",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R283",
+        "pairCode": "DPO-P142",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R284",
+        "pairCode": "DPO-P142",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R285",
+        "pairCode": "DPO-P143",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R286",
+        "pairCode": "DPO-P143",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R287",
+        "pairCode": "DPO-P144",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R288",
+        "pairCode": "DPO-P144",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R289",
+        "pairCode": "DPO-P145",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R290",
+        "pairCode": "DPO-P145",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R291",
+        "pairCode": "DPO-P146",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R292",
+        "pairCode": "DPO-P146",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R293",
+        "pairCode": "DPO-P147",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R294",
+        "pairCode": "DPO-P147",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R295",
+        "pairCode": "DPO-P148",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R296",
+        "pairCode": "DPO-P148",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R297",
+        "pairCode": "DPO-P149",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R298",
+        "pairCode": "DPO-P149",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R299",
+        "pairCode": "DPO-P150",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R300",
+        "pairCode": "DPO-P150",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R301",
+        "pairCode": "DPO-P151",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R302",
+        "pairCode": "DPO-P151",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R303",
+        "pairCode": "DPO-P152",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R304",
+        "pairCode": "DPO-P152",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R305",
+        "pairCode": "DPO-P153",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R306",
+        "pairCode": "DPO-P153",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R307",
+        "pairCode": "DPO-P154",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R308",
+        "pairCode": "DPO-P154",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R309",
+        "pairCode": "DPO-P155",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R310",
+        "pairCode": "DPO-P155",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R311",
+        "pairCode": "DPO-P156",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R312",
+        "pairCode": "DPO-P156",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R313",
+        "pairCode": "DPO-P157",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R314",
+        "pairCode": "DPO-P157",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R315",
+        "pairCode": "DPO-P158",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R316",
+        "pairCode": "DPO-P158",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R317",
+        "pairCode": "DPO-P159",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R318",
+        "pairCode": "DPO-P159",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R319",
+        "pairCode": "DPO-P160",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R320",
+        "pairCode": "DPO-P160",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R321",
+        "pairCode": "DPO-P161",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R322",
+        "pairCode": "DPO-P161",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R323",
+        "pairCode": "DPO-P162",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R324",
+        "pairCode": "DPO-P162",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R325",
+        "pairCode": "DPO-P163",
+        "selected": "LESS",
+        "contribution": "4"
+      },
+      {
+        "reactiveCode": "DPO-R326",
+        "pairCode": "DPO-P163",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R327",
+        "pairCode": "DPO-P164",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R328",
+        "pairCode": "DPO-P164",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R329",
+        "pairCode": "DPO-P165",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R330",
+        "pairCode": "DPO-P165",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R331",
+        "pairCode": "DPO-P166",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R332",
+        "pairCode": "DPO-P166",
+        "selected": "LESS",
+        "contribution": "3"
+      },
+      {
+        "reactiveCode": "DPO-R333",
+        "pairCode": "DPO-P167",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R334",
+        "pairCode": "DPO-P167",
+        "selected": "MORE",
+        "contribution": "0"
+      },
+      {
+        "reactiveCode": "DPO-R335",
+        "pairCode": "DPO-P168",
+        "selected": "LESS",
+        "contribution": "2"
+      },
+      {
+        "reactiveCode": "DPO-R336",
+        "pairCode": "DPO-P168",
+        "selected": "MORE",
+        "contribution": "0"
+      }
+    ],
+    "scaleResults": [
+      {
+        "scaleCode": "DPO-S001",
+        "scaleName": "Adaptación",
+        "rawScore": "11",
+        "decil": 4
+      },
+      {
+        "scaleCode": "DPO-S002",
+        "scaleName": "Mente Abierta",
+        "rawScore": "0",
+        "decil": 1
+      },
+      {
+        "scaleCode": "DPO-S003",
+        "scaleName": "Pensamiento divergente",
+        "rawScore": "21",
+        "decil": 10
+      },
+      {
+        "scaleCode": "DPO-S004",
+        "scaleName": "Expectativa Profesional",
+        "rawScore": "12",
+        "decil": 4
+      },
+      {
+        "scaleCode": "DPO-S005",
+        "scaleName": "Expectativas",
+        "rawScore": "16",
+        "decil": 9
+      },
+      {
+        "scaleCode": "DPO-S006",
+        "scaleName": "Superación",
+        "rawScore": "6",
+        "decil": 2
+      },
+      {
+        "scaleCode": "DPO-S007",
+        "scaleName": "Autorefuerzo",
+        "rawScore": "15",
+        "decil": 6
+      },
+      {
+        "scaleCode": "DPO-S008",
+        "scaleName": "Autosupervisión",
+        "rawScore": "12",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S009",
+        "scaleName": "Enfoque",
+        "rawScore": "14",
+        "decil": 5
+      },
+      {
+        "scaleCode": "DPO-S010",
+        "scaleName": "Autoconocimiento",
+        "rawScore": "10",
+        "decil": 6
+      },
+      {
+        "scaleCode": "DPO-S011",
+        "scaleName": "Autocontrol",
+        "rawScore": "6",
+        "decil": 3
+      },
+      {
+        "scaleCode": "DPO-S012",
+        "scaleName": "Temple",
+        "rawScore": "18",
+        "decil": 9
+      },
+      {
+        "scaleCode": "DPO-S013",
+        "scaleName": "Habilidad Administrativa",
+        "rawScore": "2",
+        "decil": 2
+      },
+      {
+        "scaleCode": "DPO-S014",
+        "scaleName": "Control Percibido",
+        "rawScore": "10",
+        "decil": 2
+      },
+      {
+        "scaleCode": "DPO-S015",
+        "scaleName": "Tolerancia al Conflicto",
+        "rawScore": "19",
+        "decil": 10
+      },
+      {
+        "scaleCode": "DPO-S016",
+        "scaleName": "Autoconfianza",
+        "rawScore": "12",
+        "decil": 4
+      },
+      {
+        "scaleCode": "DPO-S017",
+        "scaleName": "Merecimiento",
+        "rawScore": "14",
+        "decil": 6
+      },
+      {
+        "scaleCode": "DPO-S018",
+        "scaleName": "Optimismo",
+        "rawScore": "6",
+        "decil": 4
+      },
+      {
+        "scaleCode": "DPO-S019",
+        "scaleName": "Energía",
+        "rawScore": "20",
+        "decil": 10
+      },
+      {
+        "scaleCode": "DPO-S020",
+        "scaleName": "Esfuerzo",
+        "rawScore": "14",
+        "decil": 5
+      },
+      {
+        "scaleCode": "DPO-S021",
+        "scaleName": "Tenacidad",
+        "rawScore": "3",
+        "decil": 1
+      },
+      {
+        "scaleCode": "DPO-S022",
+        "scaleName": "Autonomía",
+        "rawScore": "17",
+        "decil": 9
+      },
+      {
+        "scaleCode": "DPO-S023",
+        "scaleName": "Capacidad de reacción",
+        "rawScore": "5",
+        "decil": 3
+      },
+      {
+        "scaleCode": "DPO-S024",
+        "scaleName": "Emprendimiento",
+        "rawScore": "11",
+        "decil": 8
+      },
+      {
+        "scaleCode": "DPO-S025",
+        "scaleName": "Compromiso",
+        "rawScore": "16",
+        "decil": 8
+      },
+      {
+        "scaleCode": "DPO-S026",
+        "scaleName": "Confiabilidad",
+        "rawScore": "20",
+        "decil": 9
+      },
+      {
+        "scaleCode": "DPO-S027",
+        "scaleName": "Rectitud",
+        "rawScore": "15",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S028",
+        "scaleName": "Influencia",
+        "rawScore": "10",
+        "decil": 6
+      },
+      {
+        "scaleCode": "DPO-S029",
+        "scaleName": "Percepción Interpersonal",
+        "rawScore": "4",
+        "decil": 4
+      },
+      {
+        "scaleCode": "DPO-S030",
+        "scaleName": "Sociabilidad",
+        "rawScore": "6",
+        "decil": 3
+      },
+      {
+        "scaleCode": "DPO-S031",
+        "scaleName": "Consciencia del Entorno",
+        "rawScore": "9",
+        "decil": 6
+      },
+      {
+        "scaleCode": "DPO-S032",
+        "scaleName": "Pensamiento Lógico",
+        "rawScore": "14",
+        "decil": 8
+      },
+      {
+        "scaleCode": "DPO-S033",
+        "scaleName": "Visión Sistémica",
+        "rawScore": "7",
+        "decil": 3
+      },
+      {
+        "scaleCode": "DPO-S034",
+        "scaleName": "Anticipación",
+        "rawScore": "14",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S035",
+        "scaleName": "Participación",
+        "rawScore": "13",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S036",
+        "scaleName": "Resolución",
+        "rawScore": "18",
+        "decil": 9
+      },
+      {
+        "scaleCode": "DPO-S037",
+        "scaleName": "Automejoramiento",
+        "rawScore": "14",
+        "decil": 6
+      },
+      {
+        "scaleCode": "DPO-S038",
+        "scaleName": "Perseverancia",
+        "rawScore": "20",
+        "decil": 10
+      },
+      {
+        "scaleCode": "DPO-S039",
+        "scaleName": "Recuperación",
+        "rawScore": "12",
+        "decil": 4
+      },
+      {
+        "scaleCode": "DPO-S040",
+        "scaleName": "Salud Financiera",
+        "rawScore": "8",
+        "decil": 5
+      },
+      {
+        "scaleCode": "DPO-S041",
+        "scaleName": "Satisfacción",
+        "rawScore": "12",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S042",
+        "scaleName": "Apertura a oportunidades",
+        "rawScore": "5",
+        "decil": 3
+      },
+      {
+        "scaleCode": "DPO-S043",
+        "scaleName": "Alineamiento de Acciones",
+        "rawScore": "11",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S044",
+        "scaleName": "Claridad de estrategia",
+        "rawScore": "12",
+        "decil": 8
+      },
+      {
+        "scaleCode": "DPO-S045",
+        "scaleName": "Visión clara",
+        "rawScore": "17",
+        "decil": 9
+      },
+      {
+        "scaleCode": "DPO-S046",
+        "scaleName": "Anteposición de intereses",
+        "rawScore": "11",
+        "decil": 8
+      },
+      {
+        "scaleCode": "DPO-S047",
+        "scaleName": "Aprovechamiento de Talentos",
+        "rawScore": "14",
+        "decil": 7
+      },
+      {
+        "scaleCode": "DPO-S048",
+        "scaleName": "Sentido de contribución",
+        "rawScore": "6",
+        "decil": 4
+      }
+    ],
+    "compositeResults": [
+      {
+        "compositeCode": "DPO-C001",
+        "compositeName": "Proactividad",
+        "rawScore": "15.0",
+        "displayRawScore": "15",
+        "decil": 8,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C002",
+        "compositeName": "Involucramiento",
+        "rawScore": "11.0",
+        "displayRawScore": "11",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C003",
+        "compositeName": "Trayectoria Ascendente",
+        "rawScore": "12.666666666666666",
+        "displayRawScore": "12.666666666667",
+        "decil": 5,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C004",
+        "compositeName": "Ambición",
+        "rawScore": "11.333333333333334",
+        "displayRawScore": "11.333333333333",
+        "decil": 4,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C005",
+        "compositeName": "Impulso Resolutivo",
+        "rawScore": "11.666666666666666",
+        "displayRawScore": "11.666666666667",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C006",
+        "compositeName": "Iniciativa",
+        "rawScore": "11.0",
+        "displayRawScore": "11",
+        "decil": 8,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C007",
+        "compositeName": "Determinación y Persistencia",
+        "rawScore": "13.0",
+        "displayRawScore": "13",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C008",
+        "compositeName": "Empuje",
+        "rawScore": "12.333333333333334",
+        "displayRawScore": "12.333333333333",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C009",
+        "compositeName": "Creatividad Aplicada",
+        "rawScore": "10.666666666666666",
+        "displayRawScore": "10.666666666667",
+        "decil": 7,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C010",
+        "compositeName": "Razonamiento Analítico",
+        "rawScore": "10.0",
+        "displayRawScore": "10",
+        "decil": 5,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C011",
+        "compositeName": "Autodominio",
+        "rawScore": "9.0",
+        "displayRawScore": "9",
+        "decil": 2,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C012",
+        "compositeName": "Autoregulación Emocional",
+        "rawScore": "11.333333333333334",
+        "displayRawScore": "11.333333333333",
+        "decil": 7,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C013",
+        "compositeName": "Alineación y Congruencia",
+        "rawScore": "13.666666666666666",
+        "displayRawScore": "13.666666666667",
+        "decil": 7,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C014",
+        "compositeName": "Visión estratégica",
+        "rawScore": "13.333333333333334",
+        "displayRawScore": "13.333333333333",
+        "decil": 9,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C015",
+        "compositeName": "Adaptabilidad",
+        "rawScore": "10.666666666666666",
+        "displayRawScore": "10.666666666667",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C016",
+        "compositeName": "Anticipación a cambios del entorno",
+        "rawScore": "11.333333333333334",
+        "displayRawScore": "11.333333333333",
+        "decil": 5,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C017",
+        "compositeName": "Significancia",
+        "rawScore": "12.75",
+        "displayRawScore": "12.75",
+        "decil": 7,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C018",
+        "compositeName": "Orientación a Resultados",
+        "rawScore": "11.5",
+        "displayRawScore": "11.5",
+        "decil": 4,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C019",
+        "compositeName": "Trabajo en Equipo",
+        "rawScore": "9.75",
+        "displayRawScore": "9.75",
+        "decil": 3,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C020",
+        "compositeName": "Estabilidad y Permanencia",
+        "rawScore": "12.75",
+        "displayRawScore": "12.75",
+        "decil": 10,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C021",
+        "compositeName": "Apego a normas",
+        "rawScore": "17.0",
+        "displayRawScore": "17",
+        "decil": 9,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C022",
+        "compositeName": "Efectividad personal",
+        "rawScore": "13.666666666666666",
+        "displayRawScore": "13.666666666667",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C023",
+        "compositeName": "Negociación e Influencia",
+        "rawScore": "9.666666666666666",
+        "displayRawScore": "9.666666666667",
+        "decil": 5,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C024",
+        "compositeName": "Relaciones Interpersonales",
+        "rawScore": "6.666666666666667",
+        "displayRawScore": "6.666666666667",
+        "decil": 3,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C025",
+        "compositeName": "Bienestar psicoproductivo",
+        "rawScore": "8.333333333333334",
+        "displayRawScore": "8.333333333333",
+        "decil": 4,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C026",
+        "compositeName": "Superación y Empoderamiento",
+        "rawScore": "8.0",
+        "displayRawScore": "8",
+        "decil": 1,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C027",
+        "compositeName": "Merecimiento Proactivo",
+        "rawScore": "15.666666666666666",
+        "displayRawScore": "15.666666666667",
+        "decil": 9,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C028",
+        "compositeName": "Toma de riesgos",
+        "rawScore": "7.333333333333333",
+        "displayRawScore": "7.333333333333",
+        "decil": 3,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C029",
+        "compositeName": "Convicción positiva",
+        "rawScore": "10.666666666666666",
+        "displayRawScore": "10.666666666667",
+        "decil": 4,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C030",
+        "compositeName": "Mentalidad inversionista",
+        "rawScore": "11.666666666666666",
+        "displayRawScore": "11.666666666667",
+        "decil": 8,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C031",
+        "compositeName": "Competencia financiera",
+        "rawScore": "10.333333333333334",
+        "displayRawScore": "10.333333333333",
+        "decil": 3,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C032",
+        "compositeName": "Planeación & Organización",
+        "rawScore": "14.0",
+        "displayRawScore": "14",
+        "decil": 6,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C033",
+        "compositeName": "Resiliencia",
+        "rawScore": "15.333333333333334",
+        "displayRawScore": "15.333333333333",
+        "decil": 7,
+        "normStatus": "VALIDATED_STRUCTURE"
+      },
+      {
+        "compositeCode": "DPO-C034",
+        "compositeName": "Búsqueda de Significado Psicoproductivo",
+        "rawScore": "10.333333333333334",
+        "displayRawScore": "10.333333333333",
+        "decil": 6,
+        "normStatus": "BLOCKED"
+      }
+    ],
+    "quadrant": {
+      "xAxis": {
+        "name": "Situación financiera",
+        "sourceScaleName": "Salud Financiera",
+        "rawScore": "8",
+        "decil": 5
+      },
+      "yAxis": {
+        "name": "Satisfacción",
+        "sourceScaleName": "Satisfacción",
+        "rawScore": "12",
+        "decil": 7
+      }
+    },
+    "legacyStyleResults": [
+      {
+        "profileName": "Adaptable",
+        "sourceCompositeName": "Adaptabilidad",
+        "decil": 6
+      },
+      {
+        "profileName": "Analítico",
+        "sourceCompositeName": "Razonamiento Analítico",
+        "decil": 5
+      },
+      {
+        "profileName": "Apegado",
+        "sourceCompositeName": "Apego a normas",
+        "decil": 9
+      },
+      {
+        "profileName": "Aprovechamiento",
+        "sourceCompositeName": "Toma de riesgos",
+        "decil": 3
+      },
+      {
+        "profileName": "Esforzado",
+        "sourceCompositeName": "Empuje",
+        "decil": 6
+      },
+      {
+        "profileName": "Social",
+        "sourceCompositeName": "Relaciones Interpersonales",
+        "decil": 3
+      },
+      {
+        "profileName": "Innovador",
+        "sourceCompositeName": "Creatividad Aplicada",
+        "decil": 7
+      },
+      {
+        "profileName": "Obstinado",
+        "sourceCompositeName": "Determinación y Persistencia",
+        "decil": 6
+      },
+      {
+        "profileName": "Planeador",
+        "sourceCompositeName": "Planeación & Organización",
+        "decil": 6
+      },
+      {
+        "profileName": "Superacional",
+        "sourceCompositeName": "Superación y Empoderamiento",
+        "decil": 1
+      }
+    ],
+    "legacyPotencyAverage": "5.2",
+    "legacyPotencyPercentile": null,
+    "legacyPotencyPercentileStatus": "BROKEN_IN_SOURCE_WORKBOOK"
+  }
+}

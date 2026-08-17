@@ -104,6 +104,16 @@ export class MailService {
     ));
   }
 
+  async sendUserInvitationEmail(to: string, firstName: string, token: string) {
+    const link = `${this.config.getOrThrow<string>('FRONTEND_URL')}/restablecer-contrasena?token=${encodeURIComponent(token)}`;
+    await this.send(to, 'Tu cuenta de Crevantia está lista', this.template(
+      `Hola, ${this.escape(firstName)}`,
+      `Se creó una cuenta para ti en Crevantia con el correo <strong>${this.escape(to)}</strong>. Define tu contraseña personal para comenzar.`,
+      'Crear mi contraseña', link,
+      'Este enlace caduca en 48 horas y solo puede utilizarse una vez. Por seguridad, Crevantia nunca envía contraseñas por correo.',
+    ));
+  }
+
   private async send(to: string, subject: string, html: string) {
     const { transporter, fromName, fromAddress } = await this.transporter();
     await transporter.sendMail({ from: { name: fromName, address: fromAddress }, to, subject, html });
@@ -137,4 +147,3 @@ export class MailService {
     return value.replace(/[&<>'"]/g, (character) => entities[character] ?? character);
   }
 }
-

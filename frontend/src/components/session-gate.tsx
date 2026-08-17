@@ -16,7 +16,7 @@ export function SessionGate({ area, children }: { area: 'admin' | 'client'; chil
     currentUser()
       .then((user) => {
         if (!active) return;
-        const isAdmin = user.roles.some((role) => role === 'ADMIN' || role === 'SUPERADMIN');
+        const isAdmin = user.permissions.includes('admin.access');
 
         if ((area === 'admin' && isAdmin) || (area === 'client' && !isAdmin)) {
           setStatus('ready');

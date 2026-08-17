@@ -75,7 +75,86 @@ export const AttemptStatus = {
   REPORT_GENERATING: 'REPORT_GENERATING',
   COMPLETED: 'COMPLETED',
   FAILED: 'FAILED',
+  SCORING_ERROR: 'SCORING_ERROR',
   INVALIDATED: 'INVALIDATED'
 } as const
 
 export type AttemptStatus = (typeof AttemptStatus)[keyof typeof AttemptStatus]
+
+
+export const ConfigurationStatus = {
+  DRAFT: 'DRAFT',
+  IN_REVIEW: 'IN_REVIEW',
+  APPROVED: 'APPROVED',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type ConfigurationStatus = (typeof ConfigurationStatus)[keyof typeof ConfigurationStatus]
+
+
+export const ScoringPolarity = {
+  POSITIVE: 'POSITIVE',
+  NEGATIVE: 'NEGATIVE'
+} as const
+
+export type ScoringPolarity = (typeof ScoringPolarity)[keyof typeof ScoringPolarity]
+
+
+export const AggregationMethod = {
+  SUM: 'SUM',
+  ARITHMETIC_MEAN: 'ARITHMETIC_MEAN',
+  WEIGHTED_MEAN: 'WEIGHTED_MEAN',
+  DIRECT_SCALE: 'DIRECT_SCALE',
+  AXIS_X: 'AXIS_X',
+  AXIS_Y: 'AXIS_Y',
+  TWO_AXIS: 'TWO_AXIS',
+  CUSTOM_DECLARATIVE: 'CUSTOM_DECLARATIVE'
+} as const
+
+export type AggregationMethod = (typeof AggregationMethod)[keyof typeof AggregationMethod]
+
+
+export const NormTargetType = {
+  SCALE: 'SCALE',
+  COMPOSITE: 'COMPOSITE',
+  DERIVED_METRIC: 'DERIVED_METRIC',
+  LEGACY_STYLE_PROFILE: 'LEGACY_STYLE_PROFILE'
+} as const
+
+export type NormTargetType = (typeof NormTargetType)[keyof typeof NormTargetType]
+
+
+export const NormValidationSeverity = {
+  ERROR: 'ERROR',
+  WARNING: 'WARNING',
+  INFO: 'INFO'
+} as const
+
+export type NormValidationSeverity = (typeof NormValidationSeverity)[keyof typeof NormValidationSeverity]
+
+
+export const ResultRunStatus = {
+  CALCULATING: 'CALCULATING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+} as const
+
+export type ResultRunStatus = (typeof ResultRunStatus)[keyof typeof ResultRunStatus]
+
+
+export const ReactiveSelection = {
+  MORE: 'MORE',
+  LESS: 'LESS'
+} as const
+
+export type ReactiveSelection = (typeof ReactiveSelection)[keyof typeof ReactiveSelection]
+
+
+export const ScoringSpecificationStatus = {
+  CONFIGURED: 'CONFIGURED',
+  PENDING_SCORING_SPEC: 'PENDING_SCORING_SPEC'
+} as const
+
+export type ScoringSpecificationStatus = (typeof ScoringSpecificationStatus)[keyof typeof ScoringSpecificationStatus]

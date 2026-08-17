@@ -28,6 +28,9 @@ export type AttemptMinAggregateOutputType = {
   id: string | null
   assignmentId: string | null
   testVersionId: string | null
+  assessmentVersionId: string | null
+  scoringKeyVersionId: string | null
+  normVersionId: string | null
   status: $Enums.AttemptStatus | null
   startedAt: Date | null
   pausedAt: Date | null
@@ -42,6 +45,9 @@ export type AttemptMaxAggregateOutputType = {
   id: string | null
   assignmentId: string | null
   testVersionId: string | null
+  assessmentVersionId: string | null
+  scoringKeyVersionId: string | null
+  normVersionId: string | null
   status: $Enums.AttemptStatus | null
   startedAt: Date | null
   pausedAt: Date | null
@@ -56,6 +62,9 @@ export type AttemptCountAggregateOutputType = {
   id: number
   assignmentId: number
   testVersionId: number
+  assessmentVersionId: number
+  scoringKeyVersionId: number
+  normVersionId: number
   status: number
   startedAt: number
   pausedAt: number
@@ -72,6 +81,9 @@ export type AttemptMinAggregateInputType = {
   id?: true
   assignmentId?: true
   testVersionId?: true
+  assessmentVersionId?: true
+  scoringKeyVersionId?: true
+  normVersionId?: true
   status?: true
   startedAt?: true
   pausedAt?: true
@@ -86,6 +98,9 @@ export type AttemptMaxAggregateInputType = {
   id?: true
   assignmentId?: true
   testVersionId?: true
+  assessmentVersionId?: true
+  scoringKeyVersionId?: true
+  normVersionId?: true
   status?: true
   startedAt?: true
   pausedAt?: true
@@ -100,6 +115,9 @@ export type AttemptCountAggregateInputType = {
   id?: true
   assignmentId?: true
   testVersionId?: true
+  assessmentVersionId?: true
+  scoringKeyVersionId?: true
+  normVersionId?: true
   status?: true
   startedAt?: true
   pausedAt?: true
@@ -187,6 +205,9 @@ export type AttemptGroupByOutputType = {
   id: string
   assignmentId: string
   testVersionId: string
+  assessmentVersionId: string | null
+  scoringKeyVersionId: string | null
+  normVersionId: string | null
   status: $Enums.AttemptStatus
   startedAt: Date | null
   pausedAt: Date | null
@@ -222,6 +243,9 @@ export type AttemptWhereInput = {
   id?: Prisma.StringFilter<"Attempt"> | string
   assignmentId?: Prisma.StringFilter<"Attempt"> | string
   testVersionId?: Prisma.StringFilter<"Attempt"> | string
+  assessmentVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
+  scoringKeyVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
+  normVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
   status?: Prisma.EnumAttemptStatusFilter<"Attempt"> | $Enums.AttemptStatus
   startedAt?: Prisma.DateTimeNullableFilter<"Attempt"> | Date | string | null
   pausedAt?: Prisma.DateTimeNullableFilter<"Attempt"> | Date | string | null
@@ -234,12 +258,22 @@ export type AttemptWhereInput = {
   testVersion?: Prisma.XOR<Prisma.TestVersionScalarRelationFilter, Prisma.TestVersionWhereInput>
   responses?: Prisma.ResponseListRelationFilter
   pairResponses?: Prisma.PairResponseListRelationFilter
+  assessmentVersion?: Prisma.XOR<Prisma.AssessmentVersionNullableScalarRelationFilter, Prisma.AssessmentVersionWhereInput> | null
+  scoringKeyVersion?: Prisma.XOR<Prisma.ScoringKeyVersionNullableScalarRelationFilter, Prisma.ScoringKeyVersionWhereInput> | null
+  normVersion?: Prisma.XOR<Prisma.NormVersionNullableScalarRelationFilter, Prisma.NormVersionWhereInput> | null
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerListRelationFilter
+  likertAnswers?: Prisma.LikertAnswerListRelationFilter
+  demographicAnswers?: Prisma.DemographicAnswerListRelationFilter
+  resultRuns?: Prisma.ResultRunListRelationFilter
 }
 
 export type AttemptOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   testVersionId?: Prisma.SortOrder
+  assessmentVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  normVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   pausedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -252,6 +286,13 @@ export type AttemptOrderByWithRelationInput = {
   testVersion?: Prisma.TestVersionOrderByWithRelationInput
   responses?: Prisma.ResponseOrderByRelationAggregateInput
   pairResponses?: Prisma.PairResponseOrderByRelationAggregateInput
+  assessmentVersion?: Prisma.AssessmentVersionOrderByWithRelationInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionOrderByWithRelationInput
+  normVersion?: Prisma.NormVersionOrderByWithRelationInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerOrderByRelationAggregateInput
+  likertAnswers?: Prisma.LikertAnswerOrderByRelationAggregateInput
+  demographicAnswers?: Prisma.DemographicAnswerOrderByRelationAggregateInput
+  resultRuns?: Prisma.ResultRunOrderByRelationAggregateInput
   _relevance?: Prisma.AttemptOrderByRelevanceInput
 }
 
@@ -262,6 +303,9 @@ export type AttemptWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AttemptWhereInput[]
   NOT?: Prisma.AttemptWhereInput | Prisma.AttemptWhereInput[]
   testVersionId?: Prisma.StringFilter<"Attempt"> | string
+  assessmentVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
+  scoringKeyVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
+  normVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
   status?: Prisma.EnumAttemptStatusFilter<"Attempt"> | $Enums.AttemptStatus
   startedAt?: Prisma.DateTimeNullableFilter<"Attempt"> | Date | string | null
   pausedAt?: Prisma.DateTimeNullableFilter<"Attempt"> | Date | string | null
@@ -274,12 +318,22 @@ export type AttemptWhereUniqueInput = Prisma.AtLeast<{
   testVersion?: Prisma.XOR<Prisma.TestVersionScalarRelationFilter, Prisma.TestVersionWhereInput>
   responses?: Prisma.ResponseListRelationFilter
   pairResponses?: Prisma.PairResponseListRelationFilter
+  assessmentVersion?: Prisma.XOR<Prisma.AssessmentVersionNullableScalarRelationFilter, Prisma.AssessmentVersionWhereInput> | null
+  scoringKeyVersion?: Prisma.XOR<Prisma.ScoringKeyVersionNullableScalarRelationFilter, Prisma.ScoringKeyVersionWhereInput> | null
+  normVersion?: Prisma.XOR<Prisma.NormVersionNullableScalarRelationFilter, Prisma.NormVersionWhereInput> | null
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerListRelationFilter
+  likertAnswers?: Prisma.LikertAnswerListRelationFilter
+  demographicAnswers?: Prisma.DemographicAnswerListRelationFilter
+  resultRuns?: Prisma.ResultRunListRelationFilter
 }, "id" | "assignmentId">
 
 export type AttemptOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   testVersionId?: Prisma.SortOrder
+  assessmentVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  normVersionId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   pausedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -300,6 +354,9 @@ export type AttemptScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Attempt"> | string
   assignmentId?: Prisma.StringWithAggregatesFilter<"Attempt"> | string
   testVersionId?: Prisma.StringWithAggregatesFilter<"Attempt"> | string
+  assessmentVersionId?: Prisma.StringNullableWithAggregatesFilter<"Attempt"> | string | null
+  scoringKeyVersionId?: Prisma.StringNullableWithAggregatesFilter<"Attempt"> | string | null
+  normVersionId?: Prisma.StringNullableWithAggregatesFilter<"Attempt"> | string | null
   status?: Prisma.EnumAttemptStatusWithAggregatesFilter<"Attempt"> | $Enums.AttemptStatus
   startedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Attempt"> | Date | string | null
   pausedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Attempt"> | Date | string | null
@@ -324,12 +381,22 @@ export type AttemptCreateInput = {
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
   responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
   pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptUncheckedCreateInput = {
   id?: string
   assignmentId: string
   testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -340,6 +407,10 @@ export type AttemptUncheckedCreateInput = {
   updatedAt?: Date | string
   responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
   pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptUpdateInput = {
@@ -356,12 +427,22 @@ export type AttemptUpdateInput = {
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
   responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
   pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -372,12 +453,19 @@ export type AttemptUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
   pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptCreateManyInput = {
   id?: string
   assignmentId: string
   testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -404,6 +492,9 @@ export type AttemptUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -439,6 +530,9 @@ export type AttemptCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   testVersionId?: Prisma.SortOrder
+  assessmentVersionId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrder
+  normVersionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   pausedAt?: Prisma.SortOrder
@@ -453,6 +547,9 @@ export type AttemptMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   testVersionId?: Prisma.SortOrder
+  assessmentVersionId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrder
+  normVersionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   pausedAt?: Prisma.SortOrder
@@ -467,6 +564,9 @@ export type AttemptMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   assignmentId?: Prisma.SortOrder
   testVersionId?: Prisma.SortOrder
+  assessmentVersionId?: Prisma.SortOrder
+  scoringKeyVersionId?: Prisma.SortOrder
+  normVersionId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   pausedAt?: Prisma.SortOrder
@@ -588,6 +688,188 @@ export type AttemptUpdateOneRequiredWithoutPairResponsesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AttemptUpdateToOneWithWhereWithoutPairResponsesInput, Prisma.AttemptUpdateWithoutPairResponsesInput>, Prisma.AttemptUncheckedUpdateWithoutPairResponsesInput>
 }
 
+export type AttemptCreateNestedManyWithoutAssessmentVersionInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput> | Prisma.AttemptCreateWithoutAssessmentVersionInput[] | Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput | Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput[]
+  createMany?: Prisma.AttemptCreateManyAssessmentVersionInputEnvelope
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+}
+
+export type AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput> | Prisma.AttemptCreateWithoutAssessmentVersionInput[] | Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput | Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput[]
+  createMany?: Prisma.AttemptCreateManyAssessmentVersionInputEnvelope
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+}
+
+export type AttemptUpdateManyWithoutAssessmentVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput> | Prisma.AttemptCreateWithoutAssessmentVersionInput[] | Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput | Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput[]
+  upsert?: Prisma.AttemptUpsertWithWhereUniqueWithoutAssessmentVersionInput | Prisma.AttemptUpsertWithWhereUniqueWithoutAssessmentVersionInput[]
+  createMany?: Prisma.AttemptCreateManyAssessmentVersionInputEnvelope
+  set?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  disconnect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  delete?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  update?: Prisma.AttemptUpdateWithWhereUniqueWithoutAssessmentVersionInput | Prisma.AttemptUpdateWithWhereUniqueWithoutAssessmentVersionInput[]
+  updateMany?: Prisma.AttemptUpdateManyWithWhereWithoutAssessmentVersionInput | Prisma.AttemptUpdateManyWithWhereWithoutAssessmentVersionInput[]
+  deleteMany?: Prisma.AttemptScalarWhereInput | Prisma.AttemptScalarWhereInput[]
+}
+
+export type AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput> | Prisma.AttemptCreateWithoutAssessmentVersionInput[] | Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput | Prisma.AttemptCreateOrConnectWithoutAssessmentVersionInput[]
+  upsert?: Prisma.AttemptUpsertWithWhereUniqueWithoutAssessmentVersionInput | Prisma.AttemptUpsertWithWhereUniqueWithoutAssessmentVersionInput[]
+  createMany?: Prisma.AttemptCreateManyAssessmentVersionInputEnvelope
+  set?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  disconnect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  delete?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  update?: Prisma.AttemptUpdateWithWhereUniqueWithoutAssessmentVersionInput | Prisma.AttemptUpdateWithWhereUniqueWithoutAssessmentVersionInput[]
+  updateMany?: Prisma.AttemptUpdateManyWithWhereWithoutAssessmentVersionInput | Prisma.AttemptUpdateManyWithWhereWithoutAssessmentVersionInput[]
+  deleteMany?: Prisma.AttemptScalarWhereInput | Prisma.AttemptScalarWhereInput[]
+}
+
+export type AttemptCreateNestedOneWithoutDemographicAnswersInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutDemographicAnswersInput, Prisma.AttemptUncheckedCreateWithoutDemographicAnswersInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutDemographicAnswersInput
+  connect?: Prisma.AttemptWhereUniqueInput
+}
+
+export type AttemptUpdateOneRequiredWithoutDemographicAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutDemographicAnswersInput, Prisma.AttemptUncheckedCreateWithoutDemographicAnswersInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutDemographicAnswersInput
+  upsert?: Prisma.AttemptUpsertWithoutDemographicAnswersInput
+  connect?: Prisma.AttemptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AttemptUpdateToOneWithWhereWithoutDemographicAnswersInput, Prisma.AttemptUpdateWithoutDemographicAnswersInput>, Prisma.AttemptUncheckedUpdateWithoutDemographicAnswersInput>
+}
+
+export type AttemptCreateNestedManyWithoutScoringKeyVersionInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.AttemptCreateWithoutScoringKeyVersionInput[] | Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput | Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.AttemptCreateManyScoringKeyVersionInputEnvelope
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+}
+
+export type AttemptUncheckedCreateNestedManyWithoutScoringKeyVersionInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.AttemptCreateWithoutScoringKeyVersionInput[] | Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput | Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.AttemptCreateManyScoringKeyVersionInputEnvelope
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+}
+
+export type AttemptUpdateManyWithoutScoringKeyVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.AttemptCreateWithoutScoringKeyVersionInput[] | Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput | Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput[]
+  upsert?: Prisma.AttemptUpsertWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.AttemptUpsertWithWhereUniqueWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.AttemptCreateManyScoringKeyVersionInputEnvelope
+  set?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  disconnect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  delete?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  update?: Prisma.AttemptUpdateWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.AttemptUpdateWithWhereUniqueWithoutScoringKeyVersionInput[]
+  updateMany?: Prisma.AttemptUpdateManyWithWhereWithoutScoringKeyVersionInput | Prisma.AttemptUpdateManyWithWhereWithoutScoringKeyVersionInput[]
+  deleteMany?: Prisma.AttemptScalarWhereInput | Prisma.AttemptScalarWhereInput[]
+}
+
+export type AttemptUncheckedUpdateManyWithoutScoringKeyVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput> | Prisma.AttemptCreateWithoutScoringKeyVersionInput[] | Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput | Prisma.AttemptCreateOrConnectWithoutScoringKeyVersionInput[]
+  upsert?: Prisma.AttemptUpsertWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.AttemptUpsertWithWhereUniqueWithoutScoringKeyVersionInput[]
+  createMany?: Prisma.AttemptCreateManyScoringKeyVersionInputEnvelope
+  set?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  disconnect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  delete?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  update?: Prisma.AttemptUpdateWithWhereUniqueWithoutScoringKeyVersionInput | Prisma.AttemptUpdateWithWhereUniqueWithoutScoringKeyVersionInput[]
+  updateMany?: Prisma.AttemptUpdateManyWithWhereWithoutScoringKeyVersionInput | Prisma.AttemptUpdateManyWithWhereWithoutScoringKeyVersionInput[]
+  deleteMany?: Prisma.AttemptScalarWhereInput | Prisma.AttemptScalarWhereInput[]
+}
+
+export type AttemptCreateNestedManyWithoutNormVersionInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutNormVersionInput, Prisma.AttemptUncheckedCreateWithoutNormVersionInput> | Prisma.AttemptCreateWithoutNormVersionInput[] | Prisma.AttemptUncheckedCreateWithoutNormVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutNormVersionInput | Prisma.AttemptCreateOrConnectWithoutNormVersionInput[]
+  createMany?: Prisma.AttemptCreateManyNormVersionInputEnvelope
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+}
+
+export type AttemptUncheckedCreateNestedManyWithoutNormVersionInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutNormVersionInput, Prisma.AttemptUncheckedCreateWithoutNormVersionInput> | Prisma.AttemptCreateWithoutNormVersionInput[] | Prisma.AttemptUncheckedCreateWithoutNormVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutNormVersionInput | Prisma.AttemptCreateOrConnectWithoutNormVersionInput[]
+  createMany?: Prisma.AttemptCreateManyNormVersionInputEnvelope
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+}
+
+export type AttemptUpdateManyWithoutNormVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutNormVersionInput, Prisma.AttemptUncheckedCreateWithoutNormVersionInput> | Prisma.AttemptCreateWithoutNormVersionInput[] | Prisma.AttemptUncheckedCreateWithoutNormVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutNormVersionInput | Prisma.AttemptCreateOrConnectWithoutNormVersionInput[]
+  upsert?: Prisma.AttemptUpsertWithWhereUniqueWithoutNormVersionInput | Prisma.AttemptUpsertWithWhereUniqueWithoutNormVersionInput[]
+  createMany?: Prisma.AttemptCreateManyNormVersionInputEnvelope
+  set?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  disconnect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  delete?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  update?: Prisma.AttemptUpdateWithWhereUniqueWithoutNormVersionInput | Prisma.AttemptUpdateWithWhereUniqueWithoutNormVersionInput[]
+  updateMany?: Prisma.AttemptUpdateManyWithWhereWithoutNormVersionInput | Prisma.AttemptUpdateManyWithWhereWithoutNormVersionInput[]
+  deleteMany?: Prisma.AttemptScalarWhereInput | Prisma.AttemptScalarWhereInput[]
+}
+
+export type AttemptUncheckedUpdateManyWithoutNormVersionNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutNormVersionInput, Prisma.AttemptUncheckedCreateWithoutNormVersionInput> | Prisma.AttemptCreateWithoutNormVersionInput[] | Prisma.AttemptUncheckedCreateWithoutNormVersionInput[]
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutNormVersionInput | Prisma.AttemptCreateOrConnectWithoutNormVersionInput[]
+  upsert?: Prisma.AttemptUpsertWithWhereUniqueWithoutNormVersionInput | Prisma.AttemptUpsertWithWhereUniqueWithoutNormVersionInput[]
+  createMany?: Prisma.AttemptCreateManyNormVersionInputEnvelope
+  set?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  disconnect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  delete?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  connect?: Prisma.AttemptWhereUniqueInput | Prisma.AttemptWhereUniqueInput[]
+  update?: Prisma.AttemptUpdateWithWhereUniqueWithoutNormVersionInput | Prisma.AttemptUpdateWithWhereUniqueWithoutNormVersionInput[]
+  updateMany?: Prisma.AttemptUpdateManyWithWhereWithoutNormVersionInput | Prisma.AttemptUpdateManyWithWhereWithoutNormVersionInput[]
+  deleteMany?: Prisma.AttemptScalarWhereInput | Prisma.AttemptScalarWhereInput[]
+}
+
+export type AttemptCreateNestedOneWithoutForcedChoiceAnswersInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutForcedChoiceAnswersInput, Prisma.AttemptUncheckedCreateWithoutForcedChoiceAnswersInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutForcedChoiceAnswersInput
+  connect?: Prisma.AttemptWhereUniqueInput
+}
+
+export type AttemptUpdateOneRequiredWithoutForcedChoiceAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutForcedChoiceAnswersInput, Prisma.AttemptUncheckedCreateWithoutForcedChoiceAnswersInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutForcedChoiceAnswersInput
+  upsert?: Prisma.AttemptUpsertWithoutForcedChoiceAnswersInput
+  connect?: Prisma.AttemptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AttemptUpdateToOneWithWhereWithoutForcedChoiceAnswersInput, Prisma.AttemptUpdateWithoutForcedChoiceAnswersInput>, Prisma.AttemptUncheckedUpdateWithoutForcedChoiceAnswersInput>
+}
+
+export type AttemptCreateNestedOneWithoutLikertAnswersInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutLikertAnswersInput, Prisma.AttemptUncheckedCreateWithoutLikertAnswersInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutLikertAnswersInput
+  connect?: Prisma.AttemptWhereUniqueInput
+}
+
+export type AttemptUpdateOneRequiredWithoutLikertAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutLikertAnswersInput, Prisma.AttemptUncheckedCreateWithoutLikertAnswersInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutLikertAnswersInput
+  upsert?: Prisma.AttemptUpsertWithoutLikertAnswersInput
+  connect?: Prisma.AttemptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AttemptUpdateToOneWithWhereWithoutLikertAnswersInput, Prisma.AttemptUpdateWithoutLikertAnswersInput>, Prisma.AttemptUncheckedUpdateWithoutLikertAnswersInput>
+}
+
+export type AttemptCreateNestedOneWithoutResultRunsInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutResultRunsInput, Prisma.AttemptUncheckedCreateWithoutResultRunsInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutResultRunsInput
+  connect?: Prisma.AttemptWhereUniqueInput
+}
+
+export type AttemptUpdateOneRequiredWithoutResultRunsNestedInput = {
+  create?: Prisma.XOR<Prisma.AttemptCreateWithoutResultRunsInput, Prisma.AttemptUncheckedCreateWithoutResultRunsInput>
+  connectOrCreate?: Prisma.AttemptCreateOrConnectWithoutResultRunsInput
+  upsert?: Prisma.AttemptUpsertWithoutResultRunsInput
+  connect?: Prisma.AttemptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AttemptUpdateToOneWithWhereWithoutResultRunsInput, Prisma.AttemptUpdateWithoutResultRunsInput>, Prisma.AttemptUncheckedUpdateWithoutResultRunsInput>
+}
+
 export type AttemptCreateWithoutTestVersionInput = {
   id?: string
   status?: $Enums.AttemptStatus
@@ -601,11 +883,21 @@ export type AttemptCreateWithoutTestVersionInput = {
   assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
   responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
   pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptUncheckedCreateWithoutTestVersionInput = {
   id?: string
   assignmentId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -616,6 +908,10 @@ export type AttemptUncheckedCreateWithoutTestVersionInput = {
   updatedAt?: Date | string
   responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
   pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptCreateOrConnectWithoutTestVersionInput = {
@@ -651,6 +947,9 @@ export type AttemptScalarWhereInput = {
   id?: Prisma.StringFilter<"Attempt"> | string
   assignmentId?: Prisma.StringFilter<"Attempt"> | string
   testVersionId?: Prisma.StringFilter<"Attempt"> | string
+  assessmentVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
+  scoringKeyVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
+  normVersionId?: Prisma.StringNullableFilter<"Attempt"> | string | null
   status?: Prisma.EnumAttemptStatusFilter<"Attempt"> | $Enums.AttemptStatus
   startedAt?: Prisma.DateTimeNullableFilter<"Attempt"> | Date | string | null
   pausedAt?: Prisma.DateTimeNullableFilter<"Attempt"> | Date | string | null
@@ -674,11 +973,21 @@ export type AttemptCreateWithoutAssignmentInput = {
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
   responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
   pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptUncheckedCreateWithoutAssignmentInput = {
   id?: string
   testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -689,6 +998,10 @@ export type AttemptUncheckedCreateWithoutAssignmentInput = {
   updatedAt?: Date | string
   responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
   pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptCreateOrConnectWithoutAssignmentInput = {
@@ -720,11 +1033,21 @@ export type AttemptUpdateWithoutAssignmentInput = {
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
   responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
   pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptUncheckedUpdateWithoutAssignmentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -735,6 +1058,10 @@ export type AttemptUncheckedUpdateWithoutAssignmentInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
   pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptCreateWithoutResponsesInput = {
@@ -750,12 +1077,22 @@ export type AttemptCreateWithoutResponsesInput = {
   assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
   pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptUncheckedCreateWithoutResponsesInput = {
   id?: string
   assignmentId: string
   testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -765,6 +1102,10 @@ export type AttemptUncheckedCreateWithoutResponsesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptCreateOrConnectWithoutResponsesInput = {
@@ -796,12 +1137,22 @@ export type AttemptUpdateWithoutResponsesInput = {
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
   pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptUncheckedUpdateWithoutResponsesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -811,6 +1162,10 @@ export type AttemptUncheckedUpdateWithoutResponsesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptCreateWithoutPairResponsesInput = {
@@ -826,12 +1181,22 @@ export type AttemptCreateWithoutPairResponsesInput = {
   assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
   responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptUncheckedCreateWithoutPairResponsesInput = {
   id?: string
   assignmentId: string
   testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -841,6 +1206,10 @@ export type AttemptUncheckedCreateWithoutPairResponsesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
 }
 
 export type AttemptCreateOrConnectWithoutPairResponsesInput = {
@@ -872,12 +1241,22 @@ export type AttemptUpdateWithoutPairResponsesInput = {
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
   responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptUncheckedUpdateWithoutPairResponsesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
   testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -887,11 +1266,644 @@ export type AttemptUncheckedUpdateWithoutPairResponsesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptCreateWithoutAssessmentVersionInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutAssessmentVersionInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutAssessmentVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput>
+}
+
+export type AttemptCreateManyAssessmentVersionInputEnvelope = {
+  data: Prisma.AttemptCreateManyAssessmentVersionInput | Prisma.AttemptCreateManyAssessmentVersionInput[]
+  skipDuplicates?: boolean
+}
+
+export type AttemptUpsertWithWhereUniqueWithoutAssessmentVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedUpdateWithoutAssessmentVersionInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedCreateWithoutAssessmentVersionInput>
+}
+
+export type AttemptUpdateWithWhereUniqueWithoutAssessmentVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutAssessmentVersionInput, Prisma.AttemptUncheckedUpdateWithoutAssessmentVersionInput>
+}
+
+export type AttemptUpdateManyWithWhereWithoutAssessmentVersionInput = {
+  where: Prisma.AttemptScalarWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateManyMutationInput, Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionInput>
+}
+
+export type AttemptCreateWithoutDemographicAnswersInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutDemographicAnswersInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutDemographicAnswersInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutDemographicAnswersInput, Prisma.AttemptUncheckedCreateWithoutDemographicAnswersInput>
+}
+
+export type AttemptUpsertWithoutDemographicAnswersInput = {
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutDemographicAnswersInput, Prisma.AttemptUncheckedUpdateWithoutDemographicAnswersInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutDemographicAnswersInput, Prisma.AttemptUncheckedCreateWithoutDemographicAnswersInput>
+  where?: Prisma.AttemptWhereInput
+}
+
+export type AttemptUpdateToOneWithWhereWithoutDemographicAnswersInput = {
+  where?: Prisma.AttemptWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutDemographicAnswersInput, Prisma.AttemptUncheckedUpdateWithoutDemographicAnswersInput>
+}
+
+export type AttemptUpdateWithoutDemographicAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutDemographicAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptCreateWithoutScoringKeyVersionInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutScoringKeyVersionInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutScoringKeyVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput>
+}
+
+export type AttemptCreateManyScoringKeyVersionInputEnvelope = {
+  data: Prisma.AttemptCreateManyScoringKeyVersionInput | Prisma.AttemptCreateManyScoringKeyVersionInput[]
+  skipDuplicates?: boolean
+}
+
+export type AttemptUpsertWithWhereUniqueWithoutScoringKeyVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedUpdateWithoutScoringKeyVersionInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedCreateWithoutScoringKeyVersionInput>
+}
+
+export type AttemptUpdateWithWhereUniqueWithoutScoringKeyVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutScoringKeyVersionInput, Prisma.AttemptUncheckedUpdateWithoutScoringKeyVersionInput>
+}
+
+export type AttemptUpdateManyWithWhereWithoutScoringKeyVersionInput = {
+  where: Prisma.AttemptScalarWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateManyMutationInput, Prisma.AttemptUncheckedUpdateManyWithoutScoringKeyVersionInput>
+}
+
+export type AttemptCreateWithoutNormVersionInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutNormVersionInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutNormVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutNormVersionInput, Prisma.AttemptUncheckedCreateWithoutNormVersionInput>
+}
+
+export type AttemptCreateManyNormVersionInputEnvelope = {
+  data: Prisma.AttemptCreateManyNormVersionInput | Prisma.AttemptCreateManyNormVersionInput[]
+  skipDuplicates?: boolean
+}
+
+export type AttemptUpsertWithWhereUniqueWithoutNormVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutNormVersionInput, Prisma.AttemptUncheckedUpdateWithoutNormVersionInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutNormVersionInput, Prisma.AttemptUncheckedCreateWithoutNormVersionInput>
+}
+
+export type AttemptUpdateWithWhereUniqueWithoutNormVersionInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutNormVersionInput, Prisma.AttemptUncheckedUpdateWithoutNormVersionInput>
+}
+
+export type AttemptUpdateManyWithWhereWithoutNormVersionInput = {
+  where: Prisma.AttemptScalarWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateManyMutationInput, Prisma.AttemptUncheckedUpdateManyWithoutNormVersionInput>
+}
+
+export type AttemptCreateWithoutForcedChoiceAnswersInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutForcedChoiceAnswersInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutForcedChoiceAnswersInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutForcedChoiceAnswersInput, Prisma.AttemptUncheckedCreateWithoutForcedChoiceAnswersInput>
+}
+
+export type AttemptUpsertWithoutForcedChoiceAnswersInput = {
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutForcedChoiceAnswersInput, Prisma.AttemptUncheckedUpdateWithoutForcedChoiceAnswersInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutForcedChoiceAnswersInput, Prisma.AttemptUncheckedCreateWithoutForcedChoiceAnswersInput>
+  where?: Prisma.AttemptWhereInput
+}
+
+export type AttemptUpdateToOneWithWhereWithoutForcedChoiceAnswersInput = {
+  where?: Prisma.AttemptWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutForcedChoiceAnswersInput, Prisma.AttemptUncheckedUpdateWithoutForcedChoiceAnswersInput>
+}
+
+export type AttemptUpdateWithoutForcedChoiceAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutForcedChoiceAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptCreateWithoutLikertAnswersInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutLikertAnswersInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutLikertAnswersInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutLikertAnswersInput, Prisma.AttemptUncheckedCreateWithoutLikertAnswersInput>
+}
+
+export type AttemptUpsertWithoutLikertAnswersInput = {
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutLikertAnswersInput, Prisma.AttemptUncheckedUpdateWithoutLikertAnswersInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutLikertAnswersInput, Prisma.AttemptUncheckedCreateWithoutLikertAnswersInput>
+  where?: Prisma.AttemptWhereInput
+}
+
+export type AttemptUpdateToOneWithWhereWithoutLikertAnswersInput = {
+  where?: Prisma.AttemptWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutLikertAnswersInput, Prisma.AttemptUncheckedUpdateWithoutLikertAnswersInput>
+}
+
+export type AttemptUpdateWithoutLikertAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutLikertAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptCreateWithoutResultRunsInput = {
+  id?: string
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignment: Prisma.AssignmentCreateNestedOneWithoutAttemptInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.ResponseCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseCreateNestedManyWithoutAttemptInput
+  assessmentVersion?: Prisma.AssessmentVersionCreateNestedOneWithoutAttemptsInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionCreateNestedOneWithoutAttemptsInput
+  normVersion?: Prisma.NormVersionCreateNestedOneWithoutAttemptsInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptUncheckedCreateWithoutResultRunsInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.ResponseUncheckedCreateNestedManyWithoutAttemptInput
+  pairResponses?: Prisma.PairResponseUncheckedCreateNestedManyWithoutAttemptInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedCreateNestedManyWithoutAttemptInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type AttemptCreateOrConnectWithoutResultRunsInput = {
+  where: Prisma.AttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutResultRunsInput, Prisma.AttemptUncheckedCreateWithoutResultRunsInput>
+}
+
+export type AttemptUpsertWithoutResultRunsInput = {
+  update: Prisma.XOR<Prisma.AttemptUpdateWithoutResultRunsInput, Prisma.AttemptUncheckedUpdateWithoutResultRunsInput>
+  create: Prisma.XOR<Prisma.AttemptCreateWithoutResultRunsInput, Prisma.AttemptUncheckedCreateWithoutResultRunsInput>
+  where?: Prisma.AttemptWhereInput
+}
+
+export type AttemptUpdateToOneWithWhereWithoutResultRunsInput = {
+  where?: Prisma.AttemptWhereInput
+  data: Prisma.XOR<Prisma.AttemptUpdateWithoutResultRunsInput, Prisma.AttemptUncheckedUpdateWithoutResultRunsInput>
+}
+
+export type AttemptUpdateWithoutResultRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutResultRunsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptCreateManyTestVersionInput = {
   id?: string
   assignmentId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
   status?: $Enums.AttemptStatus
   startedAt?: Date | string | null
   pausedAt?: Date | string | null
@@ -915,11 +1927,21 @@ export type AttemptUpdateWithoutTestVersionInput = {
   assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
   responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
   pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptUncheckedUpdateWithoutTestVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -930,11 +1952,246 @@ export type AttemptUncheckedUpdateWithoutTestVersionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
   pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
 }
 
 export type AttemptUncheckedUpdateManyWithoutTestVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttemptCreateManyAssessmentVersionInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  scoringKeyVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AttemptUpdateWithoutAssessmentVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutAssessmentVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateManyWithoutAssessmentVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttemptCreateManyScoringKeyVersionInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  normVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AttemptUpdateWithoutScoringKeyVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutScoringKeyVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateManyWithoutScoringKeyVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  normVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type AttemptCreateManyNormVersionInput = {
+  id?: string
+  assignmentId: string
+  testVersionId: string
+  assessmentVersionId?: string | null
+  scoringKeyVersionId?: string | null
+  status?: $Enums.AttemptStatus
+  startedAt?: Date | string | null
+  pausedAt?: Date | string | null
+  submittedAt?: Date | string | null
+  completedAt?: Date | string | null
+  lastActivityAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AttemptUpdateWithoutNormVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignment?: Prisma.AssignmentUpdateOneRequiredWithoutAttemptNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.ResponseUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUpdateManyWithoutAttemptNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneWithoutAttemptsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneWithoutAttemptsNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateWithoutNormVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActivityAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.ResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  pairResponses?: Prisma.PairResponseUncheckedUpdateManyWithoutAttemptNestedInput
+  forcedChoiceAnswers?: Prisma.ForcedChoiceAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  likertAnswers?: Prisma.LikertAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  demographicAnswers?: Prisma.DemographicAnswerUncheckedUpdateManyWithoutAttemptNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type AttemptUncheckedUpdateManyWithoutNormVersionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assignmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  scoringKeyVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAttemptStatusFieldUpdateOperationsInput | $Enums.AttemptStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pausedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -953,11 +2210,19 @@ export type AttemptUncheckedUpdateManyWithoutTestVersionInput = {
 export type AttemptCountOutputType = {
   responses: number
   pairResponses: number
+  forcedChoiceAnswers: number
+  likertAnswers: number
+  demographicAnswers: number
+  resultRuns: number
 }
 
 export type AttemptCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   responses?: boolean | AttemptCountOutputTypeCountResponsesArgs
   pairResponses?: boolean | AttemptCountOutputTypeCountPairResponsesArgs
+  forcedChoiceAnswers?: boolean | AttemptCountOutputTypeCountForcedChoiceAnswersArgs
+  likertAnswers?: boolean | AttemptCountOutputTypeCountLikertAnswersArgs
+  demographicAnswers?: boolean | AttemptCountOutputTypeCountDemographicAnswersArgs
+  resultRuns?: boolean | AttemptCountOutputTypeCountResultRunsArgs
 }
 
 /**
@@ -984,11 +2249,42 @@ export type AttemptCountOutputTypeCountPairResponsesArgs<ExtArgs extends runtime
   where?: Prisma.PairResponseWhereInput
 }
 
+/**
+ * AttemptCountOutputType without action
+ */
+export type AttemptCountOutputTypeCountForcedChoiceAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ForcedChoiceAnswerWhereInput
+}
+
+/**
+ * AttemptCountOutputType without action
+ */
+export type AttemptCountOutputTypeCountLikertAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LikertAnswerWhereInput
+}
+
+/**
+ * AttemptCountOutputType without action
+ */
+export type AttemptCountOutputTypeCountDemographicAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DemographicAnswerWhereInput
+}
+
+/**
+ * AttemptCountOutputType without action
+ */
+export type AttemptCountOutputTypeCountResultRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ResultRunWhereInput
+}
+
 
 export type AttemptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   assignmentId?: boolean
   testVersionId?: boolean
+  assessmentVersionId?: boolean
+  scoringKeyVersionId?: boolean
+  normVersionId?: boolean
   status?: boolean
   startedAt?: boolean
   pausedAt?: boolean
@@ -1001,6 +2297,13 @@ export type AttemptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   testVersion?: boolean | Prisma.TestVersionDefaultArgs<ExtArgs>
   responses?: boolean | Prisma.Attempt$responsesArgs<ExtArgs>
   pairResponses?: boolean | Prisma.Attempt$pairResponsesArgs<ExtArgs>
+  assessmentVersion?: boolean | Prisma.Attempt$assessmentVersionArgs<ExtArgs>
+  scoringKeyVersion?: boolean | Prisma.Attempt$scoringKeyVersionArgs<ExtArgs>
+  normVersion?: boolean | Prisma.Attempt$normVersionArgs<ExtArgs>
+  forcedChoiceAnswers?: boolean | Prisma.Attempt$forcedChoiceAnswersArgs<ExtArgs>
+  likertAnswers?: boolean | Prisma.Attempt$likertAnswersArgs<ExtArgs>
+  demographicAnswers?: boolean | Prisma.Attempt$demographicAnswersArgs<ExtArgs>
+  resultRuns?: boolean | Prisma.Attempt$resultRunsArgs<ExtArgs>
   _count?: boolean | Prisma.AttemptCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["attempt"]>
 
@@ -1010,6 +2313,9 @@ export type AttemptSelectScalar = {
   id?: boolean
   assignmentId?: boolean
   testVersionId?: boolean
+  assessmentVersionId?: boolean
+  scoringKeyVersionId?: boolean
+  normVersionId?: boolean
   status?: boolean
   startedAt?: boolean
   pausedAt?: boolean
@@ -1020,12 +2326,19 @@ export type AttemptSelectScalar = {
   updatedAt?: boolean
 }
 
-export type AttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "assignmentId" | "testVersionId" | "status" | "startedAt" | "pausedAt" | "submittedAt" | "completedAt" | "lastActivityAt" | "createdAt" | "updatedAt", ExtArgs["result"]["attempt"]>
+export type AttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "assignmentId" | "testVersionId" | "assessmentVersionId" | "scoringKeyVersionId" | "normVersionId" | "status" | "startedAt" | "pausedAt" | "submittedAt" | "completedAt" | "lastActivityAt" | "createdAt" | "updatedAt", ExtArgs["result"]["attempt"]>
 export type AttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignment?: boolean | Prisma.AssignmentDefaultArgs<ExtArgs>
   testVersion?: boolean | Prisma.TestVersionDefaultArgs<ExtArgs>
   responses?: boolean | Prisma.Attempt$responsesArgs<ExtArgs>
   pairResponses?: boolean | Prisma.Attempt$pairResponsesArgs<ExtArgs>
+  assessmentVersion?: boolean | Prisma.Attempt$assessmentVersionArgs<ExtArgs>
+  scoringKeyVersion?: boolean | Prisma.Attempt$scoringKeyVersionArgs<ExtArgs>
+  normVersion?: boolean | Prisma.Attempt$normVersionArgs<ExtArgs>
+  forcedChoiceAnswers?: boolean | Prisma.Attempt$forcedChoiceAnswersArgs<ExtArgs>
+  likertAnswers?: boolean | Prisma.Attempt$likertAnswersArgs<ExtArgs>
+  demographicAnswers?: boolean | Prisma.Attempt$demographicAnswersArgs<ExtArgs>
+  resultRuns?: boolean | Prisma.Attempt$resultRunsArgs<ExtArgs>
   _count?: boolean | Prisma.AttemptCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1036,11 +2349,21 @@ export type $AttemptPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     testVersion: Prisma.$TestVersionPayload<ExtArgs>
     responses: Prisma.$ResponsePayload<ExtArgs>[]
     pairResponses: Prisma.$PairResponsePayload<ExtArgs>[]
+    assessmentVersion: Prisma.$AssessmentVersionPayload<ExtArgs> | null
+    scoringKeyVersion: Prisma.$ScoringKeyVersionPayload<ExtArgs> | null
+    normVersion: Prisma.$NormVersionPayload<ExtArgs> | null
+    forcedChoiceAnswers: Prisma.$ForcedChoiceAnswerPayload<ExtArgs>[]
+    likertAnswers: Prisma.$LikertAnswerPayload<ExtArgs>[]
+    demographicAnswers: Prisma.$DemographicAnswerPayload<ExtArgs>[]
+    resultRuns: Prisma.$ResultRunPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     assignmentId: string
     testVersionId: string
+    assessmentVersionId: string | null
+    scoringKeyVersionId: string | null
+    normVersionId: string | null
     status: $Enums.AttemptStatus
     startedAt: Date | null
     pausedAt: Date | null
@@ -1393,6 +2716,13 @@ export interface Prisma__AttemptClient<T, Null = never, ExtArgs extends runtime.
   testVersion<T extends Prisma.TestVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TestVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__TestVersionClient<runtime.Types.Result.GetResult<Prisma.$TestVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   responses<T extends Prisma.Attempt$responsesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$responsesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pairResponses<T extends Prisma.Attempt$pairResponsesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$pairResponsesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PairResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assessmentVersion<T extends Prisma.Attempt$assessmentVersionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$assessmentVersionArgs<ExtArgs>>): Prisma.Prisma__AssessmentVersionClient<runtime.Types.Result.GetResult<Prisma.$AssessmentVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  scoringKeyVersion<T extends Prisma.Attempt$scoringKeyVersionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$scoringKeyVersionArgs<ExtArgs>>): Prisma.Prisma__ScoringKeyVersionClient<runtime.Types.Result.GetResult<Prisma.$ScoringKeyVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  normVersion<T extends Prisma.Attempt$normVersionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$normVersionArgs<ExtArgs>>): Prisma.Prisma__NormVersionClient<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  forcedChoiceAnswers<T extends Prisma.Attempt$forcedChoiceAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$forcedChoiceAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ForcedChoiceAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  likertAnswers<T extends Prisma.Attempt$likertAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$likertAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikertAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  demographicAnswers<T extends Prisma.Attempt$demographicAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$demographicAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DemographicAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  resultRuns<T extends Prisma.Attempt$resultRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Attempt$resultRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1425,6 +2755,9 @@ export interface AttemptFieldRefs {
   readonly id: Prisma.FieldRef<"Attempt", 'String'>
   readonly assignmentId: Prisma.FieldRef<"Attempt", 'String'>
   readonly testVersionId: Prisma.FieldRef<"Attempt", 'String'>
+  readonly assessmentVersionId: Prisma.FieldRef<"Attempt", 'String'>
+  readonly scoringKeyVersionId: Prisma.FieldRef<"Attempt", 'String'>
+  readonly normVersionId: Prisma.FieldRef<"Attempt", 'String'>
   readonly status: Prisma.FieldRef<"Attempt", 'AttemptStatus'>
   readonly startedAt: Prisma.FieldRef<"Attempt", 'DateTime'>
   readonly pausedAt: Prisma.FieldRef<"Attempt", 'DateTime'>
@@ -1826,6 +3159,159 @@ export type Attempt$pairResponsesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.PairResponseScalarFieldEnum | Prisma.PairResponseScalarFieldEnum[]
+}
+
+/**
+ * Attempt.assessmentVersion
+ */
+export type Attempt$assessmentVersionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssessmentVersion
+   */
+  select?: Prisma.AssessmentVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssessmentVersion
+   */
+  omit?: Prisma.AssessmentVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssessmentVersionInclude<ExtArgs> | null
+  where?: Prisma.AssessmentVersionWhereInput
+}
+
+/**
+ * Attempt.scoringKeyVersion
+ */
+export type Attempt$scoringKeyVersionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScoringKeyVersion
+   */
+  select?: Prisma.ScoringKeyVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScoringKeyVersion
+   */
+  omit?: Prisma.ScoringKeyVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScoringKeyVersionInclude<ExtArgs> | null
+  where?: Prisma.ScoringKeyVersionWhereInput
+}
+
+/**
+ * Attempt.normVersion
+ */
+export type Attempt$normVersionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NormVersion
+   */
+  select?: Prisma.NormVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NormVersion
+   */
+  omit?: Prisma.NormVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NormVersionInclude<ExtArgs> | null
+  where?: Prisma.NormVersionWhereInput
+}
+
+/**
+ * Attempt.forcedChoiceAnswers
+ */
+export type Attempt$forcedChoiceAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ForcedChoiceAnswer
+   */
+  select?: Prisma.ForcedChoiceAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ForcedChoiceAnswer
+   */
+  omit?: Prisma.ForcedChoiceAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ForcedChoiceAnswerInclude<ExtArgs> | null
+  where?: Prisma.ForcedChoiceAnswerWhereInput
+  orderBy?: Prisma.ForcedChoiceAnswerOrderByWithRelationInput | Prisma.ForcedChoiceAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.ForcedChoiceAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ForcedChoiceAnswerScalarFieldEnum | Prisma.ForcedChoiceAnswerScalarFieldEnum[]
+}
+
+/**
+ * Attempt.likertAnswers
+ */
+export type Attempt$likertAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LikertAnswer
+   */
+  select?: Prisma.LikertAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LikertAnswer
+   */
+  omit?: Prisma.LikertAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LikertAnswerInclude<ExtArgs> | null
+  where?: Prisma.LikertAnswerWhereInput
+  orderBy?: Prisma.LikertAnswerOrderByWithRelationInput | Prisma.LikertAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.LikertAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LikertAnswerScalarFieldEnum | Prisma.LikertAnswerScalarFieldEnum[]
+}
+
+/**
+ * Attempt.demographicAnswers
+ */
+export type Attempt$demographicAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DemographicAnswer
+   */
+  select?: Prisma.DemographicAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DemographicAnswer
+   */
+  omit?: Prisma.DemographicAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DemographicAnswerInclude<ExtArgs> | null
+  where?: Prisma.DemographicAnswerWhereInput
+  orderBy?: Prisma.DemographicAnswerOrderByWithRelationInput | Prisma.DemographicAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.DemographicAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DemographicAnswerScalarFieldEnum | Prisma.DemographicAnswerScalarFieldEnum[]
+}
+
+/**
+ * Attempt.resultRuns
+ */
+export type Attempt$resultRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ResultRun
+   */
+  select?: Prisma.ResultRunSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ResultRun
+   */
+  omit?: Prisma.ResultRunOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResultRunInclude<ExtArgs> | null
+  where?: Prisma.ResultRunWhereInput
+  orderBy?: Prisma.ResultRunOrderByWithRelationInput | Prisma.ResultRunOrderByWithRelationInput[]
+  cursor?: Prisma.ResultRunWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ResultRunScalarFieldEnum | Prisma.ResultRunScalarFieldEnum[]
 }
 
 /**

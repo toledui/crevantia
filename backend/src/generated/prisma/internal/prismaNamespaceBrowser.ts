@@ -71,7 +71,38 @@ export const ModelName = {
   Attempt: 'Attempt',
   Response: 'Response',
   PairResponse: 'PairResponse',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  Assessment: 'Assessment',
+  AssessmentVersion: 'AssessmentVersion',
+  AssessmentSection: 'AssessmentSection',
+  DemographicField: 'DemographicField',
+  DemographicAnswer: 'DemographicAnswer',
+  PairQuestion: 'PairQuestion',
+  Reactive: 'Reactive',
+  LikertOptionSet: 'LikertOptionSet',
+  LikertOption: 'LikertOption',
+  LikertQuestion: 'LikertQuestion',
+  ScoringKey: 'ScoringKey',
+  ScoringKeyVersion: 'ScoringKeyVersion',
+  Scale: 'Scale',
+  ReactiveScoringRule: 'ReactiveScoringRule',
+  Composite: 'Composite',
+  CompositeComponent: 'CompositeComponent',
+  DerivedMetric: 'DerivedMetric',
+  DerivedMetricVersion: 'DerivedMetricVersion',
+  NormSet: 'NormSet',
+  NormVersion: 'NormVersion',
+  NormTarget: 'NormTarget',
+  NormThreshold: 'NormThreshold',
+  NormValidationRun: 'NormValidationRun',
+  NormValidationIssue: 'NormValidationIssue',
+  ReportMapping: 'ReportMapping',
+  ReportMappingVersion: 'ReportMappingVersion',
+  ForcedChoiceAnswer: 'ForcedChoiceAnswer',
+  LikertAnswer: 'LikertAnswer',
+  ResultRun: 'ResultRun',
+  ResultValue: 'ResultValue',
+  ReactiveContribution: 'ReactiveContribution'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -279,7 +310,8 @@ export const StatementScalarFieldEnum = {
   questionId: 'questionId',
   code: 'code',
   text: 'text',
-  order: 'order'
+  order: 'order',
+  config: 'config'
 } as const
 
 export type StatementScalarFieldEnum = (typeof StatementScalarFieldEnum)[keyof typeof StatementScalarFieldEnum]
@@ -316,6 +348,9 @@ export const AttemptScalarFieldEnum = {
   id: 'id',
   assignmentId: 'assignmentId',
   testVersionId: 'testVersionId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
   status: 'status',
   startedAt: 'startedAt',
   pausedAt: 'pausedAt',
@@ -365,10 +400,451 @@ export const AuditLogScalarFieldEnum = {
   entityType: 'entityType',
   entityId: 'entityId',
   metadata: 'metadata',
+  before: 'before',
+  after: 'after',
+  reason: 'reason',
   createdAt: 'createdAt'
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const AssessmentScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof typeof AssessmentScalarFieldEnum]
+
+
+export const AssessmentVersionScalarFieldEnum = {
+  id: 'id',
+  assessmentId: 'assessmentId',
+  version: 'version',
+  versionCode: 'versionCode',
+  language: 'language',
+  status: 'status',
+  intro: 'intro',
+  estimatedMinutes: 'estimatedMinutes',
+  sourceMetadata: 'sourceMetadata',
+  configurationHash: 'configurationHash',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssessmentVersionScalarFieldEnum = (typeof AssessmentVersionScalarFieldEnum)[keyof typeof AssessmentVersionScalarFieldEnum]
+
+
+export const AssessmentSectionScalarFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  code: 'code',
+  name: 'name',
+  instructions: 'instructions',
+  order: 'order'
+} as const
+
+export type AssessmentSectionScalarFieldEnum = (typeof AssessmentSectionScalarFieldEnum)[keyof typeof AssessmentSectionScalarFieldEnum]
+
+
+export const DemographicFieldScalarFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  code: 'code',
+  fieldKey: 'fieldKey',
+  label: 'label',
+  type: 'type',
+  order: 'order',
+  required: 'required',
+  config: 'config'
+} as const
+
+export type DemographicFieldScalarFieldEnum = (typeof DemographicFieldScalarFieldEnum)[keyof typeof DemographicFieldScalarFieldEnum]
+
+
+export const DemographicAnswerScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  demographicFieldId: 'demographicFieldId',
+  value: 'value',
+  version: 'version',
+  operationId: 'operationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DemographicAnswerScalarFieldEnum = (typeof DemographicAnswerScalarFieldEnum)[keyof typeof DemographicAnswerScalarFieldEnum]
+
+
+export const PairQuestionScalarFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  sectionId: 'sectionId',
+  code: 'code',
+  order: 'order',
+  required: 'required',
+  status: 'status',
+  sourceMetadata: 'sourceMetadata'
+} as const
+
+export type PairQuestionScalarFieldEnum = (typeof PairQuestionScalarFieldEnum)[keyof typeof PairQuestionScalarFieldEnum]
+
+
+export const ReactiveScalarFieldEnum = {
+  id: 'id',
+  pairQuestionId: 'pairQuestionId',
+  code: 'code',
+  position: 'position',
+  text: 'text'
+} as const
+
+export type ReactiveScalarFieldEnum = (typeof ReactiveScalarFieldEnum)[keyof typeof ReactiveScalarFieldEnum]
+
+
+export const LikertOptionSetScalarFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  code: 'code'
+} as const
+
+export type LikertOptionSetScalarFieldEnum = (typeof LikertOptionSetScalarFieldEnum)[keyof typeof LikertOptionSetScalarFieldEnum]
+
+
+export const LikertOptionScalarFieldEnum = {
+  id: 'id',
+  optionSetId: 'optionSetId',
+  value: 'value',
+  label: 'label',
+  order: 'order'
+} as const
+
+export type LikertOptionScalarFieldEnum = (typeof LikertOptionScalarFieldEnum)[keyof typeof LikertOptionScalarFieldEnum]
+
+
+export const LikertQuestionScalarFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  sectionId: 'sectionId',
+  optionSetId: 'optionSetId',
+  code: 'code',
+  order: 'order',
+  text: 'text',
+  required: 'required',
+  scoringStatus: 'scoringStatus',
+  sourceMetadata: 'sourceMetadata'
+} as const
+
+export type LikertQuestionScalarFieldEnum = (typeof LikertQuestionScalarFieldEnum)[keyof typeof LikertQuestionScalarFieldEnum]
+
+
+export const ScoringKeyScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScoringKeyScalarFieldEnum = (typeof ScoringKeyScalarFieldEnum)[keyof typeof ScoringKeyScalarFieldEnum]
+
+
+export const ScoringKeyVersionScalarFieldEnum = {
+  id: 'id',
+  scoringKeyId: 'scoringKeyId',
+  assessmentVersionId: 'assessmentVersionId',
+  version: 'version',
+  sourceVersion: 'sourceVersion',
+  status: 'status',
+  numericMode: 'numericMode',
+  engineCompatibility: 'engineCompatibility',
+  configurationHash: 'configurationHash',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScoringKeyVersionScalarFieldEnum = (typeof ScoringKeyVersionScalarFieldEnum)[keyof typeof ScoringKeyVersionScalarFieldEnum]
+
+
+export const ScaleScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ScaleScalarFieldEnum = (typeof ScaleScalarFieldEnum)[keyof typeof ScaleScalarFieldEnum]
+
+
+export const ReactiveScoringRuleScalarFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  reactiveId: 'reactiveId',
+  scaleId: 'scaleId',
+  polarity: 'polarity',
+  fixedWeight: 'fixedWeight',
+  scoreIfMore: 'scoreIfMore',
+  scoreIfLess: 'scoreIfLess',
+  sourceMetadata: 'sourceMetadata'
+} as const
+
+export type ReactiveScoringRuleScalarFieldEnum = (typeof ReactiveScoringRuleScalarFieldEnum)[keyof typeof ReactiveScoringRuleScalarFieldEnum]
+
+
+export const CompositeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  aggregationMethod: 'aggregationMethod'
+} as const
+
+export type CompositeScalarFieldEnum = (typeof CompositeScalarFieldEnum)[keyof typeof CompositeScalarFieldEnum]
+
+
+export const CompositeComponentScalarFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  compositeId: 'compositeId',
+  scaleId: 'scaleId',
+  weight: 'weight',
+  order: 'order',
+  aggregationMethod: 'aggregationMethod',
+  metadata: 'metadata'
+} as const
+
+export type CompositeComponentScalarFieldEnum = (typeof CompositeComponentScalarFieldEnum)[keyof typeof CompositeComponentScalarFieldEnum]
+
+
+export const DerivedMetricScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+} as const
+
+export type DerivedMetricScalarFieldEnum = (typeof DerivedMetricScalarFieldEnum)[keyof typeof DerivedMetricScalarFieldEnum]
+
+
+export const DerivedMetricVersionScalarFieldEnum = {
+  id: 'id',
+  derivedMetricId: 'derivedMetricId',
+  version: 'version',
+  calculationType: 'calculationType',
+  sourceScaleId: 'sourceScaleId',
+  declarativeConfig: 'declarativeConfig',
+  status: 'status'
+} as const
+
+export type DerivedMetricVersionScalarFieldEnum = (typeof DerivedMetricVersionScalarFieldEnum)[keyof typeof DerivedMetricVersionScalarFieldEnum]
+
+
+export const NormSetScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NormSetScalarFieldEnum = (typeof NormSetScalarFieldEnum)[keyof typeof NormSetScalarFieldEnum]
+
+
+export const NormVersionScalarFieldEnum = {
+  id: 'id',
+  normSetId: 'normSetId',
+  version: 'version',
+  sourceVersion: 'sourceVersion',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  populationLabel: 'populationLabel',
+  sampleSize: 'sampleSize',
+  country: 'country',
+  ageRange: 'ageRange',
+  notes: 'notes',
+  lookupMethod: 'lookupMethod',
+  numericMode: 'numericMode',
+  roundingMode: 'roundingMode',
+  validFrom: 'validFrom',
+  validTo: 'validTo',
+  createdById: 'createdById',
+  reviewedById: 'reviewedById',
+  approvedById: 'approvedById',
+  publishedById: 'publishedById',
+  publishedAt: 'publishedAt',
+  configurationHash: 'configurationHash',
+  validationStatus: 'validationStatus',
+  sourceMetadata: 'sourceMetadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NormVersionScalarFieldEnum = (typeof NormVersionScalarFieldEnum)[keyof typeof NormVersionScalarFieldEnum]
+
+
+export const NormTargetScalarFieldEnum = {
+  id: 'id',
+  normVersionId: 'normVersionId',
+  targetType: 'targetType',
+  targetCode: 'targetCode',
+  sourceCode: 'sourceCode',
+  name: 'name',
+  status: 'status',
+  isBlocked: 'isBlocked',
+  validationNotes: 'validationNotes',
+  sourceReference: 'sourceReference'
+} as const
+
+export type NormTargetScalarFieldEnum = (typeof NormTargetScalarFieldEnum)[keyof typeof NormTargetScalarFieldEnum]
+
+
+export const NormThresholdScalarFieldEnum = {
+  id: 'id',
+  normTargetId: 'normTargetId',
+  decile: 'decile',
+  lowerBound: 'lowerBound',
+  ordinal: 'ordinal',
+  sourceMetadata: 'sourceMetadata'
+} as const
+
+export type NormThresholdScalarFieldEnum = (typeof NormThresholdScalarFieldEnum)[keyof typeof NormThresholdScalarFieldEnum]
+
+
+export const NormValidationRunScalarFieldEnum = {
+  id: 'id',
+  normVersionId: 'normVersionId',
+  hasErrors: 'hasErrors',
+  errorCount: 'errorCount',
+  warningCount: 'warningCount',
+  infoCount: 'infoCount',
+  createdAt: 'createdAt'
+} as const
+
+export type NormValidationRunScalarFieldEnum = (typeof NormValidationRunScalarFieldEnum)[keyof typeof NormValidationRunScalarFieldEnum]
+
+
+export const NormValidationIssueScalarFieldEnum = {
+  id: 'id',
+  validationRunId: 'validationRunId',
+  normTargetId: 'normTargetId',
+  severity: 'severity',
+  code: 'code',
+  message: 'message',
+  metadata: 'metadata'
+} as const
+
+export type NormValidationIssueScalarFieldEnum = (typeof NormValidationIssueScalarFieldEnum)[keyof typeof NormValidationIssueScalarFieldEnum]
+
+
+export const ReportMappingScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+} as const
+
+export type ReportMappingScalarFieldEnum = (typeof ReportMappingScalarFieldEnum)[keyof typeof ReportMappingScalarFieldEnum]
+
+
+export const ReportMappingVersionScalarFieldEnum = {
+  id: 'id',
+  reportMappingId: 'reportMappingId',
+  assessmentVersionId: 'assessmentVersionId',
+  version: 'version',
+  status: 'status',
+  mappingStatus: 'mappingStatus',
+  configuration: 'configuration',
+  configurationHash: 'configurationHash'
+} as const
+
+export type ReportMappingVersionScalarFieldEnum = (typeof ReportMappingVersionScalarFieldEnum)[keyof typeof ReportMappingVersionScalarFieldEnum]
+
+
+export const ForcedChoiceAnswerScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  pairQuestionId: 'pairQuestionId',
+  selectedMoreReactiveId: 'selectedMoreReactiveId',
+  version: 'version',
+  operationId: 'operationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ForcedChoiceAnswerScalarFieldEnum = (typeof ForcedChoiceAnswerScalarFieldEnum)[keyof typeof ForcedChoiceAnswerScalarFieldEnum]
+
+
+export const LikertAnswerScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  likertQuestionId: 'likertQuestionId',
+  value: 'value',
+  version: 'version',
+  operationId: 'operationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LikertAnswerScalarFieldEnum = (typeof LikertAnswerScalarFieldEnum)[keyof typeof LikertAnswerScalarFieldEnum]
+
+
+export const ResultRunScalarFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
+  reportMappingVersionId: 'reportMappingVersionId',
+  engineVersion: 'engineVersion',
+  configurationHash: 'configurationHash',
+  inputHash: 'inputHash',
+  status: 'status',
+  isOfficial: 'isOfficial',
+  recalculationOfResultRunId: 'recalculationOfResultRunId',
+  reason: 'reason',
+  requestedById: 'requestedById',
+  diagnostics: 'diagnostics',
+  calculatedAt: 'calculatedAt'
+} as const
+
+export type ResultRunScalarFieldEnum = (typeof ResultRunScalarFieldEnum)[keyof typeof ResultRunScalarFieldEnum]
+
+
+export const ResultValueScalarFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  targetType: 'targetType',
+  targetCode: 'targetCode',
+  rawScore: 'rawScore',
+  displayScore: 'displayScore',
+  normalizedScore: 'normalizedScore',
+  decile: 'decile',
+  status: 'status',
+  metadata: 'metadata'
+} as const
+
+export type ResultValueScalarFieldEnum = (typeof ResultValueScalarFieldEnum)[keyof typeof ResultValueScalarFieldEnum]
+
+
+export const ReactiveContributionScalarFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  reactiveId: 'reactiveId',
+  selection: 'selection',
+  scoreIfMore: 'scoreIfMore',
+  scoreIfLess: 'scoreIfLess',
+  appliedScore: 'appliedScore',
+  scaleId: 'scaleId'
+} as const
+
+export type ReactiveContributionScalarFieldEnum = (typeof ReactiveContributionScalarFieldEnum)[keyof typeof ReactiveContributionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -595,7 +1071,10 @@ export type AssignmentOrderByRelevanceFieldEnum = (typeof AssignmentOrderByRelev
 export const AttemptOrderByRelevanceFieldEnum = {
   id: 'id',
   assignmentId: 'assignmentId',
-  testVersionId: 'testVersionId'
+  testVersionId: 'testVersionId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId'
 } as const
 
 export type AttemptOrderByRelevanceFieldEnum = (typeof AttemptOrderByRelevanceFieldEnum)[keyof typeof AttemptOrderByRelevanceFieldEnum]
@@ -628,8 +1107,349 @@ export const AuditLogOrderByRelevanceFieldEnum = {
   actorId: 'actorId',
   action: 'action',
   entityType: 'entityType',
-  entityId: 'entityId'
+  entityId: 'entityId',
+  reason: 'reason'
 } as const
 
 export type AuditLogOrderByRelevanceFieldEnum = (typeof AuditLogOrderByRelevanceFieldEnum)[keyof typeof AuditLogOrderByRelevanceFieldEnum]
+
+
+export const AssessmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type AssessmentOrderByRelevanceFieldEnum = (typeof AssessmentOrderByRelevanceFieldEnum)[keyof typeof AssessmentOrderByRelevanceFieldEnum]
+
+
+export const AssessmentVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentId: 'assessmentId',
+  versionCode: 'versionCode',
+  language: 'language',
+  intro: 'intro',
+  configurationHash: 'configurationHash'
+} as const
+
+export type AssessmentVersionOrderByRelevanceFieldEnum = (typeof AssessmentVersionOrderByRelevanceFieldEnum)[keyof typeof AssessmentVersionOrderByRelevanceFieldEnum]
+
+
+export const AssessmentSectionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  code: 'code',
+  name: 'name',
+  instructions: 'instructions'
+} as const
+
+export type AssessmentSectionOrderByRelevanceFieldEnum = (typeof AssessmentSectionOrderByRelevanceFieldEnum)[keyof typeof AssessmentSectionOrderByRelevanceFieldEnum]
+
+
+export const DemographicFieldOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  code: 'code',
+  fieldKey: 'fieldKey',
+  label: 'label',
+  type: 'type'
+} as const
+
+export type DemographicFieldOrderByRelevanceFieldEnum = (typeof DemographicFieldOrderByRelevanceFieldEnum)[keyof typeof DemographicFieldOrderByRelevanceFieldEnum]
+
+
+export const DemographicAnswerOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  demographicFieldId: 'demographicFieldId',
+  operationId: 'operationId'
+} as const
+
+export type DemographicAnswerOrderByRelevanceFieldEnum = (typeof DemographicAnswerOrderByRelevanceFieldEnum)[keyof typeof DemographicAnswerOrderByRelevanceFieldEnum]
+
+
+export const PairQuestionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  sectionId: 'sectionId',
+  code: 'code'
+} as const
+
+export type PairQuestionOrderByRelevanceFieldEnum = (typeof PairQuestionOrderByRelevanceFieldEnum)[keyof typeof PairQuestionOrderByRelevanceFieldEnum]
+
+
+export const ReactiveOrderByRelevanceFieldEnum = {
+  id: 'id',
+  pairQuestionId: 'pairQuestionId',
+  code: 'code',
+  text: 'text'
+} as const
+
+export type ReactiveOrderByRelevanceFieldEnum = (typeof ReactiveOrderByRelevanceFieldEnum)[keyof typeof ReactiveOrderByRelevanceFieldEnum]
+
+
+export const LikertOptionSetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  code: 'code'
+} as const
+
+export type LikertOptionSetOrderByRelevanceFieldEnum = (typeof LikertOptionSetOrderByRelevanceFieldEnum)[keyof typeof LikertOptionSetOrderByRelevanceFieldEnum]
+
+
+export const LikertOptionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  optionSetId: 'optionSetId',
+  label: 'label'
+} as const
+
+export type LikertOptionOrderByRelevanceFieldEnum = (typeof LikertOptionOrderByRelevanceFieldEnum)[keyof typeof LikertOptionOrderByRelevanceFieldEnum]
+
+
+export const LikertQuestionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentVersionId: 'assessmentVersionId',
+  sectionId: 'sectionId',
+  optionSetId: 'optionSetId',
+  code: 'code',
+  text: 'text'
+} as const
+
+export type LikertQuestionOrderByRelevanceFieldEnum = (typeof LikertQuestionOrderByRelevanceFieldEnum)[keyof typeof LikertQuestionOrderByRelevanceFieldEnum]
+
+
+export const ScoringKeyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ScoringKeyOrderByRelevanceFieldEnum = (typeof ScoringKeyOrderByRelevanceFieldEnum)[keyof typeof ScoringKeyOrderByRelevanceFieldEnum]
+
+
+export const ScoringKeyVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  scoringKeyId: 'scoringKeyId',
+  assessmentVersionId: 'assessmentVersionId',
+  sourceVersion: 'sourceVersion',
+  numericMode: 'numericMode',
+  engineCompatibility: 'engineCompatibility',
+  configurationHash: 'configurationHash'
+} as const
+
+export type ScoringKeyVersionOrderByRelevanceFieldEnum = (typeof ScoringKeyVersionOrderByRelevanceFieldEnum)[keyof typeof ScoringKeyVersionOrderByRelevanceFieldEnum]
+
+
+export const ScaleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ScaleOrderByRelevanceFieldEnum = (typeof ScaleOrderByRelevanceFieldEnum)[keyof typeof ScaleOrderByRelevanceFieldEnum]
+
+
+export const ReactiveScoringRuleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  reactiveId: 'reactiveId',
+  scaleId: 'scaleId'
+} as const
+
+export type ReactiveScoringRuleOrderByRelevanceFieldEnum = (typeof ReactiveScoringRuleOrderByRelevanceFieldEnum)[keyof typeof ReactiveScoringRuleOrderByRelevanceFieldEnum]
+
+
+export const CompositeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type CompositeOrderByRelevanceFieldEnum = (typeof CompositeOrderByRelevanceFieldEnum)[keyof typeof CompositeOrderByRelevanceFieldEnum]
+
+
+export const CompositeComponentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  compositeId: 'compositeId',
+  scaleId: 'scaleId'
+} as const
+
+export type CompositeComponentOrderByRelevanceFieldEnum = (typeof CompositeComponentOrderByRelevanceFieldEnum)[keyof typeof CompositeComponentOrderByRelevanceFieldEnum]
+
+
+export const DerivedMetricOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+} as const
+
+export type DerivedMetricOrderByRelevanceFieldEnum = (typeof DerivedMetricOrderByRelevanceFieldEnum)[keyof typeof DerivedMetricOrderByRelevanceFieldEnum]
+
+
+export const DerivedMetricVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  derivedMetricId: 'derivedMetricId',
+  sourceScaleId: 'sourceScaleId'
+} as const
+
+export type DerivedMetricVersionOrderByRelevanceFieldEnum = (typeof DerivedMetricVersionOrderByRelevanceFieldEnum)[keyof typeof DerivedMetricVersionOrderByRelevanceFieldEnum]
+
+
+export const NormSetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type NormSetOrderByRelevanceFieldEnum = (typeof NormSetOrderByRelevanceFieldEnum)[keyof typeof NormSetOrderByRelevanceFieldEnum]
+
+
+export const NormVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  normSetId: 'normSetId',
+  sourceVersion: 'sourceVersion',
+  name: 'name',
+  description: 'description',
+  populationLabel: 'populationLabel',
+  country: 'country',
+  ageRange: 'ageRange',
+  notes: 'notes',
+  lookupMethod: 'lookupMethod',
+  numericMode: 'numericMode',
+  roundingMode: 'roundingMode',
+  createdById: 'createdById',
+  reviewedById: 'reviewedById',
+  approvedById: 'approvedById',
+  publishedById: 'publishedById',
+  configurationHash: 'configurationHash',
+  validationStatus: 'validationStatus'
+} as const
+
+export type NormVersionOrderByRelevanceFieldEnum = (typeof NormVersionOrderByRelevanceFieldEnum)[keyof typeof NormVersionOrderByRelevanceFieldEnum]
+
+
+export const NormTargetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  normVersionId: 'normVersionId',
+  targetCode: 'targetCode',
+  sourceCode: 'sourceCode',
+  name: 'name',
+  status: 'status',
+  validationNotes: 'validationNotes',
+  sourceReference: 'sourceReference'
+} as const
+
+export type NormTargetOrderByRelevanceFieldEnum = (typeof NormTargetOrderByRelevanceFieldEnum)[keyof typeof NormTargetOrderByRelevanceFieldEnum]
+
+
+export const NormThresholdOrderByRelevanceFieldEnum = {
+  id: 'id',
+  normTargetId: 'normTargetId'
+} as const
+
+export type NormThresholdOrderByRelevanceFieldEnum = (typeof NormThresholdOrderByRelevanceFieldEnum)[keyof typeof NormThresholdOrderByRelevanceFieldEnum]
+
+
+export const NormValidationRunOrderByRelevanceFieldEnum = {
+  id: 'id',
+  normVersionId: 'normVersionId'
+} as const
+
+export type NormValidationRunOrderByRelevanceFieldEnum = (typeof NormValidationRunOrderByRelevanceFieldEnum)[keyof typeof NormValidationRunOrderByRelevanceFieldEnum]
+
+
+export const NormValidationIssueOrderByRelevanceFieldEnum = {
+  id: 'id',
+  validationRunId: 'validationRunId',
+  normTargetId: 'normTargetId',
+  code: 'code',
+  message: 'message'
+} as const
+
+export type NormValidationIssueOrderByRelevanceFieldEnum = (typeof NormValidationIssueOrderByRelevanceFieldEnum)[keyof typeof NormValidationIssueOrderByRelevanceFieldEnum]
+
+
+export const ReportMappingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+} as const
+
+export type ReportMappingOrderByRelevanceFieldEnum = (typeof ReportMappingOrderByRelevanceFieldEnum)[keyof typeof ReportMappingOrderByRelevanceFieldEnum]
+
+
+export const ReportMappingVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportMappingId: 'reportMappingId',
+  assessmentVersionId: 'assessmentVersionId',
+  mappingStatus: 'mappingStatus',
+  configurationHash: 'configurationHash'
+} as const
+
+export type ReportMappingVersionOrderByRelevanceFieldEnum = (typeof ReportMappingVersionOrderByRelevanceFieldEnum)[keyof typeof ReportMappingVersionOrderByRelevanceFieldEnum]
+
+
+export const ForcedChoiceAnswerOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  pairQuestionId: 'pairQuestionId',
+  selectedMoreReactiveId: 'selectedMoreReactiveId',
+  operationId: 'operationId'
+} as const
+
+export type ForcedChoiceAnswerOrderByRelevanceFieldEnum = (typeof ForcedChoiceAnswerOrderByRelevanceFieldEnum)[keyof typeof ForcedChoiceAnswerOrderByRelevanceFieldEnum]
+
+
+export const LikertAnswerOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  likertQuestionId: 'likertQuestionId',
+  operationId: 'operationId'
+} as const
+
+export type LikertAnswerOrderByRelevanceFieldEnum = (typeof LikertAnswerOrderByRelevanceFieldEnum)[keyof typeof LikertAnswerOrderByRelevanceFieldEnum]
+
+
+export const ResultRunOrderByRelevanceFieldEnum = {
+  id: 'id',
+  attemptId: 'attemptId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
+  reportMappingVersionId: 'reportMappingVersionId',
+  engineVersion: 'engineVersion',
+  configurationHash: 'configurationHash',
+  inputHash: 'inputHash',
+  recalculationOfResultRunId: 'recalculationOfResultRunId',
+  reason: 'reason',
+  requestedById: 'requestedById'
+} as const
+
+export type ResultRunOrderByRelevanceFieldEnum = (typeof ResultRunOrderByRelevanceFieldEnum)[keyof typeof ResultRunOrderByRelevanceFieldEnum]
+
+
+export const ResultValueOrderByRelevanceFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  targetCode: 'targetCode',
+  status: 'status'
+} as const
+
+export type ResultValueOrderByRelevanceFieldEnum = (typeof ResultValueOrderByRelevanceFieldEnum)[keyof typeof ResultValueOrderByRelevanceFieldEnum]
+
+
+export const ReactiveContributionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  reactiveId: 'reactiveId',
+  scaleId: 'scaleId'
+} as const
+
+export type ReactiveContributionOrderByRelevanceFieldEnum = (typeof ReactiveContributionOrderByRelevanceFieldEnum)[keyof typeof ReactiveContributionOrderByRelevanceFieldEnum]
 

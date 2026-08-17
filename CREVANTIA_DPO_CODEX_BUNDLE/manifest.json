@@ -1,0 +1,69 @@
+{
+  "bundle": "CREVANTIA_DPO_CODEX_BUNDLE",
+  "version": "1.0.0",
+  "generatedFrom": [
+    "_DPO Express V 6.0 Mac 24 (Ejemplo).xlsm",
+    "DPO_PRO 5.0 - Google Forms.pdf",
+    "Estructura de la prueba y cálculo de resultados.pdf",
+    "Gestión de recursos - Google Forms.pdf",
+    "Reporte PPF (Ejemplo)"
+  ],
+  "validationStatus": "PASS_WITH_KNOWN_SOURCE_DEFECTS",
+  "files": [
+    {
+      "path": "README.md",
+      "sizeBytes": 665,
+      "sha256": "99e0f4053d9a41216ca8aa8028ec6688c83a47fb2289db0623dda760c8de78e0"
+    },
+    {
+      "path": "docs/ANALISIS_Y_PLAN_IMPLEMENTACION_MOTOR_DPO_PRO.md",
+      "sizeBytes": 19153,
+      "sha256": "441660a6c9b537b467d493662e6448ef6a497f72727e8e242e971791d72d9149"
+    },
+    {
+      "path": "docs/BANCO_PREGUNTAS_DPO_PRO.md",
+      "sizeBytes": 51695,
+      "sha256": "9d1b97de0ee733de0a81b6c0cd72e2f42ff298a52c16df550adbd8326aaaf0fa"
+    },
+    {
+      "path": "docs/MATRIZ_TECNICA_ESCALAS_Y_COMPOSICIONES.md",
+      "sizeBytes": 7561,
+      "sha256": "5831521f95a6fadea18d3a61f3e706a7d55a01844acd72ca571bf89a837aa7f3"
+    },
+    {
+      "path": "docs/PENDIENTES_PARA_VALIDACION_DEL_CLIENTE.md",
+      "sizeBytes": 3783,
+      "sha256": "7dab9f79c6a4bbff1e9c8e0b1adc4174509a9b57d77cecc2dde21787e6e5c46d"
+    },
+    {
+      "path": "seed/dpo-pro.norm.global-412.v1.json",
+      "sizeBytes": 311589,
+      "sha256": "45b91c6025753ac58aa5ddf1f4f442e29b6f54c9db9027d4d6ee176d07bb7067"
+    },
+    {
+      "path": "seed/dpo-pro.question-bank.v1.json",
+      "sizeBytes": 204782,
+      "sha256": "4346e2595a2d33fa1564934bed75590d62eacbedb91ee609e4405018fc584553"
+    },
+    {
+      "path": "seed/dpo-pro.scoring-key.v6.json",
+      "sizeBytes": 218487,
+      "sha256": "1cc95899f011c36644741dbf7746dec4d57be10aded56ee1af0be7e65c43fbca"
+    },
+    {
+      "path": "source-analysis/FUENTES_Y_TRAZABILIDAD.md",
+      "sizeBytes": 680,
+      "sha256": "06bbae2069b496c874002ce17c44ac8d953afed686f2bdafd3feee9c8d2b13ca"
+    },
+    {
+      "path": "tests/dpo-pro.golden-case.excel-example.json",
+      "sizeBytes": 79284,
+      "sha256": "719712952a3ca9d396318ce58eeea34516af110072548fa9024c899653c42748"
+    },
+    {
+      "path": "tests/validation-report.json",
+      "sizeBytes": 1345,
+      "sha256": "10ca254d2942723eb42d7d2adf888edb05038eee09288c3f48e8f049dc1c275b"
+    }
+  ]
+}

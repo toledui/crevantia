@@ -65,7 +65,7 @@ export function MailSettingsPanel() {
     finally { setTesting(false); }
   }
 
-  return <div className="admin-content settings-content">
+  return <div className="settings-content settings-section">
     <section className="welcome"><div><span className="eyebrow dark">Comunicaciones</span><h1>Servidor de correo SMTP</h1><p>Configura el envío de confirmaciones, recuperación de contraseña y notificaciones.</p></div><span className={`settings-status ${settings.enabled ? 'enabled' : ''}`}>{settings.enabled ? 'Servicio habilitado' : 'Servicio deshabilitado'}</span></section>
     {loading ? <div className="panel settings-card">Cargando configuración…</div> : <form className="panel settings-card" onSubmit={save}>
       <div className="settings-section-head"><div><h2>Conexión SMTP</h2><p>La contraseña se cifra antes de almacenarse y nunca vuelve al navegador.</p></div><label className="toggle"><input name="enabled" type="checkbox" defaultChecked={settings.enabled}/><span/>Habilitar envío</label></div>

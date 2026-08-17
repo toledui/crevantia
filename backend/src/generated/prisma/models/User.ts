@@ -271,6 +271,11 @@ export type UserWhereInput = {
   consents?: Prisma.ConsentAcceptanceListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  normVersionsCreated?: Prisma.NormVersionListRelationFilter
+  normVersionsReviewed?: Prisma.NormVersionListRelationFilter
+  normVersionsApproved?: Prisma.NormVersionListRelationFilter
+  normVersionsPublished?: Prisma.NormVersionListRelationFilter
+  recalculationsRequested?: Prisma.ResultRunListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -292,6 +297,11 @@ export type UserOrderByWithRelationInput = {
   consents?: Prisma.ConsentAcceptanceOrderByRelationAggregateInput
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  normVersionsCreated?: Prisma.NormVersionOrderByRelationAggregateInput
+  normVersionsReviewed?: Prisma.NormVersionOrderByRelationAggregateInput
+  normVersionsApproved?: Prisma.NormVersionOrderByRelationAggregateInput
+  normVersionsPublished?: Prisma.NormVersionOrderByRelationAggregateInput
+  recalculationsRequested?: Prisma.ResultRunOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -317,6 +327,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   consents?: Prisma.ConsentAcceptanceListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  normVersionsCreated?: Prisma.NormVersionListRelationFilter
+  normVersionsReviewed?: Prisma.NormVersionListRelationFilter
+  normVersionsApproved?: Prisma.NormVersionListRelationFilter
+  normVersionsPublished?: Prisma.NormVersionListRelationFilter
+  recalculationsRequested?: Prisma.ResultRunListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -374,6 +389,11 @@ export type UserCreateInput = {
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -395,6 +415,11 @@ export type UserUncheckedCreateInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUpdateInput = {
@@ -416,6 +441,11 @@ export type UserUpdateInput = {
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -437,6 +467,11 @@ export type UserUncheckedUpdateInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -671,6 +706,86 @@ export type UserUpdateOneWithoutAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
+export type UserCreateNestedOneWithoutNormVersionsCreatedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsCreatedInput, Prisma.UserUncheckedCreateWithoutNormVersionsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsCreatedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutNormVersionsReviewedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsReviewedInput, Prisma.UserUncheckedCreateWithoutNormVersionsReviewedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsReviewedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutNormVersionsApprovedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsApprovedInput, Prisma.UserUncheckedCreateWithoutNormVersionsApprovedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsApprovedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutNormVersionsPublishedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsPublishedInput, Prisma.UserUncheckedCreateWithoutNormVersionsPublishedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsPublishedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutNormVersionsCreatedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsCreatedInput, Prisma.UserUncheckedCreateWithoutNormVersionsCreatedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsCreatedInput
+  upsert?: Prisma.UserUpsertWithoutNormVersionsCreatedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNormVersionsCreatedInput, Prisma.UserUpdateWithoutNormVersionsCreatedInput>, Prisma.UserUncheckedUpdateWithoutNormVersionsCreatedInput>
+}
+
+export type UserUpdateOneWithoutNormVersionsReviewedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsReviewedInput, Prisma.UserUncheckedCreateWithoutNormVersionsReviewedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsReviewedInput
+  upsert?: Prisma.UserUpsertWithoutNormVersionsReviewedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNormVersionsReviewedInput, Prisma.UserUpdateWithoutNormVersionsReviewedInput>, Prisma.UserUncheckedUpdateWithoutNormVersionsReviewedInput>
+}
+
+export type UserUpdateOneWithoutNormVersionsApprovedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsApprovedInput, Prisma.UserUncheckedCreateWithoutNormVersionsApprovedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsApprovedInput
+  upsert?: Prisma.UserUpsertWithoutNormVersionsApprovedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNormVersionsApprovedInput, Prisma.UserUpdateWithoutNormVersionsApprovedInput>, Prisma.UserUncheckedUpdateWithoutNormVersionsApprovedInput>
+}
+
+export type UserUpdateOneWithoutNormVersionsPublishedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsPublishedInput, Prisma.UserUncheckedCreateWithoutNormVersionsPublishedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNormVersionsPublishedInput
+  upsert?: Prisma.UserUpsertWithoutNormVersionsPublishedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNormVersionsPublishedInput, Prisma.UserUpdateWithoutNormVersionsPublishedInput>, Prisma.UserUncheckedUpdateWithoutNormVersionsPublishedInput>
+}
+
+export type UserCreateNestedOneWithoutRecalculationsRequestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecalculationsRequestedInput, Prisma.UserUncheckedCreateWithoutRecalculationsRequestedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecalculationsRequestedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutRecalculationsRequestedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecalculationsRequestedInput, Prisma.UserUncheckedCreateWithoutRecalculationsRequestedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecalculationsRequestedInput
+  upsert?: Prisma.UserUpsertWithoutRecalculationsRequestedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecalculationsRequestedInput, Prisma.UserUpdateWithoutRecalculationsRequestedInput>, Prisma.UserUncheckedUpdateWithoutRecalculationsRequestedInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   email: string
@@ -689,6 +804,11 @@ export type UserCreateWithoutRolesInput = {
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutRolesInput = {
@@ -709,6 +829,11 @@ export type UserUncheckedCreateWithoutRolesInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutRolesInput = {
@@ -745,6 +870,11 @@ export type UserUpdateWithoutRolesInput = {
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRolesInput = {
@@ -765,6 +895,11 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -785,6 +920,11 @@ export type UserCreateWithoutSessionsInput = {
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -805,6 +945,11 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -841,6 +986,11 @@ export type UserUpdateWithoutSessionsInput = {
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -861,6 +1011,11 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutResetTokensInput = {
@@ -881,6 +1036,11 @@ export type UserCreateWithoutResetTokensInput = {
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutResetTokensInput = {
@@ -901,6 +1061,11 @@ export type UserUncheckedCreateWithoutResetTokensInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutResetTokensInput = {
@@ -937,6 +1102,11 @@ export type UserUpdateWithoutResetTokensInput = {
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutResetTokensInput = {
@@ -957,6 +1127,11 @@ export type UserUncheckedUpdateWithoutResetTokensInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutVerificationTokensInput = {
@@ -977,6 +1152,11 @@ export type UserCreateWithoutVerificationTokensInput = {
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutVerificationTokensInput = {
@@ -997,6 +1177,11 @@ export type UserUncheckedCreateWithoutVerificationTokensInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutVerificationTokensInput = {
@@ -1033,6 +1218,11 @@ export type UserUpdateWithoutVerificationTokensInput = {
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerificationTokensInput = {
@@ -1053,6 +1243,11 @@ export type UserUncheckedUpdateWithoutVerificationTokensInput = {
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutConsentsInput = {
@@ -1073,6 +1268,11 @@ export type UserCreateWithoutConsentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutConsentsInput = {
@@ -1093,6 +1293,11 @@ export type UserUncheckedCreateWithoutConsentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutConsentsInput = {
@@ -1129,6 +1334,11 @@ export type UserUpdateWithoutConsentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConsentsInput = {
@@ -1149,6 +1359,11 @@ export type UserUncheckedUpdateWithoutConsentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutAssignmentsInput = {
@@ -1169,6 +1384,11 @@ export type UserCreateWithoutAssignmentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -1189,6 +1409,11 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignmentsInput = {
@@ -1225,6 +1450,11 @@ export type UserUpdateWithoutAssignmentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -1245,6 +1475,11 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1265,6 +1500,11 @@ export type UserCreateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1285,6 +1525,11 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1321,6 +1566,11 @@ export type UserUpdateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1341,6 +1591,591 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserCreateWithoutNormVersionsCreatedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserUncheckedCreateWithoutNormVersionsCreatedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutNormVersionsCreatedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsCreatedInput, Prisma.UserUncheckedCreateWithoutNormVersionsCreatedInput>
+}
+
+export type UserCreateWithoutNormVersionsReviewedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserUncheckedCreateWithoutNormVersionsReviewedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutNormVersionsReviewedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsReviewedInput, Prisma.UserUncheckedCreateWithoutNormVersionsReviewedInput>
+}
+
+export type UserCreateWithoutNormVersionsApprovedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserUncheckedCreateWithoutNormVersionsApprovedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutNormVersionsApprovedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsApprovedInput, Prisma.UserUncheckedCreateWithoutNormVersionsApprovedInput>
+}
+
+export type UserCreateWithoutNormVersionsPublishedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserUncheckedCreateWithoutNormVersionsPublishedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutNormVersionsPublishedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsPublishedInput, Prisma.UserUncheckedCreateWithoutNormVersionsPublishedInput>
+}
+
+export type UserUpsertWithoutNormVersionsCreatedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsCreatedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsCreatedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsCreatedInput, Prisma.UserUncheckedCreateWithoutNormVersionsCreatedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNormVersionsCreatedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsCreatedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsCreatedInput>
+}
+
+export type UserUpdateWithoutNormVersionsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNormVersionsCreatedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUpsertWithoutNormVersionsReviewedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsReviewedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsReviewedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsReviewedInput, Prisma.UserUncheckedCreateWithoutNormVersionsReviewedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNormVersionsReviewedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsReviewedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsReviewedInput>
+}
+
+export type UserUpdateWithoutNormVersionsReviewedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNormVersionsReviewedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUpsertWithoutNormVersionsApprovedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsApprovedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsApprovedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsApprovedInput, Prisma.UserUncheckedCreateWithoutNormVersionsApprovedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNormVersionsApprovedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsApprovedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsApprovedInput>
+}
+
+export type UserUpdateWithoutNormVersionsApprovedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNormVersionsApprovedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUpsertWithoutNormVersionsPublishedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsPublishedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsPublishedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNormVersionsPublishedInput, Prisma.UserUncheckedCreateWithoutNormVersionsPublishedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNormVersionsPublishedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNormVersionsPublishedInput, Prisma.UserUncheckedUpdateWithoutNormVersionsPublishedInput>
+}
+
+export type UserUpdateWithoutNormVersionsPublishedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNormVersionsPublishedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserCreateWithoutRecalculationsRequestedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+}
+
+export type UserUncheckedCreateWithoutRecalculationsRequestedInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+}
+
+export type UserCreateOrConnectWithoutRecalculationsRequestedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecalculationsRequestedInput, Prisma.UserUncheckedCreateWithoutRecalculationsRequestedInput>
+}
+
+export type UserUpsertWithoutRecalculationsRequestedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRecalculationsRequestedInput, Prisma.UserUncheckedUpdateWithoutRecalculationsRequestedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecalculationsRequestedInput, Prisma.UserUncheckedCreateWithoutRecalculationsRequestedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRecalculationsRequestedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRecalculationsRequestedInput, Prisma.UserUncheckedUpdateWithoutRecalculationsRequestedInput>
+}
+
+export type UserUpdateWithoutRecalculationsRequestedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRecalculationsRequestedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
 }
 
 
@@ -1356,6 +2191,11 @@ export type UserCountOutputType = {
   consents: number
   assignments: number
   auditLogs: number
+  normVersionsCreated: number
+  normVersionsReviewed: number
+  normVersionsApproved: number
+  normVersionsPublished: number
+  recalculationsRequested: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1366,6 +2206,11 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   consents?: boolean | UserCountOutputTypeCountConsentsArgs
   assignments?: boolean | UserCountOutputTypeCountAssignmentsArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  normVersionsCreated?: boolean | UserCountOutputTypeCountNormVersionsCreatedArgs
+  normVersionsReviewed?: boolean | UserCountOutputTypeCountNormVersionsReviewedArgs
+  normVersionsApproved?: boolean | UserCountOutputTypeCountNormVersionsApprovedArgs
+  normVersionsPublished?: boolean | UserCountOutputTypeCountNormVersionsPublishedArgs
+  recalculationsRequested?: boolean | UserCountOutputTypeCountRecalculationsRequestedArgs
 }
 
 /**
@@ -1427,6 +2272,41 @@ export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.AuditLogWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNormVersionsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NormVersionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNormVersionsReviewedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NormVersionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNormVersionsApprovedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NormVersionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNormVersionsPublishedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NormVersionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecalculationsRequestedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ResultRunWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1447,6 +2327,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   consents?: boolean | Prisma.User$consentsArgs<ExtArgs>
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  normVersionsCreated?: boolean | Prisma.User$normVersionsCreatedArgs<ExtArgs>
+  normVersionsReviewed?: boolean | Prisma.User$normVersionsReviewedArgs<ExtArgs>
+  normVersionsApproved?: boolean | Prisma.User$normVersionsApprovedArgs<ExtArgs>
+  normVersionsPublished?: boolean | Prisma.User$normVersionsPublishedArgs<ExtArgs>
+  recalculationsRequested?: boolean | Prisma.User$recalculationsRequestedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1475,6 +2360,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   consents?: boolean | Prisma.User$consentsArgs<ExtArgs>
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
+  normVersionsCreated?: boolean | Prisma.User$normVersionsCreatedArgs<ExtArgs>
+  normVersionsReviewed?: boolean | Prisma.User$normVersionsReviewedArgs<ExtArgs>
+  normVersionsApproved?: boolean | Prisma.User$normVersionsApprovedArgs<ExtArgs>
+  normVersionsPublished?: boolean | Prisma.User$normVersionsPublishedArgs<ExtArgs>
+  recalculationsRequested?: boolean | Prisma.User$recalculationsRequestedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1488,6 +2378,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     consents: Prisma.$ConsentAcceptancePayload<ExtArgs>[]
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    normVersionsCreated: Prisma.$NormVersionPayload<ExtArgs>[]
+    normVersionsReviewed: Prisma.$NormVersionPayload<ExtArgs>[]
+    normVersionsApproved: Prisma.$NormVersionPayload<ExtArgs>[]
+    normVersionsPublished: Prisma.$NormVersionPayload<ExtArgs>[]
+    recalculationsRequested: Prisma.$ResultRunPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1848,6 +2743,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   consents<T extends Prisma.User$consentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$consentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConsentAcceptancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.User$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  normVersionsCreated<T extends Prisma.User$normVersionsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$normVersionsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  normVersionsReviewed<T extends Prisma.User$normVersionsReviewedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$normVersionsReviewedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  normVersionsApproved<T extends Prisma.User$normVersionsApprovedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$normVersionsApprovedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  normVersionsPublished<T extends Prisma.User$normVersionsPublishedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$normVersionsPublishedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recalculationsRequested<T extends Prisma.User$recalculationsRequestedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recalculationsRequestedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2401,6 +3301,126 @@ export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * User.normVersionsCreated
+ */
+export type User$normVersionsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NormVersion
+   */
+  select?: Prisma.NormVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NormVersion
+   */
+  omit?: Prisma.NormVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NormVersionInclude<ExtArgs> | null
+  where?: Prisma.NormVersionWhereInput
+  orderBy?: Prisma.NormVersionOrderByWithRelationInput | Prisma.NormVersionOrderByWithRelationInput[]
+  cursor?: Prisma.NormVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NormVersionScalarFieldEnum | Prisma.NormVersionScalarFieldEnum[]
+}
+
+/**
+ * User.normVersionsReviewed
+ */
+export type User$normVersionsReviewedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NormVersion
+   */
+  select?: Prisma.NormVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NormVersion
+   */
+  omit?: Prisma.NormVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NormVersionInclude<ExtArgs> | null
+  where?: Prisma.NormVersionWhereInput
+  orderBy?: Prisma.NormVersionOrderByWithRelationInput | Prisma.NormVersionOrderByWithRelationInput[]
+  cursor?: Prisma.NormVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NormVersionScalarFieldEnum | Prisma.NormVersionScalarFieldEnum[]
+}
+
+/**
+ * User.normVersionsApproved
+ */
+export type User$normVersionsApprovedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NormVersion
+   */
+  select?: Prisma.NormVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NormVersion
+   */
+  omit?: Prisma.NormVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NormVersionInclude<ExtArgs> | null
+  where?: Prisma.NormVersionWhereInput
+  orderBy?: Prisma.NormVersionOrderByWithRelationInput | Prisma.NormVersionOrderByWithRelationInput[]
+  cursor?: Prisma.NormVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NormVersionScalarFieldEnum | Prisma.NormVersionScalarFieldEnum[]
+}
+
+/**
+ * User.normVersionsPublished
+ */
+export type User$normVersionsPublishedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NormVersion
+   */
+  select?: Prisma.NormVersionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NormVersion
+   */
+  omit?: Prisma.NormVersionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NormVersionInclude<ExtArgs> | null
+  where?: Prisma.NormVersionWhereInput
+  orderBy?: Prisma.NormVersionOrderByWithRelationInput | Prisma.NormVersionOrderByWithRelationInput[]
+  cursor?: Prisma.NormVersionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NormVersionScalarFieldEnum | Prisma.NormVersionScalarFieldEnum[]
+}
+
+/**
+ * User.recalculationsRequested
+ */
+export type User$recalculationsRequestedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ResultRun
+   */
+  select?: Prisma.ResultRunSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ResultRun
+   */
+  omit?: Prisma.ResultRunOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResultRunInclude<ExtArgs> | null
+  where?: Prisma.ResultRunWhereInput
+  orderBy?: Prisma.ResultRunOrderByWithRelationInput | Prisma.ResultRunOrderByWithRelationInput[]
+  cursor?: Prisma.ResultRunWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ResultRunScalarFieldEnum | Prisma.ResultRunScalarFieldEnum[]
 }
 
 /**

@@ -104,7 +104,7 @@ export class AuthService {
   async login(dto: LoginDto, userAgent?: string) {
     const user = await this.prisma.user.findUnique({
       where: { email: dto.email.trim().toLowerCase() },
-      include: { roles: { include: { role: true } } },
+      include: { roles: { include: { role: { include: { permissions: { include: { permission: true } } } } } } },
     });
     if (!user || !(await argon2.verify(user.passwordHash, dto.password))) {
       if (user) await this.recordFailedLogin(user.id, user.failedLoginAttempts);
@@ -119,28 +119,30 @@ export class AuthService {
     }
 
     const roles = user.roles.map(({ role }) => role.code);
+    const permissions = [...new Set(user.roles.flatMap(({ role }) => role.permissions.map(({ permission }) => permission.code)))];
     await this.prisma.user.update({ where: { id: user.id }, data: { status: UserStatus.ACTIVE, failedLoginAttempts: 0, lockedUntil: null } });
     const refreshSecret = randomBytes(48).toString('base64url');
     const expiresAt = new Date(Date.now() + this.refreshDays * 86_400_000);
     const session = await this.prisma.session.create({ data: { userId: user.id, refreshTokenHash: this.hash(refreshSecret), userAgent, expiresAt } });
     return {
-      accessToken: await this.signAccess({ sub: user.id, email: user.email, roles }),
+      accessToken: await this.signAccess({ sub: user.id, email: user.email, roles, permissions }),
       refreshToken: `${session.id}.${refreshSecret}`,
-      user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName, roles },
+      user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName, roles, permissions },
     };
   }
 
   async refresh(rawToken: string | undefined) {
     const [sessionId, suppliedSecret] = rawToken?.split('.') ?? [];
     if (!sessionId || !suppliedSecret) throw new UnauthorizedException('Sesión no válida.');
-    const session = await this.prisma.session.findUnique({ where: { id: sessionId }, include: { user: { include: { roles: { include: { role: true } } } } } });
+    const session = await this.prisma.session.findUnique({ where: { id: sessionId }, include: { user: { include: { roles: { include: { role: { include: { permissions: { include: { permission: true } } } } } } } } } });
     if (!session || session.revokedAt || session.expiresAt <= new Date() || !this.safeEqual(session.refreshTokenHash, this.hash(suppliedSecret))) {
       throw new UnauthorizedException('La sesión expiró o fue revocada.');
     }
     const nextSecret = randomBytes(48).toString('base64url');
     await this.prisma.session.update({ where: { id: session.id }, data: { refreshTokenHash: this.hash(nextSecret), lastUsedAt: new Date() } });
     const roles = session.user.roles.map(({ role }) => role.code);
-    return { accessToken: await this.signAccess({ sub: session.user.id, email: session.user.email, roles }), refreshToken: `${session.id}.${nextSecret}` };
+    const permissions = [...new Set(session.user.roles.flatMap(({ role }) => role.permissions.map(({ permission }) => permission.code)))];
+    return { accessToken: await this.signAccess({ sub: session.user.id, email: session.user.email, roles, permissions }), refreshToken: `${session.id}.${nextSecret}` };
   }
 
   async logout(rawToken: string | undefined) {
@@ -149,7 +151,12 @@ export class AuthService {
   }
 
   async me(userId: string) {
-    return this.prisma.user.findUniqueOrThrow({ where: { id: userId }, select: { id: true, email: true, firstName: true, lastName: true, status: true, emailVerifiedAt: true, roles: { select: { role: { select: { code: true, name: true } } } } } });
+    const user = await this.prisma.user.findUniqueOrThrow({ where: { id: userId }, select: { id: true, email: true, firstName: true, lastName: true, status: true, emailVerifiedAt: true, roles: { select: { role: { select: { code: true, name: true, permissions: { select: { permission: { select: { code: true } } } } } } } } } });
+    return {
+      ...user,
+      roles: user.roles.map(({ role }) => role.code),
+      permissions: [...new Set(user.roles.flatMap(({ role }) => role.permissions.map(({ permission }) => permission.code)))],
+    };
   }
 
   private async deliverVerification(userId: string, email: string, firstName: string) {
@@ -168,4 +175,3 @@ export class AuthService {
     await this.prisma.user.update({ where: { id: userId }, data: { failedLoginAttempts: next, ...(next >= 5 ? { status: UserStatus.LOCKED, lockedUntil: new Date(Date.now() + 15 * 60_000) } : {}) } });
   }
 }
-

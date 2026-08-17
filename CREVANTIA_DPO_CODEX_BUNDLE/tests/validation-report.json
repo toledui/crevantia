@@ -1,0 +1,46 @@
+{
+  "status": "PASS_WITH_KNOWN_SOURCE_DEFECTS",
+  "errors": [],
+  "knownSourceDefects": [
+    {
+      "code": "WRONG_NORM_REFERENCE_APEGO_A_NORMAS",
+      "sourceCell": "Puntuación!K674",
+      "sourceFormulaUses": "Equivalencias!AL16:AM25 (Creatividad Aplicada)",
+      "expectedNormRange": "Equivalencias!BJ16:BK25 (Apego a normas)",
+      "sourceWorkbookCachedDecile": 10,
+      "correctedSemanticDecile": 9
+    }
+  ],
+  "checks": {
+    "reactiveContributionsComparedToWorkbook": 336,
+    "scaleRawScoresComparedToWorkbook": 48,
+    "currentCompositeRawScoresComparedToWorkbook": 33,
+    "currentCompositeDecilesComparedToWorkbook": 33,
+    "questionBankCountsValidated": true,
+    "normTablesScanned": 94
+  },
+  "knownNonBlockingReviewItems": {
+    "duplicateNormCutPointTargets": [
+      "Adaptación",
+      "Superación",
+      "Autoconocimiento",
+      "Autocontrol",
+      "Esfuerzo",
+      "Compromiso",
+      "Percepción Interpersonal",
+      "Consciencia del Entorno",
+      "Anticipación",
+      "Participación",
+      "Recuperación",
+      "Alineamiento de Acciones",
+      "Aprovechamiento de Talentos",
+      "Sentido de contribución"
+    ],
+    "blockedNormTargets": [
+      "Búsqueda de Significado Psicoproductivo",
+      "Cuadrantes"
+    ],
+    "likertScoringMissing": true,
+    "newReportMappingsMissing": true
+  }
+}
