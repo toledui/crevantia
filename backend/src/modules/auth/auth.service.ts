@@ -7,7 +7,7 @@ import type { AuthenticatedUser } from '../../common/auth.types';
 import { PrismaService } from '../../database/prisma.service';
 import { UserStatus } from '../../generated/prisma/client';
 import { MailService } from '../mail/mail.service';
-import { EmailDto, LoginDto, RegisterDto, ResetPasswordDto, TokenDto } from './auth.dto';
+import { ChangePasswordDto, CheckoutRegisterDto, EmailDto, LoginDto, RegisterDto, ResetPasswordDto, TokenDto, UpdateProfileDto } from './auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +17,103 @@ export class AuthService {
     private readonly config: ConfigService,
     private readonly mail: MailService,
   ) {}
+
+  async checkEmail(email: string) {
+    const clean = email.trim().toLowerCase();
+    const user = await this.prisma.user.findUnique({
+      where: { email: clean },
+      select: { id: true, firstName: true, lastName: true },
+    });
+    return {
+      exists: Boolean(user),
+      firstName: user?.firstName || null,
+    };
+  }
+
+  async checkoutRegister(dto: CheckoutRegisterDto, userAgent?: string) {
+    const email = dto.email.trim().toLowerCase();
+    let user = await this.prisma.user.findUnique({
+      where: { email },
+      include: {
+        roles: {
+          include: {
+            role: {
+              include: {
+                permissions: { include: { permission: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    const plainPassword = dto.password?.trim() || `${randomBytes(4).toString('hex')}A1!`;
+
+    if (!user) {
+      const userRole = await this.prisma.role.findUniqueOrThrow({ where: { code: 'USER' } });
+      user = await this.prisma.user.create({
+        data: {
+          email,
+          firstName: dto.firstName.trim(),
+          lastName: dto.lastName.trim(),
+          passwordHash: await argon2.hash(plainPassword, { type: argon2.argon2id }),
+          status: UserStatus.ACTIVE,
+          emailVerifiedAt: new Date(),
+          roles: { create: { roleId: userRole.id } },
+          consents: {
+            create: [
+              { consentType: 'TERMS', documentVersion: 'checkout-v1' },
+              { consentType: 'PRIVACY', documentVersion: 'checkout-v1' },
+            ],
+          },
+        },
+        include: {
+          roles: {
+            include: {
+              role: {
+                include: {
+                  permissions: { include: { permission: true } },
+                },
+              },
+            },
+          },
+        },
+      });
+
+      // Send welcome email with credentials
+      try {
+        await this.mail.sendAccountCreatedWithPurchaseEmail(user.email, user.firstName, plainPassword);
+      } catch {
+        // Logged internally
+      }
+    }
+
+    const rawSecret = randomBytes(48).toString('base64url');
+    const session = await this.prisma.session.create({
+      data: {
+        userId: user.id,
+        refreshTokenHash: this.hash(rawSecret),
+        userAgent: userAgent ?? null,
+        expiresAt: new Date(Date.now() + this.refreshDays * 86_400_000),
+      },
+    });
+
+    const roles = user.roles.map(({ role }) => role.code);
+    const permissions = [...new Set(user.roles.flatMap(({ role }) => role.permissions.map(({ permission }) => permission.code)))];
+
+    const accessToken = await this.signAccess({
+      sub: user.id,
+      email: user.email,
+      roles,
+      permissions,
+    });
+
+    return {
+      accessToken,
+      refreshToken: `${session.id}.${rawSecret}`,
+      user: { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName, roles, permissions },
+    };
+  }
 
   async register(dto: RegisterDto) {
     if (!dto.termsAccepted || !dto.privacyAccepted) {
@@ -98,7 +195,82 @@ export class AuthService {
       this.prisma.session.updateMany({ where: { userId: token.userId, revokedAt: null }, data: { revokedAt: new Date() } }),
       this.prisma.auditLog.create({ data: { actorId: token.userId, action: 'PASSWORD_RESET', entityType: 'User', entityId: token.userId } }),
     ]);
+
+    try {
+      await this.mail.sendPasswordChangedConfirmationEmail(token.user.email, token.user.firstName);
+    } catch {
+      // Ignored
+    }
+
     return { success: true, message: 'La contraseña fue actualizada. Ya puedes iniciar sesión.' };
+  }
+
+  async updateProfile(userId: string, dto: UpdateProfileDto) {
+    const updated = await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        firstName: dto.firstName.trim(),
+        lastName: dto.lastName.trim(),
+      },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        status: true,
+        emailVerifiedAt: true,
+      },
+    });
+
+    await this.prisma.auditLog.create({
+      data: {
+        actorId: userId,
+        action: 'PROFILE_UPDATED',
+        entityType: 'User',
+        entityId: userId,
+        metadata: { firstName: updated.firstName, lastName: updated.lastName },
+      },
+    });
+
+    return {
+      success: true,
+      message: 'Perfil actualizado correctamente.',
+      user: updated,
+    };
+  }
+
+  async changePassword(userId: string, dto: ChangePasswordDto) {
+    const user = await this.prisma.user.findUniqueOrThrow({ where: { id: userId } });
+    if (!(await argon2.verify(user.passwordHash, dto.currentPassword))) {
+      throw new BadRequestException('La contraseña actual es incorrecta.');
+    }
+
+    const passwordHash = await argon2.hash(dto.newPassword, { type: argon2.argon2id });
+
+    await this.prisma.$transaction([
+      this.prisma.user.update({
+        where: { id: userId },
+        data: { passwordHash, failedLoginAttempts: 0, lockedUntil: null },
+      }),
+      this.prisma.session.updateMany({
+        where: { userId, revokedAt: null },
+        data: { revokedAt: new Date() },
+      }),
+      this.prisma.auditLog.create({
+        data: { actorId: userId, action: 'PASSWORD_CHANGED', entityType: 'User', entityId: userId },
+      }),
+    ]);
+
+    try {
+      await this.mail.sendPasswordChangedConfirmationEmail(user.email, user.firstName);
+    } catch {
+      // Ignored
+    }
+
+    return {
+      success: true,
+      message: 'Contraseña actualizada exitosamente.',
+    };
   }
 
   async login(dto: LoginDto, userAgent?: string) {

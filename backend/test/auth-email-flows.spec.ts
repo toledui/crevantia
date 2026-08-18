@@ -219,4 +219,43 @@ describe('MailService SMTP settings', () => {
       expect(exception.message).toContain('rechazó la autenticación');
     }
   });
+
+  it('allows testing SMTP with real-time form parameters even if disabled in database', async () => {
+    type TestMessage = { to: string; subject: string };
+    const sendMail = jest.fn<Promise<{ messageId: string }>, [TestMessage]>().mockResolvedValue({ messageId: 'test-msg-2' });
+    const createTransport = jest.spyOn(nodemailer, 'createTransport').mockReturnValue({ sendMail } as never);
+    const createAudit = jest.fn().mockResolvedValue({ id: 'audit-2' });
+    const prisma = {
+      mailSettings: { findUnique: jest.fn().mockResolvedValue({
+        id: 'smtp', enabled: false, host: 'old.host.example', port: 25, secure: false,
+        username: null, passwordEncrypted: null, fromName: 'Crevantia', fromAddress: 'old@example.com',
+      }) },
+      auditLog: { create: createAudit },
+    };
+    const service = new MailService(
+      prisma as never,
+      { decrypt: () => 'override-password' } as unknown as EncryptionService,
+      {} as ConfigService,
+    );
+
+    const result = await service.testSettings('admin-1', {
+      email: 'live-test@example.com',
+      host: 'smtp.new-provider.example',
+      port: 465,
+      secure: true,
+      username: 'new-user',
+      password: 'new-password',
+      fromName: 'New Sender',
+      fromAddress: 'sender@new-provider.example',
+    });
+
+    expect(createTransport).toHaveBeenCalledWith(expect.objectContaining({
+      host: 'smtp.new-provider.example',
+      port: 465,
+      secure: true,
+      auth: { user: 'new-user', pass: 'new-password' },
+    }));
+    expect(sendMail.mock.calls[0]?.[0].to).toBe('live-test@example.com');
+    expect(result.success).toBe(true);
+  });
 });

@@ -108,20 +108,29 @@ export function UserAssessmentsPanel() {
                   <dd>{assignment.attempt?.status ?? assignment.status}</dd>
                 </div>
               </dl>
-              <button
-                className="primary-button compact"
-                disabled={
-                  busy === assignment.id ||
-                  assignment.attempt?.status === "COMPLETED"
-                }
-                onClick={() => void open(assignment)}
-              >
-                {busy === assignment.id
-                  ? "Abriendo…"
-                  : assignment.attempt
-                    ? "Continuar"
-                    : "Iniciar evaluación"}
-              </button>
+              {assignment.attempt?.status === "COMPLETED" && assignment.attempt.resultRuns?.[0]?.id ? (
+                <button
+                  className="secondary-button compact"
+                  onClick={() => router.push(`/resultados/${assignment.attempt?.resultRuns[0]?.id}`)}
+                >
+                  📊 Ver Resultados y Reporte
+                </button>
+              ) : (
+                <button
+                  className="primary-button compact"
+                  disabled={
+                    busy === assignment.id ||
+                    assignment.attempt?.status === "COMPLETED"
+                  }
+                  onClick={() => void open(assignment)}
+                >
+                  {busy === assignment.id
+                    ? "Abriendo…"
+                    : assignment.attempt
+                      ? "Continuar evaluación"
+                      : "Iniciar evaluación"}
+                </button>
+              )}
             </article>
           ))}
         </div>

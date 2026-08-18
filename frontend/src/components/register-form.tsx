@@ -11,21 +11,37 @@ export function RegisterForm() {
   const [busy, setBusy] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); setBusy(true); setError(''); setMessage(''); setAccountCreated(false);
-    const data = new FormData(event.currentTarget);
-    if (data.get('password') !== data.get('confirmPassword')) { setError('Las contraseñas no coinciden.'); setBusy(false); return; }
+    event.preventDefault();
+    const form = event.currentTarget;
+    setBusy(true);
+    setError('');
+    setMessage('');
+    setAccountCreated(false);
+    const data = new FormData(form);
+    if (data.get('password') !== data.get('confirmPassword')) {
+      setError('Las contraseñas no coinciden.');
+      setBusy(false);
+      return;
+    }
     try {
       const result = await register({
-        firstName: data.get('firstName'), lastName: data.get('lastName'), email: data.get('email'), password: data.get('password'),
-        termsAccepted: data.get('termsAccepted') === 'on', privacyAccepted: data.get('privacyAccepted') === 'on',
+        firstName: data.get('firstName'),
+        lastName: data.get('lastName'),
+        email: data.get('email'),
+        password: data.get('password'),
+        termsAccepted: data.get('termsAccepted') === 'on',
+        privacyAccepted: data.get('privacyAccepted') === 'on',
       });
       setMessage(result.deliveryStatus === 'SENT'
         ? 'Cuenta creada. Enviamos un enlace a tu correo; debes confirmarlo antes de iniciar sesión.'
         : 'Cuenta creada, pero el correo no pudo enviarse. Solicita un nuevo enlace cuando SMTP esté configurado.');
       setAccountCreated(true);
-      event.currentTarget.reset();
-    } catch (reason) { setError(reason instanceof Error ? reason.message : 'No fue posible crear la cuenta.'); }
-    finally { setBusy(false); }
+      form.reset();
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'No fue posible crear la cuenta.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (

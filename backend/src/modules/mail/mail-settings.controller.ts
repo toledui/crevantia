@@ -23,6 +23,6 @@ export class MailSettingsController {
 
   @Post('test')
   test(@CurrentUser() user: AuthenticatedUser, @Body() dto: TestMailSettingsDto) {
-    return this.mail.testSettings(user.sub, dto.email);
+    return this.mail.testSettings(user.sub, dto);
   }
 }

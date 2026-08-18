@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail, IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsOptional, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
 const PASSWORD_MESSAGE = 'La contraseña debe incluir mayúscula, minúscula y número.';
@@ -31,5 +31,24 @@ export class ResetPasswordDto extends TokenDto {
   @IsString() @MinLength(10) @MaxLength(128)
   @Matches(PASSWORD_PATTERN, { message: PASSWORD_MESSAGE })
   password!: string;
+}
+
+export class CheckoutRegisterDto {
+  @IsEmail() @MaxLength(191) email!: string;
+  @IsString() @MinLength(2) @MaxLength(100) firstName!: string;
+  @IsString() @MinLength(2) @MaxLength(150) lastName!: string;
+  @IsOptional() @IsString() @MinLength(8) password?: string;
+}
+
+export class UpdateProfileDto {
+  @IsString() @MinLength(2) @MaxLength(100) firstName!: string;
+  @IsString() @MinLength(2) @MaxLength(150) lastName!: string;
+}
+
+export class ChangePasswordDto {
+  @IsString() @MinLength(1) currentPassword!: string;
+  @IsString() @MinLength(10) @MaxLength(128)
+  @Matches(PASSWORD_PATTERN, { message: PASSWORD_MESSAGE })
+  newPassword!: string;
 }
 

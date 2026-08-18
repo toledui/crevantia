@@ -1002,8 +1002,8 @@ a:hover {
 }
 .settings-nav {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 680px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  width: min(100%, 960px);
   gap: 6px;
   padding: 6px;
   border: 1px solid rgba(156, 166, 184, 0.22);
@@ -1011,7 +1011,8 @@ a:hover {
   background: rgba(255, 255, 255, 0.58);
   box-shadow: 0 9px 26px rgba(8, 11, 18, 0.035);
 }
-.settings-nav a {
+.settings-nav a,
+.settings-nav button {
   display: grid;
   gap: 3px;
   padding: 11px 14px;
@@ -1020,14 +1021,20 @@ a:hover {
   color: #687386;
   background: transparent;
   text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-align: left;
   transition: 0.2s ease;
 }
-.settings-nav a:hover {
+.settings-nav a:hover,
+.settings-nav button:hover {
   border-color: rgba(48, 43, 120, 0.35);
   text-decoration: none;
   transform: translateY(-1px);
 }
-.settings-nav a.active {
+.settings-nav a.active,
+.settings-nav button.active {
   color: var(--indigo);
   border-color: rgba(0, 194, 232, 0.35);
   background: white;
@@ -1119,7 +1126,8 @@ a:hover {
   font-size: 11px;
   font-weight: 800;
 }
-.settings-grid input {
+.settings-grid input,
+.settings-grid select {
   width: 100%;
   height: 48px;
   padding: 0 14px;
@@ -1127,8 +1135,16 @@ a:hover {
   border-radius: 12px;
   outline: 0;
   background: white;
+  color: #313847;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
 }
-.settings-grid input:focus {
+.settings-grid select {
+  cursor: pointer;
+}
+.settings-grid input:focus,
+.settings-grid select:focus {
   border-color: var(--cyan);
   box-shadow: 0 0 0 4px rgba(0, 194, 232, 0.09);
 }

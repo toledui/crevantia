@@ -34,8 +34,10 @@
     "fflate": "^0.8.3",
     "helmet": "^8.1.0",
     "nodemailer": "^9.0.4",
+    "pdfkit": "^0.19.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "stripe": "^22.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.34.0",
@@ -47,6 +49,7 @@
     "@types/multer": "^2.2.0",
     "@types/node": "^24.3.0",
     "@types/nodemailer": "^8.0.1",
+    "@types/pdfkit": "^0.17.6",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
     "jest": "^30.1.1",

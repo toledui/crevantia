@@ -158,3 +158,22 @@ export const ScoringSpecificationStatus = {
 } as const
 
 export type ScoringSpecificationStatus = (typeof ScoringSpecificationStatus)[keyof typeof ScoringSpecificationStatus]
+
+
+export const CouponDiscountType = {
+  PERCENTAGE: 'PERCENTAGE',
+  FIXED_AMOUNT: 'FIXED_AMOUNT'
+} as const
+
+export type CouponDiscountType = (typeof CouponDiscountType)[keyof typeof CouponDiscountType]
+
+
+export const OrderStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]

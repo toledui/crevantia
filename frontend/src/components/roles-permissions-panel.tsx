@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import { AdminToast } from '@/components/admin-toast';
 import { apiFetch } from '@/lib/api';
 
 interface Permission { id: string; code: string; description: string | null }
@@ -72,9 +73,27 @@ export function RolesPermissionsPanel() {
   const role = creating ? undefined : selected;
   const locked = role?.code === 'SUPERADMIN';
 
-  return <section className="settings-section access-section">
-    <div className="settings-section-title"><div><span className="eyebrow dark">Control de acceso</span><h2>Roles y permisos</h2><p>Crea perfiles de acceso reutilizables para los módulos administrativos.</p></div><button className="primary-button compact" type="button" onClick={() => { setCreating(true); setMessage(''); setError(''); }}>+ Nuevo rol</button></div>
-    {error && <p className="form-error" role="alert">{error}</p>}{message && <p className="form-success" role="status">{message}</p>}
+  return (
+    <section className="settings-section access-section">
+      <AdminToast error={error} message={message} setError={setError} setMessage={setMessage} />
+      <div className="settings-section-title">
+        <div>
+          <span className="eyebrow dark">Control de acceso</span>
+          <h2>Roles y permisos</h2>
+          <p>Crea perfiles de acceso reutilizables para los módulos administrativos.</p>
+        </div>
+        <button
+          className="primary-button compact"
+          type="button"
+          onClick={() => {
+            setCreating(true);
+            setMessage('');
+            setError('');
+          }}
+        >
+          + Nuevo rol
+        </button>
+      </div>
     {loading ? <div className="panel access-loading">Cargando roles y permisos…</div> : <div className="access-layout">
       <aside className="panel role-list" aria-label="Roles disponibles">
         {data.roles.map((item) => <button type="button" key={item.id} className={!creating && item.id === selectedId ? 'active' : ''} onClick={() => { setSelectedId(item.id); setCreating(false); setError(''); setMessage(''); }}><span><strong>{item.name}</strong><small>{item.code}</small></span><b>{item.userCount}</b></button>)}
@@ -88,5 +107,6 @@ export function RolesPermissionsPanel() {
         <footer><div>{role && !role.isSystem && <button className="danger-button" type="button" onClick={() => void remove()} disabled={saving}>Eliminar rol</button>}</div><div className="role-actions">{creating && <button className="secondary-button" type="button" onClick={() => setCreating(false)}>Cancelar</button>}<button className="primary-button compact" disabled={saving || locked}>{saving ? 'Guardando…' : creating ? 'Crear rol' : 'Guardar permisos'}</button></div></footer>
       </form>
     </div>}
-  </section>;
+    </section>
+  );
 }

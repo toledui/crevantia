@@ -135,6 +135,8 @@ model User {
   verificationTokens      EmailVerificationToken[]
   consents                ConsentAcceptance[]
   assignments             Assignment[]
+  purchaseOrders          PurchaseOrder[]
+  couponRedemptions       CouponRedemption[]
   auditLogs               AuditLog[]               @relation("AuditActor")
   normVersionsCreated     NormVersion[]            @relation("NormCreatedBy")
   normVersionsReviewed    NormVersion[]            @relation("NormReviewedBy")
@@ -251,10 +253,11 @@ model Test {
   slug        String        @unique @db.VarChar(100)
   name        String        @db.VarChar(160)
   description String?       @db.Text
-  isActive    Boolean       @default(true)
-  versions    TestVersion[]
-  assignments Assignment[]
-  createdAt   DateTime      @default(now())
+  isActive           Boolean             @default(true)
+  versions           TestVersion[]
+  assignments        Assignment[]
+  evaluationProducts EvaluationProduct[]
+  createdAt          DateTime            @default(now())
   updatedAt   DateTime      @updatedAt
 }
 
@@ -354,6 +357,7 @@ model Assignment {
   test          Test             @relation(fields: [testId], references: [id], onDelete: Restrict)
   testVersion   TestVersion      @relation(fields: [testVersionId], references: [id], onDelete: Restrict)
   attempt       Attempt?
+  purchaseOrder PurchaseOrder?
 
   @@index([userId, status])
 }
@@ -445,9 +449,10 @@ model Assessment {
   code        String              @unique @db.VarChar(80)
   name        String              @db.VarChar(180)
   description String?             @db.Text
-  isActive    Boolean             @default(true)
-  versions    AssessmentVersion[]
-  createdAt   DateTime            @default(now())
+  isActive           Boolean             @default(true)
+  versions           AssessmentVersion[]
+  evaluationProducts EvaluationProduct[]
+  createdAt          DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
 }
 
@@ -981,4 +986,197 @@ model ReactiveContribution {
   @@unique([resultRunId, reactiveId])
   @@index([resultRunId, scaleId])
   @@index([reactiveId])
+}
+
+enum CouponDiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+  EXPIRED
+  REFUNDED
+}
+
+model FinancialSettings {
+  id               String   @id @default("default") @db.VarChar(20)
+  currency         String   @default("MXN") @db.VarChar(10)
+  decimalPlaces    Int      @default(2)
+  taxName          String   @default("IVA") @db.VarChar(50)
+  taxRatePercent   Decimal  @default(16.00) @db.Decimal(5, 2)
+  pricesIncludeTax Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model StripeSettings {
+  id                  String   @id @default("default") @db.VarChar(20)
+  enabled             Boolean  @default(false)
+  mode                String   @default("test") @db.VarChar(20) // 'test' | 'live'
+  publishableKey      String   @default("") @db.VarChar(255)
+  secretKeyCipher     String?  @db.Text
+  webhookSecretCipher String?  @db.Text
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model EvaluationProduct {
+  id               String          @id @default(cuid())
+  code             String          @unique @db.VarChar(80)
+  slug             String          @unique @db.VarChar(100)
+  name             String          @db.VarChar(180)
+  description      String?         @db.Text
+  shortDescription String?         @db.VarChar(300)
+  features         Json?
+  testId           String
+  assessmentId     String?
+  isActive         Boolean         @default(true)
+  sortOrder        Int             @default(1)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  test             Test            @relation(fields: [testId], references: [id], onDelete: Restrict)
+  assessment       Assessment?     @relation(fields: [assessmentId], references: [id], onDelete: SetNull)
+  priceVersions    PriceVersion[]
+  purchaseOrders   PurchaseOrder[]
+  purchaseItems    PurchaseItem[]
+
+  @@index([testId])
+  @@index([assessmentId])
+}
+
+model PriceVersion {
+  id             String            @id @default(cuid())
+  productId      String
+  amountCents    Int
+  currency       String            @default("MXN") @db.VarChar(10)
+  effectiveFrom  DateTime          @default(now())
+  effectiveTo    DateTime?
+  isActive       Boolean           @default(true)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  product        EvaluationProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  purchaseOrders PurchaseOrder[]
+  purchaseItems  PurchaseItem[]
+
+  @@index([productId, isActive])
+}
+
+model Coupon {
+  id                    String             @id @default(cuid())
+  code                  String             @unique @db.VarChar(50)
+  description           String?            @db.VarChar(255)
+  discountType          CouponDiscountType @default(PERCENTAGE)
+  discountValue         Decimal            @db.Decimal(10, 2)
+  minPurchaseAmountCents Int               @default(0)
+  maxUsesGlobal         Int?
+  maxUsesPerUser        Int                @default(1)
+  usedCount             Int                @default(0)
+  startsAt              DateTime?
+  expiresAt             DateTime?
+  isActive              Boolean            @default(true)
+  applicableProductIds  Json?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  redemptions           CouponRedemption[]
+  purchaseOrders        PurchaseOrder[]
+}
+
+model CouponRedemption {
+  id            String   @id @default(cuid())
+  couponId      String
+  userId        String
+  orderId       String?
+  discountCents Int
+  status        String   @default("CONFIRMED") @db.VarChar(30)
+  redeemedAt    DateTime @default(now())
+  coupon        Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([couponId, userId])
+  @@index([orderId])
+}
+
+model PurchaseOrder {
+  id               String               @id @default(cuid())
+  orderNumber      String               @unique @db.VarChar(50)
+  userId           String
+  productId        String
+  priceVersionId   String
+  couponId         String?
+  status           OrderStatus          @default(PENDING)
+  currency         String               @default("MXN") @db.VarChar(10)
+  subtotalCents    Int
+  discountCents    Int                  @default(0)
+  taxName          String               @default("IVA") @db.VarChar(50)
+  taxRatePercent   Decimal              @default(16.00) @db.Decimal(5, 2)
+  pricesIncludeTax Boolean              @default(false)
+  taxCents         Int                  @default(0)
+  totalCents       Int
+  customerEmail    String               @db.VarChar(191)
+  customerName     String               @db.VarChar(200)
+  assignmentId     String?              @unique
+  paidAt           DateTime?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  user             User                 @relation(fields: [userId], references: [id], onDelete: Restrict)
+  product          EvaluationProduct    @relation(fields: [productId], references: [id], onDelete: Restrict)
+  priceVersion     PriceVersion         @relation(fields: [priceVersionId], references: [id], onDelete: Restrict)
+  coupon           Coupon?              @relation(fields: [couponId], references: [id], onDelete: SetNull)
+  assignment       Assignment?          @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+  items            PurchaseItem[]
+  transactions     PaymentTransaction[]
+
+  @@index([userId, status])
+  @@index([productId])
+  @@index([couponId])
+}
+
+model PurchaseItem {
+  id             String            @id @default(cuid())
+  orderId        String
+  productId      String
+  priceVersionId String
+  productCode    String            @db.VarChar(80)
+  productName    String            @db.VarChar(180)
+  unitPriceCents Int
+  quantity       Int               @default(1)
+  totalCents     Int
+  order          PurchaseOrder     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product        EvaluationProduct @relation(fields: [productId], references: [id], onDelete: Restrict)
+  priceVersion   PriceVersion      @relation(fields: [priceVersionId], references: [id], onDelete: Restrict)
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model PaymentTransaction {
+  id                   String        @id @default(cuid())
+  orderId              String
+  gateway              String        @db.VarChar(50)
+  gatewayTransactionId String?       @db.VarChar(191)
+  amountCents          Int
+  currency             String        @default("MXN") @db.VarChar(10)
+  status               String        @default("PENDING") @db.VarChar(50)
+  idempotencyKey       String?       @unique @db.VarChar(100)
+  rawResponse          Json?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+  order                PurchaseOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}
+
+model PaymentEvent {
+  id        String   @id @default(cuid())
+  gateway   String   @db.VarChar(50)
+  eventId   String   @unique @db.VarChar(191)
+  eventType String   @db.VarChar(100)
+  signature String?  @db.VarChar(500)
+  payload   Json
+  processed Boolean  @default(false)
+  error     String?  @db.Text
+  createdAt DateTime @default(now())
 }

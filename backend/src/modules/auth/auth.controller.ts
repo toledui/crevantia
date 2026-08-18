@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Headers, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Headers, HttpCode, HttpStatus, Patch, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Throttle } from '@nestjs/throttler';
 import type { Request, Response } from 'express';
@@ -6,11 +6,28 @@ import { AccessTokenGuard } from '../../common/access-token.guard';
 import { CurrentUser } from '../../common/current-user.decorator';
 import type { AuthenticatedUser } from '../../common/auth.types';
 import { AuthService } from './auth.service';
-import { EmailDto, LoginDto, RegisterDto, ResetPasswordDto, TokenDto } from './auth.dto';
+import { ChangePasswordDto, CheckoutRegisterDto, EmailDto, LoginDto, RegisterDto, ResetPasswordDto, TokenDto, UpdateProfileDto } from './auth.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly auth: AuthService, private readonly config: ConfigService) {}
+
+  @Get('check-email')
+  checkEmail(@Query('email') email: string) {
+    return this.auth.checkEmail(email || '');
+  }
+
+  @Post('checkout-register')
+  @Throttle({ default: { limit: 10, ttl: 60_000 } })
+  async checkoutRegister(
+    @Body() dto: CheckoutRegisterDto,
+    @Headers('user-agent') userAgent: string | undefined,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    const result = await this.auth.checkoutRegister(dto, userAgent);
+    this.setRefreshCookie(response, result.refreshToken);
+    return { accessToken: result.accessToken, user: result.user };
+  }
 
   @Post('register') @Throttle({ default: { limit: 5, ttl: 60_000 } })
   register(@Body() dto: RegisterDto) { return this.auth.register(dto); }
@@ -50,6 +67,19 @@ export class AuthController {
   @Get('me')
   @UseGuards(AccessTokenGuard)
   me(@CurrentUser() user: AuthenticatedUser) { return this.auth.me(user.sub); }
+
+  @Patch('profile')
+  @UseGuards(AccessTokenGuard)
+  updateProfile(@CurrentUser() user: AuthenticatedUser, @Body() dto: UpdateProfileDto) {
+    return this.auth.updateProfile(user.sub, dto);
+  }
+
+  @Post('change-password')
+  @UseGuards(AccessTokenGuard)
+  @HttpCode(HttpStatus.OK)
+  changePassword(@CurrentUser() user: AuthenticatedUser, @Body() dto: ChangePasswordDto) {
+    return this.auth.changePassword(user.sub, dto);
+  }
 
   private setRefreshCookie(response: Response, token: string) {
     response.cookie('crevantia_refresh', token, {

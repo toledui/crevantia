@@ -12,6 +12,10 @@ export class RolesGuard implements CanActivate {
     const required = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [context.getHandler(), context.getClass()]);
     if (!required?.length) return true;
     const { user } = context.switchToHttp().getRequest<Request & { user: AuthenticatedUser }>();
+    if (!user) throw new ForbiddenException('Usuario no autenticado.');
+    if (user.roles?.includes('SUPERADMIN') || user.roles?.includes('SUPER_ADMIN')) {
+      return true;
+    }
     if (required.some((role) => user.roles.includes(role))) return true;
     throw new ForbiddenException('No tienes permisos para realizar esta acción.');
   }

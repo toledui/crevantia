@@ -17,6 +17,9 @@ import { TestsModule } from './modules/tests/tests.module';
 import { AssessmentsModule } from './modules/assessments/assessments.module';
 import { NormsModule } from './modules/norms/norms.module';
 import { ResultsModule } from './modules/results/results.module';
+import { FinancialModule } from './modules/financial/financial.module';
+import { CommerceModule } from './modules/commerce/commerce.module';
+import { StripeModule } from './modules/stripe/stripe.module';
 
 @Module({
   imports: [
@@ -32,6 +35,9 @@ import { ResultsModule } from './modules/results/results.module';
     AssessmentsModule,
     NormsModule,
     ResultsModule,
+    FinancialModule,
+    CommerceModule,
+    StripeModule,
   ],
   controllers: [HealthController, AdminController],
   providers: [

@@ -14,4 +14,11 @@ export class UpdateMailSettingsDto {
 
 export class TestMailSettingsDto {
   @IsEmail() @MaxLength(191) email!: string;
+  @IsOptional() @IsString() @MaxLength(255) host?: string;
+  @IsOptional() @Type(() => Number) @IsInt() @Min(1) @Max(65535) port?: number;
+  @IsOptional() @IsBoolean() secure?: boolean;
+  @IsOptional() @IsString() @MaxLength(191) username?: string;
+  @IsOptional() @IsString() @MaxLength(500) password?: string;
+  @IsOptional() @IsString() @MaxLength(100) fromName?: string;
+  @IsOptional() @IsEmail() @MaxLength(191) fromAddress?: string;
 }

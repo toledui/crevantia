@@ -573,7 +573,8 @@ export function NormsAdminPanel() {
   async function addTarget(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!version) return;
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     setBusy(true);
     clearAlerts();
     try {
@@ -589,7 +590,7 @@ export function NormsAdminPanel() {
       });
       setMessage("Target agregado; captura sus diez límites.");
       await loadVersion(version.normSetId, version.id);
-      event.currentTarget.reset();
+      formElement.reset();
     } catch (reason) {
       setError(errorMessage(reason));
     } finally {

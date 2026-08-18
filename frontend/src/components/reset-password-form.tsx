@@ -10,14 +10,26 @@ export function ResetPasswordForm({ token }: { token: string }) {
   const [busy, setBusy] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); setError(''); setMessage('');
-    const data = new FormData(event.currentTarget);
+    event.preventDefault();
+    const form = event.currentTarget;
+    setError('');
+    setMessage('');
+    const data = new FormData(form);
     const password = String(data.get('password'));
-    if (password !== data.get('confirmPassword')) { setError('Las contraseñas no coinciden.'); return; }
+    if (password !== data.get('confirmPassword')) {
+      setError('Las contraseñas no coinciden.');
+      return;
+    }
     setBusy(true);
-    try { setMessage((await resetPassword(token, password)).message); event.currentTarget.reset(); }
-    catch (reason) { setError(reason instanceof Error ? reason.message : 'No fue posible actualizar la contraseña.'); }
-    finally { setBusy(false); }
+    try {
+      const res = await resetPassword(token, password);
+      setMessage(res.message);
+      form.reset();
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'No fue posible actualizar la contraseña.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   return <div className="auth-card">

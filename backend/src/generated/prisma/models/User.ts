@@ -270,6 +270,8 @@ export type UserWhereInput = {
   verificationTokens?: Prisma.EmailVerificationTokenListRelationFilter
   consents?: Prisma.ConsentAcceptanceListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
+  purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
+  couponRedemptions?: Prisma.CouponRedemptionListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   normVersionsCreated?: Prisma.NormVersionListRelationFilter
   normVersionsReviewed?: Prisma.NormVersionListRelationFilter
@@ -296,6 +298,8 @@ export type UserOrderByWithRelationInput = {
   verificationTokens?: Prisma.EmailVerificationTokenOrderByRelationAggregateInput
   consents?: Prisma.ConsentAcceptanceOrderByRelationAggregateInput
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
+  purchaseOrders?: Prisma.PurchaseOrderOrderByRelationAggregateInput
+  couponRedemptions?: Prisma.CouponRedemptionOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   normVersionsCreated?: Prisma.NormVersionOrderByRelationAggregateInput
   normVersionsReviewed?: Prisma.NormVersionOrderByRelationAggregateInput
@@ -326,6 +330,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   verificationTokens?: Prisma.EmailVerificationTokenListRelationFilter
   consents?: Prisma.ConsentAcceptanceListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
+  purchaseOrders?: Prisma.PurchaseOrderListRelationFilter
+  couponRedemptions?: Prisma.CouponRedemptionListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   normVersionsCreated?: Prisma.NormVersionListRelationFilter
   normVersionsReviewed?: Prisma.NormVersionListRelationFilter
@@ -388,6 +394,8 @@ export type UserCreateInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -414,6 +422,8 @@ export type UserUncheckedCreateInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -440,6 +450,8 @@ export type UserUpdateInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -466,6 +478,8 @@ export type UserUncheckedUpdateInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -786,6 +800,34 @@ export type UserUpdateOneWithoutRecalculationsRequestedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecalculationsRequestedInput, Prisma.UserUpdateWithoutRecalculationsRequestedInput>, Prisma.UserUncheckedUpdateWithoutRecalculationsRequestedInput>
 }
 
+export type UserCreateNestedOneWithoutCouponRedemptionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCouponRedemptionsInput, Prisma.UserUncheckedCreateWithoutCouponRedemptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCouponRedemptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCouponRedemptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCouponRedemptionsInput, Prisma.UserUncheckedCreateWithoutCouponRedemptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCouponRedemptionsInput
+  upsert?: Prisma.UserUpsertWithoutCouponRedemptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCouponRedemptionsInput, Prisma.UserUpdateWithoutCouponRedemptionsInput>, Prisma.UserUncheckedUpdateWithoutCouponRedemptionsInput>
+}
+
+export type UserCreateNestedOneWithoutPurchaseOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPurchaseOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPurchaseOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPurchaseOrdersInput
+  upsert?: Prisma.UserUpsertWithoutPurchaseOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPurchaseOrdersInput, Prisma.UserUpdateWithoutPurchaseOrdersInput>, Prisma.UserUncheckedUpdateWithoutPurchaseOrdersInput>
+}
+
 export type UserCreateWithoutRolesInput = {
   id?: string
   email: string
@@ -803,6 +845,8 @@ export type UserCreateWithoutRolesInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -828,6 +872,8 @@ export type UserUncheckedCreateWithoutRolesInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -869,6 +915,8 @@ export type UserUpdateWithoutRolesInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -894,6 +942,8 @@ export type UserUncheckedUpdateWithoutRolesInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -919,6 +969,8 @@ export type UserCreateWithoutSessionsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -944,6 +996,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -985,6 +1039,8 @@ export type UserUpdateWithoutSessionsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -1010,6 +1066,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -1035,6 +1093,8 @@ export type UserCreateWithoutResetTokensInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -1060,6 +1120,8 @@ export type UserUncheckedCreateWithoutResetTokensInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -1101,6 +1163,8 @@ export type UserUpdateWithoutResetTokensInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -1126,6 +1190,8 @@ export type UserUncheckedUpdateWithoutResetTokensInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -1151,6 +1217,8 @@ export type UserCreateWithoutVerificationTokensInput = {
   resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -1176,6 +1244,8 @@ export type UserUncheckedCreateWithoutVerificationTokensInput = {
   resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -1217,6 +1287,8 @@ export type UserUpdateWithoutVerificationTokensInput = {
   resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -1242,6 +1314,8 @@ export type UserUncheckedUpdateWithoutVerificationTokensInput = {
   resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -1267,6 +1341,8 @@ export type UserCreateWithoutConsentsInput = {
   resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -1292,6 +1368,8 @@ export type UserUncheckedCreateWithoutConsentsInput = {
   resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -1333,6 +1411,8 @@ export type UserUpdateWithoutConsentsInput = {
   resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -1358,6 +1438,8 @@ export type UserUncheckedUpdateWithoutConsentsInput = {
   resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -1383,6 +1465,8 @@ export type UserCreateWithoutAssignmentsInput = {
   resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -1408,6 +1492,8 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -1449,6 +1535,8 @@ export type UserUpdateWithoutAssignmentsInput = {
   resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -1474,6 +1562,8 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -1500,6 +1590,8 @@ export type UserCreateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
   normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
@@ -1525,6 +1617,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
   normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
@@ -1566,6 +1660,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
@@ -1591,6 +1687,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
@@ -1616,6 +1714,8 @@ export type UserCreateWithoutNormVersionsCreatedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
   normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
@@ -1641,6 +1741,8 @@ export type UserUncheckedCreateWithoutNormVersionsCreatedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
   normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
@@ -1671,6 +1773,8 @@ export type UserCreateWithoutNormVersionsReviewedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
@@ -1696,6 +1800,8 @@ export type UserUncheckedCreateWithoutNormVersionsReviewedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
@@ -1726,6 +1832,8 @@ export type UserCreateWithoutNormVersionsApprovedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -1751,6 +1859,8 @@ export type UserUncheckedCreateWithoutNormVersionsApprovedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -1781,6 +1891,8 @@ export type UserCreateWithoutNormVersionsPublishedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -1806,6 +1918,8 @@ export type UserUncheckedCreateWithoutNormVersionsPublishedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -1847,6 +1961,8 @@ export type UserUpdateWithoutNormVersionsCreatedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
@@ -1872,6 +1988,8 @@ export type UserUncheckedUpdateWithoutNormVersionsCreatedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
@@ -1908,6 +2026,8 @@ export type UserUpdateWithoutNormVersionsReviewedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
@@ -1933,6 +2053,8 @@ export type UserUncheckedUpdateWithoutNormVersionsReviewedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
@@ -1969,6 +2091,8 @@ export type UserUpdateWithoutNormVersionsApprovedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -1994,6 +2118,8 @@ export type UserUncheckedUpdateWithoutNormVersionsApprovedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -2030,6 +2156,8 @@ export type UserUpdateWithoutNormVersionsPublishedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -2055,6 +2183,8 @@ export type UserUncheckedUpdateWithoutNormVersionsPublishedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
@@ -2080,6 +2210,8 @@ export type UserCreateWithoutRecalculationsRequestedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
@@ -2105,6 +2237,8 @@ export type UserUncheckedCreateWithoutRecalculationsRequestedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
   consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
@@ -2146,6 +2280,8 @@ export type UserUpdateWithoutRecalculationsRequestedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
@@ -2171,11 +2307,261 @@ export type UserUncheckedUpdateWithoutRecalculationsRequestedInput = {
   verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
   consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
   normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
   normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
   normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+}
+
+export type UserCreateWithoutCouponRedemptionsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserUncheckedCreateWithoutCouponRedemptionsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutCouponRedemptionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCouponRedemptionsInput, Prisma.UserUncheckedCreateWithoutCouponRedemptionsInput>
+}
+
+export type UserUpsertWithoutCouponRedemptionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCouponRedemptionsInput, Prisma.UserUncheckedUpdateWithoutCouponRedemptionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCouponRedemptionsInput, Prisma.UserUncheckedCreateWithoutCouponRedemptionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCouponRedemptionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCouponRedemptionsInput, Prisma.UserUncheckedUpdateWithoutCouponRedemptionsInput>
+}
+
+export type UserUpdateWithoutCouponRedemptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCouponRedemptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  purchaseOrders?: Prisma.PurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserCreateWithoutPurchaseOrdersInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserUncheckedCreateWithoutPurchaseOrdersInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  firstName: string
+  lastName: string
+  status?: $Enums.UserStatus
+  emailVerifiedAt?: Date | string | null
+  failedLoginAttempts?: number
+  lockedUntil?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roles?: Prisma.UserRoleUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+  consents?: Prisma.ConsentAcceptanceUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedCreateNestedManyWithoutCreatedByInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedCreateNestedManyWithoutReviewedByInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedCreateNestedManyWithoutApprovedByInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedCreateNestedManyWithoutPublishedByInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRequestedByInput
+}
+
+export type UserCreateOrConnectWithoutPurchaseOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+}
+
+export type UserUpsertWithoutPurchaseOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPurchaseOrdersInput, Prisma.UserUncheckedUpdateWithoutPurchaseOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutPurchaseOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPurchaseOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPurchaseOrdersInput, Prisma.UserUncheckedUpdateWithoutPurchaseOrdersInput>
+}
+
+export type UserUpdateWithoutPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedLoginAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roles?: Prisma.UserRoleUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  verificationTokens?: Prisma.EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+  consents?: Prisma.ConsentAcceptanceUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  couponRedemptions?: Prisma.CouponRedemptionUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  normVersionsCreated?: Prisma.NormVersionUncheckedUpdateManyWithoutCreatedByNestedInput
+  normVersionsReviewed?: Prisma.NormVersionUncheckedUpdateManyWithoutReviewedByNestedInput
+  normVersionsApproved?: Prisma.NormVersionUncheckedUpdateManyWithoutApprovedByNestedInput
+  normVersionsPublished?: Prisma.NormVersionUncheckedUpdateManyWithoutPublishedByNestedInput
+  recalculationsRequested?: Prisma.ResultRunUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 
@@ -2190,6 +2576,8 @@ export type UserCountOutputType = {
   verificationTokens: number
   consents: number
   assignments: number
+  purchaseOrders: number
+  couponRedemptions: number
   auditLogs: number
   normVersionsCreated: number
   normVersionsReviewed: number
@@ -2205,6 +2593,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   verificationTokens?: boolean | UserCountOutputTypeCountVerificationTokensArgs
   consents?: boolean | UserCountOutputTypeCountConsentsArgs
   assignments?: boolean | UserCountOutputTypeCountAssignmentsArgs
+  purchaseOrders?: boolean | UserCountOutputTypeCountPurchaseOrdersArgs
+  couponRedemptions?: boolean | UserCountOutputTypeCountCouponRedemptionsArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   normVersionsCreated?: boolean | UserCountOutputTypeCountNormVersionsCreatedArgs
   normVersionsReviewed?: boolean | UserCountOutputTypeCountNormVersionsReviewedArgs
@@ -2268,6 +2658,20 @@ export type UserCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Type
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountPurchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PurchaseOrderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCouponRedemptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CouponRedemptionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AuditLogWhereInput
 }
@@ -2326,6 +2730,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   verificationTokens?: boolean | Prisma.User$verificationTokensArgs<ExtArgs>
   consents?: boolean | Prisma.User$consentsArgs<ExtArgs>
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
+  purchaseOrders?: boolean | Prisma.User$purchaseOrdersArgs<ExtArgs>
+  couponRedemptions?: boolean | Prisma.User$couponRedemptionsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   normVersionsCreated?: boolean | Prisma.User$normVersionsCreatedArgs<ExtArgs>
   normVersionsReviewed?: boolean | Prisma.User$normVersionsReviewedArgs<ExtArgs>
@@ -2359,6 +2765,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   verificationTokens?: boolean | Prisma.User$verificationTokensArgs<ExtArgs>
   consents?: boolean | Prisma.User$consentsArgs<ExtArgs>
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
+  purchaseOrders?: boolean | Prisma.User$purchaseOrdersArgs<ExtArgs>
+  couponRedemptions?: boolean | Prisma.User$couponRedemptionsArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   normVersionsCreated?: boolean | Prisma.User$normVersionsCreatedArgs<ExtArgs>
   normVersionsReviewed?: boolean | Prisma.User$normVersionsReviewedArgs<ExtArgs>
@@ -2377,6 +2785,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     verificationTokens: Prisma.$EmailVerificationTokenPayload<ExtArgs>[]
     consents: Prisma.$ConsentAcceptancePayload<ExtArgs>[]
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
+    purchaseOrders: Prisma.$PurchaseOrderPayload<ExtArgs>[]
+    couponRedemptions: Prisma.$CouponRedemptionPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     normVersionsCreated: Prisma.$NormVersionPayload<ExtArgs>[]
     normVersionsReviewed: Prisma.$NormVersionPayload<ExtArgs>[]
@@ -2742,6 +3152,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   verificationTokens<T extends Prisma.User$verificationTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$verificationTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailVerificationTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   consents<T extends Prisma.User$consentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$consentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConsentAcceptancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.User$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  purchaseOrders<T extends Prisma.User$purchaseOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$purchaseOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  couponRedemptions<T extends Prisma.User$couponRedemptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$couponRedemptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CouponRedemptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   normVersionsCreated<T extends Prisma.User$normVersionsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$normVersionsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   normVersionsReviewed<T extends Prisma.User$normVersionsReviewedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$normVersionsReviewedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3277,6 +3689,54 @@ export type User$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
+}
+
+/**
+ * User.purchaseOrders
+ */
+export type User$purchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PurchaseOrder
+   */
+  select?: Prisma.PurchaseOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PurchaseOrder
+   */
+  omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PurchaseOrderInclude<ExtArgs> | null
+  where?: Prisma.PurchaseOrderWhereInput
+  orderBy?: Prisma.PurchaseOrderOrderByWithRelationInput | Prisma.PurchaseOrderOrderByWithRelationInput[]
+  cursor?: Prisma.PurchaseOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PurchaseOrderScalarFieldEnum | Prisma.PurchaseOrderScalarFieldEnum[]
+}
+
+/**
+ * User.couponRedemptions
+ */
+export type User$couponRedemptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CouponRedemption
+   */
+  select?: Prisma.CouponRedemptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CouponRedemption
+   */
+  omit?: Prisma.CouponRedemptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CouponRedemptionInclude<ExtArgs> | null
+  where?: Prisma.CouponRedemptionWhereInput
+  orderBy?: Prisma.CouponRedemptionOrderByWithRelationInput | Prisma.CouponRedemptionOrderByWithRelationInput[]
+  cursor?: Prisma.CouponRedemptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CouponRedemptionScalarFieldEnum | Prisma.CouponRedemptionScalarFieldEnum[]
 }
 
 /**

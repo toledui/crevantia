@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { HomeNavbar } from '@/components/home-navbar';
+import { HomePricingSlider } from '@/components/home-pricing-slider';
 import styles from './home.module.css';
 
 export const metadata: Metadata = {
@@ -43,24 +45,7 @@ function Logo({ light = false }: { light?: boolean }) {
 export default function Home() {
   return (
     <div className={styles.page}>
-      <header className={styles.navbar}>
-        <div className={`${styles.container} ${styles.navInner}`}>
-          <a href="#inicio" className={styles.logoLink} aria-label="Ir al inicio"><Logo /></a>
-          <nav className={styles.navLinks} aria-label="Navegación principal">
-            <a href="#evaluacion">La evaluación</a><a href="#como-funciona">Cómo funciona</a><a href="#precio">Precio</a><a href="#faq">Preguntas frecuentes</a>
-          </nav>
-          <div className={styles.navActions}>
-            <Link className={`${styles.button} ${styles.buttonOutline}`} href="/iniciar-sesion">Iniciar sesión</Link>
-            <Link className={`${styles.button} ${styles.buttonPrimary}`} href="/registro">Realizar evaluación</Link>
-          </div>
-          <details className={styles.mobileMenu}>
-            <summary aria-label="Abrir menú"><span aria-hidden="true">☰</span></summary>
-            <nav aria-label="Navegación móvil">
-              <a href="#evaluacion">La evaluación</a><a href="#como-funciona">Cómo funciona</a><a href="#precio">Precio</a><a href="#faq">Preguntas frecuentes</a><Link href="/iniciar-sesion">Iniciar sesión</Link>
-            </nav>
-          </details>
-        </div>
-      </header>
+      <HomeNavbar />
 
       <main id="inicio">
         <section className={styles.hero}>
@@ -109,11 +94,7 @@ export default function Home() {
               <span className={styles.eyebrow}>Acceso individual</span><h2>Todo lo necesario para realizar tu evaluación y recibir tus resultados.</h2><p>Con un solo acceso obtienes la experiencia completa de evaluación, el procesamiento de tus respuestas y tu reporte personal.</p>
               <div className={styles.included}>{['Una evaluación DPO-PRO', 'Acceso desde tu panel personal', 'Guardado automático del avance', 'Procesamiento de resultados', 'Reporte descargable en PDF', 'Historial disponible en tu cuenta'].map((item) => <span key={item}><i>✓</i>{item}</span>)}</div>
             </div>
-            <aside className={styles.priceCard}>
-              <span className={styles.priceLabel}>Evaluación individual</span><h3>DPO-PRO</h3><div className={styles.price}><strong>$2,200</strong><span>MXN</span></div><p className={styles.priceNote}>Precio demostrativo. El importe final incluirá los impuestos aplicables y se confirmará antes de la compra.</p>
-              <ul><li>1 acceso individual a la evaluación</li><li>Aplicación en línea</li><li>Resultados procesados automáticamente</li><li>Reporte personal en PDF</li><li>Acceso posterior desde tu cuenta</li></ul>
-              <Link href="/registro" className={`${styles.button} ${styles.buttonCyan}`}>Comprar evaluación <span aria-hidden="true">→</span></Link>
-            </aside>
+            <HomePricingSlider />
           </div>
         </section>
 
@@ -131,7 +112,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.cta}><div className={styles.container}><div className={styles.ctaBox}><div><h2>Tu evaluación comienza cuando estés listo.</h2><p>Crea tu cuenta, adquiere tu acceso y realiza la evaluación desde un entorno diseñado para leer y responder con tranquilidad.</p></div><Link href="/registro" className={`${styles.button} ${styles.buttonCyan}`}>Ver precio y comenzar <span aria-hidden="true">→</span></Link></div></div></section>
+        <section className={styles.cta}><div className={styles.container}><div className={styles.ctaBox}><div><h2>Tu evaluación comienza cuando estés listo.</h2><p>Crea tu cuenta, adquiere tu acceso y realiza la evaluación desde un entorno diseñado para leer y responder con tranquilidad.</p></div><Link href="/pago/dpo-pro" className={`${styles.button} ${styles.buttonCyan}`}>Ver precio y comenzar <span aria-hidden="true">→</span></Link></div></div></section>
       </main>
 
       <footer className={styles.footer}><div className={`${styles.container} ${styles.footerInner}`}><Logo light /><span>© 2026 Crevantia · Todos los derechos reservados.</span><span>Aviso de privacidad · Términos de uso</span></div></footer>

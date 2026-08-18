@@ -304,3 +304,53 @@ export type ResultValue = Prisma.ResultValueModel
  * 
  */
 export type ReactiveContribution = Prisma.ReactiveContributionModel
+/**
+ * Model FinancialSettings
+ * 
+ */
+export type FinancialSettings = Prisma.FinancialSettingsModel
+/**
+ * Model StripeSettings
+ * 
+ */
+export type StripeSettings = Prisma.StripeSettingsModel
+/**
+ * Model EvaluationProduct
+ * 
+ */
+export type EvaluationProduct = Prisma.EvaluationProductModel
+/**
+ * Model PriceVersion
+ * 
+ */
+export type PriceVersion = Prisma.PriceVersionModel
+/**
+ * Model Coupon
+ * 
+ */
+export type Coupon = Prisma.CouponModel
+/**
+ * Model CouponRedemption
+ * 
+ */
+export type CouponRedemption = Prisma.CouponRedemptionModel
+/**
+ * Model PurchaseOrder
+ * 
+ */
+export type PurchaseOrder = Prisma.PurchaseOrderModel
+/**
+ * Model PurchaseItem
+ * 
+ */
+export type PurchaseItem = Prisma.PurchaseItemModel
+/**
+ * Model PaymentTransaction
+ * 
+ */
+export type PaymentTransaction = Prisma.PaymentTransactionModel
+/**
+ * Model PaymentEvent
+ * 
+ */
+export type PaymentEvent = Prisma.PaymentEventModel

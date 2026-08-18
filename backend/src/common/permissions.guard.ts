@@ -12,6 +12,10 @@ export class PermissionsGuard implements CanActivate {
     const required = this.reflector.getAllAndOverride<string[]>(PERMISSIONS_KEY, [context.getHandler(), context.getClass()]);
     if (!required?.length) return true;
     const { user } = context.switchToHttp().getRequest<Request & { user: AuthenticatedUser }>();
+    if (!user) throw new ForbiddenException('Usuario no autenticado.');
+    if (user.roles?.includes('SUPERADMIN') || user.roles?.includes('SUPER_ADMIN') || user.permissions?.includes('*')) {
+      return true;
+    }
     if (required.every((permission) => user.permissions?.includes(permission))) return true;
     throw new ForbiddenException('No tienes permisos para realizar esta acción.');
   }

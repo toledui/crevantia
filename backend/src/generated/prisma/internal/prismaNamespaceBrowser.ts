@@ -103,7 +103,17 @@ export const ModelName = {
   LikertAnswer: 'LikertAnswer',
   ResultRun: 'ResultRun',
   ResultValue: 'ResultValue',
-  ReactiveContribution: 'ReactiveContribution'
+  ReactiveContribution: 'ReactiveContribution',
+  FinancialSettings: 'FinancialSettings',
+  StripeSettings: 'StripeSettings',
+  EvaluationProduct: 'EvaluationProduct',
+  PriceVersion: 'PriceVersion',
+  Coupon: 'Coupon',
+  CouponRedemption: 'CouponRedemption',
+  PurchaseOrder: 'PurchaseOrder',
+  PurchaseItem: 'PurchaseItem',
+  PaymentTransaction: 'PaymentTransaction',
+  PaymentEvent: 'PaymentEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -863,6 +873,176 @@ export const ReactiveContributionScalarFieldEnum = {
 export type ReactiveContributionScalarFieldEnum = (typeof ReactiveContributionScalarFieldEnum)[keyof typeof ReactiveContributionScalarFieldEnum]
 
 
+export const FinancialSettingsScalarFieldEnum = {
+  id: 'id',
+  currency: 'currency',
+  decimalPlaces: 'decimalPlaces',
+  taxName: 'taxName',
+  taxRatePercent: 'taxRatePercent',
+  pricesIncludeTax: 'pricesIncludeTax',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FinancialSettingsScalarFieldEnum = (typeof FinancialSettingsScalarFieldEnum)[keyof typeof FinancialSettingsScalarFieldEnum]
+
+
+export const StripeSettingsScalarFieldEnum = {
+  id: 'id',
+  enabled: 'enabled',
+  mode: 'mode',
+  publishableKey: 'publishableKey',
+  secretKeyCipher: 'secretKeyCipher',
+  webhookSecretCipher: 'webhookSecretCipher',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StripeSettingsScalarFieldEnum = (typeof StripeSettingsScalarFieldEnum)[keyof typeof StripeSettingsScalarFieldEnum]
+
+
+export const EvaluationProductScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  slug: 'slug',
+  name: 'name',
+  description: 'description',
+  shortDescription: 'shortDescription',
+  features: 'features',
+  testId: 'testId',
+  assessmentId: 'assessmentId',
+  isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EvaluationProductScalarFieldEnum = (typeof EvaluationProductScalarFieldEnum)[keyof typeof EvaluationProductScalarFieldEnum]
+
+
+export const PriceVersionScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  amountCents: 'amountCents',
+  currency: 'currency',
+  effectiveFrom: 'effectiveFrom',
+  effectiveTo: 'effectiveTo',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PriceVersionScalarFieldEnum = (typeof PriceVersionScalarFieldEnum)[keyof typeof PriceVersionScalarFieldEnum]
+
+
+export const CouponScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  description: 'description',
+  discountType: 'discountType',
+  discountValue: 'discountValue',
+  minPurchaseAmountCents: 'minPurchaseAmountCents',
+  maxUsesGlobal: 'maxUsesGlobal',
+  maxUsesPerUser: 'maxUsesPerUser',
+  usedCount: 'usedCount',
+  startsAt: 'startsAt',
+  expiresAt: 'expiresAt',
+  isActive: 'isActive',
+  applicableProductIds: 'applicableProductIds',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CouponScalarFieldEnum = (typeof CouponScalarFieldEnum)[keyof typeof CouponScalarFieldEnum]
+
+
+export const CouponRedemptionScalarFieldEnum = {
+  id: 'id',
+  couponId: 'couponId',
+  userId: 'userId',
+  orderId: 'orderId',
+  discountCents: 'discountCents',
+  status: 'status',
+  redeemedAt: 'redeemedAt'
+} as const
+
+export type CouponRedemptionScalarFieldEnum = (typeof CouponRedemptionScalarFieldEnum)[keyof typeof CouponRedemptionScalarFieldEnum]
+
+
+export const PurchaseOrderScalarFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  userId: 'userId',
+  productId: 'productId',
+  priceVersionId: 'priceVersionId',
+  couponId: 'couponId',
+  status: 'status',
+  currency: 'currency',
+  subtotalCents: 'subtotalCents',
+  discountCents: 'discountCents',
+  taxName: 'taxName',
+  taxRatePercent: 'taxRatePercent',
+  pricesIncludeTax: 'pricesIncludeTax',
+  taxCents: 'taxCents',
+  totalCents: 'totalCents',
+  customerEmail: 'customerEmail',
+  customerName: 'customerName',
+  assignmentId: 'assignmentId',
+  paidAt: 'paidAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PurchaseOrderScalarFieldEnum = (typeof PurchaseOrderScalarFieldEnum)[keyof typeof PurchaseOrderScalarFieldEnum]
+
+
+export const PurchaseItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  priceVersionId: 'priceVersionId',
+  productCode: 'productCode',
+  productName: 'productName',
+  unitPriceCents: 'unitPriceCents',
+  quantity: 'quantity',
+  totalCents: 'totalCents'
+} as const
+
+export type PurchaseItemScalarFieldEnum = (typeof PurchaseItemScalarFieldEnum)[keyof typeof PurchaseItemScalarFieldEnum]
+
+
+export const PaymentTransactionScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  gateway: 'gateway',
+  gatewayTransactionId: 'gatewayTransactionId',
+  amountCents: 'amountCents',
+  currency: 'currency',
+  status: 'status',
+  idempotencyKey: 'idempotencyKey',
+  rawResponse: 'rawResponse',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentTransactionScalarFieldEnum = (typeof PaymentTransactionScalarFieldEnum)[keyof typeof PaymentTransactionScalarFieldEnum]
+
+
+export const PaymentEventScalarFieldEnum = {
+  id: 'id',
+  gateway: 'gateway',
+  eventId: 'eventId',
+  eventType: 'eventType',
+  signature: 'signature',
+  payload: 'payload',
+  processed: 'processed',
+  error: 'error',
+  createdAt: 'createdAt'
+} as const
+
+export type PaymentEventScalarFieldEnum = (typeof PaymentEventScalarFieldEnum)[keyof typeof PaymentEventScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1480,4 +1660,121 @@ export const ReactiveContributionOrderByRelevanceFieldEnum = {
 } as const
 
 export type ReactiveContributionOrderByRelevanceFieldEnum = (typeof ReactiveContributionOrderByRelevanceFieldEnum)[keyof typeof ReactiveContributionOrderByRelevanceFieldEnum]
+
+
+export const FinancialSettingsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  currency: 'currency',
+  taxName: 'taxName'
+} as const
+
+export type FinancialSettingsOrderByRelevanceFieldEnum = (typeof FinancialSettingsOrderByRelevanceFieldEnum)[keyof typeof FinancialSettingsOrderByRelevanceFieldEnum]
+
+
+export const StripeSettingsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  mode: 'mode',
+  publishableKey: 'publishableKey',
+  secretKeyCipher: 'secretKeyCipher',
+  webhookSecretCipher: 'webhookSecretCipher'
+} as const
+
+export type StripeSettingsOrderByRelevanceFieldEnum = (typeof StripeSettingsOrderByRelevanceFieldEnum)[keyof typeof StripeSettingsOrderByRelevanceFieldEnum]
+
+
+export const EvaluationProductOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  slug: 'slug',
+  name: 'name',
+  description: 'description',
+  shortDescription: 'shortDescription',
+  testId: 'testId',
+  assessmentId: 'assessmentId'
+} as const
+
+export type EvaluationProductOrderByRelevanceFieldEnum = (typeof EvaluationProductOrderByRelevanceFieldEnum)[keyof typeof EvaluationProductOrderByRelevanceFieldEnum]
+
+
+export const PriceVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  currency: 'currency'
+} as const
+
+export type PriceVersionOrderByRelevanceFieldEnum = (typeof PriceVersionOrderByRelevanceFieldEnum)[keyof typeof PriceVersionOrderByRelevanceFieldEnum]
+
+
+export const CouponOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  description: 'description'
+} as const
+
+export type CouponOrderByRelevanceFieldEnum = (typeof CouponOrderByRelevanceFieldEnum)[keyof typeof CouponOrderByRelevanceFieldEnum]
+
+
+export const CouponRedemptionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  couponId: 'couponId',
+  userId: 'userId',
+  orderId: 'orderId',
+  status: 'status'
+} as const
+
+export type CouponRedemptionOrderByRelevanceFieldEnum = (typeof CouponRedemptionOrderByRelevanceFieldEnum)[keyof typeof CouponRedemptionOrderByRelevanceFieldEnum]
+
+
+export const PurchaseOrderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  userId: 'userId',
+  productId: 'productId',
+  priceVersionId: 'priceVersionId',
+  couponId: 'couponId',
+  currency: 'currency',
+  taxName: 'taxName',
+  customerEmail: 'customerEmail',
+  customerName: 'customerName',
+  assignmentId: 'assignmentId'
+} as const
+
+export type PurchaseOrderOrderByRelevanceFieldEnum = (typeof PurchaseOrderOrderByRelevanceFieldEnum)[keyof typeof PurchaseOrderOrderByRelevanceFieldEnum]
+
+
+export const PurchaseItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  priceVersionId: 'priceVersionId',
+  productCode: 'productCode',
+  productName: 'productName'
+} as const
+
+export type PurchaseItemOrderByRelevanceFieldEnum = (typeof PurchaseItemOrderByRelevanceFieldEnum)[keyof typeof PurchaseItemOrderByRelevanceFieldEnum]
+
+
+export const PaymentTransactionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  gateway: 'gateway',
+  gatewayTransactionId: 'gatewayTransactionId',
+  currency: 'currency',
+  status: 'status',
+  idempotencyKey: 'idempotencyKey'
+} as const
+
+export type PaymentTransactionOrderByRelevanceFieldEnum = (typeof PaymentTransactionOrderByRelevanceFieldEnum)[keyof typeof PaymentTransactionOrderByRelevanceFieldEnum]
+
+
+export const PaymentEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  gateway: 'gateway',
+  eventId: 'eventId',
+  eventType: 'eventType',
+  signature: 'signature',
+  error: 'error'
+} as const
+
+export type PaymentEventOrderByRelevanceFieldEnum = (typeof PaymentEventOrderByRelevanceFieldEnum)[keyof typeof PaymentEventOrderByRelevanceFieldEnum]
 

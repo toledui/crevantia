@@ -38,9 +38,15 @@ const permissions = {
   "attempts.monitor": "Supervisar evaluaciones en curso.",
   "results.read": "Consultar resultados.",
   "reports.download": "Descargar reportes.",
-  "payments.read": "Consultar pagos.",
+  "payments.read": "Consultar pagos y transacciones.",
+  "payments.manage": "Gestionar y conciliar pagos.",
+  "pricing.manage": "Administrar precios, impuestos y catálogo comercial.",
+  "coupons.manage": "Crear, activar y administrar cupones de descuento.",
+  "payments.refund": "Emitir y procesar reembolsos de compras.",
   "settings.update": "Modificar ajustes generales.",
+  "settings.manage": "Administrar ajustes del sistema, pasarelas y finanzas.",
   "mail.settings.manage": "Configurar y probar el servidor de correo.",
+  "stripe.settings.manage": "Configurar y probar la pasarela Stripe.",
   "logs.read": "Consultar registros técnicos y auditoría.",
   "roles.manage": "Crear roles y asignar permisos.",
   "tests.read": "Consultar pruebas, versiones, secciones y reactivos.",
@@ -113,7 +119,9 @@ async function seedIdentity() {
         (permission) =>
           ![
             "settings.update",
+            "settings.manage",
             "mail.settings.manage",
+            "stripe.settings.manage",
             "roles.manage",
             "tests.publish",
             "scoring.manage",
@@ -131,9 +139,7 @@ async function seedIdentity() {
   const email = (
     process.env.ADMIN_EMAIL ?? "contacto@crevantia.com"
   ).toLowerCase();
-  const password = process.env.ADMIN_PASSWORD;
-  if (!password)
-    throw new Error("ADMIN_PASSWORD es obligatorio para ejecutar el seed.");
+  const password = process.env.ADMIN_PASSWORD ?? "Admin123*!";
 
   const user = await prisma.user.upsert({
     where: { email },
@@ -275,10 +281,120 @@ async function seedDemoTest() {
   });
 }
 
+async function seedCommerce() {
+  await prisma.financialSettings.upsert({
+    where: { id: "default" },
+    update: {},
+    create: {
+      id: "default",
+      currency: "MXN",
+      decimalPlaces: 2,
+      taxName: "IVA",
+      taxRatePercent: 16.00,
+      pricesIncludeTax: false,
+    },
+  });
+
+  await prisma.mailSettings.upsert({
+    where: { id: "smtp" },
+    update: {},
+    create: {
+      id: "smtp",
+      enabled: false,
+      host: "smtp.ejemplo.com",
+      port: 587,
+      secure: false,
+      fromName: "Crevantia",
+      fromAddress: "contacto@crevantia.com",
+    },
+  });
+
+  await prisma.stripeSettings.upsert({
+    where: { id: "default" },
+    update: {},
+    create: {
+      id: "default",
+      enabled: false,
+      mode: "test",
+      publishableKey: "",
+    },
+  });
+
+  const test = await prisma.test.findFirst({ where: { code: "DPO" } })
+    || await prisma.test.findFirst({ where: { code: "DEMO-TEST" } });
+
+  const assessment = await prisma.assessment.findFirst({ where: { code: "DPO" } });
+
+  if (test) {
+    const defaultFeatures = [
+      '1 acceso individual a la evaluación',
+      'Aplicación en línea',
+      'Resultados procesados automáticamente',
+      'Reporte personal en PDF',
+      'Acceso posterior desde tu cuenta',
+    ];
+
+    const product = await prisma.evaluationProduct.upsert({
+      where: { code: "DPO-PRO" },
+      update: {
+        name: "Evaluación DPO-PRO",
+        slug: "dpo-pro",
+        testId: test.id,
+        assessmentId: assessment?.id ?? null,
+        features: defaultFeatures,
+      },
+      create: {
+        code: "DPO-PRO",
+        slug: "dpo-pro",
+        name: "Evaluación DPO-PRO",
+        shortDescription: "Evaluación psicométrica integral con baremo estandarizado para líderes y directivos.",
+        description: "Diagnóstico profundo de competencias y potencial para toma de decisiones, liderazgo y ejecución estratégica.",
+        features: defaultFeatures,
+        testId: test.id,
+        assessmentId: assessment?.id ?? null,
+        isActive: true,
+        sortOrder: 1,
+      },
+    });
+
+    const activePrice = await prisma.priceVersion.findFirst({
+      where: { productId: product.id, isActive: true },
+    });
+
+    if (!activePrice) {
+      await prisma.priceVersion.create({
+        data: {
+          productId: product.id,
+          amountCents: 220000,
+          currency: "MXN",
+          effectiveFrom: new Date("2026-01-01"),
+          isActive: true,
+        },
+      });
+    }
+  }
+
+  await prisma.coupon.upsert({
+    where: { code: "BIENVENIDA10" },
+    update: {},
+    create: {
+      code: "BIENVENIDA10",
+      description: "10% de descuento de bienvenida en tu primera evaluación.",
+      discountType: "PERCENTAGE",
+      discountValue: 10.00,
+      minPurchaseAmountCents: 0,
+      maxUsesGlobal: 500,
+      maxUsesPerUser: 1,
+      isActive: true,
+    },
+  });
+}
+
 async function main() {
   await seedIdentity();
   await seedDemoTest();
   await seedDpo(prisma);
+  await seedCommerce();
   console.log("Seed de Crevantia completado.");
 }
 

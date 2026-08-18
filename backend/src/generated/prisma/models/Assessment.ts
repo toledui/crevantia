@@ -199,6 +199,7 @@ export type AssessmentWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Assessment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Assessment"> | Date | string
   versions?: Prisma.AssessmentVersionListRelationFilter
+  evaluationProducts?: Prisma.EvaluationProductListRelationFilter
 }
 
 export type AssessmentOrderByWithRelationInput = {
@@ -210,6 +211,7 @@ export type AssessmentOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   versions?: Prisma.AssessmentVersionOrderByRelationAggregateInput
+  evaluationProducts?: Prisma.EvaluationProductOrderByRelationAggregateInput
   _relevance?: Prisma.AssessmentOrderByRelevanceInput
 }
 
@@ -225,6 +227,7 @@ export type AssessmentWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Assessment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Assessment"> | Date | string
   versions?: Prisma.AssessmentVersionListRelationFilter
+  evaluationProducts?: Prisma.EvaluationProductListRelationFilter
 }, "id" | "code">
 
 export type AssessmentOrderByWithAggregationInput = {
@@ -262,6 +265,7 @@ export type AssessmentCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   versions?: Prisma.AssessmentVersionCreateNestedManyWithoutAssessmentInput
+  evaluationProducts?: Prisma.EvaluationProductCreateNestedManyWithoutAssessmentInput
 }
 
 export type AssessmentUncheckedCreateInput = {
@@ -273,6 +277,7 @@ export type AssessmentUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   versions?: Prisma.AssessmentVersionUncheckedCreateNestedManyWithoutAssessmentInput
+  evaluationProducts?: Prisma.EvaluationProductUncheckedCreateNestedManyWithoutAssessmentInput
 }
 
 export type AssessmentUpdateInput = {
@@ -284,6 +289,7 @@ export type AssessmentUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.AssessmentVersionUpdateManyWithoutAssessmentNestedInput
+  evaluationProducts?: Prisma.EvaluationProductUpdateManyWithoutAssessmentNestedInput
 }
 
 export type AssessmentUncheckedUpdateInput = {
@@ -295,6 +301,7 @@ export type AssessmentUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.AssessmentVersionUncheckedUpdateManyWithoutAssessmentNestedInput
+  evaluationProducts?: Prisma.EvaluationProductUncheckedUpdateManyWithoutAssessmentNestedInput
 }
 
 export type AssessmentCreateManyInput = {
@@ -368,6 +375,11 @@ export type AssessmentScalarRelationFilter = {
   isNot?: Prisma.AssessmentWhereInput
 }
 
+export type AssessmentNullableScalarRelationFilter = {
+  is?: Prisma.AssessmentWhereInput | null
+  isNot?: Prisma.AssessmentWhereInput | null
+}
+
 export type AssessmentCreateNestedOneWithoutVersionsInput = {
   create?: Prisma.XOR<Prisma.AssessmentCreateWithoutVersionsInput, Prisma.AssessmentUncheckedCreateWithoutVersionsInput>
   connectOrCreate?: Prisma.AssessmentCreateOrConnectWithoutVersionsInput
@@ -382,6 +394,22 @@ export type AssessmentUpdateOneRequiredWithoutVersionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AssessmentUpdateToOneWithWhereWithoutVersionsInput, Prisma.AssessmentUpdateWithoutVersionsInput>, Prisma.AssessmentUncheckedUpdateWithoutVersionsInput>
 }
 
+export type AssessmentCreateNestedOneWithoutEvaluationProductsInput = {
+  create?: Prisma.XOR<Prisma.AssessmentCreateWithoutEvaluationProductsInput, Prisma.AssessmentUncheckedCreateWithoutEvaluationProductsInput>
+  connectOrCreate?: Prisma.AssessmentCreateOrConnectWithoutEvaluationProductsInput
+  connect?: Prisma.AssessmentWhereUniqueInput
+}
+
+export type AssessmentUpdateOneWithoutEvaluationProductsNestedInput = {
+  create?: Prisma.XOR<Prisma.AssessmentCreateWithoutEvaluationProductsInput, Prisma.AssessmentUncheckedCreateWithoutEvaluationProductsInput>
+  connectOrCreate?: Prisma.AssessmentCreateOrConnectWithoutEvaluationProductsInput
+  upsert?: Prisma.AssessmentUpsertWithoutEvaluationProductsInput
+  disconnect?: Prisma.AssessmentWhereInput | boolean
+  delete?: Prisma.AssessmentWhereInput | boolean
+  connect?: Prisma.AssessmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AssessmentUpdateToOneWithWhereWithoutEvaluationProductsInput, Prisma.AssessmentUpdateWithoutEvaluationProductsInput>, Prisma.AssessmentUncheckedUpdateWithoutEvaluationProductsInput>
+}
+
 export type AssessmentCreateWithoutVersionsInput = {
   id?: string
   code: string
@@ -390,6 +418,7 @@ export type AssessmentCreateWithoutVersionsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluationProducts?: Prisma.EvaluationProductCreateNestedManyWithoutAssessmentInput
 }
 
 export type AssessmentUncheckedCreateWithoutVersionsInput = {
@@ -400,6 +429,7 @@ export type AssessmentUncheckedCreateWithoutVersionsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluationProducts?: Prisma.EvaluationProductUncheckedCreateNestedManyWithoutAssessmentInput
 }
 
 export type AssessmentCreateOrConnectWithoutVersionsInput = {
@@ -426,6 +456,7 @@ export type AssessmentUpdateWithoutVersionsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluationProducts?: Prisma.EvaluationProductUpdateManyWithoutAssessmentNestedInput
 }
 
 export type AssessmentUncheckedUpdateWithoutVersionsInput = {
@@ -436,6 +467,67 @@ export type AssessmentUncheckedUpdateWithoutVersionsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluationProducts?: Prisma.EvaluationProductUncheckedUpdateManyWithoutAssessmentNestedInput
+}
+
+export type AssessmentCreateWithoutEvaluationProductsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  versions?: Prisma.AssessmentVersionCreateNestedManyWithoutAssessmentInput
+}
+
+export type AssessmentUncheckedCreateWithoutEvaluationProductsInput = {
+  id?: string
+  code: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  versions?: Prisma.AssessmentVersionUncheckedCreateNestedManyWithoutAssessmentInput
+}
+
+export type AssessmentCreateOrConnectWithoutEvaluationProductsInput = {
+  where: Prisma.AssessmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssessmentCreateWithoutEvaluationProductsInput, Prisma.AssessmentUncheckedCreateWithoutEvaluationProductsInput>
+}
+
+export type AssessmentUpsertWithoutEvaluationProductsInput = {
+  update: Prisma.XOR<Prisma.AssessmentUpdateWithoutEvaluationProductsInput, Prisma.AssessmentUncheckedUpdateWithoutEvaluationProductsInput>
+  create: Prisma.XOR<Prisma.AssessmentCreateWithoutEvaluationProductsInput, Prisma.AssessmentUncheckedCreateWithoutEvaluationProductsInput>
+  where?: Prisma.AssessmentWhereInput
+}
+
+export type AssessmentUpdateToOneWithWhereWithoutEvaluationProductsInput = {
+  where?: Prisma.AssessmentWhereInput
+  data: Prisma.XOR<Prisma.AssessmentUpdateWithoutEvaluationProductsInput, Prisma.AssessmentUncheckedUpdateWithoutEvaluationProductsInput>
+}
+
+export type AssessmentUpdateWithoutEvaluationProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  versions?: Prisma.AssessmentVersionUpdateManyWithoutAssessmentNestedInput
+}
+
+export type AssessmentUncheckedUpdateWithoutEvaluationProductsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  versions?: Prisma.AssessmentVersionUncheckedUpdateManyWithoutAssessmentNestedInput
 }
 
 
@@ -445,10 +537,12 @@ export type AssessmentUncheckedUpdateWithoutVersionsInput = {
 
 export type AssessmentCountOutputType = {
   versions: number
+  evaluationProducts: number
 }
 
 export type AssessmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   versions?: boolean | AssessmentCountOutputTypeCountVersionsArgs
+  evaluationProducts?: boolean | AssessmentCountOutputTypeCountEvaluationProductsArgs
 }
 
 /**
@@ -468,6 +562,13 @@ export type AssessmentCountOutputTypeCountVersionsArgs<ExtArgs extends runtime.T
   where?: Prisma.AssessmentVersionWhereInput
 }
 
+/**
+ * AssessmentCountOutputType without action
+ */
+export type AssessmentCountOutputTypeCountEvaluationProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EvaluationProductWhereInput
+}
+
 
 export type AssessmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -478,6 +579,7 @@ export type AssessmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   versions?: boolean | Prisma.Assessment$versionsArgs<ExtArgs>
+  evaluationProducts?: boolean | Prisma.Assessment$evaluationProductsArgs<ExtArgs>
   _count?: boolean | Prisma.AssessmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessment"]>
 
@@ -496,6 +598,7 @@ export type AssessmentSelectScalar = {
 export type AssessmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["assessment"]>
 export type AssessmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   versions?: boolean | Prisma.Assessment$versionsArgs<ExtArgs>
+  evaluationProducts?: boolean | Prisma.Assessment$evaluationProductsArgs<ExtArgs>
   _count?: boolean | Prisma.AssessmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -503,6 +606,7 @@ export type $AssessmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "Assessment"
   objects: {
     versions: Prisma.$AssessmentVersionPayload<ExtArgs>[]
+    evaluationProducts: Prisma.$EvaluationProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -853,6 +957,7 @@ readonly fields: AssessmentFieldRefs;
 export interface Prisma__AssessmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   versions<T extends Prisma.Assessment$versionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assessment$versionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssessmentVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  evaluationProducts<T extends Prisma.Assessment$evaluationProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assessment$evaluationProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvaluationProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1258,6 +1363,30 @@ export type Assessment$versionsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.AssessmentVersionScalarFieldEnum | Prisma.AssessmentVersionScalarFieldEnum[]
+}
+
+/**
+ * Assessment.evaluationProducts
+ */
+export type Assessment$evaluationProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EvaluationProduct
+   */
+  select?: Prisma.EvaluationProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EvaluationProduct
+   */
+  omit?: Prisma.EvaluationProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EvaluationProductInclude<ExtArgs> | null
+  where?: Prisma.EvaluationProductWhereInput
+  orderBy?: Prisma.EvaluationProductOrderByWithRelationInput | Prisma.EvaluationProductOrderByWithRelationInput[]
+  cursor?: Prisma.EvaluationProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EvaluationProductScalarFieldEnum | Prisma.EvaluationProductScalarFieldEnum[]
 }
 
 /**

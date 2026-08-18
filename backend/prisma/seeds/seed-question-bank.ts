@@ -148,7 +148,7 @@ export async function seedQuestionBank(prisma: PrismaClient) {
         });
         for (const statement of question.statements) {
           await tx.reactive.upsert({
-            where: { code: statement.code },
+            where: { id: statement.code },
             update: {
               pairQuestionId: question.code,
               position: statement.orderInPair,

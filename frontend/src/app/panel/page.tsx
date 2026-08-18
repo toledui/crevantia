@@ -1,14 +1,10 @@
-import { Brand } from "@/components/brand";
 import { SessionGate } from "@/components/session-gate";
-import { UserAssessmentsPanel } from "@/components/user-assessments-panel";
+import { UserPanelContainer } from "@/components/user-panel-container";
 
 export default function UserPanel() {
   return (
     <SessionGate area="client">
-      <main className="user-panel">
-        <Brand />
-        <UserAssessmentsPanel />
-      </main>
+      <UserPanelContainer />
     </SessionGate>
   );
 }

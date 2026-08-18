@@ -14,8 +14,13 @@ async function bootstrap() {
   const config = app.get(ConfigService);
   app.setGlobalPrefix("api/v1");
   // El editor envía el documento versionado completo. 2 MB cubre DPO-PRO sin
-  // aceptar cargas JSON de tamaño indefinido.
-  app.useBodyParser("json", { limit: "2mb" });
+  // aceptar cargas JSON de tamaño indefinido. rawBody es requerido para webhooks de Stripe.
+  app.useBodyParser("json", {
+    limit: "2mb",
+    verify: (req: any, _res: any, buf: Buffer) => {
+      req.rawBody = buf;
+    },
+  });
   app.useBodyParser("urlencoded", { limit: "1mb", extended: true });
   app.use(helmet());
   app.use(cookieParser());

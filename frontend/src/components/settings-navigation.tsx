@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 
 const items = [
   { href: '/admin/configuracion', label: 'Correo', description: 'Servidor SMTP y remitente', exact: true },
+  { href: '/admin/configuracion/financiero', label: 'Finanzas e impuestos', description: 'IVA, moneda y desglose fiscal' },
+  { href: '/admin/configuracion/stripe', label: 'Pasarela de pago', description: 'Stripe, claves y webhooks' },
   { href: '/admin/configuracion/roles', label: 'Roles y permisos', description: 'Accesos del equipo administrativo' },
 ];
 

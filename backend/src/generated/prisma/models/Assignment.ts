@@ -226,6 +226,7 @@ export type AssignmentWhereInput = {
   test?: Prisma.XOR<Prisma.TestScalarRelationFilter, Prisma.TestWhereInput>
   testVersion?: Prisma.XOR<Prisma.TestVersionScalarRelationFilter, Prisma.TestVersionWhereInput>
   attempt?: Prisma.XOR<Prisma.AttemptNullableScalarRelationFilter, Prisma.AttemptWhereInput> | null
+  purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null
 }
 
 export type AssignmentOrderByWithRelationInput = {
@@ -243,6 +244,7 @@ export type AssignmentOrderByWithRelationInput = {
   test?: Prisma.TestOrderByWithRelationInput
   testVersion?: Prisma.TestVersionOrderByWithRelationInput
   attempt?: Prisma.AttemptOrderByWithRelationInput
+  purchaseOrder?: Prisma.PurchaseOrderOrderByWithRelationInput
   _relevance?: Prisma.AssignmentOrderByRelevanceInput
 }
 
@@ -264,6 +266,7 @@ export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
   test?: Prisma.XOR<Prisma.TestScalarRelationFilter, Prisma.TestWhereInput>
   testVersion?: Prisma.XOR<Prisma.TestVersionScalarRelationFilter, Prisma.TestVersionWhereInput>
   attempt?: Prisma.XOR<Prisma.AttemptNullableScalarRelationFilter, Prisma.AttemptWhereInput> | null
+  purchaseOrder?: Prisma.XOR<Prisma.PurchaseOrderNullableScalarRelationFilter, Prisma.PurchaseOrderWhereInput> | null
 }, "id">
 
 export type AssignmentOrderByWithAggregationInput = {
@@ -310,6 +313,7 @@ export type AssignmentCreateInput = {
   test: Prisma.TestCreateNestedOneWithoutAssignmentsInput
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAssignmentsInput
   attempt?: Prisma.AttemptCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUncheckedCreateInput = {
@@ -324,6 +328,7 @@ export type AssignmentUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attempt?: Prisma.AttemptUncheckedCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUpdateInput = {
@@ -338,6 +343,7 @@ export type AssignmentUpdateInput = {
   test?: Prisma.TestUpdateOneRequiredWithoutAssignmentsNestedInput
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAssignmentsNestedInput
   attempt?: Prisma.AttemptUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateInput = {
@@ -352,6 +358,7 @@ export type AssignmentUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempt?: Prisma.AttemptUncheckedUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentCreateManyInput = {
@@ -448,6 +455,11 @@ export type AssignmentMinOrderByAggregateInput = {
 export type AssignmentScalarRelationFilter = {
   is?: Prisma.AssignmentWhereInput
   isNot?: Prisma.AssignmentWhereInput
+}
+
+export type AssignmentNullableScalarRelationFilter = {
+  is?: Prisma.AssignmentWhereInput | null
+  isNot?: Prisma.AssignmentWhereInput | null
 }
 
 export type AssignmentCreateNestedManyWithoutUserInput = {
@@ -598,6 +610,22 @@ export type AssignmentUpdateOneRequiredWithoutAttemptNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AssignmentUpdateToOneWithWhereWithoutAttemptInput, Prisma.AssignmentUpdateWithoutAttemptInput>, Prisma.AssignmentUncheckedUpdateWithoutAttemptInput>
 }
 
+export type AssignmentCreateNestedOneWithoutPurchaseOrderInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutPurchaseOrderInput, Prisma.AssignmentUncheckedCreateWithoutPurchaseOrderInput>
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutPurchaseOrderInput
+  connect?: Prisma.AssignmentWhereUniqueInput
+}
+
+export type AssignmentUpdateOneWithoutPurchaseOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutPurchaseOrderInput, Prisma.AssignmentUncheckedCreateWithoutPurchaseOrderInput>
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutPurchaseOrderInput
+  upsert?: Prisma.AssignmentUpsertWithoutPurchaseOrderInput
+  disconnect?: Prisma.AssignmentWhereInput | boolean
+  delete?: Prisma.AssignmentWhereInput | boolean
+  connect?: Prisma.AssignmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AssignmentUpdateToOneWithWhereWithoutPurchaseOrderInput, Prisma.AssignmentUpdateWithoutPurchaseOrderInput>, Prisma.AssignmentUncheckedUpdateWithoutPurchaseOrderInput>
+}
+
 export type AssignmentCreateWithoutUserInput = {
   id?: string
   type: $Enums.AssignmentType
@@ -609,6 +637,7 @@ export type AssignmentCreateWithoutUserInput = {
   test: Prisma.TestCreateNestedOneWithoutAssignmentsInput
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAssignmentsInput
   attempt?: Prisma.AttemptCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUncheckedCreateWithoutUserInput = {
@@ -622,6 +651,7 @@ export type AssignmentUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attempt?: Prisma.AttemptUncheckedCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentCreateOrConnectWithoutUserInput = {
@@ -677,6 +707,7 @@ export type AssignmentCreateWithoutTestInput = {
   user: Prisma.UserCreateNestedOneWithoutAssignmentsInput
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAssignmentsInput
   attempt?: Prisma.AttemptCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUncheckedCreateWithoutTestInput = {
@@ -690,6 +721,7 @@ export type AssignmentUncheckedCreateWithoutTestInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attempt?: Prisma.AttemptUncheckedCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentCreateOrConnectWithoutTestInput = {
@@ -729,6 +761,7 @@ export type AssignmentCreateWithoutTestVersionInput = {
   user: Prisma.UserCreateNestedOneWithoutAssignmentsInput
   test: Prisma.TestCreateNestedOneWithoutAssignmentsInput
   attempt?: Prisma.AttemptCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUncheckedCreateWithoutTestVersionInput = {
@@ -742,6 +775,7 @@ export type AssignmentUncheckedCreateWithoutTestVersionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   attempt?: Prisma.AttemptUncheckedCreateNestedOneWithoutAssignmentInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentCreateOrConnectWithoutTestVersionInput = {
@@ -781,6 +815,7 @@ export type AssignmentCreateWithoutAttemptInput = {
   user: Prisma.UserCreateNestedOneWithoutAssignmentsInput
   test: Prisma.TestCreateNestedOneWithoutAssignmentsInput
   testVersion: Prisma.TestVersionCreateNestedOneWithoutAssignmentsInput
+  purchaseOrder?: Prisma.PurchaseOrderCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUncheckedCreateWithoutAttemptInput = {
@@ -794,6 +829,7 @@ export type AssignmentUncheckedCreateWithoutAttemptInput = {
   reason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentCreateOrConnectWithoutAttemptInput = {
@@ -823,6 +859,7 @@ export type AssignmentUpdateWithoutAttemptInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutAssignmentsNestedInput
   test?: Prisma.TestUpdateOneRequiredWithoutAssignmentsNestedInput
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAssignmentsNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateWithoutAttemptInput = {
@@ -836,6 +873,79 @@ export type AssignmentUncheckedUpdateWithoutAttemptInput = {
   reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedUpdateOneWithoutAssignmentNestedInput
+}
+
+export type AssignmentCreateWithoutPurchaseOrderInput = {
+  id?: string
+  type: $Enums.AssignmentType
+  status?: $Enums.AssignmentStatus
+  expiresAt?: Date | string | null
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutAssignmentsInput
+  test: Prisma.TestCreateNestedOneWithoutAssignmentsInput
+  testVersion: Prisma.TestVersionCreateNestedOneWithoutAssignmentsInput
+  attempt?: Prisma.AttemptCreateNestedOneWithoutAssignmentInput
+}
+
+export type AssignmentUncheckedCreateWithoutPurchaseOrderInput = {
+  id?: string
+  userId: string
+  testId: string
+  testVersionId: string
+  type: $Enums.AssignmentType
+  status?: $Enums.AssignmentStatus
+  expiresAt?: Date | string | null
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  attempt?: Prisma.AttemptUncheckedCreateNestedOneWithoutAssignmentInput
+}
+
+export type AssignmentCreateOrConnectWithoutPurchaseOrderInput = {
+  where: Prisma.AssignmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutPurchaseOrderInput, Prisma.AssignmentUncheckedCreateWithoutPurchaseOrderInput>
+}
+
+export type AssignmentUpsertWithoutPurchaseOrderInput = {
+  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutPurchaseOrderInput, Prisma.AssignmentUncheckedUpdateWithoutPurchaseOrderInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutPurchaseOrderInput, Prisma.AssignmentUncheckedCreateWithoutPurchaseOrderInput>
+  where?: Prisma.AssignmentWhereInput
+}
+
+export type AssignmentUpdateToOneWithWhereWithoutPurchaseOrderInput = {
+  where?: Prisma.AssignmentWhereInput
+  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutPurchaseOrderInput, Prisma.AssignmentUncheckedUpdateWithoutPurchaseOrderInput>
+}
+
+export type AssignmentUpdateWithoutPurchaseOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAssignmentTypeFieldUpdateOperationsInput | $Enums.AssignmentType
+  status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutAssignmentsNestedInput
+  test?: Prisma.TestUpdateOneRequiredWithoutAssignmentsNestedInput
+  testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAssignmentsNestedInput
+  attempt?: Prisma.AttemptUpdateOneWithoutAssignmentNestedInput
+}
+
+export type AssignmentUncheckedUpdateWithoutPurchaseOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  testId?: Prisma.StringFieldUpdateOperationsInput | string
+  testVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumAssignmentTypeFieldUpdateOperationsInput | $Enums.AssignmentType
+  status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attempt?: Prisma.AttemptUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentCreateManyUserInput = {
@@ -861,6 +971,7 @@ export type AssignmentUpdateWithoutUserInput = {
   test?: Prisma.TestUpdateOneRequiredWithoutAssignmentsNestedInput
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAssignmentsNestedInput
   attempt?: Prisma.AttemptUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateWithoutUserInput = {
@@ -874,6 +985,7 @@ export type AssignmentUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempt?: Prisma.AttemptUncheckedUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateManyWithoutUserInput = {
@@ -911,6 +1023,7 @@ export type AssignmentUpdateWithoutTestInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutAssignmentsNestedInput
   testVersion?: Prisma.TestVersionUpdateOneRequiredWithoutAssignmentsNestedInput
   attempt?: Prisma.AttemptUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateWithoutTestInput = {
@@ -924,6 +1037,7 @@ export type AssignmentUncheckedUpdateWithoutTestInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempt?: Prisma.AttemptUncheckedUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateManyWithoutTestInput = {
@@ -961,6 +1075,7 @@ export type AssignmentUpdateWithoutTestVersionInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutAssignmentsNestedInput
   test?: Prisma.TestUpdateOneRequiredWithoutAssignmentsNestedInput
   attempt?: Prisma.AttemptUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateWithoutTestVersionInput = {
@@ -974,6 +1089,7 @@ export type AssignmentUncheckedUpdateWithoutTestVersionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attempt?: Prisma.AttemptUncheckedUpdateOneWithoutAssignmentNestedInput
+  purchaseOrder?: Prisma.PurchaseOrderUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateManyWithoutTestVersionInput = {
@@ -1005,6 +1121,7 @@ export type AssignmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
   testVersion?: boolean | Prisma.TestVersionDefaultArgs<ExtArgs>
   attempt?: boolean | Prisma.Assignment$attemptArgs<ExtArgs>
+  purchaseOrder?: boolean | Prisma.Assignment$purchaseOrderArgs<ExtArgs>
 }, ExtArgs["result"]["assignment"]>
 
 
@@ -1028,6 +1145,7 @@ export type AssignmentInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   test?: boolean | Prisma.TestDefaultArgs<ExtArgs>
   testVersion?: boolean | Prisma.TestVersionDefaultArgs<ExtArgs>
   attempt?: boolean | Prisma.Assignment$attemptArgs<ExtArgs>
+  purchaseOrder?: boolean | Prisma.Assignment$purchaseOrderArgs<ExtArgs>
 }
 
 export type $AssignmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1037,6 +1155,7 @@ export type $AssignmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     test: Prisma.$TestPayload<ExtArgs>
     testVersion: Prisma.$TestVersionPayload<ExtArgs>
     attempt: Prisma.$AttemptPayload<ExtArgs> | null
+    purchaseOrder: Prisma.$PurchaseOrderPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1393,6 +1512,7 @@ export interface Prisma__AssignmentClient<T, Null = never, ExtArgs extends runti
   test<T extends Prisma.TestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TestDefaultArgs<ExtArgs>>): Prisma.Prisma__TestClient<runtime.Types.Result.GetResult<Prisma.$TestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   testVersion<T extends Prisma.TestVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TestVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__TestVersionClient<runtime.Types.Result.GetResult<Prisma.$TestVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   attempt<T extends Prisma.Assignment$attemptArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assignment$attemptArgs<ExtArgs>>): Prisma.Prisma__AttemptClient<runtime.Types.Result.GetResult<Prisma.$AttemptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  purchaseOrder<T extends Prisma.Assignment$purchaseOrderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assignment$purchaseOrderArgs<ExtArgs>>): Prisma.Prisma__PurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$PurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1796,6 +1916,25 @@ export type Assignment$attemptArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.AttemptInclude<ExtArgs> | null
   where?: Prisma.AttemptWhereInput
+}
+
+/**
+ * Assignment.purchaseOrder
+ */
+export type Assignment$purchaseOrderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PurchaseOrder
+   */
+  select?: Prisma.PurchaseOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PurchaseOrder
+   */
+  omit?: Prisma.PurchaseOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PurchaseOrderInclude<ExtArgs> | null
+  where?: Prisma.PurchaseOrderWhereInput
 }
 
 /**

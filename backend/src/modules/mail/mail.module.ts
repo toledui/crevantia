@@ -8,6 +8,6 @@ import { PermissionsGuard } from '../../common/permissions.guard';
 @Module({
   controllers: [MailSettingsController],
   providers: [EncryptionService, MailService, PermissionsGuard],
-  exports: [MailService],
+  exports: [MailService, EncryptionService],
 })
 export class MailModule {}
