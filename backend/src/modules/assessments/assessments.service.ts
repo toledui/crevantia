@@ -13,6 +13,7 @@ import {
   type Prisma,
 } from "../../generated/prisma/client";
 import { SaveAttemptAnswerDto, SaveDemographicsDto } from "./assessments.dto";
+import { ListAdminAttemptsDto } from "./admin-attempts.dto";
 
 @Injectable()
 export class AssessmentsService {
@@ -502,6 +503,227 @@ export class AssessmentsService {
       data: { assessmentVersionId: version.id },
     });
     return version.id;
+  }
+
+  async listAdminAttempts(dto: ListAdminAttemptsDto) {
+    const page = dto.page ?? 1;
+    const limit = dto.limit ?? 25;
+    const skip = (page - 1) * limit;
+    const search = dto.search?.trim();
+
+    const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
+
+    const where: Prisma.AttemptWhereInput = {
+      ...(dto.status === 'ATTENTION_REQUIRED'
+        ? {
+            OR: [
+              { status: AttemptStatus.PAUSED },
+              { status: AttemptStatus.SCORING_ERROR },
+              { status: AttemptStatus.IN_PROGRESS, lastActivityAt: { lt: twoHoursAgo } },
+            ],
+          }
+        : dto.status && dto.status !== 'ALL'
+        ? { status: dto.status as AttemptStatus }
+        : {}),
+      ...(search
+        ? {
+            OR: [
+              { assignment: { user: { firstName: { contains: search } } } },
+              { assignment: { user: { lastName: { contains: search } } } },
+              { assignment: { user: { email: { contains: search } } } },
+              { assignment: { test: { name: { contains: search } } } },
+              { assignment: { test: { code: { contains: search } } } },
+            ],
+          }
+        : {}),
+    };
+
+    const [items, total] = await Promise.all([
+      this.prisma.attempt.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { updatedAt: 'desc' },
+        include: {
+          assignment: {
+            include: {
+              user: { select: { id: true, email: true, firstName: true, lastName: true } },
+              test: { select: { id: true, code: true, name: true } },
+              testVersion: { select: { id: true, version: true, estimatedMin: true } },
+            },
+          },
+          resultRuns: {
+            where: { isOfficial: true },
+            orderBy: { calculatedAt: 'desc' },
+            take: 1,
+            select: { id: true, status: true, calculatedAt: true },
+          },
+          _count: {
+            select: {
+              responses: true,
+              pairResponses: true,
+              demographicAnswers: true,
+              forcedChoiceAnswers: true,
+              likertAnswers: true,
+            },
+          },
+        },
+      }),
+      this.prisma.attempt.count({ where }),
+    ]);
+
+    return {
+      items: items.map((item) => {
+        const totalAnswers =
+          item._count.responses +
+          item._count.pairResponses +
+          item._count.demographicAnswers +
+          item._count.forcedChoiceAnswers +
+          item._count.likertAnswers;
+
+        const isStalled =
+          item.status === AttemptStatus.IN_PROGRESS &&
+          item.lastActivityAt &&
+          new Date(item.lastActivityAt) < twoHoursAgo;
+
+        return {
+          id: item.id,
+          status: item.status,
+          isStalled,
+          needsAttention: item.status === AttemptStatus.PAUSED || isStalled || item.status === AttemptStatus.SCORING_ERROR,
+          startedAt: item.startedAt,
+          pausedAt: item.pausedAt,
+          submittedAt: item.submittedAt,
+          completedAt: item.completedAt,
+          lastActivityAt: item.lastActivityAt,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+          totalAnswers,
+          candidate: {
+            id: item.assignment.user.id,
+            email: item.assignment.user.email,
+            firstName: item.assignment.user.firstName,
+            lastName: item.assignment.user.lastName,
+          },
+          test: {
+            id: item.assignment.test.id,
+            code: item.assignment.test.code,
+            name: item.assignment.test.name,
+            version: item.assignment.testVersion.version,
+            estimatedMin: item.assignment.testVersion.estimatedMin,
+          },
+          latestResultRun: item.resultRuns[0] ?? null,
+        };
+      }),
+      total,
+      page,
+      limit,
+    };
+  }
+
+  async getAdminAttemptsSummary() {
+    const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
+
+    const [total, inProgress, paused, completed, attentionCount] = await Promise.all([
+      this.prisma.attempt.count(),
+      this.prisma.attempt.count({ where: { status: AttemptStatus.IN_PROGRESS } }),
+      this.prisma.attempt.count({ where: { status: AttemptStatus.PAUSED } }),
+      this.prisma.attempt.count({ where: { status: AttemptStatus.COMPLETED } }),
+      this.prisma.attempt.count({
+        where: {
+          OR: [
+            { status: AttemptStatus.PAUSED },
+            { status: AttemptStatus.SCORING_ERROR },
+            { status: AttemptStatus.IN_PROGRESS, lastActivityAt: { lt: twoHoursAgo } },
+          ],
+        },
+      }),
+    ]);
+
+    return {
+      total,
+      inProgress,
+      paused,
+      completed,
+      attentionRequired: attentionCount,
+    };
+  }
+
+  async getAdminAttemptDetail(attemptId: string) {
+    const attempt = await this.prisma.attempt.findUnique({
+      where: { id: attemptId },
+      include: {
+        assignment: {
+          include: {
+            user: true,
+            test: true,
+            testVersion: true,
+          },
+        },
+        resultRuns: {
+          orderBy: { calculatedAt: 'desc' },
+          select: { id: true, status: true, calculatedAt: true, isOfficial: true, diagnostics: true },
+        },
+        _count: {
+          select: {
+            responses: true,
+            pairResponses: true,
+            demographicAnswers: true,
+            forcedChoiceAnswers: true,
+            likertAnswers: true,
+          },
+        },
+      },
+    });
+    if (!attempt) throw new NotFoundException('El intento de evaluación no existe.');
+    return attempt;
+  }
+
+  async reopenAdminAttempt(actor: AuthenticatedUser, attemptId: string, reason?: string) {
+    const attempt = await this.prisma.attempt.findUnique({
+      where: { id: attemptId },
+      include: {
+        assignment: {
+          include: { user: true, test: true },
+        },
+      },
+    });
+    if (!attempt) throw new NotFoundException('El intento de evaluación no existe.');
+    if (attempt.status === AttemptStatus.COMPLETED) {
+      throw new BadRequestException('No se puede reabrir un intento que ya ha sido completado.');
+    }
+
+    const updated = await this.prisma.$transaction(async (tx) => {
+      const res = await tx.attempt.update({
+        where: { id: attemptId },
+        data: {
+          status: AttemptStatus.IN_PROGRESS,
+          pausedAt: null,
+          lastActivityAt: new Date(),
+        },
+      });
+      await tx.auditLog.create({
+        data: {
+          actorId: actor.sub,
+          action: 'ATTEMPT_REOPENED_BY_ADMIN',
+          entityType: 'Attempt',
+          entityId: attemptId,
+          reason: reason?.trim() || 'Reapertura técnica solicitada por soporte',
+          metadata: {
+            candidateEmail: attempt.assignment.user.email,
+            testName: attempt.assignment.test.name,
+            previousStatus: attempt.status,
+          },
+        },
+      });
+      return res;
+    });
+
+    return {
+      success: true,
+      message: `Intento de evaluación para "${attempt.assignment.test.name}" reactivado correctamente.`,
+      attempt: updated,
+    };
   }
 
   private assertEditableAttempt(status: AttemptStatus) {

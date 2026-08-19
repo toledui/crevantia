@@ -8,6 +8,7 @@ const items = [
   { href: '/admin/configuracion/financiero', label: 'Finanzas e impuestos', description: 'IVA, moneda y desglose fiscal' },
   { href: '/admin/configuracion/stripe', label: 'Pasarela de pago', description: 'Stripe, claves y webhooks' },
   { href: '/admin/configuracion/roles', label: 'Roles y permisos', description: 'Accesos del equipo administrativo' },
+  { href: '/admin/configuracion/legal', label: 'Términos y Privacidad', description: 'Políticas legales y consentimiento' },
 ];
 
 export function SettingsNavigation() {

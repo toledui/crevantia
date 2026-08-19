@@ -34,8 +34,12 @@ export class CheckoutPublicController {
 
   @Post('quote')
   @HttpCode(HttpStatus.OK)
-  quote(@Body() dto: QuoteCheckoutDto) {
-    return this.checkout.quote(dto);
+  @UseGuards(OptionalAccessTokenGuard)
+  quote(
+    @CurrentUser() user: AuthenticatedUser | undefined,
+    @Body() dto: QuoteCheckoutDto,
+  ) {
+    return this.checkout.quote(dto, user?.sub);
   }
 
   @Post('order')

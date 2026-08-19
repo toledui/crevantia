@@ -115,7 +115,21 @@ export default function Home() {
         <section className={styles.cta}><div className={styles.container}><div className={styles.ctaBox}><div><h2>Tu evaluación comienza cuando estés listo.</h2><p>Crea tu cuenta, adquiere tu acceso y realiza la evaluación desde un entorno diseñado para leer y responder con tranquilidad.</p></div><Link href="/pago/dpo-pro" className={`${styles.button} ${styles.buttonCyan}`}>Ver precio y comenzar <span aria-hidden="true">→</span></Link></div></div></section>
       </main>
 
-      <footer className={styles.footer}><div className={`${styles.container} ${styles.footerInner}`}><Logo light /><span>© 2026 Crevantia · Todos los derechos reservados.</span><span>Aviso de privacidad · Términos de uso</span></div></footer>
+      <footer className={styles.footer}>
+        <div className={`${styles.container} ${styles.footerInner}`}>
+          <Logo light />
+          <span>© 2026 Crevantia · Todos los derechos reservados.</span>
+          <span>
+            <Link href="/politica-de-privacidad" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Aviso de privacidad
+            </Link>{' '}
+            ·{' '}
+            <Link href="/terminos-y-condiciones" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Términos de uso
+            </Link>
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

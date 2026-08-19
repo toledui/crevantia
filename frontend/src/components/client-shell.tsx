@@ -2,7 +2,18 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ReactNode, useEffect, useState } from 'react';
+import { FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  BarChart3,
+  CheckCircle2,
+  CreditCard,
+  FileText,
+  Play,
+  Search,
+  ShoppingCart,
+  User,
+  X,
+} from 'lucide-react';
 import { apiFetch, logout } from '@/lib/api';
 import { Brand } from './brand';
 
@@ -40,24 +51,64 @@ interface UserData {
   roles: string[];
 }
 
+interface AssignmentData {
+  id: string;
+  status: string;
+  test: { id: string; code: string; name: string; description: string | null };
+  attempt: { id: string; status: string; resultRuns?: Array<{ id: string }> } | null;
+}
+
+interface ProductData {
+  id: string;
+  code: string;
+  slug: string;
+  name: string;
+  description: string | null;
+}
+
 export function ClientShell({ activeTab, onTabChange, children }: ClientShellProps) {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [user, setUser] = useState<UserData | null>(null);
 
+  // Search State
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [assignments, setAssignments] = useState<AssignmentData[]>([]);
+  const [products, setProducts] = useState<ProductData[]>([]);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+
   const closeMobile = () => setMobileOpen(false);
 
   useEffect(() => {
     let active = true;
-    apiFetch<UserData>('/auth/me')
-      .then((data) => {
-        if (active && data) setUser(data);
-      })
-      .catch(() => {});
+    Promise.all([
+      apiFetch<UserData>('/auth/me').catch(() => null),
+      apiFetch<{ items: AssignmentData[] }>('/me/assignments').catch(() => ({ items: [] })),
+      apiFetch<ProductData[]>('/pricing/products').catch(() => []),
+    ]).then(([userData, assignData, prodData]) => {
+      if (active) {
+        if (userData) setUser(userData);
+        if (assignData?.items) setAssignments(assignData.items);
+        if (prodData) setProducts(prodData);
+      }
+    });
+
     return () => {
       active = false;
     };
+  }, []);
+
+  // Click outside listener for search dropdown
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
+        setSearchOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   function toggleMenu() {
@@ -70,23 +121,76 @@ export function ClientShell({ activeTab, onTabChange, children }: ClientShellPro
     closeMobile();
   }
 
-  const isAdmin = user?.roles?.some((r) => ['ADMIN', 'SUPERADMIN', 'SUPER_ADMIN'].includes(r));
+  const q = searchQuery.trim().toLowerCase();
+
+  const matchingAssignments = q
+    ? assignments.filter(
+        (a) =>
+          a.test.name.toLowerCase().includes(q) ||
+          a.test.code.toLowerCase().includes(q) ||
+          (a.test.description && a.test.description.toLowerCase().includes(q))
+      )
+    : [];
+
+  const matchingProducts = q
+    ? products.filter(
+        (p) =>
+          p.name.toLowerCase().includes(q) ||
+          p.code.toLowerCase().includes(q) ||
+          (p.description && p.description.toLowerCase().includes(q))
+      )
+    : [];
+
+  const quickSections = [
+    { title: 'Mis Evaluaciones', subtitle: 'Pruebas asignadas y en progreso', tab: 'assessments' as ClientTab, icon: Play, keywords: 'evaluaciones mis pruebas dpo preguntas contestar' },
+    { title: 'Catálogo de Pruebas', subtitle: 'Adquirir nuevas licencias psicométricas', tab: 'catalog' as ClientTab, icon: ShoppingCart, keywords: 'catalogo catálogo comprar adquirir precios nuevas' },
+    { title: 'Mis Compras y Recibos', subtitle: 'Historial de órdenes y facturación', tab: 'purchases' as ClientTab, icon: CreditCard, keywords: 'compras comprobantes recibos facturas órdenes pagos' },
+    { title: 'Mi Perfil y Seguridad', subtitle: 'Datos personales y contraseña', tab: 'profile' as ClientTab, icon: User, keywords: 'perfil cuenta contraseña credenciales usuario correo' },
+  ];
+
+  const matchingSections = q
+    ? quickSections.filter(
+        (s) => s.title.toLowerCase().includes(q) || s.keywords.includes(q)
+      )
+    : [];
+
+  const totalResults = matchingAssignments.length + matchingProducts.length + matchingSections.length;
+
+  function handleSearchSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (!q) return;
+
+    if (matchingAssignments[0]) {
+      const a = matchingAssignments[0];
+      if (a.attempt?.status === 'COMPLETED' && a.attempt.resultRuns?.[0]?.id) {
+        router.push(`/resultados/${a.attempt.resultRuns[0].id}`);
+      } else if (a.attempt?.id) {
+        router.push(`/evaluacion/${a.attempt.id}`);
+      } else {
+        onTabChange('assessments');
+      }
+    } else if (matchingProducts[0]) {
+      onTabChange('catalog');
+    } else if (matchingSections[0]) {
+      onTabChange(matchingSections[0].tab);
+    }
+    setSearchOpen(false);
+  }
+
   const initials = user
-    ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase()
+    ? `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase()
     : 'CL';
 
   return (
     <div className={`admin-shell${collapsed ? ' is-collapsed' : ''}${mobileOpen ? ' mobile-open' : ''}`}>
       <button className="mobile-overlay" type="button" aria-label="Cerrar menú" onClick={closeMobile} />
-      
+
       <aside className="sidebar">
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <Brand light />
-        </Link>
-        
+        <Brand light />
+
         <nav>
           <section>
-            <span className="nav-label">Evaluaciones</span>
+            <span className="nav-label">Mi Espacio</span>
             <button
               type="button"
               className={activeTab === 'assessments' ? 'active' : ''}
@@ -100,41 +204,29 @@ export function ClientShell({ activeTab, onTabChange, children }: ClientShellPro
               className={activeTab === 'catalog' ? 'active' : ''}
               onClick={() => handleTabClick('catalog')}
             >
-              <Icon name="matrix" />
+              <Icon name="items" />
               <span>Catálogo de Pruebas</span>
             </button>
-          </section>
-
-          <section>
-            <span className="nav-label">Finanzas y Facturación</span>
             <button
               type="button"
               className={activeTab === 'purchases' ? 'active' : ''}
               onClick={() => handleTabClick('purchases')}
             >
               <Icon name="payments" />
-              <span>Compras y Recibos</span>
+              <span>Mis Compras</span>
             </button>
           </section>
 
           <section>
-            <span className="nav-label">Cuenta y Ajustes</span>
+            <span className="nav-label">Configuración</span>
             <button
               type="button"
               className={activeTab === 'profile' ? 'active' : ''}
               onClick={() => handleTabClick('profile')}
             >
               <Icon name="settings" />
-              <span>Mi Perfil y Seguridad</span>
+              <span>Mi Perfil</span>
             </button>
-            
-            {isAdmin && (
-              <Link href="/admin" onClick={closeMobile}>
-                <Icon name="dashboard" />
-                <span>Panel de Admin</span>
-                <b>PRO</b>
-              </Link>
-            )}
           </section>
 
           <section>
@@ -163,13 +255,210 @@ export function ClientShell({ activeTab, onTabChange, children }: ClientShellPro
             </svg>
           </button>
 
-          <label className="search-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-            <input aria-label="Buscar" placeholder="Buscar mis evaluaciones, recibos o pruebas…" />
-          </label>
+          {/* Interactive Search Input & Dropdown for Client Shell */}
+          <div ref={searchContainerRef} style={{ position: 'relative', flex: 1, maxWidth: '440px' }}>
+            <form onSubmit={handleSearchSubmit}>
+              <label className="search-box" style={{ width: '100%', cursor: 'text' }}>
+                <Search size={16} color="#64748b" />
+                <input
+                  aria-label="Buscar en panel de cliente"
+                  placeholder="Buscar mis evaluaciones, recibos o pruebas…"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setSearchOpen(true);
+                  }}
+                  onFocus={() => {
+                    if (searchQuery.trim().length >= 1) setSearchOpen(true);
+                  }}
+                />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery('');
+                      setSearchOpen(false);
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      cursor: 'pointer',
+                      color: '#94a3b8',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                    title="Limpiar búsqueda"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
+              </label>
+            </form>
+
+            {/* Dropdown de Resultados de Cliente */}
+            {searchOpen && searchQuery.trim().length >= 1 && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 'calc(100% + 8px)',
+                  left: 0,
+                  right: 0,
+                  background: '#ffffff',
+                  borderRadius: '14px',
+                  border: '1px solid #e2e8f0',
+                  boxShadow: '0 18px 40px rgba(8, 11, 18, 0.12)',
+                  zIndex: 999,
+                  maxHeight: '440px',
+                  overflowY: 'auto',
+                  padding: '8px 0',
+                }}
+              >
+                {totalResults === 0 ? (
+                  <div style={{ padding: '16px', textAlign: 'center', color: '#64748b', fontSize: '12px' }}>
+                    No se encontraron coincidencias para <b>"{searchQuery}"</b>.
+                  </div>
+                ) : (
+                  <div>
+                    {/* Mis Evaluaciones */}
+                    {matchingAssignments.length > 0 && (
+                      <div style={{ marginBottom: '6px' }}>
+                        <div style={{ padding: '4px 14px', fontSize: '10px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                          Mis Evaluaciones
+                        </div>
+                        {matchingAssignments.map((a) => {
+                          const isCompleted = a.attempt?.status === 'COMPLETED';
+                          const resultId = a.attempt?.resultRuns?.[0]?.id;
+
+                          return (
+                            <div
+                              key={a.id}
+                              onClick={() => {
+                                setSearchOpen(false);
+                                setSearchQuery('');
+                                if (isCompleted && resultId) {
+                                  router.push(`/resultados/${resultId}`);
+                                } else if (a.attempt?.id) {
+                                  router.push(`/evaluacion/${a.attempt.id}`);
+                                } else {
+                                  onTabChange('assessments');
+                                }
+                              }}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                padding: '8px 14px',
+                                cursor: 'pointer',
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.background = '#f8fafc')}
+                              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                            >
+                              <span
+                                style={{
+                                  width: '26px',
+                                  height: '26px',
+                                  borderRadius: '6px',
+                                  background: isCompleted ? '#dcfce7' : '#e0f2fe',
+                                  color: isCompleted ? '#15803d' : '#0369a1',
+                                  display: 'grid',
+                                  placeItems: 'center',
+                                  flexShrink: 0,
+                                }}
+                              >
+                                {isCompleted ? <BarChart3 size={14} /> : <Play size={14} />}
+                              </span>
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <strong style={{ fontSize: '12px', color: '#080b12', display: 'block' }}>{a.test.name}</strong>
+                                <small style={{ fontSize: '10px', color: '#64748b' }}>
+                                  {isCompleted ? '✓ Completada · Ver resultados' : 'En progreso · Continuar'}
+                                </small>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Catálogo de Pruebas */}
+                    {matchingProducts.length > 0 && (
+                      <div style={{ marginBottom: '6px', borderTop: '1px solid #f1f5f9', paddingTop: '4px' }}>
+                        <div style={{ padding: '4px 14px', fontSize: '10px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                          Catálogo de Pruebas
+                        </div>
+                        {matchingProducts.map((p) => (
+                          <div
+                            key={p.id}
+                            onClick={() => {
+                              setSearchOpen(false);
+                              setSearchQuery('');
+                              onTabChange('catalog');
+                            }}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '10px',
+                              padding: '8px 14px',
+                              cursor: 'pointer',
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.background = '#f8fafc')}
+                            onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                          >
+                            <span style={{ width: '26px', height: '26px', borderRadius: '6px', background: '#ede9fe', color: '#6d28d9', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+                              <ShoppingCart size={14} />
+                            </span>
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <strong style={{ fontSize: '12px', color: '#080b12', display: 'block' }}>{p.name}</strong>
+                              <small style={{ fontSize: '10px', color: '#64748b' }}>Ver en catálogo de evaluaciones</small>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Secciones Rápidas */}
+                    {matchingSections.length > 0 && (
+                      <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '4px' }}>
+                        <div style={{ padding: '4px 14px', fontSize: '10px', fontWeight: 800, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                          Secciones del Panel
+                        </div>
+                        {matchingSections.map((sec) => {
+                          const IconComponent = sec.icon;
+                          return (
+                            <div
+                              key={sec.tab}
+                              onClick={() => {
+                                setSearchOpen(false);
+                                setSearchQuery('');
+                                onTabChange(sec.tab);
+                              }}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                padding: '8px 14px',
+                                cursor: 'pointer',
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.background = '#f8fafc')}
+                              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                            >
+                              <span style={{ width: '26px', height: '26px', borderRadius: '6px', background: '#f1f5f9', color: '#475569', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+                                <IconComponent size={14} />
+                              </span>
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <strong style={{ fontSize: '12px', color: '#080b12', display: 'block' }}>{sec.title}</strong>
+                                <small style={{ fontSize: '10px', color: '#64748b' }}>{sec.subtitle}</small>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
           <div className="top-actions">
             <div className="profile-chip">

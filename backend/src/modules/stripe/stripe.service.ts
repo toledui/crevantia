@@ -130,6 +130,12 @@ export class StripeService {
   }
 
   async getStripeClient(customKey?: string): Promise<Stripe> {
+    const settings = await this.prisma.stripeSettings.findUnique({ where: { id: 'default' } });
+    if (!settings?.enabled && !customKey) {
+      throw new ServiceUnavailableException(
+        'La pasarela de pagos Stripe se encuentra actualmente desactivada en la plataforma.',
+      );
+    }
     const secretKey = customKey || (await this.getDecryptedSecretKey());
     if (!secretKey) {
       throw new ServiceUnavailableException(

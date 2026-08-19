@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import { apiFetch } from '@/lib/api';
+import { AdminToast } from '@/components/admin-toast';
 
 interface UserProfile {
   id: string;
@@ -17,20 +18,20 @@ export function UserProfilePanel() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Common notification state
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+
   // Profile edit state
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [savingProfile, setSavingProfile] = useState(false);
-  const [profileSuccess, setProfileSuccess] = useState('');
-  const [profileError, setProfileError] = useState('');
 
   // Password change state
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [savingPassword, setSavingPassword] = useState(false);
-  const [passwordSuccess, setPasswordSuccess] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
     let active = true;
@@ -43,7 +44,7 @@ export function UserProfilePanel() {
         }
       })
       .catch((err) => {
-        if (active) setProfileError(err instanceof Error ? err.message : 'No fue posible cargar el perfil.');
+        if (active) setError(err instanceof Error ? err.message : 'No fue posible cargar el perfil.');
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -57,20 +58,20 @@ export function UserProfilePanel() {
   async function handleUpdateProfile(e: FormEvent) {
     e.preventDefault();
     setSavingProfile(true);
-    setProfileSuccess('');
-    setProfileError('');
+    setMessage('');
+    setError('');
 
     try {
       const res = await apiFetch<{ success: boolean; message: string; user: UserProfile }>('/auth/profile', {
         method: 'PATCH',
         body: JSON.stringify({ firstName, lastName }),
       });
-      setProfileSuccess(res.message || 'Perfil actualizado correctamente.');
+      setMessage(res.message || 'Perfil actualizado correctamente.');
       if (res.user) {
         setProfile((prev) => (prev ? { ...prev, firstName: res.user.firstName, lastName: res.user.lastName } : null));
       }
     } catch (err) {
-      setProfileError(err instanceof Error ? err.message : 'Error al actualizar el perfil.');
+      setError(err instanceof Error ? err.message : 'Error al actualizar el perfil.');
     } finally {
       setSavingProfile(false);
     }
@@ -78,11 +79,11 @@ export function UserProfilePanel() {
 
   async function handleChangePassword(e: FormEvent) {
     e.preventDefault();
-    setPasswordSuccess('');
-    setPasswordError('');
+    setMessage('');
+    setError('');
 
     if (newPassword !== confirmPassword) {
-      setPasswordError('Las nuevas contraseñas no coinciden.');
+      setError('Las nuevas contraseñas no coinciden.');
       return;
     }
 
@@ -93,12 +94,12 @@ export function UserProfilePanel() {
         method: 'POST',
         body: JSON.stringify({ currentPassword, newPassword }),
       });
-      setPasswordSuccess(res.message || 'Contraseña actualizada exitosamente.');
+      setMessage(res.message || 'Contraseña actualizada exitosamente.');
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
     } catch (err) {
-      setPasswordError(err instanceof Error ? err.message : 'Error al actualizar la contraseña.');
+      setError(err instanceof Error ? err.message : 'Error al actualizar la contraseña.');
     } finally {
       setSavingPassword(false);
     }
@@ -114,6 +115,8 @@ export function UserProfilePanel() {
 
   return (
     <div style={{ display: 'grid', gap: '28px', maxWidth: '800px', margin: '0 auto' }}>
+      <AdminToast error={error} message={message} setError={setError} setMessage={setMessage} />
+
       {/* Personal Information Card */}
       <article
         style={{
@@ -132,9 +135,6 @@ export function UserProfilePanel() {
             Actualiza tus nombres y apellidos asociados a tus evaluaciones y reportes.
           </span>
         </div>
-
-        {profileSuccess && <p className="form-success">{profileSuccess}</p>}
-        {profileError && <p className="form-error">{profileError}</p>}
 
         <form onSubmit={handleUpdateProfile} style={{ display: 'grid', gap: '16px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
@@ -245,9 +245,6 @@ export function UserProfilePanel() {
             Cambia tu contraseña para mantener protegida tu cuenta. Recibirás una notificación por correo al confirmarse el cambio.
           </span>
         </div>
-
-        {passwordSuccess && <p className="form-success">{passwordSuccess}</p>}
-        {passwordError && <p className="form-error">{passwordError}</p>}
 
         <form onSubmit={handleChangePassword} style={{ display: 'grid', gap: '16px' }}>
           <label style={{ fontSize: '13px', fontWeight: 700, color: '#334155', display: 'grid', gap: '6px' }}>

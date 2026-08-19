@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { ClipboardList, LogOut } from 'lucide-react';
 import { apiFetch, logout } from '@/lib/api';
 import styles from '@/app/home.module.css';
 
@@ -68,7 +69,7 @@ export function HomeNavbar() {
   return (
     <header className={styles.navbar}>
       <div className={`${styles.container} ${styles.navInner}`}>
-        <a href="#inicio" className={styles.logoLink} aria-label="Ir al inicio">
+        <Link href="/" className={styles.logoLink} aria-label="Ir al inicio de Crevantia">
           <Image
             className={styles.logo}
             src="/branding/logo-crevantia.png"
@@ -77,13 +78,13 @@ export function HomeNavbar() {
             height={416}
             priority
           />
-        </a>
+        </Link>
 
         <nav className={styles.navLinks} aria-label="Navegación principal">
-          <a href="#evaluacion">La evaluación</a>
-          <a href="#como-funciona">Cómo funciona</a>
-          <a href="#precio">Precio</a>
-          <a href="#faq">Preguntas frecuentes</a>
+          <Link href="/#evaluacion">La evaluación</Link>
+          <Link href="/#como-funciona">Cómo funciona</Link>
+          <Link href="/#precio">Precio</Link>
+          <Link href="/#faq">Preguntas frecuentes</Link>
         </nav>
 
         <div className={styles.navActions}>
@@ -168,7 +169,7 @@ export function HomeNavbar() {
                       gap: '8px',
                     }}
                   >
-                    <span>📝</span> Mis Evaluaciones
+                    <ClipboardList size={16} /> Mis Evaluaciones
                   </Link>
 
                   <Link
@@ -246,7 +247,7 @@ export function HomeNavbar() {
                         fontFamily: 'inherit',
                       }}
                     >
-                      <span>🚪</span> Cerrar sesión
+                      <LogOut size={14} /> Cerrar sesión
                     </button>
                   </div>
                 </div>
@@ -270,10 +271,10 @@ export function HomeNavbar() {
             <span aria-hidden="true">☰</span>
           </summary>
           <nav aria-label="Navegación móvil">
-            <a href="#evaluacion">La evaluación</a>
-            <a href="#como-funciona">Cómo funciona</a>
-            <a href="#precio">Precio</a>
-            <a href="#faq">Preguntas frecuentes</a>
+            <Link href="/#evaluacion">La evaluación</Link>
+            <Link href="/#como-funciona">Cómo funciona</Link>
+            <Link href="/#precio">Precio</Link>
+            <Link href="/#faq">Preguntas frecuentes</Link>
             {user ? (
               <>
                 <Link href="/panel">Mi Panel ({user.firstName})</Link>

@@ -79,6 +79,38 @@ export class CheckoutService {
       totalCents = discountedSubtotalCents + taxCents;
     }
 
+    const stripeSettings = await this.prisma.stripeSettings?.findUnique?.({ where: { id: 'default' } });
+    const gatewayActive = Boolean(stripeSettings?.enabled);
+
+    let isAlreadyAssigned = false;
+    let existingAssignmentStatus: string | null = null;
+    let existingAttemptId: string | null = null;
+    let existingResultRunId: string | null = null;
+
+    if (userId) {
+      const existing = await this.prisma.assignment.findFirst({
+        where: {
+          userId,
+          testId: product.testId,
+          status: { in: [AssignmentStatus.AVAILABLE, AssignmentStatus.IN_PROGRESS, AssignmentStatus.COMPLETED, AssignmentStatus.PENDING] },
+        },
+        include: {
+          attempt: {
+            include: {
+              resultRuns: { where: { status: 'COMPLETED' }, take: 1, orderBy: { calculatedAt: 'desc' } },
+            },
+          },
+        },
+      });
+
+      if (existing) {
+        isAlreadyAssigned = true;
+        existingAssignmentStatus = existing.attempt?.status || existing.status;
+        existingAttemptId = existing.attempt?.id || null;
+        existingResultRunId = existing.attempt?.resultRuns?.[0]?.id || null;
+      }
+    }
+
     return {
       product: {
         id: product.id,
@@ -88,6 +120,7 @@ export class CheckoutService {
         shortDescription: product.shortDescription,
         publishedVersion: product.publishedVersion,
         estimatedMin: product.estimatedMin,
+        testId: product.testId,
       },
       priceVersionId: product.currentPrice.id,
       currency: financialSettings.currency,
@@ -104,6 +137,11 @@ export class CheckoutService {
       totalCents,
       totalFormatted: (totalCents / 100).toFixed(financialSettings.decimalPlaces),
       appliedCoupon,
+      isAlreadyAssigned,
+      existingAssignmentStatus,
+      existingAttemptId,
+      existingResultRunId,
+      gatewayActive,
     };
   }
 
@@ -141,6 +179,20 @@ export class CheckoutService {
 
     if (!targetUserId) {
       throw new BadRequestException('Se requiere un usuario autenticado o correo electrónico del comprador.');
+    }
+
+    // Verify user doesn't already have an active assignment for this test
+    const existingAssignment = await this.prisma.assignment.findFirst({
+      where: {
+        userId: targetUserId,
+        testId: quote.product.testId,
+        status: { in: [AssignmentStatus.AVAILABLE, AssignmentStatus.IN_PROGRESS, AssignmentStatus.COMPLETED, AssignmentStatus.PENDING] },
+      },
+    });
+    if (existingAssignment) {
+      throw new ConflictException(
+        'Ya cuentas con un acceso activo o completado para esta evaluación. No es necesario comprarla nuevamente.',
+      );
     }
 
     const orderNumber = `ORD-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}-${randomBytes(3).toString('hex').toUpperCase()}`;
@@ -282,6 +334,15 @@ export class CheckoutService {
 
     const gateway = dto.gateway || 'SIMULATED';
     const simulateSuccess = dto.simulateSuccess !== false;
+
+    if (order.totalCents > 0 && gateway === 'SIMULATED') {
+      const stripeSettings = await this.prisma.stripeSettings?.findUnique?.({ where: { id: 'default' } });
+      if (stripeSettings && !stripeSettings.enabled) {
+        throw new BadRequestException(
+          'La pasarela de pagos se encuentra desactivada. No es posible procesar pagos directos en este momento.',
+        );
+      }
+    }
 
     if (!simulateSuccess) {
       await this.prisma.paymentTransaction.create({

@@ -151,6 +151,42 @@ export class MailService {
     ));
   }
 
+  async sendUserCreatedWithCredentialsEmail(to: string, firstName: string, tempPassword: string, testName?: string) {
+    const link = `${this.config.getOrThrow<string>('FRONTEND_URL')}/iniciar-sesion`;
+    const testNote = testName
+      ? `<br><br>Además, se te ha asignado la evaluación psicométrica <strong>${this.escape(testName)}</strong>, lista para responderse en cuanto ingreses.`
+      : '';
+    await this.send(to, 'Tus credenciales de acceso a Crevantia', this.template(
+      `Hola, ${this.escape(firstName)}`,
+      `Se ha creado tu cuenta en Crevantia para que puedas realizar tus evaluaciones psicométricas y consultar tus resultados.${testNote}<br><br>Tus credenciales de acceso son:<br><strong>Correo:</strong> ${this.escape(to)}<br><strong>Contraseña temporal:</strong> <code style="background:rgba(48,43,120,0.08);padding:2px 8px;border-radius:4px;font-family:monospace;font-size:14px;color:#1e1b4b;">${this.escape(tempPassword)}</code><br><br>Te recomendamos iniciar sesión y actualizar tu contraseña personal en tu perfil.`,
+      'Iniciar sesión en Crevantia', link,
+      'Conserva este correo en un lugar seguro para consultar tus credenciales.',
+    ));
+  }
+
+  async sendDirectAssessmentInvitationEmail(
+    to: string,
+    firstName: string,
+    testName: string,
+    reason?: string,
+    customMessage?: string,
+  ) {
+    const link = `${this.config.getOrThrow<string>('FRONTEND_URL')}/panel`;
+    const reasonText = reason ? `<br><br><strong>Motivo / Referencia:</strong> ${this.escape(reason)}` : '';
+    const customText = customMessage ? `<br><br><em>"${this.escape(customMessage)}"</em>` : '';
+    await this.send(
+      to,
+      `Tienes una evaluación asignada en Crevantia — ${testName}`,
+      this.template(
+        `Hola, ${this.escape(firstName)}`,
+        `Se te ha asignado la evaluación psicométrica <strong>${this.escape(testName)}</strong> en la plataforma Crevantia.${reasonText}${customText}<br><br>La prueba ya está disponible en tu panel personal sin costo adicional. Puedes iniciarla y completarla cuando dispongas del tiempo adecuado en un entorno tranquilo.`,
+        'Ir a mi panel e iniciar evaluación',
+        link,
+        'Si es tu primera vez o necesitas restablecer tu contraseña, utiliza la opción "¿Olvidaste tu contraseña?" con este mismo correo.',
+      ),
+    );
+  }
+
   async sendAccountCreatedWithPurchaseEmail(to: string, firstName: string, tempPassword: string) {
     const link = `${this.config.getOrThrow<string>('FRONTEND_URL')}/iniciar-sesion`;
     await this.send(to, '¡Bienvenido a Crevantia! Acceso a tu cuenta', this.template(

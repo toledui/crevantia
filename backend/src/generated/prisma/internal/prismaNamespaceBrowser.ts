@@ -113,7 +113,8 @@ export const ModelName = {
   PurchaseOrder: 'PurchaseOrder',
   PurchaseItem: 'PurchaseItem',
   PaymentTransaction: 'PaymentTransaction',
-  PaymentEvent: 'PaymentEvent'
+  PaymentEvent: 'PaymentEvent',
+  LegalDocument: 'LegalDocument'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1043,6 +1044,20 @@ export const PaymentEventScalarFieldEnum = {
 export type PaymentEventScalarFieldEnum = (typeof PaymentEventScalarFieldEnum)[keyof typeof PaymentEventScalarFieldEnum]
 
 
+export const LegalDocumentScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  content: 'content',
+  version: 'version',
+  updatedBy: 'updatedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LegalDocumentScalarFieldEnum = (typeof LegalDocumentScalarFieldEnum)[keyof typeof LegalDocumentScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1777,4 +1792,16 @@ export const PaymentEventOrderByRelevanceFieldEnum = {
 } as const
 
 export type PaymentEventOrderByRelevanceFieldEnum = (typeof PaymentEventOrderByRelevanceFieldEnum)[keyof typeof PaymentEventOrderByRelevanceFieldEnum]
+
+
+export const LegalDocumentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  content: 'content',
+  version: 'version',
+  updatedBy: 'updatedBy'
+} as const
+
+export type LegalDocumentOrderByRelevanceFieldEnum = (typeof LegalDocumentOrderByRelevanceFieldEnum)[keyof typeof LegalDocumentOrderByRelevanceFieldEnum]
 

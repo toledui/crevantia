@@ -1,14 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
-import { PrismaService } from '../../database/prisma.service';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { AccessTokenGuard } from '../../common/access-token.guard';
+import { Permissions } from '../../common/permissions.decorator';
+import { PermissionsGuard } from '../../common/permissions.guard';
+import { HealthService } from './health.service';
 
-@Controller('health')
+@Controller()
 export class HealthController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly healthService: HealthService) {}
 
-  @Get()
-  async check() {
-    await this.prisma.$queryRaw`SELECT 1`;
+  @Get('health')
+  check() {
     return { status: 'ok', service: 'crevantia-api', timestamp: new Date().toISOString() };
   }
-}
 
+  @Get('admin/system-health')
+  @UseGuards(AccessTokenGuard, PermissionsGuard)
+  @Permissions('admin.access')
+  getSystemHealth() {
+    return this.healthService.getSystemHealth();
+  }
+}

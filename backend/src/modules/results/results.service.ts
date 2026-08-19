@@ -14,6 +14,7 @@ import {
 import { configurationHash } from "../scoring/configuration-hash";
 import { resolveDecile } from "../scoring/scoring-engine";
 import { RecalculateResultDto } from "./results.dto";
+import { ListAdminResultsDto } from "./admin-results.dto";
 
 @Injectable()
 export class ResultsService {
@@ -203,6 +204,206 @@ export class ResultsService {
       },
       { timeout: 120_000 },
     );
+  }
+
+  async listAdminResults(dto: ListAdminResultsDto) {
+    const page = dto.page ?? 1;
+    const limit = dto.limit ?? 25;
+    const skip = (page - 1) * limit;
+    const search = dto.search?.trim();
+
+    const where: Prisma.ResultRunWhereInput = {
+      status: ResultRunStatus.COMPLETED,
+      ...(dto.type === 'OFFICIAL'
+        ? { isOfficial: true }
+        : dto.type === 'RECALCULATED'
+        ? { isOfficial: false }
+        : {}),
+      ...(search
+        ? {
+            OR: [
+              { attempt: { assignment: { user: { firstName: { contains: search } } } } },
+              { attempt: { assignment: { user: { lastName: { contains: search } } } } },
+              { attempt: { assignment: { user: { email: { contains: search } } } } },
+              { normVersion: { normSet: { name: { contains: search } } } },
+              { id: { contains: search } },
+            ],
+          }
+        : {}),
+    };
+
+    const [items, total] = await Promise.all([
+      this.prisma.resultRun.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { calculatedAt: 'desc' },
+        include: {
+          attempt: {
+            include: {
+              assignment: {
+                include: {
+                  user: { select: { id: true, email: true, firstName: true, lastName: true } },
+                  test: { select: { id: true, code: true, name: true } },
+                  testVersion: { select: { id: true, version: true } },
+                },
+              },
+            },
+          },
+          normVersion: {
+            include: {
+              normSet: { select: { id: true, code: true, name: true } },
+            },
+          },
+          values: {
+            where: { targetType: 'COMPOSITE' },
+            orderBy: { targetCode: 'asc' },
+          },
+          recalculations: {
+            select: { id: true, calculatedAt: true, reason: true },
+          },
+        },
+      }),
+      this.prisma.resultRun.count({ where }),
+    ]);
+
+    return {
+      items: items.map((item) => ({
+        id: item.id,
+        isOfficial: item.isOfficial,
+        status: item.status,
+        calculatedAt: item.calculatedAt,
+        configurationHash: item.configurationHash,
+        engineVersion: item.engineVersion,
+        reason: item.reason,
+        recalculationOfResultRunId: item.recalculationOfResultRunId,
+        recalculationsCount: item.recalculations.length,
+        candidate: {
+          id: item.attempt.assignment.user.id,
+          email: item.attempt.assignment.user.email,
+          firstName: item.attempt.assignment.user.firstName,
+          lastName: item.attempt.assignment.user.lastName,
+        },
+        test: {
+          id: item.attempt.assignment.test.id,
+          code: item.attempt.assignment.test.code,
+          name: item.attempt.assignment.test.name,
+          version: item.attempt.assignment.testVersion.version,
+        },
+        norm: {
+          id: item.normVersion.id,
+          version: item.normVersion.version,
+          normSet: {
+            id: item.normVersion.normSet.id,
+            code: item.normVersion.normSet.code,
+            name: item.normVersion.normSet.name,
+          },
+        },
+        attempt: {
+          id: item.attempt.id,
+          startedAt: item.attempt.startedAt,
+          completedAt: item.attempt.completedAt,
+        },
+        topDimensions: item.values.map((v) => ({
+          id: v.id,
+          targetType: v.targetType,
+          targetCode: v.targetCode,
+          rawScore: v.rawScore.toString(),
+          displayScore: v.displayScore?.toString() ?? null,
+          normalizedScore: v.normalizedScore?.toString() ?? null,
+          decile: v.decile,
+          status: v.status,
+        })),
+      })),
+      total,
+      page,
+      limit,
+    };
+  }
+
+  async getAdminResultsSummary() {
+    const [totalResults, officialResults, recalculatedResults] = await Promise.all([
+      this.prisma.resultRun.count({ where: { status: ResultRunStatus.COMPLETED } }),
+      this.prisma.resultRun.count({ where: { status: ResultRunStatus.COMPLETED, isOfficial: true } }),
+      this.prisma.resultRun.count({ where: { status: ResultRunStatus.COMPLETED, isOfficial: false } }),
+    ]);
+
+    return {
+      totalResults,
+      officialResults,
+      recalculatedResults,
+    };
+  }
+
+  async getAdminResultDetails(id: string) {
+    const result = await this.prisma.resultRun.findUnique({
+      where: { id },
+      include: {
+        attempt: {
+          include: {
+            assignment: {
+              include: {
+                user: true,
+                test: true,
+                testVersion: true,
+              },
+            },
+          },
+        },
+        assessmentVersion: {
+          select: { id: true, version: true, versionCode: true },
+        },
+        scoringKeyVersion: {
+          select: { id: true, version: true, sourceVersion: true },
+        },
+        normVersion: {
+          include: {
+            normSet: true,
+            targets: {
+              include: {
+                thresholds: { orderBy: { ordinal: 'asc' } },
+              },
+            },
+          },
+        },
+        values: {
+          orderBy: [{ targetType: 'asc' }, { targetCode: 'asc' }],
+        },
+        recalculationOf: {
+          include: {
+            normVersion: { include: { normSet: true } },
+          },
+        },
+        recalculations: {
+          include: {
+            normVersion: { include: { normSet: true } },
+          },
+          orderBy: { calculatedAt: 'desc' },
+        },
+      },
+    });
+
+    if (!result) throw new NotFoundException('El resultado psicométrico no existe.');
+
+    // Fetch published norm versions for potential recalculation
+    const availableNorms = await this.prisma.normVersion.findMany({
+      where: { status: ConfigurationStatus.PUBLISHED },
+      include: { normSet: { select: { id: true, code: true, name: true } } },
+      orderBy: [{ normSet: { name: 'asc' } }, { version: 'desc' }],
+    });
+
+    return {
+      ...result,
+      availableNorms,
+    };
+  }
+
+  async getAvailableNorms() {
+    return this.prisma.normVersion.findMany({
+      where: { status: ConfigurationStatus.PUBLISHED },
+      include: { normSet: { select: { id: true, code: true, name: true } } },
+      orderBy: [{ normSet: { name: 'asc' } }, { version: 'desc' }],
+    });
   }
 
   private assertAccess(

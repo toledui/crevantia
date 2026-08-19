@@ -9,7 +9,7 @@ import { PermissionsGuard } from './common/permissions.guard';
 import { DatabaseModule } from './database/database.module';
 import { AdminController } from './modules/admin/admin.controller';
 import { AuthModule } from './modules/auth/auth.module';
-import { HealthController } from './modules/health/health.controller';
+import { HealthModule } from './modules/health/health.module';
 import { MailModule } from './modules/mail/mail.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { UsersModule } from './modules/users/users.module';
@@ -20,6 +20,7 @@ import { ResultsModule } from './modules/results/results.module';
 import { FinancialModule } from './modules/financial/financial.module';
 import { CommerceModule } from './modules/commerce/commerce.module';
 import { StripeModule } from './modules/stripe/stripe.module';
+import { LegalModule } from './modules/legal/legal.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { StripeModule } from './modules/stripe/stripe.module';
     JwtModule.register({ global: true }),
     ThrottlerModule.forRoot([{ ttl: 60_000, limit: 100 }]),
     DatabaseModule,
+    HealthModule,
     MailModule,
     AuthModule,
     RolesModule,
@@ -38,8 +40,9 @@ import { StripeModule } from './modules/stripe/stripe.module';
     FinancialModule,
     CommerceModule,
     StripeModule,
+    LegalModule,
   ],
-  controllers: [HealthController, AdminController],
+  controllers: [AdminController],
   providers: [
     AccessTokenGuard,
     RolesGuard,

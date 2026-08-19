@@ -1,8 +1,10 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { BarChart3 } from "lucide-react";
 import { apiFetch } from "@/lib/api";
+import { AdminToast } from "@/components/admin-toast";
 
 interface Assignment {
   id: string;
@@ -22,6 +24,7 @@ export function UserAssessmentsPanel() {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   useEffect(() => {
     let active = true;
     apiFetch<{ items: Assignment[] }>("/me/assignments")
@@ -64,16 +67,12 @@ export function UserAssessmentsPanel() {
   }
   return (
     <section className="user-assessments">
+      <AdminToast error={error} message={message} setError={setError} setMessage={setMessage} />
       <span className="eyebrow dark">Mi espacio</span>
       <h1>Mis evaluaciones</h1>
       <p>
         Continúa una aplicación guardada o inicia una asignación disponible.
       </p>
-      {error && (
-        <p className="form-error" role="alert">
-          {error}
-        </p>
-      )}
       {loading ? (
         <div className="empty-state">
           <strong>Cargando evaluaciones…</strong>
@@ -112,8 +111,9 @@ export function UserAssessmentsPanel() {
                 <button
                   className="secondary-button compact"
                   onClick={() => router.push(`/resultados/${assignment.attempt?.resultRuns[0]?.id}`)}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                 >
-                  📊 Ver Resultados y Reporte
+                  <BarChart3 size={14} /> Ver Resultados y Reporte
                 </button>
               ) : (
                 <button

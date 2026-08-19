@@ -124,20 +124,37 @@ export async function apiFetch<T>(
   init: RequestInit = {},
 ): Promise<T> {
   let token = getAccessToken();
-  if (!token) token = await refreshAccessToken();
+  if (!token) {
+    token = await refreshAccessToken().catch(() => null);
+  }
+
+  const headers: Record<string, string> = {
+    ...(init.headers as Record<string, string>),
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   try {
     return await request<T>(path, {
       ...init,
-      headers: { ...init.headers, Authorization: `Bearer ${token}` },
+      headers,
     });
   } catch (error) {
-    if (!(error instanceof ApiError) || ![401, 403].includes(error.status))
+    if (!(error instanceof ApiError) || ![401, 403].includes(error.status)) {
       throw error;
-    token = await refreshAccessToken();
-    return request<T>(path, {
-      ...init,
-      headers: { ...init.headers, Authorization: `Bearer ${token}` },
-    });
+    }
+    const refreshedToken = await refreshAccessToken().catch(() => null);
+    if (refreshedToken) {
+      return request<T>(path, {
+        ...init,
+        headers: {
+          ...init.headers,
+          Authorization: `Bearer ${refreshedToken}`,
+        },
+      });
+    }
+    throw error;
   }
 }
 
@@ -146,22 +163,34 @@ export async function apiUpload<T>(
   formData: FormData,
 ): Promise<T> {
   let token = getAccessToken();
-  if (!token) token = await refreshAccessToken();
+  if (!token) {
+    token = await refreshAccessToken().catch(() => null);
+  }
+
+  const headers: Record<string, string> = {};
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   try {
     return await request<T>(path, {
       method: "POST",
       body: formData,
-      headers: { Authorization: `Bearer ${token}` },
+      headers,
     });
   } catch (error) {
-    if (!(error instanceof ApiError) || ![401, 403].includes(error.status))
+    if (!(error instanceof ApiError) || ![401, 403].includes(error.status)) {
       throw error;
-    token = await refreshAccessToken();
-    return request<T>(path, {
-      method: "POST",
-      body: formData,
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    }
+    const refreshedToken = await refreshAccessToken().catch(() => null);
+    if (refreshedToken) {
+      return request<T>(path, {
+        method: "POST",
+        body: formData,
+        headers: { Authorization: `Bearer ${refreshedToken}` },
+      });
+    }
+    throw error;
   }
 }
 

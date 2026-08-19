@@ -3,8 +3,19 @@
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
+import {
+  AlertTriangle,
+  BarChart3,
+  CheckCircle2,
+  Clock,
+  FileText,
+  Lock,
+  Play,
+  ShieldCheck,
+  ShoppingCart,
+} from 'lucide-react';
 import { Brand } from '@/components/brand';
-import { ApiError, apiFetch } from '@/lib/api';
+import { apiFetch } from '@/lib/api';
 
 interface QuoteResponse {
   product: {
@@ -15,6 +26,7 @@ interface QuoteResponse {
     shortDescription: string | null;
     publishedVersion: number | null;
     estimatedMin: number | null;
+    testId?: string;
   };
   currency: string;
   decimalPlaces: number;
@@ -36,6 +48,11 @@ interface QuoteResponse {
     discountValue: number;
     discountFormatted: string;
   } | null;
+  isAlreadyAssigned?: boolean;
+  existingAssignmentStatus?: string | null;
+  existingAttemptId?: string | null;
+  existingResultRunId?: string | null;
+  gatewayActive?: boolean;
 }
 
 interface OrderResult {
@@ -75,12 +92,11 @@ export function CheckoutPanel({ slug }: { slug: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
-  const isCancelled = searchParams.get('cancelled') === 'true';
 
   const [quote, setQuote] = useState<QuoteResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [quoteError, setQuoteError] = useState('');
-  
+
   const [stripeConfig, setStripeConfig] = useState<StripeConfig>({ enabled: false, mode: 'test', publishableKey: '' });
   const [currentUser, setCurrentUser] = useState<AuthenticatedUser | null>(null);
 
@@ -95,7 +111,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
   const [customerFirstName, setCustomerFirstName] = useState('');
   const [customerLastName, setCustomerLastName] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  
+
   // Account check state
   const [emailChecked, setEmailChecked] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
@@ -162,7 +178,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
     }
   }, [sessionId]);
 
-  // Initial load: fetch quote, stripe config, and current user
+  // Initial load
   useEffect(() => {
     void fetchQuote();
     apiFetch<StripeConfig>('/pricing/stripe/config')
@@ -178,11 +194,11 @@ export function CheckoutPanel({ slug }: { slug: string }) {
           setCustomerLastName(user.lastName);
           setEmailChecked(true);
           setAccountExists(true);
+          // Re-fetch quote with authenticated user context
+          void fetchQuote();
         }
       })
-      .catch(() => {
-        // User not logged in, continue as guest
-      });
+      .catch(() => {});
   }, [slug]);
 
   // Debounced check email
@@ -234,6 +250,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
       setCustomerLastName(res.user.lastName);
       setAccountExists(true);
       setPasswordInput('');
+      void fetchQuote(appliedCouponCode);
     } catch (err) {
       setAuthError(err instanceof Error ? err.message : 'Contraseña incorrecta.');
     } finally {
@@ -263,7 +280,6 @@ export function CheckoutPanel({ slug }: { slug: string }) {
     const email = customerEmail.trim().toLowerCase();
     if (!email) throw new Error('Ingresa tu correo electrónico para continuar.');
 
-    // If account exists but user didn't log in, prompt password
     if (accountExists && !currentUser) {
       if (!passwordInput) {
         throw new Error('Esta cuenta ya existe. Por favor ingresa tu contraseña para iniciar sesión.');
@@ -276,7 +292,6 @@ export function CheckoutPanel({ slug }: { slug: string }) {
       return res.user.id;
     }
 
-    // Otherwise auto-register new user
     if (!customerFirstName.trim()) {
       throw new Error('Ingresa tu nombre para generar tu cuenta y el certificado de la evaluación.');
     }
@@ -329,7 +344,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
     }
   }
 
-  async function handleSimulatedCheckout() {
+  async function handleFreeOrSimulatedCheckout() {
     setPaying(true);
     setPayError('');
     setAuthError('');
@@ -358,7 +373,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
 
       setPaymentSuccess(payment);
     } catch (err) {
-      setPayError(err instanceof Error ? err.message : 'No fue posible procesar el pago.');
+      setPayError(err instanceof Error ? err.message : 'No fue posible procesar el acceso a la evaluación.');
     } finally {
       setPaying(false);
     }
@@ -377,7 +392,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
       <div style={{ maxWidth: '600px', margin: '80px auto', padding: '30px', textAlign: 'center', background: 'white', borderRadius: '24px', boxShadow: 'var(--shadow)' }}>
         <h2 style={{ color: 'var(--night)', marginBottom: '12px' }}>Evaluación no disponible</h2>
         <p style={{ color: '#687386', marginBottom: '24px' }}>{quoteError || 'No se encontró la evaluación solicitada.'}</p>
-        <Link href="/" className="primary-button">Volver al inicio</Link>
+        <Link href="/panel" className="primary-button">Volver al panel</Link>
       </div>
     );
   }
@@ -386,7 +401,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
     return (
       <main style={{ maxWidth: '680px', margin: '60px auto', padding: '40px 32px', background: 'white', borderRadius: '28px', boxShadow: 'var(--shadow)', textAlign: 'center' }}>
         <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(32, 140, 112, 0.12)', color: 'var(--success)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '28px' }}>
-          ✓
+          <CheckCircle2 size={36} />
         </div>
         <span className="eyebrow" style={{ color: 'var(--success)', marginBottom: '8px' }}>Compra confirmada</span>
         <h1 style={{ fontSize: '32px', color: 'var(--night)', letterSpacing: '-0.04em', margin: '8px 0 16px' }}>
@@ -408,7 +423,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
             </div>
           )}
           <div style={{ display: 'flex', justifyContent: 'space-between', color: '#687386' }}>
-            <span>Importe pagado:</span>
+            <span>Importe:</span>
             <strong style={{ color: 'var(--indigo)' }}>${quote.totalFormatted} {quote.currency}</strong>
           </div>
         </div>
@@ -422,7 +437,7 @@ export function CheckoutPanel({ slug }: { slug: string }) {
               className="secondary-button"
               style={{ padding: '14px 22px', fontSize: '15px' }}
             >
-              📄 Descargar Recibo PDF
+              <FileText size={16} /> Descargar Recibo PDF
             </a>
           )}
           <Link href="/panel" className="primary-button" style={{ padding: '14px 28px', fontSize: '15px' }}>
@@ -432,6 +447,9 @@ export function CheckoutPanel({ slug }: { slug: string }) {
       </main>
     );
   }
+
+  const isGatewayActive = stripeConfig.enabled || quote.gatewayActive;
+  const isZeroTotal = quote.totalCents === 0;
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #f7f6f1, #eef1f6)', padding: '32px 20px' }}>
@@ -447,294 +465,415 @@ export function CheckoutPanel({ slug }: { slug: string }) {
       <main style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'minmax(320px, 1fr) minmax(360px, 1.2fr)', gap: '32px', alignItems: 'start' }}>
         {/* Left Column: Product Summary */}
         <section style={{ background: 'white', borderRadius: '24px', padding: '32px', boxShadow: '0 12px 40px rgba(8, 11, 18, 0.06)', border: '1px solid rgba(156, 166, 184, 0.16)' }}>
-          <span className="eyebrow" style={{ color: 'var(--indigo)', marginBottom: '12px' }}>Evaluación psicométrica</span>
-          <h2 style={{ fontSize: '26px', color: 'var(--night)', letterSpacing: '-0.04em', margin: '8px 0 12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+            <span className="eyebrow dark" style={{ margin: 0 }}>Instrumento psicométrico</span>
+            <span className="status-badge published">{quote.product.code}</span>
+          </div>
+
+          <h1 style={{ fontSize: '28px', color: 'var(--night)', letterSpacing: '-0.04em', margin: '8px 0 14px' }}>
             {quote.product.name}
-          </h2>
-          <p style={{ color: '#606a7b', fontSize: '14px', lineHeight: '1.6', margin: '0 0 24px' }}>
+          </h1>
+
+          <p style={{ color: '#606a7b', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px' }}>
             {quote.product.shortDescription || 'Diagnóstico psicométrico estandarizado de alto nivel para evaluación de competencias, liderazgo y estilo de toma de decisiones.'}
           </p>
 
           <div style={{ display: 'grid', gap: '14px', borderTop: '1px solid #edf0f5', paddingTop: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#4a5568', fontSize: '13px' }}>
-              <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(48, 43, 120, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--indigo)', fontWeight: 'bold' }}>⏱</span>
+              <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(48, 43, 120, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--indigo)' }}>
+                <Clock size={15} />
+              </span>
               <span>Tiempo estimado: <strong>{quote.product.estimatedMin ? `${quote.product.estimatedMin} minutos` : '40-50 minutos'}</strong></span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#4a5568', fontSize: '13px' }}>
-              <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(0, 194, 232, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0097b6', fontWeight: 'bold' }}>📊</span>
+              <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(0, 194, 232, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0097b6' }}>
+                <BarChart3 size={15} />
+              </span>
               <span>Baremo estandarizado de 10 deciles con baremación continua</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#4a5568', fontSize: '13px' }}>
-              <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(32, 140, 112, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--success)', fontWeight: 'bold' }}>📄</span>
+              <span style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(32, 140, 112, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--success)' }}>
+                <FileText size={15} />
+              </span>
               <span>Reporte ejecutivo con recibo en PDF descargable y enviado por correo</span>
             </div>
           </div>
         </section>
 
-        {/* Right Column: Checkout & Order Form */}
+        {/* Right Column: Checkout or Already Assigned Notice */}
         <section style={{ background: 'white', borderRadius: '24px', padding: '32px', boxShadow: 'var(--shadow)', border: '1px solid rgba(48, 43, 120, 0.08)' }}>
-          <h2 style={{ fontSize: '20px', color: 'var(--night)', letterSpacing: '-0.03em', margin: '0 0 20px' }}>
-            Resumen de compra y pago
-          </h2>
-
-          {isCancelled && (
-            <div style={{ padding: '12px 16px', borderRadius: '12px', background: '#fffbeb', border: '1px solid #fef3c7', color: '#b45309', fontSize: '13px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span>ℹ️</span>
-              <span>El proceso de pago fue interrumpido. Tu orden permanece guardada para que puedas reanudarla.</span>
-            </div>
-          )}
-
-          {/* User Identification Section */}
-          <div style={{ background: '#f8fafc', border: '1px solid var(--line)', borderRadius: '16px', padding: '20px', marginBottom: '24px' }}>
-            <span style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#5f6877', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              {currentUser ? '✓ Comprador Verificado' : '1. Datos del Comprador y Cuenta'}
-            </span>
-
-            {currentUser ? (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div>
-                  <strong style={{ display: 'block', color: 'var(--night)', fontSize: '14px' }}>
-                    {currentUser.firstName} {currentUser.lastName}
-                  </strong>
-                  <span style={{ fontSize: '13px', color: '#687386' }}>{currentUser.email}</span>
-                </div>
-                <span className="status-badge published" style={{ fontSize: '11px' }}>Sesión activa</span>
+          {quote.isAlreadyAssigned ? (
+            /* Alerta de evaluación ya adquirida / asignada */
+            <div style={{ textAlign: 'center', padding: '12px 0' }}>
+              <div
+                style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '50%',
+                  background: quote.existingAssignmentStatus === 'COMPLETED' ? 'rgba(32, 140, 112, 0.12)' : 'rgba(48, 43, 120, 0.08)',
+                  color: quote.existingAssignmentStatus === 'COMPLETED' ? 'var(--success)' : 'var(--indigo)',
+                  display: 'grid',
+                  placeItems: 'center',
+                  margin: '0 auto 16px',
+                }}
+              >
+                {quote.existingAssignmentStatus === 'COMPLETED' ? <CheckCircle2 size={30} /> : <ShieldCheck size={30} />}
               </div>
-            ) : (
+
+              <span className="eyebrow" style={{ color: 'var(--indigo)', marginBottom: '6px' }}>
+                Acceso registrado
+              </span>
+
+              <h2 style={{ fontSize: '24px', color: 'var(--night)', letterSpacing: '-0.04em', margin: '4px 0 12px' }}>
+                {quote.existingAssignmentStatus === 'COMPLETED'
+                  ? 'Ya completaste esta evaluación'
+                  : 'Ya tienes esta prueba asignada'}
+              </h2>
+
+              <p style={{ color: '#687386', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px' }}>
+                {quote.existingAssignmentStatus === 'COMPLETED'
+                  ? 'Tu cuenta ya cuenta con un resultado oficial registrado para esta prueba. No es necesario realizar una nueva compra.'
+                  : 'Tu cuenta ya dispone de un acceso activo para responder esta evaluación psicométrica. Puedes iniciarla o continuarla de inmediato.'}
+              </p>
+
               <div style={{ display: 'grid', gap: '12px' }}>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', color: '#475569' }}>
-                  Correo electrónico *
-                  <input
-                    type="email"
-                    value={customerEmail}
-                    onChange={(e) => setCustomerEmail(e.target.value)}
-                    placeholder="tu-correo@ejemplo.com"
-                    required
-                    style={{
-                      width: '100%',
-                      marginTop: '6px',
-                      padding: '10px 14px',
-                      borderRadius: '10px',
-                      border: '1px solid #cbd5e1',
-                      fontSize: '14px',
-                      fontFamily: 'inherit',
-                      background: 'white',
-                    }}
-                  />
-                </label>
-
-                {checkingEmail && (
-                  <span style={{ fontSize: '12px', color: '#64748b' }}>Verificando cuenta…</span>
+                {quote.existingAssignmentStatus === 'COMPLETED' && quote.existingResultRunId ? (
+                  <button
+                    type="button"
+                    className="primary-button"
+                    onClick={() => router.push(`/resultados/${quote.existingResultRunId}`)}
+                    style={{ width: '100%', justifyContent: 'center', padding: '14px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                  >
+                    <BarChart3 size={16} /> Ver Resultados y Reporte Oficial
+                  </button>
+                ) : quote.existingAttemptId ? (
+                  <button
+                    type="button"
+                    className="primary-button"
+                    onClick={() => router.push(`/evaluacion/${quote.existingAttemptId}`)}
+                    style={{ width: '100%', justifyContent: 'center', padding: '14px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                  >
+                    <Play size={16} /> Continuar respondiendo evaluación →
+                  </button>
+                ) : (
+                  <Link
+                    href="/panel"
+                    className="primary-button"
+                    style={{ width: '100%', justifyContent: 'center', padding: '14px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                  >
+                    <Play size={16} /> Ir a Mis Evaluaciones →
+                  </Link>
                 )}
 
-                {/* Case 1: Account already exists -> Inline login */}
-                {emailChecked && accountExists && !currentUser && (
-                  <form onSubmit={handleInlineLogin} style={{ display: 'grid', gap: '10px', padding: '12px', background: 'rgba(48, 43, 120, 0.05)', borderRadius: '12px', border: '1px solid rgba(48, 43, 120, 0.12)' }}>
-                    <div style={{ fontSize: '12px', color: 'var(--indigo)', fontWeight: '600' }}>
-                      🔑 Ya tienes una cuenta en Crevantia. Ingresa tu contraseña para vincular la compra:
+                <Link href="/panel" className="secondary-button" style={{ width: '100%', justifyContent: 'center', padding: '12px' }}>
+                  Volver a mi panel
+                </Link>
+              </div>
+            </div>
+          ) : (
+            /* Formulario normal de checkout */
+            <div>
+              <div style={{ marginBottom: '24px' }}>
+                <span className="eyebrow dark" style={{ margin: 0 }}>Paso final</span>
+                <h2 style={{ fontSize: '24px', color: 'var(--night)', letterSpacing: '-0.04em', margin: '4px 0 8px' }}>
+                  Datos de facturación y acceso
+                </h2>
+                <p style={{ color: '#687386', fontSize: '13px' }}>
+                  {currentUser
+                    ? `Comprando con la cuenta verificada de ${currentUser.firstName} (${currentUser.email}).`
+                    : 'Ingresa tus datos para registrar tu cuenta y habilitar el acceso a la prueba.'}
+                </p>
+              </div>
+
+              {/* Formulario de cuenta / usuario */}
+              <div style={{ marginBottom: '24px' }}>
+                {currentUser ? (
+                  <div style={{ background: 'rgba(48, 43, 120, 0.04)', borderRadius: '14px', padding: '16px', border: '1px solid rgba(48, 43, 120, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '14px', color: 'var(--night)' }}>
+                        {currentUser.firstName} {currentUser.lastName}
+                      </strong>
+                      <span style={{ fontSize: '13px', color: '#687386' }}>{currentUser.email}</span>
                     </div>
-                    <input
-                      type="password"
-                      value={passwordInput}
-                      onChange={(e) => setPasswordInput(e.target.value)}
-                      placeholder="Ingresa tu contraseña"
-                      required
-                      style={{
-                        padding: '10px 14px',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        fontSize: '14px',
-                        background: 'white',
-                      }}
-                    />
-                    {authError && (
-                      <span style={{ fontSize: '12px', color: 'var(--danger)', fontWeight: '600' }}>{authError}</span>
+                    <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--success)', background: '#dcfce7', padding: '4px 8px', borderRadius: '6px' }}>
+                      Sesión activa
+                    </span>
+                  </div>
+                ) : (
+                  <div style={{ display: 'grid', gap: '14px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#687386' }}>
+                      Correo electrónico
+                      <input
+                        type="email"
+                        value={customerEmail}
+                        onChange={(e) => setCustomerEmail(e.target.value)}
+                        placeholder="tu@correo.com"
+                        required
+                        style={{
+                          width: '100%',
+                          marginTop: '6px',
+                          padding: '10px 14px',
+                          borderRadius: '10px',
+                          border: '1px solid #cbd5e1',
+                          fontSize: '14px',
+                          background: 'white',
+                        }}
+                      />
+                    </label>
+
+                    {checkingEmail && <small style={{ color: '#687386', fontSize: '12px' }}>Verificando correo…</small>}
+
+                    {emailChecked && accountExists && !currentUser && (
+                      <div style={{ background: 'rgba(48, 43, 120, 0.04)', borderRadius: '12px', padding: '14px', border: '1px solid rgba(48, 43, 120, 0.12)' }}>
+                        <p style={{ fontSize: '13px', color: 'var(--night)', margin: '0 0 10px', fontWeight: 600 }}>
+                          Ya tienes una cuenta registrada. Ingresa tu contraseña para continuar:
+                        </p>
+                        <form onSubmit={handleInlineLogin} style={{ display: 'flex', gap: '8px' }}>
+                          <input
+                            type="password"
+                            value={passwordInput}
+                            onChange={(e) => setPasswordInput(e.target.value)}
+                            placeholder="Contraseña de tu cuenta"
+                            required
+                            style={{
+                              flex: 1,
+                              padding: '8px 12px',
+                              borderRadius: '8px',
+                              border: '1px solid #cbd5e1',
+                              fontSize: '13px',
+                            }}
+                          />
+                          <button type="submit" disabled={loggingIn} className="primary-button compact">
+                            {loggingIn ? 'Ingresando…' : 'Iniciar sesión'}
+                          </button>
+                        </form>
+                        {authError && <p style={{ color: 'var(--danger)', fontSize: '12px', margin: '6px 0 0' }}>{authError}</p>}
+                      </div>
                     )}
-                    <button
-                      type="submit"
-                      disabled={loggingIn || !passwordInput}
-                      className="primary-button compact"
-                      style={{ justifySelf: 'start', fontSize: '13px' }}
-                    >
-                      {loggingIn ? 'Validando…' : 'Iniciar sesión y continuar'}
-                    </button>
-                  </form>
-                )}
 
-                {/* Case 2: New user -> Ask full name and optional password */}
-                {(!accountExists || !emailChecked) && (
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', color: '#475569' }}>
-                      Nombre(s) *
-                      <input
-                        type="text"
-                        value={customerFirstName}
-                        onChange={(e) => setCustomerFirstName(e.target.value)}
-                        placeholder="Ej. Laura"
-                        required
-                        style={{
-                          width: '100%',
-                          marginTop: '6px',
-                          padding: '10px 14px',
-                          borderRadius: '10px',
-                          border: '1px solid #cbd5e1',
-                          fontSize: '14px',
-                          background: 'white',
-                        }}
-                      />
-                    </label>
-
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', color: '#475569' }}>
-                      Apellidos *
-                      <input
-                        type="text"
-                        value={customerLastName}
-                        onChange={(e) => setCustomerLastName(e.target.value)}
-                        placeholder="Ej. González"
-                        required
-                        style={{
-                          width: '100%',
-                          marginTop: '6px',
-                          padding: '10px 14px',
-                          borderRadius: '10px',
-                          border: '1px solid #cbd5e1',
-                          fontSize: '14px',
-                          background: 'white',
-                        }}
-                      />
-                    </label>
+                    {emailChecked && !accountExists && !currentUser && (
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                        <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#687386' }}>
+                          Nombre
+                          <input
+                            type="text"
+                            value={customerFirstName}
+                            onChange={(e) => setCustomerFirstName(e.target.value)}
+                            placeholder="Ej. Luis Antonio"
+                            required
+                            style={{
+                              width: '100%',
+                              marginTop: '6px',
+                              padding: '10px 14px',
+                              borderRadius: '10px',
+                              border: '1px solid #cbd5e1',
+                              fontSize: '14px',
+                              background: 'white',
+                            }}
+                          />
+                        </label>
+                        <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#687386' }}>
+                          Apellidos
+                          <input
+                            type="text"
+                            value={customerLastName}
+                            onChange={(e) => setCustomerLastName(e.target.value)}
+                            placeholder="Ej. Toledo Méndez"
+                            required
+                            style={{
+                              width: '100%',
+                              marginTop: '6px',
+                              padding: '10px 14px',
+                              borderRadius: '10px',
+                              border: '1px solid #cbd5e1',
+                              fontSize: '14px',
+                              background: 'white',
+                            }}
+                          />
+                        </label>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-            )}
-          </div>
 
-          {/* Coupon Input Form */}
-          <form onSubmit={handleApplyCoupon} style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#687386', marginBottom: '6px' }}>
-              Cupón de descuento
-            </label>
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <input
-                value={couponCodeInput}
-                onChange={(e) => setCouponCodeInput(e.target.value.toUpperCase())}
-                placeholder="Código promocional (ej. BIENVENIDA10)"
-                disabled={Boolean(appliedCouponCode)}
-                style={{
-                  flex: 1,
-                  padding: '10px 14px',
-                  borderRadius: '10px',
-                  border: '1px solid #dce1e8',
-                  fontSize: '14px',
-                  fontFamily: 'inherit',
-                  textTransform: 'uppercase',
-                }}
-              />
-              {appliedCouponCode ? (
+              {/* Formulario de cupón de descuento */}
+              <form onSubmit={handleApplyCoupon} style={{ marginBottom: '24px' }}>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#687386', marginBottom: '6px' }}>
+                  Cupón de descuento / Código institucional
+                </label>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input
+                    value={couponCodeInput}
+                    onChange={(e) => setCouponCodeInput(e.target.value.toUpperCase())}
+                    placeholder="Código promocional (ej. BIENVENIDA10)"
+                    disabled={Boolean(appliedCouponCode)}
+                    style={{
+                      flex: 1,
+                      padding: '10px 14px',
+                      borderRadius: '10px',
+                      border: '1px solid #dce1e8',
+                      fontSize: '14px',
+                      fontFamily: 'inherit',
+                      textTransform: 'uppercase',
+                    }}
+                  />
+                  {appliedCouponCode ? (
+                    <button
+                      type="button"
+                      onClick={handleRemoveCoupon}
+                      className="secondary-button"
+                      style={{ padding: '10px 16px', color: 'var(--danger)' }}
+                    >
+                      Quitar
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={applyingCoupon || !couponCodeInput.trim()}
+                      className="secondary-button"
+                      style={{ padding: '10px 18px' }}
+                    >
+                      {applyingCoupon ? '…' : 'Aplicar'}
+                    </button>
+                  )}
+                </div>
+                {couponFeedback && (
+                  <p style={{
+                    margin: '8px 0 0',
+                    fontSize: '12px',
+                    color: couponFeedback.type === 'success' ? 'var(--success)' : 'var(--danger)',
+                    fontWeight: '600',
+                  }}>
+                    {couponFeedback.text}
+                  </p>
+                )}
+              </form>
+
+              {/* Desglose de Precios */}
+              <div style={{ background: 'rgba(48, 43, 120, 0.02)', border: '1px solid #edf0f5', borderRadius: '16px', padding: '20px', marginBottom: '24px', display: 'grid', gap: '10px', fontSize: '14px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: '#606a7b' }}>
+                  <span>Subtotal:</span>
+                  <strong>${quote.subtotalFormatted} {quote.currency}</strong>
+                </div>
+
+                {quote.discountCents > 0 && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--success)' }}>
+                    <span>Descuento de cupón ({quote.appliedCoupon?.code}):</span>
+                    <strong>-${quote.discountFormatted} {quote.currency}</strong>
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: '#606a7b' }}>
+                  <span>{quote.taxName} ({quote.taxRatePercent}% {quote.pricesIncludeTax ? 'incluido' : ''}):</span>
+                  <span>{quote.pricesIncludeTax ? '' : '+'}${quote.taxFormatted} {quote.currency}</span>
+                </div>
+
+                <div style={{ borderTop: '2px solid #edf0f5', paddingTop: '14px', marginTop: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <span style={{ fontSize: '16px', fontWeight: '800', color: 'var(--night)' }}>Total a pagar:</span>
+                  <div style={{ textAlign: 'right' }}>
+                    <strong style={{ fontSize: '26px', color: 'var(--indigo)', letterSpacing: '-0.04em' }}>
+                      ${quote.totalFormatted}
+                    </strong>
+                    <span style={{ fontSize: '13px', color: '#8992a1', marginLeft: '6px' }}>{quote.currency}</span>
+                  </div>
+                </div>
+              </div>
+
+              {payError && (
+                <div style={{ padding: '12px 16px', borderRadius: '12px', background: 'rgba(196, 90, 90, 0.1)', color: 'var(--danger)', fontSize: '13px', fontWeight: '600', marginBottom: '20px' }}>
+                  {payError}
+                </div>
+              )}
+
+              {/* Botones de acción y control de pasarela */}
+              {isZeroTotal ? (
+                /* Total $0 por cupón 100% de descuento */
                 <button
                   type="button"
-                  onClick={handleRemoveCoupon}
-                  className="secondary-button"
-                  style={{ padding: '10px 16px', color: 'var(--danger)' }}
+                  className="primary-button"
+                  onClick={() => void handleFreeOrSimulatedCheckout()}
+                  disabled={paying}
+                  style={{
+                    width: '100%',
+                    padding: '16px',
+                    fontSize: '15px',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(110deg, #15803d, #16a34a)',
+                  }}
                 >
-                  Quitar
+                  {paying ? 'Activando tu acceso…' : '✓ Canjear acceso y comenzar evaluación gratis →'}
                 </button>
+              ) : !isGatewayActive ? (
+                /* Pasarela desactivada y total > $0 */
+                <div style={{ display: 'grid', gap: '12px' }}>
+                  <div
+                    style={{
+                      background: '#fffbeb',
+                      border: '1px solid #fef3c7',
+                      borderRadius: '14px',
+                      padding: '16px',
+                      color: '#92400e',
+                      fontSize: '13px',
+                      display: 'flex',
+                      gap: '12px',
+                      alignItems: 'flex-start',
+                    }}
+                  >
+                    <AlertTriangle size={20} color="#d97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <div>
+                      <strong style={{ display: 'block', marginBottom: '4px' }}>Pasarela de pago no activa</strong>
+                      <p style={{ margin: 0, lineHeight: '1.5' }}>
+                        Los pagos directos con tarjeta están temporalmente deshabilitados en la plataforma. Si cuentas con un código de cupón de acceso institucional, ingrésalo arriba.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    disabled
+                    className="primary-button"
+                    style={{
+                      width: '100%',
+                      padding: '14px',
+                      fontSize: '15px',
+                      justifyContent: 'center',
+                      opacity: 0.5,
+                      cursor: 'not-allowed',
+                    }}
+                  >
+                    <Lock size={16} /> Pasarela no disponible
+                  </button>
+                </div>
               ) : (
-                <button
-                  type="submit"
-                  disabled={applyingCoupon || !couponCodeInput.trim()}
-                  className="secondary-button"
-                  style={{ padding: '10px 18px' }}
-                >
-                  {applyingCoupon ? '…' : 'Aplicar'}
-                </button>
+                /* Pasarela activa y total > $0 */
+                <div style={{ display: 'grid', gap: '12px' }}>
+                  <button
+                    type="button"
+                    className="primary-button"
+                    onClick={() => void handleStripeCheckout()}
+                    disabled={paying}
+                    style={{
+                      width: '100%',
+                      padding: '16px',
+                      fontSize: '16px',
+                      justifyContent: 'center',
+                      background: 'linear-gradient(135deg, #635bff, #0a2540)',
+                      color: '#fff',
+                    }}
+                  >
+                    {paying
+                      ? 'Conectando con Stripe…'
+                      : `💳 Pagar $${quote.totalFormatted} ${quote.currency} con Stripe`}
+                  </button>
+                </div>
               )}
-            </div>
-            {couponFeedback && (
-              <p style={{
-                margin: '8px 0 0',
-                fontSize: '12px',
-                color: couponFeedback.type === 'success' ? 'var(--success)' : 'var(--danger)',
-                fontWeight: '600',
-              }}>
-                {couponFeedback.text}
+
+              <p style={{ textAlign: 'center', fontSize: '11px', color: '#8992a1', marginTop: '16px' }}>
+                🔒 Transacción cifrada y segura. Acceso inmediato a la evaluación y recibo PDF tras confirmar la compra.
               </p>
-            )}
-          </form>
-
-          {/* Price Breakdown Table */}
-          <div style={{ background: 'rgba(48, 43, 120, 0.02)', border: '1px solid #edf0f5', borderRadius: '16px', padding: '20px', marginBottom: '24px', display: 'grid', gap: '10px', fontSize: '14px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#606a7b' }}>
-              <span>Subtotal:</span>
-              <strong>${quote.subtotalFormatted} {quote.currency}</strong>
-            </div>
-
-            {quote.discountCents > 0 && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--success)' }}>
-                <span>Descuento de cupón ({quote.appliedCoupon?.code}):</span>
-                <strong>-${quote.discountFormatted} {quote.currency}</strong>
-              </div>
-            )}
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#606a7b' }}>
-              <span>{quote.taxName} ({quote.taxRatePercent}% {quote.pricesIncludeTax ? 'incluido' : ''}):</span>
-              <span>{quote.pricesIncludeTax ? '' : '+'}${quote.taxFormatted} {quote.currency}</span>
-            </div>
-
-            <div style={{ borderTop: '2px solid #edf0f5', paddingTop: '14px', marginTop: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-              <span style={{ fontSize: '16px', fontWeight: '800', color: 'var(--night)' }}>Total a pagar:</span>
-              <div style={{ textAlign: 'right' }}>
-                <strong style={{ fontSize: '26px', color: 'var(--indigo)', letterSpacing: '-0.04em' }}>
-                  ${quote.totalFormatted}
-                </strong>
-                <span style={{ fontSize: '13px', color: '#8992a1', marginLeft: '6px' }}>{quote.currency}</span>
-              </div>
-            </div>
-          </div>
-
-          {payError && (
-            <div style={{ padding: '12px 16px', borderRadius: '12px', background: 'rgba(196, 90, 90, 0.1)', color: 'var(--danger)', fontSize: '13px', fontWeight: '600', marginBottom: '20px' }}>
-              {payError}
             </div>
           )}
-
-          {/* Payment Action Buttons */}
-          <div style={{ display: 'grid', gap: '12px' }}>
-            {stripeConfig.enabled ? (
-              <button
-                type="button"
-                className="primary-button"
-                onClick={() => void handleStripeCheckout()}
-                disabled={paying}
-                style={{
-                  width: '100%',
-                  padding: '16px',
-                  fontSize: '16px',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #635bff, #0a2540)',
-                  color: '#fff',
-                }}
-              >
-                {paying
-                  ? 'Conectando con Stripe…'
-                  : `💳 Pagar $${quote.totalFormatted} ${quote.currency} con Stripe`}
-              </button>
-            ) : null}
-
-            <button
-              type="button"
-              className={stripeConfig.enabled ? 'secondary-button' : 'primary-button'}
-              onClick={() => void handleSimulatedCheckout()}
-              disabled={paying}
-              style={{ width: '100%', padding: '14px', fontSize: '15px', justifyContent: 'center' }}
-            >
-              {paying ? 'Procesando pago…' : stripeConfig.enabled ? 'Procesar con pago de prueba' : `Pagar $${quote.totalFormatted} ${quote.currency} y Comenzar`}
-            </button>
-          </div>
-
-          <p style={{ textAlign: 'center', fontSize: '11px', color: '#8992a1', marginTop: '14px' }}>
-            🔒 Transacción cifrada con Stripe. Acceso inmediato a la evaluación y recibo PDF por correo tras confirmar la compra.
-          </p>
         </section>
       </main>
     </div>

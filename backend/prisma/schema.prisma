@@ -1180,3 +1180,14 @@ model PaymentEvent {
   error     String?  @db.Text
   createdAt DateTime @default(now())
 }
+
+model LegalDocument {
+  id        String   @id @default(cuid())
+  type      String   @unique @db.VarChar(50) // 'TERMS_AND_CONDITIONS' | 'PRIVACY_POLICY'
+  title     String   @db.VarChar(200)
+  content   String   @db.LongText
+  version   String   @default("1.0") @db.VarChar(20)
+  updatedBy String?  @db.VarChar(191)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

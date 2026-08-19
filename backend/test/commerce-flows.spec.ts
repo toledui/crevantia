@@ -18,6 +18,9 @@ describe('Commerce & Financial Flows', () => {
         create: jest.fn(),
         upsert: jest.fn(),
       },
+      stripeSettings: {
+        findUnique: jest.fn().mockResolvedValue({ enabled: true }),
+      },
       evaluationProduct: {
         findMany: jest.fn(),
         findUnique: jest.fn(),
@@ -50,6 +53,7 @@ describe('Commerce & Financial Flows', () => {
         update: jest.fn(),
       },
       assignment: {
+        findFirst: jest.fn().mockResolvedValue(null),
         create: jest.fn(),
         update: jest.fn(),
       },

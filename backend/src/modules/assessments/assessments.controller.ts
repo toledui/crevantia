@@ -5,22 +5,54 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseGuards,
 } from "@nestjs/common";
 import { AccessTokenGuard } from "../../common/access-token.guard";
 import type { AuthenticatedUser } from "../../common/auth.types";
 import { CurrentUser } from "../../common/current-user.decorator";
+import { Permissions } from "../../common/permissions.decorator";
+import { PermissionsGuard } from "../../common/permissions.guard";
 import { AssessmentsService } from "./assessments.service";
 import { AssessmentScoringService } from "./assessment-scoring.service";
 import { SaveAttemptAnswerDto, SaveDemographicsDto } from "./assessments.dto";
+import { AdminAttemptActionDto, ListAdminAttemptsDto } from "./admin-attempts.dto";
 
 @Controller()
-@UseGuards(AccessTokenGuard)
+@UseGuards(AccessTokenGuard, PermissionsGuard)
 export class AssessmentsController {
   constructor(
     private readonly assessments: AssessmentsService,
     private readonly scoring: AssessmentScoringService,
   ) {}
+
+  @Get("admin/attempts")
+  @Permissions("admin.access", "attempts.read")
+  adminList(@Query() dto: ListAdminAttemptsDto) {
+    return this.assessments.listAdminAttempts(dto);
+  }
+
+  @Get("admin/attempts/summary")
+  @Permissions("admin.access", "attempts.read")
+  adminSummary() {
+    return this.assessments.getAdminAttemptsSummary();
+  }
+
+  @Get("admin/attempts/:id")
+  @Permissions("admin.access", "attempts.read")
+  adminDetail(@Param("id") id: string) {
+    return this.assessments.getAdminAttemptDetail(id);
+  }
+
+  @Post("admin/attempts/:id/reopen")
+  @Permissions("admin.access", "attempts.manage")
+  adminReopen(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param("id") id: string,
+    @Body() dto: AdminAttemptActionDto,
+  ) {
+    return this.assessments.reopenAdminAttempt(user, id, dto.reason);
+  }
 
   @Get("me/assignments") assignments(@CurrentUser() user: AuthenticatedUser) {
     return this.assessments.myAssignments(user);

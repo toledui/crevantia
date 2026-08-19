@@ -354,3 +354,8 @@ export type PaymentTransaction = Prisma.PaymentTransactionModel
  * 
  */
 export type PaymentEvent = Prisma.PaymentEventModel
+/**
+ * Model LegalDocument
+ * 
+ */
+export type LegalDocument = Prisma.LegalDocumentModel
