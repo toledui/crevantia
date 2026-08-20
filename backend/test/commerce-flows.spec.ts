@@ -218,8 +218,8 @@ describe('Commerce & Financial Flows', () => {
       });
 
       const result = await checkoutService.processPayment(
-        { sub: 'user-1', email: 'user@example.com', roles: ['USER'], permissions: [] },
-        { orderId: 'order-1', gateway: 'SIMULATED', simulateSuccess: true },
+        'STRIPE_VERIFY',
+        { orderId: 'order-1', gateway: 'STRIPE', gatewayTransactionId: 'pi_test_123' },
       );
 
       expect(result.success).toBe(true);
@@ -235,6 +235,12 @@ describe('Commerce & Financial Flows', () => {
       expect(prismaMock.couponRedemption.updateMany).toHaveBeenCalledWith({
         where: { orderId: 'order-1' },
         data: { status: 'CONFIRMED' },
+      });
+      expect(prismaMock.auditLog.create).toHaveBeenCalledWith({
+        data: expect.objectContaining({
+          actorId: null,
+          metadata: expect.objectContaining({ processedBy: 'STRIPE_VERIFY' }),
+        }),
       });
     });
   });

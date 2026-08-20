@@ -23,6 +23,12 @@ import { CouponsService } from './coupons.service';
 import { PricingService } from './pricing.service';
 import { ReceiptService } from './receipt.service';
 
+const SYSTEM_PAYMENT_ACTORS = new Set([
+  'STRIPE_VERIFY',
+  'STRIPE_WEBHOOK',
+  'SYSTEM',
+]);
+
 @Injectable()
 export class CheckoutService {
   private readonly logger = new Logger(CheckoutService.name);
@@ -285,6 +291,7 @@ export class CheckoutService {
 
   async processPayment(userOrSystem: AuthenticatedUser | { sub: string } | string | undefined, dto: ProcessPaymentDto) {
     const actorId = typeof userOrSystem === 'string' ? userOrSystem : userOrSystem?.sub;
+    const isSystemActor = Boolean(actorId && SYSTEM_PAYMENT_ACTORS.has(actorId));
     const order = await this.prisma.purchaseOrder.findUnique({
       where: { id: dto.orderId },
       include: {
@@ -307,7 +314,7 @@ export class CheckoutService {
     });
 
     if (!order) throw new NotFoundException('La orden de compra no existe.');
-    if (actorId && actorId !== 'STRIPE_WEBHOOK' && actorId !== 'SYSTEM' && order.userId !== actorId) {
+    if (actorId && !isSystemActor && order.userId !== actorId) {
       throw new ForbiddenException('No tienes acceso a esta orden de compra.');
     }
     if (order.status === OrderStatus.PAID) {
@@ -415,7 +422,7 @@ export class CheckoutService {
       // Audit log
       await tx.auditLog.create({
         data: {
-          actorId: actorId || order.userId,
+          actorId: isSystemActor ? null : actorId || order.userId,
           action: 'ORDER_PAID_AND_ASSIGNED',
           entityType: 'PurchaseOrder',
           entityId: order.id,
@@ -424,6 +431,7 @@ export class CheckoutService {
             assignmentId: assignment.id,
             totalCents: order.totalCents,
             transactionId: transaction.id,
+            processedBy: actorId || 'ORDER_OWNER',
           },
         },
       });
