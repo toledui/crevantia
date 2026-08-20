@@ -730,7 +730,19 @@ export class NormsService {
         "Solo una norma aprobada puede publicarse.",
       );
     await this.latestSuccessfulValidation(versionId);
-    await this.prisma.$transaction(async (tx) => {
+    const activeConfigurations =
+      await this.prisma.assessmentActiveConfiguration.findMany({
+        where: { normVersion: { normSetId: version.normSetId } },
+        select: { id: true, normVersionId: true, assessmentId: true },
+      });
+    const previousNormIds = [
+      ...new Set(
+        activeConfigurations
+          .map(({ normVersionId }) => normVersionId)
+          .filter((id) => id !== versionId),
+      ),
+    ];
+    const activation = await this.prisma.$transaction(async (tx) => {
       await tx.normVersion.updateMany({
         where: {
           normSetId: version.normSetId,
@@ -747,6 +759,35 @@ export class NormsService {
           publishedAt: new Date(),
         },
       });
+      let reassignedAttempts = 0;
+      if (previousNormIds.length) {
+        const updated = await tx.attempt.updateMany({
+          where: {
+            normVersionId: { in: previousNormIds },
+            resultRuns: { none: {} },
+            status: {
+              in: [
+                "CREATED",
+                "IN_PROGRESS",
+                "PAUSED",
+                "SUBMITTED",
+                "SCORING",
+                "FAILED",
+                "SCORING_ERROR",
+              ],
+            },
+          },
+          data: { normVersionId: versionId },
+        });
+        reassignedAttempts = updated.count;
+      }
+      if (activeConfigurations.length)
+        await tx.assessmentActiveConfiguration.updateMany({
+          where: {
+            id: { in: activeConfigurations.map(({ id }) => id) },
+          },
+          data: { normVersionId: versionId, activatedAt: new Date() },
+        });
       await tx.auditLog.create({
         data: {
           actorId,
@@ -757,11 +798,19 @@ export class NormsService {
           after: asJson({
             status: ConfigurationStatus.PUBLISHED,
             configurationHash: version.configurationHash,
+            activatedAssessments: activeConfigurations.map(
+              ({ assessmentId }) => assessmentId,
+            ),
+            reassignedAttempts,
           }),
         },
       });
+      return {
+        activatedAssessments: activeConfigurations.length,
+        reassignedAttempts,
+      };
     });
-    return this.version(versionId);
+    return { ...(await this.version(versionId)), activation };
   }
 
   async archive(actorId: string, versionId: string) {

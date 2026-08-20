@@ -53,6 +53,7 @@ Se consideran activos únicamente los elementos identificados como oficiales en 
 - El payload del jugador no expone pesos, reglas, escalas, fórmulas ni baremos.
 - El validador de publicación impide publicar DPO-PRO con conteos incompletos.
 - La semilla oficial es idempotente y valida hashes/configuración antes de actualizar.
+- La semilla elimina la familia normativa heredada `GLOBAL_412 / NORMA 412` cuando no contiene resultados históricos, reasigna intentos sin calificar a la norma oficial y conserva únicamente `DPO-PRO-OFFICIAL`.
 
 La migración aplicada es `20260820023000_dpo_official_v1`. Prisma reporta las 8 migraciones al día.
 
@@ -71,3 +72,11 @@ El lint global del repositorio continúa fallando por deuda preexistente fuera d
 ## Nota operativa
 
 El render visual del `.docx` no pudo ejecutarse porque el entorno no tiene LibreOffice/`soffice`. Su contenido sí fue extraído y auditado estructuralmente, y el `.xlsx` fue inspeccionado y renderizado por hoja. Esta limitación no existe en runtime: los documentos fuente no son necesarios para evaluar.
+
+## Edición versionada posterior a la publicación
+
+- Una evaluación publicada puede consultarse y editarse desde el administrador. El primer guardado crea automáticamente otra versión en borrador y conserva intacta la publicada.
+- La clonación incluye assessment, scoring y mapeo de reporte. Al publicar, la configuración nueva se activa atómicamente.
+- Los resultados terminados conservan las versiones originales. Los intentos incompletos incompatibles se eliminan y sus asignaciones vuelven a estado `AVAILABLE`.
+- Una norma publicada también puede editarse desde sus valores visibles. El primer guardado crea otra versión en borrador; después sigue validación, revisión, aprobación y publicación.
+- Al publicar una norma, los intentos todavía no calificados se reasignan a ella sin borrar sus respuestas. Los resultados históricos no se modifican.

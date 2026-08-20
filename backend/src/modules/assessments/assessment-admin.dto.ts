@@ -153,6 +153,7 @@ export class DerivedMetricAdminDto {
     AggregationMethod.ARITHMETIC_MEAN,
     AggregationMethod.WEIGHTED_MEAN,
     AggregationMethod.DIRECT_SCALE,
+    AggregationMethod.DECILE_MEAN,
     AggregationMethod.CUSTOM_DECLARATIVE,
   ])
   calculationType!: AggregationMethod;

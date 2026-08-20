@@ -48,6 +48,11 @@ const SECTION_INSTRUCTIONS: Record<string, string> = {
     "Indica qué tan verdadera es cada afirmación para ti.",
 };
 
+const LEGACY_DPO_DRAFT_IDENTIFIERS = [
+  "DPO-PRO-PRELOAD-2026-08",
+  "DPO_PRO_V2",
+] as const;
+
 export async function seedDpoOfficialV1(prisma: PrismaClient) {
   const validation = validateOfficialBundle();
   const assessment = loadOfficialAssessment();
@@ -59,6 +64,7 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
   const scoringHash = configurationHash({ scoring, scales, composites });
   const normHash = configurationHash(norm);
   const reportHash = configurationHash(composites.reportAliases);
+  await purgeLegacyDpoDrafts(prisma);
   const latestAssessmentVersion = await prisma.assessmentVersion.aggregate({
     where: { assessmentId: OFFICIAL_DPO_IDS.assessment },
     _max: { version: true },
@@ -90,6 +96,7 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
     )
       throw new Error("DPO_OFFICIAL_PUBLISHED_IMMUTABLE_HASH_MISMATCH");
     await activate(prisma, reportHash);
+    await purgeLegacyNorm(prisma);
     return validation;
   }
 
@@ -703,7 +710,241 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
     },
     { timeout: 300_000 },
   );
+  await purgeLegacyNorm(prisma);
   return validation;
+}
+
+async function purgeLegacyNorm(prisma: PrismaClient) {
+  return prisma.$transaction(async (tx) => {
+    const legacy = await tx.normSet.findFirst({
+      where: {
+        OR: [{ id: "norm-set-global-412" }, { code: "GLOBAL_412" }],
+      },
+      include: {
+        assessmentVersions: { select: { id: true, versionCode: true } },
+        versions: {
+          include: {
+            attempts: { select: { id: true } },
+            resultRuns: { select: { id: true } },
+            activeConfiguration: { select: { id: true } },
+          },
+        },
+      },
+    });
+    if (!legacy) return { deleted: false };
+    if (
+      legacy.id === OFFICIAL_DPO_IDS.normSet ||
+      legacy.code === "DPO-PRO-OFFICIAL"
+    )
+      throw new Error("DPO_OFFICIAL_NORM_DELETE_BLOCKED");
+    if (legacy.assessmentVersions.length)
+      throw new Error("DPO_LEGACY_NORM_STILL_REFERENCED_BY_ASSESSMENT");
+    if (
+      legacy.versions.some(
+        (version) =>
+          version.resultRuns.length > 0 || Boolean(version.activeConfiguration),
+      )
+    )
+      throw new Error("DPO_LEGACY_NORM_HAS_OFFICIAL_HISTORY");
+
+    const official = await tx.normVersion.findUnique({
+      where: { id: OFFICIAL_DPO_IDS.normVersion },
+      select: { id: true, status: true },
+    });
+    if (!official || official.status !== ConfigurationStatus.PUBLISHED)
+      throw new Error("DPO_OFFICIAL_NORM_REQUIRED_BEFORE_LEGACY_PURGE");
+    const legacyVersionIds = legacy.versions.map(({ id }) => id);
+    const reassigned = legacyVersionIds.length
+      ? await tx.attempt.updateMany({
+          where: {
+            normVersionId: { in: legacyVersionIds },
+            resultRuns: { none: {} },
+          },
+          data: { normVersionId: official.id },
+        })
+      : { count: 0 };
+    await tx.normVersion.deleteMany({ where: { normSetId: legacy.id } });
+    await tx.normSet.delete({ where: { id: legacy.id } });
+    await tx.auditLog.create({
+      data: {
+        action: "DPO_LEGACY_NORM_PURGED",
+        entityType: "NormSet",
+        entityId: legacy.id,
+        reason:
+          "El seeder oficial conserva únicamente la norma DPO-PRO oficial",
+        before: {
+          code: legacy.code,
+          name: legacy.name,
+          versionIds: legacyVersionIds,
+        },
+        after: {
+          deleted: true,
+          attemptsReassigned: reassigned.count,
+          officialNormVersionId: official.id,
+        },
+      },
+    });
+    return { deleted: true, attemptsReassigned: reassigned.count };
+  });
+}
+
+async function purgeLegacyDpoDrafts(prisma: PrismaClient) {
+  return prisma.$transaction(async (tx) => {
+    const officialVersion = await tx.assessmentVersion.findUnique({
+      where: { id: OFFICIAL_DPO_IDS.assessmentVersion },
+      select: { createdAt: true },
+    });
+    const versions = await tx.assessmentVersion.findMany({
+      where: {
+        assessmentId: OFFICIAL_DPO_IDS.assessment,
+        status: ConfigurationStatus.DRAFT,
+        id: { not: OFFICIAL_DPO_IDS.assessmentVersion },
+        OR: [
+          { id: "assessment-version-dpo-pro-v1" },
+          {
+            versionCode: { in: [...LEGACY_DPO_DRAFT_IDENTIFIERS] },
+            ...(officialVersion
+              ? { createdAt: { lt: officialVersion.createdAt } }
+              : {}),
+          },
+        ],
+      },
+      include: {
+        activeConfiguration: { select: { id: true } },
+        _count: { select: { resultRuns: true } },
+      },
+    });
+    if (!versions.length) return { deletedDrafts: 0, resetAssignments: 0 };
+    if (
+      versions.some(
+        (version) =>
+          version.activeConfiguration || version._count.resultRuns > 0,
+      )
+    )
+      throw new Error("DPO_LEGACY_DRAFT_HAS_OFFICIAL_HISTORY");
+
+    const versionIds = versions.map((version) => version.id);
+    const attempts = await tx.attempt.findMany({
+      where: { assessmentVersionId: { in: versionIds } },
+      include: { _count: { select: { resultRuns: true } } },
+    });
+    if (attempts.some((attempt) => attempt._count.resultRuns > 0))
+      throw new Error("DPO_LEGACY_DRAFT_ATTEMPT_HAS_RESULTS");
+
+    const attemptIds = attempts.map((attempt) => attempt.id);
+    const assignmentIds = attempts.map((attempt) => attempt.assignmentId);
+    if (attemptIds.length) {
+      await tx.demographicAnswer.deleteMany({
+        where: { attemptId: { in: attemptIds } },
+      });
+      await tx.forcedChoiceAnswer.deleteMany({
+        where: { attemptId: { in: attemptIds } },
+      });
+      await tx.likertAnswer.deleteMany({
+        where: { attemptId: { in: attemptIds } },
+      });
+      await tx.response.deleteMany({
+        where: { attemptId: { in: attemptIds } },
+      });
+      await tx.pairResponse.deleteMany({
+        where: { attemptId: { in: attemptIds } },
+      });
+      await tx.attempt.deleteMany({ where: { id: { in: attemptIds } } });
+      await tx.assignment.updateMany({
+        where: { id: { in: assignmentIds } },
+        data: { status: "AVAILABLE" },
+      });
+    }
+
+    const mappings = await tx.reportMappingVersion.findMany({
+      where: { assessmentVersionId: { in: versionIds } },
+      select: {
+        reportMappingId: true,
+        _count: { select: { resultRuns: true } },
+      },
+    });
+    if (mappings.some((mapping) => mapping._count.resultRuns > 0))
+      throw new Error("DPO_LEGACY_REPORT_MAPPING_HAS_RESULTS");
+    const scoring = await tx.scoringKeyVersion.findMany({
+      where: { assessmentVersionId: { in: versionIds } },
+      select: {
+        scoringKeyId: true,
+        activeConfiguration: { select: { id: true } },
+        _count: { select: { attempts: true, resultRuns: true } },
+      },
+    });
+    if (
+      scoring.some(
+        (key) =>
+          key.activeConfiguration ||
+          key._count.attempts > 0 ||
+          key._count.resultRuns > 0,
+      )
+    )
+      throw new Error("DPO_LEGACY_SCORING_HAS_HISTORY");
+
+    await tx.reportMappingVersion.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.scoringKeyVersion.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.pairQuestion.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.likertQuestion.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.likertOptionSet.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.demographicField.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.assessmentSection.deleteMany({
+      where: { assessmentVersionId: { in: versionIds } },
+    });
+    await tx.assessmentVersion.deleteMany({
+      where: { id: { in: versionIds } },
+    });
+    await tx.reportMapping.deleteMany({
+      where: {
+        id: { in: mappings.map((mapping) => mapping.reportMappingId) },
+        versions: { none: {} },
+      },
+    });
+    await tx.scoringKey.deleteMany({
+      where: {
+        id: { in: scoring.map((key) => key.scoringKeyId) },
+        versions: { none: {} },
+      },
+    });
+    await tx.auditLog.create({
+      data: {
+        action: "DPO_LEGACY_DRAFTS_PURGED",
+        entityType: "Assessment",
+        entityId: OFFICIAL_DPO_IDS.assessment,
+        reason:
+          "Limpieza idempotente previa a la publicación oficial DPO-PRO v1",
+        before: {
+          versions: versions.map(({ id, version, versionCode }) => ({
+            id,
+            version,
+            versionCode,
+          })),
+          attemptIds,
+        },
+        after: {
+          deletedDrafts: versions.length,
+          resetAssignmentIds: assignmentIds,
+        },
+      },
+    });
+    return {
+      deletedDrafts: versions.length,
+      resetAssignments: assignmentIds.length,
+    };
+  });
 }
 
 async function activate(prisma: PrismaClient, reportHash: string) {

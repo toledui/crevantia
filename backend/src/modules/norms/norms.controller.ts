@@ -74,7 +74,7 @@ export class NormsController {
     return this.norms.updateSet(user.sub, id, dto);
   }
   @Post("norms/:id/versions/:versionId/clone")
-  @Permissions("norm.create")
+  @Permissions("norm.edit")
   clone(
     @CurrentUser() user: AuthenticatedUser,
     @Param("id") id: string,

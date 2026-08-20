@@ -7,7 +7,6 @@ import {
   TestVersionStatus,
   UserStatus,
 } from "../src/generated/prisma/client";
-import { seedDpo } from "./seeds/seed-dpo";
 import { seedDpoOfficialV1 } from "./seeds/seed-dpo-official-v1";
 import { dpoPermissions } from "./seeds/seed-dpo-permissions";
 
@@ -399,7 +398,6 @@ async function seedCommerce() {
 async function main() {
   await seedIdentity();
   await seedDemoTest();
-  await seedDpo(prisma);
   await seedDpoOfficialV1(prisma);
   await seedCommerce();
   console.log("Seed de Crevantia completado.");

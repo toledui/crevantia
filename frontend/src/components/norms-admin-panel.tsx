@@ -207,6 +207,11 @@ export function NormsAdminPanel() {
   const canApprove = permissions.includes("norm.approve");
   const canPublish = permissions.includes("norm.publish");
   const canArchive = permissions.includes("norm.archive");
+  const canModifyVersion =
+    canEdit &&
+    (version?.status === "DRAFT" ||
+      version?.status === "PUBLISHED" ||
+      version?.status === "ARCHIVED");
   function patchMetadata(patch: Partial<VersionMetadata>) {
     setVersionMetadata((current) => ({ ...current, ...patch }));
     setMetadataDirty(true);
@@ -316,13 +321,25 @@ export function NormsAdminPanel() {
   }
 
   async function saveDraft() {
-    if (!version || version.status !== "DRAFT") return;
+    if (!version || !selectedSet || !canModifyVersion) return;
     const changed = draftTargets.filter(({ id }) => dirty.has(id));
     setBusy(true);
     clearAlerts();
     try {
+      let workingVersion = version;
+      let createdFromPublished = false;
+      if (version.status !== "DRAFT") {
+        const cloned = await apiFetch<Version>(
+          `/norms/${selectedSet.id}/versions/${version.id}/clone`,
+          { method: "POST" },
+        );
+        workingVersion = await apiFetch<Version>(
+          `/norms/${selectedSet.id}/versions/${cloned.id}`,
+        );
+        createdFromPublished = true;
+      }
       if (metadataDirty) {
-        await apiFetch(`/norm-versions/${version.id}`, {
+        await apiFetch(`/norm-versions/${workingVersion.id}`, {
           method: "PUT",
           body: JSON.stringify({
             ...versionMetadata,
@@ -333,18 +350,33 @@ export function NormsAdminPanel() {
         });
       }
       for (const target of changed) {
-        await apiFetch(`/norm-versions/${version.id}/targets/${target.id}`, {
-          method: "PUT",
-          body: JSON.stringify({
-            targetType: target.targetType,
-            targetCode: target.targetCode,
-            name: target.name,
-            status: target.status,
-            isBlocked: target.isBlocked,
-            validationNotes: target.validationNotes,
-          }),
-        });
-        await apiFetch(`/norm-targets/${target.id}/thresholds`, {
+        const original = version.targets?.find(({ id }) => id === target.id);
+        const workingTarget = createdFromPublished
+          ? workingVersion.targets?.find(
+              (candidate) =>
+                candidate.targetType === original?.targetType &&
+                candidate.targetCode === original?.targetCode,
+            )
+          : target;
+        if (!workingTarget)
+          throw new Error(
+            `No fue posible localizar ${target.targetType}:${target.targetCode} en la nueva versión.`,
+          );
+        await apiFetch(
+          `/norm-versions/${workingVersion.id}/targets/${workingTarget.id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              targetType: target.targetType,
+              targetCode: target.targetCode,
+              name: target.name,
+              status: target.status,
+              isBlocked: target.isBlocked,
+              validationNotes: target.validationNotes,
+            }),
+          },
+        );
+        await apiFetch(`/norm-targets/${workingTarget.id}/thresholds`, {
           method: "PUT",
           body: JSON.stringify({
             thresholds: target.thresholds.map((threshold) => ({
@@ -356,9 +388,11 @@ export function NormsAdminPanel() {
         });
       }
       setMessage(
-        `${changed.length} targets y metadatos guardados. La versión requiere una nueva validación.`,
+        createdFromPublished
+          ? `Los cambios se guardaron en la nueva versión ${workingVersion.version}. Requiere validación antes de publicarse.`
+          : `${changed.length} targets y metadatos guardados. La versión requiere una nueva validación.`,
       );
-      await loadVersion(version.normSetId, version.id);
+      await loadSets(workingVersion.id);
     } catch (reason) {
       setError(errorMessage(reason));
     } finally {
@@ -621,8 +655,8 @@ export function NormsAdminPanel() {
           <span className="eyebrow dark">Motor versionado</span>
           <h1>Normas y baremos</h1>
           <p>
-            Edita clones en borrador; las versiones publicadas permanecen
-            inmutables.
+            Consulta cualquier versión y edítala con versionado automático; los
+            resultados históricos permanecen inmutables.
           </p>
         </div>
         <div className="norms-heading-actions">
@@ -767,10 +801,7 @@ export function NormsAdminPanel() {
             <button
               className="primary-button compact"
               disabled={
-                busy ||
-                version.status !== "DRAFT" ||
-                !canEdit ||
-                (!metadataDirty && !dirty.size)
+                busy || !canModifyVersion || (!metadataDirty && !dirty.size)
               }
               onClick={() => void saveDraft()}
             >
@@ -811,7 +842,7 @@ export function NormsAdminPanel() {
               Nombre de versión
               <input
                 value={versionMetadata.name}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ name: event.target.value })
                 }
@@ -821,7 +852,7 @@ export function NormsAdminPanel() {
               Población
               <input
                 value={versionMetadata.populationLabel}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ populationLabel: event.target.value })
                 }
@@ -833,7 +864,7 @@ export function NormsAdminPanel() {
                 type="number"
                 min={1}
                 value={versionMetadata.sampleSize}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ sampleSize: event.target.value })
                 }
@@ -843,7 +874,7 @@ export function NormsAdminPanel() {
               País
               <input
                 value={versionMetadata.country}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ country: event.target.value })
                 }
@@ -853,7 +884,7 @@ export function NormsAdminPanel() {
               Rango de edad
               <input
                 value={versionMetadata.ageRange}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ ageRange: event.target.value })
                 }
@@ -864,7 +895,7 @@ export function NormsAdminPanel() {
               <textarea
                 rows={2}
                 value={versionMetadata.description}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ description: event.target.value })
                 }
@@ -875,7 +906,7 @@ export function NormsAdminPanel() {
               <textarea
                 rows={3}
                 value={versionMetadata.notes}
-                disabled={version.status !== "DRAFT" || !canEdit}
+                disabled={!canModifyVersion}
                 onChange={(event) =>
                   patchMetadata({ notes: event.target.value })
                 }
@@ -981,14 +1012,14 @@ export function NormsAdminPanel() {
             <button
               className="primary-button compact"
               disabled={
-                (!dirty.size && !metadataDirty) ||
-                busy ||
-                version?.status !== "DRAFT" ||
-                !canEdit
+                (!dirty.size && !metadataDirty) || busy || !canModifyVersion
               }
               onClick={() => void saveDraft()}
             >
-              Guardar borrador ({dirty.size + Number(metadataDirty)})
+              {version?.status === "DRAFT"
+                ? "Guardar borrador"
+                : "Guardar como nueva versión"}{" "}
+              ({dirty.size + Number(metadataDirty)})
             </button>
           </div>
         </header>
@@ -1026,7 +1057,7 @@ export function NormsAdminPanel() {
                         <td key={index}>
                           <input
                             aria-label={`${target.name} decil ${index + 1}`}
-                            disabled={version?.status !== "DRAFT" || !canEdit}
+                            disabled={!canModifyVersion}
                             value={threshold?.lowerBound ?? ""}
                             onChange={(event) =>
                               editThreshold(
@@ -1044,7 +1075,7 @@ export function NormsAdminPanel() {
                         <input
                           type="checkbox"
                           checked={target.isBlocked}
-                          disabled={version?.status !== "DRAFT" || !canEdit}
+                          disabled={!canModifyVersion}
                           onChange={() => toggleBlocked(target.id)}
                         />
                         <span>
@@ -1067,9 +1098,7 @@ export function NormsAdminPanel() {
                       <div className="norm-target-actions">
                         <button
                           className="secondary-link"
-                          disabled={
-                            busy || version?.status !== "DRAFT" || !canEdit
-                          }
+                          disabled={busy || !canModifyVersion}
                           onClick={() => {
                             clearAlerts();
                             setTargetEditor(structuredClone(target));
@@ -1207,8 +1236,9 @@ export function NormsAdminPanel() {
           setTarget={setTargetEditor}
           onSave={saveTargetEditor}
           canEditIdentity={
-            version?.status === "DRAFT" &&
-            (version?._count?.resultRuns ?? 0) === 0
+            canModifyVersion &&
+            (version?.status !== "DRAFT" ||
+              (version?._count?.resultRuns ?? 0) === 0)
           }
         />
       )}

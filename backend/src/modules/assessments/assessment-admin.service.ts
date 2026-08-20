@@ -207,6 +207,12 @@ export class AssessmentAdminService {
           include: versionInclude,
         })
       : null;
+    const sourceReportMapping = source
+      ? await this.prisma.reportMappingVersion.findFirst({
+          where: { assessmentVersionId: source.id },
+          orderBy: { version: "desc" },
+        })
+      : null;
     const deletionAudits = await this.prisma.auditLog.findMany({
       where: {
         action: "ASSESSMENT_VERSION_DELETED",
@@ -242,6 +248,23 @@ export class AssessmentAdminService {
         });
 
         if (source) await this.cloneContent(tx, source, created.id);
+        if (sourceReportMapping) {
+          const latestMapping = await tx.reportMappingVersion.aggregate({
+            where: { reportMappingId: sourceReportMapping.reportMappingId },
+            _max: { version: true },
+          });
+          await tx.reportMappingVersion.create({
+            data: {
+              reportMappingId: sourceReportMapping.reportMappingId,
+              assessmentVersionId: created.id,
+              version: (latestMapping._max.version ?? 0) + 1,
+              status: ConfigurationStatus.DRAFT,
+              mappingStatus: sourceReportMapping.mappingStatus,
+              configuration: sourceReportMapping.configuration ?? undefined,
+              configurationHash: sourceReportMapping.configurationHash,
+            },
+          });
+        }
         await tx.auditLog.create({
           data: {
             actorId,
@@ -265,7 +288,7 @@ export class AssessmentAdminService {
     actorId: string,
     versionId: string,
     dto: ReplaceAssessmentContentDto,
-  ) {
+  ): Promise<ReturnType<AssessmentAdminService["presentVersion"]>> {
     this.validateDocument(dto);
     const current = await this.prisma.assessmentVersion.findUnique({
       where: { id: versionId },
@@ -275,6 +298,22 @@ export class AssessmentAdminService {
       },
     });
     if (!current) throw new NotFoundException("La versión no existe.");
+    if (
+      current.status === ConfigurationStatus.PUBLISHED ||
+      current.status === ConfigurationStatus.ARCHIVED
+    ) {
+      if (current.updatedAt.toISOString() !== dto.expectedUpdatedAt)
+        throw new ConflictException(
+          "La versión publicada cambió en otra sesión; recarga antes de guardar.",
+        );
+      const cloned = await this.cloneVersion(actorId, current.assessmentId, {
+        sourceVersionId: current.id,
+      });
+      return this.replaceContent(actorId, cloned.id, {
+        ...dto,
+        expectedUpdatedAt: cloned.updatedAt.toISOString(),
+      });
+    }
     if (current.status !== ConfigurationStatus.DRAFT)
       throw new BadRequestException(
         "Solo las versiones en borrador pueden editarse.",
@@ -644,39 +683,113 @@ export class AssessmentAdminService {
       throw new BadRequestException(
         "No existe una clave de puntuación en borrador.",
       );
-    await this.prisma.$transaction([
-      this.prisma.assessmentVersion.update({
-        where: { id: versionId },
-        data: {
-          status: ConfigurationStatus.PUBLISHED,
-          publishedAt: new Date(),
-        },
-      }),
-      this.prisma.scoringKeyVersion.update({
-        where: { id: scoring.id },
-        data: {
-          status: ConfigurationStatus.PUBLISHED,
-          publishedAt: new Date(),
-        },
-      }),
-      this.prisma.derivedMetricVersion.updateMany({
-        where: { scoringKeyVersionId: scoring.id },
-        data: { status: ConfigurationStatus.PUBLISHED },
-      }),
-      this.prisma.auditLog.create({
-        data: {
-          actorId,
-          action: "ASSESSMENT_VERSION_PUBLISHED",
-          entityType: "AssessmentVersion",
-          entityId: versionId,
-          after: {
-            warnings: validation.warnings,
-            scoringKeyVersionId: scoring.id,
+    const active = await this.prisma.assessmentActiveConfiguration.findUnique({
+      where: { assessmentId: version.assessmentId },
+    });
+    const normVersionId =
+      active?.normVersionId ??
+      (
+        await this.prisma.normVersion.findFirst({
+          where: {
+            normSetId: version.defaultNormSetId ?? undefined,
+            status: ConfigurationStatus.PUBLISHED,
           },
-        },
-      }),
-    ]);
-    return { success: true, ...validation };
+          orderBy: { publishedAt: "desc" },
+          select: { id: true },
+        })
+      )?.id;
+    if (!normVersionId)
+      throw new BadRequestException(
+        "La evaluación necesita una norma publicada antes de activarse.",
+      );
+    const reportMapping = await this.prisma.reportMappingVersion.findFirst({
+      where: { assessmentVersionId: versionId },
+      orderBy: { version: "desc" },
+    });
+    const publishedAt = new Date();
+    const activation = await this.prisma.$transaction(
+      async (tx) => {
+        const reset = active
+          ? await resetUnfinishedAttempts(
+              tx,
+              active.assessmentVersionId,
+              "ASSESSMENT_VERSION_CHANGED",
+            )
+          : { attempts: 0, assignments: 0 };
+        await tx.assessmentVersion.update({
+          where: { id: versionId },
+          data: {
+            status: ConfigurationStatus.PUBLISHED,
+            publishedAt,
+          },
+        });
+        await tx.pairQuestion.updateMany({
+          where: { assessmentVersionId: versionId },
+          data: { status: ConfigurationStatus.PUBLISHED },
+        });
+        await tx.scoringKeyVersion.update({
+          where: { id: scoring.id },
+          data: {
+            status: ConfigurationStatus.PUBLISHED,
+            publishedAt,
+          },
+        });
+        await tx.derivedMetricVersion.updateMany({
+          where: { scoringKeyVersionId: scoring.id },
+          data: { status: ConfigurationStatus.PUBLISHED },
+        });
+        if (reportMapping)
+          await tx.reportMappingVersion.update({
+            where: { id: reportMapping.id },
+            data: { status: ConfigurationStatus.PUBLISHED },
+          });
+        await tx.assessmentActiveConfiguration.upsert({
+          where: { assessmentId: version.assessmentId },
+          update: {
+            assessmentVersionId: versionId,
+            scoringKeyVersionId: scoring.id,
+            normVersionId,
+            reportMappingVersionId:
+              reportMapping?.id ?? active?.reportMappingVersionId,
+            activatedAt: publishedAt,
+          },
+          create: {
+            assessmentId: version.assessmentId,
+            assessmentVersionId: versionId,
+            scoringKeyVersionId: scoring.id,
+            normVersionId,
+            reportMappingVersionId: reportMapping?.id,
+            activatedAt: publishedAt,
+          },
+        });
+        await tx.auditLog.create({
+          data: {
+            actorId,
+            action: "ASSESSMENT_VERSION_PUBLISHED_AND_ACTIVATED",
+            entityType: "AssessmentVersion",
+            entityId: versionId,
+            before: active
+              ? {
+                  assessmentVersionId: active.assessmentVersionId,
+                  scoringKeyVersionId: active.scoringKeyVersionId,
+                  normVersionId: active.normVersionId,
+                }
+              : undefined,
+            after: {
+              warnings: validation.warnings,
+              scoringKeyVersionId: scoring.id,
+              normVersionId,
+              reportMappingVersionId:
+                reportMapping?.id ?? active?.reportMappingVersionId,
+              reset,
+            },
+          },
+        });
+        return reset;
+      },
+      { timeout: 120_000 },
+    );
+    return { success: true, activation, ...validation };
   }
 
   async archive(actorId: string, versionId: string) {
@@ -728,6 +841,9 @@ export class AssessmentAdminService {
               _count: { select: { attempts: true, resultRuns: true } },
             },
           },
+          reportMappingVersions: {
+            select: { id: true, _count: { select: { resultRuns: true } } },
+          },
           _count: {
             select: {
               attempts: true,
@@ -756,9 +872,13 @@ export class AssessmentAdminService {
         throw new BadRequestException(
           "No se puede eliminar una versión con intentos o resultados.",
         );
-      if (version._count.reportMappingVersions)
+      if (
+        version.reportMappingVersions.some(
+          (mapping) => mapping._count.resultRuns > 0,
+        )
+      )
         throw new BadRequestException(
-          "No se puede eliminar una versión vinculada a configuraciones de reporte.",
+          "No se puede eliminar una versión vinculada a resultados de reporte.",
         );
       const versionCount = await tx.assessmentVersion.count({
         where: { assessmentId: version.assessmentId },
@@ -768,7 +888,25 @@ export class AssessmentAdminService {
           "No se puede eliminar la única versión de la evaluación.",
         );
 
+      await tx.reportMappingVersion.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
       await tx.scoringKeyVersion.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
+      await tx.pairQuestion.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
+      await tx.likertQuestion.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
+      await tx.likertOptionSet.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
+      await tx.demographicField.deleteMany({
+        where: { assessmentVersionId: versionId },
+      });
+      await tx.assessmentSection.deleteMany({
         where: { assessmentVersionId: versionId },
       });
       await tx.assessmentVersion.delete({ where: { id: versionId } });
@@ -1347,6 +1485,66 @@ function asJson(
   return value
     ? (JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue)
     : undefined;
+}
+
+async function resetUnfinishedAttempts(
+  tx: Prisma.TransactionClient,
+  assessmentVersionId: string,
+  reason: string,
+) {
+  const attempts = await tx.attempt.findMany({
+    where: {
+      assessmentVersionId,
+      resultRuns: { none: {} },
+      status: {
+        in: [
+          "CREATED",
+          "IN_PROGRESS",
+          "PAUSED",
+          "SUBMITTED",
+          "SCORING",
+          "FAILED",
+          "SCORING_ERROR",
+        ],
+      },
+    },
+    select: { id: true, assignmentId: true },
+  });
+  const attemptIds = attempts.map(({ id }) => id);
+  const assignmentIds = attempts.map(({ assignmentId }) => assignmentId);
+  if (!attemptIds.length) return { attempts: 0, assignments: 0 };
+  await tx.demographicAnswer.deleteMany({
+    where: { attemptId: { in: attemptIds } },
+  });
+  await tx.forcedChoiceAnswer.deleteMany({
+    where: { attemptId: { in: attemptIds } },
+  });
+  await tx.likertAnswer.deleteMany({
+    where: { attemptId: { in: attemptIds } },
+  });
+  await tx.response.deleteMany({ where: { attemptId: { in: attemptIds } } });
+  await tx.pairResponse.deleteMany({
+    where: { attemptId: { in: attemptIds } },
+  });
+  await tx.attempt.deleteMany({ where: { id: { in: attemptIds } } });
+  await tx.assignment.updateMany({
+    where: { id: { in: assignmentIds } },
+    data: { status: "AVAILABLE" },
+  });
+  await tx.auditLog.create({
+    data: {
+      action: "UNFINISHED_ATTEMPTS_RESET",
+      entityType: "AssessmentVersion",
+      entityId: assessmentVersionId,
+      reason,
+      before: { attemptIds, assignmentIds },
+      after: {
+        attemptsDeleted: attemptIds.length,
+        assignmentsReset: assignmentIds.length,
+      },
+    },
+  });
+  return { attempts: attemptIds.length, assignments: assignmentIds.length };
 }
 
 function presentComposites(

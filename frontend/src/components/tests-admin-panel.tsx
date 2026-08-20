@@ -243,7 +243,7 @@ export function TestsAdminPanel() {
       const version =
         detail.versions.find(({ id: candidate }) => candidate === versionId) ??
         null;
-      setDraft(version?.editable ? clone(version) : null);
+      setDraft(version ? clone(version) : null);
       setValidation(null);
     },
     [],
@@ -291,7 +291,7 @@ export function TestsAdminPanel() {
 
   function chooseVersion(version: Version) {
     setSelectedVersionId(version.id);
-    setDraft(version.editable ? clone(version) : null);
+    setDraft(clone(version));
     setValidation(null);
     clearAlerts();
   }
@@ -351,9 +351,7 @@ export function TestsAdminPanel() {
           body: JSON.stringify({ sourceVersionId: selectedVersion.id }),
         },
       );
-      setMessage(
-        `Versión ${created.version} creada como borrador editable.`,
-      );
+      setMessage(`Versión ${created.version} creada como borrador editable.`);
       await loadAll(assessment.id, created.id);
     } catch (reason) {
       setError(errorText(reason));
@@ -373,7 +371,11 @@ export function TestsAdminPanel() {
           body: JSON.stringify(toPayload(draft, scales)),
         },
       );
-      setMessage("Borrador guardado y clave de puntuación sincronizada.");
+      setMessage(
+        saved.id === draft.id
+          ? "Borrador guardado y clave de puntuación sincronizada."
+          : `Los cambios se guardaron automáticamente en la nueva versión ${saved.version}.`,
+      );
       await loadAll(assessment.id, saved.id);
     } catch (reason) {
       setError(errorText(reason));
@@ -692,7 +694,10 @@ export function TestsAdminPanel() {
         setError={setError}
         setMessage={setMessage}
       />
-      <section className="panel tests-catalog-bar" aria-label="Catálogo de evaluaciones">
+      <section
+        className="panel tests-catalog-bar"
+        aria-label="Catálogo de evaluaciones"
+      >
         <label>
           <span>Evaluación</span>
           <select
@@ -843,7 +848,7 @@ export function TestsAdminPanel() {
                         disabled={busy}
                         onClick={() => void cloneVersion()}
                       >
-                        Clonar a borrador
+                        Crear borrador sin cambios
                       </button>
                       <button
                         className="secondary-button"
@@ -852,13 +857,15 @@ export function TestsAdminPanel() {
                       >
                         Validar
                       </button>
-                      {selectedVersion.editable && (
+                      {draft && (
                         <button
                           className="primary-button compact"
                           disabled={busy}
                           onClick={() => void saveDraft()}
                         >
-                          Guardar borrador
+                          {selectedVersion.editable
+                            ? "Guardar borrador"
+                            : "Guardar como nueva versión"}
                         </button>
                       )}
                       {selectedVersion.editable && (
@@ -887,7 +894,6 @@ export function TestsAdminPanel() {
                             assessment.versions.length <= 1 ||
                             selectedVersion.counts.attempts > 0 ||
                             selectedVersion.counts.resultRuns > 0 ||
-                            selectedVersion.counts.reportMappingVersions > 0 ||
                             Boolean(selectedVersion.publishedAt) ||
                             (selectedVersion.scoringVersion !== null &&
                               selectedVersion.scoringVersion.status !== "DRAFT")
@@ -906,11 +912,11 @@ export function TestsAdminPanel() {
                   </section>
                   {!selectedVersion.editable && (
                     <aside className="client-warning">
-                      <strong>Versión protegida</strong>
+                      <strong>Edición con versionado automático</strong>
                       <p>
-                        Esta versión o su clave de puntuación ya está publicada,
-                        tiene intentos, o no posee una clave editable. Clónala
-                        para modificar contenido.
+                        Puedes revisar y modificar los valores. Al guardar, se
+                        creará automáticamente un nuevo borrador; esta versión y
+                        sus resultados históricos permanecerán intactos.
                       </p>
                     </aside>
                   )}

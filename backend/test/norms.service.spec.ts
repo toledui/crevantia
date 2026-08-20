@@ -8,17 +8,92 @@ import { NormsService } from "../src/modules/norms/norms.service";
 import { validateNormTargets } from "../src/modules/norms/norm-validator";
 
 describe("Norm lifecycle", () => {
+  it("activates a published norm and reassigns unfinished attempts", async () => {
+    let attemptUpdate: unknown;
+    let activationUpdate: unknown;
+    const version = {
+      id: "norm-v2",
+      normSetId: "set",
+      status: ConfigurationStatus.APPROVED,
+      configurationHash: "b".repeat(64),
+    };
+    const tx = {
+      normVersion: { updateMany: jest.fn(), update: jest.fn() },
+      attempt: {
+        updateMany: jest.fn((input: unknown) => {
+          attemptUpdate = input;
+          return Promise.resolve({ count: 2 });
+        }),
+      },
+      assessmentActiveConfiguration: {
+        updateMany: jest.fn((input: unknown) => {
+          activationUpdate = input;
+          return Promise.resolve({ count: 1 });
+        }),
+      },
+      auditLog: { create: jest.fn() },
+    };
+    const prisma = {
+      normVersion: {
+        findUnique: jest
+          .fn()
+          .mockResolvedValueOnce(version)
+          .mockResolvedValueOnce({
+            ...version,
+            status: ConfigurationStatus.PUBLISHED,
+            targets: [],
+            validationRuns: [],
+            normSet: {},
+          }),
+      },
+      normValidationRun: {
+        findFirst: jest
+          .fn()
+          .mockResolvedValue({ id: "validation", hasErrors: false }),
+      },
+      assessmentActiveConfiguration: {
+        findMany: jest
+          .fn()
+          .mockResolvedValue([
+            {
+              id: "active",
+              assessmentId: "assessment",
+              normVersionId: "norm-v1",
+            },
+          ]),
+      },
+      $transaction: jest.fn(
+        async (callback: (client: typeof tx) => Promise<unknown>) =>
+          callback(tx),
+      ),
+    } as unknown as PrismaService;
+
+    const published = await new NormsService(prisma).publish(
+      "actor",
+      "norm-v2",
+    );
+
+    expect(attemptUpdate).toMatchObject({
+      data: { normVersionId: "norm-v2" },
+    });
+    expect(activationUpdate).toMatchObject({
+      data: { normVersionId: "norm-v2" },
+    });
+    expect(published.activation).toEqual({
+      activatedAssessments: 1,
+      reassignedAttempts: 2,
+    });
+  });
+
   it("rejects threshold updates on a published version", async () => {
     const prisma = {
       normTarget: {
-        findUnique: jest
-          .fn()
-          .mockResolvedValue({
-            id: "target",
-            normVersionId: "v1",
-            normVersion: { status: ConfigurationStatus.PUBLISHED },
-            thresholds: [],
-          }),
+        findUnique: jest.fn().mockResolvedValue({
+          id: "target",
+          normVersionId: "v1",
+          normVersion: { status: ConfigurationStatus.PUBLISHED },
+          thresholds: [],
+        }),
       },
     } as unknown as PrismaService;
     const service = new NormsService(prisma);
@@ -45,25 +120,21 @@ describe("Norm lifecycle", () => {
     };
     const prisma = {
       normTarget: {
-        findUnique: jest
-          .fn()
-          .mockResolvedValue({
-            id: "target",
-            normVersionId: "v2",
-            normVersion: { status: ConfigurationStatus.DRAFT },
-            thresholds: [{ decile: 1, ordinal: 1, lowerBound: 0 }],
-          }),
+        findUnique: jest.fn().mockResolvedValue({
+          id: "target",
+          normVersionId: "v2",
+          normVersion: { status: ConfigurationStatus.DRAFT },
+          thresholds: [{ decile: 1, ordinal: 1, lowerBound: 0 }],
+        }),
       },
       normVersion: {
-        findUniqueOrThrow: jest
-          .fn()
-          .mockResolvedValue({
-            version: 2,
-            lookupMethod: "LAST_LOWER_BOUND_LTE",
-            numericMode: "EXCEL_BINARY64",
-            roundingMode: "NONE_BEFORE_NORM_LOOKUP",
-            targets: [],
-          }),
+        findUniqueOrThrow: jest.fn().mockResolvedValue({
+          version: 2,
+          lookupMethod: "LAST_LOWER_BOUND_LTE",
+          numericMode: "EXCEL_BINARY64",
+          roundingMode: "NONE_BEFORE_NORM_LOOKUP",
+          targets: [],
+        }),
         update: jest.fn(),
         findUnique: jest.fn().mockResolvedValue(detail),
       },

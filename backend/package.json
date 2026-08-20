@@ -14,7 +14,7 @@
     "prisma:deploy": "prisma migrate deploy",
     "prisma:status": "prisma migrate status",
     "prisma:seed": "prisma db seed",
-    "seed:dpo": "tsx prisma/seeds/seed-dpo.ts",
+    "seed:dpo": "tsx prisma/seeds/seed-dpo-official-v1.ts",
     "seed:dpo:v1": "tsx prisma/seeds/seed-dpo-official-v1.ts",
     "validate:dpo:v1": "tsx prisma/seeds/validate-dpo-v1.ts",
     "verify:dpo:v1:db": "tsx prisma/seeds/verify-dpo-v1-db.ts",
