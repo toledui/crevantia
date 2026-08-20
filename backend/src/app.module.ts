@@ -22,6 +22,7 @@ import { CommerceModule } from './modules/commerce/commerce.module';
 import { StripeModule } from './modules/stripe/stripe.module';
 import { LegalModule } from './modules/legal/legal.module';
 import { SiteSettingsModule } from './modules/site-settings/site-settings.module';
+import { ReportStudioModule } from './modules/report-studio/report-studio.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { SiteSettingsModule } from './modules/site-settings/site-settings.module
     StripeModule,
     LegalModule,
     SiteSettingsModule,
+    ReportStudioModule,
   ],
   controllers: [AdminController],
   providers: [

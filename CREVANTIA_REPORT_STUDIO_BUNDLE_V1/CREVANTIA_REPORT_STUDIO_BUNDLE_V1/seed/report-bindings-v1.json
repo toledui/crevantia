@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "1.0.0",
+  "bindingPresets": [
+    {
+      "code": "REPORT_IDENTITY",
+      "status": "READY",
+      "bindings": {
+        "personName": "{{person.fullName}}",
+        "monthYear": "{{assessment.completedAt|monthYear}}",
+        "reportTitle": "{{settings.reportTitle}}",
+        "logo": "{{theme.logo}}",
+        "legalNotice": "{{settings.reportLegalNotice}}"
+      }
+    },
+    {
+      "code": "BIND_3_CAPACIDADES",
+      "status": "READY",
+      "metrics": [
+        {
+          "label": "Visión estratégica",
+          "sourceType": "COMPOSITE",
+          "sourceCode": "DPO-C014"
+        },
+        {
+          "label": "Competencia financiera",
+          "sourceType": "COMPOSITE",
+          "sourceCode": "DPO-C031"
+        },
+        {
+          "label": "Autodominio",
+          "sourceType": "COMPOSITE",
+          "sourceCode": "DPO-C011"
+        }
+      ]
+    },
+    {
+      "code": "BIND_QUADRANTS_AXES",
+      "status": "READY",
+      "metrics": [
+        {
+          "label": "Situación financiera",
+          "sourceType": "REPORT_ALIAS",
+          "sourceCode": "Cuadrante financiero"
+        },
+        {
+          "label": "Satisfacción",
+          "sourceType": "REPORT_ALIAS",
+          "sourceCode": "Cuadrante de satisfacción"
+        }
+      ],
+      "quadrant": {
+        "x": "Cuadrante financiero",
+        "y": "Cuadrante de satisfacción",
+        "split": 5,
+        "boundaryPolicy": "LOW<=5,HIGH>5",
+        "status": "REFERENCE_VISUAL_INFERENCE_EDITABLE"
+      }
+    },
+    {
+      "code": "BIND_FINANCIAL_ABILITY",
+      "status": "READY",
+      "metrics": [
+        {
+          "label": "Habilidad Ingreso",
+          "sourceType": "LIKERT_DIMENSION",
+          "sourceCode": "LIKERT-INGRESO"
+        },
+        {
+          "label": "Habilidad Gasto",
+          "sourceType": "LIKERT_DIMENSION",
+          "sourceCode": "LIKERT-GASTO"
+        },
+        {
+          "label": "Habilidad Ahorro",
+          "sourceType": "LIKERT_DIMENSION",
+          "sourceCode": "LIKERT-AHORRO"
+        },
+        {
+          "label": "Habilidad Deuda",
+          "sourceType": "LIKERT_DIMENSION",
+          "sourceCode": "LIKERT-DEUDA"
+        },
+        {
+          "label": "Habilidad Inversión",
+          "sourceType": "LIKERT_DIMENSION",
+          "sourceCode": "LIKERT-INVERSION"
+        }
+      ]
+    },
+    {
+      "code": "BIND_8_ABUNDANCE_FACTORS",
+      "status": "CONFIGURABLE_NEEDS_FINAL_MAPPING_REVIEW",
+      "reason": "The reference PDF names eight report factors, while Bundle V2 exposes source scales/composites/derived metrics under different research labels. Report Studio must allow binding these rows without code changes.",
+      "displayLabels": [
+        "Merecimiento y autoconfianza",
+        "Proyectar el futuro",
+        "Control de las finanzas",
+        "Administración congruente",
+        "Tolerar las tensiones",
+        "Confiabilidad y Rectitud",
+        "Tenacidad",
+        "Aprovechamiento de talentos"
+      ]
+    },
+    {
+      "code": "BIND_FINANCIAL_POTENTIAL",
+      "status": "CONFIGURABLE_NEEDS_FINAL_MAPPING_REVIEW",
+      "displayLabels": [
+        "Potencial Ingreso",
+        "Potencial Gasto",
+        "Potencial Ahorro",
+        "Potencial Deuda",
+        "Potencial Inversión"
+      ],
+      "reason": "The report defines these five presentation metrics, but the exact five runtime bindings are not explicitly demonstrated in the supplied report PDF. Do not infer in renderer; configure via Report Studio."
+    },
+    {
+      "code": "BIND_ABILITY_VS_POTENTIAL",
+      "status": "PARTIAL",
+      "abilityPreset": "BIND_FINANCIAL_ABILITY",
+      "potentialPreset": "BIND_FINANCIAL_POTENTIAL"
+    },
+    {
+      "code": "BIND_20_PRECURSORS",
+      "status": "PARTIAL_READY",
+      "groups": [
+        {
+          "code": "INGRESO",
+          "labels": [
+            "Emprendimiento evolutivo",
+            "Foco persistente",
+            "Influencia proactiva",
+            "Resultado dinámico"
+          ],
+          "status": "CONFIGURABLE_NEEDS_FINAL_MAPPING_REVIEW"
+        },
+        {
+          "code": "GASTO",
+          "status": "READY",
+          "metrics": [
+            {
+              "label": "Decisión congruente",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-010"
+            },
+            {
+              "label": "Gestión reflexiva",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-011"
+            },
+            {
+              "label": "Disciplina financiera",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-012"
+            },
+            {
+              "label": "Elección autónoma",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-013"
+            }
+          ]
+        },
+        {
+          "code": "AHORRO",
+          "status": "READY_WITH_DISPLAY_ALIAS",
+          "metrics": [
+            {
+              "label": "Superación progresiva",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-014"
+            },
+            {
+              "label": "Autocontrol consistente",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-015"
+            },
+            {
+              "label": "Administración informada",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-016"
+            },
+            {
+              "label": "Esfuerzo constante",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-017",
+              "sourceName": "Progreso perseverante"
+            }
+          ]
+        },
+        {
+          "code": "DEUDA",
+          "status": "READY",
+          "metrics": [
+            {
+              "label": "Hábitos saludables",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-018"
+            },
+            {
+              "label": "Autonomía resolutiva",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-019"
+            },
+            {
+              "label": "Respuesta ágil",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-020"
+            },
+            {
+              "label": "Resiliencia económica",
+              "sourceType": "DERIVED_METRIC",
+              "sourceCode": "DPO-DM-021"
+            }
+          ]
+        },
+        {
+          "code": "INVERSION",
+          "status": "CONFIGURABLE_NEEDS_FINAL_MAPPING_REVIEW",
+          "labels": [
+            "Mentalidad abierta a las inversiones",
+            "Respuesta oportuna",
+            "Anticipación a oportunidades",
+            "Estrategia propositiva"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "BIND_SUMMARY_PRIMARY",
+      "status": "PARTIAL",
+      "includes": [
+        "BIND_3_CAPACIDADES",
+        "BIND_QUADRANTS_AXES",
+        "BIND_8_ABUNDANCE_FACTORS",
+        "BIND_FINANCIAL_ABILITY",
+        "BIND_FINANCIAL_POTENTIAL"
+      ]
+    },
+    {
+      "code": "BIND_SUMMARY_PRECURSORS",
+      "status": "PARTIAL",
+      "includes": [
+        "BIND_20_PRECURSORS"
+      ]
+    }
+  ]
+}

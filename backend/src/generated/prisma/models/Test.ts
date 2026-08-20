@@ -209,6 +209,7 @@ export type TestWhereInput = {
   versions?: Prisma.TestVersionListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   evaluationProducts?: Prisma.EvaluationProductListRelationFilter
+  reportTemplateLinks?: Prisma.TestReportTemplateListRelationFilter
 }
 
 export type TestOrderByWithRelationInput = {
@@ -223,6 +224,7 @@ export type TestOrderByWithRelationInput = {
   versions?: Prisma.TestVersionOrderByRelationAggregateInput
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
   evaluationProducts?: Prisma.EvaluationProductOrderByRelationAggregateInput
+  reportTemplateLinks?: Prisma.TestReportTemplateOrderByRelationAggregateInput
   _relevance?: Prisma.TestOrderByRelevanceInput
 }
 
@@ -241,6 +243,7 @@ export type TestWhereUniqueInput = Prisma.AtLeast<{
   versions?: Prisma.TestVersionListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   evaluationProducts?: Prisma.EvaluationProductListRelationFilter
+  reportTemplateLinks?: Prisma.TestReportTemplateListRelationFilter
 }, "id" | "code" | "slug">
 
 export type TestOrderByWithAggregationInput = {
@@ -283,6 +286,7 @@ export type TestCreateInput = {
   versions?: Prisma.TestVersionCreateNestedManyWithoutTestInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutTestInput
   evaluationProducts?: Prisma.EvaluationProductCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateCreateNestedManyWithoutTestInput
 }
 
 export type TestUncheckedCreateInput = {
@@ -297,6 +301,7 @@ export type TestUncheckedCreateInput = {
   versions?: Prisma.TestVersionUncheckedCreateNestedManyWithoutTestInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTestInput
   evaluationProducts?: Prisma.EvaluationProductUncheckedCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestUpdateInput = {
@@ -311,6 +316,7 @@ export type TestUpdateInput = {
   versions?: Prisma.TestVersionUpdateManyWithoutTestNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutTestNestedInput
   evaluationProducts?: Prisma.EvaluationProductUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUpdateManyWithoutTestNestedInput
 }
 
 export type TestUncheckedUpdateInput = {
@@ -325,6 +331,7 @@ export type TestUncheckedUpdateInput = {
   versions?: Prisma.TestVersionUncheckedUpdateManyWithoutTestNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTestNestedInput
   evaluationProducts?: Prisma.EvaluationProductUncheckedUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedUpdateManyWithoutTestNestedInput
 }
 
 export type TestCreateManyInput = {
@@ -432,6 +439,20 @@ export type TestUpdateOneRequiredWithoutAssignmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TestUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.TestUpdateWithoutAssignmentsInput>, Prisma.TestUncheckedUpdateWithoutAssignmentsInput>
 }
 
+export type TestCreateNestedOneWithoutReportTemplateLinksInput = {
+  create?: Prisma.XOR<Prisma.TestCreateWithoutReportTemplateLinksInput, Prisma.TestUncheckedCreateWithoutReportTemplateLinksInput>
+  connectOrCreate?: Prisma.TestCreateOrConnectWithoutReportTemplateLinksInput
+  connect?: Prisma.TestWhereUniqueInput
+}
+
+export type TestUpdateOneRequiredWithoutReportTemplateLinksNestedInput = {
+  create?: Prisma.XOR<Prisma.TestCreateWithoutReportTemplateLinksInput, Prisma.TestUncheckedCreateWithoutReportTemplateLinksInput>
+  connectOrCreate?: Prisma.TestCreateOrConnectWithoutReportTemplateLinksInput
+  upsert?: Prisma.TestUpsertWithoutReportTemplateLinksInput
+  connect?: Prisma.TestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TestUpdateToOneWithWhereWithoutReportTemplateLinksInput, Prisma.TestUpdateWithoutReportTemplateLinksInput>, Prisma.TestUncheckedUpdateWithoutReportTemplateLinksInput>
+}
+
 export type TestCreateNestedOneWithoutEvaluationProductsInput = {
   create?: Prisma.XOR<Prisma.TestCreateWithoutEvaluationProductsInput, Prisma.TestUncheckedCreateWithoutEvaluationProductsInput>
   connectOrCreate?: Prisma.TestCreateOrConnectWithoutEvaluationProductsInput
@@ -457,6 +478,7 @@ export type TestCreateWithoutVersionsInput = {
   updatedAt?: Date | string
   assignments?: Prisma.AssignmentCreateNestedManyWithoutTestInput
   evaluationProducts?: Prisma.EvaluationProductCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateCreateNestedManyWithoutTestInput
 }
 
 export type TestUncheckedCreateWithoutVersionsInput = {
@@ -470,6 +492,7 @@ export type TestUncheckedCreateWithoutVersionsInput = {
   updatedAt?: Date | string
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTestInput
   evaluationProducts?: Prisma.EvaluationProductUncheckedCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestCreateOrConnectWithoutVersionsInput = {
@@ -499,6 +522,7 @@ export type TestUpdateWithoutVersionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.AssignmentUpdateManyWithoutTestNestedInput
   evaluationProducts?: Prisma.EvaluationProductUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUpdateManyWithoutTestNestedInput
 }
 
 export type TestUncheckedUpdateWithoutVersionsInput = {
@@ -512,6 +536,7 @@ export type TestUncheckedUpdateWithoutVersionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTestNestedInput
   evaluationProducts?: Prisma.EvaluationProductUncheckedUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedUpdateManyWithoutTestNestedInput
 }
 
 export type TestCreateWithoutAssignmentsInput = {
@@ -525,6 +550,7 @@ export type TestCreateWithoutAssignmentsInput = {
   updatedAt?: Date | string
   versions?: Prisma.TestVersionCreateNestedManyWithoutTestInput
   evaluationProducts?: Prisma.EvaluationProductCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateCreateNestedManyWithoutTestInput
 }
 
 export type TestUncheckedCreateWithoutAssignmentsInput = {
@@ -538,6 +564,7 @@ export type TestUncheckedCreateWithoutAssignmentsInput = {
   updatedAt?: Date | string
   versions?: Prisma.TestVersionUncheckedCreateNestedManyWithoutTestInput
   evaluationProducts?: Prisma.EvaluationProductUncheckedCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestCreateOrConnectWithoutAssignmentsInput = {
@@ -567,6 +594,7 @@ export type TestUpdateWithoutAssignmentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.TestVersionUpdateManyWithoutTestNestedInput
   evaluationProducts?: Prisma.EvaluationProductUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUpdateManyWithoutTestNestedInput
 }
 
 export type TestUncheckedUpdateWithoutAssignmentsInput = {
@@ -579,6 +607,79 @@ export type TestUncheckedUpdateWithoutAssignmentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.TestVersionUncheckedUpdateManyWithoutTestNestedInput
+  evaluationProducts?: Prisma.EvaluationProductUncheckedUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedUpdateManyWithoutTestNestedInput
+}
+
+export type TestCreateWithoutReportTemplateLinksInput = {
+  id?: string
+  code: string
+  slug: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  versions?: Prisma.TestVersionCreateNestedManyWithoutTestInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutTestInput
+  evaluationProducts?: Prisma.EvaluationProductCreateNestedManyWithoutTestInput
+}
+
+export type TestUncheckedCreateWithoutReportTemplateLinksInput = {
+  id?: string
+  code: string
+  slug: string
+  name: string
+  description?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  versions?: Prisma.TestVersionUncheckedCreateNestedManyWithoutTestInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTestInput
+  evaluationProducts?: Prisma.EvaluationProductUncheckedCreateNestedManyWithoutTestInput
+}
+
+export type TestCreateOrConnectWithoutReportTemplateLinksInput = {
+  where: Prisma.TestWhereUniqueInput
+  create: Prisma.XOR<Prisma.TestCreateWithoutReportTemplateLinksInput, Prisma.TestUncheckedCreateWithoutReportTemplateLinksInput>
+}
+
+export type TestUpsertWithoutReportTemplateLinksInput = {
+  update: Prisma.XOR<Prisma.TestUpdateWithoutReportTemplateLinksInput, Prisma.TestUncheckedUpdateWithoutReportTemplateLinksInput>
+  create: Prisma.XOR<Prisma.TestCreateWithoutReportTemplateLinksInput, Prisma.TestUncheckedCreateWithoutReportTemplateLinksInput>
+  where?: Prisma.TestWhereInput
+}
+
+export type TestUpdateToOneWithWhereWithoutReportTemplateLinksInput = {
+  where?: Prisma.TestWhereInput
+  data: Prisma.XOR<Prisma.TestUpdateWithoutReportTemplateLinksInput, Prisma.TestUncheckedUpdateWithoutReportTemplateLinksInput>
+}
+
+export type TestUpdateWithoutReportTemplateLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  versions?: Prisma.TestVersionUpdateManyWithoutTestNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutTestNestedInput
+  evaluationProducts?: Prisma.EvaluationProductUpdateManyWithoutTestNestedInput
+}
+
+export type TestUncheckedUpdateWithoutReportTemplateLinksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  versions?: Prisma.TestVersionUncheckedUpdateManyWithoutTestNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTestNestedInput
   evaluationProducts?: Prisma.EvaluationProductUncheckedUpdateManyWithoutTestNestedInput
 }
 
@@ -593,6 +694,7 @@ export type TestCreateWithoutEvaluationProductsInput = {
   updatedAt?: Date | string
   versions?: Prisma.TestVersionCreateNestedManyWithoutTestInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateCreateNestedManyWithoutTestInput
 }
 
 export type TestUncheckedCreateWithoutEvaluationProductsInput = {
@@ -606,6 +708,7 @@ export type TestUncheckedCreateWithoutEvaluationProductsInput = {
   updatedAt?: Date | string
   versions?: Prisma.TestVersionUncheckedCreateNestedManyWithoutTestInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutTestInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedCreateNestedManyWithoutTestInput
 }
 
 export type TestCreateOrConnectWithoutEvaluationProductsInput = {
@@ -635,6 +738,7 @@ export type TestUpdateWithoutEvaluationProductsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.TestVersionUpdateManyWithoutTestNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUpdateManyWithoutTestNestedInput
 }
 
 export type TestUncheckedUpdateWithoutEvaluationProductsInput = {
@@ -648,6 +752,7 @@ export type TestUncheckedUpdateWithoutEvaluationProductsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   versions?: Prisma.TestVersionUncheckedUpdateManyWithoutTestNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutTestNestedInput
+  reportTemplateLinks?: Prisma.TestReportTemplateUncheckedUpdateManyWithoutTestNestedInput
 }
 
 
@@ -659,12 +764,14 @@ export type TestCountOutputType = {
   versions: number
   assignments: number
   evaluationProducts: number
+  reportTemplateLinks: number
 }
 
 export type TestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   versions?: boolean | TestCountOutputTypeCountVersionsArgs
   assignments?: boolean | TestCountOutputTypeCountAssignmentsArgs
   evaluationProducts?: boolean | TestCountOutputTypeCountEvaluationProductsArgs
+  reportTemplateLinks?: boolean | TestCountOutputTypeCountReportTemplateLinksArgs
 }
 
 /**
@@ -698,6 +805,13 @@ export type TestCountOutputTypeCountEvaluationProductsArgs<ExtArgs extends runti
   where?: Prisma.EvaluationProductWhereInput
 }
 
+/**
+ * TestCountOutputType without action
+ */
+export type TestCountOutputTypeCountReportTemplateLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TestReportTemplateWhereInput
+}
+
 
 export type TestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -711,6 +825,7 @@ export type TestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   versions?: boolean | Prisma.Test$versionsArgs<ExtArgs>
   assignments?: boolean | Prisma.Test$assignmentsArgs<ExtArgs>
   evaluationProducts?: boolean | Prisma.Test$evaluationProductsArgs<ExtArgs>
+  reportTemplateLinks?: boolean | Prisma.Test$reportTemplateLinksArgs<ExtArgs>
   _count?: boolean | Prisma.TestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["test"]>
 
@@ -732,6 +847,7 @@ export type TestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   versions?: boolean | Prisma.Test$versionsArgs<ExtArgs>
   assignments?: boolean | Prisma.Test$assignmentsArgs<ExtArgs>
   evaluationProducts?: boolean | Prisma.Test$evaluationProductsArgs<ExtArgs>
+  reportTemplateLinks?: boolean | Prisma.Test$reportTemplateLinksArgs<ExtArgs>
   _count?: boolean | Prisma.TestCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -741,6 +857,7 @@ export type $TestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     versions: Prisma.$TestVersionPayload<ExtArgs>[]
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
     evaluationProducts: Prisma.$EvaluationProductPayload<ExtArgs>[]
+    reportTemplateLinks: Prisma.$TestReportTemplatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1094,6 +1211,7 @@ export interface Prisma__TestClient<T, Null = never, ExtArgs extends runtime.Typ
   versions<T extends Prisma.Test$versionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Test$versionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TestVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.Test$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Test$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   evaluationProducts<T extends Prisma.Test$evaluationProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Test$evaluationProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvaluationProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reportTemplateLinks<T extends Prisma.Test$reportTemplateLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Test$reportTemplateLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TestReportTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1548,6 +1666,30 @@ export type Test$evaluationProductsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.EvaluationProductScalarFieldEnum | Prisma.EvaluationProductScalarFieldEnum[]
+}
+
+/**
+ * Test.reportTemplateLinks
+ */
+export type Test$reportTemplateLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TestReportTemplate
+   */
+  select?: Prisma.TestReportTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TestReportTemplate
+   */
+  omit?: Prisma.TestReportTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TestReportTemplateInclude<ExtArgs> | null
+  where?: Prisma.TestReportTemplateWhereInput
+  orderBy?: Prisma.TestReportTemplateOrderByWithRelationInput | Prisma.TestReportTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.TestReportTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TestReportTemplateScalarFieldEnum | Prisma.TestReportTemplateScalarFieldEnum[]
 }
 
 /**

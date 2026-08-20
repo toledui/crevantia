@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "expected": {
+    "referencePages": 63,
+    "keyVisualPages": 12,
+    "requiredComponents": 15,
+    "readyCoreBindings": [
+      "REPORT_IDENTITY",
+      "BIND_3_CAPACIDADES",
+      "BIND_QUADRANTS_AXES",
+      "BIND_FINANCIAL_ABILITY"
+    ]
+  },
+  "publicationBlockingBindingStatuses": [
+    "CONFIGURABLE_NEEDS_FINAL_MAPPING_REVIEW"
+  ],
+  "requiredRenderModes": [
+    "FLOW_LAYOUT",
+    "ABSOLUTE_LAYOUT"
+  ],
+  "requiredOutputs": [
+    "HTML_PREVIEW",
+    "PDF"
+  ]
+}

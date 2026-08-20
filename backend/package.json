@@ -16,6 +16,7 @@
     "prisma:seed": "prisma db seed",
     "seed:dpo": "tsx prisma/seeds/seed-dpo-official-v1.ts",
     "seed:dpo:v1": "tsx prisma/seeds/seed-dpo-official-v1.ts",
+    "seed:report-studio:v1": "tsx prisma/seeds/seed-report-studio-v1.ts",
     "validate:dpo:v1": "tsx prisma/seeds/validate-dpo-v1.ts",
     "verify:dpo:v1:db": "tsx prisma/seeds/verify-dpo-v1-db.ts",
     "preload:country-options": "tsx prisma/seeds/preload-country-options.ts",
@@ -43,6 +44,7 @@
     "helmet": "^8.1.0",
     "nodemailer": "^9.0.4",
     "pdfkit": "^0.19.1",
+    "playwright": "^1.62.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "stripe": "^22.5.0"

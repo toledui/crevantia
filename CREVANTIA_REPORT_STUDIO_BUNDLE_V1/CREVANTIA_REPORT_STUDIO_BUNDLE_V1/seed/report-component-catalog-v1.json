@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0.0",
+  "components": [
+    {
+      "type": "COVER_BLOCK",
+      "renderer": "CoverBlock",
+      "layout": [
+        "ABSOLUTE_LAYOUT"
+      ]
+    },
+    {
+      "type": "HEADING",
+      "renderer": "HeadingBlock",
+      "layout": [
+        "FLOW_LAYOUT",
+        "ABSOLUTE_LAYOUT"
+      ]
+    },
+    {
+      "type": "RICH_TEXT",
+      "renderer": "RichTextBlock",
+      "layout": [
+        "FLOW_LAYOUT",
+        "ABSOLUTE_LAYOUT"
+      ]
+    },
+    {
+      "type": "IMAGE",
+      "renderer": "ImageBlock",
+      "layout": [
+        "FLOW_LAYOUT",
+        "ABSOLUTE_LAYOUT"
+      ]
+    },
+    {
+      "type": "RADAR_CHART",
+      "renderer": "RadarChartBlock",
+      "output": "SVG"
+    },
+    {
+      "type": "MULTI_RADAR_CHART",
+      "renderer": "MultiRadarChartBlock",
+      "output": "SVG"
+    },
+    {
+      "type": "DECILE_SCALE_TABLE",
+      "renderer": "DecileScaleTableBlock",
+      "output": "DOM/SVG"
+    },
+    {
+      "type": "QUADRANT_CHART",
+      "renderer": "QuadrantChartBlock",
+      "output": "SVG"
+    },
+    {
+      "type": "QUADRANT_RESULT_TABLE",
+      "renderer": "QuadrantResultTableBlock"
+    },
+    {
+      "type": "POTENTIAL_ABILITY_MATRIX",
+      "renderer": "PotentialAbilityMatrixBlock"
+    },
+    {
+      "type": "SUMMARY_MATRIX",
+      "renderer": "SummaryMatrixBlock"
+    },
+    {
+      "type": "TABLE_OF_CONTENTS",
+      "renderer": "TableOfContentsBlock",
+      "twoPassRender": true
+    },
+    {
+      "type": "HEADER_FOOTER",
+      "renderer": "HeaderFooterBlock"
+    },
+    {
+      "type": "PAGE_BREAK",
+      "renderer": "PageBreakBlock"
+    },
+    {
+      "type": "STATIC_EXAMPLE_CHART",
+      "renderer": "StaticExampleChartBlock"
+    }
+  ]
+}

@@ -449,6 +449,14 @@ export const ModelName = {
   ForcedChoiceAnswer: 'ForcedChoiceAnswer',
   LikertAnswer: 'LikertAnswer',
   ResultRun: 'ResultRun',
+  ReportTemplate: 'ReportTemplate',
+  TestReportTemplate: 'TestReportTemplate',
+  ReportTheme: 'ReportTheme',
+  ReportTemplateVersion: 'ReportTemplateVersion',
+  ReportAsset: 'ReportAsset',
+  ReportClassificationSet: 'ReportClassificationSet',
+  ReportClassificationRange: 'ReportClassificationRange',
+  GeneratedReport: 'GeneratedReport',
   AssessmentReport: 'AssessmentReport',
   AssessmentReportDelivery: 'AssessmentReportDelivery',
   ResultValue: 'ResultValue',
@@ -480,7 +488,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentActiveConfiguration" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "assessmentReport" | "assessmentReportDelivery" | "resultValue" | "reactiveContribution" | "financialSettings" | "siteSettings" | "stripeSettings" | "evaluationProduct" | "priceVersion" | "coupon" | "couponRedemption" | "purchaseOrder" | "purchaseItem" | "paymentTransaction" | "paymentEvent" | "legalDocument"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentActiveConfiguration" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "reportTemplate" | "testReportTemplate" | "reportTheme" | "reportTemplateVersion" | "reportAsset" | "reportClassificationSet" | "reportClassificationRange" | "generatedReport" | "assessmentReport" | "assessmentReportDelivery" | "resultValue" | "reactiveContribution" | "financialSettings" | "siteSettings" | "stripeSettings" | "evaluationProduct" | "priceVersion" | "coupon" | "couponRedemption" | "purchaseOrder" | "purchaseItem" | "paymentTransaction" | "paymentEvent" | "legalDocument"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3916,6 +3924,534 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ReportTemplate: {
+      payload: Prisma.$ReportTemplatePayload<ExtArgs>
+      fields: Prisma.ReportTemplateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportTemplateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportTemplateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>
+        }
+        findFirst: {
+          args: Prisma.ReportTemplateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportTemplateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>
+        }
+        findMany: {
+          args: Prisma.ReportTemplateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>[]
+        }
+        create: {
+          args: Prisma.ReportTemplateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>
+        }
+        createMany: {
+          args: Prisma.ReportTemplateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReportTemplateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>
+        }
+        update: {
+          args: Prisma.ReportTemplateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportTemplateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportTemplateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReportTemplateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplatePayload>
+        }
+        aggregate: {
+          args: Prisma.ReportTemplateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportTemplate>
+        }
+        groupBy: {
+          args: Prisma.ReportTemplateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportTemplateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportTemplateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportTemplateCountAggregateOutputType> | number
+        }
+      }
+    }
+    TestReportTemplate: {
+      payload: Prisma.$TestReportTemplatePayload<ExtArgs>
+      fields: Prisma.TestReportTemplateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TestReportTemplateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TestReportTemplateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>
+        }
+        findFirst: {
+          args: Prisma.TestReportTemplateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TestReportTemplateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>
+        }
+        findMany: {
+          args: Prisma.TestReportTemplateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>[]
+        }
+        create: {
+          args: Prisma.TestReportTemplateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>
+        }
+        createMany: {
+          args: Prisma.TestReportTemplateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TestReportTemplateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>
+        }
+        update: {
+          args: Prisma.TestReportTemplateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>
+        }
+        deleteMany: {
+          args: Prisma.TestReportTemplateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TestReportTemplateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TestReportTemplateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TestReportTemplatePayload>
+        }
+        aggregate: {
+          args: Prisma.TestReportTemplateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTestReportTemplate>
+        }
+        groupBy: {
+          args: Prisma.TestReportTemplateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TestReportTemplateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TestReportTemplateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TestReportTemplateCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReportTheme: {
+      payload: Prisma.$ReportThemePayload<ExtArgs>
+      fields: Prisma.ReportThemeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportThemeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportThemeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>
+        }
+        findFirst: {
+          args: Prisma.ReportThemeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportThemeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>
+        }
+        findMany: {
+          args: Prisma.ReportThemeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>[]
+        }
+        create: {
+          args: Prisma.ReportThemeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>
+        }
+        createMany: {
+          args: Prisma.ReportThemeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReportThemeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>
+        }
+        update: {
+          args: Prisma.ReportThemeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportThemeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportThemeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReportThemeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportThemePayload>
+        }
+        aggregate: {
+          args: Prisma.ReportThemeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportTheme>
+        }
+        groupBy: {
+          args: Prisma.ReportThemeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportThemeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportThemeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportThemeCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReportTemplateVersion: {
+      payload: Prisma.$ReportTemplateVersionPayload<ExtArgs>
+      fields: Prisma.ReportTemplateVersionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportTemplateVersionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportTemplateVersionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>
+        }
+        findFirst: {
+          args: Prisma.ReportTemplateVersionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportTemplateVersionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>
+        }
+        findMany: {
+          args: Prisma.ReportTemplateVersionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>[]
+        }
+        create: {
+          args: Prisma.ReportTemplateVersionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>
+        }
+        createMany: {
+          args: Prisma.ReportTemplateVersionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReportTemplateVersionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>
+        }
+        update: {
+          args: Prisma.ReportTemplateVersionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportTemplateVersionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportTemplateVersionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReportTemplateVersionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportTemplateVersionPayload>
+        }
+        aggregate: {
+          args: Prisma.ReportTemplateVersionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportTemplateVersion>
+        }
+        groupBy: {
+          args: Prisma.ReportTemplateVersionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportTemplateVersionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportTemplateVersionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportTemplateVersionCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReportAsset: {
+      payload: Prisma.$ReportAssetPayload<ExtArgs>
+      fields: Prisma.ReportAssetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportAssetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportAssetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>
+        }
+        findFirst: {
+          args: Prisma.ReportAssetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportAssetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>
+        }
+        findMany: {
+          args: Prisma.ReportAssetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>[]
+        }
+        create: {
+          args: Prisma.ReportAssetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>
+        }
+        createMany: {
+          args: Prisma.ReportAssetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReportAssetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>
+        }
+        update: {
+          args: Prisma.ReportAssetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportAssetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportAssetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReportAssetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportAssetPayload>
+        }
+        aggregate: {
+          args: Prisma.ReportAssetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportAsset>
+        }
+        groupBy: {
+          args: Prisma.ReportAssetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportAssetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportAssetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportAssetCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReportClassificationSet: {
+      payload: Prisma.$ReportClassificationSetPayload<ExtArgs>
+      fields: Prisma.ReportClassificationSetFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportClassificationSetFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportClassificationSetFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>
+        }
+        findFirst: {
+          args: Prisma.ReportClassificationSetFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportClassificationSetFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>
+        }
+        findMany: {
+          args: Prisma.ReportClassificationSetFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>[]
+        }
+        create: {
+          args: Prisma.ReportClassificationSetCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>
+        }
+        createMany: {
+          args: Prisma.ReportClassificationSetCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReportClassificationSetDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>
+        }
+        update: {
+          args: Prisma.ReportClassificationSetUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportClassificationSetDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportClassificationSetUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReportClassificationSetUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationSetPayload>
+        }
+        aggregate: {
+          args: Prisma.ReportClassificationSetAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportClassificationSet>
+        }
+        groupBy: {
+          args: Prisma.ReportClassificationSetGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportClassificationSetGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportClassificationSetCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportClassificationSetCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReportClassificationRange: {
+      payload: Prisma.$ReportClassificationRangePayload<ExtArgs>
+      fields: Prisma.ReportClassificationRangeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportClassificationRangeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportClassificationRangeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>
+        }
+        findFirst: {
+          args: Prisma.ReportClassificationRangeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportClassificationRangeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>
+        }
+        findMany: {
+          args: Prisma.ReportClassificationRangeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>[]
+        }
+        create: {
+          args: Prisma.ReportClassificationRangeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>
+        }
+        createMany: {
+          args: Prisma.ReportClassificationRangeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ReportClassificationRangeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>
+        }
+        update: {
+          args: Prisma.ReportClassificationRangeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportClassificationRangeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportClassificationRangeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ReportClassificationRangeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportClassificationRangePayload>
+        }
+        aggregate: {
+          args: Prisma.ReportClassificationRangeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportClassificationRange>
+        }
+        groupBy: {
+          args: Prisma.ReportClassificationRangeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportClassificationRangeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportClassificationRangeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportClassificationRangeCountAggregateOutputType> | number
+        }
+      }
+    }
+    GeneratedReport: {
+      payload: Prisma.$GeneratedReportPayload<ExtArgs>
+      fields: Prisma.GeneratedReportFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GeneratedReportFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GeneratedReportFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>
+        }
+        findFirst: {
+          args: Prisma.GeneratedReportFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GeneratedReportFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>
+        }
+        findMany: {
+          args: Prisma.GeneratedReportFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>[]
+        }
+        create: {
+          args: Prisma.GeneratedReportCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>
+        }
+        createMany: {
+          args: Prisma.GeneratedReportCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.GeneratedReportDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>
+        }
+        update: {
+          args: Prisma.GeneratedReportUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>
+        }
+        deleteMany: {
+          args: Prisma.GeneratedReportDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GeneratedReportUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.GeneratedReportUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GeneratedReportPayload>
+        }
+        aggregate: {
+          args: Prisma.GeneratedReportAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGeneratedReport>
+        }
+        groupBy: {
+          args: Prisma.GeneratedReportGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneratedReportGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GeneratedReportCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GeneratedReportCountAggregateOutputType> | number
+        }
+      }
+    }
     AssessmentReport: {
       payload: Prisma.$AssessmentReportPayload<ExtArgs>
       fields: Prisma.AssessmentReportFieldRefs
@@ -5736,6 +6272,128 @@ export const ResultRunScalarFieldEnum = {
 export type ResultRunScalarFieldEnum = (typeof ResultRunScalarFieldEnum)[keyof typeof ResultRunScalarFieldEnum]
 
 
+export const ReportTemplateScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportTemplateScalarFieldEnum = (typeof ReportTemplateScalarFieldEnum)[keyof typeof ReportTemplateScalarFieldEnum]
+
+
+export const TestReportTemplateScalarFieldEnum = {
+  id: 'id',
+  testId: 'testId',
+  assessmentId: 'assessmentId',
+  reportTemplateId: 'reportTemplateId',
+  language: 'language',
+  audience: 'audience',
+  isDefault: 'isDefault',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TestReportTemplateScalarFieldEnum = (typeof TestReportTemplateScalarFieldEnum)[keyof typeof TestReportTemplateScalarFieldEnum]
+
+
+export const ReportThemeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  configJson: 'configJson',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportThemeScalarFieldEnum = (typeof ReportThemeScalarFieldEnum)[keyof typeof ReportThemeScalarFieldEnum]
+
+
+export const ReportTemplateVersionScalarFieldEnum = {
+  id: 'id',
+  reportTemplateId: 'reportTemplateId',
+  version: 'version',
+  status: 'status',
+  themeId: 'themeId',
+  layoutJson: 'layoutJson',
+  bindingConfigJson: 'bindingConfigJson',
+  pendingBindings: 'pendingBindings',
+  createdById: 'createdById',
+  reviewedById: 'reviewedById',
+  approvedById: 'approvedById',
+  publishedById: 'publishedById',
+  configurationHash: 'configurationHash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt'
+} as const
+
+export type ReportTemplateVersionScalarFieldEnum = (typeof ReportTemplateVersionScalarFieldEnum)[keyof typeof ReportTemplateVersionScalarFieldEnum]
+
+
+export const ReportAssetScalarFieldEnum = {
+  id: 'id',
+  themeId: 'themeId',
+  name: 'name',
+  mimeType: 'mimeType',
+  data: 'data',
+  byteSize: 'byteSize',
+  sha256: 'sha256',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportAssetScalarFieldEnum = (typeof ReportAssetScalarFieldEnum)[keyof typeof ReportAssetScalarFieldEnum]
+
+
+export const ReportClassificationSetScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportClassificationSetScalarFieldEnum = (typeof ReportClassificationSetScalarFieldEnum)[keyof typeof ReportClassificationSetScalarFieldEnum]
+
+
+export const ReportClassificationRangeScalarFieldEnum = {
+  id: 'id',
+  reportClassificationSetId: 'reportClassificationSetId',
+  minValue: 'minValue',
+  maxValue: 'maxValue',
+  label: 'label',
+  color: 'color',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ReportClassificationRangeScalarFieldEnum = (typeof ReportClassificationRangeScalarFieldEnum)[keyof typeof ReportClassificationRangeScalarFieldEnum]
+
+
+export const GeneratedReportScalarFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  reportTemplateVersionId: 'reportTemplateVersionId',
+  generatedById: 'generatedById',
+  generatedAt: 'generatedAt',
+  status: 'status',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  pdfData: 'pdfData',
+  byteSize: 'byteSize',
+  sha256: 'sha256',
+  pageCount: 'pageCount',
+  error: 'error',
+  dataSnapshot: 'dataSnapshot'
+} as const
+
+export type GeneratedReportScalarFieldEnum = (typeof GeneratedReportScalarFieldEnum)[keyof typeof GeneratedReportScalarFieldEnum]
+
+
 export const AssessmentReportScalarFieldEnum = {
   id: 'id',
   resultRunId: 'resultRunId',
@@ -6634,6 +7292,97 @@ export const ResultRunOrderByRelevanceFieldEnum = {
 export type ResultRunOrderByRelevanceFieldEnum = (typeof ResultRunOrderByRelevanceFieldEnum)[keyof typeof ResultRunOrderByRelevanceFieldEnum]
 
 
+export const ReportTemplateOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ReportTemplateOrderByRelevanceFieldEnum = (typeof ReportTemplateOrderByRelevanceFieldEnum)[keyof typeof ReportTemplateOrderByRelevanceFieldEnum]
+
+
+export const TestReportTemplateOrderByRelevanceFieldEnum = {
+  id: 'id',
+  testId: 'testId',
+  assessmentId: 'assessmentId',
+  reportTemplateId: 'reportTemplateId',
+  language: 'language',
+  audience: 'audience'
+} as const
+
+export type TestReportTemplateOrderByRelevanceFieldEnum = (typeof TestReportTemplateOrderByRelevanceFieldEnum)[keyof typeof TestReportTemplateOrderByRelevanceFieldEnum]
+
+
+export const ReportThemeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+} as const
+
+export type ReportThemeOrderByRelevanceFieldEnum = (typeof ReportThemeOrderByRelevanceFieldEnum)[keyof typeof ReportThemeOrderByRelevanceFieldEnum]
+
+
+export const ReportTemplateVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportTemplateId: 'reportTemplateId',
+  version: 'version',
+  themeId: 'themeId',
+  createdById: 'createdById',
+  reviewedById: 'reviewedById',
+  approvedById: 'approvedById',
+  publishedById: 'publishedById',
+  configurationHash: 'configurationHash'
+} as const
+
+export type ReportTemplateVersionOrderByRelevanceFieldEnum = (typeof ReportTemplateVersionOrderByRelevanceFieldEnum)[keyof typeof ReportTemplateVersionOrderByRelevanceFieldEnum]
+
+
+export const ReportAssetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  themeId: 'themeId',
+  name: 'name',
+  mimeType: 'mimeType',
+  sha256: 'sha256'
+} as const
+
+export type ReportAssetOrderByRelevanceFieldEnum = (typeof ReportAssetOrderByRelevanceFieldEnum)[keyof typeof ReportAssetOrderByRelevanceFieldEnum]
+
+
+export const ReportClassificationSetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ReportClassificationSetOrderByRelevanceFieldEnum = (typeof ReportClassificationSetOrderByRelevanceFieldEnum)[keyof typeof ReportClassificationSetOrderByRelevanceFieldEnum]
+
+
+export const ReportClassificationRangeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportClassificationSetId: 'reportClassificationSetId',
+  label: 'label',
+  color: 'color'
+} as const
+
+export type ReportClassificationRangeOrderByRelevanceFieldEnum = (typeof ReportClassificationRangeOrderByRelevanceFieldEnum)[keyof typeof ReportClassificationRangeOrderByRelevanceFieldEnum]
+
+
+export const GeneratedReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  reportTemplateVersionId: 'reportTemplateVersionId',
+  generatedById: 'generatedById',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  sha256: 'sha256',
+  error: 'error'
+} as const
+
+export type GeneratedReportOrderByRelevanceFieldEnum = (typeof GeneratedReportOrderByRelevanceFieldEnum)[keyof typeof GeneratedReportOrderByRelevanceFieldEnum]
+
+
 export const AssessmentReportOrderByRelevanceFieldEnum = {
   id: 'id',
   resultRunId: 'resultRunId',
@@ -6980,9 +7729,9 @@ export type EnumResultRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
- * Reference to a field of type 'AssessmentReportStatus'
+ * Reference to a field of type 'ReportStudioStatus'
  */
-export type EnumAssessmentReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AssessmentReportStatus'>
+export type EnumReportStudioStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReportStudioStatus'>
     
 
 
@@ -6990,6 +7739,20 @@ export type EnumAssessmentReportStatusFieldRefInput<$PrismaModel> = FieldRefInpu
  * Reference to a field of type 'Bytes'
  */
 export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+    
+
+
+/**
+ * Reference to a field of type 'GeneratedReportStatus'
+ */
+export type EnumGeneratedReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GeneratedReportStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AssessmentReportStatus'
+ */
+export type EnumAssessmentReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AssessmentReportStatus'>
     
 
 
@@ -7230,6 +7993,14 @@ export type GlobalOmitConfig = {
   forcedChoiceAnswer?: Prisma.ForcedChoiceAnswerOmit
   likertAnswer?: Prisma.LikertAnswerOmit
   resultRun?: Prisma.ResultRunOmit
+  reportTemplate?: Prisma.ReportTemplateOmit
+  testReportTemplate?: Prisma.TestReportTemplateOmit
+  reportTheme?: Prisma.ReportThemeOmit
+  reportTemplateVersion?: Prisma.ReportTemplateVersionOmit
+  reportAsset?: Prisma.ReportAssetOmit
+  reportClassificationSet?: Prisma.ReportClassificationSetOmit
+  reportClassificationRange?: Prisma.ReportClassificationRangeOmit
+  generatedReport?: Prisma.GeneratedReportOmit
   assessmentReport?: Prisma.AssessmentReportOmit
   assessmentReportDelivery?: Prisma.AssessmentReportDeliveryOmit
   resultValue?: Prisma.ResultValueOmit

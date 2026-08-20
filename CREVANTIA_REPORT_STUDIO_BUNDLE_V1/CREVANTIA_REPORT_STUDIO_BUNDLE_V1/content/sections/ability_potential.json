@@ -1,0 +1,28 @@
+{
+  "code": "ABILITY_POTENTIAL",
+  "name": "Habilidad y potencial financiero",
+  "referencePages": [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "pageContentFiles": [
+    "content/pages/page-026.json",
+    "content/pages/page-027.json",
+    "content/pages/page-028.json",
+    "content/pages/page-029.json",
+    "content/pages/page-030.json",
+    "content/pages/page-031.json",
+    "content/pages/page-032.json",
+    "content/pages/page-033.json",
+    "content/pages/page-034.json",
+    "content/pages/page-035.json"
+  ]
+}

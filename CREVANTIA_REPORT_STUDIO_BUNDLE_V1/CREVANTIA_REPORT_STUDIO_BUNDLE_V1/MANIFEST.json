@@ -1,0 +1,523 @@
+{
+  "bundleVersion": "1.0.0",
+  "generatedAtUTC": "2026-08-20T18:41:12.407957+00:00",
+  "sourceTargetPdfSha256": "cabd0d771aef304d3763ccda1dd726abd0d5ad62690d74087a63516a1f53804b",
+  "sourceCurrentPdfSha256": "af79b6c646f65d7c8bb6988e23133e62046fb2090b67de2f595a8c0daf6d32bb",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 1035,
+      "sha256": "6209b82f0adb596dbeeefddcbd870afcc4abf3c8e1fabc2f56b93eb76a549376"
+    },
+    {
+      "path": "content/pages/page-001.json",
+      "size": 683,
+      "sha256": "0477d589ad1b03ef5a1d33b89e8dfd8ffb8e0f27e27c6931dd40aabc837eeff8"
+    },
+    {
+      "path": "content/pages/page-002.json",
+      "size": 4103,
+      "sha256": "e1b080ec450cd1f6d5f7bb7125dc09df2bcde5b58d3404205d942ca697bd9586"
+    },
+    {
+      "path": "content/pages/page-003.json",
+      "size": 3689,
+      "sha256": "9af39eaa0c5ea77680d50f7f516e684c74282761cc0d803d2e4f4b337e2dd90f"
+    },
+    {
+      "path": "content/pages/page-004.json",
+      "size": 3751,
+      "sha256": "a4f9da803e4db4129c4affae8c340c7bf909cdb3336cf7937fe14bc8a0f65f84"
+    },
+    {
+      "path": "content/pages/page-005.json",
+      "size": 2952,
+      "sha256": "2f456360350a23956b7dd74178c5694b5409d6f88807c86fe08362ca67ae96d1"
+    },
+    {
+      "path": "content/pages/page-006.json",
+      "size": 1124,
+      "sha256": "8546ce91704ed698e8c24d389d3dbe849b39990fb8960b32798e4606825d3a91"
+    },
+    {
+      "path": "content/pages/page-007.json",
+      "size": 2960,
+      "sha256": "b6caa9a2373082c980fee5597ecd8488b42a0f7352fb85fdae4bda8f2d66a595"
+    },
+    {
+      "path": "content/pages/page-008.json",
+      "size": 4038,
+      "sha256": "d32062155803e5f44c90854ff5539435857e39c2f17a9161abc16454fbafadbb"
+    },
+    {
+      "path": "content/pages/page-009.json",
+      "size": 3643,
+      "sha256": "ea3a754e23f6db68a80d31c6afd3adbadcee5354c9055b2375bbea120bef97fa"
+    },
+    {
+      "path": "content/pages/page-010.json",
+      "size": 2143,
+      "sha256": "c8d97c61845f1c780da4f4b0c853c13d53f47fbef65ebacdbf3070eb0ea28314"
+    },
+    {
+      "path": "content/pages/page-011.json",
+      "size": 3600,
+      "sha256": "2a9c7343690e9a09f96f6dd1b95f39648eec7b938edca624ffc383e5e76baa29"
+    },
+    {
+      "path": "content/pages/page-012.json",
+      "size": 2943,
+      "sha256": "96635618a295cbb86c80389a2a54644772595283a3ee5ca7347fc05e9251dc17"
+    },
+    {
+      "path": "content/pages/page-013.json",
+      "size": 2589,
+      "sha256": "789336da551f5e8e94b1ce936ab15a50a09aa98bc10d31a28be1055729921287"
+    },
+    {
+      "path": "content/pages/page-014.json",
+      "size": 3521,
+      "sha256": "90340ab9360c997650b5b748df412641c3db220f53b56f377da1f50d96704487"
+    },
+    {
+      "path": "content/pages/page-015.json",
+      "size": 3627,
+      "sha256": "cc2cd320ff3e95e9e8a5e6d2c3cc895dfb5389c2c785df98cd142f5714d92eca"
+    },
+    {
+      "path": "content/pages/page-016.json",
+      "size": 3078,
+      "sha256": "16ce4a185ada7bef11031a53a187182a316a82d8c226d21104c9ee8b8afabaca"
+    },
+    {
+      "path": "content/pages/page-017.json",
+      "size": 4033,
+      "sha256": "970325da46a08f2b2290c484e55612858795e699856e0efaa956ac5a0ea8af88"
+    },
+    {
+      "path": "content/pages/page-018.json",
+      "size": 4363,
+      "sha256": "eda23637df584be06b81fa06310714647c2e4f2d431507842992c09bdcdec9ad"
+    },
+    {
+      "path": "content/pages/page-019.json",
+      "size": 4286,
+      "sha256": "3a2a7bcb949650f4d0f095f24a6896f788ac5a04fffba8e24a0ed61840d4876f"
+    },
+    {
+      "path": "content/pages/page-020.json",
+      "size": 4288,
+      "sha256": "f7185dea78d3c4a86cb234af82bc3da10fd32ae7682e3b03f7582632d4f1aad6"
+    },
+    {
+      "path": "content/pages/page-021.json",
+      "size": 4241,
+      "sha256": "e3449e388796d99def91ca8ce2617827ee0c0d0e06efd7f1cc2f18adcad343db"
+    },
+    {
+      "path": "content/pages/page-022.json",
+      "size": 4057,
+      "sha256": "b00b5ca6b0f78799218f7ccaf846ee18608f4144eab4da818569807abf05d694"
+    },
+    {
+      "path": "content/pages/page-023.json",
+      "size": 2838,
+      "sha256": "f845c7f262b625498e81d289b30eeee23dff75fc626e0dd09170ebc2ffdcd5c6"
+    },
+    {
+      "path": "content/pages/page-024.json",
+      "size": 2469,
+      "sha256": "7bf1525c4a7f88b07b86a5b9702e78750688bb912e673fb243d462cc37afa25c"
+    },
+    {
+      "path": "content/pages/page-025.json",
+      "size": 2995,
+      "sha256": "ae330ef5a57a1c8c66dd243931dc321260c67d933a338b8cd6b6fe7cf3d3f184"
+    },
+    {
+      "path": "content/pages/page-026.json",
+      "size": 3361,
+      "sha256": "78cad33839e830fa88ede431d3dd441678f5de0a1d70d17c4fca1bcdfd5c0e7a"
+    },
+    {
+      "path": "content/pages/page-027.json",
+      "size": 1678,
+      "sha256": "d6ea05dd984b40ae302e6db9b5dd7b36b5a78bfb85ad007c82a87923232430b9"
+    },
+    {
+      "path": "content/pages/page-028.json",
+      "size": 3733,
+      "sha256": "75c539c246948d9ae2d96752b97a706dc4bd7f7bc91390aeefa87c1fb18cd8e3"
+    },
+    {
+      "path": "content/pages/page-029.json",
+      "size": 3772,
+      "sha256": "c265a0eb978d7ead96adfe4e97125b040834522fb15915c0d3c7adbd829f88c4"
+    },
+    {
+      "path": "content/pages/page-030.json",
+      "size": 3798,
+      "sha256": "2787b897fc37913644b596f7c540c5441ad1c6d66d62dadfbc339da65a9b968d"
+    },
+    {
+      "path": "content/pages/page-031.json",
+      "size": 1864,
+      "sha256": "6164afb7fa76242688added98ec72bc92e2bcec6a5d4b97226d2c28b32840dba"
+    },
+    {
+      "path": "content/pages/page-032.json",
+      "size": 2363,
+      "sha256": "c3b2578bc7c74bfd3b880456fde88f249fb23f81b41f6a87775639f4707efbde"
+    },
+    {
+      "path": "content/pages/page-033.json",
+      "size": 1982,
+      "sha256": "7f06d1bb6928300d2005507cb5ffae144c7318a3755f88972b1f63ed0b136689"
+    },
+    {
+      "path": "content/pages/page-034.json",
+      "size": 2761,
+      "sha256": "9a9fd1fa61a7a1c79dd917a8edee066d7736f3c4e51693a2b211a0de3603377c"
+    },
+    {
+      "path": "content/pages/page-035.json",
+      "size": 2390,
+      "sha256": "ba80d55512b4afef458d0bc0e825ebc036d1ff986b7b05c5ad7a002f7e2d8434"
+    },
+    {
+      "path": "content/pages/page-036.json",
+      "size": 3645,
+      "sha256": "5e0fb5ed1425b1a0daf178d52b84d59954e05913a434aa247dd642cc9088d826"
+    },
+    {
+      "path": "content/pages/page-037.json",
+      "size": 2701,
+      "sha256": "7c252935a4858a94e55cd415c28bac420b9d0765a570eb815975b1b0dcc995cd"
+    },
+    {
+      "path": "content/pages/page-038.json",
+      "size": 2872,
+      "sha256": "af0b15dd6e0ef5955d02964b5b0bd00a1d6b5b53a1215a97bcef4ad435913677"
+    },
+    {
+      "path": "content/pages/page-039.json",
+      "size": 2619,
+      "sha256": "52165867c67815956f54f328f18d4e6a906e014d35d85e706499cb1109b5b3ec"
+    },
+    {
+      "path": "content/pages/page-040.json",
+      "size": 2475,
+      "sha256": "5b9d24c919fb9428cdc61149f2a3e65bd0f47ba29b74dd5a5855a6d08a4c0aac"
+    },
+    {
+      "path": "content/pages/page-041.json",
+      "size": 2790,
+      "sha256": "14f869b429c0a6b2191305818893b1d1d5fae30a39f0550254087c8af8d0e7e7"
+    },
+    {
+      "path": "content/pages/page-042.json",
+      "size": 2917,
+      "sha256": "26ccbdf993b33a2cbaf47d871b59329f67b85c213f8db3005d6a0e142e5cb633"
+    },
+    {
+      "path": "content/pages/page-043.json",
+      "size": 2641,
+      "sha256": "a8a78a7b8f67fd6b25048d29fa5c8ecfe107253356558859fface2fe9ef88f95"
+    },
+    {
+      "path": "content/pages/page-044.json",
+      "size": 2700,
+      "sha256": "7362425003307088838f2f4d2afeb92c2905068119fee9561e13930966db2d7b"
+    },
+    {
+      "path": "content/pages/page-045.json",
+      "size": 2431,
+      "sha256": "cafa8228bea8da58b64a421bd38e57212e14815a068e9a24987a3371e49fd35b"
+    },
+    {
+      "path": "content/pages/page-046.json",
+      "size": 2784,
+      "sha256": "89b745d0ab8a19f84433168ec75713e3776e15622b34a549164438d081bc4c5c"
+    },
+    {
+      "path": "content/pages/page-047.json",
+      "size": 3364,
+      "sha256": "b1f1ba4ecdf37eafdeffc630901b30dd97ef6118b0e78bf96ef1dfb7920a2969"
+    },
+    {
+      "path": "content/pages/page-048.json",
+      "size": 2342,
+      "sha256": "b42b980bdde6999112c520ef0497c5cc01769ca09f883b0ae1b34b3151e69e53"
+    },
+    {
+      "path": "content/pages/page-049.json",
+      "size": 2696,
+      "sha256": "23f795c5eede405be48a51da202ba6154438bd4a6ee71427311c6fab47dee90d"
+    },
+    {
+      "path": "content/pages/page-050.json",
+      "size": 2752,
+      "sha256": "a0174afcc136e5f0da958c62453690cfb2a66985b9ac76ee8cd1cf737198d892"
+    },
+    {
+      "path": "content/pages/page-051.json",
+      "size": 2978,
+      "sha256": "ac1f836bee0fca3380dc56d8bf911e1f0c4c4f59c454214efa23524bd1545c4c"
+    },
+    {
+      "path": "content/pages/page-052.json",
+      "size": 2973,
+      "sha256": "2a1f80b62d152339d045fc7b4a8251afbb91078dc8d032a8d29ec47f4071bdc8"
+    },
+    {
+      "path": "content/pages/page-053.json",
+      "size": 2588,
+      "sha256": "333d1de3ababb42d7de2d5af680c8cd579210bcc60e589cedb76546bde661b06"
+    },
+    {
+      "path": "content/pages/page-054.json",
+      "size": 2734,
+      "sha256": "01be0f9b85a6034a308f5c83bb6cf735fbc7faf2b6dd56676d6130939b602dd7"
+    },
+    {
+      "path": "content/pages/page-055.json",
+      "size": 2928,
+      "sha256": "a0ccc94a178911fd1ecfa6076308ec91d188155c48f89c04af92623f58c899b4"
+    },
+    {
+      "path": "content/pages/page-056.json",
+      "size": 3081,
+      "sha256": "b3bfc7c64c431371df65948faa553ca496aab84653d97b53159da7a87c2ae5f1"
+    },
+    {
+      "path": "content/pages/page-057.json",
+      "size": 369,
+      "sha256": "0fcfbc4f6a5c73783f236783f625a4af92393115de5b8790303e40d12eefad15"
+    },
+    {
+      "path": "content/pages/page-058.json",
+      "size": 291,
+      "sha256": "9d68a39a99297ba705a5e3733bd7971cb39ff8bfbf380143fbfd7ba6e456b124"
+    },
+    {
+      "path": "content/pages/page-059.json",
+      "size": 2110,
+      "sha256": "ae1bfd4eff4de7bb484d1a983494e1945996218bc4e6d82536f973d0416f1583"
+    },
+    {
+      "path": "content/pages/page-060.json",
+      "size": 2415,
+      "sha256": "3260c592f94fb71d27afbad1a7c59664cdf5c90a14e17beca0dd2691b9de3b57"
+    },
+    {
+      "path": "content/pages/page-061.json",
+      "size": 2153,
+      "sha256": "6edc4040f5c8b68f911995ca62746fec0c39713e349a661c401495f5fe217f95"
+    },
+    {
+      "path": "content/pages/page-062.json",
+      "size": 2188,
+      "sha256": "f904a3499048a1d16504f083454b987984da7279cdd908a943da5b3529907c36"
+    },
+    {
+      "path": "content/pages/page-063.json",
+      "size": 993,
+      "sha256": "7663b4312caa068e0456cdec2629d583970ee0fdf9015c775f06cd2fb6eb08f3"
+    },
+    {
+      "path": "content/sections/ability_potential.json",
+      "size": 563,
+      "sha256": "73e1e58439ad946e3c0c04d1f966a601f923952ac6fb8504affc30f1c3cbce13"
+    },
+    {
+      "path": "content/sections/abundance_and_quadrants.json",
+      "size": 662,
+      "sha256": "59b88d4e907426fa10966eef0f1d7d998bd691c16ab1cc8fb974680496a5cf8f"
+    },
+    {
+      "path": "content/sections/cover.json",
+      "size": 138,
+      "sha256": "91974b1acfde258d68df05b4bc97ac42431d1ec344119cfe5c3a35755f0957df"
+    },
+    {
+      "path": "content/sections/final_note.json",
+      "size": 147,
+      "sha256": "ee8a1152ed1b0a92c2c06f59c492ee07c6f5f9f5549ccf93ad3a5a6f9e51d9e5"
+    },
+    {
+      "path": "content/sections/glossary.json",
+      "size": 285,
+      "sha256": "494808955713e0b489ca323bffcd404e457030d7125da5c1d434dd2a9e0af70d"
+    },
+    {
+      "path": "content/sections/intro.json",
+      "size": 334,
+      "sha256": "a7cf2c4d394cef7ca45bfe7311aad68dbd1a1147bc88be0e8b87ed915dda9ac6"
+    },
+    {
+      "path": "content/sections/key_capacities.json",
+      "size": 394,
+      "sha256": "b3f167ec7066bd952031ddd572e8491ef1f9c6da850e8b7be1c82c9cd7298dcc"
+    },
+    {
+      "path": "content/sections/precursors.json",
+      "size": 1045,
+      "sha256": "4d7b6c7d0856b2cd62c26fef2f1000213659a2b0dc9b64b171e207b50c3efee6"
+    },
+    {
+      "path": "content/sections/summary.json",
+      "size": 221,
+      "sha256": "5350c34f493a9a933d66acfb550bf917f31053953ccc53de01ba8a0ec65f867c"
+    },
+    {
+      "path": "content/sections/toc.json",
+      "size": 149,
+      "sha256": "1aa4b5df5aa111a06151c8e252f83564de7c482fb5123ecfcdc8dbeb4054617b"
+    },
+    {
+      "path": "docs/CODEX_IMPLEMENTATION_0_TO_100.md",
+      "size": 3096,
+      "sha256": "a39db45454c0fa8698dd7b244a586eff965cca62173e26ae7d23a4b2ef84acf5"
+    },
+    {
+      "path": "docs/COMPONENT_CATALOG.md",
+      "size": 784,
+      "sha256": "3b7ee7a321337b8237c6145fc27e7a79642d5ab2e78eb0afd611fa5272a2ead9"
+    },
+    {
+      "path": "docs/DPO_PPF_PAGE_MAP.md",
+      "size": 5474,
+      "sha256": "5fcc801a68ec135bb8234c5ce1fd35c4100d3bd47d3bdd26635d3f7bf61c21e1"
+    },
+    {
+      "path": "docs/QA_AND_VISUAL_REGRESSION.md",
+      "size": 859,
+      "sha256": "a4261959a790d3e71fe4dce58d0283375e92504a95eb0b1e2f8559d809d523ec"
+    },
+    {
+      "path": "docs/REPORT_STUDIO_ARCHITECTURE_MASTER.md",
+      "size": 26099,
+      "sha256": "708050f0416f41c372df67af9528514faad7da96f75507eaefe40d31ed014001"
+    },
+    {
+      "path": "prototype/crevantia-report-studio-prototype.html",
+      "size": 10286,
+      "sha256": "232916fd36776b539488da70504d25136b19af9e960ea2103768420a1671b7f9"
+    },
+    {
+      "path": "reference/key-pages/page-1.png",
+      "size": 35153,
+      "sha256": "6a7b554d2f76b03504ef5ddc4231a9ea71efcc5868533b947e0c9ad294a20660"
+    },
+    {
+      "path": "reference/key-pages/page-10.png",
+      "size": 131337,
+      "sha256": "2ec46964fae82dfba97a786312a3305b41479c34e4f3a49b6a8cf03b14d7fdf2"
+    },
+    {
+      "path": "reference/key-pages/page-16.png",
+      "size": 170471,
+      "sha256": "a47d48fa68eebe669c4b1a52fd58502ea72343f5a31ddee811303d69d5e679ea"
+    },
+    {
+      "path": "reference/key-pages/page-24.png",
+      "size": 143542,
+      "sha256": "f2dc16bfd7781baf2188cf9247996b8acdc039accf0f9ba026ede28114e6857e"
+    },
+    {
+      "path": "reference/key-pages/page-27.png",
+      "size": 118738,
+      "sha256": "f9d1d551b36c7ab0f179d06acfed6ffd9c1f9909aa693c02310cff61c8ee3d6c"
+    },
+    {
+      "path": "reference/key-pages/page-31.png",
+      "size": 128371,
+      "sha256": "fa62552e2f026dcc9cfdfb168c892608db72d1283786d5837e11311f51278903"
+    },
+    {
+      "path": "reference/key-pages/page-33.png",
+      "size": 130715,
+      "sha256": "af8d2c73b9b38a6a5e3d19b1c087ba98dfaa4903c94f77c062331940c4db8971"
+    },
+    {
+      "path": "reference/key-pages/page-57.png",
+      "size": 133286,
+      "sha256": "1f73d9eb2b689b68adde6ef1658c8acb04e58395894b05c4ee0cc000c81d2cb3"
+    },
+    {
+      "path": "reference/key-pages/page-58.png",
+      "size": 107907,
+      "sha256": "3985ded17df4eb64c61555600d441575dd93c95c16844724db20f8b2d08de81b"
+    },
+    {
+      "path": "reference/key-pages/page-59.png",
+      "size": 110975,
+      "sha256": "fcf904587dff12d9cdf40a19a834457b8cc67d4731fb7ae064fcef33b4a8c0e3"
+    },
+    {
+      "path": "reference/key-pages/page-63.png",
+      "size": 44231,
+      "sha256": "e4dc89b26627652ff02e4d8bbe1273a024b6dfb834e2cb480ceba5404db2e17a"
+    },
+    {
+      "path": "reference/key-pages/page-7.png",
+      "size": 88041,
+      "sha256": "e320ab2d435423bde486f25cd57de23f14fbcf7f582cfa843791d8771674cbea"
+    },
+    {
+      "path": "reference/page-map.json",
+      "size": 17835,
+      "sha256": "d0a0e0e7618997a7a8cf9e05bade4281fd5da50500d6722ddc718b6638fb68a1"
+    },
+    {
+      "path": "reference/source/Reporte PPF (Ejemplo, todavía se va a modificar)(1).pdf",
+      "size": 1373421,
+      "sha256": "cabd0d771aef304d3763ccda1dd726abd0d5ad62690d74087a63516a1f53804b"
+    },
+    {
+      "path": "reference/source/Reporte_DPO-PRO_Luis_Antonio_Toledo_Mendez.pdf",
+      "size": 510228,
+      "sha256": "af79b6c646f65d7c8bb6988e23133e62046fb2090b67de2f595a8c0daf6d32bb"
+    },
+    {
+      "path": "reference/visual-specs.json",
+      "size": 2032,
+      "sha256": "7dd8199e0f9058678e7974dd6783f15275ede1ceadc49bb72652360703deef52"
+    },
+    {
+      "path": "seed/report-bindings-v1.json",
+      "size": 7194,
+      "sha256": "2b59255a1d1c2722104301ea5f645e1fd85e43debee8d55fce909a3c6d5fc52e"
+    },
+    {
+      "path": "seed/report-classifications-v1.json",
+      "size": 1280,
+      "sha256": "c8cba21dbea9efd7011e379b18db9e2506c1a279aa6eac2d6dd27363e7452f62"
+    },
+    {
+      "path": "seed/report-component-catalog-v1.json",
+      "size": 1711,
+      "sha256": "97bec5ba753572c36ba5ff8c30cf633a3419d405870e976d1614543ea04fc9aa"
+    },
+    {
+      "path": "seed/report-presets-v1.json",
+      "size": 1927,
+      "sha256": "0b1859d4c8d45e77e284fb5ac7c500e141cbac2eec4807dcfb3e50bc33d9a3dc"
+    },
+    {
+      "path": "seed/report-template-dpo-ppf-v1.json",
+      "size": 211738,
+      "sha256": "cdf3daaf6460b6bbdbd3d15752382a68d18426c819ca6e81cf6ac7352ee46e13"
+    },
+    {
+      "path": "seed/report-theme-crevantia-v1.json",
+      "size": 1374,
+      "sha256": "a8f3d888d12ec1b4de3ca62754e139920e5b9ccd8e932f8738a0766c1efecd85"
+    },
+    {
+      "path": "tests/report-studio-validation-spec.json",
+      "size": 503,
+      "sha256": "69dcebbc6107bc0a1d1613e708948eef509fd557531c2c58b52f0b2b57aa4a06"
+    }
+  ]
+}

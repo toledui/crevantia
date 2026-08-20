@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crevantia · Report Studio</title>
+<style>
+:root{
+--night:#080B12;--indigo:#302B78;--cyan:#00C2E8;--honey:#D6A94F;--ivory:#F4F2EC;
+--bluegray:#9CA6B8;--line:#DCE1E8;--soft:#EEF1F4;--paper:#fff;--text:#202632;
+}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);background:#E7EAEE;height:100vh;overflow:hidden}
+button,input{font:inherit}.app{height:100vh;display:grid;grid-template-rows:64px 1fr 92px}
+.topbar{background:var(--night);color:#fff;display:flex;align-items:center;padding:0 18px;gap:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.brand{font-weight:900;letter-spacing:.02em}.crumb{color:#9FA8B7;font-size:12px}.badge{padding:5px 8px;border-radius:99px;background:rgba(0,194,232,.14);color:var(--cyan);font-size:10px;font-weight:900}
+.spacer{flex:1}.toolbar{display:flex;gap:8px}.tb{height:36px;padding:0 12px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.05);color:white;border-radius:9px;font-size:12px;font-weight:700}.tb.primary{background:var(--cyan);color:var(--night);border-color:var(--cyan)}
+.main{display:grid;grid-template-columns:250px 1fr 320px;min-height:0}
+.left,.right{background:#fff;overflow:auto}.left{border-right:1px solid var(--line)}.right{border-left:1px solid var(--line)}
+.panel-head{padding:18px 16px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#8993A3;font-weight:900}
+.search{margin:0 12px 12px;width:calc(100% - 24px);height:38px;border:1px solid var(--line);border-radius:10px;padding:0 11px}
+.group{padding:0 10px 12px}.group-title{font-size:11px;font-weight:800;color:#596373;padding:10px 6px 6px}.blocks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.block{border:1px solid var(--line);border-radius:10px;background:#FAFBFC;min-height:72px;padding:11px;text-align:left;cursor:grab}.block:hover{border-color:var(--cyan);background:#fff}.block .ico{display:block;font-weight:900;color:var(--indigo);margin-bottom:12px}.block strong{font-size:11px}
+.stage{position:relative;overflow:auto;background:#DDE1E6;padding:36px;display:flex;justify-content:center;align-items:flex-start}
+.stage:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#BEC5CE .7px,transparent .7px);background-size:16px 16px;opacity:.45;pointer-events:none}
+.page{width:595px;height:842px;background:#fff;box-shadow:0 20px 60px rgba(8,11,18,.18);position:relative;padding:46px 46px 40px;z-index:1}
+.page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}.mini-logo{font-weight:900;color:var(--indigo);font-size:14px}.page-num{font-size:9px;color:#A1A9B5}
+.selected{border:2px solid var(--cyan);padding:16px;position:relative}.selected:before{content:"RADAR_CHART";position:absolute;top:-19px;left:-2px;background:var(--cyan);color:var(--night);font-size:8px;font-weight:900;padding:4px 7px;border-radius:4px 4px 0 0}
+.page h1{font-family:Georgia,serif;font-size:22px;margin:0 0 24px}
+.radar-wrap{display:grid;grid-template-columns:1fr;justify-items:center}.radar{width:260px;height:230px}.radar polygon.grid{fill:none;stroke:#D8DDE4;stroke-width:1}.radar polygon.data{fill:rgba(48,43,120,.28);stroke:#302B78;stroke-width:2}.radar text{font-size:9px;fill:#606A78}
+.decil-table{margin-top:18px;border-collapse:collapse;width:100%;font-size:8px}.decil-table td,.decil-table th{border:1px solid #ADB5C0;height:22px;text-align:center}.decil-table th:first-child,.decil-table td:first-child{text-align:left;padding-left:6px;width:42%}.dot{width:7px;height:7px;border-radius:50%;background:#111;display:inline-block}
+.page p{font-size:10px;line-height:1.6;color:#525D6C;margin-top:22px}
+.tabs{display:flex;border-bottom:1px solid var(--line);padding:0 12px}.tab{padding:13px 8px;font-size:9px;font-weight:900;color:#8A94A4;border-bottom:2px solid transparent}.tab.active{color:var(--indigo);border-color:var(--indigo)}
+.inspector{padding:16px}.label{font-size:10px;font-weight:800;color:#697384;margin:12px 0 6px}.input{height:38px;border:1px solid var(--line);border-radius:9px;padding:0 10px;width:100%;font-size:12px;background:#fff}
+.metrics{border:1px solid var(--line);border-radius:10px;overflow:hidden}.metric{padding:10px 11px;border-bottom:1px solid #EDF0F3}.metric:last-child{border-bottom:0}.metric strong{display:block;font-size:11px}.metric small{color:#929BA8;font-size:9px}
+.pages{background:#F8F9FA;border-top:1px solid var(--line);display:flex;align-items:center;padding:10px 18px;gap:10px;overflow-x:auto}.thumb{width:56px;height:72px;background:white;border:1px solid #CBD1D9;border-radius:5px;box-shadow:0 3px 8px rgba(8,11,18,.06);display:grid;place-items:center;font-size:10px;color:#8993A2}.thumb.active{outline:2px solid var(--cyan);outline-offset:2px}.add{width:56px;height:72px;border:1px dashed #AAB3C0;background:transparent;border-radius:5px;color:#6E7887}
+.zoom{position:absolute;right:18px;bottom:16px;z-index:3;background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:10px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+<div class="brand">CREVANTIA</div><span class="crumb">/ Report Studio / DPO-PPF</span><span class="badge">DRAFT v1.0</span>
+<div class="spacer"></div>
+<div class="toolbar"><button class="tb">↶</button><button class="tb">↷</button><button class="tb">Vista previa</button><button class="tb">Generar PDF</button><button class="tb primary">Guardar</button></div>
+</header>
+<main class="main">
+<aside class="left">
+<div class="panel-head">Componentes</div><input class="search" placeholder="Buscar bloque...">
+<div class="group"><div class="group-title">Contenido</div><div class="blocks">
+<button class="block"><span class="ico">T</span><strong>Título</strong></button>
+<button class="block"><span class="ico">¶</span><strong>Texto</strong></button>
+<button class="block"><span class="ico">▧</span><strong>Imagen</strong></button>
+<button class="block"><span class="ico">━</span><strong>Separador</strong></button>
+</div></div>
+<div class="group"><div class="group-title">Resultados</div><div class="blocks">
+<button class="block"><span class="ico">△</span><strong>Radar</strong></button>
+<button class="block"><span class="ico">◫</span><strong>Tabla decil</strong></button>
+<button class="block"><span class="ico">⌗</span><strong>Cuadrantes</strong></button>
+<button class="block"><span class="ico">◇</span><strong>Multi radar</strong></button>
+<button class="block"><span class="ico">▦</span><strong>Matriz</strong></button>
+<button class="block"><span class="ico">◎</span><strong>Métrica</strong></button>
+</div></div>
+<div class="group"><div class="group-title">Especiales</div><div class="blocks">
+<button class="block"><span class="ico">▤</span><strong>Portada</strong></button>
+<button class="block"><span class="ico">#</span><strong>Índice</strong></button>
+<button class="block"><span class="ico">⌁</span><strong>Header/Footer</strong></button>
+<button class="block"><span class="ico">↵</span><strong>Salto página</strong></button>
+</div></div>
+</aside>
+
+<section class="stage">
+<div class="page">
+<div class="page-header"><div class="mini-logo">CREVANTIA</div><span class="page-num">09</span></div>
+<h1>Resultados 3 Capacidades clave de éxito financiero</h1>
+<div class="selected">
+<div class="radar-wrap">
+<svg class="radar" viewBox="0 0 300 250">
+<polygon class="grid" points="150,25 265,220 35,220"/>
+<polygon class="grid" points="150,48 242,204 58,204"/>
+<polygon class="grid" points="150,71 219,188 81,188"/>
+<polygon class="grid" points="150,94 196,172 104,172"/>
+<polygon class="grid" points="150,117 173,156 127,156"/>
+<polygon class="data" points="150,92 222,198 82,190"/>
+<text x="150" y="15" text-anchor="middle">Visión estratégica</text>
+<text x="270" y="232" text-anchor="end">Competencia financiera</text>
+<text x="30" y="232">Autodominio</text>
+</svg>
+<table class="decil-table">
+<tr><th></th><th colspan="3">Por desarrollar</th><th colspan="2">Medio</th><th colspan="3">Alto</th><th colspan="2">Gran potencial</th></tr>
+<tr><td>Visión estratégica</td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Competencia financiera</td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td></tr>
+<tr><td>Autodominio</td><td></td><td></td><td></td><td></td><td></td><td><span class="dot"></span></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</div>
+</div>
+<p>En esta sección se muestran las tres capacidades clave mediante una gráfica radial y una escala normalizada de 1 a 10. Este texto puede editarse desde Report Studio y combinar contenido editorial con variables dinámicas.</p>
+</div>
+<div class="zoom">75% ▾</div>
+</section>
+
+<aside class="right">
+<div class="panel-head">Propiedades</div>
+<div class="tabs"><div class="tab">CONTENT</div><div class="tab active">DATA</div><div class="tab">STYLE</div><div class="tab">LAYOUT</div></div>
+<div class="inspector">
+<div class="label">Tipo de bloque</div><input class="input" value="Radar Chart" readonly>
+<div class="label">Título</div><input class="input" value="3 Capacidades clave">
+<div class="label">Métricas</div>
+<div class="metrics">
+<div class="metric"><strong>Visión estratégica</strong><small>DPO-C014 · Composite</small></div>
+<div class="metric"><strong>Competencia financiera</strong><small>DPO-C031 · Composite</small></div>
+<div class="metric"><strong>Autodominio</strong><small>DPO-C011 · Composite</small></div>
+</div>
+<div class="label">Escala</div><input class="input" value="1 – 10">
+<div class="label">Clasificación</div><input class="input" value="POTENTIAL_V1">
+<div class="label">Vista previa con datos</div><input class="input" value="Último ResultRun">
+</div>
+</aside>
+</main>
+<footer class="pages">
+<div class="thumb">01</div><div class="thumb">02</div><div class="thumb">03</div><div class="thumb">04</div><div class="thumb">05</div><div class="thumb active">09</div><button class="add">＋</button>
+</footer>
+</div>
+</body>
+</html>

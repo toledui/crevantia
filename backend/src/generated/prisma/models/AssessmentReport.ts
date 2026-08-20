@@ -609,10 +609,6 @@ export type EnumAssessmentReportStatusFieldUpdateOperationsInput = {
   set?: $Enums.AssessmentReportStatus
 }
 
-export type NullableBytesFieldUpdateOperationsInput = {
-  set?: runtime.Bytes | null
-}
-
 export type AssessmentReportCreateNestedOneWithoutDeliveriesInput = {
   create?: Prisma.XOR<Prisma.AssessmentReportCreateWithoutDeliveriesInput, Prisma.AssessmentReportUncheckedCreateWithoutDeliveriesInput>
   connectOrCreate?: Prisma.AssessmentReportCreateOrConnectWithoutDeliveriesInput

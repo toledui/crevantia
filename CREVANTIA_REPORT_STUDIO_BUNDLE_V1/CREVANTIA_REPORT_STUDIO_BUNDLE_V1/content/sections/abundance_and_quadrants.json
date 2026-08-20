@@ -1,0 +1,32 @@
+{
+  "code": "ABUNDANCE_AND_QUADRANTS",
+  "name": "8 factores y cuadrantes de realización",
+  "referencePages": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "pageContentFiles": [
+    "content/pages/page-014.json",
+    "content/pages/page-015.json",
+    "content/pages/page-016.json",
+    "content/pages/page-017.json",
+    "content/pages/page-018.json",
+    "content/pages/page-019.json",
+    "content/pages/page-020.json",
+    "content/pages/page-021.json",
+    "content/pages/page-022.json",
+    "content/pages/page-023.json",
+    "content/pages/page-024.json",
+    "content/pages/page-025.json"
+  ]
+}

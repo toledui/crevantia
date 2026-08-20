@@ -1,0 +1,622 @@
+{
+  "schemaVersion": "1.0.0",
+  "referenceDocument": {
+    "title": "Reporte PPF (Ejemplo, todavía se va a modificar)",
+    "pages": 63
+  },
+  "sections": [
+    {
+      "code": "COVER",
+      "name": "Portada",
+      "pages": [
+        1,
+        1
+      ]
+    },
+    {
+      "code": "INTRO",
+      "name": "Introducción y lectura del reporte",
+      "pages": [
+        2,
+        6
+      ]
+    },
+    {
+      "code": "TOC",
+      "name": "Índice de contenido",
+      "pages": [
+        7,
+        7
+      ]
+    },
+    {
+      "code": "KEY_CAPACITIES",
+      "name": "3 capacidades clave de éxito financiero",
+      "pages": [
+        8,
+        13
+      ]
+    },
+    {
+      "code": "ABUNDANCE_AND_QUADRANTS",
+      "name": "8 factores y cuadrantes de realización",
+      "pages": [
+        14,
+        25
+      ]
+    },
+    {
+      "code": "ABILITY_POTENTIAL",
+      "name": "Habilidad y potencial financiero",
+      "pages": [
+        26,
+        35
+      ]
+    },
+    {
+      "code": "PRECURSORS",
+      "name": "20 precursores de comportamiento en las finanzas",
+      "pages": [
+        36,
+        56
+      ]
+    },
+    {
+      "code": "SUMMARY",
+      "name": "Síntesis de patrones y rasgos psicológicos",
+      "pages": [
+        57,
+        58
+      ]
+    },
+    {
+      "code": "GLOSSARY",
+      "name": "Glosario de términos",
+      "pages": [
+        59,
+        62
+      ]
+    },
+    {
+      "code": "FINAL_NOTE",
+      "name": "Nota final",
+      "pages": [
+        63,
+        63
+      ]
+    }
+  ],
+  "pageMap": [
+    {
+      "page": 1,
+      "sectionCode": "COVER",
+      "sectionName": "Portada",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "COVER_BLOCK"
+      ],
+      "contentFile": "content/pages/page-001.json"
+    },
+    {
+      "page": 2,
+      "sectionCode": "INTRO",
+      "sectionName": "Introducción y lectura del reporte",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-002.json"
+    },
+    {
+      "page": 3,
+      "sectionCode": "INTRO",
+      "sectionName": "Introducción y lectura del reporte",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-003.json"
+    },
+    {
+      "page": 4,
+      "sectionCode": "INTRO",
+      "sectionName": "Introducción y lectura del reporte",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-004.json"
+    },
+    {
+      "page": 5,
+      "sectionCode": "INTRO",
+      "sectionName": "Introducción y lectura del reporte",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-005.json"
+    },
+    {
+      "page": 6,
+      "sectionCode": "INTRO",
+      "sectionName": "Introducción y lectura del reporte",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-006.json"
+    },
+    {
+      "page": 7,
+      "sectionCode": "TOC",
+      "sectionName": "Índice de contenido",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "TABLE_OF_CONTENTS"
+      ],
+      "contentFile": "content/pages/page-007.json"
+    },
+    {
+      "page": 8,
+      "sectionCode": "KEY_CAPACITIES",
+      "sectionName": "3 capacidades clave de éxito financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-008.json"
+    },
+    {
+      "page": 9,
+      "sectionCode": "KEY_CAPACITIES",
+      "sectionName": "3 capacidades clave de éxito financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-009.json"
+    },
+    {
+      "page": 10,
+      "sectionCode": "KEY_CAPACITIES",
+      "sectionName": "3 capacidades clave de éxito financiero",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "RADAR_CHART",
+        "DECILE_SCALE_TABLE"
+      ],
+      "contentFile": "content/pages/page-010.json"
+    },
+    {
+      "page": 11,
+      "sectionCode": "KEY_CAPACITIES",
+      "sectionName": "3 capacidades clave de éxito financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-011.json"
+    },
+    {
+      "page": 12,
+      "sectionCode": "KEY_CAPACITIES",
+      "sectionName": "3 capacidades clave de éxito financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-012.json"
+    },
+    {
+      "page": 13,
+      "sectionCode": "KEY_CAPACITIES",
+      "sectionName": "3 capacidades clave de éxito financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-013.json"
+    },
+    {
+      "page": 14,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-014.json"
+    },
+    {
+      "page": 15,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-015.json"
+    },
+    {
+      "page": 16,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "DECILE_SCALE_TABLE",
+        "QUADRANT_CHART",
+        "QUADRANT_RESULT_TABLE"
+      ],
+      "contentFile": "content/pages/page-016.json"
+    },
+    {
+      "page": 17,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-017.json"
+    },
+    {
+      "page": 18,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-018.json"
+    },
+    {
+      "page": 19,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-019.json"
+    },
+    {
+      "page": 20,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-020.json"
+    },
+    {
+      "page": 21,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-021.json"
+    },
+    {
+      "page": 22,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-022.json"
+    },
+    {
+      "page": 23,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-023.json"
+    },
+    {
+      "page": 24,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "DECILE_SCALE_TABLE"
+      ],
+      "contentFile": "content/pages/page-024.json"
+    },
+    {
+      "page": 25,
+      "sectionCode": "ABUNDANCE_AND_QUADRANTS",
+      "sectionName": "8 factores y cuadrantes de realización",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-025.json"
+    },
+    {
+      "page": 26,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-026.json"
+    },
+    {
+      "page": 27,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "RADAR_CHART",
+        "DECILE_SCALE_TABLE"
+      ],
+      "contentFile": "content/pages/page-027.json"
+    },
+    {
+      "page": 28,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-028.json"
+    },
+    {
+      "page": 29,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-029.json"
+    },
+    {
+      "page": 30,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-030.json"
+    },
+    {
+      "page": 31,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "RADAR_CHART",
+        "DECILE_SCALE_TABLE"
+      ],
+      "contentFile": "content/pages/page-031.json"
+    },
+    {
+      "page": 32,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-032.json"
+    },
+    {
+      "page": 33,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "MULTI_RADAR_CHART",
+        "POTENTIAL_ABILITY_MATRIX",
+        "STATIC_EXAMPLE_CHART"
+      ],
+      "contentFile": "content/pages/page-033.json"
+    },
+    {
+      "page": 34,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-034.json"
+    },
+    {
+      "page": 35,
+      "sectionCode": "ABILITY_POTENTIAL",
+      "sectionName": "Habilidad y potencial financiero",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-035.json"
+    },
+    {
+      "page": 36,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-036.json"
+    },
+    {
+      "page": 37,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-037.json"
+    },
+    {
+      "page": 38,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-038.json"
+    },
+    {
+      "page": 39,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-039.json"
+    },
+    {
+      "page": 40,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-040.json"
+    },
+    {
+      "page": 41,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-041.json"
+    },
+    {
+      "page": 42,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-042.json"
+    },
+    {
+      "page": 43,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-043.json"
+    },
+    {
+      "page": 44,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-044.json"
+    },
+    {
+      "page": 45,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-045.json"
+    },
+    {
+      "page": 46,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-046.json"
+    },
+    {
+      "page": 47,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-047.json"
+    },
+    {
+      "page": 48,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-048.json"
+    },
+    {
+      "page": 49,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-049.json"
+    },
+    {
+      "page": 50,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-050.json"
+    },
+    {
+      "page": 51,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-051.json"
+    },
+    {
+      "page": 52,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-052.json"
+    },
+    {
+      "page": 53,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-053.json"
+    },
+    {
+      "page": 54,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-054.json"
+    },
+    {
+      "page": 55,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-055.json"
+    },
+    {
+      "page": 56,
+      "sectionCode": "PRECURSORS",
+      "sectionName": "20 precursores de comportamiento en las finanzas",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-056.json"
+    },
+    {
+      "page": 57,
+      "sectionCode": "SUMMARY",
+      "sectionName": "Síntesis de patrones y rasgos psicológicos",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "SUMMARY_MATRIX"
+      ],
+      "contentFile": "content/pages/page-057.json"
+    },
+    {
+      "page": 58,
+      "sectionCode": "SUMMARY",
+      "sectionName": "Síntesis de patrones y rasgos psicológicos",
+      "layoutMode": "ABSOLUTE_LAYOUT",
+      "specialComponents": [
+        "SUMMARY_MATRIX"
+      ],
+      "contentFile": "content/pages/page-058.json"
+    },
+    {
+      "page": 59,
+      "sectionCode": "GLOSSARY",
+      "sectionName": "Glosario de términos",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-059.json"
+    },
+    {
+      "page": 60,
+      "sectionCode": "GLOSSARY",
+      "sectionName": "Glosario de términos",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-060.json"
+    },
+    {
+      "page": 61,
+      "sectionCode": "GLOSSARY",
+      "sectionName": "Glosario de términos",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-061.json"
+    },
+    {
+      "page": 62,
+      "sectionCode": "GLOSSARY",
+      "sectionName": "Glosario de términos",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-062.json"
+    },
+    {
+      "page": 63,
+      "sectionCode": "FINAL_NOTE",
+      "sectionName": "Nota final",
+      "layoutMode": "FLOW_LAYOUT",
+      "specialComponents": [],
+      "contentFile": "content/pages/page-063.json"
+    }
+  ]
+}

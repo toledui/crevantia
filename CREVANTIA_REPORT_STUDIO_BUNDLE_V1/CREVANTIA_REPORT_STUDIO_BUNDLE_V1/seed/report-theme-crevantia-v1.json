@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "theme": {
+    "code": "CREVANTIA_EDITORIAL_V1",
+    "name": "Crevantia Editorial",
+    "status": "DRAFT",
+    "page": {
+      "size": "LETTER",
+      "widthPt": 612,
+      "heightPt": 792,
+      "orientation": "portrait",
+      "marginsMm": {
+        "top": 18,
+        "right": 20,
+        "bottom": 18,
+        "left": 20
+      }
+    },
+    "colors": {
+      "night": "#080B12",
+      "indigo": "#302B78",
+      "cyan": "#00C2E8",
+      "honey": "#D6A94F",
+      "ivory": "#F4F2EC",
+      "blueGray": "#9CA6B8",
+      "body": "#111111",
+      "paper": "#FFFFFF"
+    },
+    "typography": {
+      "headingFamily": "Aptos Display",
+      "bodyFamily": "Aptos",
+      "fallback": "Arial, sans-serif",
+      "bodyPt": 11,
+      "bodyLineHeight": 1.35,
+      "h1Pt": 22,
+      "h2Pt": 18,
+      "h3Pt": 14
+    },
+    "header": {
+      "enabled": true,
+      "logoFromSettings": true,
+      "logoPosition": "top-left",
+      "logoMaxWidthMm": 34
+    },
+    "footer": {
+      "enabled": true,
+      "divider": true,
+      "pageNumber": "bottom-right"
+    },
+    "charts": {
+      "primary": "#302B78",
+      "secondary": "#00C2E8",
+      "comparison": "#D6A94F",
+      "grid": "#D8DDE4"
+    },
+    "note": "The target reference used PsicoFinanzas branding. This seed preserves its editorial structure while defaulting to Crevantia branding."
+  }
+}

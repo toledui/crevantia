@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourcePageSizePt": {
+    "width": 612,
+    "height": 792
+  },
+  "global": {
+    "logo": "small top-left on content pages",
+    "headings": "bold black, left aligned",
+    "body": "black, editorial paragraph flow, justified/left depending source",
+    "footer": "thin horizontal divider + page number bottom-right",
+    "charts": "centered above explanatory text",
+    "tables": "thin black borders, 10-cell horizontal decile bands"
+  },
+  "keyPages": [
+    {
+      "page": 10,
+      "components": [
+        "3-axis radar",
+        "3-row decile table",
+        "body copy"
+      ],
+      "preview": "reference/key-pages/page-10.png"
+    },
+    {
+      "page": 16,
+      "components": [
+        "2-row decile table",
+        "quadrant scatter",
+        "quadrant category table",
+        "body copy"
+      ],
+      "preview": "reference/key-pages/page-16.png"
+    },
+    {
+      "page": 24,
+      "components": [
+        "8-row decile table",
+        "body copy"
+      ],
+      "preview": "reference/key-pages/page-24.png"
+    },
+    {
+      "page": 27,
+      "components": [
+        "5-axis radar",
+        "5-row ability decile table",
+        "body copy"
+      ],
+      "preview": "reference/key-pages/page-27.png"
+    },
+    {
+      "page": 31,
+      "components": [
+        "5-axis radar",
+        "5-row potential decile table",
+        "body copy"
+      ],
+      "preview": "reference/key-pages/page-31.png"
+    },
+    {
+      "page": 33,
+      "components": [
+        "2-series radar",
+        "2x2 potential/ability matrix",
+        "explanatory mini chart",
+        "body copy"
+      ],
+      "preview": "reference/key-pages/page-33.png"
+    },
+    {
+      "page": 57,
+      "components": [
+        "summary matrix: capacities/quadrants/8 factors/ability/potential"
+      ],
+      "preview": "reference/key-pages/page-57.png"
+    },
+    {
+      "page": 58,
+      "components": [
+        "summary matrix: 20 precursors"
+      ],
+      "preview": "reference/key-pages/page-58.png"
+    }
+  ]
+}

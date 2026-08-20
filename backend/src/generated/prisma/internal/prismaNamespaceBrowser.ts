@@ -103,6 +103,14 @@ export const ModelName = {
   ForcedChoiceAnswer: 'ForcedChoiceAnswer',
   LikertAnswer: 'LikertAnswer',
   ResultRun: 'ResultRun',
+  ReportTemplate: 'ReportTemplate',
+  TestReportTemplate: 'TestReportTemplate',
+  ReportTheme: 'ReportTheme',
+  ReportTemplateVersion: 'ReportTemplateVersion',
+  ReportAsset: 'ReportAsset',
+  ReportClassificationSet: 'ReportClassificationSet',
+  ReportClassificationRange: 'ReportClassificationRange',
+  GeneratedReport: 'GeneratedReport',
   AssessmentReport: 'AssessmentReport',
   AssessmentReportDelivery: 'AssessmentReportDelivery',
   ResultValue: 'ResultValue',
@@ -860,6 +868,128 @@ export const ResultRunScalarFieldEnum = {
 } as const
 
 export type ResultRunScalarFieldEnum = (typeof ResultRunScalarFieldEnum)[keyof typeof ResultRunScalarFieldEnum]
+
+
+export const ReportTemplateScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportTemplateScalarFieldEnum = (typeof ReportTemplateScalarFieldEnum)[keyof typeof ReportTemplateScalarFieldEnum]
+
+
+export const TestReportTemplateScalarFieldEnum = {
+  id: 'id',
+  testId: 'testId',
+  assessmentId: 'assessmentId',
+  reportTemplateId: 'reportTemplateId',
+  language: 'language',
+  audience: 'audience',
+  isDefault: 'isDefault',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TestReportTemplateScalarFieldEnum = (typeof TestReportTemplateScalarFieldEnum)[keyof typeof TestReportTemplateScalarFieldEnum]
+
+
+export const ReportThemeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  configJson: 'configJson',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportThemeScalarFieldEnum = (typeof ReportThemeScalarFieldEnum)[keyof typeof ReportThemeScalarFieldEnum]
+
+
+export const ReportTemplateVersionScalarFieldEnum = {
+  id: 'id',
+  reportTemplateId: 'reportTemplateId',
+  version: 'version',
+  status: 'status',
+  themeId: 'themeId',
+  layoutJson: 'layoutJson',
+  bindingConfigJson: 'bindingConfigJson',
+  pendingBindings: 'pendingBindings',
+  createdById: 'createdById',
+  reviewedById: 'reviewedById',
+  approvedById: 'approvedById',
+  publishedById: 'publishedById',
+  configurationHash: 'configurationHash',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  publishedAt: 'publishedAt'
+} as const
+
+export type ReportTemplateVersionScalarFieldEnum = (typeof ReportTemplateVersionScalarFieldEnum)[keyof typeof ReportTemplateVersionScalarFieldEnum]
+
+
+export const ReportAssetScalarFieldEnum = {
+  id: 'id',
+  themeId: 'themeId',
+  name: 'name',
+  mimeType: 'mimeType',
+  data: 'data',
+  byteSize: 'byteSize',
+  sha256: 'sha256',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportAssetScalarFieldEnum = (typeof ReportAssetScalarFieldEnum)[keyof typeof ReportAssetScalarFieldEnum]
+
+
+export const ReportClassificationSetScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReportClassificationSetScalarFieldEnum = (typeof ReportClassificationSetScalarFieldEnum)[keyof typeof ReportClassificationSetScalarFieldEnum]
+
+
+export const ReportClassificationRangeScalarFieldEnum = {
+  id: 'id',
+  reportClassificationSetId: 'reportClassificationSetId',
+  minValue: 'minValue',
+  maxValue: 'maxValue',
+  label: 'label',
+  color: 'color',
+  sortOrder: 'sortOrder'
+} as const
+
+export type ReportClassificationRangeScalarFieldEnum = (typeof ReportClassificationRangeScalarFieldEnum)[keyof typeof ReportClassificationRangeScalarFieldEnum]
+
+
+export const GeneratedReportScalarFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  reportTemplateVersionId: 'reportTemplateVersionId',
+  generatedById: 'generatedById',
+  generatedAt: 'generatedAt',
+  status: 'status',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  pdfData: 'pdfData',
+  byteSize: 'byteSize',
+  sha256: 'sha256',
+  pageCount: 'pageCount',
+  error: 'error',
+  dataSnapshot: 'dataSnapshot'
+} as const
+
+export type GeneratedReportScalarFieldEnum = (typeof GeneratedReportScalarFieldEnum)[keyof typeof GeneratedReportScalarFieldEnum]
 
 
 export const AssessmentReportScalarFieldEnum = {
@@ -1758,6 +1888,97 @@ export const ResultRunOrderByRelevanceFieldEnum = {
 } as const
 
 export type ResultRunOrderByRelevanceFieldEnum = (typeof ResultRunOrderByRelevanceFieldEnum)[keyof typeof ResultRunOrderByRelevanceFieldEnum]
+
+
+export const ReportTemplateOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ReportTemplateOrderByRelevanceFieldEnum = (typeof ReportTemplateOrderByRelevanceFieldEnum)[keyof typeof ReportTemplateOrderByRelevanceFieldEnum]
+
+
+export const TestReportTemplateOrderByRelevanceFieldEnum = {
+  id: 'id',
+  testId: 'testId',
+  assessmentId: 'assessmentId',
+  reportTemplateId: 'reportTemplateId',
+  language: 'language',
+  audience: 'audience'
+} as const
+
+export type TestReportTemplateOrderByRelevanceFieldEnum = (typeof TestReportTemplateOrderByRelevanceFieldEnum)[keyof typeof TestReportTemplateOrderByRelevanceFieldEnum]
+
+
+export const ReportThemeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+} as const
+
+export type ReportThemeOrderByRelevanceFieldEnum = (typeof ReportThemeOrderByRelevanceFieldEnum)[keyof typeof ReportThemeOrderByRelevanceFieldEnum]
+
+
+export const ReportTemplateVersionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportTemplateId: 'reportTemplateId',
+  version: 'version',
+  themeId: 'themeId',
+  createdById: 'createdById',
+  reviewedById: 'reviewedById',
+  approvedById: 'approvedById',
+  publishedById: 'publishedById',
+  configurationHash: 'configurationHash'
+} as const
+
+export type ReportTemplateVersionOrderByRelevanceFieldEnum = (typeof ReportTemplateVersionOrderByRelevanceFieldEnum)[keyof typeof ReportTemplateVersionOrderByRelevanceFieldEnum]
+
+
+export const ReportAssetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  themeId: 'themeId',
+  name: 'name',
+  mimeType: 'mimeType',
+  sha256: 'sha256'
+} as const
+
+export type ReportAssetOrderByRelevanceFieldEnum = (typeof ReportAssetOrderByRelevanceFieldEnum)[keyof typeof ReportAssetOrderByRelevanceFieldEnum]
+
+
+export const ReportClassificationSetOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ReportClassificationSetOrderByRelevanceFieldEnum = (typeof ReportClassificationSetOrderByRelevanceFieldEnum)[keyof typeof ReportClassificationSetOrderByRelevanceFieldEnum]
+
+
+export const ReportClassificationRangeOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportClassificationSetId: 'reportClassificationSetId',
+  label: 'label',
+  color: 'color'
+} as const
+
+export type ReportClassificationRangeOrderByRelevanceFieldEnum = (typeof ReportClassificationRangeOrderByRelevanceFieldEnum)[keyof typeof ReportClassificationRangeOrderByRelevanceFieldEnum]
+
+
+export const GeneratedReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  reportTemplateVersionId: 'reportTemplateVersionId',
+  generatedById: 'generatedById',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  sha256: 'sha256',
+  error: 'error'
+} as const
+
+export type GeneratedReportOrderByRelevanceFieldEnum = (typeof GeneratedReportOrderByRelevanceFieldEnum)[keyof typeof GeneratedReportOrderByRelevanceFieldEnum]
 
 
 export const AssessmentReportOrderByRelevanceFieldEnum = {

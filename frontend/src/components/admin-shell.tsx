@@ -177,6 +177,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
           <section>
             <span className="nav-label">Análisis y operación</span>
             <NavItem icon="reports" label="Resultados y reportes" href="/admin/reportes" active={pathname.startsWith('/admin/reportes') || pathname.startsWith('/admin/resultados')} closeMobile={closeMobile} />
+            <NavItem icon="reports" label="Report Studio" href="/admin/report-studio" active={pathname.startsWith('/admin/report-studio')} closeMobile={closeMobile} />
             <NavItem icon="payments" label="Pagos y catálogo" href="/admin/pagos" active={pathname.startsWith('/admin/pagos')} closeMobile={closeMobile} />
             <NavItem icon="matrix" label="Normas y matrices" href="/admin/normas" active={pathname.startsWith('/admin/normas')} closeMobile={closeMobile} />
           </section>

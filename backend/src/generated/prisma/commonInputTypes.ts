@@ -552,11 +552,45 @@ export type EnumResultRunStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumResultRunStatusFilter<$PrismaModel>
 }
 
-export type EnumAssessmentReportStatusFilter<$PrismaModel = never> = {
-  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.AssessmentReportStatus[]
-  notIn?: $Enums.AssessmentReportStatus[]
-  not?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+export type EnumReportStudioStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ReportStudioStatus | Prisma.EnumReportStudioStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ReportStudioStatus[]
+  notIn?: $Enums.ReportStudioStatus[]
+  not?: Prisma.NestedEnumReportStudioStatusFilter<$PrismaModel> | $Enums.ReportStudioStatus
+}
+
+export type EnumReportStudioStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ReportStudioStatus | Prisma.EnumReportStudioStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ReportStudioStatus[]
+  notIn?: $Enums.ReportStudioStatus[]
+  not?: Prisma.NestedEnumReportStudioStatusWithAggregatesFilter<$PrismaModel> | $Enums.ReportStudioStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumReportStudioStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumReportStudioStatusFilter<$PrismaModel>
+}
+
+export type BytesFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel>
+  in?: runtime.Bytes[]
+  notIn?: runtime.Bytes[]
+  not?: Prisma.NestedBytesFilter<$PrismaModel> | runtime.Bytes
+}
+
+export type BytesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel>
+  in?: runtime.Bytes[]
+  notIn?: runtime.Bytes[]
+  not?: Prisma.NestedBytesWithAggregatesFilter<$PrismaModel> | runtime.Bytes
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBytesFilter<$PrismaModel>
+  _max?: Prisma.NestedBytesFilter<$PrismaModel>
+}
+
+export type EnumGeneratedReportStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GeneratedReportStatus | Prisma.EnumGeneratedReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GeneratedReportStatus[]
+  notIn?: $Enums.GeneratedReportStatus[]
+  not?: Prisma.NestedEnumGeneratedReportStatusFilter<$PrismaModel> | $Enums.GeneratedReportStatus
 }
 
 export type BytesNullableFilter<$PrismaModel = never> = {
@@ -566,14 +600,14 @@ export type BytesNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBytesNullableFilter<$PrismaModel> | runtime.Bytes | null
 }
 
-export type EnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.AssessmentReportStatus[]
-  notIn?: $Enums.AssessmentReportStatus[]
-  not?: Prisma.NestedEnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+export type EnumGeneratedReportStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GeneratedReportStatus | Prisma.EnumGeneratedReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GeneratedReportStatus[]
+  notIn?: $Enums.GeneratedReportStatus[]
+  not?: Prisma.NestedEnumGeneratedReportStatusWithAggregatesFilter<$PrismaModel> | $Enums.GeneratedReportStatus
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGeneratedReportStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGeneratedReportStatusFilter<$PrismaModel>
 }
 
 export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -584,6 +618,23 @@ export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedBytesNullableFilter<$PrismaModel>
   _max?: Prisma.NestedBytesNullableFilter<$PrismaModel>
+}
+
+export type EnumAssessmentReportStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AssessmentReportStatus[]
+  notIn?: $Enums.AssessmentReportStatus[]
+  not?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+}
+
+export type EnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AssessmentReportStatus[]
+  notIn?: $Enums.AssessmentReportStatus[]
+  not?: Prisma.NestedEnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
 }
 
 export type EnumReportDeliveryStatusFilter<$PrismaModel = never> = {
@@ -1182,11 +1233,45 @@ export type NestedEnumResultRunStatusWithAggregatesFilter<$PrismaModel = never> 
   _max?: Prisma.NestedEnumResultRunStatusFilter<$PrismaModel>
 }
 
-export type NestedEnumAssessmentReportStatusFilter<$PrismaModel = never> = {
-  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.AssessmentReportStatus[]
-  notIn?: $Enums.AssessmentReportStatus[]
-  not?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+export type NestedEnumReportStudioStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ReportStudioStatus | Prisma.EnumReportStudioStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ReportStudioStatus[]
+  notIn?: $Enums.ReportStudioStatus[]
+  not?: Prisma.NestedEnumReportStudioStatusFilter<$PrismaModel> | $Enums.ReportStudioStatus
+}
+
+export type NestedEnumReportStudioStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ReportStudioStatus | Prisma.EnumReportStudioStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ReportStudioStatus[]
+  notIn?: $Enums.ReportStudioStatus[]
+  not?: Prisma.NestedEnumReportStudioStatusWithAggregatesFilter<$PrismaModel> | $Enums.ReportStudioStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumReportStudioStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumReportStudioStatusFilter<$PrismaModel>
+}
+
+export type NestedBytesFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel>
+  in?: runtime.Bytes[]
+  notIn?: runtime.Bytes[]
+  not?: Prisma.NestedBytesFilter<$PrismaModel> | runtime.Bytes
+}
+
+export type NestedBytesWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Bytes | Prisma.BytesFieldRefInput<$PrismaModel>
+  in?: runtime.Bytes[]
+  notIn?: runtime.Bytes[]
+  not?: Prisma.NestedBytesWithAggregatesFilter<$PrismaModel> | runtime.Bytes
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBytesFilter<$PrismaModel>
+  _max?: Prisma.NestedBytesFilter<$PrismaModel>
+}
+
+export type NestedEnumGeneratedReportStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GeneratedReportStatus | Prisma.EnumGeneratedReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GeneratedReportStatus[]
+  notIn?: $Enums.GeneratedReportStatus[]
+  not?: Prisma.NestedEnumGeneratedReportStatusFilter<$PrismaModel> | $Enums.GeneratedReportStatus
 }
 
 export type NestedBytesNullableFilter<$PrismaModel = never> = {
@@ -1196,14 +1281,14 @@ export type NestedBytesNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBytesNullableFilter<$PrismaModel> | runtime.Bytes | null
 }
 
-export type NestedEnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.AssessmentReportStatus[]
-  notIn?: $Enums.AssessmentReportStatus[]
-  not?: Prisma.NestedEnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+export type NestedEnumGeneratedReportStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GeneratedReportStatus | Prisma.EnumGeneratedReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GeneratedReportStatus[]
+  notIn?: $Enums.GeneratedReportStatus[]
+  not?: Prisma.NestedEnumGeneratedReportStatusWithAggregatesFilter<$PrismaModel> | $Enums.GeneratedReportStatus
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGeneratedReportStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGeneratedReportStatusFilter<$PrismaModel>
 }
 
 export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -1214,6 +1299,23 @@ export type NestedBytesNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedBytesNullableFilter<$PrismaModel>
   _max?: Prisma.NestedBytesNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumAssessmentReportStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AssessmentReportStatus[]
+  notIn?: $Enums.AssessmentReportStatus[]
+  not?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+}
+
+export type NestedEnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AssessmentReportStatus | Prisma.EnumAssessmentReportStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AssessmentReportStatus[]
+  notIn?: $Enums.AssessmentReportStatus[]
+  not?: Prisma.NestedEnumAssessmentReportStatusWithAggregatesFilter<$PrismaModel> | $Enums.AssessmentReportStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAssessmentReportStatusFilter<$PrismaModel>
 }
 
 export type NestedEnumReportDeliveryStatusFilter<$PrismaModel = never> = {

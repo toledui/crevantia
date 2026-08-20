@@ -1,0 +1,16 @@
+{
+  "code": "GLOSSARY",
+  "name": "Glosario de términos",
+  "referencePages": [
+    59,
+    60,
+    61,
+    62
+  ],
+  "pageContentFiles": [
+    "content/pages/page-059.json",
+    "content/pages/page-060.json",
+    "content/pages/page-061.json",
+    "content/pages/page-062.json"
+  ]
+}

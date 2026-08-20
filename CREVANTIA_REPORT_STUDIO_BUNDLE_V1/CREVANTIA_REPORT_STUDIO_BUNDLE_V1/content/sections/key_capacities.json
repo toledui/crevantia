@@ -1,0 +1,20 @@
+{
+  "code": "KEY_CAPACITIES",
+  "name": "3 capacidades clave de éxito financiero",
+  "referencePages": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "pageContentFiles": [
+    "content/pages/page-008.json",
+    "content/pages/page-009.json",
+    "content/pages/page-010.json",
+    "content/pages/page-011.json",
+    "content/pages/page-012.json",
+    "content/pages/page-013.json"
+  ]
+}

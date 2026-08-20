@@ -183,6 +183,26 @@ export const ScoringSpecificationStatus = {
 export type ScoringSpecificationStatus = (typeof ScoringSpecificationStatus)[keyof typeof ScoringSpecificationStatus]
 
 
+export const ReportStudioStatus = {
+  DRAFT: 'DRAFT',
+  IN_REVIEW: 'IN_REVIEW',
+  APPROVED: 'APPROVED',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type ReportStudioStatus = (typeof ReportStudioStatus)[keyof typeof ReportStudioStatus]
+
+
+export const GeneratedReportStatus = {
+  GENERATING: 'GENERATING',
+  READY: 'READY',
+  FAILED: 'FAILED'
+} as const
+
+export type GeneratedReportStatus = (typeof GeneratedReportStatus)[keyof typeof GeneratedReportStatus]
+
+
 export const CouponDiscountType = {
   PERCENTAGE: 'PERCENTAGE',
   FIXED_AMOUNT: 'FIXED_AMOUNT'

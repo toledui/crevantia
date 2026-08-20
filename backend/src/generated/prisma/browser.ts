@@ -278,6 +278,46 @@ export type LikertAnswer = Prisma.LikertAnswerModel
  */
 export type ResultRun = Prisma.ResultRunModel
 /**
+ * Model ReportTemplate
+ * 
+ */
+export type ReportTemplate = Prisma.ReportTemplateModel
+/**
+ * Model TestReportTemplate
+ * 
+ */
+export type TestReportTemplate = Prisma.TestReportTemplateModel
+/**
+ * Model ReportTheme
+ * 
+ */
+export type ReportTheme = Prisma.ReportThemeModel
+/**
+ * Model ReportTemplateVersion
+ * 
+ */
+export type ReportTemplateVersion = Prisma.ReportTemplateVersionModel
+/**
+ * Model ReportAsset
+ * 
+ */
+export type ReportAsset = Prisma.ReportAssetModel
+/**
+ * Model ReportClassificationSet
+ * 
+ */
+export type ReportClassificationSet = Prisma.ReportClassificationSetModel
+/**
+ * Model ReportClassificationRange
+ * 
+ */
+export type ReportClassificationRange = Prisma.ReportClassificationRangeModel
+/**
+ * Model GeneratedReport
+ * 
+ */
+export type GeneratedReport = Prisma.GeneratedReportModel
+/**
  * Model AssessmentReport
  * 
  */

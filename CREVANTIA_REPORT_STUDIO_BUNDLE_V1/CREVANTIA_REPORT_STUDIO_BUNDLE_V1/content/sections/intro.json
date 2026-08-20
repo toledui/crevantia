@@ -1,0 +1,18 @@
+{
+  "code": "INTRO",
+  "name": "Introducción y lectura del reporte",
+  "referencePages": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "pageContentFiles": [
+    "content/pages/page-002.json",
+    "content/pages/page-003.json",
+    "content/pages/page-004.json",
+    "content/pages/page-005.json",
+    "content/pages/page-006.json"
+  ]
+}

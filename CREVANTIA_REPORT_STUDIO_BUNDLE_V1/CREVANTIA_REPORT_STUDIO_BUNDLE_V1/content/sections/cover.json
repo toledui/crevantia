@@ -1,0 +1,10 @@
+{
+  "code": "COVER",
+  "name": "Portada",
+  "referencePages": [
+    1
+  ],
+  "pageContentFiles": [
+    "content/pages/page-001.json"
+  ]
+}

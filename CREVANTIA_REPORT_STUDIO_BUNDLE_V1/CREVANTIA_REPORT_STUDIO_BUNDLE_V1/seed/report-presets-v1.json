@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.0.0",
+  "presets": [
+    {
+      "code": "DPO_PPF_COVER",
+      "blocks": [
+        "logo",
+        "title",
+        "personName",
+        "monthYear",
+        "legalNotice"
+      ]
+    },
+    {
+      "code": "PRESET_3_CAPACIDADES",
+      "blocks": [
+        "sectionHeading",
+        "RADAR_CHART",
+        "DECILE_SCALE_TABLE",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_3_CAPACIDADES"
+    },
+    {
+      "code": "PRESET_CUADRANTES_REALIZACION",
+      "blocks": [
+        "DECILE_SCALE_TABLE",
+        "QUADRANT_CHART",
+        "QUADRANT_RESULT_TABLE",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_QUADRANTS_AXES"
+    },
+    {
+      "code": "PRESET_8_FACTORES",
+      "blocks": [
+        "DECILE_SCALE_TABLE",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_8_ABUNDANCE_FACTORS"
+    },
+    {
+      "code": "PRESET_HABILIDAD_FINANCIERA",
+      "blocks": [
+        "RADAR_CHART",
+        "DECILE_SCALE_TABLE",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_FINANCIAL_ABILITY"
+    },
+    {
+      "code": "PRESET_POTENCIAL_PSICOFINANCIERO",
+      "blocks": [
+        "RADAR_CHART",
+        "DECILE_SCALE_TABLE",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_FINANCIAL_POTENTIAL"
+    },
+    {
+      "code": "PRESET_BALANCE_HABILIDAD_POTENCIAL",
+      "blocks": [
+        "MULTI_RADAR_CHART",
+        "POTENTIAL_ABILITY_MATRIX",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_ABILITY_VS_POTENTIAL"
+    },
+    {
+      "code": "PRESET_4_PRECURSORES",
+      "blocks": [
+        "DECILE_SCALE_TABLE",
+        "RICH_TEXT"
+      ],
+      "binding": "BIND_20_PRECURSORS"
+    },
+    {
+      "code": "SUMMARY_MATRIX_PRIMARY",
+      "blocks": [
+        "SUMMARY_MATRIX"
+      ],
+      "binding": "BIND_SUMMARY_PRIMARY"
+    },
+    {
+      "code": "SUMMARY_MATRIX_PRECURSORS",
+      "blocks": [
+        "SUMMARY_MATRIX"
+      ],
+      "binding": "BIND_SUMMARY_PRECURSORS"
+    }
+  ]
+}

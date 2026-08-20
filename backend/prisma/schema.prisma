@@ -265,17 +265,18 @@ model ConsentAcceptance {
 }
 
 model Test {
-  id                 String              @id @default(cuid())
-  code               String              @unique @db.VarChar(50)
-  slug               String              @unique @db.VarChar(100)
-  name               String              @db.VarChar(160)
-  description        String?             @db.Text
-  isActive           Boolean             @default(true)
-  versions           TestVersion[]
-  assignments        Assignment[]
-  evaluationProducts EvaluationProduct[]
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
+  id                  String               @id @default(cuid())
+  code                String               @unique @db.VarChar(50)
+  slug                String               @unique @db.VarChar(100)
+  name                String               @db.VarChar(160)
+  description         String?              @db.Text
+  isActive            Boolean              @default(true)
+  versions            TestVersion[]
+  assignments         Assignment[]
+  evaluationProducts  EvaluationProduct[]
+  reportTemplateLinks TestReportTemplate[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
 }
 
 model TestVersion {
@@ -470,6 +471,7 @@ model Assessment {
   versions            AssessmentVersion[]
   activeConfiguration AssessmentActiveConfiguration?
   evaluationProducts  EvaluationProduct[]
+  reportTemplateLinks TestReportTemplate[]
   createdAt           DateTime                       @default(now())
   updatedAt           DateTime                       @updatedAt
 }
@@ -989,28 +991,170 @@ model ResultRun {
   values                     ResultValue[]
   contributions              ReactiveContribution[]
   report                     AssessmentReport?
+  generatedReports           GeneratedReport[]
 
   @@index([attemptId, calculatedAt])
   @@index([normVersionId])
   @@index([recalculationOfResultRunId])
 }
 
+enum ReportStudioStatus {
+  DRAFT
+  IN_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum GeneratedReportStatus {
+  GENERATING
+  READY
+  FAILED
+}
+
+model ReportTemplate {
+  id          String                  @id @default(cuid())
+  code        String                  @unique @db.VarChar(80)
+  name        String                  @db.VarChar(200)
+  description String?                 @db.Text
+  status      ReportStudioStatus      @default(DRAFT)
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  versions    ReportTemplateVersion[]
+  testLinks   TestReportTemplate[]
+}
+
+model TestReportTemplate {
+  id               String         @id @default(cuid())
+  testId           String
+  assessmentId     String?
+  reportTemplateId String
+  language         String         @default("es-MX") @db.VarChar(10)
+  audience         String         @default("INDIVIDUAL") @db.VarChar(40)
+  isDefault        Boolean        @default(true)
+  isActive         Boolean        @default(true)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  test             Test           @relation(fields: [testId], references: [id], onDelete: Cascade)
+  assessment       Assessment?    @relation(fields: [assessmentId], references: [id], onDelete: SetNull)
+  reportTemplate   ReportTemplate @relation(fields: [reportTemplateId], references: [id], onDelete: Cascade)
+
+  @@unique([testId, reportTemplateId, language, audience])
+  @@index([testId, assessmentId, language, audience, isDefault, isActive], map: "TestReportTemplate_resolution_idx")
+  @@index([reportTemplateId, isActive])
+}
+
+model ReportTheme {
+  id         String                  @id @default(cuid())
+  code       String                  @unique @db.VarChar(80)
+  name       String                  @db.VarChar(160)
+  configJson Json
+  createdAt  DateTime                @default(now())
+  updatedAt  DateTime                @updatedAt
+  versions   ReportTemplateVersion[]
+  assets     ReportAsset[]
+}
+
+model ReportTemplateVersion {
+  id                String             @id @default(cuid())
+  reportTemplateId  String
+  version           String             @db.VarChar(40)
+  status            ReportStudioStatus @default(DRAFT)
+  themeId           String?
+  layoutJson        Json
+  bindingConfigJson Json?
+  pendingBindings   Int                @default(0)
+  createdById       String?
+  reviewedById      String?
+  approvedById      String?
+  publishedById     String?
+  configurationHash String             @db.Char(64)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  publishedAt       DateTime?
+  template          ReportTemplate     @relation(fields: [reportTemplateId], references: [id], onDelete: Cascade)
+  theme             ReportTheme?       @relation(fields: [themeId], references: [id], onDelete: SetNull)
+  generatedReports  GeneratedReport[]
+
+  @@unique([reportTemplateId, version])
+  @@index([status, updatedAt])
+}
+
+model ReportAsset {
+  id        String       @id @default(cuid())
+  themeId   String?
+  name      String       @db.VarChar(180)
+  mimeType  String       @db.VarChar(100)
+  data      Bytes        @db.LongBlob
+  byteSize  Int
+  sha256    String       @db.Char(64)
+  createdAt DateTime     @default(now())
+  theme     ReportTheme? @relation(fields: [themeId], references: [id], onDelete: SetNull)
+
+  @@index([themeId])
+}
+
+model ReportClassificationSet {
+  id          String                      @id @default(cuid())
+  code        String                      @unique @db.VarChar(80)
+  name        String                      @db.VarChar(160)
+  description String?                     @db.Text
+  createdAt   DateTime                    @default(now())
+  updatedAt   DateTime                    @updatedAt
+  ranges      ReportClassificationRange[]
+}
+
+model ReportClassificationRange {
+  id                        String                  @id @default(cuid())
+  reportClassificationSetId String
+  minValue                  Int
+  maxValue                  Int
+  label                     String                  @db.VarChar(120)
+  color                     String?                 @db.VarChar(20)
+  sortOrder                 Int                     @default(0)
+  classificationSet         ReportClassificationSet @relation(fields: [reportClassificationSetId], references: [id], onDelete: Cascade)
+
+  @@index([reportClassificationSetId, sortOrder], map: "ReportClassRange_set_sort_idx")
+}
+
+model GeneratedReport {
+  id                      String                @id @default(cuid())
+  resultRunId             String?
+  reportTemplateVersionId String
+  generatedById           String?
+  generatedAt             DateTime              @default(now())
+  status                  GeneratedReportStatus @default(GENERATING)
+  filename                String                @db.VarChar(255)
+  mimeType                String                @default("application/pdf") @db.VarChar(100)
+  pdfData                 Bytes?                @db.LongBlob
+  byteSize                Int?
+  sha256                  String?               @db.Char(64)
+  pageCount               Int?
+  error                   String?               @db.Text
+  dataSnapshot            Json?
+  resultRun               ResultRun?            @relation(fields: [resultRunId], references: [id], onDelete: Restrict)
+  templateVersion         ReportTemplateVersion @relation(fields: [reportTemplateVersionId], references: [id], onDelete: Restrict)
+
+  @@index([resultRunId, generatedAt])
+  @@index([reportTemplateVersionId, generatedAt])
+}
+
 model AssessmentReport {
-  id                    String                 @id @default(cuid())
-  resultRunId           String                 @unique
-  status                AssessmentReportStatus @default(GENERATING)
-  filename              String                 @db.VarChar(255)
-  mimeType              String                 @default("application/pdf") @db.VarChar(100)
-  pdfData               Bytes?                 @db.LongBlob
+  id                    String                     @id @default(cuid())
+  resultRunId           String                     @unique
+  status                AssessmentReportStatus     @default(GENERATING)
+  filename              String                     @db.VarChar(255)
+  mimeType              String                     @default("application/pdf") @db.VarChar(100)
+  pdfData               Bytes?                     @db.LongBlob
   byteSize              Int?
-  sha256                 String?                @db.Char(64)
+  sha256                String?                    @db.Char(64)
   configurationVersion  Int
   configurationSnapshot Json
-  error                  String?                @db.Text
+  error                 String?                    @db.Text
   generatedAt           DateTime?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  resultRun             ResultRun              @relation(fields: [resultRunId], references: [id], onDelete: Cascade)
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+  resultRun             ResultRun                  @relation(fields: [resultRunId], references: [id], onDelete: Cascade)
   deliveries            AssessmentReportDelivery[]
 
   @@index([status, createdAt])

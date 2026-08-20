@@ -26,6 +26,7 @@
     "db:seed": "npm run prisma:seed --workspace backend",
     "seed:dpo": "npm run seed:dpo --workspace backend",
     "seed:dpo:v1": "npm run seed:dpo:v1 --workspace backend",
+    "seed:report-studio:v1": "npm run seed:report-studio:v1 --workspace backend",
     "validate:dpo:v1": "npm run validate:dpo:v1 --workspace backend",
     "verify:dpo:v1:db": "npm run verify:dpo:v1:db --workspace backend",
     "test:dpo": "npm run test:dpo --workspace backend",

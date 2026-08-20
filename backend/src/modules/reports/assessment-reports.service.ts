@@ -1,4 +1,5 @@
 import {
+  ConflictException,
   ForbiddenException,
   HttpException,
   Injectable,
@@ -14,6 +15,7 @@ import {
   ResultRunStatus,
 } from "../../generated/prisma/client";
 import { MailService } from "../mail/mail.service";
+import { ReportStudioService } from "../report-studio/report-studio.service";
 import {
   ReportPdfService,
   type ReportCategory,
@@ -42,6 +44,7 @@ export class AssessmentReportsService {
     private readonly prisma: PrismaService,
     private readonly pdf: ReportPdfService,
     private readonly mail: MailService,
+    private readonly studio: ReportStudioService,
   ) {}
 
   async generateAndEmail(resultRunId: string) {
@@ -97,9 +100,29 @@ export class AssessmentReportsService {
 
   private async ensure(resultRunId: string) {
     const current = await this.prisma.assessmentReport.findUnique({ where: { resultRunId } });
-    if (current?.status === AssessmentReportStatus.READY && current.pdfData) return current;
     const run = await this.loadRun(resultRunId);
     if (run.status !== ResultRunStatus.COMPLETED) throw new NotFoundException("El resultado oficial aún no está completo.");
+    let publishedStudio: Awaited<ReturnType<ReportStudioService["publishedVersionIdentity"]>> | null = null;
+    try {
+      publishedStudio = await this.studio.publishedVersionIdentity(resultRunId);
+    } catch (error) {
+      if (!(error instanceof ConflictException)) throw error;
+    }
+    if (current?.status === AssessmentReportStatus.READY && current.pdfData && (!publishedStudio || studioReportIsCurrent(current.configurationSnapshot, publishedStudio))) return current;
+    try {
+      if (publishedStudio) {
+        const generated = await this.studio.generateForResultRun(run.attempt.assignment.user.id, resultRunId, {});
+        const file = await this.studio.download(generated.id);
+        const studioSnapshot = asJson({ source: "REPORT_STUDIO", generatedReportId: generated.id, reportTemplateVersionId: generated.reportTemplateVersionId, configurationHash: generated.configurationHash });
+        return await this.prisma.assessmentReport.upsert({
+          where: { resultRunId },
+          update: { status: AssessmentReportStatus.READY, filename: file.filename, pdfData: Uint8Array.from(file.buffer), byteSize: file.buffer.length, sha256: createHash("sha256").update(file.buffer).digest("hex"), configurationVersion: 0, configurationSnapshot: studioSnapshot, generatedAt: new Date(), error: null },
+          create: { resultRunId, status: AssessmentReportStatus.READY, filename: file.filename, pdfData: Uint8Array.from(file.buffer), byteSize: file.buffer.length, sha256: createHash("sha256").update(file.buffer).digest("hex"), configurationVersion: 0, configurationSnapshot: studioSnapshot, generatedAt: new Date() },
+        });
+      }
+    } catch (error) {
+      if (!(error instanceof ConflictException)) throw error;
+    }
     const settings = await this.prisma.siteSettings.findUnique({ where: { id: "default" } });
     const filename = safeFilename(`Reporte_${run.attempt.assignment.test.name}_${run.attempt.assignment.user.firstName}_${run.attempt.assignment.user.lastName}.pdf`);
     const snapshot = {
@@ -229,6 +252,12 @@ function jsonArray<T>(value: unknown): T[] {
 
 function asJson(value: unknown): Prisma.InputJsonValue {
   return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+}
+
+function studioReportIsCurrent(snapshot: unknown, published: { reportTemplateVersionId: string; configurationHash: string | null }) {
+  if (!snapshot || typeof snapshot !== "object" || Array.isArray(snapshot)) return false;
+  const value = snapshot as Record<string, unknown>;
+  return value.source === "REPORT_STUDIO" && value.reportTemplateVersionId === published.reportTemplateVersionId && value.configurationHash === published.configurationHash;
 }
 
 function errorMessage(error: unknown) {
