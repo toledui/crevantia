@@ -142,9 +142,7 @@ export class StripeService {
         'Stripe no está configurado. Ingresa la clave secreta en Configuración > Pasarela de pago.',
       );
     }
-    return new Stripe(secretKey, {
-      apiVersion: '2026-03-25.acacia' as any,
-    });
+    return new Stripe(secretKey);
   }
 
   async testConnection(actorId: string, dto?: TestStripeSettingsDto) {
@@ -154,7 +152,7 @@ export class StripeService {
     }
 
     try {
-      const stripe = new Stripe(secretKey, { apiVersion: '2026-03-25.acacia' as any });
+      const stripe = new Stripe(secretKey);
       const customers = await stripe.customers.list({ limit: 1 });
       const isLive = secretKey.startsWith('sk_live_');
 
