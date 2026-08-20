@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE `statement` ADD COLUMN `config` JSON NULL;
+ALTER TABLE `Statement` ADD COLUMN `config` JSON NULL;
