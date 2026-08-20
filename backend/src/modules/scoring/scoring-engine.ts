@@ -1,8 +1,14 @@
-export const DPO_ENGINE_VERSION = "dpo-engine-v1";
+export const DPO_ENGINE_VERSION = "dpo-engine-v2";
 
 export type Selection = "MORE" | "LESS";
 export type TargetType =
-  "SCALE" | "COMPOSITE" | "DERIVED_METRIC" | "LEGACY_STYLE_PROFILE";
+  | "SCALE"
+  | "COMPOSITE"
+  | "DERIVED_METRIC"
+  | "LIKERT_DIMENSION"
+  | "LIKERT_TOTAL"
+  | "REPORT_ALIAS"
+  | "LEGACY_STYLE_PROFILE";
 
 export interface ScoringRule {
   reactiveCode: string;
@@ -43,13 +49,22 @@ export interface DerivedMetricDefinition {
     | "WEIGHTED_MEAN"
     | "SUM"
     | "DIRECT_SCALE"
+    | "DECILE_MEAN"
     | "CUSTOM_DECLARATIVE";
   sourceScaleCode?: string | null;
   sources?: Array<{
     targetType: "SCALE" | "COMPOSITE";
     targetCode: string;
+    valueType?: "RAW" | "DECILE";
     weight?: number;
   }>;
+}
+
+export interface ReportAliasDefinition {
+  code: string;
+  label: string;
+  sourceType: "SCALE" | "COMPOSITE";
+  sourceCode: string;
 }
 
 export interface NormDefinition {
@@ -76,6 +91,7 @@ export interface TargetScore {
   rawScore: number;
   displayScore: number;
   decile: number | null;
+  normalizedScore?: number | null;
   status: string;
 }
 
@@ -168,6 +184,23 @@ export function calculateLikertContributions(
   });
 }
 
+export function calculateLikertDimensionScores(
+  contributions: LikertScore[],
+): Map<string, number> {
+  const grouped = new Map<string, number[]>();
+  for (const contribution of contributions)
+    grouped.set(contribution.scaleCode, [
+      ...(grouped.get(contribution.scaleCode) ?? []),
+      contribution.appliedScore,
+    ]);
+  return new Map(
+    [...grouped].map(([code, values]) => [
+      code,
+      values.reduce((sum, value) => sum + value, 0) / values.length,
+    ]),
+  );
+}
+
 export function calculateCompositeScore(
   definition: CompositeDefinition,
   scaleScores: ReadonlyMap<string, number>,
@@ -226,6 +259,7 @@ export function calculateAssessment(input: {
   likertRules?: LikertScoringDefinition[];
   composites: CompositeDefinition[];
   derivedMetricDefinitions?: DerivedMetricDefinition[];
+  reportAliases?: ReportAliasDefinition[];
   norms: NormDefinition[];
 }) {
   const contributions = calculateReactiveContributions(
@@ -236,13 +270,27 @@ export function calculateAssessment(input: {
     input.likertAnswers ?? [],
     input.likertRules ?? [],
   );
-  const scaleScores = calculateScaleScores(contributions, likertContributions);
+  const scaleScores = calculateScaleScores(contributions);
+  const likertDimensionScores =
+    calculateLikertDimensionScores(likertContributions);
   const normMap = new Map(
     input.norms.map((norm) => [`${norm.targetType}:${norm.targetCode}`, norm]),
   );
   const scales: TargetScore[] = [...scaleScores].map(([targetCode, rawScore]) =>
     normalized("SCALE", targetCode, rawScore, normMap),
   );
+  const likertDimensions: TargetScore[] = [...likertDimensionScores].map(
+    ([targetCode, rawScore]) =>
+      normalized("LIKERT_DIMENSION", targetCode, rawScore, normMap),
+  );
+  const likertTotalRaw = likertContributions.length
+    ? likertContributions.reduce((sum, item) => sum + item.appliedScore, 0) /
+      likertContributions.length
+    : null;
+  const likertTotal =
+    likertTotalRaw === null
+      ? null
+      : normalized("LIKERT_TOTAL", "LIKERT-TOTAL", likertTotalRaw, normMap);
   const composites: TargetScore[] = [];
   const derivedMetrics: TargetScore[] = [];
   for (const definition of input.composites) {
@@ -276,7 +324,42 @@ export function calculateAssessment(input: {
   const compositeScores = new Map(
     composites.map((score) => [score.targetCode, score.rawScore]),
   );
+  const scaleResults = new Map(
+    scales.map((score) => [score.targetCode, score]),
+  );
+  const compositeResults = new Map(
+    composites.map((score) => [score.targetCode, score]),
+  );
   for (const definition of input.derivedMetricDefinitions ?? []) {
+    if (definition.calculationType === "DECILE_MEAN") {
+      const values = (definition.sources ?? []).map((source) => {
+        const result =
+          source.targetType === "SCALE"
+            ? scaleResults.get(source.targetCode)
+            : compositeResults.get(source.targetCode);
+        if (!result || result.decile === null)
+          throw new Error(
+            `DERIVED_DECILE_SOURCE_MISSING:${definition.code}:${source.targetCode}`,
+          );
+        return { value: result.decile, weight: source.weight ?? 1 };
+      });
+      if (!values.length)
+        throw new Error(`DERIVED_METRIC_WITHOUT_SOURCES:${definition.code}`);
+      const totalWeight = values.reduce((sum, item) => sum + item.weight, 0);
+      const value =
+        values.reduce((sum, item) => sum + item.value * item.weight, 0) /
+        totalWeight;
+      derivedMetrics.push({
+        targetType: "DERIVED_METRIC",
+        targetCode: definition.code,
+        rawScore: value,
+        displayScore: display(value),
+        normalizedScore: value,
+        decile: Number.isInteger(value) ? value : null,
+        status: "CALCULATED_DECILE_MEAN",
+      });
+      continue;
+    }
     const rawScore = calculateDerivedMetric(
       definition,
       scaleScores,
@@ -286,12 +369,31 @@ export function calculateAssessment(input: {
       normalized("DERIVED_METRIC", definition.code, rawScore, normMap),
     );
   }
+  const aliases: TargetScore[] = (input.reportAliases ?? []).map((alias) => {
+    const source =
+      alias.sourceType === "SCALE"
+        ? scaleResults.get(alias.sourceCode)
+        : compositeResults.get(alias.sourceCode);
+    if (!source)
+      throw new Error(
+        `REPORT_ALIAS_SOURCE_MISSING:${alias.code}:${alias.sourceCode}`,
+      );
+    return {
+      ...source,
+      targetType: "REPORT_ALIAS",
+      targetCode: alias.code,
+      status: "DIRECT_ALIAS",
+    };
+  });
   return {
     contributions,
     likertContributions,
     scales,
     composites,
     derivedMetrics,
+    likertDimensions,
+    likertTotal,
+    aliases,
   };
 }
 
@@ -346,6 +448,7 @@ function normalized(
     rawScore,
     displayScore: display(rawScore),
     decile: norm ? resolveDecile(rawScore, norm.thresholds) : null,
+    normalizedScore: norm ? resolveDecile(rawScore, norm.thresholds) : null,
     status: norm?.status ?? "NORM_NOT_CONFIGURED",
   };
 }

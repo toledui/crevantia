@@ -604,9 +604,12 @@ export class NormsService {
       );
     const references = new Set<string>();
     for (const scale of await this.prisma.scale.findMany({
-      select: { code: true },
-    }))
+      select: { code: true, kind: true },
+    })) {
       references.add(`SCALE:${scale.code}`);
+      if (scale.kind === "LIKERT_DIMENSION")
+        references.add(`LIKERT_DIMENSION:${scale.code}`);
+    }
     for (const composite of await this.prisma.composite.findMany({
       select: { code: true },
     }))
@@ -975,7 +978,11 @@ export class NormsService {
             ? await this.prisma.derivedMetric.findUnique({
                 where: { code: targetCode },
               })
-            : { code: targetCode };
+            : targetType === "LIKERT_DIMENSION"
+              ? await this.prisma.scale.findFirst({
+                  where: { code: targetCode, kind: "LIKERT_DIMENSION" },
+                })
+              : { code: targetCode };
     if (!reference)
       throw new BadRequestException(
         `No existe ${targetType}:${targetCode} en el modelo psicométrico. Corrige el tipo o el código antes de guardar.`,
@@ -1102,6 +1109,9 @@ function normTargetType(value: unknown, label: string): NormTargetType {
     value !== "SCALE" &&
     value !== "COMPOSITE" &&
     value !== "DERIVED_METRIC" &&
+    value !== "LIKERT_DIMENSION" &&
+    value !== "LIKERT_TOTAL" &&
+    value !== "REPORT_ALIAS" &&
     value !== "LEGACY_STYLE_PROFILE"
   )
     throw new BadRequestException(`${label} no es válido.`);

@@ -401,6 +401,7 @@ export type NormVersionWhereInput = {
   validationRuns?: Prisma.NormValidationRunListRelationFilter
   attempts?: Prisma.AttemptListRelationFilter
   resultRuns?: Prisma.ResultRunListRelationFilter
+  activeConfiguration?: Prisma.XOR<Prisma.AssessmentActiveConfigurationNullableScalarRelationFilter, Prisma.AssessmentActiveConfigurationWhereInput> | null
 }
 
 export type NormVersionOrderByWithRelationInput = {
@@ -440,6 +441,7 @@ export type NormVersionOrderByWithRelationInput = {
   validationRuns?: Prisma.NormValidationRunOrderByRelationAggregateInput
   attempts?: Prisma.AttemptOrderByRelationAggregateInput
   resultRuns?: Prisma.ResultRunOrderByRelationAggregateInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationOrderByWithRelationInput
   _relevance?: Prisma.NormVersionOrderByRelevanceInput
 }
 
@@ -484,6 +486,7 @@ export type NormVersionWhereUniqueInput = Prisma.AtLeast<{
   validationRuns?: Prisma.NormValidationRunListRelationFilter
   attempts?: Prisma.AttemptListRelationFilter
   resultRuns?: Prisma.ResultRunListRelationFilter
+  activeConfiguration?: Prisma.XOR<Prisma.AssessmentActiveConfigurationNullableScalarRelationFilter, Prisma.AssessmentActiveConfigurationWhereInput> | null
 }, "id" | "normSetId_version">
 
 export type NormVersionOrderByWithAggregationInput = {
@@ -586,6 +589,7 @@ export type NormVersionCreateInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateInput = {
@@ -620,6 +624,7 @@ export type NormVersionUncheckedCreateInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUpdateInput = {
@@ -654,6 +659,7 @@ export type NormVersionUpdateInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateInput = {
@@ -688,6 +694,7 @@ export type NormVersionUncheckedUpdateInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionCreateManyInput = {
@@ -788,6 +795,11 @@ export type NormVersionOrderByRelationAggregateInput = {
 export type NormVersionNullableScalarRelationFilter = {
   is?: Prisma.NormVersionWhereInput | null
   isNot?: Prisma.NormVersionWhereInput | null
+}
+
+export type NormVersionScalarRelationFilter = {
+  is?: Prisma.NormVersionWhereInput
+  isNot?: Prisma.NormVersionWhereInput
 }
 
 export type NormVersionOrderByRelevanceInput = {
@@ -897,11 +909,6 @@ export type NormVersionMinOrderByAggregateInput = {
 export type NormVersionSumOrderByAggregateInput = {
   version?: Prisma.SortOrder
   sampleSize?: Prisma.SortOrder
-}
-
-export type NormVersionScalarRelationFilter = {
-  is?: Prisma.NormVersionWhereInput
-  isNot?: Prisma.NormVersionWhereInput
 }
 
 export type NormVersionCreateNestedManyWithoutCreatedByInput = {
@@ -1088,6 +1095,20 @@ export type NormVersionUpdateOneWithoutAttemptsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.NormVersionUpdateToOneWithWhereWithoutAttemptsInput, Prisma.NormVersionUpdateWithoutAttemptsInput>, Prisma.NormVersionUncheckedUpdateWithoutAttemptsInput>
 }
 
+export type NormVersionCreateNestedOneWithoutActiveConfigurationInput = {
+  create?: Prisma.XOR<Prisma.NormVersionCreateWithoutActiveConfigurationInput, Prisma.NormVersionUncheckedCreateWithoutActiveConfigurationInput>
+  connectOrCreate?: Prisma.NormVersionCreateOrConnectWithoutActiveConfigurationInput
+  connect?: Prisma.NormVersionWhereUniqueInput
+}
+
+export type NormVersionUpdateOneRequiredWithoutActiveConfigurationNestedInput = {
+  create?: Prisma.XOR<Prisma.NormVersionCreateWithoutActiveConfigurationInput, Prisma.NormVersionUncheckedCreateWithoutActiveConfigurationInput>
+  connectOrCreate?: Prisma.NormVersionCreateOrConnectWithoutActiveConfigurationInput
+  upsert?: Prisma.NormVersionUpsertWithoutActiveConfigurationInput
+  connect?: Prisma.NormVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.NormVersionUpdateToOneWithWhereWithoutActiveConfigurationInput, Prisma.NormVersionUpdateWithoutActiveConfigurationInput>, Prisma.NormVersionUncheckedUpdateWithoutActiveConfigurationInput>
+}
+
 export type NormVersionCreateNestedManyWithoutNormSetInput = {
   create?: Prisma.XOR<Prisma.NormVersionCreateWithoutNormSetInput, Prisma.NormVersionUncheckedCreateWithoutNormSetInput> | Prisma.NormVersionCreateWithoutNormSetInput[] | Prisma.NormVersionUncheckedCreateWithoutNormSetInput[]
   connectOrCreate?: Prisma.NormVersionCreateOrConnectWithoutNormSetInput | Prisma.NormVersionCreateOrConnectWithoutNormSetInput[]
@@ -1203,6 +1224,7 @@ export type NormVersionCreateWithoutCreatedByInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutCreatedByInput = {
@@ -1236,6 +1258,7 @@ export type NormVersionUncheckedCreateWithoutCreatedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutCreatedByInput = {
@@ -1279,6 +1302,7 @@ export type NormVersionCreateWithoutReviewedByInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutReviewedByInput = {
@@ -1312,6 +1336,7 @@ export type NormVersionUncheckedCreateWithoutReviewedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutReviewedByInput = {
@@ -1355,6 +1380,7 @@ export type NormVersionCreateWithoutApprovedByInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutApprovedByInput = {
@@ -1388,6 +1414,7 @@ export type NormVersionUncheckedCreateWithoutApprovedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutApprovedByInput = {
@@ -1431,6 +1458,7 @@ export type NormVersionCreateWithoutPublishedByInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutPublishedByInput = {
@@ -1464,6 +1492,7 @@ export type NormVersionUncheckedCreateWithoutPublishedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutPublishedByInput = {
@@ -1604,6 +1633,7 @@ export type NormVersionCreateWithoutAttemptsInput = {
   targets?: Prisma.NormTargetCreateNestedManyWithoutNormVersionInput
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutAttemptsInput = {
@@ -1637,6 +1667,7 @@ export type NormVersionUncheckedCreateWithoutAttemptsInput = {
   targets?: Prisma.NormTargetUncheckedCreateNestedManyWithoutNormVersionInput
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutAttemptsInput = {
@@ -1686,6 +1717,7 @@ export type NormVersionUpdateWithoutAttemptsInput = {
   targets?: Prisma.NormTargetUpdateManyWithoutNormVersionNestedInput
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutAttemptsInput = {
@@ -1718,6 +1750,159 @@ export type NormVersionUncheckedUpdateWithoutAttemptsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   targets?: Prisma.NormTargetUncheckedUpdateManyWithoutNormVersionNestedInput
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
+}
+
+export type NormVersionCreateWithoutActiveConfigurationInput = {
+  id?: string
+  version: number
+  sourceVersion?: string | null
+  name: string
+  description?: string | null
+  status?: $Enums.ConfigurationStatus
+  populationLabel?: string | null
+  sampleSize?: number | null
+  country?: string | null
+  ageRange?: string | null
+  notes?: string | null
+  lookupMethod?: string
+  numericMode?: string
+  roundingMode?: string
+  validFrom?: Date | string | null
+  validTo?: Date | string | null
+  publishedAt?: Date | string | null
+  configurationHash: string
+  validationStatus?: string | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  normSet: Prisma.NormSetCreateNestedOneWithoutVersionsInput
+  createdBy?: Prisma.UserCreateNestedOneWithoutNormVersionsCreatedInput
+  reviewedBy?: Prisma.UserCreateNestedOneWithoutNormVersionsReviewedInput
+  approvedBy?: Prisma.UserCreateNestedOneWithoutNormVersionsApprovedInput
+  publishedBy?: Prisma.UserCreateNestedOneWithoutNormVersionsPublishedInput
+  targets?: Prisma.NormTargetCreateNestedManyWithoutNormVersionInput
+  validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
+  attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+}
+
+export type NormVersionUncheckedCreateWithoutActiveConfigurationInput = {
+  id?: string
+  normSetId: string
+  version: number
+  sourceVersion?: string | null
+  name: string
+  description?: string | null
+  status?: $Enums.ConfigurationStatus
+  populationLabel?: string | null
+  sampleSize?: number | null
+  country?: string | null
+  ageRange?: string | null
+  notes?: string | null
+  lookupMethod?: string
+  numericMode?: string
+  roundingMode?: string
+  validFrom?: Date | string | null
+  validTo?: Date | string | null
+  createdById?: string | null
+  reviewedById?: string | null
+  approvedById?: string | null
+  publishedById?: string | null
+  publishedAt?: Date | string | null
+  configurationHash: string
+  validationStatus?: string | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  targets?: Prisma.NormTargetUncheckedCreateNestedManyWithoutNormVersionInput
+  validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
+  attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+}
+
+export type NormVersionCreateOrConnectWithoutActiveConfigurationInput = {
+  where: Prisma.NormVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.NormVersionCreateWithoutActiveConfigurationInput, Prisma.NormVersionUncheckedCreateWithoutActiveConfigurationInput>
+}
+
+export type NormVersionUpsertWithoutActiveConfigurationInput = {
+  update: Prisma.XOR<Prisma.NormVersionUpdateWithoutActiveConfigurationInput, Prisma.NormVersionUncheckedUpdateWithoutActiveConfigurationInput>
+  create: Prisma.XOR<Prisma.NormVersionCreateWithoutActiveConfigurationInput, Prisma.NormVersionUncheckedCreateWithoutActiveConfigurationInput>
+  where?: Prisma.NormVersionWhereInput
+}
+
+export type NormVersionUpdateToOneWithWhereWithoutActiveConfigurationInput = {
+  where?: Prisma.NormVersionWhereInput
+  data: Prisma.XOR<Prisma.NormVersionUpdateWithoutActiveConfigurationInput, Prisma.NormVersionUncheckedUpdateWithoutActiveConfigurationInput>
+}
+
+export type NormVersionUpdateWithoutActiveConfigurationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  sourceVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  populationLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sampleSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ageRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lookupMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  numericMode?: Prisma.StringFieldUpdateOperationsInput | string
+  roundingMode?: Prisma.StringFieldUpdateOperationsInput | string
+  validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  validationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  normSet?: Prisma.NormSetUpdateOneRequiredWithoutVersionsNestedInput
+  createdBy?: Prisma.UserUpdateOneWithoutNormVersionsCreatedNestedInput
+  reviewedBy?: Prisma.UserUpdateOneWithoutNormVersionsReviewedNestedInput
+  approvedBy?: Prisma.UserUpdateOneWithoutNormVersionsApprovedNestedInput
+  publishedBy?: Prisma.UserUpdateOneWithoutNormVersionsPublishedNestedInput
+  targets?: Prisma.NormTargetUpdateManyWithoutNormVersionNestedInput
+  validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
+  attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+}
+
+export type NormVersionUncheckedUpdateWithoutActiveConfigurationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  normSetId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  sourceVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  populationLabel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sampleSize?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  ageRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lookupMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  numericMode?: Prisma.StringFieldUpdateOperationsInput | string
+  roundingMode?: Prisma.StringFieldUpdateOperationsInput | string
+  validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  validationStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  targets?: Prisma.NormTargetUncheckedUpdateManyWithoutNormVersionNestedInput
+  validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
 }
 
@@ -1752,6 +1937,7 @@ export type NormVersionCreateWithoutNormSetInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutNormSetInput = {
@@ -1785,6 +1971,7 @@ export type NormVersionUncheckedCreateWithoutNormSetInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutNormSetInput = {
@@ -1844,6 +2031,7 @@ export type NormVersionCreateWithoutTargetsInput = {
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutTargetsInput = {
@@ -1877,6 +2065,7 @@ export type NormVersionUncheckedCreateWithoutTargetsInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutTargetsInput = {
@@ -1926,6 +2115,7 @@ export type NormVersionUpdateWithoutTargetsInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutTargetsInput = {
@@ -1959,6 +2149,7 @@ export type NormVersionUncheckedUpdateWithoutTargetsInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionCreateWithoutValidationRunsInput = {
@@ -1992,6 +2183,7 @@ export type NormVersionCreateWithoutValidationRunsInput = {
   targets?: Prisma.NormTargetCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutValidationRunsInput = {
@@ -2025,6 +2217,7 @@ export type NormVersionUncheckedCreateWithoutValidationRunsInput = {
   targets?: Prisma.NormTargetUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutValidationRunsInput = {
@@ -2074,6 +2267,7 @@ export type NormVersionUpdateWithoutValidationRunsInput = {
   targets?: Prisma.NormTargetUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutValidationRunsInput = {
@@ -2107,6 +2301,7 @@ export type NormVersionUncheckedUpdateWithoutValidationRunsInput = {
   targets?: Prisma.NormTargetUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionCreateWithoutResultRunsInput = {
@@ -2140,6 +2335,7 @@ export type NormVersionCreateWithoutResultRunsInput = {
   targets?: Prisma.NormTargetCreateNestedManyWithoutNormVersionInput
   validationRuns?: Prisma.NormValidationRunCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionUncheckedCreateWithoutResultRunsInput = {
@@ -2173,6 +2369,7 @@ export type NormVersionUncheckedCreateWithoutResultRunsInput = {
   targets?: Prisma.NormTargetUncheckedCreateNestedManyWithoutNormVersionInput
   validationRuns?: Prisma.NormValidationRunUncheckedCreateNestedManyWithoutNormVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutNormVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutNormVersionInput
 }
 
 export type NormVersionCreateOrConnectWithoutResultRunsInput = {
@@ -2222,6 +2419,7 @@ export type NormVersionUpdateWithoutResultRunsInput = {
   targets?: Prisma.NormTargetUpdateManyWithoutNormVersionNestedInput
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutResultRunsInput = {
@@ -2255,6 +2453,7 @@ export type NormVersionUncheckedUpdateWithoutResultRunsInput = {
   targets?: Prisma.NormTargetUncheckedUpdateManyWithoutNormVersionNestedInput
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionCreateManyCreatedByInput = {
@@ -2404,6 +2603,7 @@ export type NormVersionUpdateWithoutCreatedByInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutCreatedByInput = {
@@ -2437,6 +2637,7 @@ export type NormVersionUncheckedUpdateWithoutCreatedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateManyWithoutCreatedByInput = {
@@ -2499,6 +2700,7 @@ export type NormVersionUpdateWithoutReviewedByInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutReviewedByInput = {
@@ -2532,6 +2734,7 @@ export type NormVersionUncheckedUpdateWithoutReviewedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateManyWithoutReviewedByInput = {
@@ -2594,6 +2797,7 @@ export type NormVersionUpdateWithoutApprovedByInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutApprovedByInput = {
@@ -2627,6 +2831,7 @@ export type NormVersionUncheckedUpdateWithoutApprovedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateManyWithoutApprovedByInput = {
@@ -2689,6 +2894,7 @@ export type NormVersionUpdateWithoutPublishedByInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutPublishedByInput = {
@@ -2722,6 +2928,7 @@ export type NormVersionUncheckedUpdateWithoutPublishedByInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateManyWithoutPublishedByInput = {
@@ -2813,6 +3020,7 @@ export type NormVersionUpdateWithoutNormSetInput = {
   validationRuns?: Prisma.NormValidationRunUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateWithoutNormSetInput = {
@@ -2846,6 +3054,7 @@ export type NormVersionUncheckedUpdateWithoutNormSetInput = {
   validationRuns?: Prisma.NormValidationRunUncheckedUpdateManyWithoutNormVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutNormVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutNormVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutNormVersionNestedInput
 }
 
 export type NormVersionUncheckedUpdateManyWithoutNormSetInput = {
@@ -2972,6 +3181,7 @@ export type NormVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   validationRuns?: boolean | Prisma.NormVersion$validationRunsArgs<ExtArgs>
   attempts?: boolean | Prisma.NormVersion$attemptsArgs<ExtArgs>
   resultRuns?: boolean | Prisma.NormVersion$resultRunsArgs<ExtArgs>
+  activeConfiguration?: boolean | Prisma.NormVersion$activeConfigurationArgs<ExtArgs>
   _count?: boolean | Prisma.NormVersionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["normVersion"]>
 
@@ -3018,6 +3228,7 @@ export type NormVersionInclude<ExtArgs extends runtime.Types.Extensions.Internal
   validationRuns?: boolean | Prisma.NormVersion$validationRunsArgs<ExtArgs>
   attempts?: boolean | Prisma.NormVersion$attemptsArgs<ExtArgs>
   resultRuns?: boolean | Prisma.NormVersion$resultRunsArgs<ExtArgs>
+  activeConfiguration?: boolean | Prisma.NormVersion$activeConfigurationArgs<ExtArgs>
   _count?: boolean | Prisma.NormVersionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -3033,6 +3244,7 @@ export type $NormVersionPayload<ExtArgs extends runtime.Types.Extensions.Interna
     validationRuns: Prisma.$NormValidationRunPayload<ExtArgs>[]
     attempts: Prisma.$AttemptPayload<ExtArgs>[]
     resultRuns: Prisma.$ResultRunPayload<ExtArgs>[]
+    activeConfiguration: Prisma.$AssessmentActiveConfigurationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3411,6 +3623,7 @@ export interface Prisma__NormVersionClient<T, Null = never, ExtArgs extends runt
   validationRuns<T extends Prisma.NormVersion$validationRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NormVersion$validationRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NormValidationRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attempts<T extends Prisma.NormVersion$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NormVersion$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resultRuns<T extends Prisma.NormVersion$resultRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NormVersion$resultRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activeConfiguration<T extends Prisma.NormVersion$activeConfigurationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NormVersion$activeConfigurationArgs<ExtArgs>>): Prisma.Prisma__AssessmentActiveConfigurationClient<runtime.Types.Result.GetResult<Prisma.$AssessmentActiveConfigurationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3984,6 +4197,25 @@ export type NormVersion$resultRunsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ResultRunScalarFieldEnum | Prisma.ResultRunScalarFieldEnum[]
+}
+
+/**
+ * NormVersion.activeConfiguration
+ */
+export type NormVersion$activeConfigurationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssessmentActiveConfiguration
+   */
+  select?: Prisma.AssessmentActiveConfigurationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssessmentActiveConfiguration
+   */
+  omit?: Prisma.AssessmentActiveConfigurationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssessmentActiveConfigurationInclude<ExtArgs> | null
+  where?: Prisma.AssessmentActiveConfigurationWhereInput
 }
 
 /**

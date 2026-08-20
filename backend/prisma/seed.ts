@@ -8,6 +8,7 @@ import {
   UserStatus,
 } from "../src/generated/prisma/client";
 import { seedDpo } from "./seeds/seed-dpo";
+import { seedDpoOfficialV1 } from "./seeds/seed-dpo-official-v1";
 import { dpoPermissions } from "./seeds/seed-dpo-permissions";
 
 function databaseAdapter() {
@@ -290,7 +291,7 @@ async function seedCommerce() {
       currency: "MXN",
       decimalPlaces: 2,
       taxName: "IVA",
-      taxRatePercent: 16.00,
+      taxRatePercent: 16.0,
       pricesIncludeTax: false,
     },
   });
@@ -320,18 +321,21 @@ async function seedCommerce() {
     },
   });
 
-  const test = await prisma.test.findFirst({ where: { code: "DPO" } })
-    || await prisma.test.findFirst({ where: { code: "DEMO-TEST" } });
+  const test =
+    (await prisma.test.findFirst({ where: { code: "DPO" } })) ||
+    (await prisma.test.findFirst({ where: { code: "DEMO-TEST" } }));
 
-  const assessment = await prisma.assessment.findFirst({ where: { code: "DPO" } });
+  const assessment = await prisma.assessment.findFirst({
+    where: { code: { in: ["DPO", "DPO_PRO", "DPO-PRO"] } },
+  });
 
   if (test) {
     const defaultFeatures = [
-      '1 acceso individual a la evaluación',
-      'Aplicación en línea',
-      'Resultados procesados automáticamente',
-      'Reporte personal en PDF',
-      'Acceso posterior desde tu cuenta',
+      "1 acceso individual a la evaluación",
+      "Aplicación en línea",
+      "Resultados procesados automáticamente",
+      "Reporte personal en PDF",
+      "Acceso posterior desde tu cuenta",
     ];
 
     const product = await prisma.evaluationProduct.upsert({
@@ -347,8 +351,10 @@ async function seedCommerce() {
         code: "DPO-PRO",
         slug: "dpo-pro",
         name: "Evaluación DPO-PRO",
-        shortDescription: "Evaluación psicométrica integral con baremo estandarizado para líderes y directivos.",
-        description: "Diagnóstico profundo de competencias y potencial para toma de decisiones, liderazgo y ejecución estratégica.",
+        shortDescription:
+          "Evaluación psicométrica integral con baremo estandarizado para líderes y directivos.",
+        description:
+          "Diagnóstico profundo de competencias y potencial para toma de decisiones, liderazgo y ejecución estratégica.",
         features: defaultFeatures,
         testId: test.id,
         assessmentId: assessment?.id ?? null,
@@ -381,7 +387,7 @@ async function seedCommerce() {
       code: "BIENVENIDA10",
       description: "10% de descuento de bienvenida en tu primera evaluación.",
       discountType: "PERCENTAGE",
-      discountValue: 10.00,
+      discountValue: 10.0,
       minPurchaseAmountCents: 0,
       maxUsesGlobal: 500,
       maxUsesPerUser: 1,
@@ -394,6 +400,7 @@ async function main() {
   await seedIdentity();
   await seedDemoTest();
   await seedDpo(prisma);
+  await seedDpoOfficialV1(prisma);
   await seedCommerce();
   console.log("Seed de Crevantia completado.");
 }

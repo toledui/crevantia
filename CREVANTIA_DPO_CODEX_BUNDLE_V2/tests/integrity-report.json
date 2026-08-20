@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "officialSourceComparison": {
+    "reactivesCompared": 336,
+    "textMismatches": 0,
+    "polarityMismatches": 0,
+    "weightMismatches": 0,
+    "reactiveToScaleMapping": "PRESERVED_FROM_PREVIOUS_VALIDATED_KEY_AND_CONFIRMED_UNCHANGED_BY_CLIENT"
+  },
+  "counts": {
+    "statisticalControlQuestions": 17,
+    "pairQuestions": 168,
+    "positivePairs": 96,
+    "negativePairs": 72,
+    "reactives": 336,
+    "positiveReactives": 192,
+    "negativeReactives": 144,
+    "scales": 48,
+    "normedComposites": 33,
+    "derivedDecileMeanMetrics": 21,
+    "reportAliases": 12,
+    "likertQuestions": 25,
+    "likertDimensions": 5,
+    "activeScaleNormTargets": 48,
+    "activeCompositeNormTargets": 33,
+    "activeLikertNormTargets": 6,
+    "activeNormTargetsTotal": 87
+  },
+  "likertDimensionCounts": {
+    "AHORRO": 5,
+    "GASTO": 5,
+    "INGRESO": 5,
+    "INVERSION": 5,
+    "DEUDA": 5
+  },
+  "activeNormValidationIssues": [],
+  "sourceOnlyNotes": [
+    {
+      "name": "Situación Financiera",
+      "status": "NOT_ACTIVE_DUPLICATE",
+      "detail": "Its thresholds exactly duplicate Salud Financiera in the official workbook; combination matrix says report names can change without a different calculation."
+    },
+    {
+      "name": "Búsqueda de Significado Psicoproductivo",
+      "status": "NOT_ACTIVE",
+      "detail": "Source workbook contains a malformed last decile value, and it is not listed in the official COMPETENCIA NORMADA matrix."
+    },
+    {
+      "name": "Cuadrantes",
+      "status": "NOT_ACTIVE",
+      "detail": "Source workbook contains a malformed last decile value, and it is not listed in the official COMPETENCIA NORMADA matrix."
+    },
+    {
+      "name": "ESTILO norm tables",
+      "status": "PRESERVED_NOT_ACTIVE",
+      "detail": "Preserved in raw source and norm seed as legacy source tables. Official combination matrix maps profile names as direct aliases of competencies."
+    }
+  ]
+}

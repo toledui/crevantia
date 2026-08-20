@@ -419,6 +419,7 @@ export const ModelName = {
   PairResponse: 'PairResponse',
   AuditLog: 'AuditLog',
   Assessment: 'Assessment',
+  AssessmentActiveConfiguration: 'AssessmentActiveConfiguration',
   AssessmentVersion: 'AssessmentVersion',
   AssessmentSection: 'AssessmentSection',
   DemographicField: 'DemographicField',
@@ -476,7 +477,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "resultValue" | "reactiveContribution" | "financialSettings" | "stripeSettings" | "evaluationProduct" | "priceVersion" | "coupon" | "couponRedemption" | "purchaseOrder" | "purchaseItem" | "paymentTransaction" | "paymentEvent" | "legalDocument"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentActiveConfiguration" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "resultValue" | "reactiveContribution" | "financialSettings" | "stripeSettings" | "evaluationProduct" | "priceVersion" | "coupon" | "couponRedemption" | "purchaseOrder" | "purchaseItem" | "paymentTransaction" | "paymentEvent" | "legalDocument"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1929,6 +1930,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AssessmentCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AssessmentCountAggregateOutputType> | number
+        }
+      }
+    }
+    AssessmentActiveConfiguration: {
+      payload: Prisma.$AssessmentActiveConfigurationPayload<ExtArgs>
+      fields: Prisma.AssessmentActiveConfigurationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AssessmentActiveConfigurationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AssessmentActiveConfigurationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>
+        }
+        findFirst: {
+          args: Prisma.AssessmentActiveConfigurationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AssessmentActiveConfigurationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>
+        }
+        findMany: {
+          args: Prisma.AssessmentActiveConfigurationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>[]
+        }
+        create: {
+          args: Prisma.AssessmentActiveConfigurationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>
+        }
+        createMany: {
+          args: Prisma.AssessmentActiveConfigurationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AssessmentActiveConfigurationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>
+        }
+        update: {
+          args: Prisma.AssessmentActiveConfigurationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AssessmentActiveConfigurationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AssessmentActiveConfigurationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AssessmentActiveConfigurationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentActiveConfigurationPayload>
+        }
+        aggregate: {
+          args: Prisma.AssessmentActiveConfigurationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAssessmentActiveConfiguration>
+        }
+        groupBy: {
+          args: Prisma.AssessmentActiveConfigurationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssessmentActiveConfigurationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AssessmentActiveConfigurationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssessmentActiveConfigurationCountAggregateOutputType> | number
         }
       }
     }
@@ -5044,6 +5111,19 @@ export const AssessmentScalarFieldEnum = {
 export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof typeof AssessmentScalarFieldEnum]
 
 
+export const AssessmentActiveConfigurationScalarFieldEnum = {
+  id: 'id',
+  assessmentId: 'assessmentId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
+  reportMappingVersionId: 'reportMappingVersionId',
+  activatedAt: 'activatedAt'
+} as const
+
+export type AssessmentActiveConfigurationScalarFieldEnum = (typeof AssessmentActiveConfigurationScalarFieldEnum)[keyof typeof AssessmentActiveConfigurationScalarFieldEnum]
+
+
 export const AssessmentVersionScalarFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
@@ -5200,7 +5280,8 @@ export const ScaleScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  kind: 'kind'
 } as const
 
 export type ScaleScalarFieldEnum = (typeof ScaleScalarFieldEnum)[keyof typeof ScaleScalarFieldEnum]
@@ -5945,6 +6026,18 @@ export const AssessmentOrderByRelevanceFieldEnum = {
 export type AssessmentOrderByRelevanceFieldEnum = (typeof AssessmentOrderByRelevanceFieldEnum)[keyof typeof AssessmentOrderByRelevanceFieldEnum]
 
 
+export const AssessmentActiveConfigurationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentId: 'assessmentId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
+  reportMappingVersionId: 'reportMappingVersionId'
+} as const
+
+export type AssessmentActiveConfigurationOrderByRelevanceFieldEnum = (typeof AssessmentActiveConfigurationOrderByRelevanceFieldEnum)[keyof typeof AssessmentActiveConfigurationOrderByRelevanceFieldEnum]
+
+
 export const AssessmentVersionOrderByRelevanceFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
@@ -6068,7 +6161,8 @@ export const ScaleOrderByRelevanceFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  kind: 'kind'
 } as const
 
 export type ScaleOrderByRelevanceFieldEnum = (typeof ScaleOrderByRelevanceFieldEnum)[keyof typeof ScaleOrderByRelevanceFieldEnum]
@@ -6762,6 +6856,7 @@ export type GlobalOmitConfig = {
   pairResponse?: Prisma.PairResponseOmit
   auditLog?: Prisma.AuditLogOmit
   assessment?: Prisma.AssessmentOmit
+  assessmentActiveConfiguration?: Prisma.AssessmentActiveConfigurationOmit
   assessmentVersion?: Prisma.AssessmentVersionOmit
   assessmentSection?: Prisma.AssessmentSectionOmit
   demographicField?: Prisma.DemographicFieldOmit

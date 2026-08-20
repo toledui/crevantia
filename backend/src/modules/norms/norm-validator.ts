@@ -42,7 +42,12 @@ export function validateNormTargets(
     if (
       validReferences &&
       !validReferences.has(`${target.targetType}:${target.targetCode}`) &&
-      !["LEGACY_STYLE_PROFILE", "DERIVED_METRIC"].includes(target.targetType)
+      ![
+        "LEGACY_STYLE_PROFILE",
+        "DERIVED_METRIC",
+        "LIKERT_TOTAL",
+        "REPORT_ALIAS",
+      ].includes(target.targetType)
     )
       add(
         "ERROR",

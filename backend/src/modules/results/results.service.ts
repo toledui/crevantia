@@ -8,6 +8,7 @@ import type { AuthenticatedUser } from "../../common/auth.types";
 import { PrismaService } from "../../database/prisma.service";
 import {
   ConfigurationStatus,
+  type NormTargetType,
   ResultRunStatus,
   type Prisma,
 } from "../../generated/prisma/client";
@@ -95,7 +96,16 @@ export class ResultsService {
       );
     const original = await this.prisma.resultRun.findUnique({
       where: { id },
-      include: { values: true, contributions: true },
+      include: {
+        values: true,
+        contributions: true,
+        scoringKeyVersion: {
+          include: {
+            derivedMetricVersions: { include: { derivedMetric: true } },
+          },
+        },
+        reportMappingVersion: true,
+      },
     });
     if (!original || original.status !== ResultRunStatus.COMPLETED)
       throw new NotFoundException("El resultado original completo no existe.");
@@ -121,6 +131,72 @@ export class ResultsService {
       normVersion: { id: norm.id, hash: norm.configurationHash },
       engineVersion: original.engineVersion,
     });
+    const decileMeanCodes = new Set(
+      original.scoringKeyVersion.derivedMetricVersions
+        .filter((metric) => metric.calculationType === "DECILE_MEAN")
+        .map((metric) => metric.derivedMetric.code),
+    );
+    const recalculatedValues: Prisma.ResultValueCreateWithoutResultRunInput[] =
+      original.values
+        .filter(
+          (value) =>
+            value.targetType !== "REPORT_ALIAS" &&
+            !decileMeanCodes.has(value.targetCode),
+        )
+        .map((value) => recalculateNormedValue(value, targets));
+    const byTarget = new Map(
+      recalculatedValues.map((value) => [
+        `${value.targetType}:${value.targetCode}`,
+        value,
+      ]),
+    );
+    for (const metric of original.scoringKeyVersion.derivedMetricVersions) {
+      if (metric.calculationType !== "DECILE_MEAN") continue;
+      const sources = decileMeanSources(metric.declarativeConfig);
+      const values = sources.map((source) => {
+        const value = byTarget.get(`${source.targetType}:${source.targetCode}`);
+        if (value?.decile == null)
+          throw new BadRequestException(
+            `La nueva norma no permite recalcular ${metric.derivedMetric.code}: falta el decil de ${source.targetType}:${source.targetCode}.`,
+          );
+        return { value: value.decile, weight: source.weight };
+      });
+      if (!values.length)
+        throw new BadRequestException(
+          `La métrica ${metric.derivedMetric.code} no tiene fuentes declaradas.`,
+        );
+      const totalWeight = values.reduce((sum, value) => sum + value.weight, 0);
+      const score =
+        values.reduce((sum, value) => sum + value.value * value.weight, 0) /
+        totalWeight;
+      const derived: Prisma.ResultValueCreateWithoutResultRunInput = {
+        targetType: "DERIVED_METRIC",
+        targetCode: metric.derivedMetric.code,
+        rawScore: score,
+        displayScore: Number(score.toFixed(10)),
+        normalizedScore: score,
+        decile: Number.isInteger(score) ? score : null,
+        status: "CALCULATED_DECILE_MEAN",
+        metadata: asJson({ calculation: "DECILE_MEAN" }),
+      };
+      recalculatedValues.push(derived);
+      byTarget.set(`DERIVED_METRIC:${derived.targetCode}`, derived);
+    }
+    for (const alias of reportAliases(
+      original.reportMappingVersion?.configuration,
+    )) {
+      const source = byTarget.get(`${alias.sourceType}:${alias.sourceCode}`);
+      if (!source)
+        throw new BadRequestException(
+          `No se puede reconstruir el alias ${alias.alias}: falta ${alias.sourceType}:${alias.sourceCode}.`,
+        );
+      recalculatedValues.push({
+        ...source,
+        targetType: "REPORT_ALIAS",
+        targetCode: `REPORT_ALIAS:${alias.alias}`,
+        status: "DIRECT_ALIAS",
+      });
+    }
     return this.prisma.$transaction(
       async (tx) => {
         const recalculation = await tx.resultRun.create({
@@ -144,31 +220,7 @@ export class ResultsService {
               historicalResultPreserved: true,
             }),
             values: {
-              create: original.values.map((value) => {
-                const target = targets.get(
-                  `${value.targetType}:${value.targetCode}`,
-                );
-                const decile = target
-                  ? resolveDecile(
-                      Number(value.rawScore),
-                      target.thresholds.map((threshold) => ({
-                        decile: threshold.decile,
-                        lowerBound: Number(threshold.lowerBound),
-                        ordinal: threshold.ordinal,
-                      })),
-                    )
-                  : null;
-                return {
-                  targetType: value.targetType,
-                  targetCode: value.targetCode,
-                  rawScore: value.rawScore,
-                  displayScore: value.displayScore,
-                  normalizedScore: value.normalizedScore,
-                  decile,
-                  status: target?.status ?? "NORM_NOT_CONFIGURED",
-                  metadata: value.metadata ?? undefined,
-                };
-              }),
+              create: recalculatedValues,
             },
             contributions: {
               create: original.contributions.map((contribution) => ({
@@ -214,17 +266,29 @@ export class ResultsService {
 
     const where: Prisma.ResultRunWhereInput = {
       status: ResultRunStatus.COMPLETED,
-      ...(dto.type === 'OFFICIAL'
+      ...(dto.type === "OFFICIAL"
         ? { isOfficial: true }
-        : dto.type === 'RECALCULATED'
-        ? { isOfficial: false }
-        : {}),
+        : dto.type === "RECALCULATED"
+          ? { isOfficial: false }
+          : {}),
       ...(search
         ? {
             OR: [
-              { attempt: { assignment: { user: { firstName: { contains: search } } } } },
-              { attempt: { assignment: { user: { lastName: { contains: search } } } } },
-              { attempt: { assignment: { user: { email: { contains: search } } } } },
+              {
+                attempt: {
+                  assignment: { user: { firstName: { contains: search } } },
+                },
+              },
+              {
+                attempt: {
+                  assignment: { user: { lastName: { contains: search } } },
+                },
+              },
+              {
+                attempt: {
+                  assignment: { user: { email: { contains: search } } },
+                },
+              },
               { normVersion: { normSet: { name: { contains: search } } } },
               { id: { contains: search } },
             ],
@@ -237,13 +301,20 @@ export class ResultsService {
         where,
         skip,
         take: limit,
-        orderBy: { calculatedAt: 'desc' },
+        orderBy: { calculatedAt: "desc" },
         include: {
           attempt: {
             include: {
               assignment: {
                 include: {
-                  user: { select: { id: true, email: true, firstName: true, lastName: true } },
+                  user: {
+                    select: {
+                      id: true,
+                      email: true,
+                      firstName: true,
+                      lastName: true,
+                    },
+                  },
                   test: { select: { id: true, code: true, name: true } },
                   testVersion: { select: { id: true, version: true } },
                 },
@@ -256,8 +327,8 @@ export class ResultsService {
             },
           },
           values: {
-            where: { targetType: 'COMPOSITE' },
-            orderBy: { targetCode: 'asc' },
+            where: { targetType: "COMPOSITE" },
+            orderBy: { targetCode: "asc" },
           },
           recalculations: {
             select: { id: true, calculatedAt: true, reason: true },
@@ -322,11 +393,18 @@ export class ResultsService {
   }
 
   async getAdminResultsSummary() {
-    const [totalResults, officialResults, recalculatedResults] = await Promise.all([
-      this.prisma.resultRun.count({ where: { status: ResultRunStatus.COMPLETED } }),
-      this.prisma.resultRun.count({ where: { status: ResultRunStatus.COMPLETED, isOfficial: true } }),
-      this.prisma.resultRun.count({ where: { status: ResultRunStatus.COMPLETED, isOfficial: false } }),
-    ]);
+    const [totalResults, officialResults, recalculatedResults] =
+      await Promise.all([
+        this.prisma.resultRun.count({
+          where: { status: ResultRunStatus.COMPLETED },
+        }),
+        this.prisma.resultRun.count({
+          where: { status: ResultRunStatus.COMPLETED, isOfficial: true },
+        }),
+        this.prisma.resultRun.count({
+          where: { status: ResultRunStatus.COMPLETED, isOfficial: false },
+        }),
+      ]);
 
     return {
       totalResults,
@@ -361,13 +439,13 @@ export class ResultsService {
             normSet: true,
             targets: {
               include: {
-                thresholds: { orderBy: { ordinal: 'asc' } },
+                thresholds: { orderBy: { ordinal: "asc" } },
               },
             },
           },
         },
         values: {
-          orderBy: [{ targetType: 'asc' }, { targetCode: 'asc' }],
+          orderBy: [{ targetType: "asc" }, { targetCode: "asc" }],
         },
         recalculationOf: {
           include: {
@@ -378,18 +456,19 @@ export class ResultsService {
           include: {
             normVersion: { include: { normSet: true } },
           },
-          orderBy: { calculatedAt: 'desc' },
+          orderBy: { calculatedAt: "desc" },
         },
       },
     });
 
-    if (!result) throw new NotFoundException('El resultado psicométrico no existe.');
+    if (!result)
+      throw new NotFoundException("El resultado psicométrico no existe.");
 
     // Fetch published norm versions for potential recalculation
     const availableNorms = await this.prisma.normVersion.findMany({
       where: { status: ConfigurationStatus.PUBLISHED },
       include: { normSet: { select: { id: true, code: true, name: true } } },
-      orderBy: [{ normSet: { name: 'asc' } }, { version: 'desc' }],
+      orderBy: [{ normSet: { name: "asc" } }, { version: "desc" }],
     });
 
     return {
@@ -402,7 +481,7 @@ export class ResultsService {
     return this.prisma.normVersion.findMany({
       where: { status: ConfigurationStatus.PUBLISHED },
       include: { normSet: { select: { id: true, code: true, name: true } } },
-      orderBy: [{ normSet: { name: 'asc' } }, { version: 'desc' }],
+      orderBy: [{ normSet: { name: "asc" } }, { version: "desc" }],
     });
   }
 
@@ -418,4 +497,94 @@ export class ResultsService {
 
 function asJson(value: unknown): Prisma.InputJsonValue {
   return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+}
+
+type NormTargetWithThresholds = {
+  status: string;
+  thresholds: Array<{
+    decile: number;
+    lowerBound: Prisma.Decimal;
+    ordinal: number;
+  }>;
+};
+
+function recalculateNormedValue(
+  value: {
+    targetType: NormTargetType;
+    targetCode: string;
+    rawScore: Prisma.Decimal;
+    displayScore: Prisma.Decimal | null;
+    metadata: Prisma.JsonValue | null;
+  },
+  targets: ReadonlyMap<string, NormTargetWithThresholds>,
+): Prisma.ResultValueCreateWithoutResultRunInput {
+  const target = targets.get(`${value.targetType}:${value.targetCode}`);
+  const decile = target
+    ? resolveDecile(
+        Number(value.rawScore),
+        target.thresholds.map((threshold) => ({
+          decile: threshold.decile,
+          lowerBound: Number(threshold.lowerBound),
+          ordinal: threshold.ordinal,
+        })),
+      )
+    : null;
+  return {
+    targetType: value.targetType,
+    targetCode: value.targetCode,
+    rawScore: value.rawScore,
+    displayScore: value.displayScore,
+    normalizedScore: decile,
+    decile,
+    status: target?.status ?? "NORM_NOT_CONFIGURED",
+    metadata: value.metadata ?? undefined,
+  };
+}
+
+function decileMeanSources(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+  const sources = (value as Record<string, unknown>).sources;
+  if (!Array.isArray(sources)) return [];
+  return sources.flatMap((entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return [];
+    const source = entry as Record<string, unknown>;
+    if (
+      (source.targetType !== "SCALE" && source.targetType !== "COMPOSITE") ||
+      typeof source.targetCode !== "string"
+    )
+      return [];
+    return [
+      {
+        targetType: source.targetType,
+        targetCode: source.targetCode,
+        weight:
+          typeof source.weight === "number" && Number.isFinite(source.weight)
+            ? source.weight
+            : 1,
+      },
+    ];
+  });
+}
+
+function reportAliases(value: unknown) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+  const aliases = (value as Record<string, unknown>).aliases;
+  if (!Array.isArray(aliases)) return [];
+  return aliases.flatMap((entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return [];
+    const alias = entry as Record<string, unknown>;
+    if (
+      typeof alias.alias !== "string" ||
+      (alias.sourceType !== "SCALE" && alias.sourceType !== "COMPOSITE") ||
+      typeof alias.sourceCode !== "string"
+    )
+      return [];
+    return [
+      {
+        alias: alias.alias,
+        sourceType: alias.sourceType,
+        sourceCode: alias.sourceCode,
+      },
+    ];
+  });
 }

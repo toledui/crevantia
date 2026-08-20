@@ -1,0 +1,3062 @@
+{
+  "schemaVersion": "2.0.0",
+  "scoringKey": {
+    "code": "DPO-PRO-SCORING",
+    "version": "1.0.0",
+    "status": "READY_TO_PUBLISH",
+    "numericMode": "EXCEL_BINARY64",
+    "roundingBeforeNormLookup": false,
+    "pairAnswerStorage": "selectedMoreReactiveCode; other reactive is implicitly LESS",
+    "reactiveRule": "Use scoreIfMore/scoreIfLess from configuration; do not hardcode by polarity.",
+    "clientConfirmation": "Reactive-to-scale assignments remain unchanged from the previously validated version.",
+    "source": {
+      "officialExcel": {
+        "filename": "Norma actualizada y reactivos envío TH 170826.xlsx",
+        "sha256": "c27903456bfc8732b87d0fdef1703dd5d3df186717bc1d3358c3568da2c67052",
+        "sheets": {
+          "Reactivos": "A1:F384",
+          "NORMAS": "A1:CU52",
+          "Tabla Combinaciones Competencia": "A1:AY76"
+        }
+      },
+      "clientResponse": {
+        "filename": "Respuesta a preguntas de cálculo 190826.docx",
+        "sha256": "8fe63a9c23f097cdf5916208cdaf79f09b5d6ea0b5a67c846b9fdef52b61fca0",
+        "keyConfirmations": [
+          "The official paired assessment has 96 positive pairs and 72 negative pairs.",
+          "The Likert section has 25 scored statements, not 31.",
+          "All Likert statements are positive/direct, scored 1 to 5, equal weight.",
+          "The five questions in each Likert dimension are averaged and then normalized using the corresponding norm.",
+          "The new Excel contains the official current norm.",
+          "Reactive-to-scale assignment does not change from the previously validated version."
+        ]
+      }
+    }
+  },
+  "reactiveScoringRules": [
+    {
+      "reactiveCode": "DPO-R001",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R002",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R003",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R004",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R005",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R006",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R007",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R008",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R009",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 1,
+      "scoreIfMore": 1,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R010",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R011",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R012",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R013",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R014",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R015",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R016",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R017",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R018",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R019",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R020",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R021",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R022",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R023",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R024",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R025",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R026",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R027",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R028",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R029",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R030",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R031",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R032",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R033",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R034",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R035",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R036",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R037",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R038",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R039",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R040",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R041",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R042",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R043",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R044",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R045",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R046",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R047",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R048",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R049",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R050",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R051",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R052",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R053",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R054",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R055",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R056",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R057",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R058",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R059",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R060",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R061",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R062",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R063",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R064",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R065",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R066",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R067",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R068",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R069",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R070",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R071",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R072",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R073",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R074",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R075",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R076",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R077",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R078",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R079",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R080",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R081",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R082",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R083",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R084",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R085",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R086",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R087",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R088",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R089",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R090",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R091",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R092",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R093",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R094",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R095",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R096",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R097",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R098",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R099",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R100",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R101",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R102",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R103",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R104",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R105",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R106",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R107",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R108",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R109",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R110",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R111",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R112",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R113",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R114",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R115",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R116",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R117",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R118",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R119",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R120",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R121",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R122",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R123",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R124",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R125",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R126",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R127",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R128",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R129",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R130",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R131",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R132",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R133",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R134",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R135",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R136",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R137",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R138",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R139",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R140",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R141",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R142",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R143",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R144",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R145",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R146",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R147",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R148",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R149",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R150",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R151",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R152",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R153",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R154",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R155",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R156",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R157",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R158",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R159",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R160",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R161",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R162",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R163",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R164",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R165",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R166",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R167",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R168",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R169",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R170",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R171",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R172",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R173",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R174",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R175",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R176",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "POSITIVE",
+      "fixedWeight": 1,
+      "scoreIfMore": 1,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R177",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R178",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R179",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R180",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "POSITIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 4,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R181",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R182",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R183",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R184",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R185",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R186",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R187",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R188",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R189",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "POSITIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 3,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R190",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "POSITIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 2,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R191",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R192",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "POSITIVE",
+      "fixedWeight": 5,
+      "scoreIfMore": 5,
+      "scoreIfLess": 0
+    },
+    {
+      "reactiveCode": "DPO-R193",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R194",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R195",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R196",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R197",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R198",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R199",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R200",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R201",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R202",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R203",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R204",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R205",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R206",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R207",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R208",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R209",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R210",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R211",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R212",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R213",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R214",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R215",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R216",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R217",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R218",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R219",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R220",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R221",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R222",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R223",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R224",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R225",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R226",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R227",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R228",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R229",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R230",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R231",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R232",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R233",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R234",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R235",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R236",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R237",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R238",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R239",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R240",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R241",
+      "scaleCode": "DPO-S042",
+      "scaleName": "Apertura a oportunidades",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R242",
+      "scaleCode": "DPO-S029",
+      "scaleName": "Percepción Interpersonal",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R243",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R244",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R245",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R246",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R247",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R248",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R249",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R250",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R251",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R252",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R253",
+      "scaleCode": "DPO-S005",
+      "scaleName": "Expectativas",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R254",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R255",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R256",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R257",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R258",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R259",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R260",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R261",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R262",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R263",
+      "scaleCode": "DPO-S047",
+      "scaleName": "Aprovechamiento de Talentos",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R264",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R265",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R266",
+      "scaleCode": "DPO-S033",
+      "scaleName": "Visión Sistémica",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R267",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R268",
+      "scaleCode": "DPO-S003",
+      "scaleName": "Pensamiento divergente",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R269",
+      "scaleCode": "DPO-S009",
+      "scaleName": "Enfoque",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R270",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R271",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R272",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R273",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R274",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R275",
+      "scaleCode": "DPO-S026",
+      "scaleName": "Confiabilidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R276",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R277",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R278",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R279",
+      "scaleCode": "DPO-S027",
+      "scaleName": "Rectitud",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R280",
+      "scaleCode": "DPO-S021",
+      "scaleName": "Tenacidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R281",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R282",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R283",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R284",
+      "scaleCode": "DPO-S002",
+      "scaleName": "Mente Abierta",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R285",
+      "scaleCode": "DPO-S017",
+      "scaleName": "Merecimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R286",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R287",
+      "scaleCode": "DPO-S007",
+      "scaleName": "Autorefuerzo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R288",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R289",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R290",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R291",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R292",
+      "scaleCode": "DPO-S036",
+      "scaleName": "Resolución",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R293",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R294",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R295",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R296",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R297",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R298",
+      "scaleCode": "DPO-S031",
+      "scaleName": "Consciencia del Entorno",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R299",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R300",
+      "scaleCode": "DPO-S045",
+      "scaleName": "Visión clara",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R301",
+      "scaleCode": "DPO-S013",
+      "scaleName": "Habilidad Administrativa",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R302",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R303",
+      "scaleCode": "DPO-S010",
+      "scaleName": "Autoconocimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R304",
+      "scaleCode": "DPO-S018",
+      "scaleName": "Optimismo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R305",
+      "scaleCode": "DPO-S044",
+      "scaleName": "Claridad de estrategia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R306",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R307",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R308",
+      "scaleCode": "DPO-S014",
+      "scaleName": "Control Percibido",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R309",
+      "scaleCode": "DPO-S008",
+      "scaleName": "Autosupervisión",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R310",
+      "scaleCode": "DPO-S030",
+      "scaleName": "Sociabilidad",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R311",
+      "scaleCode": "DPO-S016",
+      "scaleName": "Autoconfianza",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R312",
+      "scaleCode": "DPO-S040",
+      "scaleName": "Salud Financiera",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R313",
+      "scaleCode": "DPO-S037",
+      "scaleName": "Automejoramiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R314",
+      "scaleCode": "DPO-S020",
+      "scaleName": "Esfuerzo",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R315",
+      "scaleCode": "DPO-S046",
+      "scaleName": "Anteposición de intereses",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R316",
+      "scaleCode": "DPO-S025",
+      "scaleName": "Compromiso",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R317",
+      "scaleCode": "DPO-S035",
+      "scaleName": "Participación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R318",
+      "scaleCode": "DPO-S032",
+      "scaleName": "Pensamiento Lógico",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R319",
+      "scaleCode": "DPO-S023",
+      "scaleName": "Capacidad de reacción",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R320",
+      "scaleCode": "DPO-S012",
+      "scaleName": "Temple",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R321",
+      "scaleCode": "DPO-S004",
+      "scaleName": "Expectativa Profesional",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R322",
+      "scaleCode": "DPO-S048",
+      "scaleName": "Sentido de contribución",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R323",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R324",
+      "scaleCode": "DPO-S011",
+      "scaleName": "Autocontrol",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R325",
+      "scaleCode": "DPO-S038",
+      "scaleName": "Perseverancia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 4,
+      "scoreIfMore": 0,
+      "scoreIfLess": 4
+    },
+    {
+      "reactiveCode": "DPO-R326",
+      "scaleCode": "DPO-S006",
+      "scaleName": "Superación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R327",
+      "scaleCode": "DPO-S024",
+      "scaleName": "Emprendimiento",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R328",
+      "scaleCode": "DPO-S028",
+      "scaleName": "Influencia",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R329",
+      "scaleCode": "DPO-S043",
+      "scaleName": "Alineamiento de Acciones",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R330",
+      "scaleCode": "DPO-S034",
+      "scaleName": "Anticipación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R331",
+      "scaleCode": "DPO-S001",
+      "scaleName": "Adaptación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R332",
+      "scaleCode": "DPO-S039",
+      "scaleName": "Recuperación",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 3,
+      "scoreIfMore": 0,
+      "scoreIfLess": 3
+    },
+    {
+      "reactiveCode": "DPO-R333",
+      "scaleCode": "DPO-S019",
+      "scaleName": "Energía",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R334",
+      "scaleCode": "DPO-S015",
+      "scaleName": "Tolerancia al Conflicto",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R335",
+      "scaleCode": "DPO-S022",
+      "scaleName": "Autonomía",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    },
+    {
+      "reactiveCode": "DPO-R336",
+      "scaleCode": "DPO-S041",
+      "scaleName": "Satisfacción",
+      "polarity": "NEGATIVE",
+      "fixedWeight": 2,
+      "scoreIfMore": 0,
+      "scoreIfLess": 2
+    }
+  ]
+}

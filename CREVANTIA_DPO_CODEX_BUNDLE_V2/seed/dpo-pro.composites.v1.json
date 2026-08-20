@@ -1,0 +1,767 @@
+{
+  "schemaVersion": "2.0.0",
+  "version": "1.0.0",
+  "normedComposites": [
+    {
+      "code": "DPO-C015",
+      "name": "Adaptabilidad",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S001",
+        "DPO-S002",
+        "DPO-S003"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C013",
+      "name": "Alineación y Congruencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S043",
+        "DPO-S025",
+        "DPO-S009"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C004",
+      "name": "Ambición positiva",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S004",
+        "DPO-S005",
+        "DPO-S006"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C016",
+      "name": "Anticipación a cambios del entorno",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S001",
+        "DPO-S034",
+        "DPO-S031"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C021",
+      "name": "Apego a Normas",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S025",
+        "DPO-S026",
+        "DPO-S027"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C011",
+      "name": "Autodominio",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S046",
+        "DPO-S011",
+        "DPO-S014"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C012",
+      "name": "Autoregulación emocional",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S010",
+        "DPO-S011",
+        "DPO-S012"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C025",
+      "name": "Bienestar psicoproductivo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S047",
+        "DPO-S040",
+        "DPO-S041"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C031",
+      "name": "Competencia financiera",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S014",
+        "DPO-S013",
+        "DPO-S015"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C029",
+      "name": "Convicción positiva",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S016",
+        "DPO-S017",
+        "DPO-S018"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C009",
+      "name": "Creatividad Aplicada",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S003",
+        "DPO-S029",
+        "DPO-S033"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C007",
+      "name": "Determinación y Persistencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S025",
+        "DPO-S038",
+        "DPO-S021"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C022",
+      "name": "Efectividad personal",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S007",
+        "DPO-S008",
+        "DPO-S009"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C008",
+      "name": "Empuje",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S019",
+        "DPO-S020",
+        "DPO-S021"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C005",
+      "name": "Impulso Resolutivo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S016",
+        "DPO-S023",
+        "DPO-S036"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C006",
+      "name": "Iniciativa",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S022",
+        "DPO-S023",
+        "DPO-S024"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C002",
+      "name": "Involucramiento",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S035",
+        "DPO-S032",
+        "DPO-S048"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C030",
+      "name": "Mentalidad Inversionista",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S042",
+        "DPO-S031",
+        "DPO-S003"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C027",
+      "name": "Merecimiento Proactivo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S022",
+        "DPO-S005",
+        "DPO-S017"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C023",
+      "name": "Negociación e Influencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S028",
+        "DPO-S002",
+        "DPO-S015"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C018",
+      "name": "Orientación a resultados",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S016",
+        "DPO-S017",
+        "DPO-S021",
+        "DPO-S045"
+      ],
+      "componentCount": 4,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C020",
+      "name": "Permanencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S025",
+        "DPO-S038",
+        "DPO-S039",
+        "DPO-S021"
+      ],
+      "componentCount": 4,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C032",
+      "name": "Planeación & Organización",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S034",
+        "DPO-S009",
+        "DPO-S032"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C001",
+      "name": "Proactividad",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S034",
+        "DPO-S035",
+        "DPO-S036"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C010",
+      "name": "Razonamiento Analítico",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S031",
+        "DPO-S032",
+        "DPO-S033"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C024",
+      "name": "Relaciones Interpersonales",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S028",
+        "DPO-S029",
+        "DPO-S030"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C033",
+      "name": "Resiliencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S037",
+        "DPO-S038",
+        "DPO-S039"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C017",
+      "name": "Significancia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S047",
+        "DPO-S037",
+        "DPO-S048",
+        "DPO-S045"
+      ],
+      "componentCount": 4,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C026",
+      "name": "Superación y Empoderamiento",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S007",
+        "DPO-S006",
+        "DPO-S021"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C028",
+      "name": "Toma de riesgos",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S042",
+        "DPO-S024",
+        "DPO-S030"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C019",
+      "name": "Trabajo en Equipo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S026",
+        "DPO-S002",
+        "DPO-S035",
+        "DPO-S030"
+      ],
+      "componentCount": 4,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C003",
+      "name": "Trayectoria Ascendente",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S037",
+        "DPO-S008",
+        "DPO-S004"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    },
+    {
+      "code": "DPO-C014",
+      "name": "Visión estratégica",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "componentScaleCodes": [
+        "DPO-S043",
+        "DPO-S044",
+        "DPO-S045"
+      ],
+      "componentCount": 3,
+      "normRequired": true
+    }
+  ],
+  "derivedDecileMeanMetrics": [
+    {
+      "code": "DPO-DM-001",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Convicción de logro",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S016",
+        "DPO-S018"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-002",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Visión de posibilidades",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S042",
+        "DPO-S044"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-003",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Perseverancia",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S039",
+        "DPO-S021"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-004",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Poder de influencia",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S026",
+        "DPO-S028"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-005",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Determinación personal",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S014",
+        "DPO-S036"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-006",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Deseo de crecimiento",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S037",
+        "DPO-S017"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-007",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Creatividad emprendedora",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S024",
+        "DPO-S003"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-008",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Autogestión responsable",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S013",
+        "DPO-S027"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-009",
+      "group": "9 Factores - Ingreso superior",
+      "name": "Congruencia de aspiraciones",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S046",
+        "DPO-S007"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-010",
+      "group": "Gasto",
+      "name": "Administración congruente",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S046",
+        "DPO-S012"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-011",
+      "group": "Gasto",
+      "name": "Gestión reflexiva",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S046",
+        "DPO-S015"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-012",
+      "group": "Gasto",
+      "name": "Disciplina financiera",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S038",
+        "DPO-S027"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-013",
+      "group": "Gasto",
+      "name": "Elección autónoma",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S010",
+        "DPO-S022"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-014",
+      "group": "Ahorro",
+      "name": "Superación progresiva",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S006",
+        "DPO-S021"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-015",
+      "group": "Ahorro",
+      "name": "Autocontrol consistente",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S011",
+        "DPO-S038"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-016",
+      "group": "Ahorro",
+      "name": "Administración informada",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S031",
+        "DPO-S013"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-017",
+      "group": "Ahorro",
+      "name": "Progreso perseverante",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S020",
+        "DPO-S006"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-018",
+      "group": "Deuda",
+      "name": "Hábitos saludables",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S013",
+        "DPO-S027"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-019",
+      "group": "Deuda",
+      "name": "Autonomía resolutiva",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S022",
+        "DPO-S015"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-020",
+      "group": "Deuda",
+      "name": "Respuesta ágil",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S023",
+        "DPO-S009"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    },
+    {
+      "code": "DPO-DM-021",
+      "group": "Deuda",
+      "name": "Resiliencia económica",
+      "calculationMethod": "DECILE_MEAN",
+      "componentType": "SCALE_DECILE",
+      "componentScaleCodes": [
+        "DPO-S039",
+        "DPO-S021"
+      ],
+      "componentCount": 2,
+      "normRequired": false
+    }
+  ],
+  "reportAliases": [
+    {
+      "alias": "Cuadrante financiero",
+      "sourceType": "SCALE",
+      "sourceCode": "DPO-S040",
+      "sourceLabel": "(Salud financiera)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Cuadrante de satisfacción",
+      "sourceType": "SCALE",
+      "sourceCode": "DPO-S041",
+      "sourceLabel": "(Satisfacción)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Adaptable",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C015",
+      "sourceLabel": "Competencia (Adaptabilidad)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Analítico",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C010",
+      "sourceLabel": "Competencia (Razonamiento analítico)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Apegado",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C021",
+      "sourceLabel": "Competencia (Apego a normas)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Aprovechamiento",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C028",
+      "sourceLabel": "Competencia (Toma de riesgos)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Esforzado",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C008",
+      "sourceLabel": "Competencia (Empuje)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Social",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C024",
+      "sourceLabel": "Competencia (Relaciones interpersonales)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Innovador",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C009",
+      "sourceLabel": "Competencia (Creatividad aplicada)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Obstinado",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C007",
+      "sourceLabel": "Competencia (Determinación y persistencia)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Planeador",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C032",
+      "sourceLabel": "Competencia (Planeación y Organización)",
+      "calculationMethod": "DIRECT_ALIAS"
+    },
+    {
+      "alias": "Superacional",
+      "sourceType": "COMPOSITE",
+      "sourceCode": "DPO-C026",
+      "sourceLabel": "Competencia (Superación y empoderamiento)",
+      "calculationMethod": "DIRECT_ALIAS"
+    }
+  ]
+}

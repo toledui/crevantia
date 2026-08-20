@@ -1,0 +1,17 @@
+{
+  "statisticalControlQuestions": 17,
+  "pairQuestions": 168,
+  "positivePairs": 96,
+  "negativePairs": 72,
+  "reactives": 336,
+  "positiveReactives": 192,
+  "negativeReactives": 144,
+  "scales": 48,
+  "normedComposites": 33,
+  "derivedDecileMeanMetrics": 21,
+  "reportAliases": 12,
+  "likertQuestions": 25,
+  "likertDimensions": 5,
+  "questionsPerLikertDimension": 5,
+  "activeNormTargets": 87
+}

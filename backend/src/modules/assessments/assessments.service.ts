@@ -476,6 +476,7 @@ export class AssessmentsService {
         isActive: true,
       },
       include: {
+        activeConfiguration: true,
         versions: {
           where: { status: "PUBLISHED" },
           orderBy: { version: "desc" },
@@ -483,6 +484,18 @@ export class AssessmentsService {
         },
       },
     });
+    if (assessment?.activeConfiguration) {
+      const active = assessment.activeConfiguration;
+      await this.prisma.attempt.update({
+        where: { id: attemptId },
+        data: {
+          assessmentVersionId: active.assessmentVersionId,
+          scoringKeyVersionId: active.scoringKeyVersionId,
+          normVersionId: active.normVersionId,
+        },
+      });
+      return active.assessmentVersionId;
+    }
     let version = assessment?.versions[0] ?? null;
     if (!version && assessment) {
       version = await this.prisma.assessmentVersion.findFirst({
@@ -514,17 +527,20 @@ export class AssessmentsService {
     const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
 
     const where: Prisma.AttemptWhereInput = {
-      ...(dto.status === 'ATTENTION_REQUIRED'
+      ...(dto.status === "ATTENTION_REQUIRED"
         ? {
             OR: [
               { status: AttemptStatus.PAUSED },
               { status: AttemptStatus.SCORING_ERROR },
-              { status: AttemptStatus.IN_PROGRESS, lastActivityAt: { lt: twoHoursAgo } },
+              {
+                status: AttemptStatus.IN_PROGRESS,
+                lastActivityAt: { lt: twoHoursAgo },
+              },
             ],
           }
-        : dto.status && dto.status !== 'ALL'
-        ? { status: dto.status as AttemptStatus }
-        : {}),
+        : dto.status && dto.status !== "ALL"
+          ? { status: dto.status as AttemptStatus }
+          : {}),
       ...(search
         ? {
             OR: [
@@ -543,18 +559,27 @@ export class AssessmentsService {
         where,
         skip,
         take: limit,
-        orderBy: { updatedAt: 'desc' },
+        orderBy: { updatedAt: "desc" },
         include: {
           assignment: {
             include: {
-              user: { select: { id: true, email: true, firstName: true, lastName: true } },
+              user: {
+                select: {
+                  id: true,
+                  email: true,
+                  firstName: true,
+                  lastName: true,
+                },
+              },
               test: { select: { id: true, code: true, name: true } },
-              testVersion: { select: { id: true, version: true, estimatedMin: true } },
+              testVersion: {
+                select: { id: true, version: true, estimatedMin: true },
+              },
             },
           },
           resultRuns: {
             where: { isOfficial: true },
-            orderBy: { calculatedAt: 'desc' },
+            orderBy: { calculatedAt: "desc" },
             take: 1,
             select: { id: true, status: true, calculatedAt: true },
           },
@@ -590,7 +615,10 @@ export class AssessmentsService {
           id: item.id,
           status: item.status,
           isStalled,
-          needsAttention: item.status === AttemptStatus.PAUSED || isStalled || item.status === AttemptStatus.SCORING_ERROR,
+          needsAttention:
+            item.status === AttemptStatus.PAUSED ||
+            isStalled ||
+            item.status === AttemptStatus.SCORING_ERROR,
           startedAt: item.startedAt,
           pausedAt: item.pausedAt,
           submittedAt: item.submittedAt,
@@ -624,21 +652,29 @@ export class AssessmentsService {
   async getAdminAttemptsSummary() {
     const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
 
-    const [total, inProgress, paused, completed, attentionCount] = await Promise.all([
-      this.prisma.attempt.count(),
-      this.prisma.attempt.count({ where: { status: AttemptStatus.IN_PROGRESS } }),
-      this.prisma.attempt.count({ where: { status: AttemptStatus.PAUSED } }),
-      this.prisma.attempt.count({ where: { status: AttemptStatus.COMPLETED } }),
-      this.prisma.attempt.count({
-        where: {
-          OR: [
-            { status: AttemptStatus.PAUSED },
-            { status: AttemptStatus.SCORING_ERROR },
-            { status: AttemptStatus.IN_PROGRESS, lastActivityAt: { lt: twoHoursAgo } },
-          ],
-        },
-      }),
-    ]);
+    const [total, inProgress, paused, completed, attentionCount] =
+      await Promise.all([
+        this.prisma.attempt.count(),
+        this.prisma.attempt.count({
+          where: { status: AttemptStatus.IN_PROGRESS },
+        }),
+        this.prisma.attempt.count({ where: { status: AttemptStatus.PAUSED } }),
+        this.prisma.attempt.count({
+          where: { status: AttemptStatus.COMPLETED },
+        }),
+        this.prisma.attempt.count({
+          where: {
+            OR: [
+              { status: AttemptStatus.PAUSED },
+              { status: AttemptStatus.SCORING_ERROR },
+              {
+                status: AttemptStatus.IN_PROGRESS,
+                lastActivityAt: { lt: twoHoursAgo },
+              },
+            ],
+          },
+        }),
+      ]);
 
     return {
       total,
@@ -661,8 +697,14 @@ export class AssessmentsService {
           },
         },
         resultRuns: {
-          orderBy: { calculatedAt: 'desc' },
-          select: { id: true, status: true, calculatedAt: true, isOfficial: true, diagnostics: true },
+          orderBy: { calculatedAt: "desc" },
+          select: {
+            id: true,
+            status: true,
+            calculatedAt: true,
+            isOfficial: true,
+            diagnostics: true,
+          },
         },
         _count: {
           select: {
@@ -675,11 +717,16 @@ export class AssessmentsService {
         },
       },
     });
-    if (!attempt) throw new NotFoundException('El intento de evaluación no existe.');
+    if (!attempt)
+      throw new NotFoundException("El intento de evaluación no existe.");
     return attempt;
   }
 
-  async reopenAdminAttempt(actor: AuthenticatedUser, attemptId: string, reason?: string) {
+  async reopenAdminAttempt(
+    actor: AuthenticatedUser,
+    attemptId: string,
+    reason?: string,
+  ) {
     const attempt = await this.prisma.attempt.findUnique({
       where: { id: attemptId },
       include: {
@@ -688,9 +735,12 @@ export class AssessmentsService {
         },
       },
     });
-    if (!attempt) throw new NotFoundException('El intento de evaluación no existe.');
+    if (!attempt)
+      throw new NotFoundException("El intento de evaluación no existe.");
     if (attempt.status === AttemptStatus.COMPLETED) {
-      throw new BadRequestException('No se puede reabrir un intento que ya ha sido completado.');
+      throw new BadRequestException(
+        "No se puede reabrir un intento que ya ha sido completado.",
+      );
     }
 
     const updated = await this.prisma.$transaction(async (tx) => {
@@ -705,10 +755,10 @@ export class AssessmentsService {
       await tx.auditLog.create({
         data: {
           actorId: actor.sub,
-          action: 'ATTEMPT_REOPENED_BY_ADMIN',
-          entityType: 'Attempt',
+          action: "ATTEMPT_REOPENED_BY_ADMIN",
+          entityType: "Attempt",
           entityId: attemptId,
-          reason: reason?.trim() || 'Reapertura técnica solicitada por soporte',
+          reason: reason?.trim() || "Reapertura técnica solicitada por soporte",
           metadata: {
             candidateEmail: attempt.assignment.user.email,
             testName: attempt.assignment.test.name,

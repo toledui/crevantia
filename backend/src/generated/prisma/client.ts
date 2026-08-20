@@ -150,6 +150,11 @@ export type AuditLog = Prisma.AuditLogModel
  */
 export type Assessment = Prisma.AssessmentModel
 /**
+ * Model AssessmentActiveConfiguration
+ *
+ */
+export type AssessmentActiveConfiguration = Prisma.AssessmentActiveConfigurationModel
+/**
  * Model AssessmentVersion
  * 
  */

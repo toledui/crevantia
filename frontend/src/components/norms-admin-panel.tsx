@@ -1102,6 +1102,9 @@ export function NormsAdminPanel() {
             <option value="SCALE">Escala</option>
             <option value="COMPOSITE">Composite</option>
             <option value="DERIVED_METRIC">Métrica derivada</option>
+            <option value="LIKERT_DIMENSION">Dimensión Likert</option>
+            <option value="LIKERT_TOTAL">Total Likert</option>
+            <option value="REPORT_ALIAS">Alias de reporte</option>
           </select>
           <input name="targetCode" placeholder="Código estable" required />
           <input name="name" placeholder="Nombre" required />
@@ -1241,8 +1244,8 @@ function TargetEditor({
             <span className="eyebrow dark">Target normativo</span>
             <h2>Editar target</h2>
             <p>
-              Edita sus datos administrativos y, cuando sea seguro, su
-              identidad técnica.
+              Edita sus datos administrativos y, cuando sea seguro, su identidad
+              técnica.
             </p>
           </div>
           <button
@@ -1266,6 +1269,9 @@ function TargetEditor({
               <option value="SCALE">Escala</option>
               <option value="COMPOSITE">Composite</option>
               <option value="DERIVED_METRIC">Métrica derivada</option>
+              <option value="LIKERT_DIMENSION">Dimensión Likert</option>
+              <option value="LIKERT_TOTAL">Total Likert</option>
+              <option value="REPORT_ALIAS">Alias de reporte</option>
               <option value="LEGACY_STYLE_PROFILE">Perfil legacy</option>
             </select>
           </label>

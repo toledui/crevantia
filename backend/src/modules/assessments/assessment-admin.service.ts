@@ -19,6 +19,7 @@ import {
 } from "./assessment-admin.dto";
 
 const versionInclude = {
+  assessment: { select: { code: true } },
   demographicFields: { orderBy: { order: "asc" as const } },
   sections: {
     orderBy: { order: "asc" as const },
@@ -215,10 +216,7 @@ export class AssessmentAdminService {
     });
     const highestDeletedVersion = deletionAudits.reduce(
       (highest, audit) =>
-        Math.max(
-          highest,
-          deletedVersionNumber(audit.after, assessmentId) ?? 0,
-        ),
+        Math.max(highest, deletedVersionNumber(audit.after, assessmentId) ?? 0),
       0,
     );
     const nextVersion =
@@ -966,6 +964,50 @@ export class AssessmentAdminService {
         errors.push(
           `${likert.code} está configurada pero no tiene regla Likert.`,
         );
+    }
+    if (version.assessment.code === "DPO_PRO") {
+      const pairs = version.sections.flatMap(
+        (section) => section.pairQuestions,
+      );
+      const likert = version.sections.flatMap(
+        (section) => section.likertQuestions,
+      );
+      const reactives = pairs.flatMap((pair) => pair.reactives);
+      const expected = (label: string, actual: number, count: number) => {
+        if (actual !== count)
+          errors.push(
+            `DPO-PRO oficial requiere ${count} ${label}; se encontraron ${actual}.`,
+          );
+      };
+      expected("secciones", version.sections.length, 4);
+      expected("campos de control", version.demographicFields.length, 17);
+      expected("pares", pairs.length, 168);
+      expected("reactivos", reactives.length, 336);
+      expected("preguntas Likert", likert.length, 25);
+      expected("reglas pareadas", scoring?.rules.length ?? 0, 336);
+      expected("reglas Likert", scoring?.likertRules.length ?? 0, 25);
+      expected(
+        "escalas pareadas",
+        new Set(scoring?.rules.map((rule) => rule.scaleId) ?? []).size,
+        48,
+      );
+      expected(
+        "dimensiones Likert",
+        new Set(scoring?.likertRules.map((rule) => rule.scaleId) ?? []).size,
+        5,
+      );
+      expected(
+        "composites",
+        new Set(
+          scoring?.compositeComponents.map((item) => item.compositeId) ?? [],
+        ).size,
+        33,
+      );
+      expected(
+        "métricas derivadas",
+        scoring?.derivedMetricVersions.length ?? 0,
+        21,
+      );
     }
     return {
       valid: errors.length === 0,

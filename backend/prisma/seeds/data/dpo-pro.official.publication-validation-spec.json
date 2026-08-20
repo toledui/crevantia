@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "requiredAssertions": [
+    [
+      "assessment.statisticalControlQuestions",
+      17
+    ],
+    [
+      "assessment.pairQuestions",
+      168
+    ],
+    [
+      "assessment.positivePairs",
+      96
+    ],
+    [
+      "assessment.negativePairs",
+      72
+    ],
+    [
+      "assessment.reactives",
+      336
+    ],
+    [
+      "assessment.likertQuestions",
+      25
+    ],
+    [
+      "scoring.scales",
+      48
+    ],
+    [
+      "scoring.normedComposites",
+      33
+    ],
+    [
+      "scoring.derivedDecileMeanMetrics",
+      21
+    ],
+    [
+      "norm.activeTargets",
+      87
+    ]
+  ],
+  "blockingRules": [
+    "Every paired reactive must have exactly one scaleCode and one scoring rule.",
+    "Every scale must contain 7 reactives: 4 positive and 3 negative.",
+    "Every official norm target must have deciles 1..10 and strictly ascending lowerBounds.",
+    "Every Likert dimension must contain exactly 5 questions.",
+    "No source-only/legacy norm target may be automatically published.",
+    "Published AssessmentVersion, ScoringKeyVersion and NormVersion must be immutable."
+  ]
+}

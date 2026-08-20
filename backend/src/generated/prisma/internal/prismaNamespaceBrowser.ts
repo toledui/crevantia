@@ -73,6 +73,7 @@ export const ModelName = {
   PairResponse: 'PairResponse',
   AuditLog: 'AuditLog',
   Assessment: 'Assessment',
+  AssessmentActiveConfiguration: 'AssessmentActiveConfiguration',
   AssessmentVersion: 'AssessmentVersion',
   AssessmentSection: 'AssessmentSection',
   DemographicField: 'DemographicField',
@@ -434,6 +435,19 @@ export const AssessmentScalarFieldEnum = {
 export type AssessmentScalarFieldEnum = (typeof AssessmentScalarFieldEnum)[keyof typeof AssessmentScalarFieldEnum]
 
 
+export const AssessmentActiveConfigurationScalarFieldEnum = {
+  id: 'id',
+  assessmentId: 'assessmentId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
+  reportMappingVersionId: 'reportMappingVersionId',
+  activatedAt: 'activatedAt'
+} as const
+
+export type AssessmentActiveConfigurationScalarFieldEnum = (typeof AssessmentActiveConfigurationScalarFieldEnum)[keyof typeof AssessmentActiveConfigurationScalarFieldEnum]
+
+
 export const AssessmentVersionScalarFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
@@ -590,7 +604,8 @@ export const ScaleScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  kind: 'kind'
 } as const
 
 export type ScaleScalarFieldEnum = (typeof ScaleScalarFieldEnum)[keyof typeof ScaleScalarFieldEnum]
@@ -1335,6 +1350,18 @@ export const AssessmentOrderByRelevanceFieldEnum = {
 export type AssessmentOrderByRelevanceFieldEnum = (typeof AssessmentOrderByRelevanceFieldEnum)[keyof typeof AssessmentOrderByRelevanceFieldEnum]
 
 
+export const AssessmentActiveConfigurationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  assessmentId: 'assessmentId',
+  assessmentVersionId: 'assessmentVersionId',
+  scoringKeyVersionId: 'scoringKeyVersionId',
+  normVersionId: 'normVersionId',
+  reportMappingVersionId: 'reportMappingVersionId'
+} as const
+
+export type AssessmentActiveConfigurationOrderByRelevanceFieldEnum = (typeof AssessmentActiveConfigurationOrderByRelevanceFieldEnum)[keyof typeof AssessmentActiveConfigurationOrderByRelevanceFieldEnum]
+
+
 export const AssessmentVersionOrderByRelevanceFieldEnum = {
   id: 'id',
   assessmentId: 'assessmentId',
@@ -1458,7 +1485,8 @@ export const ScaleOrderByRelevanceFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  kind: 'kind'
 } as const
 
 export type ScaleOrderByRelevanceFieldEnum = (typeof ScaleOrderByRelevanceFieldEnum)[keyof typeof ScaleOrderByRelevanceFieldEnum]

@@ -1,0 +1,822 @@
+{
+  "schemaVersion": "2.0.0",
+  "version": "1.0.0",
+  "scales": [
+    {
+      "code": "DPO-S001",
+      "name": "Adaptación",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R011",
+        "DPO-R077",
+        "DPO-R089",
+        "DPO-R119",
+        "DPO-R265",
+        "DPO-R323",
+        "DPO-R331"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S002",
+      "name": "Mente Abierta",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R012",
+        "DPO-R063",
+        "DPO-R104",
+        "DPO-R144",
+        "DPO-R194",
+        "DPO-R219",
+        "DPO-R284"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S003",
+      "name": "Pensamiento divergente",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R032",
+        "DPO-R098",
+        "DPO-R105",
+        "DPO-R132",
+        "DPO-R202",
+        "DPO-R213",
+        "DPO-R268"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S004",
+      "name": "Expectativa Profesional",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R010",
+        "DPO-R084",
+        "DPO-R121",
+        "DPO-R148",
+        "DPO-R212",
+        "DPO-R302",
+        "DPO-R321"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S005",
+      "name": "Expectativas",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R001",
+        "DPO-R018",
+        "DPO-R055",
+        "DPO-R075",
+        "DPO-R193",
+        "DPO-R239",
+        "DPO-R253"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S006",
+      "name": "Superación",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R040",
+        "DPO-R082",
+        "DPO-R128",
+        "DPO-R164",
+        "DPO-R262",
+        "DPO-R282",
+        "DPO-R326"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S007",
+      "name": "Autorefuerzo",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R009",
+        "DPO-R124",
+        "DPO-R151",
+        "DPO-R153",
+        "DPO-R197",
+        "DPO-R228",
+        "DPO-R287"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S008",
+      "name": "Autosupervisión",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R013",
+        "DPO-R035",
+        "DPO-R099",
+        "DPO-R131",
+        "DPO-R196",
+        "DPO-R291",
+        "DPO-R309"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S009",
+      "name": "Enfoque",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R017",
+        "DPO-R053",
+        "DPO-R073",
+        "DPO-R087",
+        "DPO-R199",
+        "DPO-R251",
+        "DPO-R269"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S010",
+      "name": "Autoconocimiento",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R023",
+        "DPO-R081",
+        "DPO-R129",
+        "DPO-R167",
+        "DPO-R205",
+        "DPO-R223",
+        "DPO-R303"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S011",
+      "name": "Autocontrol",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R029",
+        "DPO-R050",
+        "DPO-R070",
+        "DPO-R157",
+        "DPO-R245",
+        "DPO-R271",
+        "DPO-R324"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S012",
+      "name": "Temple",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R028",
+        "DPO-R042",
+        "DPO-R080",
+        "DPO-R166",
+        "DPO-R222",
+        "DPO-R258",
+        "DPO-R320"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S013",
+      "name": "Habilidad Administrativa",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R036",
+        "DPO-R097",
+        "DPO-R125",
+        "DPO-R192",
+        "DPO-R236",
+        "DPO-R259",
+        "DPO-R301"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S014",
+      "name": "Control Percibido",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R033",
+        "DPO-R065",
+        "DPO-R111",
+        "DPO-R183",
+        "DPO-R206",
+        "DPO-R288",
+        "DPO-R308"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S015",
+      "name": "Tolerancia al Conflicto",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R034",
+        "DPO-R130",
+        "DPO-R150",
+        "DPO-R172",
+        "DPO-R216",
+        "DPO-R250",
+        "DPO-R334"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S016",
+      "name": "Autoconfianza",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R025",
+        "DPO-R049",
+        "DPO-R101",
+        "DPO-R162",
+        "DPO-R237",
+        "DPO-R299",
+        "DPO-R311"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S017",
+      "name": "Merecimiento",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R014",
+        "DPO-R031",
+        "DPO-R062",
+        "DPO-R091",
+        "DPO-R233",
+        "DPO-R260",
+        "DPO-R285"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S018",
+      "name": "Optimismo",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R003",
+        "DPO-R066",
+        "DPO-R086",
+        "DPO-R149",
+        "DPO-R230",
+        "DPO-R267",
+        "DPO-R304"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S019",
+      "name": "Energía",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R045",
+        "DPO-R085",
+        "DPO-R171",
+        "DPO-R184",
+        "DPO-R224",
+        "DPO-R257",
+        "DPO-R333"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S020",
+      "name": "Esfuerzo",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R059",
+        "DPO-R133",
+        "DPO-R147",
+        "DPO-R182",
+        "DPO-R226",
+        "DPO-R290",
+        "DPO-R314"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S021",
+      "name": "Tenacidad",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R054",
+        "DPO-R110",
+        "DPO-R146",
+        "DPO-R176",
+        "DPO-R218",
+        "DPO-R240",
+        "DPO-R280"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S022",
+      "name": "Autonomía",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R037",
+        "DPO-R083",
+        "DPO-R138",
+        "DPO-R163",
+        "DPO-R209",
+        "DPO-R225",
+        "DPO-R335"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S023",
+      "name": "Capacidad de reacción",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R019",
+        "DPO-R096",
+        "DPO-R154",
+        "DPO-R185",
+        "DPO-R238",
+        "DPO-R307",
+        "DPO-R319"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S024",
+      "name": "Emprendimiento",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R047",
+        "DPO-R094",
+        "DPO-R108",
+        "DPO-R120",
+        "DPO-R235",
+        "DPO-R283",
+        "DPO-R327"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S025",
+      "name": "Compromiso",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R061",
+        "DPO-R100",
+        "DPO-R159",
+        "DPO-R191",
+        "DPO-R201",
+        "DPO-R273",
+        "DPO-R316"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S026",
+      "name": "Confiabilidad",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R090",
+        "DPO-R107",
+        "DPO-R113",
+        "DPO-R143",
+        "DPO-R229",
+        "DPO-R244",
+        "DPO-R275"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S027",
+      "name": "Rectitud",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R058",
+        "DPO-R141",
+        "DPO-R165",
+        "DPO-R178",
+        "DPO-R256",
+        "DPO-R274",
+        "DPO-R279"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S028",
+      "name": "Influencia",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R002",
+        "DPO-R117",
+        "DPO-R145",
+        "DPO-R155",
+        "DPO-R200",
+        "DPO-R254",
+        "DPO-R328"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S029",
+      "name": "Percepción Interpersonal",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R024",
+        "DPO-R127",
+        "DPO-R173",
+        "DPO-R186",
+        "DPO-R198",
+        "DPO-R232",
+        "DPO-R242"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S030",
+      "name": "Sociabilidad",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R092",
+        "DPO-R106",
+        "DPO-R126",
+        "DPO-R160",
+        "DPO-R248",
+        "DPO-R294",
+        "DPO-R310"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S031",
+      "name": "Consciencia del Entorno",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R030",
+        "DPO-R071",
+        "DPO-R102",
+        "DPO-R136",
+        "DPO-R207",
+        "DPO-R261",
+        "DPO-R298"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S032",
+      "name": "Pensamiento Lógico",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R056",
+        "DPO-R074",
+        "DPO-R156",
+        "DPO-R175",
+        "DPO-R247",
+        "DPO-R295",
+        "DPO-R318"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S033",
+      "name": "Visión Sistémica",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R048",
+        "DPO-R064",
+        "DPO-R114",
+        "DPO-R170",
+        "DPO-R214",
+        "DPO-R234",
+        "DPO-R266"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S034",
+      "name": "Anticipación",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R007",
+        "DPO-R022",
+        "DPO-R043",
+        "DPO-R057",
+        "DPO-R221",
+        "DPO-R277",
+        "DPO-R330"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S035",
+      "name": "Participación",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R122",
+        "DPO-R134",
+        "DPO-R179",
+        "DPO-R190",
+        "DPO-R210",
+        "DPO-R286",
+        "DPO-R317"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S036",
+      "name": "Resolución",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R004",
+        "DPO-R046",
+        "DPO-R112",
+        "DPO-R168",
+        "DPO-R249",
+        "DPO-R264",
+        "DPO-R292"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S037",
+      "name": "Automejoramiento",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R041",
+        "DPO-R051",
+        "DPO-R139",
+        "DPO-R177",
+        "DPO-R278",
+        "DPO-R297",
+        "DPO-R313"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S038",
+      "name": "Perseverancia",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R020",
+        "DPO-R068",
+        "DPO-R152",
+        "DPO-R174",
+        "DPO-R270",
+        "DPO-R276",
+        "DPO-R325"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S039",
+      "name": "Recuperación",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R008",
+        "DPO-R027",
+        "DPO-R140",
+        "DPO-R142",
+        "DPO-R246",
+        "DPO-R306",
+        "DPO-R332"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S040",
+      "name": "Salud Financiera",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R021",
+        "DPO-R076",
+        "DPO-R088",
+        "DPO-R109",
+        "DPO-R215",
+        "DPO-R296",
+        "DPO-R312"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S041",
+      "name": "Satisfacción",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R006",
+        "DPO-R026",
+        "DPO-R116",
+        "DPO-R187",
+        "DPO-R208",
+        "DPO-R272",
+        "DPO-R336"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S042",
+      "name": "Apertura a oportunidades",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R015",
+        "DPO-R137",
+        "DPO-R181",
+        "DPO-R189",
+        "DPO-R211",
+        "DPO-R227",
+        "DPO-R241"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S043",
+      "name": "Alineamiento de Acciones",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R078",
+        "DPO-R093",
+        "DPO-R103",
+        "DPO-R169",
+        "DPO-R243",
+        "DPO-R289",
+        "DPO-R329"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S044",
+      "name": "Claridad de estrategia",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R005",
+        "DPO-R052",
+        "DPO-R079",
+        "DPO-R118",
+        "DPO-R255",
+        "DPO-R281",
+        "DPO-R305"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S045",
+      "name": "Visión clara",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R044",
+        "DPO-R072",
+        "DPO-R158",
+        "DPO-R188",
+        "DPO-R204",
+        "DPO-R220",
+        "DPO-R300"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S046",
+      "name": "Anteposición de intereses",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R069",
+        "DPO-R115",
+        "DPO-R135",
+        "DPO-R161",
+        "DPO-R203",
+        "DPO-R217",
+        "DPO-R315"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S047",
+      "name": "Aprovechamiento de Talentos",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R039",
+        "DPO-R067",
+        "DPO-R095",
+        "DPO-R123",
+        "DPO-R195",
+        "DPO-R231",
+        "DPO-R263"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    },
+    {
+      "code": "DPO-S048",
+      "name": "Sentido de contribución",
+      "aggregationMethod": "SUM_REACTIVE_CONTRIBUTIONS",
+      "reactiveCodes": [
+        "DPO-R016",
+        "DPO-R038",
+        "DPO-R060",
+        "DPO-R180",
+        "DPO-R252",
+        "DPO-R293",
+        "DPO-R322"
+      ],
+      "expectedReactiveCount": 7,
+      "positiveReactiveCount": 4,
+      "negativeReactiveCount": 3
+    }
+  ]
+}

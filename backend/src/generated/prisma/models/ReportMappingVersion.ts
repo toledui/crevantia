@@ -239,6 +239,7 @@ export type ReportMappingVersionWhereInput = {
   reportMapping?: Prisma.XOR<Prisma.ReportMappingScalarRelationFilter, Prisma.ReportMappingWhereInput>
   assessmentVersion?: Prisma.XOR<Prisma.AssessmentVersionScalarRelationFilter, Prisma.AssessmentVersionWhereInput>
   resultRuns?: Prisma.ResultRunListRelationFilter
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationListRelationFilter
 }
 
 export type ReportMappingVersionOrderByWithRelationInput = {
@@ -253,6 +254,7 @@ export type ReportMappingVersionOrderByWithRelationInput = {
   reportMapping?: Prisma.ReportMappingOrderByWithRelationInput
   assessmentVersion?: Prisma.AssessmentVersionOrderByWithRelationInput
   resultRuns?: Prisma.ResultRunOrderByRelationAggregateInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationOrderByRelationAggregateInput
   _relevance?: Prisma.ReportMappingVersionOrderByRelevanceInput
 }
 
@@ -272,6 +274,7 @@ export type ReportMappingVersionWhereUniqueInput = Prisma.AtLeast<{
   reportMapping?: Prisma.XOR<Prisma.ReportMappingScalarRelationFilter, Prisma.ReportMappingWhereInput>
   assessmentVersion?: Prisma.XOR<Prisma.AssessmentVersionScalarRelationFilter, Prisma.AssessmentVersionWhereInput>
   resultRuns?: Prisma.ResultRunListRelationFilter
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationListRelationFilter
 }, "id" | "reportMappingId_version">
 
 export type ReportMappingVersionOrderByWithAggregationInput = {
@@ -314,6 +317,7 @@ export type ReportMappingVersionCreateInput = {
   reportMapping: Prisma.ReportMappingCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutReportMappingVersionsInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutReportMappingVersionInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionUncheckedCreateInput = {
@@ -326,6 +330,7 @@ export type ReportMappingVersionUncheckedCreateInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: string | null
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutReportMappingVersionInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionUpdateInput = {
@@ -338,6 +343,7 @@ export type ReportMappingVersionUpdateInput = {
   reportMapping?: Prisma.ReportMappingUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutReportMappingVersionsNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutReportMappingVersionNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionUncheckedUpdateInput = {
@@ -350,6 +356,7 @@ export type ReportMappingVersionUncheckedUpdateInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutReportMappingVersionNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionCreateManyInput = {
@@ -381,6 +388,11 @@ export type ReportMappingVersionUncheckedUpdateManyInput = {
   mappingStatus?: Prisma.StringFieldUpdateOperationsInput | string
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type ReportMappingVersionNullableScalarRelationFilter = {
+  is?: Prisma.ReportMappingVersionWhereInput | null
+  isNot?: Prisma.ReportMappingVersionWhereInput | null
 }
 
 export type ReportMappingVersionListRelationFilter = {
@@ -443,9 +455,20 @@ export type ReportMappingVersionSumOrderByAggregateInput = {
   version?: Prisma.SortOrder
 }
 
-export type ReportMappingVersionNullableScalarRelationFilter = {
-  is?: Prisma.ReportMappingVersionWhereInput | null
-  isNot?: Prisma.ReportMappingVersionWhereInput | null
+export type ReportMappingVersionCreateNestedOneWithoutActiveConfigurationsInput = {
+  create?: Prisma.XOR<Prisma.ReportMappingVersionCreateWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUncheckedCreateWithoutActiveConfigurationsInput>
+  connectOrCreate?: Prisma.ReportMappingVersionCreateOrConnectWithoutActiveConfigurationsInput
+  connect?: Prisma.ReportMappingVersionWhereUniqueInput
+}
+
+export type ReportMappingVersionUpdateOneWithoutActiveConfigurationsNestedInput = {
+  create?: Prisma.XOR<Prisma.ReportMappingVersionCreateWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUncheckedCreateWithoutActiveConfigurationsInput>
+  connectOrCreate?: Prisma.ReportMappingVersionCreateOrConnectWithoutActiveConfigurationsInput
+  upsert?: Prisma.ReportMappingVersionUpsertWithoutActiveConfigurationsInput
+  disconnect?: Prisma.ReportMappingVersionWhereInput | boolean
+  delete?: Prisma.ReportMappingVersionWhereInput | boolean
+  connect?: Prisma.ReportMappingVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportMappingVersionUpdateToOneWithWhereWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUpdateWithoutActiveConfigurationsInput>, Prisma.ReportMappingVersionUncheckedUpdateWithoutActiveConfigurationsInput>
 }
 
 export type ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput = {
@@ -548,6 +571,70 @@ export type ReportMappingVersionUpdateOneWithoutResultRunsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ReportMappingVersionUpdateToOneWithWhereWithoutResultRunsInput, Prisma.ReportMappingVersionUpdateWithoutResultRunsInput>, Prisma.ReportMappingVersionUncheckedUpdateWithoutResultRunsInput>
 }
 
+export type ReportMappingVersionCreateWithoutActiveConfigurationsInput = {
+  id?: string
+  version: number
+  status?: $Enums.ConfigurationStatus
+  mappingStatus?: string
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  reportMapping: Prisma.ReportMappingCreateNestedOneWithoutVersionsInput
+  assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutReportMappingVersionsInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutReportMappingVersionInput
+}
+
+export type ReportMappingVersionUncheckedCreateWithoutActiveConfigurationsInput = {
+  id?: string
+  reportMappingId: string
+  assessmentVersionId: string
+  version: number
+  status?: $Enums.ConfigurationStatus
+  mappingStatus?: string
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutReportMappingVersionInput
+}
+
+export type ReportMappingVersionCreateOrConnectWithoutActiveConfigurationsInput = {
+  where: Prisma.ReportMappingVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ReportMappingVersionCreateWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUncheckedCreateWithoutActiveConfigurationsInput>
+}
+
+export type ReportMappingVersionUpsertWithoutActiveConfigurationsInput = {
+  update: Prisma.XOR<Prisma.ReportMappingVersionUpdateWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUncheckedUpdateWithoutActiveConfigurationsInput>
+  create: Prisma.XOR<Prisma.ReportMappingVersionCreateWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUncheckedCreateWithoutActiveConfigurationsInput>
+  where?: Prisma.ReportMappingVersionWhereInput
+}
+
+export type ReportMappingVersionUpdateToOneWithWhereWithoutActiveConfigurationsInput = {
+  where?: Prisma.ReportMappingVersionWhereInput
+  data: Prisma.XOR<Prisma.ReportMappingVersionUpdateWithoutActiveConfigurationsInput, Prisma.ReportMappingVersionUncheckedUpdateWithoutActiveConfigurationsInput>
+}
+
+export type ReportMappingVersionUpdateWithoutActiveConfigurationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  mappingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reportMapping?: Prisma.ReportMappingUpdateOneRequiredWithoutVersionsNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutReportMappingVersionsNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutReportMappingVersionNestedInput
+}
+
+export type ReportMappingVersionUncheckedUpdateWithoutActiveConfigurationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMappingId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  mappingStatus?: Prisma.StringFieldUpdateOperationsInput | string
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutReportMappingVersionNestedInput
+}
+
 export type ReportMappingVersionCreateWithoutAssessmentVersionInput = {
   id?: string
   version: number
@@ -557,6 +644,7 @@ export type ReportMappingVersionCreateWithoutAssessmentVersionInput = {
   configurationHash?: string | null
   reportMapping: Prisma.ReportMappingCreateNestedOneWithoutVersionsInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutReportMappingVersionInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionUncheckedCreateWithoutAssessmentVersionInput = {
@@ -568,6 +656,7 @@ export type ReportMappingVersionUncheckedCreateWithoutAssessmentVersionInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: string | null
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutReportMappingVersionInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionCreateOrConnectWithoutAssessmentVersionInput = {
@@ -619,6 +708,7 @@ export type ReportMappingVersionCreateWithoutReportMappingInput = {
   configurationHash?: string | null
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutReportMappingVersionsInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutReportMappingVersionInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionUncheckedCreateWithoutReportMappingInput = {
@@ -630,6 +720,7 @@ export type ReportMappingVersionUncheckedCreateWithoutReportMappingInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: string | null
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutReportMappingVersionInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionCreateOrConnectWithoutReportMappingInput = {
@@ -667,6 +758,7 @@ export type ReportMappingVersionCreateWithoutResultRunsInput = {
   configurationHash?: string | null
   reportMapping: Prisma.ReportMappingCreateNestedOneWithoutVersionsInput
   assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutReportMappingVersionsInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionUncheckedCreateWithoutResultRunsInput = {
@@ -678,6 +770,7 @@ export type ReportMappingVersionUncheckedCreateWithoutResultRunsInput = {
   mappingStatus?: string
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: string | null
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedManyWithoutReportMappingVersionInput
 }
 
 export type ReportMappingVersionCreateOrConnectWithoutResultRunsInput = {
@@ -705,6 +798,7 @@ export type ReportMappingVersionUpdateWithoutResultRunsInput = {
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reportMapping?: Prisma.ReportMappingUpdateOneRequiredWithoutVersionsNestedInput
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutReportMappingVersionsNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionUncheckedUpdateWithoutResultRunsInput = {
@@ -716,6 +810,7 @@ export type ReportMappingVersionUncheckedUpdateWithoutResultRunsInput = {
   mappingStatus?: Prisma.StringFieldUpdateOperationsInput | string
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionCreateManyAssessmentVersionInput = {
@@ -737,6 +832,7 @@ export type ReportMappingVersionUpdateWithoutAssessmentVersionInput = {
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reportMapping?: Prisma.ReportMappingUpdateOneRequiredWithoutVersionsNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutReportMappingVersionNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionUncheckedUpdateWithoutAssessmentVersionInput = {
@@ -748,6 +844,7 @@ export type ReportMappingVersionUncheckedUpdateWithoutAssessmentVersionInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutReportMappingVersionNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionInput = {
@@ -779,6 +876,7 @@ export type ReportMappingVersionUpdateWithoutReportMappingInput = {
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutReportMappingVersionsNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutReportMappingVersionNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionUncheckedUpdateWithoutReportMappingInput = {
@@ -790,6 +888,7 @@ export type ReportMappingVersionUncheckedUpdateWithoutReportMappingInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutReportMappingVersionNestedInput
+  activeConfigurations?: Prisma.AssessmentActiveConfigurationUncheckedUpdateManyWithoutReportMappingVersionNestedInput
 }
 
 export type ReportMappingVersionUncheckedUpdateManyWithoutReportMappingInput = {
@@ -809,10 +908,12 @@ export type ReportMappingVersionUncheckedUpdateManyWithoutReportMappingInput = {
 
 export type ReportMappingVersionCountOutputType = {
   resultRuns: number
+  activeConfigurations: number
 }
 
 export type ReportMappingVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   resultRuns?: boolean | ReportMappingVersionCountOutputTypeCountResultRunsArgs
+  activeConfigurations?: boolean | ReportMappingVersionCountOutputTypeCountActiveConfigurationsArgs
 }
 
 /**
@@ -832,6 +933,13 @@ export type ReportMappingVersionCountOutputTypeCountResultRunsArgs<ExtArgs exten
   where?: Prisma.ResultRunWhereInput
 }
 
+/**
+ * ReportMappingVersionCountOutputType without action
+ */
+export type ReportMappingVersionCountOutputTypeCountActiveConfigurationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssessmentActiveConfigurationWhereInput
+}
+
 
 export type ReportMappingVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -845,6 +953,7 @@ export type ReportMappingVersionSelect<ExtArgs extends runtime.Types.Extensions.
   reportMapping?: boolean | Prisma.ReportMappingDefaultArgs<ExtArgs>
   assessmentVersion?: boolean | Prisma.AssessmentVersionDefaultArgs<ExtArgs>
   resultRuns?: boolean | Prisma.ReportMappingVersion$resultRunsArgs<ExtArgs>
+  activeConfigurations?: boolean | Prisma.ReportMappingVersion$activeConfigurationsArgs<ExtArgs>
   _count?: boolean | Prisma.ReportMappingVersionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["reportMappingVersion"]>
 
@@ -866,6 +975,7 @@ export type ReportMappingVersionInclude<ExtArgs extends runtime.Types.Extensions
   reportMapping?: boolean | Prisma.ReportMappingDefaultArgs<ExtArgs>
   assessmentVersion?: boolean | Prisma.AssessmentVersionDefaultArgs<ExtArgs>
   resultRuns?: boolean | Prisma.ReportMappingVersion$resultRunsArgs<ExtArgs>
+  activeConfigurations?: boolean | Prisma.ReportMappingVersion$activeConfigurationsArgs<ExtArgs>
   _count?: boolean | Prisma.ReportMappingVersionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -875,6 +985,7 @@ export type $ReportMappingVersionPayload<ExtArgs extends runtime.Types.Extension
     reportMapping: Prisma.$ReportMappingPayload<ExtArgs>
     assessmentVersion: Prisma.$AssessmentVersionPayload<ExtArgs>
     resultRuns: Prisma.$ResultRunPayload<ExtArgs>[]
+    activeConfigurations: Prisma.$AssessmentActiveConfigurationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1228,6 +1339,7 @@ export interface Prisma__ReportMappingVersionClient<T, Null = never, ExtArgs ext
   reportMapping<T extends Prisma.ReportMappingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReportMappingDefaultArgs<ExtArgs>>): Prisma.Prisma__ReportMappingClient<runtime.Types.Result.GetResult<Prisma.$ReportMappingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   assessmentVersion<T extends Prisma.AssessmentVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__AssessmentVersionClient<runtime.Types.Result.GetResult<Prisma.$AssessmentVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   resultRuns<T extends Prisma.ReportMappingVersion$resultRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReportMappingVersion$resultRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activeConfigurations<T extends Prisma.ReportMappingVersion$activeConfigurationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ReportMappingVersion$activeConfigurationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssessmentActiveConfigurationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1634,6 +1746,30 @@ export type ReportMappingVersion$resultRunsArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.ResultRunScalarFieldEnum | Prisma.ResultRunScalarFieldEnum[]
+}
+
+/**
+ * ReportMappingVersion.activeConfigurations
+ */
+export type ReportMappingVersion$activeConfigurationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssessmentActiveConfiguration
+   */
+  select?: Prisma.AssessmentActiveConfigurationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssessmentActiveConfiguration
+   */
+  omit?: Prisma.AssessmentActiveConfigurationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssessmentActiveConfigurationInclude<ExtArgs> | null
+  where?: Prisma.AssessmentActiveConfigurationWhereInput
+  orderBy?: Prisma.AssessmentActiveConfigurationOrderByWithRelationInput | Prisma.AssessmentActiveConfigurationOrderByWithRelationInput[]
+  cursor?: Prisma.AssessmentActiveConfigurationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssessmentActiveConfigurationScalarFieldEnum | Prisma.AssessmentActiveConfigurationScalarFieldEnum[]
 }
 
 /**

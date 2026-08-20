@@ -1,0 +1,3078 @@
+{
+  "sheet": "Reactivos",
+  "range": "A1:F384",
+  "values": [
+    [
+      "ID_único",
+      "ID_pares",
+      "Ítem",
+      "PN",
+      "Puntaje",
+      null
+    ],
+    [
+      null,
+      null,
+      "ELECCIÓN PAREADA",
+      null,
+      null,
+      null
+    ],
+    [
+      1,
+      1,
+      "Planeo certificarme formalmente sobre un tema que me interesa",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      2,
+      1,
+      "Soy bueno para ayudar a los demás a decidirse",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      3,
+      2,
+      "Tengo una habilidad que podría beneficiar a muchas personas",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      4,
+      2,
+      "Soy bueno para hacer las cosas suceder",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      5,
+      3,
+      "Sé perfectamente a qué me gustaría dedicarme en el futuro",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      6,
+      3,
+      "Me entusiasma pensar en todo lo que estoy haciendo actualmente",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      7,
+      4,
+      "Soy una persona precavida",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      8,
+      4,
+      "Me doy cuenta fácilmente de lo que debo cambiar en mí para mejorar mis resultados",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      9,
+      5,
+      "Me reconozco y felicito por mis aciertos en cada paso del camino",
+      "Pos",
+      1,
+      null
+    ],
+    [
+      10,
+      5,
+      "Busco proactivamente convertirme en la mejor versión de mí mismo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      11,
+      6,
+      "En situaciones de crisis puedo mantenerme enfocado en las tareas importantes",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      12,
+      6,
+      "Hago lo necesario por mantenerme actualizado",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      13,
+      7,
+      "Establezco estándares de desempeño claros para mí mismo y los uso de referencia para evaluar mi comportamiento",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      14,
+      7,
+      "Deseo adquirir la mayor cantidad de experiencia y conocimientos posible",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      15,
+      8,
+      "Facilito las cosas para que las oportunidades vengan a mí",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      16,
+      8,
+      "Siento un llamado por ayudar a hacer de este un mundo mejor",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      17,
+      9,
+      "Dedico mi tiempo y energía exclusivamente a las actividades que me acercan a mis objetivos",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      18,
+      9,
+      "Me animo a creer que en mi vida sucederán cosas significativas y extraordinarias",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      19,
+      10,
+      "Adelanto mi trabajo para estar listo por si algo se llega a necesitar",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      20,
+      10,
+      "Cuando un problema no está siendo fácil de resolver, sigo intentándolo hasta encontrar la respuesta",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      21,
+      11,
+      "Siempre guardo algo de lo que gano",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      22,
+      11,
+      "Evalúo muy bien mis decisiones antes de tomarlas",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      23,
+      12,
+      "En este momento puedo identificar claramente cuál es mi estado emocional",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      24,
+      12,
+      "Puedo predecir el comportamiento de las personas",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      25,
+      13,
+      "Me siento bien de ser yo mismo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      26,
+      13,
+      "Me gano la vida haciendo lo que más me gusta",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      27,
+      14,
+      "Si algo no sale como quiero me recupero rápidamente y lo vuelvo a intentar",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      28,
+      14,
+      "Cuando estoy estresado puedo pensar con claridad",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      29,
+      15,
+      "La gente confía en mí para administrar el dinero",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      30,
+      15,
+      "Para cumplir con todas mis responsabilidades me aseguro de conseguir la ayuda que necesito",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      31,
+      16,
+      "Me esfuerzo por ser una mejor persona",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      32,
+      16,
+      "Fácilmente encuentro relaciones entre variables que parecen ser distintas",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      33,
+      17,
+      "Observo mi situación financiera con regularidad",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      34,
+      17,
+      "Puedo negociar temas difícíles sin perder la calma",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      35,
+      18,
+      "Me concentro en las tareas que debo hacer, incluso si no me gustan",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      36,
+      18,
+      "Soy hábil para hacer que el dinero me rinda para todo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      37,
+      19,
+      "Sé muy bien cuáles son las capacidades que los demás valoran en mí",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      38,
+      19,
+      "Estoy convencido de que el trabajo que hago es útil para los demás",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      39,
+      20,
+      "He sabido cómo aprovechar mis habilidades y talentos para alcanzar el nivel que hoy tengo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      40,
+      20,
+      "Estoy decidido a ser El Mejor en lo que hago",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      41,
+      21,
+      "Me esfuerzo por mejorar mis capacidades",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      42,
+      21,
+      "Aún bajo estrés puedo realizar mis tareas sin equivocarme",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      43,
+      22,
+      "Preveo situaciones y reacciono a ellas antes de que sucedan",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      44,
+      22,
+      "Tengo una idea clara del futuro que quiero para mí",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      45,
+      23,
+      "Mantengo un alto nivel de dinamismo y energía",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      46,
+      23,
+      "Me siento impulsado a marcar una diferencia positiva en mi entorno",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      47,
+      24,
+      "Me preocupa que mi trabajo ayude a otras personas a mejorar su vida de alguna forma",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      48,
+      24,
+      "Frecuentemente estoy ideando nuevas formas para mejorar mis resultados",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      49,
+      25,
+      "Sé que puedo resolver problemas difíciles si me esfuerzo lo suficiente",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      50,
+      25,
+      "Puedo controlar mi temperamento cuando es necesario",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      51,
+      26,
+      "Me hago responsable de mi propio aprendizaje",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      52,
+      26,
+      "Puedo ver claramente la estrategia que debo seguir para lograr lo que más deseo en la vida",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      53,
+      27,
+      "Pongo atención a mi comportamiento para detectar lo que me funciona y lo que no",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      54,
+      27,
+      "Cuando quiero algo, no descanso hasta conseguirlo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      55,
+      28,
+      "Espero de mí mismo marcar una diferencia significativa para muchas personas",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      56,
+      28,
+      "Estoy convencido de que la manera de producir los mayores resultados es sumando pequeños logros uno a otro",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      57,
+      29,
+      "Constantemente estoy buscando mejores formas de hacer las cosas",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      58,
+      29,
+      "Yo jamás he ofrecido dinero para acelerar un trámite",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      59,
+      30,
+      "Me esfuerzo un montón por lograr y superar los estándares fijados",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      60,
+      30,
+      "Detecto oportunidades mucho antes de que otros puedan",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      61,
+      31,
+      "A lo largo de mi trayectoria he construido una excelente reputación",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      62,
+      31,
+      "Pretendo lograr el mayor éxito financiero y profesional posible en mi vida",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      63,
+      32,
+      "Adquiero conocimientos para estar a la altura de lo que está sucediendo hoy en el mundo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      64,
+      32,
+      "Me es fácil encontrar múltiples soluciones a un mismo problema",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      65,
+      33,
+      "Tomo decisiones que me ayudan a fortalecer mi posición",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      66,
+      33,
+      "Soy positivo cuando pienso en el futuro",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      67,
+      34,
+      "Me esfuerzo cada día para ser mejor en lo que hago",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      68,
+      34,
+      "Si me equivoco, puedo cambiar de estrategia pero sigo adelante",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      69,
+      35,
+      "Rechazo las oportunidades de trabajo que no corresponden a mis mayores intereses",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      70,
+      35,
+      "Comprendo bien mis emociones",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      71,
+      36,
+      "Rápidamente puedo percibir los cambios del entorno",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      72,
+      36,
+      "Sé muy bien adónde quiero llegar en la vida",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      73,
+      37,
+      "Me adapto bien a los cambios de rutinas",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      74,
+      37,
+      "Me divierte realizar juegos mentales que ponen a prueba mi inteligencia",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      75,
+      38,
+      "Tengo la firme expectativa de mejorar notablemente para el próximo año",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      76,
+      38,
+      "Cuando se trata de dinero, tomo decisiones fría, racional y concienzudamente",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      77,
+      39,
+      "Cuando algo no sale como quiero enfoco rápidamente mi energía en soluciones constructivas",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      78,
+      39,
+      "En el último año he conseguido todo lo que me he propuesto",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      79,
+      40,
+      "Hoy hago cosas que son importantes para mí",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      80,
+      40,
+      "Actúo racionalmente ante las dificultades",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      81,
+      41,
+      "Conozco muy bien cuáles son las cosas que me enojan o me ponen triste",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      82,
+      41,
+      "Me implico en actividades que me ayudan a superarme a mí mismo",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      83,
+      42,
+      "Difícilmente dejo algún pendiente sin completar",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      84,
+      42,
+      "Pretendo recibir la máxima educación disponible que hay en mi campo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      85,
+      43,
+      "Puedo trabajar horas extra sin perder efectividad en mi trabajo",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      86,
+      43,
+      "Tengo la certeza de que me irá bien en la vida",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      87,
+      44,
+      "Si tengo un objetivo ambicioso, lo fracciono en metas cortas para ir un paso a la vez",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      88,
+      44,
+      "Me administro de una forma que siempre me queda algo para ahorrar",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      89,
+      45,
+      "Reacciono con la urgencia apropiada en situaciones de peligro",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      90,
+      45,
+      "Vivo mi vida con un alto compromiso y sentido del deber",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      91,
+      46,
+      "Creo en mí para lograr lo que pretendo",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      92,
+      46,
+      "Procuro y fomento mis relaciones",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      93,
+      47,
+      "Antes de hacer algo, dedico suficiente tiempo a planear",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      94,
+      47,
+      "Prefiero arriesgarme y perder que lamentarme luego por haber dejado ir una buena oportunidad",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      95,
+      48,
+      "Me empeño en mejorar mis habilidades para producir mayores resultados",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      96,
+      48,
+      "Me aseguro de encontrar la forma de lograr mis metas y objetivos",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      97,
+      49,
+      "Me aseguro de administrar bien los saldos en mis tarjetas para evitar cargos financieros",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      98,
+      49,
+      "Para resolver un problema, identifico soluciones posibles que otros pasan por alto",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      99,
+      50,
+      "Puedo darme cuenta de mis emociones mientras estoy trabajando",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      100,
+      50,
+      "Cuando me comprometo con algo mi voluntad es inquebrantable",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      101,
+      51,
+      "Pienso bien de mí mismo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      102,
+      51,
+      "Para determinar la causa de un problema busco información más allá del evento específico que se ha presentado",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      103,
+      52,
+      "Sé muy bien cuáles son las capacidades que debo desarrollar para tener éxito en mi camino",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      104,
+      52,
+      "Busco activamente prepararme para los cambios venideros",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      105,
+      53,
+      "Si no tengo los materiales que necesito, aprovecho creativamente los que tengo disponibles",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      106,
+      53,
+      "Procuro rodearme de gente positiva y exitosa",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      107,
+      54,
+      "Mis convicciones me guían para actuar en la vida",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      108,
+      54,
+      "Me involucro activamente en los problemas de los grupos a los que pertenezco",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      109,
+      55,
+      "Tengo claras mis metas de ahorro, a corto, mediano y largo plazo",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      110,
+      55,
+      "Persigo mis sueños con empeño",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      111,
+      56,
+      "Tengo control total sobre mi situación actual",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      112,
+      56,
+      "Intervengo oportunamente para aclarar los malos entendidos",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      113,
+      57,
+      "Si participo en una competencia, digo la verdad aunque los demás estén mintiendo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      114,
+      57,
+      "Intento entender cómo es que los factores de una situación están relacionados entre sí",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      115,
+      58,
+      "Quisiera dedicarme a mi pasión y poder cobrar por ello",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      116,
+      58,
+      "Siento que estoy en mi mejor momento",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      117,
+      59,
+      "Soy hábil para ganarme la confianza de la gente",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      118,
+      59,
+      "Conozco cuál es el trabajo que más quiero hacer en la vida",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      119,
+      60,
+      "Me manejo bien en situaciones de crisis",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      120,
+      60,
+      "Apoyo las ideas nuevas",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      121,
+      61,
+      "Me empeño en hacer que mi trayectoria laboral vaya en ascenso",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      122,
+      61,
+      "Contribuyo proactivamente para mejorar mi entorno de trabajo",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      123,
+      62,
+      "Conozco cuál es mi vocación y planeo dedicarme a ella en un futuro próximo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      124,
+      62,
+      "Generalmente logro lo que me propongo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      125,
+      63,
+      "En los últimos años he tomado muy buenas decisiones con mi dinero",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      126,
+      63,
+      "Me esfuerzo por hacer buenas relaciones en todos lados",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      127,
+      64,
+      "Siempre dejo una buena impresión en los demás",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      128,
+      64,
+      "Quiero ser considerado como una autoridad en mi campo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      129,
+      65,
+      "No permito que mis sentimientos interfieran con mi trabajo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      130,
+      65,
+      "La situación que vivo actualmente en mi vida me hace sentir en paz y en calma",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      131,
+      66,
+      "Busco la manera de cumplir a tiempo con todas mis responsabilidades",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      132,
+      66,
+      "Se me ocurren soluciones originales a los problemas a los que me enfrento",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      133,
+      67,
+      "Cuando estoy trabajando en algo, le dedico toda mi atención",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      134,
+      67,
+      "Me involucro propositivamente en los asuntos de mi comunidad",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      135,
+      68,
+      "Para mí es prioritario ganarme la vida haciendo lo que más me gusta",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      136,
+      68,
+      "Antes de tomar una decisión pienso en cómo un cambio puede impactar en otras situaciones",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      137,
+      69,
+      "Sacrifico parte de mis ganancias para volverlas a invertir",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      138,
+      69,
+      "Puedo con facilidad aislar mi mente del exterior para no distraerme",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      139,
+      70,
+      "Identifico las habilidades que debo fortalecer en mí mismo para mejorar mis resultados",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      140,
+      70,
+      "Aprendo de mis fracasos para intentarlo de nuevo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      141,
+      71,
+      "Si cometo un error, me aseguro que en el futuro no vuelva a suceder",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      142,
+      71,
+      "Mi carácter me ayuda a levantarme fortalecido de las crisis",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      143,
+      72,
+      "Pago mis deudas en su totalidad y en el plazo acordado",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      144,
+      72,
+      "Disfruto intercambiar opiniones y llegar a consensos con personas que piensan diferente a mí",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      145,
+      73,
+      "Estoy convencido de que tengo un alto poder de influencia en los demás",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      146,
+      73,
+      "Soy obstinado con mis metas y objetivos",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      147,
+      74,
+      "Me siento satisfecho con los resultados que hoy soy capaz de dar",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      148,
+      74,
+      "Soy exigente conmigo mismo",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      149,
+      75,
+      "Confío en que me irá bien en el futuro",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      150,
+      75,
+      "Puedo hablar de temas difíciles con mi pareja sin entrar en discusiones",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      151,
+      76,
+      "Analizo mis errores para aprender de ellos",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      152,
+      76,
+      "Sé muy bien qué es lo que debo hacer para cambiar lo que quiero mejorar en mí mismo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      153,
+      77,
+      "Evalúo regularmente el progreso de mi trabajo para cumplir a tiempo con mis objetivos",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      154,
+      77,
+      "Confío en mi capacidad para modificar lo que no me gusta de mi vida",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      155,
+      78,
+      "Sé cómo persuadir a otros para que se pongan de mi lado",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      156,
+      78,
+      "Puedo comprender fácilmente cómo piensan los demás",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      157,
+      79,
+      "Siempre cumplo lo que prometo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      158,
+      79,
+      "Cuando hago planes me aseguro de que estén bien calculados hacia la meta",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      159,
+      80,
+      "Mantengo contacto con las personas que he conocido en el camino",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      160,
+      80,
+      "Escucho con atención y considero las aportaciones que hacen los demás",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      161,
+      81,
+      "Rechazaría las ofertas de trabajo que no me permitieran dedicarme a lo que más me gusta hacer",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      162,
+      81,
+      "Mantengo la calma en situaciones difíciles",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      163,
+      82,
+      "Mi ahorro está creciendo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      164,
+      82,
+      "Dedico bastante tiempo y energía a mi propio desarrollo",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      165,
+      83,
+      "Llevo un calendario y me apego a él para administrarme",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      166,
+      83,
+      "Puedo mantenerme relajado en situaciones de presión",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      167,
+      84,
+      "Estoy consciente de la forma en la que mis emociones afectan a los demás",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      168,
+      84,
+      "Actúo proactivamente para resolver los contratiempos",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      169,
+      85,
+      "Hago listas de pendientes que reviso y actualizo a lo largo del día",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      170,
+      85,
+      "Suelo tener un plan B por si las cosas no salen como espero",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      171,
+      86,
+      "A lo largo de la jornada doy el máximo todo el tiempo",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      172,
+      86,
+      "Confío en mi capacidad para obtener un logro importante en un lapso de tiempo corto",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      173,
+      87,
+      "Generalmente puedo anticipar cómo reaccionarán las personas que conozco ante una situación determinada",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      174,
+      87,
+      "Aún en condiciones adversas me mantengo firme hasta el final",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      175,
+      88,
+      "Disfruto encontrar conexiones poco usuales en la información que reviso",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      176,
+      88,
+      "Me estoy esforzando en mi trabajo para mejorar mi situación en el mediano plazo",
+      "Pos",
+      1,
+      null
+    ],
+    [
+      177,
+      89,
+      "Me trazo a mí mismo objetivos concretos de aprendizaje en función de lo que quiero lograr",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      178,
+      89,
+      "Nunca he hecho trampa para ganar",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      179,
+      90,
+      "Me gusta participar con otras personas para lograr objetivos en común",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      180,
+      90,
+      "Me preocupo por los problemas de mi país y me involucro en las soluciones",
+      "Pos",
+      4,
+      null
+    ],
+    [
+      181,
+      91,
+      "Me implico activamente en crear oportunidades que me generen ingresos",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      182,
+      91,
+      "Sacrifico horas de sueño si es necesario para sacar adelante proyectos que para mí son importantes",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      183,
+      92,
+      "Dirijo mi vida en la dirección que quiero ir",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      184,
+      92,
+      "Puedo trabajar durante muchas horas manteniendo el mismo nivel de energía",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      185,
+      93,
+      "Cuando se pide la participación de todos soy el primero en levantar la mano",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      186,
+      93,
+      "Puedo adivinar la intención real de otras personas al hablar con ellos",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      187,
+      94,
+      "Hoy estoy cumpliendo con mis propósitos de vida más importantes",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      188,
+      94,
+      "Conozco las barreras que tendré que superar para lograr mis objetivos",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      189,
+      95,
+      "Fácilmente puedo pensar en estrategias para diversificar mis inversiones",
+      "Pos",
+      3,
+      null
+    ],
+    [
+      190,
+      95,
+      "Si alguien no está participando me acerco para ayudarlo a involucrarse",
+      "Pos",
+      2,
+      null
+    ],
+    [
+      191,
+      96,
+      "Me comprometo con mis proyectos y objetivos hasta sus últimas consecuencias",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      192,
+      96,
+      "Me aseguro de tener unas finanzas sanas",
+      "Pos",
+      5,
+      null
+    ],
+    [
+      193,
+      97,
+      "Mantengo expectativas bajas para mí mismo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      194,
+      97,
+      "En situaciones difíciles me pongo serio y pierdo el sentido del humor",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      195,
+      98,
+      "Actualmente no estoy desarrollando ninguna nueva habilidad que me ayude a hacer mejor mi trabajo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      196,
+      98,
+      "Me es difícil concentrar mi energía en la dirección que quiero ir",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      197,
+      99,
+      "Cuando algo sale mal tiendo a quejarme, echar la culpa o señalar a las circunstancias ",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      198,
+      99,
+      "Prefiero alejarme de la gente",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      199,
+      100,
+      "Me distraigo y pierdo el tiempo fácilmente",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      200,
+      100,
+      "Generalmente las personas no me reconocen como autoridad",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      201,
+      101,
+      "Me comprometo con entusiasmo pero luego se me olvida",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      202,
+      101,
+      "Las cosas que se me ocurren son aburridas y poco creativas",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      203,
+      102,
+      "Aceptaría cualquier trabajo porque sé que de todo puedo aprender muy rápido",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      204,
+      102,
+      "Todavía no identifico qué es lo que quiero lograr en mi vida",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      205,
+      103,
+      "Me es difícil anticipar mis cambios de ánimo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      206,
+      103,
+      "No veo cómo yo pueda resolver mis problemas actuales",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      207,
+      104,
+      "Difícilmente me entero de lo que se está haciendo en otros campos diferentes al mío",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      208,
+      104,
+      "No estoy disfrutando mi vida como me gustaría",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      209,
+      105,
+      "Cuando no entiendo algo me desespero y lo abandono",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      210,
+      105,
+      "Dudo que mi voto sea de mucha utilidad",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      211,
+      106,
+      "Actualmente no invierto mi dinero",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      212,
+      106,
+      "No veo sentido en exigirme demasiado",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      213,
+      107,
+      "Muy poco se me ocurren ideas creativas y novedosas",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      214,
+      107,
+      "Sospecho que yo mismo bloqueo las oportunidades, a veces sin darme cuenta",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      215,
+      108,
+      "En los últimos seis meses me quedé sin dinero por lo menos una vez",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      216,
+      108,
+      "Tengo un asunto no resuelto que me hace perder la concentración",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      217,
+      109,
+      "Si me ofrecieran un trabajo para el que sé que no tengo capacidad suficiente, igual lo tomaría",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      218,
+      109,
+      "Mi desempeño está por debajo de las expectativas",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      219,
+      110,
+      "Algunos dirían que soy intolerante o que no acepto a las personas como son",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      220,
+      110,
+      "Me esfuerzo poco para superarme a mí mismo",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      221,
+      111,
+      "Frecuentemente soy el último en darse cuenta de que las cosas no van bien",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      222,
+      111,
+      "Bajo estrés actúo con prisas y de forma descuidada",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      223,
+      112,
+      "Con frecuencia confundo mis emociones",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      224,
+      112,
+      "Mi desempeño se disminuye en situaciones de mucha exigencia",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      225,
+      113,
+      "Me dejo llevar por lo que opinan los demás",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      226,
+      113,
+      "A veces aparento tener virtudes que en realidad no poseo",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      227,
+      114,
+      "Mi nivel de ingreso se ha mantenido igual desde hace años",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      228,
+      114,
+      "Se me dificulta reconocer mis errores y fracasos",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      229,
+      115,
+      "Soy capaz de mentir para librarme de problemas",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      230,
+      115,
+      "A veces siento que no soy lo suficientemente bueno para lograr lo que quiero",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      231,
+      116,
+      "Desarrollar nuevas habilidades no es prioritario para mí en este momento",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      232,
+      116,
+      "Me cuesta entender los sentimientos de otras personas",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      233,
+      117,
+      "No tengo muchos motivos para enorgullecerme de mí mismo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      234,
+      117,
+      "Pierdo mucho tiempo buscando mis cosas cuando las necesito",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      235,
+      118,
+      "No arriesgaría recursos propios para abrir un negocio",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      236,
+      118,
+      "Se me dificulta cumplir a tiempo con mis obligaciones",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      239,
+      119,
+      "Me desanimo con facilidad ante los obstáculos",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      240,
+      119,
+      "Se me ocurren ideas pero me cuesta llevarlas a la práctica",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      241,
+      120,
+      "Prefiero ser conservador y esperar lo menos de la vida",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      242,
+      120,
+      "En ocasiones soy inconstante o indisciplinado",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      243,
+      121,
+      "Se me dificulta reconocer las buenas oportunidades de negocio",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      244,
+      121,
+      "Me es difícil darme cuenta cuando alguien me está mintiendo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      245,
+      122,
+      "Trabajo mucho pero consigo pocos resultados",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      246,
+      122,
+      "He alterado la verdad cuando ha sido necesario para zafarme de problemas",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      247,
+      123,
+      "Compro cosas sin pensarlo lo suficiente",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      248,
+      123,
+      "Desde la última vez que fracasé no estoy intentando nada nuevo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      249,
+      124,
+      "Desconozco cómo es que los cambios en el entorno pudieran afectar mis planes",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      250,
+      124,
+      "Se me dificulta relacionarme con los demás",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      251,
+      125,
+      "Los problemas me crecen por no atender a tiempo mis asuntos",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      252,
+      125,
+      "Al discutir con mi pareja (o familia) pierdo rápidamente la paciencia ",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      253,
+      126,
+      "Intento concentrarme pero pierdo el foco con facilidad",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      254,
+      126,
+      "Hacer una contribución importante al mundo no es algo que me preocupe por el momento",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      255,
+      127,
+      "A veces creo que me quejo mucho pero no propongo",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      256,
+      127,
+      "Dudo de mi capacidad para convencer a otros",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      257,
+      128,
+      "Me es difícil imaginar cómo será mi vida dentro de unos años",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      258,
+      128,
+      "Soy muy permisivo con los demás",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      259,
+      129,
+      "Quiero hacer muchas cosas pero me canso con facilidad",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      260,
+      129,
+      "Se me dificulta tomar decisiones bajo estrés",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      261,
+      130,
+      "Soy desordenado con mis finanzas",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      262,
+      130,
+      "Me cuesta aceptarme como soy",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      263,
+      131,
+      "Desconozco qué opciones tengo para invertir mi dinero",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      264,
+      131,
+      "Seguir estudiando es lo último que haría",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      265,
+      132,
+      "Desconozco de qué forma podría aprovechar mis talentos para generar mayores ingresos",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      266,
+      132,
+      "Pospongo lo más que puedo las tareas que no me gustan",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      267,
+      133,
+      "En una emergencia se me dificulta mantenerme concentrado",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      268,
+      133,
+      "Tiendo a dejar que se me acumulen los pendientes",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      269,
+      134,
+      "Dudo que mis circunstancias puedan mejorar para el mes que viene",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      270,
+      134,
+      "Estoy poco enterado de los problemas que hay en el mundo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      271,
+      135,
+      "A veces hago las cosas sin seguir un orden lógico",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      272,
+      135,
+      "Inicio con fuerza pero pasado un tiempo, dejo de dar seguimiento a mis avances",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      273,
+      136,
+      "Tiendo a perder la paciencia",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      274,
+      136,
+      "Me frustra darme cuenta de lo limitado que hoy me siento",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      275,
+      137,
+      "Abandono las tareas que me exigen demasiado esfuerzo",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      276,
+      137,
+      "Hay veces en las que tomar algo que no es tuyo puede estar justificado",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      277,
+      138,
+      "Me es difícil apegarme a los acuerdos que hago otras personas",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      278,
+      138,
+      "Me rindo cuando las cosas parecen no tener solución",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      279,
+      139,
+      "Me cuesta prever las consecuencias de mis actos",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      280,
+      139,
+      "Cuando las cosas no van bien, pienso que debería darme por vencido",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      281,
+      140,
+      "Cuando las cosas se tornan complicadas me es difícil saber qué es lo correcto de hacer",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      282,
+      140,
+      "Me hace falta tener más energía para completar mis actividades del día",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      283,
+      141,
+      "Desconozco el camino que debo seguir para hacer realidad mi visión personal",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      284,
+      141,
+      "A menos que sea absolutamente necesario, no estoy dispuesto a cambiar mi forma de trabajo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      285,
+      142,
+      "Se me dificulta pensar ideas innovadoras",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      286,
+      142,
+      "Me cierro a vivir nuevas experiencias",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      287,
+      143,
+      "Me resulta difícil disfrutar de mi vida",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      288,
+      143,
+      "Prefiero trabajar solo",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      289,
+      144,
+      "Me cuesta trabajo hablar en público",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      290,
+      144,
+      "A veces tengo que pedir prestado para cumplir con mis gastos del mes",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      291,
+      145,
+      "Prefiero no tener un plan y dejar que la vida me sorprenda",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      292,
+      145,
+      "Cuando estoy estresado suelo reaccionar de mal modo con los demás",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      293,
+      146,
+      "Para reconocer mis errores, necesito que otros me los hagan ver",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      294,
+      146,
+      "He dejado que otros paguen las consecuencias de mis malas decisiones",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      295,
+      147,
+      "Soy insensible a los problemas ajenos",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      296,
+      147,
+      "Entrar en contacto con otras personas me pone nervioso",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      297,
+      148,
+      "Se me dificulta relacionar conceptos complejos o ideas muy abstractas",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      298,
+      148,
+      "No acostumbro seguir un presupuesto de gasto",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      299,
+      149,
+      "Es difícil que cambie mi forma de hacer las cosas aunque me de cuenta de que no me están funcionando",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      300,
+      149,
+      "Es raro que me ponga a investigar que está sucediendo en mi país o en el mundo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      301,
+      150,
+      "Dudo tener el talento que se necesita para lograr el éxito que pretendo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      302,
+      150,
+      "Los proyectos en los que estoy involucrado obstaculizan mi camino hacia mis ideales",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      303,
+      151,
+      "Me siento preocupado por temas de dinero",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      304,
+      151,
+      "Me va mejor en trabajos de baja responsabilidad",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      305,
+      152,
+      "Mis emociones tienden a afectar mi objetividad",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      306,
+      152,
+      "Desconfío del futuro y de las nuevas ideas",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      307,
+      153,
+      "Todavía no tengo claro cuál es mi propósito en la vida",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      308,
+      153,
+      "La gente diría que me cuesta mucho reponerme de los fracasos",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      309,
+      154,
+      "Tiendo a dejar las cosas para después",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      310,
+      154,
+      "Desconozco cuánto debo, cuánto gano o cuánto tengo",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      311,
+      155,
+      "Me doy cuenta que estoy equivocado hasta que alguien me lo avisa",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      312,
+      155,
+      "Me impaciento cuando alguien me platica sus problemas",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      313,
+      156,
+      "Me siento intranquilo o irritable ante situaciones nuevas o cambiantes",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      314,
+      156,
+      "Invariablemente me quedo sin dinero",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      315,
+      157,
+      "Me enfada escuchar críticas sobre mi trabajo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      316,
+      157,
+      "Necesito supervisión para completar mis tareas",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      317,
+      158,
+      "Acepto las nuevas oportunidades de trabajo aunque estas no correspondan a mi predilección",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      318,
+      158,
+      "Si un libro se vuelve difícil de entender, lo abandono y comienzo uno nuevo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      319,
+      159,
+      "Conocer las razones del porqué de los problemas no es interesante para mí",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      320,
+      159,
+      "Desconozco qué es lo que más me conviene hacer para lograr mis ideales",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      321,
+      160,
+      "Cuando se me agota el entusiasmo inicial, abandono la actividad para ir por otra nueva",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      322,
+      160,
+      "En situaciones de presión cometo más errores de lo normal",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      323,
+      161,
+      "Funciono mejor en trabajos de baja responsabilidad",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      324,
+      161,
+      "Invariablemente veo primero por mis propios intereses",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      325,
+      162,
+      "En situaciones de conflicto pierdo el profesionalismo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      326,
+      162,
+      "En ocasiones actúo impulsivamente",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      327,
+      163,
+      "Pierdo la motivación cuando las cosas no salen como quiero",
+      "Neg",
+      4,
+      null
+    ],
+    [
+      328,
+      163,
+      "No me motiva recibir reconocimientos por mi buen desempeño",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      329,
+      164,
+      "Ignoro cuáles son los retos a los que se enfrentará mi profesión en el corto plazo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      330,
+      164,
+      "Es común que en las negociaciones con otros yo salga perdiendo",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      331,
+      165,
+      "Me cuesta reconocer mis áreas de oportunidad",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      332,
+      165,
+      "Tiendo a reaccionar a los problemas cuando ya se presentaron o cuando ya es demasiado tarde",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      333,
+      166,
+      "Tengo planes, pero no hago mucho por traerlos a la práctica",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      334,
+      166,
+      "Cometer errores me desanima al grado de pensar en renunciar a mi objetivo",
+      "Neg",
+      3,
+      null
+    ],
+    [
+      335,
+      167,
+      "Prefiero los trabajos de poca exigencia",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      336,
+      167,
+      "Discutir temas difíciles con otros me pone irritable o de mal humor",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      337,
+      168,
+      "Me preocupa la idea de no estar acompañado",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      338,
+      168,
+      "Me frustro cuando pienso en mi situación actual",
+      "Neg",
+      2,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      "ESCALA LIKERT",
+      null,
+      null,
+      null
+    ],
+    [
+      1,
+      "-",
+      "Tengo claras mis metas de ahorro, a corto, mediano y largo plazo.",
+      "Ahorro",
+      "Directo 1-5",
+      null
+    ],
+    [
+      2,
+      "-",
+      "Gasto únicamente en lo necesario.",
+      "Gasto",
+      "Directo 1-5",
+      null
+    ],
+    [
+      3,
+      "-",
+      "Tengo un plan para incrementar mis ingresos en el corto plazo.",
+      "Ingreso",
+      "Directo 1-5",
+      null
+    ],
+    [
+      4,
+      "-",
+      "Estoy ahorrando para un objetivo de largo plazo.",
+      "Ahorro",
+      "Directo 1-5",
+      null
+    ],
+    [
+      5,
+      "-",
+      "Cuando se trata de dinero, tomo decisiones fría, racional y concienzudamente.",
+      "Gasto",
+      "Directo 1-5",
+      null
+    ],
+    [
+      6,
+      "-",
+      "Invierto mi dinero en opciones que son convenientes para mí.",
+      "Inversión",
+      "Directo 1-5",
+      null
+    ],
+    [
+      7,
+      "-",
+      "Nunca dejo ir una buena oportunidad para ganar un dinero extra.",
+      "Ingreso",
+      "Directo 1-5",
+      null
+    ],
+    [
+      8,
+      "-",
+      "Siempre guardo algo de lo que gano.",
+      "Ahorro",
+      "Directo 1-5",
+      null
+    ],
+    [
+      9,
+      "-",
+      "Me implico activamente en crear oportunidades que me generen ingresos.",
+      "Ingreso",
+      "Directo 1-5",
+      null
+    ],
+    [
+      10,
+      "-",
+      "Realizo inversiones que me producen cada vez mejores rendimientos.",
+      "Inversión",
+      "Directo 1-5",
+      null
+    ],
+    [
+      11,
+      "-",
+      "Mis deudas están perfectamente controladas.",
+      "Deuda",
+      "Directo 1-5",
+      null
+    ],
+    [
+      12,
+      "-",
+      "Me administro de una forma que siempre me queda algo para ahorrar.",
+      "Gasto",
+      "Directo 1-5",
+      null
+    ],
+    [
+      13,
+      "-",
+      "Solo compro lo realmente necesario",
+      "Ahorro",
+      "Directo 1-5",
+      null
+    ],
+    [
+      14,
+      "-",
+      "Al tomar decisiones de dinero me aseguro de obtener siempre el máximo rendimiento.",
+      "Gasto",
+      "Directo 1-5",
+      null
+    ],
+    [
+      15,
+      "-",
+      "Me aseguro de sacar el mayor provecho a los recursos que tengo disponibles.",
+      "Inversión",
+      "Directo 1-5",
+      null
+    ],
+    [
+      16,
+      "-",
+      "Estoy preparado para afrontar un imprevisto sin desestabilizar mis finanzas.",
+      "Deuda",
+      "Directo 1-5",
+      null
+    ],
+    [
+      17,
+      "-",
+      "De mis deudas siempre pago más del saldo mínimo.",
+      "Deuda",
+      "Directo 1-5",
+      null
+    ],
+    [
+      18,
+      "-",
+      "Actualmente estoy invirtiendo mi dinero.",
+      "Inversión",
+      "Directo 1-5",
+      null
+    ],
+    [
+      19,
+      "-",
+      "Compro cosas solo cuando tengo la certeza de que las podré pagar.",
+      "Ahorro",
+      "Directo 1-5",
+      null
+    ],
+    [
+      20,
+      "-",
+      "Constantemente estoy ideando formas de ganar dinero.",
+      "Ingreso",
+      "Directo 1-5",
+      null
+    ],
+    [
+      21,
+      "-",
+      "Acostumbro seguir un presupuesto de gasto.",
+      "Gasto",
+      "Directo 1-5",
+      null
+    ],
+    [
+      22,
+      "-",
+      "Sacrifico parte de mis ganancias para volverlas a invertir.",
+      "Inversión",
+      "Directo 1-5",
+      null
+    ],
+    [
+      23,
+      "-",
+      "Facilito las cosas para que el dinero venga a mí.",
+      "Ingreso",
+      "Directo 1-5",
+      null
+    ],
+    [
+      24,
+      "-",
+      "Nunca gasto más de lo que gano.",
+      "Deuda",
+      "Directo 1-5",
+      null
+    ],
+    [
+      25,
+      "-",
+      "Acostumbro adelantar pagos para acabar más rápido con mis compromisos.",
+      "Deuda",
+      "Directo 1-5",
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      "CONTROL ESTADÍSTICO",
+      null,
+      null,
+      null
+    ],
+    [
+      1,
+      null,
+      "¿Cuál es tu nombre?",
+      "Texto",
+      null,
+      "Requerida"
+    ],
+    [
+      2,
+      null,
+      "¿Cuáles son tus apellidos?",
+      "Texto",
+      null,
+      "Requerida"
+    ],
+    [
+      3,
+      null,
+      "¿Cuál es tu correo electrónico?",
+      "Correo",
+      null,
+      "Requerida"
+    ],
+    [
+      4,
+      null,
+      "¿Cuál es tu número de teléfono celular?",
+      "Teléfono",
+      null,
+      "Opcional"
+    ],
+    [
+      5,
+      null,
+      "¿En qué país resides actualmente?",
+      "Combo",
+      "Precargado",
+      "Requerida"
+    ],
+    [
+      6,
+      null,
+      "¿En qué ciudad resides actualmente?",
+      "Combo",
+      "Precargado",
+      "Requerida"
+    ],
+    [
+      7,
+      null,
+      "¿Cuál es el nivel máximo de estudios que has concluido?",
+      "Combo",
+      "Educación primaria\nEducación secundaria\nBachillerato / Preparatoria / Educación media\nFormación técnica o tecnológica\nLicenciatura / Carrera universitaria\nEspecialidad / Posgrado\nMaestría\nDoctorado\nOtro",
+      "Requerida"
+    ],
+    [
+      8,
+      null,
+      "¿Cuál ha sido el mayor ingreso mensual promedio que has mantenido durante un periodo de al menos 6 meses consecutivos?",
+      "Combo",
+      "Escoger moneda.- Menos de USD $1,000 mensuales\nUSD $1,000 a $2,999\nUSD $3,000 a $5,999\nUSD $6,000 a $9,999\nUSD $10,000 o más",
+      "Requerida"
+    ],
+    [
+      9,
+      null,
+      "¿Cuál es el nivel de responsabilidad o posición profesional más alto que has alcanzado hasta ahora?",
+      "Combo",
+      "Sin experiencia profesional\nPuesto operativo, auxiliar o de apoyo\nEspecialista o profesional\nSupervisor / Jefatura / Gerencia\nDirección\nAlta dirección / Ejecutivo / Vicepresidencia\nDueño, socio de negocio o profesional independiente\nOtro",
+      "Requerida"
+    ],
+    [
+      10,
+      null,
+      "¿Cuál describe mejor la forma en que has desarrollado principalmente tu actividad profesional?",
+      "Combo",
+      "Como empleado en una organización\nComo profesional independiente o freelance\nComo dueño o socio de un negocio\nCombinando empleo y actividad independiente\nAún no he desarrollado una actividad profesional\nOtro",
+      "Requerida"
+    ],
+    [
+      11,
+      null,
+      "¿Cuál es tu principal área de formación académica?",
+      "Combo",
+      "Precargado",
+      "Requerida"
+    ],
+    [
+      12,
+      null,
+      "¿Cuáles son las tres áreas en las que consideras que tienes mayor experiencia o especialización profesional?",
+      "Texto",
+      null,
+      "Requerida"
+    ],
+    [
+      13,
+      null,
+      "¿Cuál es tu edad?",
+      "Texto",
+      null,
+      "Requerida"
+    ],
+    [
+      14,
+      null,
+      "¿Con qué género te identificas?",
+      "Combo",
+      "Mujer\nHombre\nNo binario / Otra identidad de género\nPrefiero no responder",
+      "Requerida"
+    ],
+    [
+      15,
+      null,
+      "¿Cuál es tu estado civil actual?",
+      "Combo",
+      "Soltero(a)\nCasado(a) / Unión libre\nSeparado(a) / Divorciado(a)\nOtro",
+      "Opcional"
+    ],
+    [
+      16,
+      null,
+      "¿Tienes hijos?",
+      "Combo",
+      "Sí / No",
+      "Opcional"
+    ],
+    [
+      17,
+      null,
+      "¿Cuál describe mejor tu situación laboral actual?",
+      "Combo",
+      "Empleado(a)\nEmprendedor(a) o dueño(a) de negocio\nProfesional independiente / Freelance\nEmpleado(a) y además emprendedor(a) o independiente\nActualmente no trabajo, pero estoy buscando empleo\nActualmente no trabajo y no estoy buscando empleo\nEstudiante\nJubilado(a) / Retirado(a)\nOtro",
+      "Opcional"
+    ]
+  ]
+}

@@ -1,0 +1,1150 @@
+{
+  "schemaVersion": "2.0.0",
+  "version": "1.0.0",
+  "calculation": {
+    "answerScale": "1_TO_5_DIRECT",
+    "allQuestionsDirect": true,
+    "allQuestionsEqualWeight": true,
+    "dimensionAggregation": "ARITHMETIC_MEAN_OF_5_RESPONSES",
+    "normalizeAfterMean": true,
+    "questionsPerDimension": 5
+  },
+  "dimensions": [
+    {
+      "code": "INGRESO",
+      "questionCodes": [
+        "DPO-L003",
+        "DPO-L007",
+        "DPO-L009",
+        "DPO-L020",
+        "DPO-L023"
+      ]
+    },
+    {
+      "code": "GASTO",
+      "questionCodes": [
+        "DPO-L002",
+        "DPO-L005",
+        "DPO-L012",
+        "DPO-L014",
+        "DPO-L021"
+      ]
+    },
+    {
+      "code": "AHORRO",
+      "questionCodes": [
+        "DPO-L001",
+        "DPO-L004",
+        "DPO-L008",
+        "DPO-L013",
+        "DPO-L019"
+      ]
+    },
+    {
+      "code": "DEUDA",
+      "questionCodes": [
+        "DPO-L011",
+        "DPO-L016",
+        "DPO-L017",
+        "DPO-L024",
+        "DPO-L025"
+      ]
+    },
+    {
+      "code": "INVERSION",
+      "questionCodes": [
+        "DPO-L006",
+        "DPO-L010",
+        "DPO-L015",
+        "DPO-L018",
+        "DPO-L022"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "code": "DPO-L001",
+      "order": 1,
+      "text": "Tengo claras mis metas de ahorro, a corto, mediano y largo plazo.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L002",
+      "order": 2,
+      "text": "Gasto únicamente en lo necesario.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L003",
+      "order": 3,
+      "text": "Tengo un plan para incrementar mis ingresos en el corto plazo.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L004",
+      "order": 4,
+      "text": "Estoy ahorrando para un objetivo de largo plazo.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L005",
+      "order": 5,
+      "text": "Cuando se trata de dinero, tomo decisiones fría, racional y concienzudamente.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L006",
+      "order": 6,
+      "text": "Invierto mi dinero en opciones que son convenientes para mí.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L007",
+      "order": 7,
+      "text": "Nunca dejo ir una buena oportunidad para ganar un dinero extra.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L008",
+      "order": 8,
+      "text": "Siempre guardo algo de lo que gano.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L009",
+      "order": 9,
+      "text": "Me implico activamente en crear oportunidades que me generen ingresos.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L010",
+      "order": 10,
+      "text": "Realizo inversiones que me producen cada vez mejores rendimientos.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L011",
+      "order": 11,
+      "text": "Mis deudas están perfectamente controladas.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L012",
+      "order": 12,
+      "text": "Me administro de una forma que siempre me queda algo para ahorrar.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L013",
+      "order": 13,
+      "text": "Solo compro lo realmente necesario",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L014",
+      "order": 14,
+      "text": "Al tomar decisiones de dinero me aseguro de obtener siempre el máximo rendimiento.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L015",
+      "order": 15,
+      "text": "Me aseguro de sacar el mayor provecho a los recursos que tengo disponibles.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L016",
+      "order": 16,
+      "text": "Estoy preparado para afrontar un imprevisto sin desestabilizar mis finanzas.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L017",
+      "order": 17,
+      "text": "De mis deudas siempre pago más del saldo mínimo.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L018",
+      "order": 18,
+      "text": "Actualmente estoy invirtiendo mi dinero.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L019",
+      "order": 19,
+      "text": "Compro cosas solo cuando tengo la certeza de que las podré pagar.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L020",
+      "order": 20,
+      "text": "Constantemente estoy ideando formas de ganar dinero.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L021",
+      "order": 21,
+      "text": "Acostumbro seguir un presupuesto de gasto.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L022",
+      "order": 22,
+      "text": "Sacrifico parte de mis ganancias para volverlas a invertir.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L023",
+      "order": 23,
+      "text": "Facilito las cosas para que el dinero venga a mí.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L024",
+      "order": 24,
+      "text": "Nunca gasto más de lo que gano.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L025",
+      "order": 25,
+      "text": "Acostumbro adelantar pagos para acabar más rápido con mis compromisos.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    }
+  ],
+  "normTargets": [
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-INGRESO",
+      "targetName": "INGRESO",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2.8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.2
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 3.6
+        },
+        {
+          "decile": 6,
+          "lowerBound": 3.8
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-GASTO",
+      "targetName": "GASTO",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.2
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.44
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.66
+        },
+        {
+          "decile": 5,
+          "lowerBound": 4
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.1
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.6
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-AHORRO",
+      "targetName": "AHORRO",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.300000000000001
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.6
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.699999999999999
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-DEUDA",
+      "targetName": "DEUDA",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.6399999999999997
+        },
+        {
+          "decile": 4,
+          "lowerBound": 4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.5
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.6
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.699999999999999
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-INVERSION",
+      "targetName": "INVERSIÓN",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2.64
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 3.8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.5
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.6
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_TOTAL",
+      "targetCode": "LIKERT-TOTAL",
+      "targetName": "TOTAL",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.28
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.64
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.824
+        },
+        {
+          "decile": 5,
+          "lowerBound": 3.936
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.1
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.336
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.482
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.628
+        }
+      ]
+    }
+  ]
+}

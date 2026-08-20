@@ -1,0 +1,5637 @@
+{
+  "schemaVersion": "2.0.0",
+  "assessment": {
+    "code": "DPO-PRO",
+    "name": "DPO-PRO",
+    "version": "1.0.0",
+    "status": "READY_TO_PUBLISH",
+    "language": "es-MX",
+    "sections": [
+      {
+        "code": "STATISTICAL_CONTROL",
+        "order": 1,
+        "type": "STATISTICAL_CONTROL",
+        "scored": false,
+        "questionCount": 17
+      },
+      {
+        "code": "PAIRED_POSITIVE",
+        "order": 2,
+        "type": "FORCED_CHOICE_PAIR",
+        "scored": true,
+        "questionCount": 96
+      },
+      {
+        "code": "PAIRED_NEGATIVE",
+        "order": 3,
+        "type": "FORCED_CHOICE_PAIR",
+        "scored": true,
+        "questionCount": 72
+      },
+      {
+        "code": "LIKERT_RESOURCE_MANAGEMENT",
+        "order": 4,
+        "type": "LIKERT_1_5",
+        "scored": true,
+        "questionCount": 25
+      }
+    ],
+    "source": {
+      "officialExcel": {
+        "filename": "Norma actualizada y reactivos envío TH 170826.xlsx",
+        "sha256": "c27903456bfc8732b87d0fdef1703dd5d3df186717bc1d3358c3568da2c67052",
+        "sheets": {
+          "Reactivos": "A1:F384",
+          "NORMAS": "A1:CU52",
+          "Tabla Combinaciones Competencia": "A1:AY76"
+        }
+      },
+      "clientResponse": {
+        "filename": "Respuesta a preguntas de cálculo 190826.docx",
+        "sha256": "8fe63a9c23f097cdf5916208cdaf79f09b5d6ea0b5a67c846b9fdef52b61fca0",
+        "keyConfirmations": [
+          "The official paired assessment has 96 positive pairs and 72 negative pairs.",
+          "The Likert section has 25 scored statements, not 31.",
+          "All Likert statements are positive/direct, scored 1 to 5, equal weight.",
+          "The five questions in each Likert dimension are averaged and then normalized using the corresponding norm.",
+          "The new Excel contains the official current norm.",
+          "Reactive-to-scale assignment does not change from the previously validated version."
+        ]
+      }
+    }
+  },
+  "statisticalControlQuestions": [
+    {
+      "code": "DPO-CTRL-01",
+      "order": 1,
+      "text": "¿Cuál es tu nombre?",
+      "inputType": "Texto",
+      "options": null,
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-02",
+      "order": 2,
+      "text": "¿Cuáles son tus apellidos?",
+      "inputType": "Texto",
+      "options": null,
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-03",
+      "order": 3,
+      "text": "¿Cuál es tu correo electrónico?",
+      "inputType": "Correo",
+      "options": null,
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-04",
+      "order": 4,
+      "text": "¿Cuál es tu número de teléfono celular?",
+      "inputType": "Teléfono",
+      "options": null,
+      "required": false,
+      "sourceRequirement": "Opcional",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-05",
+      "order": 5,
+      "text": "¿En qué país resides actualmente?",
+      "inputType": "Combo",
+      "options": [
+        "Precargado"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-06",
+      "order": 6,
+      "text": "¿En qué ciudad resides actualmente?",
+      "inputType": "Combo",
+      "options": [
+        "Precargado"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-07",
+      "order": 7,
+      "text": "¿Cuál es el nivel máximo de estudios que has concluido?",
+      "inputType": "Combo",
+      "options": [
+        "Educación primaria",
+        "Educación secundaria",
+        "Bachillerato / Preparatoria / Educación media",
+        "Formación técnica o tecnológica",
+        "Licenciatura / Carrera universitaria",
+        "Especialidad / Posgrado",
+        "Maestría",
+        "Doctorado",
+        "Otro"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-08",
+      "order": 8,
+      "text": "¿Cuál ha sido el mayor ingreso mensual promedio que has mantenido durante un periodo de al menos 6 meses consecutivos?",
+      "inputType": "Combo",
+      "options": [
+        "Escoger moneda.- Menos de USD $1,000 mensuales",
+        "USD $1,000 a $2,999",
+        "USD $3,000 a $5,999",
+        "USD $6,000 a $9,999",
+        "USD $10,000 o más"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-09",
+      "order": 9,
+      "text": "¿Cuál es el nivel de responsabilidad o posición profesional más alto que has alcanzado hasta ahora?",
+      "inputType": "Combo",
+      "options": [
+        "Sin experiencia profesional",
+        "Puesto operativo, auxiliar o de apoyo",
+        "Especialista o profesional",
+        "Supervisor / Jefatura / Gerencia",
+        "Dirección",
+        "Alta dirección / Ejecutivo / Vicepresidencia",
+        "Dueño, socio de negocio o profesional independiente",
+        "Otro"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-10",
+      "order": 10,
+      "text": "¿Cuál describe mejor la forma en que has desarrollado principalmente tu actividad profesional?",
+      "inputType": "Combo",
+      "options": [
+        "Como empleado en una organización",
+        "Como profesional independiente o freelance",
+        "Como dueño o socio de un negocio",
+        "Combinando empleo y actividad independiente",
+        "Aún no he desarrollado una actividad profesional",
+        "Otro"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-11",
+      "order": 11,
+      "text": "¿Cuál es tu principal área de formación académica?",
+      "inputType": "Combo",
+      "options": [
+        "Precargado"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-12",
+      "order": 12,
+      "text": "¿Cuáles son las tres áreas en las que consideras que tienes mayor experiencia o especialización profesional?",
+      "inputType": "Texto",
+      "options": null,
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-13",
+      "order": 13,
+      "text": "¿Cuál es tu edad?",
+      "inputType": "Texto",
+      "options": null,
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-14",
+      "order": 14,
+      "text": "¿Con qué género te identificas?",
+      "inputType": "Combo",
+      "options": [
+        "Mujer",
+        "Hombre",
+        "No binario / Otra identidad de género",
+        "Prefiero no responder"
+      ],
+      "required": true,
+      "sourceRequirement": "Requerida",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-15",
+      "order": 15,
+      "text": "¿Cuál es tu estado civil actual?",
+      "inputType": "Combo",
+      "options": [
+        "Soltero(a)",
+        "Casado(a) / Unión libre",
+        "Separado(a) / Divorciado(a)",
+        "Otro"
+      ],
+      "required": false,
+      "sourceRequirement": "Opcional",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-16",
+      "order": 16,
+      "text": "¿Tienes hijos?",
+      "inputType": "Combo",
+      "options": [
+        "Sí / No"
+      ],
+      "required": false,
+      "sourceRequirement": "Opcional",
+      "includeInScoring": false
+    },
+    {
+      "code": "DPO-CTRL-17",
+      "order": 17,
+      "text": "¿Cuál describe mejor tu situación laboral actual?",
+      "inputType": "Combo",
+      "options": [
+        "Empleado(a)",
+        "Emprendedor(a) o dueño(a) de negocio",
+        "Profesional independiente / Freelance",
+        "Empleado(a) y además emprendedor(a) o independiente",
+        "Actualmente no trabajo, pero estoy buscando empleo",
+        "Actualmente no trabajo y no estoy buscando empleo",
+        "Estudiante",
+        "Jubilado(a) / Retirado(a)",
+        "Otro"
+      ],
+      "required": false,
+      "sourceRequirement": "Opcional",
+      "includeInScoring": false
+    }
+  ],
+  "pairQuestions": [
+    {
+      "code": "DPO-P001",
+      "order": 1,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R001",
+        "DPO-R002"
+      ]
+    },
+    {
+      "code": "DPO-P002",
+      "order": 2,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R003",
+        "DPO-R004"
+      ]
+    },
+    {
+      "code": "DPO-P003",
+      "order": 3,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R005",
+        "DPO-R006"
+      ]
+    },
+    {
+      "code": "DPO-P004",
+      "order": 4,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R007",
+        "DPO-R008"
+      ]
+    },
+    {
+      "code": "DPO-P005",
+      "order": 5,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R009",
+        "DPO-R010"
+      ]
+    },
+    {
+      "code": "DPO-P006",
+      "order": 6,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R011",
+        "DPO-R012"
+      ]
+    },
+    {
+      "code": "DPO-P007",
+      "order": 7,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R013",
+        "DPO-R014"
+      ]
+    },
+    {
+      "code": "DPO-P008",
+      "order": 8,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R015",
+        "DPO-R016"
+      ]
+    },
+    {
+      "code": "DPO-P009",
+      "order": 9,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R017",
+        "DPO-R018"
+      ]
+    },
+    {
+      "code": "DPO-P010",
+      "order": 10,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R019",
+        "DPO-R020"
+      ]
+    },
+    {
+      "code": "DPO-P011",
+      "order": 11,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R021",
+        "DPO-R022"
+      ]
+    },
+    {
+      "code": "DPO-P012",
+      "order": 12,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R023",
+        "DPO-R024"
+      ]
+    },
+    {
+      "code": "DPO-P013",
+      "order": 13,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R025",
+        "DPO-R026"
+      ]
+    },
+    {
+      "code": "DPO-P014",
+      "order": 14,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R027",
+        "DPO-R028"
+      ]
+    },
+    {
+      "code": "DPO-P015",
+      "order": 15,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R029",
+        "DPO-R030"
+      ]
+    },
+    {
+      "code": "DPO-P016",
+      "order": 16,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R031",
+        "DPO-R032"
+      ]
+    },
+    {
+      "code": "DPO-P017",
+      "order": 17,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R033",
+        "DPO-R034"
+      ]
+    },
+    {
+      "code": "DPO-P018",
+      "order": 18,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R035",
+        "DPO-R036"
+      ]
+    },
+    {
+      "code": "DPO-P019",
+      "order": 19,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R037",
+        "DPO-R038"
+      ]
+    },
+    {
+      "code": "DPO-P020",
+      "order": 20,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R039",
+        "DPO-R040"
+      ]
+    },
+    {
+      "code": "DPO-P021",
+      "order": 21,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R041",
+        "DPO-R042"
+      ]
+    },
+    {
+      "code": "DPO-P022",
+      "order": 22,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R043",
+        "DPO-R044"
+      ]
+    },
+    {
+      "code": "DPO-P023",
+      "order": 23,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R045",
+        "DPO-R046"
+      ]
+    },
+    {
+      "code": "DPO-P024",
+      "order": 24,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R047",
+        "DPO-R048"
+      ]
+    },
+    {
+      "code": "DPO-P025",
+      "order": 25,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R049",
+        "DPO-R050"
+      ]
+    },
+    {
+      "code": "DPO-P026",
+      "order": 26,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R051",
+        "DPO-R052"
+      ]
+    },
+    {
+      "code": "DPO-P027",
+      "order": 27,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R053",
+        "DPO-R054"
+      ]
+    },
+    {
+      "code": "DPO-P028",
+      "order": 28,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R055",
+        "DPO-R056"
+      ]
+    },
+    {
+      "code": "DPO-P029",
+      "order": 29,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R057",
+        "DPO-R058"
+      ]
+    },
+    {
+      "code": "DPO-P030",
+      "order": 30,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R059",
+        "DPO-R060"
+      ]
+    },
+    {
+      "code": "DPO-P031",
+      "order": 31,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R061",
+        "DPO-R062"
+      ]
+    },
+    {
+      "code": "DPO-P032",
+      "order": 32,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R063",
+        "DPO-R064"
+      ]
+    },
+    {
+      "code": "DPO-P033",
+      "order": 33,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R065",
+        "DPO-R066"
+      ]
+    },
+    {
+      "code": "DPO-P034",
+      "order": 34,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R067",
+        "DPO-R068"
+      ]
+    },
+    {
+      "code": "DPO-P035",
+      "order": 35,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R069",
+        "DPO-R070"
+      ]
+    },
+    {
+      "code": "DPO-P036",
+      "order": 36,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R071",
+        "DPO-R072"
+      ]
+    },
+    {
+      "code": "DPO-P037",
+      "order": 37,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R073",
+        "DPO-R074"
+      ]
+    },
+    {
+      "code": "DPO-P038",
+      "order": 38,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R075",
+        "DPO-R076"
+      ]
+    },
+    {
+      "code": "DPO-P039",
+      "order": 39,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R077",
+        "DPO-R078"
+      ]
+    },
+    {
+      "code": "DPO-P040",
+      "order": 40,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R079",
+        "DPO-R080"
+      ]
+    },
+    {
+      "code": "DPO-P041",
+      "order": 41,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R081",
+        "DPO-R082"
+      ]
+    },
+    {
+      "code": "DPO-P042",
+      "order": 42,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R083",
+        "DPO-R084"
+      ]
+    },
+    {
+      "code": "DPO-P043",
+      "order": 43,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R085",
+        "DPO-R086"
+      ]
+    },
+    {
+      "code": "DPO-P044",
+      "order": 44,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R087",
+        "DPO-R088"
+      ]
+    },
+    {
+      "code": "DPO-P045",
+      "order": 45,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R089",
+        "DPO-R090"
+      ]
+    },
+    {
+      "code": "DPO-P046",
+      "order": 46,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R091",
+        "DPO-R092"
+      ]
+    },
+    {
+      "code": "DPO-P047",
+      "order": 47,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R093",
+        "DPO-R094"
+      ]
+    },
+    {
+      "code": "DPO-P048",
+      "order": 48,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R095",
+        "DPO-R096"
+      ]
+    },
+    {
+      "code": "DPO-P049",
+      "order": 49,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R097",
+        "DPO-R098"
+      ]
+    },
+    {
+      "code": "DPO-P050",
+      "order": 50,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R099",
+        "DPO-R100"
+      ]
+    },
+    {
+      "code": "DPO-P051",
+      "order": 51,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R101",
+        "DPO-R102"
+      ]
+    },
+    {
+      "code": "DPO-P052",
+      "order": 52,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R103",
+        "DPO-R104"
+      ]
+    },
+    {
+      "code": "DPO-P053",
+      "order": 53,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R105",
+        "DPO-R106"
+      ]
+    },
+    {
+      "code": "DPO-P054",
+      "order": 54,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R107",
+        "DPO-R108"
+      ]
+    },
+    {
+      "code": "DPO-P055",
+      "order": 55,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R109",
+        "DPO-R110"
+      ]
+    },
+    {
+      "code": "DPO-P056",
+      "order": 56,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R111",
+        "DPO-R112"
+      ]
+    },
+    {
+      "code": "DPO-P057",
+      "order": 57,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R113",
+        "DPO-R114"
+      ]
+    },
+    {
+      "code": "DPO-P058",
+      "order": 58,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R115",
+        "DPO-R116"
+      ]
+    },
+    {
+      "code": "DPO-P059",
+      "order": 59,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R117",
+        "DPO-R118"
+      ]
+    },
+    {
+      "code": "DPO-P060",
+      "order": 60,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R119",
+        "DPO-R120"
+      ]
+    },
+    {
+      "code": "DPO-P061",
+      "order": 61,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R121",
+        "DPO-R122"
+      ]
+    },
+    {
+      "code": "DPO-P062",
+      "order": 62,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R123",
+        "DPO-R124"
+      ]
+    },
+    {
+      "code": "DPO-P063",
+      "order": 63,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R125",
+        "DPO-R126"
+      ]
+    },
+    {
+      "code": "DPO-P064",
+      "order": 64,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R127",
+        "DPO-R128"
+      ]
+    },
+    {
+      "code": "DPO-P065",
+      "order": 65,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R129",
+        "DPO-R130"
+      ]
+    },
+    {
+      "code": "DPO-P066",
+      "order": 66,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R131",
+        "DPO-R132"
+      ]
+    },
+    {
+      "code": "DPO-P067",
+      "order": 67,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R133",
+        "DPO-R134"
+      ]
+    },
+    {
+      "code": "DPO-P068",
+      "order": 68,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R135",
+        "DPO-R136"
+      ]
+    },
+    {
+      "code": "DPO-P069",
+      "order": 69,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R137",
+        "DPO-R138"
+      ]
+    },
+    {
+      "code": "DPO-P070",
+      "order": 70,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R139",
+        "DPO-R140"
+      ]
+    },
+    {
+      "code": "DPO-P071",
+      "order": 71,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R141",
+        "DPO-R142"
+      ]
+    },
+    {
+      "code": "DPO-P072",
+      "order": 72,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R143",
+        "DPO-R144"
+      ]
+    },
+    {
+      "code": "DPO-P073",
+      "order": 73,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R145",
+        "DPO-R146"
+      ]
+    },
+    {
+      "code": "DPO-P074",
+      "order": 74,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R147",
+        "DPO-R148"
+      ]
+    },
+    {
+      "code": "DPO-P075",
+      "order": 75,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R149",
+        "DPO-R150"
+      ]
+    },
+    {
+      "code": "DPO-P076",
+      "order": 76,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R151",
+        "DPO-R152"
+      ]
+    },
+    {
+      "code": "DPO-P077",
+      "order": 77,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R153",
+        "DPO-R154"
+      ]
+    },
+    {
+      "code": "DPO-P078",
+      "order": 78,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R155",
+        "DPO-R156"
+      ]
+    },
+    {
+      "code": "DPO-P079",
+      "order": 79,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R157",
+        "DPO-R158"
+      ]
+    },
+    {
+      "code": "DPO-P080",
+      "order": 80,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R159",
+        "DPO-R160"
+      ]
+    },
+    {
+      "code": "DPO-P081",
+      "order": 81,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R161",
+        "DPO-R162"
+      ]
+    },
+    {
+      "code": "DPO-P082",
+      "order": 82,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R163",
+        "DPO-R164"
+      ]
+    },
+    {
+      "code": "DPO-P083",
+      "order": 83,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R165",
+        "DPO-R166"
+      ]
+    },
+    {
+      "code": "DPO-P084",
+      "order": 84,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R167",
+        "DPO-R168"
+      ]
+    },
+    {
+      "code": "DPO-P085",
+      "order": 85,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R169",
+        "DPO-R170"
+      ]
+    },
+    {
+      "code": "DPO-P086",
+      "order": 86,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R171",
+        "DPO-R172"
+      ]
+    },
+    {
+      "code": "DPO-P087",
+      "order": 87,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R173",
+        "DPO-R174"
+      ]
+    },
+    {
+      "code": "DPO-P088",
+      "order": 88,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R175",
+        "DPO-R176"
+      ]
+    },
+    {
+      "code": "DPO-P089",
+      "order": 89,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R177",
+        "DPO-R178"
+      ]
+    },
+    {
+      "code": "DPO-P090",
+      "order": 90,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R179",
+        "DPO-R180"
+      ]
+    },
+    {
+      "code": "DPO-P091",
+      "order": 91,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R181",
+        "DPO-R182"
+      ]
+    },
+    {
+      "code": "DPO-P092",
+      "order": 92,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R183",
+        "DPO-R184"
+      ]
+    },
+    {
+      "code": "DPO-P093",
+      "order": 93,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R185",
+        "DPO-R186"
+      ]
+    },
+    {
+      "code": "DPO-P094",
+      "order": 94,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R187",
+        "DPO-R188"
+      ]
+    },
+    {
+      "code": "DPO-P095",
+      "order": 95,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R189",
+        "DPO-R190"
+      ]
+    },
+    {
+      "code": "DPO-P096",
+      "order": 96,
+      "sectionCode": "PAIRED_POSITIVE",
+      "polarityGroup": "POSITIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R191",
+        "DPO-R192"
+      ]
+    },
+    {
+      "code": "DPO-P097",
+      "order": 97,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R193",
+        "DPO-R194"
+      ]
+    },
+    {
+      "code": "DPO-P098",
+      "order": 98,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R195",
+        "DPO-R196"
+      ]
+    },
+    {
+      "code": "DPO-P099",
+      "order": 99,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R197",
+        "DPO-R198"
+      ]
+    },
+    {
+      "code": "DPO-P100",
+      "order": 100,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R199",
+        "DPO-R200"
+      ]
+    },
+    {
+      "code": "DPO-P101",
+      "order": 101,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R201",
+        "DPO-R202"
+      ]
+    },
+    {
+      "code": "DPO-P102",
+      "order": 102,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R203",
+        "DPO-R204"
+      ]
+    },
+    {
+      "code": "DPO-P103",
+      "order": 103,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R205",
+        "DPO-R206"
+      ]
+    },
+    {
+      "code": "DPO-P104",
+      "order": 104,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R207",
+        "DPO-R208"
+      ]
+    },
+    {
+      "code": "DPO-P105",
+      "order": 105,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R209",
+        "DPO-R210"
+      ]
+    },
+    {
+      "code": "DPO-P106",
+      "order": 106,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R211",
+        "DPO-R212"
+      ]
+    },
+    {
+      "code": "DPO-P107",
+      "order": 107,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R213",
+        "DPO-R214"
+      ]
+    },
+    {
+      "code": "DPO-P108",
+      "order": 108,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R215",
+        "DPO-R216"
+      ]
+    },
+    {
+      "code": "DPO-P109",
+      "order": 109,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R217",
+        "DPO-R218"
+      ]
+    },
+    {
+      "code": "DPO-P110",
+      "order": 110,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R219",
+        "DPO-R220"
+      ]
+    },
+    {
+      "code": "DPO-P111",
+      "order": 111,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R221",
+        "DPO-R222"
+      ]
+    },
+    {
+      "code": "DPO-P112",
+      "order": 112,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R223",
+        "DPO-R224"
+      ]
+    },
+    {
+      "code": "DPO-P113",
+      "order": 113,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R225",
+        "DPO-R226"
+      ]
+    },
+    {
+      "code": "DPO-P114",
+      "order": 114,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R227",
+        "DPO-R228"
+      ]
+    },
+    {
+      "code": "DPO-P115",
+      "order": 115,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R229",
+        "DPO-R230"
+      ]
+    },
+    {
+      "code": "DPO-P116",
+      "order": 116,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R231",
+        "DPO-R232"
+      ]
+    },
+    {
+      "code": "DPO-P117",
+      "order": 117,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R233",
+        "DPO-R234"
+      ]
+    },
+    {
+      "code": "DPO-P118",
+      "order": 118,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R235",
+        "DPO-R236"
+      ]
+    },
+    {
+      "code": "DPO-P119",
+      "order": 119,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R237",
+        "DPO-R238"
+      ]
+    },
+    {
+      "code": "DPO-P120",
+      "order": 120,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R239",
+        "DPO-R240"
+      ]
+    },
+    {
+      "code": "DPO-P121",
+      "order": 121,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R241",
+        "DPO-R242"
+      ]
+    },
+    {
+      "code": "DPO-P122",
+      "order": 122,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R243",
+        "DPO-R244"
+      ]
+    },
+    {
+      "code": "DPO-P123",
+      "order": 123,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R245",
+        "DPO-R246"
+      ]
+    },
+    {
+      "code": "DPO-P124",
+      "order": 124,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R247",
+        "DPO-R248"
+      ]
+    },
+    {
+      "code": "DPO-P125",
+      "order": 125,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R249",
+        "DPO-R250"
+      ]
+    },
+    {
+      "code": "DPO-P126",
+      "order": 126,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R251",
+        "DPO-R252"
+      ]
+    },
+    {
+      "code": "DPO-P127",
+      "order": 127,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R253",
+        "DPO-R254"
+      ]
+    },
+    {
+      "code": "DPO-P128",
+      "order": 128,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R255",
+        "DPO-R256"
+      ]
+    },
+    {
+      "code": "DPO-P129",
+      "order": 129,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R257",
+        "DPO-R258"
+      ]
+    },
+    {
+      "code": "DPO-P130",
+      "order": 130,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R259",
+        "DPO-R260"
+      ]
+    },
+    {
+      "code": "DPO-P131",
+      "order": 131,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R261",
+        "DPO-R262"
+      ]
+    },
+    {
+      "code": "DPO-P132",
+      "order": 132,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R263",
+        "DPO-R264"
+      ]
+    },
+    {
+      "code": "DPO-P133",
+      "order": 133,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R265",
+        "DPO-R266"
+      ]
+    },
+    {
+      "code": "DPO-P134",
+      "order": 134,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R267",
+        "DPO-R268"
+      ]
+    },
+    {
+      "code": "DPO-P135",
+      "order": 135,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R269",
+        "DPO-R270"
+      ]
+    },
+    {
+      "code": "DPO-P136",
+      "order": 136,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R271",
+        "DPO-R272"
+      ]
+    },
+    {
+      "code": "DPO-P137",
+      "order": 137,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R273",
+        "DPO-R274"
+      ]
+    },
+    {
+      "code": "DPO-P138",
+      "order": 138,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R275",
+        "DPO-R276"
+      ]
+    },
+    {
+      "code": "DPO-P139",
+      "order": 139,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R277",
+        "DPO-R278"
+      ]
+    },
+    {
+      "code": "DPO-P140",
+      "order": 140,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R279",
+        "DPO-R280"
+      ]
+    },
+    {
+      "code": "DPO-P141",
+      "order": 141,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R281",
+        "DPO-R282"
+      ]
+    },
+    {
+      "code": "DPO-P142",
+      "order": 142,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R283",
+        "DPO-R284"
+      ]
+    },
+    {
+      "code": "DPO-P143",
+      "order": 143,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R285",
+        "DPO-R286"
+      ]
+    },
+    {
+      "code": "DPO-P144",
+      "order": 144,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R287",
+        "DPO-R288"
+      ]
+    },
+    {
+      "code": "DPO-P145",
+      "order": 145,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R289",
+        "DPO-R290"
+      ]
+    },
+    {
+      "code": "DPO-P146",
+      "order": 146,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R291",
+        "DPO-R292"
+      ]
+    },
+    {
+      "code": "DPO-P147",
+      "order": 147,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R293",
+        "DPO-R294"
+      ]
+    },
+    {
+      "code": "DPO-P148",
+      "order": 148,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R295",
+        "DPO-R296"
+      ]
+    },
+    {
+      "code": "DPO-P149",
+      "order": 149,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R297",
+        "DPO-R298"
+      ]
+    },
+    {
+      "code": "DPO-P150",
+      "order": 150,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R299",
+        "DPO-R300"
+      ]
+    },
+    {
+      "code": "DPO-P151",
+      "order": 151,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R301",
+        "DPO-R302"
+      ]
+    },
+    {
+      "code": "DPO-P152",
+      "order": 152,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R303",
+        "DPO-R304"
+      ]
+    },
+    {
+      "code": "DPO-P153",
+      "order": 153,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R305",
+        "DPO-R306"
+      ]
+    },
+    {
+      "code": "DPO-P154",
+      "order": 154,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R307",
+        "DPO-R308"
+      ]
+    },
+    {
+      "code": "DPO-P155",
+      "order": 155,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R309",
+        "DPO-R310"
+      ]
+    },
+    {
+      "code": "DPO-P156",
+      "order": 156,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R311",
+        "DPO-R312"
+      ]
+    },
+    {
+      "code": "DPO-P157",
+      "order": 157,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R313",
+        "DPO-R314"
+      ]
+    },
+    {
+      "code": "DPO-P158",
+      "order": 158,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R315",
+        "DPO-R316"
+      ]
+    },
+    {
+      "code": "DPO-P159",
+      "order": 159,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R317",
+        "DPO-R318"
+      ]
+    },
+    {
+      "code": "DPO-P160",
+      "order": 160,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R319",
+        "DPO-R320"
+      ]
+    },
+    {
+      "code": "DPO-P161",
+      "order": 161,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R321",
+        "DPO-R322"
+      ]
+    },
+    {
+      "code": "DPO-P162",
+      "order": 162,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R323",
+        "DPO-R324"
+      ]
+    },
+    {
+      "code": "DPO-P163",
+      "order": 163,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R325",
+        "DPO-R326"
+      ]
+    },
+    {
+      "code": "DPO-P164",
+      "order": 164,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R327",
+        "DPO-R328"
+      ]
+    },
+    {
+      "code": "DPO-P165",
+      "order": 165,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R329",
+        "DPO-R330"
+      ]
+    },
+    {
+      "code": "DPO-P166",
+      "order": 166,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R331",
+        "DPO-R332"
+      ]
+    },
+    {
+      "code": "DPO-P167",
+      "order": 167,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R333",
+        "DPO-R334"
+      ]
+    },
+    {
+      "code": "DPO-P168",
+      "order": 168,
+      "sectionCode": "PAIRED_NEGATIVE",
+      "polarityGroup": "NEGATIVE",
+      "required": true,
+      "reactiveCodes": [
+        "DPO-R335",
+        "DPO-R336"
+      ]
+    }
+  ],
+  "reactives": [
+    {
+      "code": "DPO-R001",
+      "order": 1,
+      "sourceReactiveId": 1,
+      "pairCode": "DPO-P001",
+      "pairNumber": 1,
+      "text": "Planeo certificarme formalmente sobre un tema que me interesa"
+    },
+    {
+      "code": "DPO-R002",
+      "order": 2,
+      "sourceReactiveId": 2,
+      "pairCode": "DPO-P001",
+      "pairNumber": 1,
+      "text": "Soy bueno para ayudar a los demás a decidirse"
+    },
+    {
+      "code": "DPO-R003",
+      "order": 3,
+      "sourceReactiveId": 3,
+      "pairCode": "DPO-P002",
+      "pairNumber": 2,
+      "text": "Tengo una habilidad que podría beneficiar a muchas personas"
+    },
+    {
+      "code": "DPO-R004",
+      "order": 4,
+      "sourceReactiveId": 4,
+      "pairCode": "DPO-P002",
+      "pairNumber": 2,
+      "text": "Soy bueno para hacer las cosas suceder"
+    },
+    {
+      "code": "DPO-R005",
+      "order": 5,
+      "sourceReactiveId": 5,
+      "pairCode": "DPO-P003",
+      "pairNumber": 3,
+      "text": "Sé perfectamente a qué me gustaría dedicarme en el futuro"
+    },
+    {
+      "code": "DPO-R006",
+      "order": 6,
+      "sourceReactiveId": 6,
+      "pairCode": "DPO-P003",
+      "pairNumber": 3,
+      "text": "Me entusiasma pensar en todo lo que estoy haciendo actualmente"
+    },
+    {
+      "code": "DPO-R007",
+      "order": 7,
+      "sourceReactiveId": 7,
+      "pairCode": "DPO-P004",
+      "pairNumber": 4,
+      "text": "Soy una persona precavida"
+    },
+    {
+      "code": "DPO-R008",
+      "order": 8,
+      "sourceReactiveId": 8,
+      "pairCode": "DPO-P004",
+      "pairNumber": 4,
+      "text": "Me doy cuenta fácilmente de lo que debo cambiar en mí para mejorar mis resultados"
+    },
+    {
+      "code": "DPO-R009",
+      "order": 9,
+      "sourceReactiveId": 9,
+      "pairCode": "DPO-P005",
+      "pairNumber": 5,
+      "text": "Me reconozco y felicito por mis aciertos en cada paso del camino"
+    },
+    {
+      "code": "DPO-R010",
+      "order": 10,
+      "sourceReactiveId": 10,
+      "pairCode": "DPO-P005",
+      "pairNumber": 5,
+      "text": "Busco proactivamente convertirme en la mejor versión de mí mismo"
+    },
+    {
+      "code": "DPO-R011",
+      "order": 11,
+      "sourceReactiveId": 11,
+      "pairCode": "DPO-P006",
+      "pairNumber": 6,
+      "text": "En situaciones de crisis puedo mantenerme enfocado en las tareas importantes"
+    },
+    {
+      "code": "DPO-R012",
+      "order": 12,
+      "sourceReactiveId": 12,
+      "pairCode": "DPO-P006",
+      "pairNumber": 6,
+      "text": "Hago lo necesario por mantenerme actualizado"
+    },
+    {
+      "code": "DPO-R013",
+      "order": 13,
+      "sourceReactiveId": 13,
+      "pairCode": "DPO-P007",
+      "pairNumber": 7,
+      "text": "Establezco estándares de desempeño claros para mí mismo y los uso de referencia para evaluar mi comportamiento"
+    },
+    {
+      "code": "DPO-R014",
+      "order": 14,
+      "sourceReactiveId": 14,
+      "pairCode": "DPO-P007",
+      "pairNumber": 7,
+      "text": "Deseo adquirir la mayor cantidad de experiencia y conocimientos posible"
+    },
+    {
+      "code": "DPO-R015",
+      "order": 15,
+      "sourceReactiveId": 15,
+      "pairCode": "DPO-P008",
+      "pairNumber": 8,
+      "text": "Facilito las cosas para que las oportunidades vengan a mí"
+    },
+    {
+      "code": "DPO-R016",
+      "order": 16,
+      "sourceReactiveId": 16,
+      "pairCode": "DPO-P008",
+      "pairNumber": 8,
+      "text": "Siento un llamado por ayudar a hacer de este un mundo mejor"
+    },
+    {
+      "code": "DPO-R017",
+      "order": 17,
+      "sourceReactiveId": 17,
+      "pairCode": "DPO-P009",
+      "pairNumber": 9,
+      "text": "Dedico mi tiempo y energía exclusivamente a las actividades que me acercan a mis objetivos"
+    },
+    {
+      "code": "DPO-R018",
+      "order": 18,
+      "sourceReactiveId": 18,
+      "pairCode": "DPO-P009",
+      "pairNumber": 9,
+      "text": "Me animo a creer que en mi vida sucederán cosas significativas y extraordinarias"
+    },
+    {
+      "code": "DPO-R019",
+      "order": 19,
+      "sourceReactiveId": 19,
+      "pairCode": "DPO-P010",
+      "pairNumber": 10,
+      "text": "Adelanto mi trabajo para estar listo por si algo se llega a necesitar"
+    },
+    {
+      "code": "DPO-R020",
+      "order": 20,
+      "sourceReactiveId": 20,
+      "pairCode": "DPO-P010",
+      "pairNumber": 10,
+      "text": "Cuando un problema no está siendo fácil de resolver, sigo intentándolo hasta encontrar la respuesta"
+    },
+    {
+      "code": "DPO-R021",
+      "order": 21,
+      "sourceReactiveId": 21,
+      "pairCode": "DPO-P011",
+      "pairNumber": 11,
+      "text": "Siempre guardo algo de lo que gano"
+    },
+    {
+      "code": "DPO-R022",
+      "order": 22,
+      "sourceReactiveId": 22,
+      "pairCode": "DPO-P011",
+      "pairNumber": 11,
+      "text": "Evalúo muy bien mis decisiones antes de tomarlas"
+    },
+    {
+      "code": "DPO-R023",
+      "order": 23,
+      "sourceReactiveId": 23,
+      "pairCode": "DPO-P012",
+      "pairNumber": 12,
+      "text": "En este momento puedo identificar claramente cuál es mi estado emocional"
+    },
+    {
+      "code": "DPO-R024",
+      "order": 24,
+      "sourceReactiveId": 24,
+      "pairCode": "DPO-P012",
+      "pairNumber": 12,
+      "text": "Puedo predecir el comportamiento de las personas"
+    },
+    {
+      "code": "DPO-R025",
+      "order": 25,
+      "sourceReactiveId": 25,
+      "pairCode": "DPO-P013",
+      "pairNumber": 13,
+      "text": "Me siento bien de ser yo mismo"
+    },
+    {
+      "code": "DPO-R026",
+      "order": 26,
+      "sourceReactiveId": 26,
+      "pairCode": "DPO-P013",
+      "pairNumber": 13,
+      "text": "Me gano la vida haciendo lo que más me gusta"
+    },
+    {
+      "code": "DPO-R027",
+      "order": 27,
+      "sourceReactiveId": 27,
+      "pairCode": "DPO-P014",
+      "pairNumber": 14,
+      "text": "Si algo no sale como quiero me recupero rápidamente y lo vuelvo a intentar"
+    },
+    {
+      "code": "DPO-R028",
+      "order": 28,
+      "sourceReactiveId": 28,
+      "pairCode": "DPO-P014",
+      "pairNumber": 14,
+      "text": "Cuando estoy estresado puedo pensar con claridad"
+    },
+    {
+      "code": "DPO-R029",
+      "order": 29,
+      "sourceReactiveId": 29,
+      "pairCode": "DPO-P015",
+      "pairNumber": 15,
+      "text": "La gente confía en mí para administrar el dinero"
+    },
+    {
+      "code": "DPO-R030",
+      "order": 30,
+      "sourceReactiveId": 30,
+      "pairCode": "DPO-P015",
+      "pairNumber": 15,
+      "text": "Para cumplir con todas mis responsabilidades me aseguro de conseguir la ayuda que necesito"
+    },
+    {
+      "code": "DPO-R031",
+      "order": 31,
+      "sourceReactiveId": 31,
+      "pairCode": "DPO-P016",
+      "pairNumber": 16,
+      "text": "Me esfuerzo por ser una mejor persona"
+    },
+    {
+      "code": "DPO-R032",
+      "order": 32,
+      "sourceReactiveId": 32,
+      "pairCode": "DPO-P016",
+      "pairNumber": 16,
+      "text": "Fácilmente encuentro relaciones entre variables que parecen ser distintas"
+    },
+    {
+      "code": "DPO-R033",
+      "order": 33,
+      "sourceReactiveId": 33,
+      "pairCode": "DPO-P017",
+      "pairNumber": 17,
+      "text": "Observo mi situación financiera con regularidad"
+    },
+    {
+      "code": "DPO-R034",
+      "order": 34,
+      "sourceReactiveId": 34,
+      "pairCode": "DPO-P017",
+      "pairNumber": 17,
+      "text": "Puedo negociar temas difícíles sin perder la calma"
+    },
+    {
+      "code": "DPO-R035",
+      "order": 35,
+      "sourceReactiveId": 35,
+      "pairCode": "DPO-P018",
+      "pairNumber": 18,
+      "text": "Me concentro en las tareas que debo hacer, incluso si no me gustan"
+    },
+    {
+      "code": "DPO-R036",
+      "order": 36,
+      "sourceReactiveId": 36,
+      "pairCode": "DPO-P018",
+      "pairNumber": 18,
+      "text": "Soy hábil para hacer que el dinero me rinda para todo"
+    },
+    {
+      "code": "DPO-R037",
+      "order": 37,
+      "sourceReactiveId": 37,
+      "pairCode": "DPO-P019",
+      "pairNumber": 19,
+      "text": "Sé muy bien cuáles son las capacidades que los demás valoran en mí"
+    },
+    {
+      "code": "DPO-R038",
+      "order": 38,
+      "sourceReactiveId": 38,
+      "pairCode": "DPO-P019",
+      "pairNumber": 19,
+      "text": "Estoy convencido de que el trabajo que hago es útil para los demás"
+    },
+    {
+      "code": "DPO-R039",
+      "order": 39,
+      "sourceReactiveId": 39,
+      "pairCode": "DPO-P020",
+      "pairNumber": 20,
+      "text": "He sabido cómo aprovechar mis habilidades y talentos para alcanzar el nivel que hoy tengo"
+    },
+    {
+      "code": "DPO-R040",
+      "order": 40,
+      "sourceReactiveId": 40,
+      "pairCode": "DPO-P020",
+      "pairNumber": 20,
+      "text": "Estoy decidido a ser El Mejor en lo que hago"
+    },
+    {
+      "code": "DPO-R041",
+      "order": 41,
+      "sourceReactiveId": 41,
+      "pairCode": "DPO-P021",
+      "pairNumber": 21,
+      "text": "Me esfuerzo por mejorar mis capacidades"
+    },
+    {
+      "code": "DPO-R042",
+      "order": 42,
+      "sourceReactiveId": 42,
+      "pairCode": "DPO-P021",
+      "pairNumber": 21,
+      "text": "Aún bajo estrés puedo realizar mis tareas sin equivocarme"
+    },
+    {
+      "code": "DPO-R043",
+      "order": 43,
+      "sourceReactiveId": 43,
+      "pairCode": "DPO-P022",
+      "pairNumber": 22,
+      "text": "Preveo situaciones y reacciono a ellas antes de que sucedan"
+    },
+    {
+      "code": "DPO-R044",
+      "order": 44,
+      "sourceReactiveId": 44,
+      "pairCode": "DPO-P022",
+      "pairNumber": 22,
+      "text": "Tengo una idea clara del futuro que quiero para mí"
+    },
+    {
+      "code": "DPO-R045",
+      "order": 45,
+      "sourceReactiveId": 45,
+      "pairCode": "DPO-P023",
+      "pairNumber": 23,
+      "text": "Mantengo un alto nivel de dinamismo y energía"
+    },
+    {
+      "code": "DPO-R046",
+      "order": 46,
+      "sourceReactiveId": 46,
+      "pairCode": "DPO-P023",
+      "pairNumber": 23,
+      "text": "Me siento impulsado a marcar una diferencia positiva en mi entorno"
+    },
+    {
+      "code": "DPO-R047",
+      "order": 47,
+      "sourceReactiveId": 47,
+      "pairCode": "DPO-P024",
+      "pairNumber": 24,
+      "text": "Me preocupa que mi trabajo ayude a otras personas a mejorar su vida de alguna forma"
+    },
+    {
+      "code": "DPO-R048",
+      "order": 48,
+      "sourceReactiveId": 48,
+      "pairCode": "DPO-P024",
+      "pairNumber": 24,
+      "text": "Frecuentemente estoy ideando nuevas formas para mejorar mis resultados"
+    },
+    {
+      "code": "DPO-R049",
+      "order": 49,
+      "sourceReactiveId": 49,
+      "pairCode": "DPO-P025",
+      "pairNumber": 25,
+      "text": "Sé que puedo resolver problemas difíciles si me esfuerzo lo suficiente"
+    },
+    {
+      "code": "DPO-R050",
+      "order": 50,
+      "sourceReactiveId": 50,
+      "pairCode": "DPO-P025",
+      "pairNumber": 25,
+      "text": "Puedo controlar mi temperamento cuando es necesario"
+    },
+    {
+      "code": "DPO-R051",
+      "order": 51,
+      "sourceReactiveId": 51,
+      "pairCode": "DPO-P026",
+      "pairNumber": 26,
+      "text": "Me hago responsable de mi propio aprendizaje"
+    },
+    {
+      "code": "DPO-R052",
+      "order": 52,
+      "sourceReactiveId": 52,
+      "pairCode": "DPO-P026",
+      "pairNumber": 26,
+      "text": "Puedo ver claramente la estrategia que debo seguir para lograr lo que más deseo en la vida"
+    },
+    {
+      "code": "DPO-R053",
+      "order": 53,
+      "sourceReactiveId": 53,
+      "pairCode": "DPO-P027",
+      "pairNumber": 27,
+      "text": "Pongo atención a mi comportamiento para detectar lo que me funciona y lo que no"
+    },
+    {
+      "code": "DPO-R054",
+      "order": 54,
+      "sourceReactiveId": 54,
+      "pairCode": "DPO-P027",
+      "pairNumber": 27,
+      "text": "Cuando quiero algo, no descanso hasta conseguirlo"
+    },
+    {
+      "code": "DPO-R055",
+      "order": 55,
+      "sourceReactiveId": 55,
+      "pairCode": "DPO-P028",
+      "pairNumber": 28,
+      "text": "Espero de mí mismo marcar una diferencia significativa para muchas personas"
+    },
+    {
+      "code": "DPO-R056",
+      "order": 56,
+      "sourceReactiveId": 56,
+      "pairCode": "DPO-P028",
+      "pairNumber": 28,
+      "text": "Estoy convencido de que la manera de producir los mayores resultados es sumando pequeños logros uno a otro"
+    },
+    {
+      "code": "DPO-R057",
+      "order": 57,
+      "sourceReactiveId": 57,
+      "pairCode": "DPO-P029",
+      "pairNumber": 29,
+      "text": "Constantemente estoy buscando mejores formas de hacer las cosas"
+    },
+    {
+      "code": "DPO-R058",
+      "order": 58,
+      "sourceReactiveId": 58,
+      "pairCode": "DPO-P029",
+      "pairNumber": 29,
+      "text": "Yo jamás he ofrecido dinero para acelerar un trámite"
+    },
+    {
+      "code": "DPO-R059",
+      "order": 59,
+      "sourceReactiveId": 59,
+      "pairCode": "DPO-P030",
+      "pairNumber": 30,
+      "text": "Me esfuerzo un montón por lograr y superar los estándares fijados"
+    },
+    {
+      "code": "DPO-R060",
+      "order": 60,
+      "sourceReactiveId": 60,
+      "pairCode": "DPO-P030",
+      "pairNumber": 30,
+      "text": "Detecto oportunidades mucho antes de que otros puedan"
+    },
+    {
+      "code": "DPO-R061",
+      "order": 61,
+      "sourceReactiveId": 61,
+      "pairCode": "DPO-P031",
+      "pairNumber": 31,
+      "text": "A lo largo de mi trayectoria he construido una excelente reputación"
+    },
+    {
+      "code": "DPO-R062",
+      "order": 62,
+      "sourceReactiveId": 62,
+      "pairCode": "DPO-P031",
+      "pairNumber": 31,
+      "text": "Pretendo lograr el mayor éxito financiero y profesional posible en mi vida"
+    },
+    {
+      "code": "DPO-R063",
+      "order": 63,
+      "sourceReactiveId": 63,
+      "pairCode": "DPO-P032",
+      "pairNumber": 32,
+      "text": "Adquiero conocimientos para estar a la altura de lo que está sucediendo hoy en el mundo"
+    },
+    {
+      "code": "DPO-R064",
+      "order": 64,
+      "sourceReactiveId": 64,
+      "pairCode": "DPO-P032",
+      "pairNumber": 32,
+      "text": "Me es fácil encontrar múltiples soluciones a un mismo problema"
+    },
+    {
+      "code": "DPO-R065",
+      "order": 65,
+      "sourceReactiveId": 65,
+      "pairCode": "DPO-P033",
+      "pairNumber": 33,
+      "text": "Tomo decisiones que me ayudan a fortalecer mi posición"
+    },
+    {
+      "code": "DPO-R066",
+      "order": 66,
+      "sourceReactiveId": 66,
+      "pairCode": "DPO-P033",
+      "pairNumber": 33,
+      "text": "Soy positivo cuando pienso en el futuro"
+    },
+    {
+      "code": "DPO-R067",
+      "order": 67,
+      "sourceReactiveId": 67,
+      "pairCode": "DPO-P034",
+      "pairNumber": 34,
+      "text": "Me esfuerzo cada día para ser mejor en lo que hago"
+    },
+    {
+      "code": "DPO-R068",
+      "order": 68,
+      "sourceReactiveId": 68,
+      "pairCode": "DPO-P034",
+      "pairNumber": 34,
+      "text": "Si me equivoco, puedo cambiar de estrategia pero sigo adelante"
+    },
+    {
+      "code": "DPO-R069",
+      "order": 69,
+      "sourceReactiveId": 69,
+      "pairCode": "DPO-P035",
+      "pairNumber": 35,
+      "text": "Rechazo las oportunidades de trabajo que no corresponden a mis mayores intereses"
+    },
+    {
+      "code": "DPO-R070",
+      "order": 70,
+      "sourceReactiveId": 70,
+      "pairCode": "DPO-P035",
+      "pairNumber": 35,
+      "text": "Comprendo bien mis emociones"
+    },
+    {
+      "code": "DPO-R071",
+      "order": 71,
+      "sourceReactiveId": 71,
+      "pairCode": "DPO-P036",
+      "pairNumber": 36,
+      "text": "Rápidamente puedo percibir los cambios del entorno"
+    },
+    {
+      "code": "DPO-R072",
+      "order": 72,
+      "sourceReactiveId": 72,
+      "pairCode": "DPO-P036",
+      "pairNumber": 36,
+      "text": "Sé muy bien adónde quiero llegar en la vida"
+    },
+    {
+      "code": "DPO-R073",
+      "order": 73,
+      "sourceReactiveId": 73,
+      "pairCode": "DPO-P037",
+      "pairNumber": 37,
+      "text": "Me adapto bien a los cambios de rutinas"
+    },
+    {
+      "code": "DPO-R074",
+      "order": 74,
+      "sourceReactiveId": 74,
+      "pairCode": "DPO-P037",
+      "pairNumber": 37,
+      "text": "Me divierte realizar juegos mentales que ponen a prueba mi inteligencia"
+    },
+    {
+      "code": "DPO-R075",
+      "order": 75,
+      "sourceReactiveId": 75,
+      "pairCode": "DPO-P038",
+      "pairNumber": 38,
+      "text": "Tengo la firme expectativa de mejorar notablemente para el próximo año"
+    },
+    {
+      "code": "DPO-R076",
+      "order": 76,
+      "sourceReactiveId": 76,
+      "pairCode": "DPO-P038",
+      "pairNumber": 38,
+      "text": "Cuando se trata de dinero, tomo decisiones fría, racional y concienzudamente"
+    },
+    {
+      "code": "DPO-R077",
+      "order": 77,
+      "sourceReactiveId": 77,
+      "pairCode": "DPO-P039",
+      "pairNumber": 39,
+      "text": "Cuando algo no sale como quiero enfoco rápidamente mi energía en soluciones constructivas"
+    },
+    {
+      "code": "DPO-R078",
+      "order": 78,
+      "sourceReactiveId": 78,
+      "pairCode": "DPO-P039",
+      "pairNumber": 39,
+      "text": "En el último año he conseguido todo lo que me he propuesto"
+    },
+    {
+      "code": "DPO-R079",
+      "order": 79,
+      "sourceReactiveId": 79,
+      "pairCode": "DPO-P040",
+      "pairNumber": 40,
+      "text": "Hoy hago cosas que son importantes para mí"
+    },
+    {
+      "code": "DPO-R080",
+      "order": 80,
+      "sourceReactiveId": 80,
+      "pairCode": "DPO-P040",
+      "pairNumber": 40,
+      "text": "Actúo racionalmente ante las dificultades"
+    },
+    {
+      "code": "DPO-R081",
+      "order": 81,
+      "sourceReactiveId": 81,
+      "pairCode": "DPO-P041",
+      "pairNumber": 41,
+      "text": "Conozco muy bien cuáles son las cosas que me enojan o me ponen triste"
+    },
+    {
+      "code": "DPO-R082",
+      "order": 82,
+      "sourceReactiveId": 82,
+      "pairCode": "DPO-P041",
+      "pairNumber": 41,
+      "text": "Me implico en actividades que me ayudan a superarme a mí mismo"
+    },
+    {
+      "code": "DPO-R083",
+      "order": 83,
+      "sourceReactiveId": 83,
+      "pairCode": "DPO-P042",
+      "pairNumber": 42,
+      "text": "Difícilmente dejo algún pendiente sin completar"
+    },
+    {
+      "code": "DPO-R084",
+      "order": 84,
+      "sourceReactiveId": 84,
+      "pairCode": "DPO-P042",
+      "pairNumber": 42,
+      "text": "Pretendo recibir la máxima educación disponible que hay en mi campo"
+    },
+    {
+      "code": "DPO-R085",
+      "order": 85,
+      "sourceReactiveId": 85,
+      "pairCode": "DPO-P043",
+      "pairNumber": 43,
+      "text": "Puedo trabajar horas extra sin perder efectividad en mi trabajo"
+    },
+    {
+      "code": "DPO-R086",
+      "order": 86,
+      "sourceReactiveId": 86,
+      "pairCode": "DPO-P043",
+      "pairNumber": 43,
+      "text": "Tengo la certeza de que me irá bien en la vida"
+    },
+    {
+      "code": "DPO-R087",
+      "order": 87,
+      "sourceReactiveId": 87,
+      "pairCode": "DPO-P044",
+      "pairNumber": 44,
+      "text": "Si tengo un objetivo ambicioso, lo fracciono en metas cortas para ir un paso a la vez"
+    },
+    {
+      "code": "DPO-R088",
+      "order": 88,
+      "sourceReactiveId": 88,
+      "pairCode": "DPO-P044",
+      "pairNumber": 44,
+      "text": "Me administro de una forma que siempre me queda algo para ahorrar"
+    },
+    {
+      "code": "DPO-R089",
+      "order": 89,
+      "sourceReactiveId": 89,
+      "pairCode": "DPO-P045",
+      "pairNumber": 45,
+      "text": "Reacciono con la urgencia apropiada en situaciones de peligro"
+    },
+    {
+      "code": "DPO-R090",
+      "order": 90,
+      "sourceReactiveId": 90,
+      "pairCode": "DPO-P045",
+      "pairNumber": 45,
+      "text": "Vivo mi vida con un alto compromiso y sentido del deber"
+    },
+    {
+      "code": "DPO-R091",
+      "order": 91,
+      "sourceReactiveId": 91,
+      "pairCode": "DPO-P046",
+      "pairNumber": 46,
+      "text": "Creo en mí para lograr lo que pretendo"
+    },
+    {
+      "code": "DPO-R092",
+      "order": 92,
+      "sourceReactiveId": 92,
+      "pairCode": "DPO-P046",
+      "pairNumber": 46,
+      "text": "Procuro y fomento mis relaciones"
+    },
+    {
+      "code": "DPO-R093",
+      "order": 93,
+      "sourceReactiveId": 93,
+      "pairCode": "DPO-P047",
+      "pairNumber": 47,
+      "text": "Antes de hacer algo, dedico suficiente tiempo a planear"
+    },
+    {
+      "code": "DPO-R094",
+      "order": 94,
+      "sourceReactiveId": 94,
+      "pairCode": "DPO-P047",
+      "pairNumber": 47,
+      "text": "Prefiero arriesgarme y perder que lamentarme luego por haber dejado ir una buena oportunidad"
+    },
+    {
+      "code": "DPO-R095",
+      "order": 95,
+      "sourceReactiveId": 95,
+      "pairCode": "DPO-P048",
+      "pairNumber": 48,
+      "text": "Me empeño en mejorar mis habilidades para producir mayores resultados"
+    },
+    {
+      "code": "DPO-R096",
+      "order": 96,
+      "sourceReactiveId": 96,
+      "pairCode": "DPO-P048",
+      "pairNumber": 48,
+      "text": "Me aseguro de encontrar la forma de lograr mis metas y objetivos"
+    },
+    {
+      "code": "DPO-R097",
+      "order": 97,
+      "sourceReactiveId": 97,
+      "pairCode": "DPO-P049",
+      "pairNumber": 49,
+      "text": "Me aseguro de administrar bien los saldos en mis tarjetas para evitar cargos financieros"
+    },
+    {
+      "code": "DPO-R098",
+      "order": 98,
+      "sourceReactiveId": 98,
+      "pairCode": "DPO-P049",
+      "pairNumber": 49,
+      "text": "Para resolver un problema, identifico soluciones posibles que otros pasan por alto"
+    },
+    {
+      "code": "DPO-R099",
+      "order": 99,
+      "sourceReactiveId": 99,
+      "pairCode": "DPO-P050",
+      "pairNumber": 50,
+      "text": "Puedo darme cuenta de mis emociones mientras estoy trabajando"
+    },
+    {
+      "code": "DPO-R100",
+      "order": 100,
+      "sourceReactiveId": 100,
+      "pairCode": "DPO-P050",
+      "pairNumber": 50,
+      "text": "Cuando me comprometo con algo mi voluntad es inquebrantable"
+    },
+    {
+      "code": "DPO-R101",
+      "order": 101,
+      "sourceReactiveId": 101,
+      "pairCode": "DPO-P051",
+      "pairNumber": 51,
+      "text": "Pienso bien de mí mismo"
+    },
+    {
+      "code": "DPO-R102",
+      "order": 102,
+      "sourceReactiveId": 102,
+      "pairCode": "DPO-P051",
+      "pairNumber": 51,
+      "text": "Para determinar la causa de un problema busco información más allá del evento específico que se ha presentado"
+    },
+    {
+      "code": "DPO-R103",
+      "order": 103,
+      "sourceReactiveId": 103,
+      "pairCode": "DPO-P052",
+      "pairNumber": 52,
+      "text": "Sé muy bien cuáles son las capacidades que debo desarrollar para tener éxito en mi camino"
+    },
+    {
+      "code": "DPO-R104",
+      "order": 104,
+      "sourceReactiveId": 104,
+      "pairCode": "DPO-P052",
+      "pairNumber": 52,
+      "text": "Busco activamente prepararme para los cambios venideros"
+    },
+    {
+      "code": "DPO-R105",
+      "order": 105,
+      "sourceReactiveId": 105,
+      "pairCode": "DPO-P053",
+      "pairNumber": 53,
+      "text": "Si no tengo los materiales que necesito, aprovecho creativamente los que tengo disponibles"
+    },
+    {
+      "code": "DPO-R106",
+      "order": 106,
+      "sourceReactiveId": 106,
+      "pairCode": "DPO-P053",
+      "pairNumber": 53,
+      "text": "Procuro rodearme de gente positiva y exitosa"
+    },
+    {
+      "code": "DPO-R107",
+      "order": 107,
+      "sourceReactiveId": 107,
+      "pairCode": "DPO-P054",
+      "pairNumber": 54,
+      "text": "Mis convicciones me guían para actuar en la vida"
+    },
+    {
+      "code": "DPO-R108",
+      "order": 108,
+      "sourceReactiveId": 108,
+      "pairCode": "DPO-P054",
+      "pairNumber": 54,
+      "text": "Me involucro activamente en los problemas de los grupos a los que pertenezco"
+    },
+    {
+      "code": "DPO-R109",
+      "order": 109,
+      "sourceReactiveId": 109,
+      "pairCode": "DPO-P055",
+      "pairNumber": 55,
+      "text": "Tengo claras mis metas de ahorro, a corto, mediano y largo plazo"
+    },
+    {
+      "code": "DPO-R110",
+      "order": 110,
+      "sourceReactiveId": 110,
+      "pairCode": "DPO-P055",
+      "pairNumber": 55,
+      "text": "Persigo mis sueños con empeño"
+    },
+    {
+      "code": "DPO-R111",
+      "order": 111,
+      "sourceReactiveId": 111,
+      "pairCode": "DPO-P056",
+      "pairNumber": 56,
+      "text": "Tengo control total sobre mi situación actual"
+    },
+    {
+      "code": "DPO-R112",
+      "order": 112,
+      "sourceReactiveId": 112,
+      "pairCode": "DPO-P056",
+      "pairNumber": 56,
+      "text": "Intervengo oportunamente para aclarar los malos entendidos"
+    },
+    {
+      "code": "DPO-R113",
+      "order": 113,
+      "sourceReactiveId": 113,
+      "pairCode": "DPO-P057",
+      "pairNumber": 57,
+      "text": "Si participo en una competencia, digo la verdad aunque los demás estén mintiendo"
+    },
+    {
+      "code": "DPO-R114",
+      "order": 114,
+      "sourceReactiveId": 114,
+      "pairCode": "DPO-P057",
+      "pairNumber": 57,
+      "text": "Intento entender cómo es que los factores de una situación están relacionados entre sí"
+    },
+    {
+      "code": "DPO-R115",
+      "order": 115,
+      "sourceReactiveId": 115,
+      "pairCode": "DPO-P058",
+      "pairNumber": 58,
+      "text": "Quisiera dedicarme a mi pasión y poder cobrar por ello"
+    },
+    {
+      "code": "DPO-R116",
+      "order": 116,
+      "sourceReactiveId": 116,
+      "pairCode": "DPO-P058",
+      "pairNumber": 58,
+      "text": "Siento que estoy en mi mejor momento"
+    },
+    {
+      "code": "DPO-R117",
+      "order": 117,
+      "sourceReactiveId": 117,
+      "pairCode": "DPO-P059",
+      "pairNumber": 59,
+      "text": "Soy hábil para ganarme la confianza de la gente"
+    },
+    {
+      "code": "DPO-R118",
+      "order": 118,
+      "sourceReactiveId": 118,
+      "pairCode": "DPO-P059",
+      "pairNumber": 59,
+      "text": "Conozco cuál es el trabajo que más quiero hacer en la vida"
+    },
+    {
+      "code": "DPO-R119",
+      "order": 119,
+      "sourceReactiveId": 119,
+      "pairCode": "DPO-P060",
+      "pairNumber": 60,
+      "text": "Me manejo bien en situaciones de crisis"
+    },
+    {
+      "code": "DPO-R120",
+      "order": 120,
+      "sourceReactiveId": 120,
+      "pairCode": "DPO-P060",
+      "pairNumber": 60,
+      "text": "Apoyo las ideas nuevas"
+    },
+    {
+      "code": "DPO-R121",
+      "order": 121,
+      "sourceReactiveId": 121,
+      "pairCode": "DPO-P061",
+      "pairNumber": 61,
+      "text": "Me empeño en hacer que mi trayectoria laboral vaya en ascenso"
+    },
+    {
+      "code": "DPO-R122",
+      "order": 122,
+      "sourceReactiveId": 122,
+      "pairCode": "DPO-P061",
+      "pairNumber": 61,
+      "text": "Contribuyo proactivamente para mejorar mi entorno de trabajo"
+    },
+    {
+      "code": "DPO-R123",
+      "order": 123,
+      "sourceReactiveId": 123,
+      "pairCode": "DPO-P062",
+      "pairNumber": 62,
+      "text": "Conozco cuál es mi vocación y planeo dedicarme a ella en un futuro próximo"
+    },
+    {
+      "code": "DPO-R124",
+      "order": 124,
+      "sourceReactiveId": 124,
+      "pairCode": "DPO-P062",
+      "pairNumber": 62,
+      "text": "Generalmente logro lo que me propongo"
+    },
+    {
+      "code": "DPO-R125",
+      "order": 125,
+      "sourceReactiveId": 125,
+      "pairCode": "DPO-P063",
+      "pairNumber": 63,
+      "text": "En los últimos años he tomado muy buenas decisiones con mi dinero"
+    },
+    {
+      "code": "DPO-R126",
+      "order": 126,
+      "sourceReactiveId": 126,
+      "pairCode": "DPO-P063",
+      "pairNumber": 63,
+      "text": "Me esfuerzo por hacer buenas relaciones en todos lados"
+    },
+    {
+      "code": "DPO-R127",
+      "order": 127,
+      "sourceReactiveId": 127,
+      "pairCode": "DPO-P064",
+      "pairNumber": 64,
+      "text": "Siempre dejo una buena impresión en los demás"
+    },
+    {
+      "code": "DPO-R128",
+      "order": 128,
+      "sourceReactiveId": 128,
+      "pairCode": "DPO-P064",
+      "pairNumber": 64,
+      "text": "Quiero ser considerado como una autoridad en mi campo"
+    },
+    {
+      "code": "DPO-R129",
+      "order": 129,
+      "sourceReactiveId": 129,
+      "pairCode": "DPO-P065",
+      "pairNumber": 65,
+      "text": "No permito que mis sentimientos interfieran con mi trabajo"
+    },
+    {
+      "code": "DPO-R130",
+      "order": 130,
+      "sourceReactiveId": 130,
+      "pairCode": "DPO-P065",
+      "pairNumber": 65,
+      "text": "La situación que vivo actualmente en mi vida me hace sentir en paz y en calma"
+    },
+    {
+      "code": "DPO-R131",
+      "order": 131,
+      "sourceReactiveId": 131,
+      "pairCode": "DPO-P066",
+      "pairNumber": 66,
+      "text": "Busco la manera de cumplir a tiempo con todas mis responsabilidades"
+    },
+    {
+      "code": "DPO-R132",
+      "order": 132,
+      "sourceReactiveId": 132,
+      "pairCode": "DPO-P066",
+      "pairNumber": 66,
+      "text": "Se me ocurren soluciones originales a los problemas a los que me enfrento"
+    },
+    {
+      "code": "DPO-R133",
+      "order": 133,
+      "sourceReactiveId": 133,
+      "pairCode": "DPO-P067",
+      "pairNumber": 67,
+      "text": "Cuando estoy trabajando en algo, le dedico toda mi atención"
+    },
+    {
+      "code": "DPO-R134",
+      "order": 134,
+      "sourceReactiveId": 134,
+      "pairCode": "DPO-P067",
+      "pairNumber": 67,
+      "text": "Me involucro propositivamente en los asuntos de mi comunidad"
+    },
+    {
+      "code": "DPO-R135",
+      "order": 135,
+      "sourceReactiveId": 135,
+      "pairCode": "DPO-P068",
+      "pairNumber": 68,
+      "text": "Para mí es prioritario ganarme la vida haciendo lo que más me gusta"
+    },
+    {
+      "code": "DPO-R136",
+      "order": 136,
+      "sourceReactiveId": 136,
+      "pairCode": "DPO-P068",
+      "pairNumber": 68,
+      "text": "Antes de tomar una decisión pienso en cómo un cambio puede impactar en otras situaciones"
+    },
+    {
+      "code": "DPO-R137",
+      "order": 137,
+      "sourceReactiveId": 137,
+      "pairCode": "DPO-P069",
+      "pairNumber": 69,
+      "text": "Sacrifico parte de mis ganancias para volverlas a invertir"
+    },
+    {
+      "code": "DPO-R138",
+      "order": 138,
+      "sourceReactiveId": 138,
+      "pairCode": "DPO-P069",
+      "pairNumber": 69,
+      "text": "Puedo con facilidad aislar mi mente del exterior para no distraerme"
+    },
+    {
+      "code": "DPO-R139",
+      "order": 139,
+      "sourceReactiveId": 139,
+      "pairCode": "DPO-P070",
+      "pairNumber": 70,
+      "text": "Identifico las habilidades que debo fortalecer en mí mismo para mejorar mis resultados"
+    },
+    {
+      "code": "DPO-R140",
+      "order": 140,
+      "sourceReactiveId": 140,
+      "pairCode": "DPO-P070",
+      "pairNumber": 70,
+      "text": "Aprendo de mis fracasos para intentarlo de nuevo"
+    },
+    {
+      "code": "DPO-R141",
+      "order": 141,
+      "sourceReactiveId": 141,
+      "pairCode": "DPO-P071",
+      "pairNumber": 71,
+      "text": "Si cometo un error, me aseguro que en el futuro no vuelva a suceder"
+    },
+    {
+      "code": "DPO-R142",
+      "order": 142,
+      "sourceReactiveId": 142,
+      "pairCode": "DPO-P071",
+      "pairNumber": 71,
+      "text": "Mi carácter me ayuda a levantarme fortalecido de las crisis"
+    },
+    {
+      "code": "DPO-R143",
+      "order": 143,
+      "sourceReactiveId": 143,
+      "pairCode": "DPO-P072",
+      "pairNumber": 72,
+      "text": "Pago mis deudas en su totalidad y en el plazo acordado"
+    },
+    {
+      "code": "DPO-R144",
+      "order": 144,
+      "sourceReactiveId": 144,
+      "pairCode": "DPO-P072",
+      "pairNumber": 72,
+      "text": "Disfruto intercambiar opiniones y llegar a consensos con personas que piensan diferente a mí"
+    },
+    {
+      "code": "DPO-R145",
+      "order": 145,
+      "sourceReactiveId": 145,
+      "pairCode": "DPO-P073",
+      "pairNumber": 73,
+      "text": "Estoy convencido de que tengo un alto poder de influencia en los demás"
+    },
+    {
+      "code": "DPO-R146",
+      "order": 146,
+      "sourceReactiveId": 146,
+      "pairCode": "DPO-P073",
+      "pairNumber": 73,
+      "text": "Soy obstinado con mis metas y objetivos"
+    },
+    {
+      "code": "DPO-R147",
+      "order": 147,
+      "sourceReactiveId": 147,
+      "pairCode": "DPO-P074",
+      "pairNumber": 74,
+      "text": "Me siento satisfecho con los resultados que hoy soy capaz de dar"
+    },
+    {
+      "code": "DPO-R148",
+      "order": 148,
+      "sourceReactiveId": 148,
+      "pairCode": "DPO-P074",
+      "pairNumber": 74,
+      "text": "Soy exigente conmigo mismo"
+    },
+    {
+      "code": "DPO-R149",
+      "order": 149,
+      "sourceReactiveId": 149,
+      "pairCode": "DPO-P075",
+      "pairNumber": 75,
+      "text": "Confío en que me irá bien en el futuro"
+    },
+    {
+      "code": "DPO-R150",
+      "order": 150,
+      "sourceReactiveId": 150,
+      "pairCode": "DPO-P075",
+      "pairNumber": 75,
+      "text": "Puedo hablar de temas difíciles con mi pareja sin entrar en discusiones"
+    },
+    {
+      "code": "DPO-R151",
+      "order": 151,
+      "sourceReactiveId": 151,
+      "pairCode": "DPO-P076",
+      "pairNumber": 76,
+      "text": "Analizo mis errores para aprender de ellos"
+    },
+    {
+      "code": "DPO-R152",
+      "order": 152,
+      "sourceReactiveId": 152,
+      "pairCode": "DPO-P076",
+      "pairNumber": 76,
+      "text": "Sé muy bien qué es lo que debo hacer para cambiar lo que quiero mejorar en mí mismo"
+    },
+    {
+      "code": "DPO-R153",
+      "order": 153,
+      "sourceReactiveId": 153,
+      "pairCode": "DPO-P077",
+      "pairNumber": 77,
+      "text": "Evalúo regularmente el progreso de mi trabajo para cumplir a tiempo con mis objetivos"
+    },
+    {
+      "code": "DPO-R154",
+      "order": 154,
+      "sourceReactiveId": 154,
+      "pairCode": "DPO-P077",
+      "pairNumber": 77,
+      "text": "Confío en mi capacidad para modificar lo que no me gusta de mi vida"
+    },
+    {
+      "code": "DPO-R155",
+      "order": 155,
+      "sourceReactiveId": 155,
+      "pairCode": "DPO-P078",
+      "pairNumber": 78,
+      "text": "Sé cómo persuadir a otros para que se pongan de mi lado"
+    },
+    {
+      "code": "DPO-R156",
+      "order": 156,
+      "sourceReactiveId": 156,
+      "pairCode": "DPO-P078",
+      "pairNumber": 78,
+      "text": "Puedo comprender fácilmente cómo piensan los demás"
+    },
+    {
+      "code": "DPO-R157",
+      "order": 157,
+      "sourceReactiveId": 157,
+      "pairCode": "DPO-P079",
+      "pairNumber": 79,
+      "text": "Siempre cumplo lo que prometo"
+    },
+    {
+      "code": "DPO-R158",
+      "order": 158,
+      "sourceReactiveId": 158,
+      "pairCode": "DPO-P079",
+      "pairNumber": 79,
+      "text": "Cuando hago planes me aseguro de que estén bien calculados hacia la meta"
+    },
+    {
+      "code": "DPO-R159",
+      "order": 159,
+      "sourceReactiveId": 159,
+      "pairCode": "DPO-P080",
+      "pairNumber": 80,
+      "text": "Mantengo contacto con las personas que he conocido en el camino"
+    },
+    {
+      "code": "DPO-R160",
+      "order": 160,
+      "sourceReactiveId": 160,
+      "pairCode": "DPO-P080",
+      "pairNumber": 80,
+      "text": "Escucho con atención y considero las aportaciones que hacen los demás"
+    },
+    {
+      "code": "DPO-R161",
+      "order": 161,
+      "sourceReactiveId": 161,
+      "pairCode": "DPO-P081",
+      "pairNumber": 81,
+      "text": "Rechazaría las ofertas de trabajo que no me permitieran dedicarme a lo que más me gusta hacer"
+    },
+    {
+      "code": "DPO-R162",
+      "order": 162,
+      "sourceReactiveId": 162,
+      "pairCode": "DPO-P081",
+      "pairNumber": 81,
+      "text": "Mantengo la calma en situaciones difíciles"
+    },
+    {
+      "code": "DPO-R163",
+      "order": 163,
+      "sourceReactiveId": 163,
+      "pairCode": "DPO-P082",
+      "pairNumber": 82,
+      "text": "Mi ahorro está creciendo"
+    },
+    {
+      "code": "DPO-R164",
+      "order": 164,
+      "sourceReactiveId": 164,
+      "pairCode": "DPO-P082",
+      "pairNumber": 82,
+      "text": "Dedico bastante tiempo y energía a mi propio desarrollo"
+    },
+    {
+      "code": "DPO-R165",
+      "order": 165,
+      "sourceReactiveId": 165,
+      "pairCode": "DPO-P083",
+      "pairNumber": 83,
+      "text": "Llevo un calendario y me apego a él para administrarme"
+    },
+    {
+      "code": "DPO-R166",
+      "order": 166,
+      "sourceReactiveId": 166,
+      "pairCode": "DPO-P083",
+      "pairNumber": 83,
+      "text": "Puedo mantenerme relajado en situaciones de presión"
+    },
+    {
+      "code": "DPO-R167",
+      "order": 167,
+      "sourceReactiveId": 167,
+      "pairCode": "DPO-P084",
+      "pairNumber": 84,
+      "text": "Estoy consciente de la forma en la que mis emociones afectan a los demás"
+    },
+    {
+      "code": "DPO-R168",
+      "order": 168,
+      "sourceReactiveId": 168,
+      "pairCode": "DPO-P084",
+      "pairNumber": 84,
+      "text": "Actúo proactivamente para resolver los contratiempos"
+    },
+    {
+      "code": "DPO-R169",
+      "order": 169,
+      "sourceReactiveId": 169,
+      "pairCode": "DPO-P085",
+      "pairNumber": 85,
+      "text": "Hago listas de pendientes que reviso y actualizo a lo largo del día"
+    },
+    {
+      "code": "DPO-R170",
+      "order": 170,
+      "sourceReactiveId": 170,
+      "pairCode": "DPO-P085",
+      "pairNumber": 85,
+      "text": "Suelo tener un plan B por si las cosas no salen como espero"
+    },
+    {
+      "code": "DPO-R171",
+      "order": 171,
+      "sourceReactiveId": 171,
+      "pairCode": "DPO-P086",
+      "pairNumber": 86,
+      "text": "A lo largo de la jornada doy el máximo todo el tiempo"
+    },
+    {
+      "code": "DPO-R172",
+      "order": 172,
+      "sourceReactiveId": 172,
+      "pairCode": "DPO-P086",
+      "pairNumber": 86,
+      "text": "Confío en mi capacidad para obtener un logro importante en un lapso de tiempo corto"
+    },
+    {
+      "code": "DPO-R173",
+      "order": 173,
+      "sourceReactiveId": 173,
+      "pairCode": "DPO-P087",
+      "pairNumber": 87,
+      "text": "Generalmente puedo anticipar cómo reaccionarán las personas que conozco ante una situación determinada"
+    },
+    {
+      "code": "DPO-R174",
+      "order": 174,
+      "sourceReactiveId": 174,
+      "pairCode": "DPO-P087",
+      "pairNumber": 87,
+      "text": "Aún en condiciones adversas me mantengo firme hasta el final"
+    },
+    {
+      "code": "DPO-R175",
+      "order": 175,
+      "sourceReactiveId": 175,
+      "pairCode": "DPO-P088",
+      "pairNumber": 88,
+      "text": "Disfruto encontrar conexiones poco usuales en la información que reviso"
+    },
+    {
+      "code": "DPO-R176",
+      "order": 176,
+      "sourceReactiveId": 176,
+      "pairCode": "DPO-P088",
+      "pairNumber": 88,
+      "text": "Me estoy esforzando en mi trabajo para mejorar mi situación en el mediano plazo"
+    },
+    {
+      "code": "DPO-R177",
+      "order": 177,
+      "sourceReactiveId": 177,
+      "pairCode": "DPO-P089",
+      "pairNumber": 89,
+      "text": "Me trazo a mí mismo objetivos concretos de aprendizaje en función de lo que quiero lograr"
+    },
+    {
+      "code": "DPO-R178",
+      "order": 178,
+      "sourceReactiveId": 178,
+      "pairCode": "DPO-P089",
+      "pairNumber": 89,
+      "text": "Nunca he hecho trampa para ganar"
+    },
+    {
+      "code": "DPO-R179",
+      "order": 179,
+      "sourceReactiveId": 179,
+      "pairCode": "DPO-P090",
+      "pairNumber": 90,
+      "text": "Me gusta participar con otras personas para lograr objetivos en común"
+    },
+    {
+      "code": "DPO-R180",
+      "order": 180,
+      "sourceReactiveId": 180,
+      "pairCode": "DPO-P090",
+      "pairNumber": 90,
+      "text": "Me preocupo por los problemas de mi país y me involucro en las soluciones"
+    },
+    {
+      "code": "DPO-R181",
+      "order": 181,
+      "sourceReactiveId": 181,
+      "pairCode": "DPO-P091",
+      "pairNumber": 91,
+      "text": "Me implico activamente en crear oportunidades que me generen ingresos"
+    },
+    {
+      "code": "DPO-R182",
+      "order": 182,
+      "sourceReactiveId": 182,
+      "pairCode": "DPO-P091",
+      "pairNumber": 91,
+      "text": "Sacrifico horas de sueño si es necesario para sacar adelante proyectos que para mí son importantes"
+    },
+    {
+      "code": "DPO-R183",
+      "order": 183,
+      "sourceReactiveId": 183,
+      "pairCode": "DPO-P092",
+      "pairNumber": 92,
+      "text": "Dirijo mi vida en la dirección que quiero ir"
+    },
+    {
+      "code": "DPO-R184",
+      "order": 184,
+      "sourceReactiveId": 184,
+      "pairCode": "DPO-P092",
+      "pairNumber": 92,
+      "text": "Puedo trabajar durante muchas horas manteniendo el mismo nivel de energía"
+    },
+    {
+      "code": "DPO-R185",
+      "order": 185,
+      "sourceReactiveId": 185,
+      "pairCode": "DPO-P093",
+      "pairNumber": 93,
+      "text": "Cuando se pide la participación de todos soy el primero en levantar la mano"
+    },
+    {
+      "code": "DPO-R186",
+      "order": 186,
+      "sourceReactiveId": 186,
+      "pairCode": "DPO-P093",
+      "pairNumber": 93,
+      "text": "Puedo adivinar la intención real de otras personas al hablar con ellos"
+    },
+    {
+      "code": "DPO-R187",
+      "order": 187,
+      "sourceReactiveId": 187,
+      "pairCode": "DPO-P094",
+      "pairNumber": 94,
+      "text": "Hoy estoy cumpliendo con mis propósitos de vida más importantes"
+    },
+    {
+      "code": "DPO-R188",
+      "order": 188,
+      "sourceReactiveId": 188,
+      "pairCode": "DPO-P094",
+      "pairNumber": 94,
+      "text": "Conozco las barreras que tendré que superar para lograr mis objetivos"
+    },
+    {
+      "code": "DPO-R189",
+      "order": 189,
+      "sourceReactiveId": 189,
+      "pairCode": "DPO-P095",
+      "pairNumber": 95,
+      "text": "Fácilmente puedo pensar en estrategias para diversificar mis inversiones"
+    },
+    {
+      "code": "DPO-R190",
+      "order": 190,
+      "sourceReactiveId": 190,
+      "pairCode": "DPO-P095",
+      "pairNumber": 95,
+      "text": "Si alguien no está participando me acerco para ayudarlo a involucrarse"
+    },
+    {
+      "code": "DPO-R191",
+      "order": 191,
+      "sourceReactiveId": 191,
+      "pairCode": "DPO-P096",
+      "pairNumber": 96,
+      "text": "Me comprometo con mis proyectos y objetivos hasta sus últimas consecuencias"
+    },
+    {
+      "code": "DPO-R192",
+      "order": 192,
+      "sourceReactiveId": 192,
+      "pairCode": "DPO-P096",
+      "pairNumber": 96,
+      "text": "Me aseguro de tener unas finanzas sanas"
+    },
+    {
+      "code": "DPO-R193",
+      "order": 193,
+      "sourceReactiveId": 193,
+      "pairCode": "DPO-P097",
+      "pairNumber": 97,
+      "text": "Mantengo expectativas bajas para mí mismo"
+    },
+    {
+      "code": "DPO-R194",
+      "order": 194,
+      "sourceReactiveId": 194,
+      "pairCode": "DPO-P097",
+      "pairNumber": 97,
+      "text": "En situaciones difíciles me pongo serio y pierdo el sentido del humor"
+    },
+    {
+      "code": "DPO-R195",
+      "order": 195,
+      "sourceReactiveId": 195,
+      "pairCode": "DPO-P098",
+      "pairNumber": 98,
+      "text": "Actualmente no estoy desarrollando ninguna nueva habilidad que me ayude a hacer mejor mi trabajo"
+    },
+    {
+      "code": "DPO-R196",
+      "order": 196,
+      "sourceReactiveId": 196,
+      "pairCode": "DPO-P098",
+      "pairNumber": 98,
+      "text": "Me es difícil concentrar mi energía en la dirección que quiero ir"
+    },
+    {
+      "code": "DPO-R197",
+      "order": 197,
+      "sourceReactiveId": 197,
+      "pairCode": "DPO-P099",
+      "pairNumber": 99,
+      "text": "Cuando algo sale mal tiendo a quejarme, echar la culpa o señalar a las circunstancias "
+    },
+    {
+      "code": "DPO-R198",
+      "order": 198,
+      "sourceReactiveId": 198,
+      "pairCode": "DPO-P099",
+      "pairNumber": 99,
+      "text": "Prefiero alejarme de la gente"
+    },
+    {
+      "code": "DPO-R199",
+      "order": 199,
+      "sourceReactiveId": 199,
+      "pairCode": "DPO-P100",
+      "pairNumber": 100,
+      "text": "Me distraigo y pierdo el tiempo fácilmente"
+    },
+    {
+      "code": "DPO-R200",
+      "order": 200,
+      "sourceReactiveId": 200,
+      "pairCode": "DPO-P100",
+      "pairNumber": 100,
+      "text": "Generalmente las personas no me reconocen como autoridad"
+    },
+    {
+      "code": "DPO-R201",
+      "order": 201,
+      "sourceReactiveId": 201,
+      "pairCode": "DPO-P101",
+      "pairNumber": 101,
+      "text": "Me comprometo con entusiasmo pero luego se me olvida"
+    },
+    {
+      "code": "DPO-R202",
+      "order": 202,
+      "sourceReactiveId": 202,
+      "pairCode": "DPO-P101",
+      "pairNumber": 101,
+      "text": "Las cosas que se me ocurren son aburridas y poco creativas"
+    },
+    {
+      "code": "DPO-R203",
+      "order": 203,
+      "sourceReactiveId": 203,
+      "pairCode": "DPO-P102",
+      "pairNumber": 102,
+      "text": "Aceptaría cualquier trabajo porque sé que de todo puedo aprender muy rápido"
+    },
+    {
+      "code": "DPO-R204",
+      "order": 204,
+      "sourceReactiveId": 204,
+      "pairCode": "DPO-P102",
+      "pairNumber": 102,
+      "text": "Todavía no identifico qué es lo que quiero lograr en mi vida"
+    },
+    {
+      "code": "DPO-R205",
+      "order": 205,
+      "sourceReactiveId": 205,
+      "pairCode": "DPO-P103",
+      "pairNumber": 103,
+      "text": "Me es difícil anticipar mis cambios de ánimo"
+    },
+    {
+      "code": "DPO-R206",
+      "order": 206,
+      "sourceReactiveId": 206,
+      "pairCode": "DPO-P103",
+      "pairNumber": 103,
+      "text": "No veo cómo yo pueda resolver mis problemas actuales"
+    },
+    {
+      "code": "DPO-R207",
+      "order": 207,
+      "sourceReactiveId": 207,
+      "pairCode": "DPO-P104",
+      "pairNumber": 104,
+      "text": "Difícilmente me entero de lo que se está haciendo en otros campos diferentes al mío"
+    },
+    {
+      "code": "DPO-R208",
+      "order": 208,
+      "sourceReactiveId": 208,
+      "pairCode": "DPO-P104",
+      "pairNumber": 104,
+      "text": "No estoy disfrutando mi vida como me gustaría"
+    },
+    {
+      "code": "DPO-R209",
+      "order": 209,
+      "sourceReactiveId": 209,
+      "pairCode": "DPO-P105",
+      "pairNumber": 105,
+      "text": "Cuando no entiendo algo me desespero y lo abandono"
+    },
+    {
+      "code": "DPO-R210",
+      "order": 210,
+      "sourceReactiveId": 210,
+      "pairCode": "DPO-P105",
+      "pairNumber": 105,
+      "text": "Dudo que mi voto sea de mucha utilidad"
+    },
+    {
+      "code": "DPO-R211",
+      "order": 211,
+      "sourceReactiveId": 211,
+      "pairCode": "DPO-P106",
+      "pairNumber": 106,
+      "text": "Actualmente no invierto mi dinero"
+    },
+    {
+      "code": "DPO-R212",
+      "order": 212,
+      "sourceReactiveId": 212,
+      "pairCode": "DPO-P106",
+      "pairNumber": 106,
+      "text": "No veo sentido en exigirme demasiado"
+    },
+    {
+      "code": "DPO-R213",
+      "order": 213,
+      "sourceReactiveId": 213,
+      "pairCode": "DPO-P107",
+      "pairNumber": 107,
+      "text": "Muy poco se me ocurren ideas creativas y novedosas"
+    },
+    {
+      "code": "DPO-R214",
+      "order": 214,
+      "sourceReactiveId": 214,
+      "pairCode": "DPO-P107",
+      "pairNumber": 107,
+      "text": "Sospecho que yo mismo bloqueo las oportunidades, a veces sin darme cuenta"
+    },
+    {
+      "code": "DPO-R215",
+      "order": 215,
+      "sourceReactiveId": 215,
+      "pairCode": "DPO-P108",
+      "pairNumber": 108,
+      "text": "En los últimos seis meses me quedé sin dinero por lo menos una vez"
+    },
+    {
+      "code": "DPO-R216",
+      "order": 216,
+      "sourceReactiveId": 216,
+      "pairCode": "DPO-P108",
+      "pairNumber": 108,
+      "text": "Tengo un asunto no resuelto que me hace perder la concentración"
+    },
+    {
+      "code": "DPO-R217",
+      "order": 217,
+      "sourceReactiveId": 217,
+      "pairCode": "DPO-P109",
+      "pairNumber": 109,
+      "text": "Si me ofrecieran un trabajo para el que sé que no tengo capacidad suficiente, igual lo tomaría"
+    },
+    {
+      "code": "DPO-R218",
+      "order": 218,
+      "sourceReactiveId": 218,
+      "pairCode": "DPO-P109",
+      "pairNumber": 109,
+      "text": "Mi desempeño está por debajo de las expectativas"
+    },
+    {
+      "code": "DPO-R219",
+      "order": 219,
+      "sourceReactiveId": 219,
+      "pairCode": "DPO-P110",
+      "pairNumber": 110,
+      "text": "Algunos dirían que soy intolerante o que no acepto a las personas como son"
+    },
+    {
+      "code": "DPO-R220",
+      "order": 220,
+      "sourceReactiveId": 220,
+      "pairCode": "DPO-P110",
+      "pairNumber": 110,
+      "text": "Me esfuerzo poco para superarme a mí mismo"
+    },
+    {
+      "code": "DPO-R221",
+      "order": 221,
+      "sourceReactiveId": 221,
+      "pairCode": "DPO-P111",
+      "pairNumber": 111,
+      "text": "Frecuentemente soy el último en darse cuenta de que las cosas no van bien"
+    },
+    {
+      "code": "DPO-R222",
+      "order": 222,
+      "sourceReactiveId": 222,
+      "pairCode": "DPO-P111",
+      "pairNumber": 111,
+      "text": "Bajo estrés actúo con prisas y de forma descuidada"
+    },
+    {
+      "code": "DPO-R223",
+      "order": 223,
+      "sourceReactiveId": 223,
+      "pairCode": "DPO-P112",
+      "pairNumber": 112,
+      "text": "Con frecuencia confundo mis emociones"
+    },
+    {
+      "code": "DPO-R224",
+      "order": 224,
+      "sourceReactiveId": 224,
+      "pairCode": "DPO-P112",
+      "pairNumber": 112,
+      "text": "Mi desempeño se disminuye en situaciones de mucha exigencia"
+    },
+    {
+      "code": "DPO-R225",
+      "order": 225,
+      "sourceReactiveId": 225,
+      "pairCode": "DPO-P113",
+      "pairNumber": 113,
+      "text": "Me dejo llevar por lo que opinan los demás"
+    },
+    {
+      "code": "DPO-R226",
+      "order": 226,
+      "sourceReactiveId": 226,
+      "pairCode": "DPO-P113",
+      "pairNumber": 113,
+      "text": "A veces aparento tener virtudes que en realidad no poseo"
+    },
+    {
+      "code": "DPO-R227",
+      "order": 227,
+      "sourceReactiveId": 227,
+      "pairCode": "DPO-P114",
+      "pairNumber": 114,
+      "text": "Mi nivel de ingreso se ha mantenido igual desde hace años"
+    },
+    {
+      "code": "DPO-R228",
+      "order": 228,
+      "sourceReactiveId": 228,
+      "pairCode": "DPO-P114",
+      "pairNumber": 114,
+      "text": "Se me dificulta reconocer mis errores y fracasos"
+    },
+    {
+      "code": "DPO-R229",
+      "order": 229,
+      "sourceReactiveId": 229,
+      "pairCode": "DPO-P115",
+      "pairNumber": 115,
+      "text": "Soy capaz de mentir para librarme de problemas"
+    },
+    {
+      "code": "DPO-R230",
+      "order": 230,
+      "sourceReactiveId": 230,
+      "pairCode": "DPO-P115",
+      "pairNumber": 115,
+      "text": "A veces siento que no soy lo suficientemente bueno para lograr lo que quiero"
+    },
+    {
+      "code": "DPO-R231",
+      "order": 231,
+      "sourceReactiveId": 231,
+      "pairCode": "DPO-P116",
+      "pairNumber": 116,
+      "text": "Desarrollar nuevas habilidades no es prioritario para mí en este momento"
+    },
+    {
+      "code": "DPO-R232",
+      "order": 232,
+      "sourceReactiveId": 232,
+      "pairCode": "DPO-P116",
+      "pairNumber": 116,
+      "text": "Me cuesta entender los sentimientos de otras personas"
+    },
+    {
+      "code": "DPO-R233",
+      "order": 233,
+      "sourceReactiveId": 233,
+      "pairCode": "DPO-P117",
+      "pairNumber": 117,
+      "text": "No tengo muchos motivos para enorgullecerme de mí mismo"
+    },
+    {
+      "code": "DPO-R234",
+      "order": 234,
+      "sourceReactiveId": 234,
+      "pairCode": "DPO-P117",
+      "pairNumber": 117,
+      "text": "Pierdo mucho tiempo buscando mis cosas cuando las necesito"
+    },
+    {
+      "code": "DPO-R235",
+      "order": 235,
+      "sourceReactiveId": 235,
+      "pairCode": "DPO-P118",
+      "pairNumber": 118,
+      "text": "No arriesgaría recursos propios para abrir un negocio"
+    },
+    {
+      "code": "DPO-R236",
+      "order": 236,
+      "sourceReactiveId": 236,
+      "pairCode": "DPO-P118",
+      "pairNumber": 118,
+      "text": "Se me dificulta cumplir a tiempo con mis obligaciones"
+    },
+    {
+      "code": "DPO-R237",
+      "order": 237,
+      "sourceReactiveId": 239,
+      "pairCode": "DPO-P119",
+      "pairNumber": 119,
+      "text": "Me desanimo con facilidad ante los obstáculos"
+    },
+    {
+      "code": "DPO-R238",
+      "order": 238,
+      "sourceReactiveId": 240,
+      "pairCode": "DPO-P119",
+      "pairNumber": 119,
+      "text": "Se me ocurren ideas pero me cuesta llevarlas a la práctica"
+    },
+    {
+      "code": "DPO-R239",
+      "order": 239,
+      "sourceReactiveId": 241,
+      "pairCode": "DPO-P120",
+      "pairNumber": 120,
+      "text": "Prefiero ser conservador y esperar lo menos de la vida"
+    },
+    {
+      "code": "DPO-R240",
+      "order": 240,
+      "sourceReactiveId": 242,
+      "pairCode": "DPO-P120",
+      "pairNumber": 120,
+      "text": "En ocasiones soy inconstante o indisciplinado"
+    },
+    {
+      "code": "DPO-R241",
+      "order": 241,
+      "sourceReactiveId": 243,
+      "pairCode": "DPO-P121",
+      "pairNumber": 121,
+      "text": "Se me dificulta reconocer las buenas oportunidades de negocio"
+    },
+    {
+      "code": "DPO-R242",
+      "order": 242,
+      "sourceReactiveId": 244,
+      "pairCode": "DPO-P121",
+      "pairNumber": 121,
+      "text": "Me es difícil darme cuenta cuando alguien me está mintiendo"
+    },
+    {
+      "code": "DPO-R243",
+      "order": 243,
+      "sourceReactiveId": 245,
+      "pairCode": "DPO-P122",
+      "pairNumber": 122,
+      "text": "Trabajo mucho pero consigo pocos resultados"
+    },
+    {
+      "code": "DPO-R244",
+      "order": 244,
+      "sourceReactiveId": 246,
+      "pairCode": "DPO-P122",
+      "pairNumber": 122,
+      "text": "He alterado la verdad cuando ha sido necesario para zafarme de problemas"
+    },
+    {
+      "code": "DPO-R245",
+      "order": 245,
+      "sourceReactiveId": 247,
+      "pairCode": "DPO-P123",
+      "pairNumber": 123,
+      "text": "Compro cosas sin pensarlo lo suficiente"
+    },
+    {
+      "code": "DPO-R246",
+      "order": 246,
+      "sourceReactiveId": 248,
+      "pairCode": "DPO-P123",
+      "pairNumber": 123,
+      "text": "Desde la última vez que fracasé no estoy intentando nada nuevo"
+    },
+    {
+      "code": "DPO-R247",
+      "order": 247,
+      "sourceReactiveId": 249,
+      "pairCode": "DPO-P124",
+      "pairNumber": 124,
+      "text": "Desconozco cómo es que los cambios en el entorno pudieran afectar mis planes"
+    },
+    {
+      "code": "DPO-R248",
+      "order": 248,
+      "sourceReactiveId": 250,
+      "pairCode": "DPO-P124",
+      "pairNumber": 124,
+      "text": "Se me dificulta relacionarme con los demás"
+    },
+    {
+      "code": "DPO-R249",
+      "order": 249,
+      "sourceReactiveId": 251,
+      "pairCode": "DPO-P125",
+      "pairNumber": 125,
+      "text": "Los problemas me crecen por no atender a tiempo mis asuntos"
+    },
+    {
+      "code": "DPO-R250",
+      "order": 250,
+      "sourceReactiveId": 252,
+      "pairCode": "DPO-P125",
+      "pairNumber": 125,
+      "text": "Al discutir con mi pareja (o familia) pierdo rápidamente la paciencia "
+    },
+    {
+      "code": "DPO-R251",
+      "order": 251,
+      "sourceReactiveId": 253,
+      "pairCode": "DPO-P126",
+      "pairNumber": 126,
+      "text": "Intento concentrarme pero pierdo el foco con facilidad"
+    },
+    {
+      "code": "DPO-R252",
+      "order": 252,
+      "sourceReactiveId": 254,
+      "pairCode": "DPO-P126",
+      "pairNumber": 126,
+      "text": "Hacer una contribución importante al mundo no es algo que me preocupe por el momento"
+    },
+    {
+      "code": "DPO-R253",
+      "order": 253,
+      "sourceReactiveId": 255,
+      "pairCode": "DPO-P127",
+      "pairNumber": 127,
+      "text": "A veces creo que me quejo mucho pero no propongo"
+    },
+    {
+      "code": "DPO-R254",
+      "order": 254,
+      "sourceReactiveId": 256,
+      "pairCode": "DPO-P127",
+      "pairNumber": 127,
+      "text": "Dudo de mi capacidad para convencer a otros"
+    },
+    {
+      "code": "DPO-R255",
+      "order": 255,
+      "sourceReactiveId": 257,
+      "pairCode": "DPO-P128",
+      "pairNumber": 128,
+      "text": "Me es difícil imaginar cómo será mi vida dentro de unos años"
+    },
+    {
+      "code": "DPO-R256",
+      "order": 256,
+      "sourceReactiveId": 258,
+      "pairCode": "DPO-P128",
+      "pairNumber": 128,
+      "text": "Soy muy permisivo con los demás"
+    },
+    {
+      "code": "DPO-R257",
+      "order": 257,
+      "sourceReactiveId": 259,
+      "pairCode": "DPO-P129",
+      "pairNumber": 129,
+      "text": "Quiero hacer muchas cosas pero me canso con facilidad"
+    },
+    {
+      "code": "DPO-R258",
+      "order": 258,
+      "sourceReactiveId": 260,
+      "pairCode": "DPO-P129",
+      "pairNumber": 129,
+      "text": "Se me dificulta tomar decisiones bajo estrés"
+    },
+    {
+      "code": "DPO-R259",
+      "order": 259,
+      "sourceReactiveId": 261,
+      "pairCode": "DPO-P130",
+      "pairNumber": 130,
+      "text": "Soy desordenado con mis finanzas"
+    },
+    {
+      "code": "DPO-R260",
+      "order": 260,
+      "sourceReactiveId": 262,
+      "pairCode": "DPO-P130",
+      "pairNumber": 130,
+      "text": "Me cuesta aceptarme como soy"
+    },
+    {
+      "code": "DPO-R261",
+      "order": 261,
+      "sourceReactiveId": 263,
+      "pairCode": "DPO-P131",
+      "pairNumber": 131,
+      "text": "Desconozco qué opciones tengo para invertir mi dinero"
+    },
+    {
+      "code": "DPO-R262",
+      "order": 262,
+      "sourceReactiveId": 264,
+      "pairCode": "DPO-P131",
+      "pairNumber": 131,
+      "text": "Seguir estudiando es lo último que haría"
+    },
+    {
+      "code": "DPO-R263",
+      "order": 263,
+      "sourceReactiveId": 265,
+      "pairCode": "DPO-P132",
+      "pairNumber": 132,
+      "text": "Desconozco de qué forma podría aprovechar mis talentos para generar mayores ingresos"
+    },
+    {
+      "code": "DPO-R264",
+      "order": 264,
+      "sourceReactiveId": 266,
+      "pairCode": "DPO-P132",
+      "pairNumber": 132,
+      "text": "Pospongo lo más que puedo las tareas que no me gustan"
+    },
+    {
+      "code": "DPO-R265",
+      "order": 265,
+      "sourceReactiveId": 267,
+      "pairCode": "DPO-P133",
+      "pairNumber": 133,
+      "text": "En una emergencia se me dificulta mantenerme concentrado"
+    },
+    {
+      "code": "DPO-R266",
+      "order": 266,
+      "sourceReactiveId": 268,
+      "pairCode": "DPO-P133",
+      "pairNumber": 133,
+      "text": "Tiendo a dejar que se me acumulen los pendientes"
+    },
+    {
+      "code": "DPO-R267",
+      "order": 267,
+      "sourceReactiveId": 269,
+      "pairCode": "DPO-P134",
+      "pairNumber": 134,
+      "text": "Dudo que mis circunstancias puedan mejorar para el mes que viene"
+    },
+    {
+      "code": "DPO-R268",
+      "order": 268,
+      "sourceReactiveId": 270,
+      "pairCode": "DPO-P134",
+      "pairNumber": 134,
+      "text": "Estoy poco enterado de los problemas que hay en el mundo"
+    },
+    {
+      "code": "DPO-R269",
+      "order": 269,
+      "sourceReactiveId": 271,
+      "pairCode": "DPO-P135",
+      "pairNumber": 135,
+      "text": "A veces hago las cosas sin seguir un orden lógico"
+    },
+    {
+      "code": "DPO-R270",
+      "order": 270,
+      "sourceReactiveId": 272,
+      "pairCode": "DPO-P135",
+      "pairNumber": 135,
+      "text": "Inicio con fuerza pero pasado un tiempo, dejo de dar seguimiento a mis avances"
+    },
+    {
+      "code": "DPO-R271",
+      "order": 271,
+      "sourceReactiveId": 273,
+      "pairCode": "DPO-P136",
+      "pairNumber": 136,
+      "text": "Tiendo a perder la paciencia"
+    },
+    {
+      "code": "DPO-R272",
+      "order": 272,
+      "sourceReactiveId": 274,
+      "pairCode": "DPO-P136",
+      "pairNumber": 136,
+      "text": "Me frustra darme cuenta de lo limitado que hoy me siento"
+    },
+    {
+      "code": "DPO-R273",
+      "order": 273,
+      "sourceReactiveId": 275,
+      "pairCode": "DPO-P137",
+      "pairNumber": 137,
+      "text": "Abandono las tareas que me exigen demasiado esfuerzo"
+    },
+    {
+      "code": "DPO-R274",
+      "order": 274,
+      "sourceReactiveId": 276,
+      "pairCode": "DPO-P137",
+      "pairNumber": 137,
+      "text": "Hay veces en las que tomar algo que no es tuyo puede estar justificado"
+    },
+    {
+      "code": "DPO-R275",
+      "order": 275,
+      "sourceReactiveId": 277,
+      "pairCode": "DPO-P138",
+      "pairNumber": 138,
+      "text": "Me es difícil apegarme a los acuerdos que hago otras personas"
+    },
+    {
+      "code": "DPO-R276",
+      "order": 276,
+      "sourceReactiveId": 278,
+      "pairCode": "DPO-P138",
+      "pairNumber": 138,
+      "text": "Me rindo cuando las cosas parecen no tener solución"
+    },
+    {
+      "code": "DPO-R277",
+      "order": 277,
+      "sourceReactiveId": 279,
+      "pairCode": "DPO-P139",
+      "pairNumber": 139,
+      "text": "Me cuesta prever las consecuencias de mis actos"
+    },
+    {
+      "code": "DPO-R278",
+      "order": 278,
+      "sourceReactiveId": 280,
+      "pairCode": "DPO-P139",
+      "pairNumber": 139,
+      "text": "Cuando las cosas no van bien, pienso que debería darme por vencido"
+    },
+    {
+      "code": "DPO-R279",
+      "order": 279,
+      "sourceReactiveId": 281,
+      "pairCode": "DPO-P140",
+      "pairNumber": 140,
+      "text": "Cuando las cosas se tornan complicadas me es difícil saber qué es lo correcto de hacer"
+    },
+    {
+      "code": "DPO-R280",
+      "order": 280,
+      "sourceReactiveId": 282,
+      "pairCode": "DPO-P140",
+      "pairNumber": 140,
+      "text": "Me hace falta tener más energía para completar mis actividades del día"
+    },
+    {
+      "code": "DPO-R281",
+      "order": 281,
+      "sourceReactiveId": 283,
+      "pairCode": "DPO-P141",
+      "pairNumber": 141,
+      "text": "Desconozco el camino que debo seguir para hacer realidad mi visión personal"
+    },
+    {
+      "code": "DPO-R282",
+      "order": 282,
+      "sourceReactiveId": 284,
+      "pairCode": "DPO-P141",
+      "pairNumber": 141,
+      "text": "A menos que sea absolutamente necesario, no estoy dispuesto a cambiar mi forma de trabajo"
+    },
+    {
+      "code": "DPO-R283",
+      "order": 283,
+      "sourceReactiveId": 285,
+      "pairCode": "DPO-P142",
+      "pairNumber": 142,
+      "text": "Se me dificulta pensar ideas innovadoras"
+    },
+    {
+      "code": "DPO-R284",
+      "order": 284,
+      "sourceReactiveId": 286,
+      "pairCode": "DPO-P142",
+      "pairNumber": 142,
+      "text": "Me cierro a vivir nuevas experiencias"
+    },
+    {
+      "code": "DPO-R285",
+      "order": 285,
+      "sourceReactiveId": 287,
+      "pairCode": "DPO-P143",
+      "pairNumber": 143,
+      "text": "Me resulta difícil disfrutar de mi vida"
+    },
+    {
+      "code": "DPO-R286",
+      "order": 286,
+      "sourceReactiveId": 288,
+      "pairCode": "DPO-P143",
+      "pairNumber": 143,
+      "text": "Prefiero trabajar solo"
+    },
+    {
+      "code": "DPO-R287",
+      "order": 287,
+      "sourceReactiveId": 289,
+      "pairCode": "DPO-P144",
+      "pairNumber": 144,
+      "text": "Me cuesta trabajo hablar en público"
+    },
+    {
+      "code": "DPO-R288",
+      "order": 288,
+      "sourceReactiveId": 290,
+      "pairCode": "DPO-P144",
+      "pairNumber": 144,
+      "text": "A veces tengo que pedir prestado para cumplir con mis gastos del mes"
+    },
+    {
+      "code": "DPO-R289",
+      "order": 289,
+      "sourceReactiveId": 291,
+      "pairCode": "DPO-P145",
+      "pairNumber": 145,
+      "text": "Prefiero no tener un plan y dejar que la vida me sorprenda"
+    },
+    {
+      "code": "DPO-R290",
+      "order": 290,
+      "sourceReactiveId": 292,
+      "pairCode": "DPO-P145",
+      "pairNumber": 145,
+      "text": "Cuando estoy estresado suelo reaccionar de mal modo con los demás"
+    },
+    {
+      "code": "DPO-R291",
+      "order": 291,
+      "sourceReactiveId": 293,
+      "pairCode": "DPO-P146",
+      "pairNumber": 146,
+      "text": "Para reconocer mis errores, necesito que otros me los hagan ver"
+    },
+    {
+      "code": "DPO-R292",
+      "order": 292,
+      "sourceReactiveId": 294,
+      "pairCode": "DPO-P146",
+      "pairNumber": 146,
+      "text": "He dejado que otros paguen las consecuencias de mis malas decisiones"
+    },
+    {
+      "code": "DPO-R293",
+      "order": 293,
+      "sourceReactiveId": 295,
+      "pairCode": "DPO-P147",
+      "pairNumber": 147,
+      "text": "Soy insensible a los problemas ajenos"
+    },
+    {
+      "code": "DPO-R294",
+      "order": 294,
+      "sourceReactiveId": 296,
+      "pairCode": "DPO-P147",
+      "pairNumber": 147,
+      "text": "Entrar en contacto con otras personas me pone nervioso"
+    },
+    {
+      "code": "DPO-R295",
+      "order": 295,
+      "sourceReactiveId": 297,
+      "pairCode": "DPO-P148",
+      "pairNumber": 148,
+      "text": "Se me dificulta relacionar conceptos complejos o ideas muy abstractas"
+    },
+    {
+      "code": "DPO-R296",
+      "order": 296,
+      "sourceReactiveId": 298,
+      "pairCode": "DPO-P148",
+      "pairNumber": 148,
+      "text": "No acostumbro seguir un presupuesto de gasto"
+    },
+    {
+      "code": "DPO-R297",
+      "order": 297,
+      "sourceReactiveId": 299,
+      "pairCode": "DPO-P149",
+      "pairNumber": 149,
+      "text": "Es difícil que cambie mi forma de hacer las cosas aunque me de cuenta de que no me están funcionando"
+    },
+    {
+      "code": "DPO-R298",
+      "order": 298,
+      "sourceReactiveId": 300,
+      "pairCode": "DPO-P149",
+      "pairNumber": 149,
+      "text": "Es raro que me ponga a investigar que está sucediendo en mi país o en el mundo"
+    },
+    {
+      "code": "DPO-R299",
+      "order": 299,
+      "sourceReactiveId": 301,
+      "pairCode": "DPO-P150",
+      "pairNumber": 150,
+      "text": "Dudo tener el talento que se necesita para lograr el éxito que pretendo"
+    },
+    {
+      "code": "DPO-R300",
+      "order": 300,
+      "sourceReactiveId": 302,
+      "pairCode": "DPO-P150",
+      "pairNumber": 150,
+      "text": "Los proyectos en los que estoy involucrado obstaculizan mi camino hacia mis ideales"
+    },
+    {
+      "code": "DPO-R301",
+      "order": 301,
+      "sourceReactiveId": 303,
+      "pairCode": "DPO-P151",
+      "pairNumber": 151,
+      "text": "Me siento preocupado por temas de dinero"
+    },
+    {
+      "code": "DPO-R302",
+      "order": 302,
+      "sourceReactiveId": 304,
+      "pairCode": "DPO-P151",
+      "pairNumber": 151,
+      "text": "Me va mejor en trabajos de baja responsabilidad"
+    },
+    {
+      "code": "DPO-R303",
+      "order": 303,
+      "sourceReactiveId": 305,
+      "pairCode": "DPO-P152",
+      "pairNumber": 152,
+      "text": "Mis emociones tienden a afectar mi objetividad"
+    },
+    {
+      "code": "DPO-R304",
+      "order": 304,
+      "sourceReactiveId": 306,
+      "pairCode": "DPO-P152",
+      "pairNumber": 152,
+      "text": "Desconfío del futuro y de las nuevas ideas"
+    },
+    {
+      "code": "DPO-R305",
+      "order": 305,
+      "sourceReactiveId": 307,
+      "pairCode": "DPO-P153",
+      "pairNumber": 153,
+      "text": "Todavía no tengo claro cuál es mi propósito en la vida"
+    },
+    {
+      "code": "DPO-R306",
+      "order": 306,
+      "sourceReactiveId": 308,
+      "pairCode": "DPO-P153",
+      "pairNumber": 153,
+      "text": "La gente diría que me cuesta mucho reponerme de los fracasos"
+    },
+    {
+      "code": "DPO-R307",
+      "order": 307,
+      "sourceReactiveId": 309,
+      "pairCode": "DPO-P154",
+      "pairNumber": 154,
+      "text": "Tiendo a dejar las cosas para después"
+    },
+    {
+      "code": "DPO-R308",
+      "order": 308,
+      "sourceReactiveId": 310,
+      "pairCode": "DPO-P154",
+      "pairNumber": 154,
+      "text": "Desconozco cuánto debo, cuánto gano o cuánto tengo"
+    },
+    {
+      "code": "DPO-R309",
+      "order": 309,
+      "sourceReactiveId": 311,
+      "pairCode": "DPO-P155",
+      "pairNumber": 155,
+      "text": "Me doy cuenta que estoy equivocado hasta que alguien me lo avisa"
+    },
+    {
+      "code": "DPO-R310",
+      "order": 310,
+      "sourceReactiveId": 312,
+      "pairCode": "DPO-P155",
+      "pairNumber": 155,
+      "text": "Me impaciento cuando alguien me platica sus problemas"
+    },
+    {
+      "code": "DPO-R311",
+      "order": 311,
+      "sourceReactiveId": 313,
+      "pairCode": "DPO-P156",
+      "pairNumber": 156,
+      "text": "Me siento intranquilo o irritable ante situaciones nuevas o cambiantes"
+    },
+    {
+      "code": "DPO-R312",
+      "order": 312,
+      "sourceReactiveId": 314,
+      "pairCode": "DPO-P156",
+      "pairNumber": 156,
+      "text": "Invariablemente me quedo sin dinero"
+    },
+    {
+      "code": "DPO-R313",
+      "order": 313,
+      "sourceReactiveId": 315,
+      "pairCode": "DPO-P157",
+      "pairNumber": 157,
+      "text": "Me enfada escuchar críticas sobre mi trabajo"
+    },
+    {
+      "code": "DPO-R314",
+      "order": 314,
+      "sourceReactiveId": 316,
+      "pairCode": "DPO-P157",
+      "pairNumber": 157,
+      "text": "Necesito supervisión para completar mis tareas"
+    },
+    {
+      "code": "DPO-R315",
+      "order": 315,
+      "sourceReactiveId": 317,
+      "pairCode": "DPO-P158",
+      "pairNumber": 158,
+      "text": "Acepto las nuevas oportunidades de trabajo aunque estas no correspondan a mi predilección"
+    },
+    {
+      "code": "DPO-R316",
+      "order": 316,
+      "sourceReactiveId": 318,
+      "pairCode": "DPO-P158",
+      "pairNumber": 158,
+      "text": "Si un libro se vuelve difícil de entender, lo abandono y comienzo uno nuevo"
+    },
+    {
+      "code": "DPO-R317",
+      "order": 317,
+      "sourceReactiveId": 319,
+      "pairCode": "DPO-P159",
+      "pairNumber": 159,
+      "text": "Conocer las razones del porqué de los problemas no es interesante para mí"
+    },
+    {
+      "code": "DPO-R318",
+      "order": 318,
+      "sourceReactiveId": 320,
+      "pairCode": "DPO-P159",
+      "pairNumber": 159,
+      "text": "Desconozco qué es lo que más me conviene hacer para lograr mis ideales"
+    },
+    {
+      "code": "DPO-R319",
+      "order": 319,
+      "sourceReactiveId": 321,
+      "pairCode": "DPO-P160",
+      "pairNumber": 160,
+      "text": "Cuando se me agota el entusiasmo inicial, abandono la actividad para ir por otra nueva"
+    },
+    {
+      "code": "DPO-R320",
+      "order": 320,
+      "sourceReactiveId": 322,
+      "pairCode": "DPO-P160",
+      "pairNumber": 160,
+      "text": "En situaciones de presión cometo más errores de lo normal"
+    },
+    {
+      "code": "DPO-R321",
+      "order": 321,
+      "sourceReactiveId": 323,
+      "pairCode": "DPO-P161",
+      "pairNumber": 161,
+      "text": "Funciono mejor en trabajos de baja responsabilidad"
+    },
+    {
+      "code": "DPO-R322",
+      "order": 322,
+      "sourceReactiveId": 324,
+      "pairCode": "DPO-P161",
+      "pairNumber": 161,
+      "text": "Invariablemente veo primero por mis propios intereses"
+    },
+    {
+      "code": "DPO-R323",
+      "order": 323,
+      "sourceReactiveId": 325,
+      "pairCode": "DPO-P162",
+      "pairNumber": 162,
+      "text": "En situaciones de conflicto pierdo el profesionalismo"
+    },
+    {
+      "code": "DPO-R324",
+      "order": 324,
+      "sourceReactiveId": 326,
+      "pairCode": "DPO-P162",
+      "pairNumber": 162,
+      "text": "En ocasiones actúo impulsivamente"
+    },
+    {
+      "code": "DPO-R325",
+      "order": 325,
+      "sourceReactiveId": 327,
+      "pairCode": "DPO-P163",
+      "pairNumber": 163,
+      "text": "Pierdo la motivación cuando las cosas no salen como quiero"
+    },
+    {
+      "code": "DPO-R326",
+      "order": 326,
+      "sourceReactiveId": 328,
+      "pairCode": "DPO-P163",
+      "pairNumber": 163,
+      "text": "No me motiva recibir reconocimientos por mi buen desempeño"
+    },
+    {
+      "code": "DPO-R327",
+      "order": 327,
+      "sourceReactiveId": 329,
+      "pairCode": "DPO-P164",
+      "pairNumber": 164,
+      "text": "Ignoro cuáles son los retos a los que se enfrentará mi profesión en el corto plazo"
+    },
+    {
+      "code": "DPO-R328",
+      "order": 328,
+      "sourceReactiveId": 330,
+      "pairCode": "DPO-P164",
+      "pairNumber": 164,
+      "text": "Es común que en las negociaciones con otros yo salga perdiendo"
+    },
+    {
+      "code": "DPO-R329",
+      "order": 329,
+      "sourceReactiveId": 331,
+      "pairCode": "DPO-P165",
+      "pairNumber": 165,
+      "text": "Me cuesta reconocer mis áreas de oportunidad"
+    },
+    {
+      "code": "DPO-R330",
+      "order": 330,
+      "sourceReactiveId": 332,
+      "pairCode": "DPO-P165",
+      "pairNumber": 165,
+      "text": "Tiendo a reaccionar a los problemas cuando ya se presentaron o cuando ya es demasiado tarde"
+    },
+    {
+      "code": "DPO-R331",
+      "order": 331,
+      "sourceReactiveId": 333,
+      "pairCode": "DPO-P166",
+      "pairNumber": 166,
+      "text": "Tengo planes, pero no hago mucho por traerlos a la práctica"
+    },
+    {
+      "code": "DPO-R332",
+      "order": 332,
+      "sourceReactiveId": 334,
+      "pairCode": "DPO-P166",
+      "pairNumber": 166,
+      "text": "Cometer errores me desanima al grado de pensar en renunciar a mi objetivo"
+    },
+    {
+      "code": "DPO-R333",
+      "order": 333,
+      "sourceReactiveId": 335,
+      "pairCode": "DPO-P167",
+      "pairNumber": 167,
+      "text": "Prefiero los trabajos de poca exigencia"
+    },
+    {
+      "code": "DPO-R334",
+      "order": 334,
+      "sourceReactiveId": 336,
+      "pairCode": "DPO-P167",
+      "pairNumber": 167,
+      "text": "Discutir temas difíciles con otros me pone irritable o de mal humor"
+    },
+    {
+      "code": "DPO-R335",
+      "order": 335,
+      "sourceReactiveId": 337,
+      "pairCode": "DPO-P168",
+      "pairNumber": 168,
+      "text": "Me preocupa la idea de no estar acompañado"
+    },
+    {
+      "code": "DPO-R336",
+      "order": 336,
+      "sourceReactiveId": 338,
+      "pairCode": "DPO-P168",
+      "pairNumber": 168,
+      "text": "Me frustro cuando pienso en mi situación actual"
+    }
+  ],
+  "likertQuestions": [
+    {
+      "code": "DPO-L001",
+      "order": 1,
+      "text": "Tengo claras mis metas de ahorro, a corto, mediano y largo plazo.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L002",
+      "order": 2,
+      "text": "Gasto únicamente en lo necesario.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L003",
+      "order": 3,
+      "text": "Tengo un plan para incrementar mis ingresos en el corto plazo.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L004",
+      "order": 4,
+      "text": "Estoy ahorrando para un objetivo de largo plazo.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L005",
+      "order": 5,
+      "text": "Cuando se trata de dinero, tomo decisiones fría, racional y concienzudamente.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L006",
+      "order": 6,
+      "text": "Invierto mi dinero en opciones que son convenientes para mí.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L007",
+      "order": 7,
+      "text": "Nunca dejo ir una buena oportunidad para ganar un dinero extra.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L008",
+      "order": 8,
+      "text": "Siempre guardo algo de lo que gano.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L009",
+      "order": 9,
+      "text": "Me implico activamente en crear oportunidades que me generen ingresos.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L010",
+      "order": 10,
+      "text": "Realizo inversiones que me producen cada vez mejores rendimientos.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L011",
+      "order": 11,
+      "text": "Mis deudas están perfectamente controladas.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L012",
+      "order": 12,
+      "text": "Me administro de una forma que siempre me queda algo para ahorrar.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L013",
+      "order": 13,
+      "text": "Solo compro lo realmente necesario",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L014",
+      "order": 14,
+      "text": "Al tomar decisiones de dinero me aseguro de obtener siempre el máximo rendimiento.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L015",
+      "order": 15,
+      "text": "Me aseguro de sacar el mayor provecho a los recursos que tengo disponibles.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L016",
+      "order": 16,
+      "text": "Estoy preparado para afrontar un imprevisto sin desestabilizar mis finanzas.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L017",
+      "order": 17,
+      "text": "De mis deudas siempre pago más del saldo mínimo.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L018",
+      "order": 18,
+      "text": "Actualmente estoy invirtiendo mi dinero.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L019",
+      "order": 19,
+      "text": "Compro cosas solo cuando tengo la certeza de que las podré pagar.",
+      "dimensionCode": "AHORRO",
+      "dimensionName": "Ahorro",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L020",
+      "order": 20,
+      "text": "Constantemente estoy ideando formas de ganar dinero.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L021",
+      "order": 21,
+      "text": "Acostumbro seguir un presupuesto de gasto.",
+      "dimensionCode": "GASTO",
+      "dimensionName": "Gasto",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L022",
+      "order": 22,
+      "text": "Sacrifico parte de mis ganancias para volverlas a invertir.",
+      "dimensionCode": "INVERSION",
+      "dimensionName": "Inversión",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L023",
+      "order": 23,
+      "text": "Facilito las cosas para que el dinero venga a mí.",
+      "dimensionCode": "INGRESO",
+      "dimensionName": "Ingreso",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L024",
+      "order": 24,
+      "text": "Nunca gasto más de lo que gano.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    },
+    {
+      "code": "DPO-L025",
+      "order": 25,
+      "text": "Acostumbro adelantar pagos para acabar más rápido con mis compromisos.",
+      "dimensionCode": "DEUDA",
+      "dimensionName": "Deuda",
+      "direction": "DIRECT",
+      "weight": 1,
+      "required": true,
+      "options": [
+        {
+          "value": 1,
+          "label": "Falso completamente"
+        },
+        {
+          "value": 2,
+          "label": "Moderadamente falso"
+        },
+        {
+          "value": 3,
+          "label": "Ni falso ni verdadero"
+        },
+        {
+          "value": 4,
+          "label": "Moderadamente verdadero"
+        },
+        {
+          "value": 5,
+          "label": "Verdadero completamente"
+        }
+      ]
+    }
+  ]
+}

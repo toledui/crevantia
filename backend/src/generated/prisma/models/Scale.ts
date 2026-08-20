@@ -29,6 +29,7 @@ export type ScaleMinAggregateOutputType = {
   code: string | null
   name: string | null
   description: string | null
+  kind: string | null
 }
 
 export type ScaleMaxAggregateOutputType = {
@@ -36,6 +37,7 @@ export type ScaleMaxAggregateOutputType = {
   code: string | null
   name: string | null
   description: string | null
+  kind: string | null
 }
 
 export type ScaleCountAggregateOutputType = {
@@ -43,6 +45,7 @@ export type ScaleCountAggregateOutputType = {
   code: number
   name: number
   description: number
+  kind: number
   _all: number
 }
 
@@ -52,6 +55,7 @@ export type ScaleMinAggregateInputType = {
   code?: true
   name?: true
   description?: true
+  kind?: true
 }
 
 export type ScaleMaxAggregateInputType = {
@@ -59,6 +63,7 @@ export type ScaleMaxAggregateInputType = {
   code?: true
   name?: true
   description?: true
+  kind?: true
 }
 
 export type ScaleCountAggregateInputType = {
@@ -66,6 +71,7 @@ export type ScaleCountAggregateInputType = {
   code?: true
   name?: true
   description?: true
+  kind?: true
   _all?: true
 }
 
@@ -146,6 +152,7 @@ export type ScaleGroupByOutputType = {
   code: string
   name: string
   description: string | null
+  kind: string
   _count: ScaleCountAggregateOutputType | null
   _min: ScaleMinAggregateOutputType | null
   _max: ScaleMaxAggregateOutputType | null
@@ -174,6 +181,7 @@ export type ScaleWhereInput = {
   code?: Prisma.StringFilter<"Scale"> | string
   name?: Prisma.StringFilter<"Scale"> | string
   description?: Prisma.StringNullableFilter<"Scale"> | string | null
+  kind?: Prisma.StringFilter<"Scale"> | string
   rules?: Prisma.ReactiveScoringRuleListRelationFilter
   likertRules?: Prisma.LikertScoringRuleListRelationFilter
   components?: Prisma.CompositeComponentListRelationFilter
@@ -185,6 +193,7 @@ export type ScaleOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  kind?: Prisma.SortOrder
   rules?: Prisma.ReactiveScoringRuleOrderByRelationAggregateInput
   likertRules?: Prisma.LikertScoringRuleOrderByRelationAggregateInput
   components?: Prisma.CompositeComponentOrderByRelationAggregateInput
@@ -200,6 +209,7 @@ export type ScaleWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ScaleWhereInput | Prisma.ScaleWhereInput[]
   name?: Prisma.StringFilter<"Scale"> | string
   description?: Prisma.StringNullableFilter<"Scale"> | string | null
+  kind?: Prisma.StringFilter<"Scale"> | string
   rules?: Prisma.ReactiveScoringRuleListRelationFilter
   likertRules?: Prisma.LikertScoringRuleListRelationFilter
   components?: Prisma.CompositeComponentListRelationFilter
@@ -211,6 +221,7 @@ export type ScaleOrderByWithAggregationInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  kind?: Prisma.SortOrder
   _count?: Prisma.ScaleCountOrderByAggregateInput
   _max?: Prisma.ScaleMaxOrderByAggregateInput
   _min?: Prisma.ScaleMinOrderByAggregateInput
@@ -224,6 +235,7 @@ export type ScaleScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<"Scale"> | string
   name?: Prisma.StringWithAggregatesFilter<"Scale"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Scale"> | string | null
+  kind?: Prisma.StringWithAggregatesFilter<"Scale"> | string
 }
 
 export type ScaleCreateInput = {
@@ -231,6 +243,7 @@ export type ScaleCreateInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScaleInput
   likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentCreateNestedManyWithoutScaleInput
@@ -242,6 +255,7 @@ export type ScaleUncheckedCreateInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScaleInput
@@ -253,6 +267,7 @@ export type ScaleUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScaleNestedInput
   likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUpdateManyWithoutScaleNestedInput
@@ -264,6 +279,7 @@ export type ScaleUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScaleNestedInput
@@ -275,6 +291,7 @@ export type ScaleCreateManyInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
 }
 
 export type ScaleUpdateManyMutationInput = {
@@ -282,6 +299,7 @@ export type ScaleUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScaleUncheckedUpdateManyInput = {
@@ -289,6 +307,7 @@ export type ScaleUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScaleOrderByRelevanceInput = {
@@ -302,6 +321,7 @@ export type ScaleCountOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
 }
 
 export type ScaleMaxOrderByAggregateInput = {
@@ -309,6 +329,7 @@ export type ScaleMaxOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
 }
 
 export type ScaleMinOrderByAggregateInput = {
@@ -316,6 +337,7 @@ export type ScaleMinOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  kind?: Prisma.SortOrder
 }
 
 export type ScaleScalarRelationFilter = {
@@ -391,6 +413,7 @@ export type ScaleCreateWithoutLikertRulesInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentCreateNestedManyWithoutScaleInput
   derivedComponents?: Prisma.DerivedMetricVersionCreateNestedManyWithoutSourceScaleInput
@@ -401,6 +424,7 @@ export type ScaleUncheckedCreateWithoutLikertRulesInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScaleInput
   derivedComponents?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutSourceScaleInput
@@ -427,6 +451,7 @@ export type ScaleUpdateWithoutLikertRulesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUpdateManyWithoutScaleNestedInput
   derivedComponents?: Prisma.DerivedMetricVersionUpdateManyWithoutSourceScaleNestedInput
@@ -437,6 +462,7 @@ export type ScaleUncheckedUpdateWithoutLikertRulesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScaleNestedInput
   derivedComponents?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutSourceScaleNestedInput
@@ -447,6 +473,7 @@ export type ScaleCreateWithoutRulesInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentCreateNestedManyWithoutScaleInput
   derivedComponents?: Prisma.DerivedMetricVersionCreateNestedManyWithoutSourceScaleInput
@@ -457,6 +484,7 @@ export type ScaleUncheckedCreateWithoutRulesInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScaleInput
   derivedComponents?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutSourceScaleInput
@@ -483,6 +511,7 @@ export type ScaleUpdateWithoutRulesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUpdateManyWithoutScaleNestedInput
   derivedComponents?: Prisma.DerivedMetricVersionUpdateManyWithoutSourceScaleNestedInput
@@ -493,6 +522,7 @@ export type ScaleUncheckedUpdateWithoutRulesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScaleNestedInput
   derivedComponents?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutSourceScaleNestedInput
@@ -503,6 +533,7 @@ export type ScaleCreateWithoutComponentsInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScaleInput
   likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScaleInput
   derivedComponents?: Prisma.DerivedMetricVersionCreateNestedManyWithoutSourceScaleInput
@@ -513,6 +544,7 @@ export type ScaleUncheckedCreateWithoutComponentsInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   derivedComponents?: Prisma.DerivedMetricVersionUncheckedCreateNestedManyWithoutSourceScaleInput
@@ -539,6 +571,7 @@ export type ScaleUpdateWithoutComponentsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScaleNestedInput
   likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScaleNestedInput
   derivedComponents?: Prisma.DerivedMetricVersionUpdateManyWithoutSourceScaleNestedInput
@@ -549,6 +582,7 @@ export type ScaleUncheckedUpdateWithoutComponentsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   derivedComponents?: Prisma.DerivedMetricVersionUncheckedUpdateManyWithoutSourceScaleNestedInput
@@ -559,6 +593,7 @@ export type ScaleCreateWithoutDerivedComponentsInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleCreateNestedManyWithoutScaleInput
   likertRules?: Prisma.LikertScoringRuleCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentCreateNestedManyWithoutScaleInput
@@ -569,6 +604,7 @@ export type ScaleUncheckedCreateWithoutDerivedComponentsInput = {
   code: string
   name: string
   description?: string | null
+  kind?: string
   rules?: Prisma.ReactiveScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   likertRules?: Prisma.LikertScoringRuleUncheckedCreateNestedManyWithoutScaleInput
   components?: Prisma.CompositeComponentUncheckedCreateNestedManyWithoutScaleInput
@@ -595,6 +631,7 @@ export type ScaleUpdateWithoutDerivedComponentsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUpdateManyWithoutScaleNestedInput
   likertRules?: Prisma.LikertScoringRuleUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUpdateManyWithoutScaleNestedInput
@@ -605,6 +642,7 @@ export type ScaleUncheckedUpdateWithoutDerivedComponentsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kind?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.ReactiveScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   likertRules?: Prisma.LikertScoringRuleUncheckedUpdateManyWithoutScaleNestedInput
   components?: Prisma.CompositeComponentUncheckedUpdateManyWithoutScaleNestedInput
@@ -673,6 +711,7 @@ export type ScaleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   code?: boolean
   name?: boolean
   description?: boolean
+  kind?: boolean
   rules?: boolean | Prisma.Scale$rulesArgs<ExtArgs>
   likertRules?: boolean | Prisma.Scale$likertRulesArgs<ExtArgs>
   components?: boolean | Prisma.Scale$componentsArgs<ExtArgs>
@@ -687,9 +726,10 @@ export type ScaleSelectScalar = {
   code?: boolean
   name?: boolean
   description?: boolean
+  kind?: boolean
 }
 
-export type ScaleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description", ExtArgs["result"]["scale"]>
+export type ScaleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "kind", ExtArgs["result"]["scale"]>
 export type ScaleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rules?: boolean | Prisma.Scale$rulesArgs<ExtArgs>
   likertRules?: boolean | Prisma.Scale$likertRulesArgs<ExtArgs>
@@ -711,6 +751,7 @@ export type $ScalePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     code: string
     name: string
     description: string | null
+    kind: string
   }, ExtArgs["result"]["scale"]>
   composites: {}
 }
@@ -1088,6 +1129,7 @@ export interface ScaleFieldRefs {
   readonly code: Prisma.FieldRef<"Scale", 'String'>
   readonly name: Prisma.FieldRef<"Scale", 'String'>
   readonly description: Prisma.FieldRef<"Scale", 'String'>
+  readonly kind: Prisma.FieldRef<"Scale", 'String'>
 }
     
 

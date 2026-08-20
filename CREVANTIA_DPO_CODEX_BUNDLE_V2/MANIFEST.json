@@ -1,0 +1,101 @@
+{
+  "bundleVersion": "2.0.0",
+  "generatedAtUTC": "2026-08-20T02:21:52.418530+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 1821,
+      "sha256": "d8ca024a21a9119c2119096081470c399b33d6163b0bd6cb0172c6bc6e190b12"
+    },
+    {
+      "path": "docs/AUDITORIA_FUENTE_OFICIAL.md",
+      "size": 2157,
+      "sha256": "f6eae609a9b640448c214fb0c6eb7644ebf780de200fae1383672196ff956190"
+    },
+    {
+      "path": "docs/IMPLEMENTACION_Y_PUBLICACION_V1.md",
+      "size": 4947,
+      "sha256": "6fa09e7df3b7666f549a073dc152cf6c28a6f3c3186c7a96502ee2bc4b7e05a7"
+    },
+    {
+      "path": "docs/MODELO_CALCULO_OFICIAL.md",
+      "size": 2180,
+      "sha256": "7facf7f818db14ffe5c443dbf70f46e855e9d42a491d7a14fb4699e8eb0c5cca"
+    },
+    {
+      "path": "seed/dpo-pro.assessment.v1.json",
+      "size": 139693,
+      "sha256": "f7d08d34b00d464bd28c8fb12c6588a37e85213553d87191fc0bd2b8505fac31"
+    },
+    {
+      "path": "seed/dpo-pro.composites.v1.json",
+      "size": 18814,
+      "sha256": "1e2726862959486da693619c6188cedacb5aac3bd49dbd67e7f75f06f80dd3e5"
+    },
+    {
+      "path": "seed/dpo-pro.likert.v1.json",
+      "size": 24678,
+      "sha256": "ff60dc4c777b718382144c65741e6cc243815f8e3591206759cc2101922d1650"
+    },
+    {
+      "path": "seed/dpo-pro.norm-official.v1.json",
+      "size": 95988,
+      "sha256": "abd81006080dfc22da57d27e024132c615612dce4e1b6c303170b4408a77638e"
+    },
+    {
+      "path": "seed/dpo-pro.reactives.v1.json",
+      "size": 132046,
+      "sha256": "8e03c9a305c374de158914d418cf47b1d0176cbc02af67c8e23b849513ef812d"
+    },
+    {
+      "path": "seed/dpo-pro.scales.v1.json",
+      "size": 19430,
+      "sha256": "fbe9b42013453788a1851db5aeb72f84bdd167af9241d38d777a27d1c4be57c6"
+    },
+    {
+      "path": "seed/dpo-pro.scoring-key.v1.json",
+      "size": 74694,
+      "sha256": "70bec1038d80cf06056b30b753c806246fc19cadc2c6a29b47f99726fe4a238c"
+    },
+    {
+      "path": "source/Norma actualizada y reactivos envío TH 170826.xlsx",
+      "size": 56569,
+      "sha256": "c27903456bfc8732b87d0fdef1703dd5d3df186717bc1d3358c3568da2c67052"
+    },
+    {
+      "path": "source/Respuesta a preguntas de cálculo 190826.docx",
+      "size": 29852,
+      "sha256": "8fe63a9c23f097cdf5916208cdaf79f09b5d6ea0b5a67c846b9fdef52b61fca0"
+    },
+    {
+      "path": "source/official-excel-combinations.raw.json",
+      "size": 40648,
+      "sha256": "b4cfc4349fe7228a50d2c5f2f2281af653b0d0271ca58afa9d812a05b82cbe5f"
+    },
+    {
+      "path": "source/official-excel-normas.raw.json",
+      "size": 62751,
+      "sha256": "c6744f761863ba3eb7ba91ea50c06fb96a7d80d1efadb25ef9f246dbe197b965"
+    },
+    {
+      "path": "source/official-excel-reactivos.raw.json",
+      "size": 54234,
+      "sha256": "dadeeec39506e2085e91a4ab2a9f2869f54bde0529dba05727db5695997e1008"
+    },
+    {
+      "path": "tests/expected-counts.json",
+      "size": 397,
+      "sha256": "aaa18a696d9093284489026641361be503675e23eae2abb8a124fb10ad09e43c"
+    },
+    {
+      "path": "tests/integrity-report.json",
+      "size": 1942,
+      "sha256": "aa3de191d96d922859af09fc4c572245e54e27e4feef2384f47da3e7652b907a"
+    },
+    {
+      "path": "tests/publication-validation-spec.json",
+      "size": 1126,
+      "sha256": "588bf268422ebf092724d9f6c304c926cfd269b362ecb2bfee9644cbbf005214"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ import {
   type DerivedMetricDefinition,
   type LikertScoringDefinition,
   type NormDefinition,
+  type ReportAliasDefinition,
   type ScoringRule,
 } from "../scoring/scoring-engine";
 
@@ -71,39 +72,58 @@ export class AssessmentScoringService {
       attempt.assessmentVersion.status === ConfigurationStatus.BLOCKED
     )
       throw new BadRequestException("La versión de evaluación no es válida.");
-    if (
-      attempt.forcedChoiceAnswers.length !==
-      attempt.assessmentVersion.pairQuestions.length
-    )
+    const answeredPairs = new Set(
+      attempt.forcedChoiceAnswers.map((answer) => answer.pairQuestionId),
+    );
+    const missingPairs = attempt.assessmentVersion.pairQuestions.filter(
+      ({ id }) => !answeredPairs.has(id),
+    );
+    if (missingPairs.length)
       throw new BadRequestException(
-        `Faltan ${attempt.assessmentVersion.pairQuestions.length - attempt.forcedChoiceAnswers.length} preguntas pareadas obligatorias.`,
+        `Faltan ${missingPairs.length} preguntas pareadas obligatorias.`,
       );
-    if (
-      attempt.likertAnswers.length !==
-      attempt.assessmentVersion.likertQuestions.length
-    )
+    const answeredLikert = new Set(
+      attempt.likertAnswers.map((answer) => answer.likertQuestionId),
+    );
+    const missingLikert = attempt.assessmentVersion.likertQuestions.filter(
+      ({ id }) => !answeredLikert.has(id),
+    );
+    if (missingLikert.length)
       throw new BadRequestException(
-        `Faltan ${attempt.assessmentVersion.likertQuestions.length - attempt.likertAnswers.length} preguntas Likert obligatorias.`,
+        `Faltan ${missingLikert.length} preguntas Likert obligatorias.`,
       );
-    if (
-      attempt.demographicAnswers.length !==
-      attempt.assessmentVersion.demographicFields.length
-    )
+    const answeredDemographics = new Set(
+      attempt.demographicAnswers.map((answer) => answer.demographicFieldId),
+    );
+    const missingDemographics =
+      attempt.assessmentVersion.demographicFields.filter(
+        ({ id }) => !answeredDemographics.has(id),
+      );
+    if (missingDemographics.length)
       throw new BadRequestException(
-        `Faltan ${attempt.assessmentVersion.demographicFields.length - attempt.demographicAnswers.length} datos estadísticos obligatorios.`,
+        `Faltan ${missingDemographics.length} datos estadísticos obligatorios.`,
       );
 
+    const activeConfiguration =
+      await this.prisma.assessmentActiveConfiguration.findUnique({
+        where: { assessmentId: attempt.assessmentVersion.assessmentId },
+      });
     const scoringVersion = attempt.scoringKeyVersionId
       ? await this.prisma.scoringKeyVersion.findUnique({
           where: { id: attempt.scoringKeyVersionId },
         })
-      : await this.prisma.scoringKeyVersion.findFirst({
-          where: {
-            assessmentVersionId: attempt.assessmentVersion.id,
-            status: ConfigurationStatus.PUBLISHED,
-          },
-          orderBy: { version: "desc" },
-        });
+      : activeConfiguration?.assessmentVersionId ===
+          attempt.assessmentVersion.id
+        ? await this.prisma.scoringKeyVersion.findUnique({
+            where: { id: activeConfiguration.scoringKeyVersionId },
+          })
+        : await this.prisma.scoringKeyVersion.findFirst({
+            where: {
+              assessmentVersionId: attempt.assessmentVersion.id,
+              status: ConfigurationStatus.PUBLISHED,
+            },
+            orderBy: { version: "desc" },
+          });
     if (
       !scoringVersion ||
       scoringVersion.status !== ConfigurationStatus.PUBLISHED
@@ -115,18 +135,35 @@ export class AssessmentScoringService {
       ? await this.prisma.normVersion.findUnique({
           where: { id: attempt.normVersionId },
         })
-      : await this.prisma.normVersion.findFirst({
-          where: {
-            status: ConfigurationStatus.PUBLISHED,
-            normSetId: attempt.assessmentVersion.defaultNormSetId ?? undefined,
-          },
-          orderBy: { publishedAt: "desc" },
-        });
+      : activeConfiguration?.assessmentVersionId ===
+          attempt.assessmentVersion.id
+        ? await this.prisma.normVersion.findUnique({
+            where: { id: activeConfiguration.normVersionId },
+          })
+        : await this.prisma.normVersion.findFirst({
+            where: {
+              status: ConfigurationStatus.PUBLISHED,
+              normSetId:
+                attempt.assessmentVersion.defaultNormSetId ?? undefined,
+            },
+            orderBy: { publishedAt: "desc" },
+          });
     if (!normVersion || normVersion.status !== ConfigurationStatus.PUBLISHED)
       throw new BadRequestException(
         "No existe una norma publicada disponible.",
       );
 
+    const reportMappingVersion = activeConfiguration?.reportMappingVersionId
+      ? await this.prisma.reportMappingVersion.findUnique({
+          where: { id: activeConfiguration.reportMappingVersionId },
+        })
+      : await this.prisma.reportMappingVersion.findFirst({
+          where: {
+            assessmentVersionId: attempt.assessmentVersion.id,
+            status: ConfigurationStatus.PUBLISHED,
+          },
+          orderBy: { version: "desc" },
+        });
     const [
       rulesData,
       likertRulesData,
@@ -210,6 +247,7 @@ export class AssessmentScoringService {
         sourceScaleCode: metric.sourceScale?.code ?? null,
         sources: derivedSources(metric.declarativeConfig),
       }));
+    const aliases = reportAliases(reportMappingVersion?.configuration);
     const norms: NormDefinition[] = normTargets.map((target) => ({
       targetType: target.targetType,
       targetCode: target.targetCode,
@@ -238,6 +276,7 @@ export class AssessmentScoringService {
       likertRules,
       composites: [...grouped.values()],
       derivedMetricDefinitions,
+      reportAliases: aliases,
       norms,
     });
     const configHash = configurationHash({
@@ -289,6 +328,7 @@ export class AssessmentScoringService {
               assessmentVersionId: attempt.assessmentVersion?.id ?? "",
               scoringKeyVersionId: scoringVersion.id,
               normVersionId: normVersion.id,
+              reportMappingVersionId: reportMappingVersion?.id,
               engineVersion: DPO_ENGINE_VERSION,
               configurationHash: configHash,
               inputHash,
@@ -301,22 +341,33 @@ export class AssessmentScoringService {
                   ? "CONFIGURED"
                   : "PENDING_SCORING_SPEC",
                 likertContributions: calculation.likertContributions,
+                likertDimensions: calculation.likertDimensions.length,
+                reportAliases: calculation.aliases.length,
               }),
               values: {
                 create: [
                   ...calculation.scales,
                   ...calculation.composites,
                   ...calculation.derivedMetrics,
+                  ...calculation.likertDimensions,
+                  ...(calculation.likertTotal ? [calculation.likertTotal] : []),
+                  ...calculation.aliases,
                 ].map((value) => ({
                   targetType: value.targetType,
                   targetCode: value.targetCode,
                   rawScore: value.rawScore,
                   displayScore: value.displayScore,
+                  normalizedScore: value.normalizedScore,
                   decile: value.decile,
                   status: value.status,
                   metadata:
                     value.targetType === "DERIVED_METRIC"
-                      ? { calculation: "EXPLICIT_AXIS" }
+                      ? {
+                          calculation:
+                            value.status === "CALCULATED_DECILE_MEAN"
+                              ? "DECILE_MEAN"
+                              : "EXPLICIT_AXIS",
+                        }
                       : undefined,
                 })),
               },
@@ -383,6 +434,7 @@ function derivedCalculationType(
     value === "ARITHMETIC_MEAN" ||
     value === "WEIGHTED_MEAN" ||
     value === "DIRECT_SCALE" ||
+    value === "DECILE_MEAN" ||
     value === "CUSTOM_DECLARATIVE"
   )
     return value;
@@ -407,10 +459,35 @@ function derivedSources(value: unknown): DerivedMetricDefinition["sources"] {
       {
         targetType: source.targetType,
         targetCode: source.targetCode,
+        valueType: source.valueType === "DECILE" ? "DECILE" : "RAW",
         weight:
           typeof source.weight === "number" && Number.isFinite(source.weight)
             ? source.weight
             : 1,
+      },
+    ];
+  });
+}
+
+function reportAliases(value: unknown): ReportAliasDefinition[] {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+  const aliases = (value as Record<string, unknown>).aliases;
+  if (!Array.isArray(aliases)) return [];
+  return aliases.flatMap((entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return [];
+    const alias = entry as Record<string, unknown>;
+    if (
+      typeof alias.alias !== "string" ||
+      (alias.sourceType !== "SCALE" && alias.sourceType !== "COMPOSITE") ||
+      typeof alias.sourceCode !== "string"
+    )
+      return [];
+    return [
+      {
+        code: `REPORT_ALIAS:${alias.alias}`,
+        label: alias.alias,
+        sourceType: alias.sourceType,
+        sourceCode: alias.sourceCode,
       },
     ];
   });

@@ -1,0 +1,4795 @@
+{
+  "schemaVersion": "2.0.0",
+  "normSet": {
+    "code": "DPO-PRO-OFFICIAL",
+    "name": "Norma oficial DPO-PRO",
+    "version": "1.0.0",
+    "sourceTitle": "NORMA 480 - ELECCIÓN PAREADA / NORMA 80 - LIKERT",
+    "status": "READY_TO_PUBLISH",
+    "lookupMethod": "LOWER_BOUND_LAST_LE_SCORE",
+    "numericMode": "EXCEL_BINARY64",
+    "roundingMode": "NONE_BEFORE_NORM_LOOKUP",
+    "activeTargetCount": 87,
+    "source": {
+      "officialExcel": {
+        "filename": "Norma actualizada y reactivos envío TH 170826.xlsx",
+        "sha256": "c27903456bfc8732b87d0fdef1703dd5d3df186717bc1d3358c3568da2c67052",
+        "sheets": {
+          "Reactivos": "A1:F384",
+          "NORMAS": "A1:CU52",
+          "Tabla Combinaciones Competencia": "A1:AY76"
+        }
+      },
+      "clientResponse": {
+        "filename": "Respuesta a preguntas de cálculo 190826.docx",
+        "sha256": "8fe63a9c23f097cdf5916208cdaf79f09b5d6ea0b5a67c846b9fdef52b61fca0",
+        "keyConfirmations": [
+          "The official paired assessment has 96 positive pairs and 72 negative pairs.",
+          "The Likert section has 25 scored statements, not 31.",
+          "All Likert statements are positive/direct, scored 1 to 5, equal weight.",
+          "The five questions in each Likert dimension are averaged and then normalized using the corresponding norm.",
+          "The new Excel contains the official current norm.",
+          "Reactive-to-scale assignment does not change from the previously validated version."
+        ]
+      }
+    }
+  },
+  "activeTargets": [
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S001",
+      "targetName": "Adaptación",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 17
+        },
+        {
+          "decile": 10,
+          "lowerBound": 19
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S002",
+      "targetName": "Mente Abierta",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 4
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 7
+        },
+        {
+          "decile": 6,
+          "lowerBound": 8
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 12
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S003",
+      "targetName": "Pensamiento divergente",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 5
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S004",
+      "targetName": "Expectativa Profesional",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 17
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 21
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S005",
+      "targetName": "Expectativas",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S006",
+      "targetName": "Superación",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 9
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S007",
+      "targetName": "Autorefuerzo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11
+        },
+        {
+          "decile": 4,
+          "lowerBound": 13
+        },
+        {
+          "decile": 5,
+          "lowerBound": 14
+        },
+        {
+          "decile": 6,
+          "lowerBound": 15
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 17
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 19
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S008",
+      "targetName": "Autosupervisión",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7
+        },
+        {
+          "decile": 4,
+          "lowerBound": 9
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S009",
+      "targetName": "Enfoque",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11
+        },
+        {
+          "decile": 4,
+          "lowerBound": 13
+        },
+        {
+          "decile": 5,
+          "lowerBound": 14
+        },
+        {
+          "decile": 6,
+          "lowerBound": 16
+        },
+        {
+          "decile": 7,
+          "lowerBound": 17
+        },
+        {
+          "decile": 8,
+          "lowerBound": 18
+        },
+        {
+          "decile": 9,
+          "lowerBound": 19
+        },
+        {
+          "decile": 10,
+          "lowerBound": 21
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S010",
+      "targetName": "Autoconocimiento",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 5
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S011",
+      "targetName": "Autocontrol",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S012",
+      "targetName": "Temple",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 19
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S013",
+      "targetName": "Habilidad Administrativa",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S014",
+      "targetName": "Control Percibido",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 15
+        },
+        {
+          "decile": 7,
+          "lowerBound": 17
+        },
+        {
+          "decile": 8,
+          "lowerBound": 18
+        },
+        {
+          "decile": 9,
+          "lowerBound": 20
+        },
+        {
+          "decile": 10,
+          "lowerBound": 22
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S015",
+      "targetName": "Tolerancia al Conflicto",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 14
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S016",
+      "targetName": "Autoconfianza",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 19
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S017",
+      "targetName": "Merecimiento",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 17
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S018",
+      "targetName": "Optimismo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S019",
+      "targetName": "Energía",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 5
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S020",
+      "targetName": "Esfuerzo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 10
+        },
+        {
+          "decile": 3,
+          "lowerBound": 12
+        },
+        {
+          "decile": 4,
+          "lowerBound": 13
+        },
+        {
+          "decile": 5,
+          "lowerBound": 14
+        },
+        {
+          "decile": 6,
+          "lowerBound": 16
+        },
+        {
+          "decile": 7,
+          "lowerBound": 17
+        },
+        {
+          "decile": 8,
+          "lowerBound": 18
+        },
+        {
+          "decile": 9,
+          "lowerBound": 19
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S021",
+      "targetName": "Tenacidad",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S022",
+      "targetName": "Autonomía",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S023",
+      "targetName": "Capacidad de reacción",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 7
+        },
+        {
+          "decile": 6,
+          "lowerBound": 8
+        },
+        {
+          "decile": 7,
+          "lowerBound": 9
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 12
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S024",
+      "targetName": "Emprendimiento",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2
+        },
+        {
+          "decile": 3,
+          "lowerBound": 4
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 7
+        },
+        {
+          "decile": 6,
+          "lowerBound": 8
+        },
+        {
+          "decile": 7,
+          "lowerBound": 9
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S025",
+      "targetName": "Compromiso",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 17
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S026",
+      "targetName": "Confiabilidad",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11
+        },
+        {
+          "decile": 4,
+          "lowerBound": 13
+        },
+        {
+          "decile": 5,
+          "lowerBound": 14
+        },
+        {
+          "decile": 6,
+          "lowerBound": 15
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 18
+        },
+        {
+          "decile": 9,
+          "lowerBound": 19
+        },
+        {
+          "decile": 10,
+          "lowerBound": 21
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S027",
+      "targetName": "Rectitud",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S028",
+      "targetName": "Influencia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S029",
+      "targetName": "Percepción Interpersonal",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3
+        },
+        {
+          "decile": 4,
+          "lowerBound": 4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 5
+        },
+        {
+          "decile": 6,
+          "lowerBound": 6
+        },
+        {
+          "decile": 7,
+          "lowerBound": 8
+        },
+        {
+          "decile": 8,
+          "lowerBound": 9
+        },
+        {
+          "decile": 9,
+          "lowerBound": 11
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S030",
+      "targetName": "Sociabilidad",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S031",
+      "targetName": "Consciencia del Entorno",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S032",
+      "targetName": "Pensamiento Lógico",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S033",
+      "targetName": "Visión Sistémica",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S034",
+      "targetName": "Anticipación",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 19
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S035",
+      "targetName": "Participación",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S036",
+      "targetName": "Resolución",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S037",
+      "targetName": "Automejoramiento",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 17
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S038",
+      "targetName": "Perseverancia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 17
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S039",
+      "targetName": "Recuperación",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 15
+        },
+        {
+          "decile": 7,
+          "lowerBound": 16
+        },
+        {
+          "decile": 8,
+          "lowerBound": 17
+        },
+        {
+          "decile": 9,
+          "lowerBound": 18
+        },
+        {
+          "decile": 10,
+          "lowerBound": 20
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S040",
+      "targetName": "Salud Financiera",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 7
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S041",
+      "targetName": "Satisfacción",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S042",
+      "targetName": "Apertura a oportunidades",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S043",
+      "targetName": "Alineamiento de Acciones",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S044",
+      "targetName": "Claridad de estrategia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 4
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 7
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S045",
+      "targetName": "Visión clara",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 14
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S046",
+      "targetName": "Anteposición de intereses",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2
+        },
+        {
+          "decile": 3,
+          "lowerBound": 4
+        },
+        {
+          "decile": 4,
+          "lowerBound": 5
+        },
+        {
+          "decile": 5,
+          "lowerBound": 7
+        },
+        {
+          "decile": 6,
+          "lowerBound": 8
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S047",
+      "targetName": "Aprovechamiento de Talentos",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 16
+        },
+        {
+          "decile": 9,
+          "lowerBound": 17
+        },
+        {
+          "decile": 10,
+          "lowerBound": 18
+        }
+      ]
+    },
+    {
+      "targetType": "SCALE",
+      "targetCode": "DPO-S048",
+      "targetName": "Sentido de contribución",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3
+        },
+        {
+          "decile": 3,
+          "lowerBound": 5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C015",
+      "targetName": "Adaptabilidad",
+      "sourceNormName": "Adaptabilidad",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7.333333333333333
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14.333333333333334
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C013",
+      "targetName": "Alineación y Congruencia",
+      "sourceNormName": "Alineación y Congruencia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 13
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16.333333333333332
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C004",
+      "targetName": "Ambición positiva",
+      "sourceNormName": "Ambición",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C016",
+      "targetName": "Anticipación a cambios del entorno",
+      "sourceNormName": "Anticipación a cambios del entorno",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C021",
+      "targetName": "Apego a Normas",
+      "sourceNormName": "Apego a normas",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16.333333333333332
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17.333333333333332
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C011",
+      "targetName": "Autodominio",
+      "sourceNormName": "Autodominio",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C012",
+      "targetName": "Autoregulación emocional",
+      "sourceNormName": "Autoregulación Emocional",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6.666666666666667
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14.333333333333334
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C025",
+      "targetName": "Bienestar psicoproductivo",
+      "sourceNormName": "Bienestar psicoproductivo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 5
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6.666666666666667
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7.666666666666667
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C031",
+      "targetName": "Competencia financiera",
+      "sourceNormName": "Competencia financiera",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C029",
+      "targetName": "Convicción positiva",
+      "sourceNormName": "Convicción positiva",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16.333333333333332
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C009",
+      "targetName": "Creatividad Aplicada",
+      "sourceNormName": "Creatividad Aplicada",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 13.333333333333334
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C007",
+      "targetName": "Determinación y Persistencia",
+      "sourceNormName": "Determinación y Persistencia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C022",
+      "targetName": "Efectividad personal",
+      "sourceNormName": "Efectividad personal",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 10
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17.333333333333332
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C008",
+      "targetName": "Empuje",
+      "sourceNormName": "Empuje",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C005",
+      "targetName": "Impulso Resolutivo",
+      "sourceNormName": "Impulso Resolutivo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C006",
+      "targetName": "Iniciativa",
+      "sourceNormName": "Iniciativa",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6.333333333333333
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7.666666666666667
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 12
+        },
+        {
+          "decile": 10,
+          "lowerBound": 13
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C002",
+      "targetName": "Involucramiento",
+      "sourceNormName": "Involucramiento",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7.666666666666667
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 4,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14.333333333333334
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C030",
+      "targetName": "Mentalidad Inversionista",
+      "sourceNormName": "Mentalidad inversionista",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7.333333333333333
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 13.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C027",
+      "targetName": "Merecimiento Proactivo",
+      "sourceNormName": "Merecimiento Proactivo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 13
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C023",
+      "targetName": "Negociación e Influencia",
+      "sourceNormName": "Negociación e Influencia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6.666666666666667
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7.666666666666667
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C018",
+      "targetName": "Orientación a resultados",
+      "sourceNormName": "Orientación a Resultados",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9.25
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10.25
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11.25
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12.5
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.5
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C020",
+      "targetName": "Permanencia",
+      "sourceNormName": "Estabilidad y Permanencia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7
+        },
+        {
+          "decile": 4,
+          "lowerBound": 8
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 12.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C032",
+      "targetName": "Planeación & Organización",
+      "sourceNormName": "Planeación & Organización",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13
+        },
+        {
+          "decile": 6,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16.333333333333332
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C001",
+      "targetName": "Proactividad",
+      "sourceNormName": "Proactividad",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 13
+        },
+        {
+          "decile": 7,
+          "lowerBound": 14
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16.666666666666668
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C010",
+      "targetName": "Razonamiento Analítico",
+      "sourceNormName": "Razonamiento Analítico",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 7
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 4,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C024",
+      "targetName": "Relaciones Interpersonales",
+      "sourceNormName": "Relaciones Interpersonales",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 5
+        },
+        {
+          "decile": 3,
+          "lowerBound": 6.333333333333333
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7.333333333333333
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 11
+        },
+        {
+          "decile": 9,
+          "lowerBound": 12
+        },
+        {
+          "decile": 10,
+          "lowerBound": 13.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C033",
+      "targetName": "Resiliencia",
+      "sourceNormName": "Resiliencia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 4,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 13.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 15
+        },
+        {
+          "decile": 8,
+          "lowerBound": 15.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 16.333333333333332
+        },
+        {
+          "decile": 10,
+          "lowerBound": 17.666666666666668
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C017",
+      "targetName": "Significancia",
+      "sourceNormName": "Significancia",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 9.25
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.75
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12.25
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13.5
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.25
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15.25
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C026",
+      "targetName": "Superación y Empoderamiento",
+      "sourceNormName": "Superación y Empoderamiento",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 3,
+          "lowerBound": 10
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 12
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 14.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 15.666666666666666
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C028",
+      "targetName": "Toma de riesgos",
+      "sourceNormName": "Toma de riesgos",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6
+        },
+        {
+          "decile": 3,
+          "lowerBound": 7
+        },
+        {
+          "decile": 4,
+          "lowerBound": 7.666666666666667
+        },
+        {
+          "decile": 5,
+          "lowerBound": 8.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 9.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 10
+        },
+        {
+          "decile": 8,
+          "lowerBound": 10.666666666666666
+        },
+        {
+          "decile": 9,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 10,
+          "lowerBound": 13
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C019",
+      "targetName": "Trabajo en Equipo",
+      "sourceNormName": "Trabajo en Equipo",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 8.25
+        },
+        {
+          "decile": 3,
+          "lowerBound": 9.5
+        },
+        {
+          "decile": 4,
+          "lowerBound": 10
+        },
+        {
+          "decile": 5,
+          "lowerBound": 10.75
+        },
+        {
+          "decile": 6,
+          "lowerBound": 11.25
+        },
+        {
+          "decile": 7,
+          "lowerBound": 12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12.5
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13.5
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14.5
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C003",
+      "targetName": "Trayectoria Ascendente",
+      "sourceNormName": "Trayectoria Ascendente",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 10
+        },
+        {
+          "decile": 3,
+          "lowerBound": 11
+        },
+        {
+          "decile": 4,
+          "lowerBound": 11.666666666666666
+        },
+        {
+          "decile": 5,
+          "lowerBound": 12.333333333333334
+        },
+        {
+          "decile": 6,
+          "lowerBound": 13
+        },
+        {
+          "decile": 7,
+          "lowerBound": 13.666666666666666
+        },
+        {
+          "decile": 8,
+          "lowerBound": 14.333333333333334
+        },
+        {
+          "decile": 9,
+          "lowerBound": 15.333333333333334
+        },
+        {
+          "decile": 10,
+          "lowerBound": 16.333333333333332
+        }
+      ]
+    },
+    {
+      "targetType": "COMPOSITE",
+      "targetCode": "DPO-C014",
+      "targetName": "Visión estratégica",
+      "sourceNormName": "Visión estratégica",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 6.666666666666667
+        },
+        {
+          "decile": 3,
+          "lowerBound": 8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 9
+        },
+        {
+          "decile": 5,
+          "lowerBound": 9.666666666666666
+        },
+        {
+          "decile": 6,
+          "lowerBound": 10.333333333333334
+        },
+        {
+          "decile": 7,
+          "lowerBound": 11.333333333333334
+        },
+        {
+          "decile": 8,
+          "lowerBound": 12
+        },
+        {
+          "decile": 9,
+          "lowerBound": 13
+        },
+        {
+          "decile": 10,
+          "lowerBound": 14.333333333333334
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-INGRESO",
+      "targetName": "INGRESO",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2.8
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.2
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 3.6
+        },
+        {
+          "decile": 6,
+          "lowerBound": 3.8
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-GASTO",
+      "targetName": "GASTO",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.2
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.44
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.66
+        },
+        {
+          "decile": 5,
+          "lowerBound": 4
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.1
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.6
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-AHORRO",
+      "targetName": "AHORRO",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.8
+        },
+        {
+          "decile": 4,
+          "lowerBound": 4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.300000000000001
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.6
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.699999999999999
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-DEUDA",
+      "targetName": "DEUDA",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.6399999999999997
+        },
+        {
+          "decile": 4,
+          "lowerBound": 4
+        },
+        {
+          "decile": 5,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.5
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.6
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.699999999999999
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.8
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_DIMENSION",
+      "targetCode": "LIKERT-INVERSION",
+      "targetName": "INVERSIÓN",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 2.64
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.4
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.6
+        },
+        {
+          "decile": 5,
+          "lowerBound": 3.8
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.12
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.4
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.5
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.6
+        }
+      ]
+    },
+    {
+      "targetType": "LIKERT_TOTAL",
+      "targetCode": "LIKERT-TOTAL",
+      "targetName": "TOTAL",
+      "thresholds": [
+        {
+          "decile": 1,
+          "lowerBound": 0
+        },
+        {
+          "decile": 2,
+          "lowerBound": 3.28
+        },
+        {
+          "decile": 3,
+          "lowerBound": 3.64
+        },
+        {
+          "decile": 4,
+          "lowerBound": 3.824
+        },
+        {
+          "decile": 5,
+          "lowerBound": 3.936
+        },
+        {
+          "decile": 6,
+          "lowerBound": 4.1
+        },
+        {
+          "decile": 7,
+          "lowerBound": 4.2
+        },
+        {
+          "decile": 8,
+          "lowerBound": 4.336
+        },
+        {
+          "decile": 9,
+          "lowerBound": 4.482
+        },
+        {
+          "decile": 10,
+          "lowerBound": 4.628
+        }
+      ]
+    }
+  ],
+  "sourceTablesNotActive": {
+    "duplicateReportNorms": [
+      {
+        "name": "Situación Financiera",
+        "sourceColumnIndex": 97,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 3
+          },
+          {
+            "decile": 3,
+            "lowerBound": 5
+          },
+          {
+            "decile": 4,
+            "lowerBound": 6
+          },
+          {
+            "decile": 5,
+            "lowerBound": 7
+          },
+          {
+            "decile": 6,
+            "lowerBound": 9
+          },
+          {
+            "decile": 7,
+            "lowerBound": 10
+          },
+          {
+            "decile": 8,
+            "lowerBound": 11
+          },
+          {
+            "decile": 9,
+            "lowerBound": 14
+          },
+          {
+            "decile": 10,
+            "lowerBound": 16
+          }
+        ],
+        "status": "SOURCE_DUPLICATE_NOT_ACTIVE",
+        "reason": "Official combination sheet explicitly maps Salud Financiera to report alias 'Cuadrante financiero'; Situación Financiera thresholds duplicate Salud Financiera."
+      }
+    ],
+    "unusedInvalidCompositeNorms": [
+      {
+        "name": "Búsqueda de Significado Psicoproductivo",
+        "sourceColumnIndex": 67,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 7
+          },
+          {
+            "decile": 3,
+            "lowerBound": 8
+          },
+          {
+            "decile": 4,
+            "lowerBound": 8.666666666666666
+          },
+          {
+            "decile": 5,
+            "lowerBound": 9.333333333333334
+          },
+          {
+            "decile": 6,
+            "lowerBound": 10.333333333333334
+          },
+          {
+            "decile": 7,
+            "lowerBound": 10.666666666666666
+          },
+          {
+            "decile": 8,
+            "lowerBound": 11.666666666666666
+          },
+          {
+            "decile": 9,
+            "lowerBound": 12.333333333333334
+          },
+          {
+            "decile": 18.166666666666664,
+            "lowerBound": 13.666666666666666
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "validation": "INVALID_DECILE_SEQUENCE",
+        "reason": "Not listed in the official COMPETENCIA NORMADA matrix; do not publish as an active norm target."
+      },
+      {
+        "name": "Cuadrantes",
+        "sourceColumnIndex": 69,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 5
+          },
+          {
+            "decile": 3,
+            "lowerBound": 6.5
+          },
+          {
+            "decile": 4,
+            "lowerBound": 7.5
+          },
+          {
+            "decile": 5,
+            "lowerBound": 8.5
+          },
+          {
+            "decile": 6,
+            "lowerBound": 9.5
+          },
+          {
+            "decile": 7,
+            "lowerBound": 10.5
+          },
+          {
+            "decile": 8,
+            "lowerBound": 12
+          },
+          {
+            "decile": 9,
+            "lowerBound": 13
+          },
+          {
+            "decile": 18.166666666666664,
+            "lowerBound": 14.5
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "validation": "INVALID_DECILE_SEQUENCE",
+        "reason": "Not listed in the official COMPETENCIA NORMADA matrix; do not publish as an active norm target."
+      }
+    ],
+    "legacyProfileNorms": [
+      {
+        "name": "Adaptable",
+        "sourceColumnIndex": 1,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 7.333333333333333
+          },
+          {
+            "decile": 3,
+            "lowerBound": 8.333333333333334
+          },
+          {
+            "decile": 4,
+            "lowerBound": 9.333333333333334
+          },
+          {
+            "decile": 5,
+            "lowerBound": 10
+          },
+          {
+            "decile": 6,
+            "lowerBound": 10.666666666666666
+          },
+          {
+            "decile": 7,
+            "lowerBound": 11.333333333333334
+          },
+          {
+            "decile": 8,
+            "lowerBound": 12.333333333333334
+          },
+          {
+            "decile": 9,
+            "lowerBound": 13.333333333333334
+          },
+          {
+            "decile": 10,
+            "lowerBound": 14.333333333333334
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Analítico",
+        "sourceColumnIndex": 3,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 7
+          },
+          {
+            "decile": 3,
+            "lowerBound": 8.333333333333334
+          },
+          {
+            "decile": 4,
+            "lowerBound": 9.333333333333334
+          },
+          {
+            "decile": 5,
+            "lowerBound": 10
+          },
+          {
+            "decile": 6,
+            "lowerBound": 10.666666666666666
+          },
+          {
+            "decile": 7,
+            "lowerBound": 11.333333333333334
+          },
+          {
+            "decile": 8,
+            "lowerBound": 12
+          },
+          {
+            "decile": 9,
+            "lowerBound": 12.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 14
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Apegado",
+        "sourceColumnIndex": 5,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 10.333333333333334
+          },
+          {
+            "decile": 3,
+            "lowerBound": 11.666666666666666
+          },
+          {
+            "decile": 4,
+            "lowerBound": 12.666666666666666
+          },
+          {
+            "decile": 5,
+            "lowerBound": 13.333333333333334
+          },
+          {
+            "decile": 6,
+            "lowerBound": 14.333333333333334
+          },
+          {
+            "decile": 7,
+            "lowerBound": 15
+          },
+          {
+            "decile": 8,
+            "lowerBound": 15.666666666666666
+          },
+          {
+            "decile": 9,
+            "lowerBound": 16.333333333333332
+          },
+          {
+            "decile": 10,
+            "lowerBound": 17.333333333333332
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Aprovechamiento",
+        "sourceColumnIndex": 7,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 6
+          },
+          {
+            "decile": 3,
+            "lowerBound": 7
+          },
+          {
+            "decile": 4,
+            "lowerBound": 7.666666666666667
+          },
+          {
+            "decile": 5,
+            "lowerBound": 8.333333333333334
+          },
+          {
+            "decile": 6,
+            "lowerBound": 9.333333333333334
+          },
+          {
+            "decile": 7,
+            "lowerBound": 10
+          },
+          {
+            "decile": 8,
+            "lowerBound": 10.666666666666666
+          },
+          {
+            "decile": 9,
+            "lowerBound": 11.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 13
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Esforzado",
+        "sourceColumnIndex": 9,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 8.333333333333334
+          },
+          {
+            "decile": 3,
+            "lowerBound": 10
+          },
+          {
+            "decile": 4,
+            "lowerBound": 10.666666666666666
+          },
+          {
+            "decile": 5,
+            "lowerBound": 11.666666666666666
+          },
+          {
+            "decile": 6,
+            "lowerBound": 12
+          },
+          {
+            "decile": 7,
+            "lowerBound": 12.666666666666666
+          },
+          {
+            "decile": 8,
+            "lowerBound": 13.666666666666666
+          },
+          {
+            "decile": 9,
+            "lowerBound": 14.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 16
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Social",
+        "sourceColumnIndex": 11,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 5
+          },
+          {
+            "decile": 3,
+            "lowerBound": 6.333333333333333
+          },
+          {
+            "decile": 4,
+            "lowerBound": 7.333333333333333
+          },
+          {
+            "decile": 5,
+            "lowerBound": 8
+          },
+          {
+            "decile": 6,
+            "lowerBound": 9
+          },
+          {
+            "decile": 7,
+            "lowerBound": 10
+          },
+          {
+            "decile": 8,
+            "lowerBound": 11
+          },
+          {
+            "decile": 9,
+            "lowerBound": 12
+          },
+          {
+            "decile": 10,
+            "lowerBound": 13.666666666666666
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Innovador",
+        "sourceColumnIndex": 13,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 6
+          },
+          {
+            "decile": 3,
+            "lowerBound": 7
+          },
+          {
+            "decile": 4,
+            "lowerBound": 8
+          },
+          {
+            "decile": 5,
+            "lowerBound": 8.666666666666666
+          },
+          {
+            "decile": 6,
+            "lowerBound": 9.333333333333334
+          },
+          {
+            "decile": 7,
+            "lowerBound": 10
+          },
+          {
+            "decile": 8,
+            "lowerBound": 11
+          },
+          {
+            "decile": 9,
+            "lowerBound": 11.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 13.333333333333334
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Obstinado",
+        "sourceColumnIndex": 15,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 9
+          },
+          {
+            "decile": 3,
+            "lowerBound": 10
+          },
+          {
+            "decile": 4,
+            "lowerBound": 11
+          },
+          {
+            "decile": 5,
+            "lowerBound": 11.666666666666666
+          },
+          {
+            "decile": 6,
+            "lowerBound": 12.666666666666666
+          },
+          {
+            "decile": 7,
+            "lowerBound": 13.333333333333334
+          },
+          {
+            "decile": 8,
+            "lowerBound": 14
+          },
+          {
+            "decile": 9,
+            "lowerBound": 14.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 16
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Planeador",
+        "sourceColumnIndex": 17,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 10.333333333333334
+          },
+          {
+            "decile": 3,
+            "lowerBound": 11.333333333333334
+          },
+          {
+            "decile": 4,
+            "lowerBound": 12
+          },
+          {
+            "decile": 5,
+            "lowerBound": 13
+          },
+          {
+            "decile": 6,
+            "lowerBound": 13.666666666666666
+          },
+          {
+            "decile": 7,
+            "lowerBound": 14.333333333333334
+          },
+          {
+            "decile": 8,
+            "lowerBound": 15
+          },
+          {
+            "decile": 9,
+            "lowerBound": 15.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 16.333333333333332
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      },
+      {
+        "name": "Superacional",
+        "sourceColumnIndex": 19,
+        "thresholds": [
+          {
+            "decile": 1,
+            "lowerBound": 0
+          },
+          {
+            "decile": 2,
+            "lowerBound": 8.333333333333334
+          },
+          {
+            "decile": 3,
+            "lowerBound": 10
+          },
+          {
+            "decile": 4,
+            "lowerBound": 10.666666666666666
+          },
+          {
+            "decile": 5,
+            "lowerBound": 11.333333333333334
+          },
+          {
+            "decile": 6,
+            "lowerBound": 12
+          },
+          {
+            "decile": 7,
+            "lowerBound": 12.666666666666666
+          },
+          {
+            "decile": 8,
+            "lowerBound": 13.666666666666666
+          },
+          {
+            "decile": 9,
+            "lowerBound": 14.666666666666666
+          },
+          {
+            "decile": 10,
+            "lowerBound": 15.666666666666666
+          }
+        ],
+        "status": "LEGACY_SOURCE_TABLE_NOT_ACTIVE",
+        "reason": "Preserved from source workbook. Official combination matrix maps style/profile names as direct aliases of existing competencies."
+      }
+    ]
+  }
+}

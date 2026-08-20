@@ -478,7 +478,9 @@ function DemographicInput({
           ? "number"
           : field.type === "EMAIL"
             ? "email"
-            : "text"
+            : field.type === "PHONE"
+              ? "tel"
+              : "text"
       }
       min={field.config?.validation?.min}
       max={field.config?.validation?.max}

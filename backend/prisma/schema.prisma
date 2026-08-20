@@ -82,6 +82,8 @@ enum AggregationMethod {
   ARITHMETIC_MEAN
   WEIGHTED_MEAN
   DIRECT_SCALE
+  DECILE_MEAN
+  DIRECT_ALIAS
   AXIS_X
   AXIS_Y
   TWO_AXIS
@@ -92,6 +94,9 @@ enum NormTargetType {
   SCALE
   COMPOSITE
   DERIVED_METRIC
+  LIKERT_DIMENSION
+  LIKERT_TOTAL
+  REPORT_ALIAS
   LEGACY_STYLE_PROFILE
 }
 
@@ -248,17 +253,17 @@ model ConsentAcceptance {
 }
 
 model Test {
-  id          String        @id @default(cuid())
-  code        String        @unique @db.VarChar(50)
-  slug        String        @unique @db.VarChar(100)
-  name        String        @db.VarChar(160)
-  description String?       @db.Text
+  id                 String              @id @default(cuid())
+  code               String              @unique @db.VarChar(50)
+  slug               String              @unique @db.VarChar(100)
+  name               String              @db.VarChar(160)
+  description        String?             @db.Text
   isActive           Boolean             @default(true)
   versions           TestVersion[]
   assignments        Assignment[]
   evaluationProducts EvaluationProduct[]
   createdAt          DateTime            @default(now())
-  updatedAt   DateTime      @updatedAt
+  updatedAt          DateTime            @updatedAt
 }
 
 model TestVersion {
@@ -445,34 +450,52 @@ model AuditLog {
 }
 
 model Assessment {
-  id          String              @id @default(cuid())
-  code        String              @unique @db.VarChar(80)
-  name        String              @db.VarChar(180)
-  description String?             @db.Text
-  isActive           Boolean             @default(true)
-  versions           AssessmentVersion[]
-  evaluationProducts EvaluationProduct[]
-  createdAt          DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  id                  String                         @id @default(cuid())
+  code                String                         @unique @db.VarChar(80)
+  name                String                         @db.VarChar(180)
+  description         String?                        @db.Text
+  isActive            Boolean                        @default(true)
+  versions            AssessmentVersion[]
+  activeConfiguration AssessmentActiveConfiguration?
+  evaluationProducts  EvaluationProduct[]
+  createdAt           DateTime                       @default(now())
+  updatedAt           DateTime                       @updatedAt
+}
+
+model AssessmentActiveConfiguration {
+  id                     String                @id @default(cuid())
+  assessmentId           String                @unique
+  assessmentVersionId    String                @unique
+  scoringKeyVersionId    String                @unique
+  normVersionId          String                @unique
+  reportMappingVersionId String?
+  activatedAt            DateTime              @default(now())
+  assessment             Assessment            @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  assessmentVersion      AssessmentVersion     @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  scoringKeyVersion      ScoringKeyVersion     @relation(fields: [scoringKeyVersionId], references: [id], onDelete: Restrict)
+  normVersion            NormVersion           @relation(fields: [normVersionId], references: [id], onDelete: Restrict)
+  reportMappingVersion   ReportMappingVersion? @relation(fields: [reportMappingVersionId], references: [id], onDelete: SetNull)
+
+  @@index([reportMappingVersionId])
 }
 
 model AssessmentVersion {
-  id                    String                 @id @default(cuid())
+  id                    String                         @id @default(cuid())
   assessmentId          String
   defaultNormSetId      String?
   version               Int
-  versionCode           String                 @db.VarChar(100)
-  language              String                 @default("es-MX") @db.VarChar(10)
-  status                ConfigurationStatus    @default(DRAFT)
-  intro                 String?                @db.Text
+  versionCode           String                         @db.VarChar(100)
+  language              String                         @default("es-MX") @db.VarChar(10)
+  status                ConfigurationStatus            @default(DRAFT)
+  intro                 String?                        @db.Text
   estimatedMinutes      Int?
   sourceMetadata        Json?
-  configurationHash     String?                @db.Char(64)
+  configurationHash     String?                        @db.Char(64)
   publishedAt           DateTime?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  assessment            Assessment             @relation(fields: [assessmentId], references: [id], onDelete: Restrict)
-  defaultNormSet        NormSet?               @relation(fields: [defaultNormSetId], references: [id], onDelete: SetNull)
+  createdAt             DateTime                       @default(now())
+  updatedAt             DateTime                       @updatedAt
+  assessment            Assessment                     @relation(fields: [assessmentId], references: [id], onDelete: Restrict)
+  defaultNormSet        NormSet?                       @relation(fields: [defaultNormSetId], references: [id], onDelete: SetNull)
   sections              AssessmentSection[]
   demographicFields     DemographicField[]
   pairQuestions         PairQuestion[]
@@ -482,6 +505,7 @@ model AssessmentVersion {
   attempts              Attempt[]
   reportMappingVersions ReportMappingVersion[]
   resultRuns            ResultRun[]
+  activeConfiguration   AssessmentActiveConfiguration?
 
   @@unique([assessmentId, version])
   @@unique([assessmentId, versionCode])
@@ -627,26 +651,27 @@ model ScoringKey {
 }
 
 model ScoringKeyVersion {
-  id                    String                 @id @default(cuid())
+  id                    String                         @id @default(cuid())
   scoringKeyId          String
   assessmentVersionId   String
   version               Int
-  sourceVersion         String?                @db.VarChar(100)
-  status                ConfigurationStatus    @default(DRAFT)
-  numericMode           String                 @default("EXCEL_BINARY64") @db.VarChar(50)
-  engineCompatibility   String?                @db.VarChar(100)
-  configurationHash     String                 @db.Char(64)
+  sourceVersion         String?                        @db.VarChar(100)
+  status                ConfigurationStatus            @default(DRAFT)
+  numericMode           String                         @default("EXCEL_BINARY64") @db.VarChar(50)
+  engineCompatibility   String?                        @db.VarChar(100)
+  configurationHash     String                         @db.Char(64)
   publishedAt           DateTime?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  scoringKey            ScoringKey             @relation(fields: [scoringKeyId], references: [id], onDelete: Restrict)
-  assessmentVersion     AssessmentVersion      @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  createdAt             DateTime                       @default(now())
+  updatedAt             DateTime                       @updatedAt
+  scoringKey            ScoringKey                     @relation(fields: [scoringKeyId], references: [id], onDelete: Restrict)
+  assessmentVersion     AssessmentVersion              @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
   rules                 ReactiveScoringRule[]
   likertRules           LikertScoringRule[]
   compositeComponents   CompositeComponent[]
   derivedMetricVersions DerivedMetricVersion[]
   attempts              Attempt[]
   resultRuns            ResultRun[]
+  activeConfiguration   AssessmentActiveConfiguration?
 
   @@unique([scoringKeyId, version])
   @@index([assessmentVersionId, status])
@@ -657,6 +682,7 @@ model Scale {
   code              String                 @unique @db.VarChar(80)
   name              String                 @db.VarChar(180)
   description       String?                @db.Text
+  kind              String                 @default("PAIRED") @db.VarChar(40)
   rules             ReactiveScoringRule[]
   likertRules       LikertScoringRule[]
   components        CompositeComponent[]
@@ -761,42 +787,43 @@ model NormSet {
 }
 
 model NormVersion {
-  id                String              @id @default(cuid())
-  normSetId         String
-  version           Int
-  sourceVersion     String?             @db.VarChar(100)
-  name              String              @db.VarChar(180)
-  description       String?             @db.Text
-  status            ConfigurationStatus @default(DRAFT)
-  populationLabel   String?             @db.VarChar(255)
-  sampleSize        Int?
-  country           String?             @db.VarChar(100)
-  ageRange          String?             @db.VarChar(100)
-  notes             String?             @db.Text
-  lookupMethod      String              @default("LAST_LOWER_BOUND_LTE") @db.VarChar(80)
-  numericMode       String              @default("EXCEL_BINARY64") @db.VarChar(50)
-  roundingMode      String              @default("NONE_BEFORE_NORM_LOOKUP") @db.VarChar(80)
-  validFrom         DateTime?
-  validTo           DateTime?
-  createdById       String?
-  reviewedById      String?
-  approvedById      String?
-  publishedById     String?
-  publishedAt       DateTime?
-  configurationHash String              @db.Char(64)
-  validationStatus  String?             @db.VarChar(80)
-  sourceMetadata    Json?
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  normSet           NormSet             @relation(fields: [normSetId], references: [id], onDelete: Restrict)
-  createdBy         User?               @relation("NormCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
-  reviewedBy        User?               @relation("NormReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
-  approvedBy        User?               @relation("NormApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
-  publishedBy       User?               @relation("NormPublishedBy", fields: [publishedById], references: [id], onDelete: SetNull)
-  targets           NormTarget[]
-  validationRuns    NormValidationRun[]
-  attempts          Attempt[]
-  resultRuns        ResultRun[]
+  id                  String                         @id @default(cuid())
+  normSetId           String
+  version             Int
+  sourceVersion       String?                        @db.VarChar(100)
+  name                String                         @db.VarChar(180)
+  description         String?                        @db.Text
+  status              ConfigurationStatus            @default(DRAFT)
+  populationLabel     String?                        @db.VarChar(255)
+  sampleSize          Int?
+  country             String?                        @db.VarChar(100)
+  ageRange            String?                        @db.VarChar(100)
+  notes               String?                        @db.Text
+  lookupMethod        String                         @default("LAST_LOWER_BOUND_LTE") @db.VarChar(80)
+  numericMode         String                         @default("EXCEL_BINARY64") @db.VarChar(50)
+  roundingMode        String                         @default("NONE_BEFORE_NORM_LOOKUP") @db.VarChar(80)
+  validFrom           DateTime?
+  validTo             DateTime?
+  createdById         String?
+  reviewedById        String?
+  approvedById        String?
+  publishedById       String?
+  publishedAt         DateTime?
+  configurationHash   String                         @db.Char(64)
+  validationStatus    String?                        @db.VarChar(80)
+  sourceMetadata      Json?
+  createdAt           DateTime                       @default(now())
+  updatedAt           DateTime                       @updatedAt
+  normSet             NormSet                        @relation(fields: [normSetId], references: [id], onDelete: Restrict)
+  createdBy           User?                          @relation("NormCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  reviewedBy          User?                          @relation("NormReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
+  approvedBy          User?                          @relation("NormApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+  publishedBy         User?                          @relation("NormPublishedBy", fields: [publishedById], references: [id], onDelete: SetNull)
+  targets             NormTarget[]
+  validationRuns      NormValidationRun[]
+  attempts            Attempt[]
+  resultRuns          ResultRun[]
+  activeConfiguration AssessmentActiveConfiguration?
 
   @@unique([normSetId, version])
   @@index([normSetId, status])
@@ -872,17 +899,18 @@ model ReportMapping {
 }
 
 model ReportMappingVersion {
-  id                  String              @id @default(cuid())
-  reportMappingId     String
-  assessmentVersionId String
-  version             Int
-  status              ConfigurationStatus @default(DRAFT)
-  mappingStatus       String              @default("PENDING_CLIENT_CONFIRMATION") @db.VarChar(80)
-  configuration       Json?
-  configurationHash   String?             @db.Char(64)
-  reportMapping       ReportMapping       @relation(fields: [reportMappingId], references: [id], onDelete: Restrict)
-  assessmentVersion   AssessmentVersion   @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
-  resultRuns          ResultRun[]
+  id                   String                          @id @default(cuid())
+  reportMappingId      String
+  assessmentVersionId  String
+  version              Int
+  status               ConfigurationStatus             @default(DRAFT)
+  mappingStatus        String                          @default("PENDING_CLIENT_CONFIRMATION") @db.VarChar(80)
+  configuration        Json?
+  configurationHash    String?                         @db.Char(64)
+  reportMapping        ReportMapping                   @relation(fields: [reportMappingId], references: [id], onDelete: Restrict)
+  assessmentVersion    AssessmentVersion               @relation(fields: [assessmentVersionId], references: [id], onDelete: Restrict)
+  resultRuns           ResultRun[]
+  activeConfigurations AssessmentActiveConfiguration[]
 
   @@unique([reportMappingId, version])
 }
@@ -1065,23 +1093,23 @@ model PriceVersion {
 }
 
 model Coupon {
-  id                    String             @id @default(cuid())
-  code                  String             @unique @db.VarChar(50)
-  description           String?            @db.VarChar(255)
-  discountType          CouponDiscountType @default(PERCENTAGE)
-  discountValue         Decimal            @db.Decimal(10, 2)
-  minPurchaseAmountCents Int               @default(0)
-  maxUsesGlobal         Int?
-  maxUsesPerUser        Int                @default(1)
-  usedCount             Int                @default(0)
-  startsAt              DateTime?
-  expiresAt             DateTime?
-  isActive              Boolean            @default(true)
-  applicableProductIds  Json?
-  createdAt             DateTime           @default(now())
-  updatedAt             DateTime           @updatedAt
-  redemptions           CouponRedemption[]
-  purchaseOrders        PurchaseOrder[]
+  id                     String             @id @default(cuid())
+  code                   String             @unique @db.VarChar(50)
+  description            String?            @db.VarChar(255)
+  discountType           CouponDiscountType @default(PERCENTAGE)
+  discountValue          Decimal            @db.Decimal(10, 2)
+  minPurchaseAmountCents Int                @default(0)
+  maxUsesGlobal          Int?
+  maxUsesPerUser         Int                @default(1)
+  usedCount              Int                @default(0)
+  startsAt               DateTime?
+  expiresAt              DateTime?
+  isActive               Boolean            @default(true)
+  applicableProductIds   Json?
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+  redemptions            CouponRedemption[]
+  purchaseOrders         PurchaseOrder[]
 }
 
 model CouponRedemption {

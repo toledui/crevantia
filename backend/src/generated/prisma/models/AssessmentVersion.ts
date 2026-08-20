@@ -299,6 +299,7 @@ export type AssessmentVersionWhereInput = {
   attempts?: Prisma.AttemptListRelationFilter
   reportMappingVersions?: Prisma.ReportMappingVersionListRelationFilter
   resultRuns?: Prisma.ResultRunListRelationFilter
+  activeConfiguration?: Prisma.XOR<Prisma.AssessmentActiveConfigurationNullableScalarRelationFilter, Prisma.AssessmentActiveConfigurationWhereInput> | null
 }
 
 export type AssessmentVersionOrderByWithRelationInput = {
@@ -327,6 +328,7 @@ export type AssessmentVersionOrderByWithRelationInput = {
   attempts?: Prisma.AttemptOrderByRelationAggregateInput
   reportMappingVersions?: Prisma.ReportMappingVersionOrderByRelationAggregateInput
   resultRuns?: Prisma.ResultRunOrderByRelationAggregateInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationOrderByWithRelationInput
   _relevance?: Prisma.AssessmentVersionOrderByRelevanceInput
 }
 
@@ -361,6 +363,7 @@ export type AssessmentVersionWhereUniqueInput = Prisma.AtLeast<{
   attempts?: Prisma.AttemptListRelationFilter
   reportMappingVersions?: Prisma.ReportMappingVersionListRelationFilter
   resultRuns?: Prisma.ResultRunListRelationFilter
+  activeConfiguration?: Prisma.XOR<Prisma.AssessmentActiveConfigurationNullableScalarRelationFilter, Prisma.AssessmentActiveConfigurationWhereInput> | null
 }, "id" | "assessmentId_version" | "assessmentId_versionCode">
 
 export type AssessmentVersionOrderByWithAggregationInput = {
@@ -429,6 +432,7 @@ export type AssessmentVersionCreateInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateInput = {
@@ -455,6 +459,7 @@ export type AssessmentVersionUncheckedCreateInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUpdateInput = {
@@ -481,6 +486,7 @@ export type AssessmentVersionUpdateInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateInput = {
@@ -507,6 +513,7 @@ export type AssessmentVersionUncheckedUpdateInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateManyInput = {
@@ -571,6 +578,11 @@ export type AssessmentVersionListRelationFilter = {
 
 export type AssessmentVersionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type AssessmentVersionScalarRelationFilter = {
+  is?: Prisma.AssessmentVersionWhereInput
+  isNot?: Prisma.AssessmentVersionWhereInput
 }
 
 export type AssessmentVersionOrderByRelevanceInput = {
@@ -648,11 +660,6 @@ export type AssessmentVersionSumOrderByAggregateInput = {
   estimatedMinutes?: Prisma.SortOrder
 }
 
-export type AssessmentVersionScalarRelationFilter = {
-  is?: Prisma.AssessmentVersionWhereInput
-  isNot?: Prisma.AssessmentVersionWhereInput
-}
-
 export type AssessmentVersionCreateNestedOneWithoutAttemptsInput = {
   create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutAttemptsInput, Prisma.AssessmentVersionUncheckedCreateWithoutAttemptsInput>
   connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutAttemptsInput
@@ -709,6 +716,20 @@ export type AssessmentVersionUncheckedUpdateManyWithoutAssessmentNestedInput = {
   update?: Prisma.AssessmentVersionUpdateWithWhereUniqueWithoutAssessmentInput | Prisma.AssessmentVersionUpdateWithWhereUniqueWithoutAssessmentInput[]
   updateMany?: Prisma.AssessmentVersionUpdateManyWithWhereWithoutAssessmentInput | Prisma.AssessmentVersionUpdateManyWithWhereWithoutAssessmentInput[]
   deleteMany?: Prisma.AssessmentVersionScalarWhereInput | Prisma.AssessmentVersionScalarWhereInput[]
+}
+
+export type AssessmentVersionCreateNestedOneWithoutActiveConfigurationInput = {
+  create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutActiveConfigurationInput, Prisma.AssessmentVersionUncheckedCreateWithoutActiveConfigurationInput>
+  connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutActiveConfigurationInput
+  connect?: Prisma.AssessmentVersionWhereUniqueInput
+}
+
+export type AssessmentVersionUpdateOneRequiredWithoutActiveConfigurationNestedInput = {
+  create?: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutActiveConfigurationInput, Prisma.AssessmentVersionUncheckedCreateWithoutActiveConfigurationInput>
+  connectOrCreate?: Prisma.AssessmentVersionCreateOrConnectWithoutActiveConfigurationInput
+  upsert?: Prisma.AssessmentVersionUpsertWithoutActiveConfigurationInput
+  connect?: Prisma.AssessmentVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AssessmentVersionUpdateToOneWithWhereWithoutActiveConfigurationInput, Prisma.AssessmentVersionUpdateWithoutActiveConfigurationInput>, Prisma.AssessmentVersionUncheckedUpdateWithoutActiveConfigurationInput>
 }
 
 export type EnumConfigurationStatusFieldUpdateOperationsInput = {
@@ -892,6 +913,7 @@ export type AssessmentVersionCreateWithoutAttemptsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutAttemptsInput = {
@@ -917,6 +939,7 @@ export type AssessmentVersionUncheckedCreateWithoutAttemptsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutAttemptsInput = {
@@ -958,6 +981,7 @@ export type AssessmentVersionUpdateWithoutAttemptsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutAttemptsInput = {
@@ -983,6 +1007,7 @@ export type AssessmentVersionUncheckedUpdateWithoutAttemptsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutAssessmentInput = {
@@ -1008,6 +1033,7 @@ export type AssessmentVersionCreateWithoutAssessmentInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutAssessmentInput = {
@@ -1033,6 +1059,7 @@ export type AssessmentVersionUncheckedCreateWithoutAssessmentInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutAssessmentInput = {
@@ -1081,6 +1108,126 @@ export type AssessmentVersionScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"AssessmentVersion"> | Date | string
 }
 
+export type AssessmentVersionCreateWithoutActiveConfigurationInput = {
+  id?: string
+  version: number
+  versionCode: string
+  language?: string
+  status?: $Enums.ConfigurationStatus
+  intro?: string | null
+  estimatedMinutes?: number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assessment: Prisma.AssessmentCreateNestedOneWithoutVersionsInput
+  defaultNormSet?: Prisma.NormSetCreateNestedOneWithoutAssessmentVersionsInput
+  sections?: Prisma.AssessmentSectionCreateNestedManyWithoutAssessmentVersionInput
+  demographicFields?: Prisma.DemographicFieldCreateNestedManyWithoutAssessmentVersionInput
+  pairQuestions?: Prisma.PairQuestionCreateNestedManyWithoutAssessmentVersionInput
+  optionSets?: Prisma.LikertOptionSetCreateNestedManyWithoutAssessmentVersionInput
+  likertQuestions?: Prisma.LikertQuestionCreateNestedManyWithoutAssessmentVersionInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionCreateNestedManyWithoutAssessmentVersionInput
+  attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
+  reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
+  resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+}
+
+export type AssessmentVersionUncheckedCreateWithoutActiveConfigurationInput = {
+  id?: string
+  assessmentId: string
+  defaultNormSetId?: string | null
+  version: number
+  versionCode: string
+  language?: string
+  status?: $Enums.ConfigurationStatus
+  intro?: string | null
+  estimatedMinutes?: number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sections?: Prisma.AssessmentSectionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  demographicFields?: Prisma.DemographicFieldUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  pairQuestions?: Prisma.PairQuestionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  optionSets?: Prisma.LikertOptionSetUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  likertQuestions?: Prisma.LikertQuestionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+}
+
+export type AssessmentVersionCreateOrConnectWithoutActiveConfigurationInput = {
+  where: Prisma.AssessmentVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutActiveConfigurationInput, Prisma.AssessmentVersionUncheckedCreateWithoutActiveConfigurationInput>
+}
+
+export type AssessmentVersionUpsertWithoutActiveConfigurationInput = {
+  update: Prisma.XOR<Prisma.AssessmentVersionUpdateWithoutActiveConfigurationInput, Prisma.AssessmentVersionUncheckedUpdateWithoutActiveConfigurationInput>
+  create: Prisma.XOR<Prisma.AssessmentVersionCreateWithoutActiveConfigurationInput, Prisma.AssessmentVersionUncheckedCreateWithoutActiveConfigurationInput>
+  where?: Prisma.AssessmentVersionWhereInput
+}
+
+export type AssessmentVersionUpdateToOneWithWhereWithoutActiveConfigurationInput = {
+  where?: Prisma.AssessmentVersionWhereInput
+  data: Prisma.XOR<Prisma.AssessmentVersionUpdateWithoutActiveConfigurationInput, Prisma.AssessmentVersionUncheckedUpdateWithoutActiveConfigurationInput>
+}
+
+export type AssessmentVersionUpdateWithoutActiveConfigurationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  versionCode?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assessment?: Prisma.AssessmentUpdateOneRequiredWithoutVersionsNestedInput
+  defaultNormSet?: Prisma.NormSetUpdateOneWithoutAssessmentVersionsNestedInput
+  sections?: Prisma.AssessmentSectionUpdateManyWithoutAssessmentVersionNestedInput
+  demographicFields?: Prisma.DemographicFieldUpdateManyWithoutAssessmentVersionNestedInput
+  pairQuestions?: Prisma.PairQuestionUpdateManyWithoutAssessmentVersionNestedInput
+  optionSets?: Prisma.LikertOptionSetUpdateManyWithoutAssessmentVersionNestedInput
+  likertQuestions?: Prisma.LikertQuestionUpdateManyWithoutAssessmentVersionNestedInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionUpdateManyWithoutAssessmentVersionNestedInput
+  attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
+  reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
+  resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+}
+
+export type AssessmentVersionUncheckedUpdateWithoutActiveConfigurationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  defaultNormSetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  versionCode?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumConfigurationStatusFieldUpdateOperationsInput | $Enums.ConfigurationStatus
+  intro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimatedMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  sourceMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  configurationHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sections?: Prisma.AssessmentSectionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  demographicFields?: Prisma.DemographicFieldUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  pairQuestions?: Prisma.PairQuestionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  optionSets?: Prisma.LikertOptionSetUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  likertQuestions?: Prisma.LikertQuestionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+}
+
 export type AssessmentVersionCreateWithoutSectionsInput = {
   id?: string
   version: number
@@ -1104,6 +1251,7 @@ export type AssessmentVersionCreateWithoutSectionsInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutSectionsInput = {
@@ -1129,6 +1277,7 @@ export type AssessmentVersionUncheckedCreateWithoutSectionsInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutSectionsInput = {
@@ -1170,6 +1319,7 @@ export type AssessmentVersionUpdateWithoutSectionsInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutSectionsInput = {
@@ -1195,6 +1345,7 @@ export type AssessmentVersionUncheckedUpdateWithoutSectionsInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutDemographicFieldsInput = {
@@ -1220,6 +1371,7 @@ export type AssessmentVersionCreateWithoutDemographicFieldsInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutDemographicFieldsInput = {
@@ -1245,6 +1397,7 @@ export type AssessmentVersionUncheckedCreateWithoutDemographicFieldsInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutDemographicFieldsInput = {
@@ -1286,6 +1439,7 @@ export type AssessmentVersionUpdateWithoutDemographicFieldsInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutDemographicFieldsInput = {
@@ -1311,6 +1465,7 @@ export type AssessmentVersionUncheckedUpdateWithoutDemographicFieldsInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutPairQuestionsInput = {
@@ -1336,6 +1491,7 @@ export type AssessmentVersionCreateWithoutPairQuestionsInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutPairQuestionsInput = {
@@ -1361,6 +1517,7 @@ export type AssessmentVersionUncheckedCreateWithoutPairQuestionsInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutPairQuestionsInput = {
@@ -1402,6 +1559,7 @@ export type AssessmentVersionUpdateWithoutPairQuestionsInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutPairQuestionsInput = {
@@ -1427,6 +1585,7 @@ export type AssessmentVersionUncheckedUpdateWithoutPairQuestionsInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutOptionSetsInput = {
@@ -1452,6 +1611,7 @@ export type AssessmentVersionCreateWithoutOptionSetsInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutOptionSetsInput = {
@@ -1477,6 +1637,7 @@ export type AssessmentVersionUncheckedCreateWithoutOptionSetsInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutOptionSetsInput = {
@@ -1518,6 +1679,7 @@ export type AssessmentVersionUpdateWithoutOptionSetsInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutOptionSetsInput = {
@@ -1543,6 +1705,7 @@ export type AssessmentVersionUncheckedUpdateWithoutOptionSetsInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutLikertQuestionsInput = {
@@ -1568,6 +1731,7 @@ export type AssessmentVersionCreateWithoutLikertQuestionsInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutLikertQuestionsInput = {
@@ -1593,6 +1757,7 @@ export type AssessmentVersionUncheckedCreateWithoutLikertQuestionsInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutLikertQuestionsInput = {
@@ -1634,6 +1799,7 @@ export type AssessmentVersionUpdateWithoutLikertQuestionsInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutLikertQuestionsInput = {
@@ -1659,6 +1825,7 @@ export type AssessmentVersionUncheckedUpdateWithoutLikertQuestionsInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutScoringKeyVersionsInput = {
@@ -1684,6 +1851,7 @@ export type AssessmentVersionCreateWithoutScoringKeyVersionsInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutScoringKeyVersionsInput = {
@@ -1709,6 +1877,7 @@ export type AssessmentVersionUncheckedCreateWithoutScoringKeyVersionsInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutScoringKeyVersionsInput = {
@@ -1750,6 +1919,7 @@ export type AssessmentVersionUpdateWithoutScoringKeyVersionsInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutScoringKeyVersionsInput = {
@@ -1775,6 +1945,7 @@ export type AssessmentVersionUncheckedUpdateWithoutScoringKeyVersionsInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutDefaultNormSetInput = {
@@ -1800,6 +1971,7 @@ export type AssessmentVersionCreateWithoutDefaultNormSetInput = {
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput = {
@@ -1825,6 +1997,7 @@ export type AssessmentVersionUncheckedCreateWithoutDefaultNormSetInput = {
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutDefaultNormSetInput = {
@@ -1876,6 +2049,7 @@ export type AssessmentVersionCreateWithoutReportMappingVersionsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionCreateNestedManyWithoutAssessmentVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutReportMappingVersionsInput = {
@@ -1901,6 +2075,7 @@ export type AssessmentVersionUncheckedCreateWithoutReportMappingVersionsInput = 
   scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   resultRuns?: Prisma.ResultRunUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutReportMappingVersionsInput = {
@@ -1942,6 +2117,7 @@ export type AssessmentVersionUpdateWithoutReportMappingVersionsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUpdateManyWithoutAssessmentVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutReportMappingVersionsInput = {
@@ -1967,6 +2143,7 @@ export type AssessmentVersionUncheckedUpdateWithoutReportMappingVersionsInput = 
   scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateWithoutResultRunsInput = {
@@ -1992,6 +2169,7 @@ export type AssessmentVersionCreateWithoutResultRunsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionCreateNestedManyWithoutAssessmentVersionInput
   attempts?: Prisma.AttemptCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionUncheckedCreateWithoutResultRunsInput = {
@@ -2017,6 +2195,7 @@ export type AssessmentVersionUncheckedCreateWithoutResultRunsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
   attempts?: Prisma.AttemptUncheckedCreateNestedManyWithoutAssessmentVersionInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedCreateNestedManyWithoutAssessmentVersionInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedCreateNestedOneWithoutAssessmentVersionInput
 }
 
 export type AssessmentVersionCreateOrConnectWithoutResultRunsInput = {
@@ -2058,6 +2237,7 @@ export type AssessmentVersionUpdateWithoutResultRunsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUpdateManyWithoutAssessmentVersionNestedInput
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutResultRunsInput = {
@@ -2083,6 +2263,7 @@ export type AssessmentVersionUncheckedUpdateWithoutResultRunsInput = {
   scoringKeyVersions?: Prisma.ScoringKeyVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionCreateManyAssessmentInput = {
@@ -2124,6 +2305,7 @@ export type AssessmentVersionUpdateWithoutAssessmentInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutAssessmentInput = {
@@ -2149,6 +2331,7 @@ export type AssessmentVersionUncheckedUpdateWithoutAssessmentInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateManyWithoutAssessmentInput = {
@@ -2206,6 +2389,7 @@ export type AssessmentVersionUpdateWithoutDefaultNormSetInput = {
   attempts?: Prisma.AttemptUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateWithoutDefaultNormSetInput = {
@@ -2231,6 +2415,7 @@ export type AssessmentVersionUncheckedUpdateWithoutDefaultNormSetInput = {
   attempts?: Prisma.AttemptUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   reportMappingVersions?: Prisma.ReportMappingVersionUncheckedUpdateManyWithoutAssessmentVersionNestedInput
   resultRuns?: Prisma.ResultRunUncheckedUpdateManyWithoutAssessmentVersionNestedInput
+  activeConfiguration?: Prisma.AssessmentActiveConfigurationUncheckedUpdateOneWithoutAssessmentVersionNestedInput
 }
 
 export type AssessmentVersionUncheckedUpdateManyWithoutDefaultNormSetInput = {
@@ -2378,6 +2563,7 @@ export type AssessmentVersionSelect<ExtArgs extends runtime.Types.Extensions.Int
   attempts?: boolean | Prisma.AssessmentVersion$attemptsArgs<ExtArgs>
   reportMappingVersions?: boolean | Prisma.AssessmentVersion$reportMappingVersionsArgs<ExtArgs>
   resultRuns?: boolean | Prisma.AssessmentVersion$resultRunsArgs<ExtArgs>
+  activeConfiguration?: boolean | Prisma.AssessmentVersion$activeConfigurationArgs<ExtArgs>
   _count?: boolean | Prisma.AssessmentVersionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assessmentVersion"]>
 
@@ -2413,6 +2599,7 @@ export type AssessmentVersionInclude<ExtArgs extends runtime.Types.Extensions.In
   attempts?: boolean | Prisma.AssessmentVersion$attemptsArgs<ExtArgs>
   reportMappingVersions?: boolean | Prisma.AssessmentVersion$reportMappingVersionsArgs<ExtArgs>
   resultRuns?: boolean | Prisma.AssessmentVersion$resultRunsArgs<ExtArgs>
+  activeConfiguration?: boolean | Prisma.AssessmentVersion$activeConfigurationArgs<ExtArgs>
   _count?: boolean | Prisma.AssessmentVersionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2430,6 +2617,7 @@ export type $AssessmentVersionPayload<ExtArgs extends runtime.Types.Extensions.I
     attempts: Prisma.$AttemptPayload<ExtArgs>[]
     reportMappingVersions: Prisma.$ReportMappingVersionPayload<ExtArgs>[]
     resultRuns: Prisma.$ResultRunPayload<ExtArgs>[]
+    activeConfiguration: Prisma.$AssessmentActiveConfigurationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2797,6 +2985,7 @@ export interface Prisma__AssessmentVersionClient<T, Null = never, ExtArgs extend
   attempts<T extends Prisma.AssessmentVersion$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reportMappingVersions<T extends Prisma.AssessmentVersion$reportMappingVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$reportMappingVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportMappingVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resultRuns<T extends Prisma.AssessmentVersion$resultRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$resultRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activeConfiguration<T extends Prisma.AssessmentVersion$activeConfigurationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssessmentVersion$activeConfigurationArgs<ExtArgs>>): Prisma.Prisma__AssessmentActiveConfigurationClient<runtime.Types.Result.GetResult<Prisma.$AssessmentActiveConfigurationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3420,6 +3609,25 @@ export type AssessmentVersion$resultRunsArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.ResultRunScalarFieldEnum | Prisma.ResultRunScalarFieldEnum[]
+}
+
+/**
+ * AssessmentVersion.activeConfiguration
+ */
+export type AssessmentVersion$activeConfigurationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssessmentActiveConfiguration
+   */
+  select?: Prisma.AssessmentActiveConfigurationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssessmentActiveConfiguration
+   */
+  omit?: Prisma.AssessmentActiveConfigurationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssessmentActiveConfigurationInclude<ExtArgs> | null
+  where?: Prisma.AssessmentActiveConfigurationWhereInput
 }
 
 /**

@@ -15,7 +15,10 @@
     "prisma:status": "prisma migrate status",
     "prisma:seed": "prisma db seed",
     "seed:dpo": "tsx prisma/seeds/seed-dpo.ts",
-    "test:dpo": "jest --runInBand test/dpo-pro.golden.spec.ts"
+    "seed:dpo:v1": "tsx prisma/seeds/seed-dpo-official-v1.ts",
+    "validate:dpo:v1": "tsx prisma/seeds/validate-dpo-v1.ts",
+    "verify:dpo:v1:db": "tsx prisma/seeds/verify-dpo-v1-db.ts",
+    "test:dpo": "jest --runInBand test/dpo-pro.golden.spec.ts test/dpo-pro-official-v1.spec.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",
