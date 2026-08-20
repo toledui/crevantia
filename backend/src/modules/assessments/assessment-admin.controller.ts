@@ -18,6 +18,7 @@ import {
   CloneAssessmentVersionDto,
   CreateAssessmentDto,
   ReplaceAssessmentContentDto,
+  UpdateDemographicOptionsDto,
   UpdateAssessmentDto,
 } from "./assessment-admin.dto";
 import { AssessmentAdminService } from "./assessment-admin.service";
@@ -82,6 +83,22 @@ export class AssessmentAdminController {
     @Body() dto: ReplaceAssessmentContentDto,
   ) {
     return this.assessments.replaceContent(user.sub, versionId, dto);
+  }
+
+  @Patch("versions/:versionId/demographics/:fieldId/options")
+  @Permissions("admin.access", "assessment.manage")
+  updateDemographicOptions(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param("versionId") versionId: string,
+    @Param("fieldId") fieldId: string,
+    @Body() dto: UpdateDemographicOptionsDto,
+  ) {
+    return this.assessments.updateDemographicOptions(
+      user.sub,
+      versionId,
+      fieldId,
+      dto,
+    );
   }
 
   @Post("versions/:versionId/validate")

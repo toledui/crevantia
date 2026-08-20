@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { BarChart3 } from "lucide-react";
-import { apiFetch } from "@/lib/api";
+import { BarChart3, Download, Mail } from "lucide-react";
+import { apiDownload, apiFetch } from "@/lib/api";
 import { AdminToast } from "@/components/admin-toast";
 
 interface Assignment {
@@ -14,7 +14,14 @@ interface Assignment {
   attempt: {
     id: string;
     status: string;
-    resultRuns: Array<{ id: string }>;
+    resultRuns: Array<{
+      id: string;
+      report: {
+        status: string;
+        generatedAt: string | null;
+        deliveries: Array<{ status: string; sentAt: string | null }>;
+      } | null;
+    }>;
   } | null;
 }
 
@@ -65,6 +72,38 @@ export function UserAssessmentsPanel() {
       setBusy("");
     }
   }
+  async function downloadReport(resultRunId: string) {
+    setBusy(`download:${resultRunId}`);
+    setError("");
+    try {
+      const file = await apiDownload(`/results/${resultRunId}/report`);
+      const url = URL.createObjectURL(file.blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = file.filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      setMessage("Tu reporte se descargó correctamente.");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "No fue posible descargar el reporte.");
+    } finally {
+      setBusy("");
+    }
+  }
+  async function resendReport(resultRunId: string) {
+    setBusy(`email:${resultRunId}`);
+    setError("");
+    try {
+      const response = await apiFetch<{ message: string }>(`/results/${resultRunId}/report/email`, { method: "POST" });
+      setMessage(response.message);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "No fue posible enviar el reporte.");
+    } finally {
+      setBusy("");
+    }
+  }
   return (
     <section className="user-assessments">
       <AdminToast error={error} message={message} setError={setError} setMessage={setMessage} />
@@ -108,13 +147,24 @@ export function UserAssessmentsPanel() {
                 </div>
               </dl>
               {assignment.attempt?.status === "COMPLETED" && assignment.attempt.resultRuns?.[0]?.id ? (
-                <button
-                  className="secondary-button compact"
-                  onClick={() => router.push(`/resultados/${assignment.attempt?.resultRuns[0]?.id}`)}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                >
-                  <BarChart3 size={14} /> Ver Resultados y Reporte
-                </button>
+                <div className="assignment-report-actions">
+                  <small className="assignment-report-status">
+                    {assignment.attempt.resultRuns[0].report?.status === "READY"
+                      ? assignment.attempt.resultRuns[0].report?.deliveries[0]?.status === "SENT"
+                        ? "Reporte listo y enviado a tu correo."
+                        : "Reporte listo para descargar. Puedes solicitar el envío por correo."
+                      : "El reporte se preparará al descargarlo."}
+                  </small>
+                  <button className="secondary-button compact" onClick={() => router.push(`/resultados/${assignment.attempt?.resultRuns[0]?.id}`)}>
+                    <BarChart3 size={14} /> Ver resultados
+                  </button>
+                  <button className="secondary-button compact" disabled={busy === `download:${assignment.attempt.resultRuns[0].id}`} onClick={() => void downloadReport(assignment.attempt!.resultRuns[0]!.id)}>
+                    <Download size={14} /> {busy === `download:${assignment.attempt.resultRuns[0].id}` ? "Preparando…" : "Descargar PDF"}
+                  </button>
+                  <button className="secondary-button compact" disabled={busy === `email:${assignment.attempt.resultRuns[0].id}`} onClick={() => void resendReport(assignment.attempt!.resultRuns[0]!.id)}>
+                    <Mail size={14} /> {busy === `email:${assignment.attempt.resultRuns[0].id}` ? "Enviando…" : "Enviar por correo"}
+                  </button>
+                </div>
               ) : (
                 <button
                   className="primary-button compact"

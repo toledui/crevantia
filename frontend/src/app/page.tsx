@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { HomeNavbar } from '@/components/home-navbar';
 import { HomePricingSlider } from '@/components/home-pricing-slider';
 import styles from './home.module.css';
+import { getPublicSiteSettings } from '@/lib/site-settings';
 
-export const metadata: Metadata = {
-  title: 'Evaluación DPO-PRO',
-  description: 'Conoce tus patrones de decisión, capacidades y fortalezas con la evaluación psicométrica DPO-PRO de Crevantia.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getPublicSiteSettings();
+  return { title: 'Evaluación DPO-PRO', description: `Conoce tus patrones de decisión, capacidades y fortalezas con la evaluación psicométrica DPO-PRO de ${site.siteName}.` };
+}
 
 const benefits = [
   ['01', 'Perfil psicométrico estructurado', 'Tus respuestas se procesan mediante una clave de puntuación y una norma para ubicar tus resultados en una escala comparativa.'],
@@ -38,11 +38,14 @@ const faqs = [
   ['¿El precio puede cambiar?', 'Sí. El importe mostrado corresponde al precio vigente configurado en la plataforma al momento de la compra.'],
 ];
 
-function Logo({ light = false }: { light?: boolean }) {
-  return <Image className={`${styles.logo}${light ? ` ${styles.logoLight}` : ''}`} src="/branding/logo-crevantia.png" alt="Crevantia" width={1600} height={416} priority={!light} />;
+function Logo({ name, src, light = false }: { name: string; src: string; light?: boolean }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img className={`${styles.logo}${light ? ` ${styles.logoLight}` : ''}`} src={src} alt={name} />;
 }
 
-export default function Home() {
+export default async function Home() {
+  const site = await getPublicSiteSettings();
+  const hasContact = Boolean(site.contactEmail || site.contactPhone || site.contactWhatsapp || site.contactAddress || site.contactHours);
   return (
     <div className={styles.page}>
       <HomeNavbar />
@@ -53,7 +56,7 @@ export default function Home() {
             <div className={styles.heroContent}>
               <span className={styles.eyebrow}>Conócete con mayor profundidad</span>
               <h1>Entiende los patrones que están detrás de <span>cómo decides y actúas.</span></h1>
-              <p className={styles.heroCopy}>Crevantia te permite realizar una evaluación psicométrica estructurada para identificar rasgos, tendencias y capacidades que influyen en la forma en que enfrentas decisiones, objetivos y situaciones relevantes de tu vida.</p>
+              <p className={styles.heroCopy}>{site.siteName} te permite realizar una evaluación psicométrica estructurada para identificar rasgos, tendencias y capacidades que influyen en la forma en que enfrentas decisiones, objetivos y situaciones relevantes de tu vida.</p>
               <div className={styles.heroActions}>
                 <Link href="/registro" className={`${styles.button} ${styles.buttonCyan}`}>Comenzar evaluación <span aria-hidden="true">→</span></Link>
                 <a href="#evaluacion" className={`${styles.button} ${styles.buttonOutline}`}>Conocer cómo funciona</a>
@@ -112,13 +115,27 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.section} id="contacto">
+          <div className={styles.container}>
+            <div className={styles.contactLayout}>
+              <div className={styles.sectionHead}><span className={styles.eyebrow}>Estamos para ayudarte</span><h2>Contacto</h2><p>{hasContact ? `Comunícate con el equipo de ${site.siteName} por el medio que te resulte más cómodo.` : 'La información de contacto estará disponible próximamente.'}</p></div>
+              {hasContact && <div className={styles.contactGrid}>
+                {site.contactEmail && <a className={styles.contactCard} href={`mailto:${site.contactEmail}`}><small>Correo electrónico</small><strong>{site.contactEmail}</strong><span>Enviar mensaje →</span></a>}
+                {site.contactPhone && <a className={styles.contactCard} href={`tel:${site.contactPhone.replace(/[^+\d]/g, '')}`}><small>Teléfono</small><strong>{site.contactPhone}</strong><span>Llamar ahora →</span></a>}
+                {site.contactWhatsapp && <a className={styles.contactCard} href={`https://wa.me/${site.contactWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><small>WhatsApp</small><strong>{site.contactWhatsapp}</strong><span>Abrir conversación →</span></a>}
+                {(site.contactAddress || site.contactHours) && <div className={styles.contactCard}><small>Ubicación y horario</small>{site.contactAddress && <strong>{site.contactAddress}</strong>}{site.contactHours && <p>{site.contactHours}</p>}{site.contactMapUrl && <a href={site.contactMapUrl} target="_blank" rel="noreferrer">Ver mapa →</a>}</div>}
+              </div>}
+            </div>
+          </div>
+        </section>
+
         <section className={styles.cta}><div className={styles.container}><div className={styles.ctaBox}><div><h2>Tu evaluación comienza cuando estés listo.</h2><p>Crea tu cuenta, adquiere tu acceso y realiza la evaluación desde un entorno diseñado para leer y responder con tranquilidad.</p></div><Link href="/pago/dpo-pro" className={`${styles.button} ${styles.buttonCyan}`}>Ver precio y comenzar <span aria-hidden="true">→</span></Link></div></div></section>
       </main>
 
       <footer className={styles.footer}>
         <div className={`${styles.container} ${styles.footerInner}`}>
-          <Logo light />
-          <span>© 2026 Crevantia · Todos los derechos reservados.</span>
+          <Logo name={site.siteName} src={site.logoUrl} light />
+          <span>© 2026 {site.siteName} · Todos los derechos reservados.</span>
           <span>
             <Link href="/politica-de-privacidad" style={{ color: 'inherit', textDecoration: 'none' }}>
               Aviso de privacidad

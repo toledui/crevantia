@@ -1,0 +1,4338 @@
+{
+  "schemaVersion": "1.0.0",
+  "caseCode": "DPO_PRO_CASE_1_V2",
+  "configuration": {
+    "assessment": "DPO-PRO v1.0.0",
+    "scoring": "DPO-PRO-SCORING v1.0.0",
+    "norm": "DPO-PRO-OFFICIAL v1.0.0",
+    "numericMode": "EXCEL_BINARY64",
+    "roundingMode": "NONE_BEFORE_NORM_LOOKUP"
+  },
+  "counts": {
+    "contributions": 336,
+    "scales": 48,
+    "composites": 33,
+    "derivedDecileMeans": 21
+  },
+  "contributions": [
+    {
+      "reactiveCode": "DPO-R001",
+      "pairCode": "DPO-P001",
+      "scaleCode": "DPO-S005",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R002",
+      "pairCode": "DPO-P001",
+      "scaleCode": "DPO-S028",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R003",
+      "pairCode": "DPO-P002",
+      "scaleCode": "DPO-S018",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R004",
+      "pairCode": "DPO-P002",
+      "scaleCode": "DPO-S036",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R005",
+      "pairCode": "DPO-P003",
+      "scaleCode": "DPO-S044",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R006",
+      "pairCode": "DPO-P003",
+      "scaleCode": "DPO-S041",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R007",
+      "pairCode": "DPO-P004",
+      "scaleCode": "DPO-S034",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R008",
+      "pairCode": "DPO-P004",
+      "scaleCode": "DPO-S039",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R009",
+      "pairCode": "DPO-P005",
+      "scaleCode": "DPO-S007",
+      "selection": "LESS",
+      "scoreIfMore": 1,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R010",
+      "pairCode": "DPO-P005",
+      "scaleCode": "DPO-S004",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R011",
+      "pairCode": "DPO-P006",
+      "scaleCode": "DPO-S001",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R012",
+      "pairCode": "DPO-P006",
+      "scaleCode": "DPO-S002",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R013",
+      "pairCode": "DPO-P007",
+      "scaleCode": "DPO-S008",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R014",
+      "pairCode": "DPO-P007",
+      "scaleCode": "DPO-S017",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R015",
+      "pairCode": "DPO-P008",
+      "scaleCode": "DPO-S042",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R016",
+      "pairCode": "DPO-P008",
+      "scaleCode": "DPO-S048",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R017",
+      "pairCode": "DPO-P009",
+      "scaleCode": "DPO-S009",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R018",
+      "pairCode": "DPO-P009",
+      "scaleCode": "DPO-S005",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R019",
+      "pairCode": "DPO-P010",
+      "scaleCode": "DPO-S023",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R020",
+      "pairCode": "DPO-P010",
+      "scaleCode": "DPO-S038",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R021",
+      "pairCode": "DPO-P011",
+      "scaleCode": "DPO-S040",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R022",
+      "pairCode": "DPO-P011",
+      "scaleCode": "DPO-S034",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R023",
+      "pairCode": "DPO-P012",
+      "scaleCode": "DPO-S010",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R024",
+      "pairCode": "DPO-P012",
+      "scaleCode": "DPO-S029",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R025",
+      "pairCode": "DPO-P013",
+      "scaleCode": "DPO-S016",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R026",
+      "pairCode": "DPO-P013",
+      "scaleCode": "DPO-S041",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R027",
+      "pairCode": "DPO-P014",
+      "scaleCode": "DPO-S039",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R028",
+      "pairCode": "DPO-P014",
+      "scaleCode": "DPO-S012",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R029",
+      "pairCode": "DPO-P015",
+      "scaleCode": "DPO-S011",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R030",
+      "pairCode": "DPO-P015",
+      "scaleCode": "DPO-S031",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R031",
+      "pairCode": "DPO-P016",
+      "scaleCode": "DPO-S017",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R032",
+      "pairCode": "DPO-P016",
+      "scaleCode": "DPO-S003",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R033",
+      "pairCode": "DPO-P017",
+      "scaleCode": "DPO-S014",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R034",
+      "pairCode": "DPO-P017",
+      "scaleCode": "DPO-S015",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R035",
+      "pairCode": "DPO-P018",
+      "scaleCode": "DPO-S008",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R036",
+      "pairCode": "DPO-P018",
+      "scaleCode": "DPO-S013",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R037",
+      "pairCode": "DPO-P019",
+      "scaleCode": "DPO-S022",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R038",
+      "pairCode": "DPO-P019",
+      "scaleCode": "DPO-S048",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R039",
+      "pairCode": "DPO-P020",
+      "scaleCode": "DPO-S047",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R040",
+      "pairCode": "DPO-P020",
+      "scaleCode": "DPO-S006",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R041",
+      "pairCode": "DPO-P021",
+      "scaleCode": "DPO-S037",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R042",
+      "pairCode": "DPO-P021",
+      "scaleCode": "DPO-S012",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R043",
+      "pairCode": "DPO-P022",
+      "scaleCode": "DPO-S034",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R044",
+      "pairCode": "DPO-P022",
+      "scaleCode": "DPO-S045",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R045",
+      "pairCode": "DPO-P023",
+      "scaleCode": "DPO-S019",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R046",
+      "pairCode": "DPO-P023",
+      "scaleCode": "DPO-S036",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R047",
+      "pairCode": "DPO-P024",
+      "scaleCode": "DPO-S024",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R048",
+      "pairCode": "DPO-P024",
+      "scaleCode": "DPO-S033",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R049",
+      "pairCode": "DPO-P025",
+      "scaleCode": "DPO-S016",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R050",
+      "pairCode": "DPO-P025",
+      "scaleCode": "DPO-S011",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R051",
+      "pairCode": "DPO-P026",
+      "scaleCode": "DPO-S037",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R052",
+      "pairCode": "DPO-P026",
+      "scaleCode": "DPO-S044",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R053",
+      "pairCode": "DPO-P027",
+      "scaleCode": "DPO-S009",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R054",
+      "pairCode": "DPO-P027",
+      "scaleCode": "DPO-S021",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R055",
+      "pairCode": "DPO-P028",
+      "scaleCode": "DPO-S005",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R056",
+      "pairCode": "DPO-P028",
+      "scaleCode": "DPO-S032",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R057",
+      "pairCode": "DPO-P029",
+      "scaleCode": "DPO-S034",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R058",
+      "pairCode": "DPO-P029",
+      "scaleCode": "DPO-S027",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R059",
+      "pairCode": "DPO-P030",
+      "scaleCode": "DPO-S020",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R060",
+      "pairCode": "DPO-P030",
+      "scaleCode": "DPO-S048",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R061",
+      "pairCode": "DPO-P031",
+      "scaleCode": "DPO-S025",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R062",
+      "pairCode": "DPO-P031",
+      "scaleCode": "DPO-S017",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R063",
+      "pairCode": "DPO-P032",
+      "scaleCode": "DPO-S002",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R064",
+      "pairCode": "DPO-P032",
+      "scaleCode": "DPO-S033",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R065",
+      "pairCode": "DPO-P033",
+      "scaleCode": "DPO-S014",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R066",
+      "pairCode": "DPO-P033",
+      "scaleCode": "DPO-S018",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R067",
+      "pairCode": "DPO-P034",
+      "scaleCode": "DPO-S047",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R068",
+      "pairCode": "DPO-P034",
+      "scaleCode": "DPO-S038",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R069",
+      "pairCode": "DPO-P035",
+      "scaleCode": "DPO-S046",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R070",
+      "pairCode": "DPO-P035",
+      "scaleCode": "DPO-S011",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R071",
+      "pairCode": "DPO-P036",
+      "scaleCode": "DPO-S031",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R072",
+      "pairCode": "DPO-P036",
+      "scaleCode": "DPO-S045",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R073",
+      "pairCode": "DPO-P037",
+      "scaleCode": "DPO-S009",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R074",
+      "pairCode": "DPO-P037",
+      "scaleCode": "DPO-S032",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R075",
+      "pairCode": "DPO-P038",
+      "scaleCode": "DPO-S005",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R076",
+      "pairCode": "DPO-P038",
+      "scaleCode": "DPO-S040",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R077",
+      "pairCode": "DPO-P039",
+      "scaleCode": "DPO-S001",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R078",
+      "pairCode": "DPO-P039",
+      "scaleCode": "DPO-S043",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R079",
+      "pairCode": "DPO-P040",
+      "scaleCode": "DPO-S044",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R080",
+      "pairCode": "DPO-P040",
+      "scaleCode": "DPO-S012",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R081",
+      "pairCode": "DPO-P041",
+      "scaleCode": "DPO-S010",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R082",
+      "pairCode": "DPO-P041",
+      "scaleCode": "DPO-S006",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R083",
+      "pairCode": "DPO-P042",
+      "scaleCode": "DPO-S022",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R084",
+      "pairCode": "DPO-P042",
+      "scaleCode": "DPO-S004",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R085",
+      "pairCode": "DPO-P043",
+      "scaleCode": "DPO-S019",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R086",
+      "pairCode": "DPO-P043",
+      "scaleCode": "DPO-S018",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R087",
+      "pairCode": "DPO-P044",
+      "scaleCode": "DPO-S009",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R088",
+      "pairCode": "DPO-P044",
+      "scaleCode": "DPO-S040",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R089",
+      "pairCode": "DPO-P045",
+      "scaleCode": "DPO-S001",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R090",
+      "pairCode": "DPO-P045",
+      "scaleCode": "DPO-S026",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R091",
+      "pairCode": "DPO-P046",
+      "scaleCode": "DPO-S017",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R092",
+      "pairCode": "DPO-P046",
+      "scaleCode": "DPO-S030",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R093",
+      "pairCode": "DPO-P047",
+      "scaleCode": "DPO-S043",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R094",
+      "pairCode": "DPO-P047",
+      "scaleCode": "DPO-S024",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R095",
+      "pairCode": "DPO-P048",
+      "scaleCode": "DPO-S047",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R096",
+      "pairCode": "DPO-P048",
+      "scaleCode": "DPO-S023",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R097",
+      "pairCode": "DPO-P049",
+      "scaleCode": "DPO-S013",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R098",
+      "pairCode": "DPO-P049",
+      "scaleCode": "DPO-S003",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R099",
+      "pairCode": "DPO-P050",
+      "scaleCode": "DPO-S008",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R100",
+      "pairCode": "DPO-P050",
+      "scaleCode": "DPO-S025",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R101",
+      "pairCode": "DPO-P051",
+      "scaleCode": "DPO-S016",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R102",
+      "pairCode": "DPO-P051",
+      "scaleCode": "DPO-S031",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R103",
+      "pairCode": "DPO-P052",
+      "scaleCode": "DPO-S043",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R104",
+      "pairCode": "DPO-P052",
+      "scaleCode": "DPO-S002",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R105",
+      "pairCode": "DPO-P053",
+      "scaleCode": "DPO-S003",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R106",
+      "pairCode": "DPO-P053",
+      "scaleCode": "DPO-S030",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R107",
+      "pairCode": "DPO-P054",
+      "scaleCode": "DPO-S026",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R108",
+      "pairCode": "DPO-P054",
+      "scaleCode": "DPO-S024",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R109",
+      "pairCode": "DPO-P055",
+      "scaleCode": "DPO-S040",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R110",
+      "pairCode": "DPO-P055",
+      "scaleCode": "DPO-S021",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R111",
+      "pairCode": "DPO-P056",
+      "scaleCode": "DPO-S014",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R112",
+      "pairCode": "DPO-P056",
+      "scaleCode": "DPO-S036",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R113",
+      "pairCode": "DPO-P057",
+      "scaleCode": "DPO-S026",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R114",
+      "pairCode": "DPO-P057",
+      "scaleCode": "DPO-S033",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R115",
+      "pairCode": "DPO-P058",
+      "scaleCode": "DPO-S046",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R116",
+      "pairCode": "DPO-P058",
+      "scaleCode": "DPO-S041",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R117",
+      "pairCode": "DPO-P059",
+      "scaleCode": "DPO-S028",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R118",
+      "pairCode": "DPO-P059",
+      "scaleCode": "DPO-S044",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R119",
+      "pairCode": "DPO-P060",
+      "scaleCode": "DPO-S001",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R120",
+      "pairCode": "DPO-P060",
+      "scaleCode": "DPO-S024",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R121",
+      "pairCode": "DPO-P061",
+      "scaleCode": "DPO-S004",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R122",
+      "pairCode": "DPO-P061",
+      "scaleCode": "DPO-S035",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R123",
+      "pairCode": "DPO-P062",
+      "scaleCode": "DPO-S047",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R124",
+      "pairCode": "DPO-P062",
+      "scaleCode": "DPO-S007",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R125",
+      "pairCode": "DPO-P063",
+      "scaleCode": "DPO-S013",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R126",
+      "pairCode": "DPO-P063",
+      "scaleCode": "DPO-S030",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R127",
+      "pairCode": "DPO-P064",
+      "scaleCode": "DPO-S029",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R128",
+      "pairCode": "DPO-P064",
+      "scaleCode": "DPO-S006",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R129",
+      "pairCode": "DPO-P065",
+      "scaleCode": "DPO-S010",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R130",
+      "pairCode": "DPO-P065",
+      "scaleCode": "DPO-S015",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R131",
+      "pairCode": "DPO-P066",
+      "scaleCode": "DPO-S008",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R132",
+      "pairCode": "DPO-P066",
+      "scaleCode": "DPO-S003",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R133",
+      "pairCode": "DPO-P067",
+      "scaleCode": "DPO-S020",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R134",
+      "pairCode": "DPO-P067",
+      "scaleCode": "DPO-S035",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R135",
+      "pairCode": "DPO-P068",
+      "scaleCode": "DPO-S046",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R136",
+      "pairCode": "DPO-P068",
+      "scaleCode": "DPO-S031",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R137",
+      "pairCode": "DPO-P069",
+      "scaleCode": "DPO-S042",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R138",
+      "pairCode": "DPO-P069",
+      "scaleCode": "DPO-S022",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R139",
+      "pairCode": "DPO-P070",
+      "scaleCode": "DPO-S037",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R140",
+      "pairCode": "DPO-P070",
+      "scaleCode": "DPO-S039",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R141",
+      "pairCode": "DPO-P071",
+      "scaleCode": "DPO-S027",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R142",
+      "pairCode": "DPO-P071",
+      "scaleCode": "DPO-S039",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R143",
+      "pairCode": "DPO-P072",
+      "scaleCode": "DPO-S026",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R144",
+      "pairCode": "DPO-P072",
+      "scaleCode": "DPO-S002",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R145",
+      "pairCode": "DPO-P073",
+      "scaleCode": "DPO-S028",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R146",
+      "pairCode": "DPO-P073",
+      "scaleCode": "DPO-S021",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R147",
+      "pairCode": "DPO-P074",
+      "scaleCode": "DPO-S020",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R148",
+      "pairCode": "DPO-P074",
+      "scaleCode": "DPO-S004",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R149",
+      "pairCode": "DPO-P075",
+      "scaleCode": "DPO-S018",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R150",
+      "pairCode": "DPO-P075",
+      "scaleCode": "DPO-S015",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R151",
+      "pairCode": "DPO-P076",
+      "scaleCode": "DPO-S007",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R152",
+      "pairCode": "DPO-P076",
+      "scaleCode": "DPO-S038",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R153",
+      "pairCode": "DPO-P077",
+      "scaleCode": "DPO-S007",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R154",
+      "pairCode": "DPO-P077",
+      "scaleCode": "DPO-S023",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R155",
+      "pairCode": "DPO-P078",
+      "scaleCode": "DPO-S028",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R156",
+      "pairCode": "DPO-P078",
+      "scaleCode": "DPO-S032",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R157",
+      "pairCode": "DPO-P079",
+      "scaleCode": "DPO-S011",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R158",
+      "pairCode": "DPO-P079",
+      "scaleCode": "DPO-S045",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R159",
+      "pairCode": "DPO-P080",
+      "scaleCode": "DPO-S025",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R160",
+      "pairCode": "DPO-P080",
+      "scaleCode": "DPO-S030",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R161",
+      "pairCode": "DPO-P081",
+      "scaleCode": "DPO-S046",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R162",
+      "pairCode": "DPO-P081",
+      "scaleCode": "DPO-S016",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R163",
+      "pairCode": "DPO-P082",
+      "scaleCode": "DPO-S022",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R164",
+      "pairCode": "DPO-P082",
+      "scaleCode": "DPO-S006",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R165",
+      "pairCode": "DPO-P083",
+      "scaleCode": "DPO-S027",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R166",
+      "pairCode": "DPO-P083",
+      "scaleCode": "DPO-S012",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R167",
+      "pairCode": "DPO-P084",
+      "scaleCode": "DPO-S010",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R168",
+      "pairCode": "DPO-P084",
+      "scaleCode": "DPO-S036",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R169",
+      "pairCode": "DPO-P085",
+      "scaleCode": "DPO-S043",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R170",
+      "pairCode": "DPO-P085",
+      "scaleCode": "DPO-S033",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R171",
+      "pairCode": "DPO-P086",
+      "scaleCode": "DPO-S019",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R172",
+      "pairCode": "DPO-P086",
+      "scaleCode": "DPO-S015",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R173",
+      "pairCode": "DPO-P087",
+      "scaleCode": "DPO-S029",
+      "selection": "MORE",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R174",
+      "pairCode": "DPO-P087",
+      "scaleCode": "DPO-S038",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R175",
+      "pairCode": "DPO-P088",
+      "scaleCode": "DPO-S032",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R176",
+      "pairCode": "DPO-P088",
+      "scaleCode": "DPO-S021",
+      "selection": "LESS",
+      "scoreIfMore": 1,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R177",
+      "pairCode": "DPO-P089",
+      "scaleCode": "DPO-S037",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R178",
+      "pairCode": "DPO-P089",
+      "scaleCode": "DPO-S027",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R179",
+      "pairCode": "DPO-P090",
+      "scaleCode": "DPO-S035",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R180",
+      "pairCode": "DPO-P090",
+      "scaleCode": "DPO-S048",
+      "selection": "LESS",
+      "scoreIfMore": 4,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R181",
+      "pairCode": "DPO-P091",
+      "scaleCode": "DPO-S042",
+      "selection": "MORE",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R182",
+      "pairCode": "DPO-P091",
+      "scaleCode": "DPO-S020",
+      "selection": "LESS",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R183",
+      "pairCode": "DPO-P092",
+      "scaleCode": "DPO-S014",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R184",
+      "pairCode": "DPO-P092",
+      "scaleCode": "DPO-S019",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R185",
+      "pairCode": "DPO-P093",
+      "scaleCode": "DPO-S023",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R186",
+      "pairCode": "DPO-P093",
+      "scaleCode": "DPO-S029",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R187",
+      "pairCode": "DPO-P094",
+      "scaleCode": "DPO-S041",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R188",
+      "pairCode": "DPO-P094",
+      "scaleCode": "DPO-S045",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R189",
+      "pairCode": "DPO-P095",
+      "scaleCode": "DPO-S042",
+      "selection": "MORE",
+      "scoreIfMore": 3,
+      "scoreIfLess": 0,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R190",
+      "pairCode": "DPO-P095",
+      "scaleCode": "DPO-S035",
+      "selection": "LESS",
+      "scoreIfMore": 2,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R191",
+      "pairCode": "DPO-P096",
+      "scaleCode": "DPO-S025",
+      "selection": "MORE",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 5
+    },
+    {
+      "reactiveCode": "DPO-R192",
+      "pairCode": "DPO-P096",
+      "scaleCode": "DPO-S013",
+      "selection": "LESS",
+      "scoreIfMore": 5,
+      "scoreIfLess": 0,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R193",
+      "pairCode": "DPO-P097",
+      "scaleCode": "DPO-S005",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R194",
+      "pairCode": "DPO-P097",
+      "scaleCode": "DPO-S002",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R195",
+      "pairCode": "DPO-P098",
+      "scaleCode": "DPO-S047",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R196",
+      "pairCode": "DPO-P098",
+      "scaleCode": "DPO-S008",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R197",
+      "pairCode": "DPO-P099",
+      "scaleCode": "DPO-S007",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R198",
+      "pairCode": "DPO-P099",
+      "scaleCode": "DPO-S029",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R199",
+      "pairCode": "DPO-P100",
+      "scaleCode": "DPO-S009",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R200",
+      "pairCode": "DPO-P100",
+      "scaleCode": "DPO-S028",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R201",
+      "pairCode": "DPO-P101",
+      "scaleCode": "DPO-S025",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R202",
+      "pairCode": "DPO-P101",
+      "scaleCode": "DPO-S003",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R203",
+      "pairCode": "DPO-P102",
+      "scaleCode": "DPO-S046",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R204",
+      "pairCode": "DPO-P102",
+      "scaleCode": "DPO-S045",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R205",
+      "pairCode": "DPO-P103",
+      "scaleCode": "DPO-S010",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R206",
+      "pairCode": "DPO-P103",
+      "scaleCode": "DPO-S014",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R207",
+      "pairCode": "DPO-P104",
+      "scaleCode": "DPO-S031",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R208",
+      "pairCode": "DPO-P104",
+      "scaleCode": "DPO-S041",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R209",
+      "pairCode": "DPO-P105",
+      "scaleCode": "DPO-S022",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R210",
+      "pairCode": "DPO-P105",
+      "scaleCode": "DPO-S035",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R211",
+      "pairCode": "DPO-P106",
+      "scaleCode": "DPO-S042",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R212",
+      "pairCode": "DPO-P106",
+      "scaleCode": "DPO-S004",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R213",
+      "pairCode": "DPO-P107",
+      "scaleCode": "DPO-S003",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R214",
+      "pairCode": "DPO-P107",
+      "scaleCode": "DPO-S033",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R215",
+      "pairCode": "DPO-P108",
+      "scaleCode": "DPO-S040",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R216",
+      "pairCode": "DPO-P108",
+      "scaleCode": "DPO-S015",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R217",
+      "pairCode": "DPO-P109",
+      "scaleCode": "DPO-S046",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R218",
+      "pairCode": "DPO-P109",
+      "scaleCode": "DPO-S021",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R219",
+      "pairCode": "DPO-P110",
+      "scaleCode": "DPO-S002",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R220",
+      "pairCode": "DPO-P110",
+      "scaleCode": "DPO-S045",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R221",
+      "pairCode": "DPO-P111",
+      "scaleCode": "DPO-S034",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R222",
+      "pairCode": "DPO-P111",
+      "scaleCode": "DPO-S012",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R223",
+      "pairCode": "DPO-P112",
+      "scaleCode": "DPO-S010",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R224",
+      "pairCode": "DPO-P112",
+      "scaleCode": "DPO-S019",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R225",
+      "pairCode": "DPO-P113",
+      "scaleCode": "DPO-S022",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R226",
+      "pairCode": "DPO-P113",
+      "scaleCode": "DPO-S020",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R227",
+      "pairCode": "DPO-P114",
+      "scaleCode": "DPO-S042",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R228",
+      "pairCode": "DPO-P114",
+      "scaleCode": "DPO-S007",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R229",
+      "pairCode": "DPO-P115",
+      "scaleCode": "DPO-S026",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R230",
+      "pairCode": "DPO-P115",
+      "scaleCode": "DPO-S018",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R231",
+      "pairCode": "DPO-P116",
+      "scaleCode": "DPO-S047",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R232",
+      "pairCode": "DPO-P116",
+      "scaleCode": "DPO-S029",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R233",
+      "pairCode": "DPO-P117",
+      "scaleCode": "DPO-S017",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R234",
+      "pairCode": "DPO-P117",
+      "scaleCode": "DPO-S033",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R235",
+      "pairCode": "DPO-P118",
+      "scaleCode": "DPO-S024",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R236",
+      "pairCode": "DPO-P118",
+      "scaleCode": "DPO-S013",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R237",
+      "pairCode": "DPO-P119",
+      "scaleCode": "DPO-S016",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R238",
+      "pairCode": "DPO-P119",
+      "scaleCode": "DPO-S023",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R239",
+      "pairCode": "DPO-P120",
+      "scaleCode": "DPO-S005",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R240",
+      "pairCode": "DPO-P120",
+      "scaleCode": "DPO-S021",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R241",
+      "pairCode": "DPO-P121",
+      "scaleCode": "DPO-S042",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R242",
+      "pairCode": "DPO-P121",
+      "scaleCode": "DPO-S029",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R243",
+      "pairCode": "DPO-P122",
+      "scaleCode": "DPO-S043",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R244",
+      "pairCode": "DPO-P122",
+      "scaleCode": "DPO-S026",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R245",
+      "pairCode": "DPO-P123",
+      "scaleCode": "DPO-S011",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R246",
+      "pairCode": "DPO-P123",
+      "scaleCode": "DPO-S039",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R247",
+      "pairCode": "DPO-P124",
+      "scaleCode": "DPO-S032",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R248",
+      "pairCode": "DPO-P124",
+      "scaleCode": "DPO-S030",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R249",
+      "pairCode": "DPO-P125",
+      "scaleCode": "DPO-S036",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R250",
+      "pairCode": "DPO-P125",
+      "scaleCode": "DPO-S015",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R251",
+      "pairCode": "DPO-P126",
+      "scaleCode": "DPO-S009",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R252",
+      "pairCode": "DPO-P126",
+      "scaleCode": "DPO-S048",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R253",
+      "pairCode": "DPO-P127",
+      "scaleCode": "DPO-S005",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R254",
+      "pairCode": "DPO-P127",
+      "scaleCode": "DPO-S028",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R255",
+      "pairCode": "DPO-P128",
+      "scaleCode": "DPO-S044",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R256",
+      "pairCode": "DPO-P128",
+      "scaleCode": "DPO-S027",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R257",
+      "pairCode": "DPO-P129",
+      "scaleCode": "DPO-S019",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R258",
+      "pairCode": "DPO-P129",
+      "scaleCode": "DPO-S012",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R259",
+      "pairCode": "DPO-P130",
+      "scaleCode": "DPO-S013",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R260",
+      "pairCode": "DPO-P130",
+      "scaleCode": "DPO-S017",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R261",
+      "pairCode": "DPO-P131",
+      "scaleCode": "DPO-S031",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R262",
+      "pairCode": "DPO-P131",
+      "scaleCode": "DPO-S006",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R263",
+      "pairCode": "DPO-P132",
+      "scaleCode": "DPO-S047",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R264",
+      "pairCode": "DPO-P132",
+      "scaleCode": "DPO-S036",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R265",
+      "pairCode": "DPO-P133",
+      "scaleCode": "DPO-S001",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R266",
+      "pairCode": "DPO-P133",
+      "scaleCode": "DPO-S033",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R267",
+      "pairCode": "DPO-P134",
+      "scaleCode": "DPO-S018",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R268",
+      "pairCode": "DPO-P134",
+      "scaleCode": "DPO-S003",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R269",
+      "pairCode": "DPO-P135",
+      "scaleCode": "DPO-S009",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R270",
+      "pairCode": "DPO-P135",
+      "scaleCode": "DPO-S038",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R271",
+      "pairCode": "DPO-P136",
+      "scaleCode": "DPO-S011",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R272",
+      "pairCode": "DPO-P136",
+      "scaleCode": "DPO-S041",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R273",
+      "pairCode": "DPO-P137",
+      "scaleCode": "DPO-S025",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R274",
+      "pairCode": "DPO-P137",
+      "scaleCode": "DPO-S027",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R275",
+      "pairCode": "DPO-P138",
+      "scaleCode": "DPO-S026",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R276",
+      "pairCode": "DPO-P138",
+      "scaleCode": "DPO-S038",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R277",
+      "pairCode": "DPO-P139",
+      "scaleCode": "DPO-S034",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R278",
+      "pairCode": "DPO-P139",
+      "scaleCode": "DPO-S037",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R279",
+      "pairCode": "DPO-P140",
+      "scaleCode": "DPO-S027",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R280",
+      "pairCode": "DPO-P140",
+      "scaleCode": "DPO-S021",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R281",
+      "pairCode": "DPO-P141",
+      "scaleCode": "DPO-S044",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R282",
+      "pairCode": "DPO-P141",
+      "scaleCode": "DPO-S006",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R283",
+      "pairCode": "DPO-P142",
+      "scaleCode": "DPO-S024",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R284",
+      "pairCode": "DPO-P142",
+      "scaleCode": "DPO-S002",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R285",
+      "pairCode": "DPO-P143",
+      "scaleCode": "DPO-S017",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R286",
+      "pairCode": "DPO-P143",
+      "scaleCode": "DPO-S035",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R287",
+      "pairCode": "DPO-P144",
+      "scaleCode": "DPO-S007",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R288",
+      "pairCode": "DPO-P144",
+      "scaleCode": "DPO-S014",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R289",
+      "pairCode": "DPO-P145",
+      "scaleCode": "DPO-S043",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R290",
+      "pairCode": "DPO-P145",
+      "scaleCode": "DPO-S020",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R291",
+      "pairCode": "DPO-P146",
+      "scaleCode": "DPO-S008",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R292",
+      "pairCode": "DPO-P146",
+      "scaleCode": "DPO-S036",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R293",
+      "pairCode": "DPO-P147",
+      "scaleCode": "DPO-S048",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R294",
+      "pairCode": "DPO-P147",
+      "scaleCode": "DPO-S030",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R295",
+      "pairCode": "DPO-P148",
+      "scaleCode": "DPO-S032",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R296",
+      "pairCode": "DPO-P148",
+      "scaleCode": "DPO-S040",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R297",
+      "pairCode": "DPO-P149",
+      "scaleCode": "DPO-S037",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R298",
+      "pairCode": "DPO-P149",
+      "scaleCode": "DPO-S031",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R299",
+      "pairCode": "DPO-P150",
+      "scaleCode": "DPO-S016",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R300",
+      "pairCode": "DPO-P150",
+      "scaleCode": "DPO-S045",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R301",
+      "pairCode": "DPO-P151",
+      "scaleCode": "DPO-S013",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R302",
+      "pairCode": "DPO-P151",
+      "scaleCode": "DPO-S004",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R303",
+      "pairCode": "DPO-P152",
+      "scaleCode": "DPO-S010",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R304",
+      "pairCode": "DPO-P152",
+      "scaleCode": "DPO-S018",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R305",
+      "pairCode": "DPO-P153",
+      "scaleCode": "DPO-S044",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R306",
+      "pairCode": "DPO-P153",
+      "scaleCode": "DPO-S039",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R307",
+      "pairCode": "DPO-P154",
+      "scaleCode": "DPO-S023",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R308",
+      "pairCode": "DPO-P154",
+      "scaleCode": "DPO-S014",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R309",
+      "pairCode": "DPO-P155",
+      "scaleCode": "DPO-S008",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R310",
+      "pairCode": "DPO-P155",
+      "scaleCode": "DPO-S030",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R311",
+      "pairCode": "DPO-P156",
+      "scaleCode": "DPO-S016",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R312",
+      "pairCode": "DPO-P156",
+      "scaleCode": "DPO-S040",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R313",
+      "pairCode": "DPO-P157",
+      "scaleCode": "DPO-S037",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R314",
+      "pairCode": "DPO-P157",
+      "scaleCode": "DPO-S020",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R315",
+      "pairCode": "DPO-P158",
+      "scaleCode": "DPO-S046",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R316",
+      "pairCode": "DPO-P158",
+      "scaleCode": "DPO-S025",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R317",
+      "pairCode": "DPO-P159",
+      "scaleCode": "DPO-S035",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R318",
+      "pairCode": "DPO-P159",
+      "scaleCode": "DPO-S032",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R319",
+      "pairCode": "DPO-P160",
+      "scaleCode": "DPO-S023",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R320",
+      "pairCode": "DPO-P160",
+      "scaleCode": "DPO-S012",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R321",
+      "pairCode": "DPO-P161",
+      "scaleCode": "DPO-S004",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R322",
+      "pairCode": "DPO-P161",
+      "scaleCode": "DPO-S048",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 4
+    },
+    {
+      "reactiveCode": "DPO-R323",
+      "pairCode": "DPO-P162",
+      "scaleCode": "DPO-S001",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R324",
+      "pairCode": "DPO-P162",
+      "scaleCode": "DPO-S011",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R325",
+      "pairCode": "DPO-P163",
+      "scaleCode": "DPO-S038",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 4,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R326",
+      "pairCode": "DPO-P163",
+      "scaleCode": "DPO-S006",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R327",
+      "pairCode": "DPO-P164",
+      "scaleCode": "DPO-S024",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R328",
+      "pairCode": "DPO-P164",
+      "scaleCode": "DPO-S028",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R329",
+      "pairCode": "DPO-P165",
+      "scaleCode": "DPO-S043",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R330",
+      "pairCode": "DPO-P165",
+      "scaleCode": "DPO-S034",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R331",
+      "pairCode": "DPO-P166",
+      "scaleCode": "DPO-S001",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 3
+    },
+    {
+      "reactiveCode": "DPO-R332",
+      "pairCode": "DPO-P166",
+      "scaleCode": "DPO-S039",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 3,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R333",
+      "pairCode": "DPO-P167",
+      "scaleCode": "DPO-S019",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R334",
+      "pairCode": "DPO-P167",
+      "scaleCode": "DPO-S015",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    },
+    {
+      "reactiveCode": "DPO-R335",
+      "pairCode": "DPO-P168",
+      "scaleCode": "DPO-S022",
+      "selection": "LESS",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 2
+    },
+    {
+      "reactiveCode": "DPO-R336",
+      "pairCode": "DPO-P168",
+      "scaleCode": "DPO-S041",
+      "selection": "MORE",
+      "scoreIfMore": 0,
+      "scoreIfLess": 2,
+      "appliedScore": 0
+    }
+  ],
+  "scales": [
+    {
+      "code": "DPO-S005",
+      "name": "Expectativas",
+      "rawScore": 7,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S028",
+      "name": "Influencia",
+      "rawScore": 18,
+      "decile": 10
+    },
+    {
+      "code": "DPO-S018",
+      "name": "Optimismo",
+      "rawScore": 3,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S036",
+      "name": "Resolución",
+      "rawScore": 18,
+      "decile": 9
+    },
+    {
+      "code": "DPO-S044",
+      "name": "Claridad de estrategia",
+      "rawScore": 6,
+      "decile": 4
+    },
+    {
+      "code": "DPO-S041",
+      "name": "Satisfacción",
+      "rawScore": 7,
+      "decile": 4
+    },
+    {
+      "code": "DPO-S034",
+      "name": "Anticipación",
+      "rawScore": 14,
+      "decile": 6
+    },
+    {
+      "code": "DPO-S039",
+      "name": "Recuperación",
+      "rawScore": 18,
+      "decile": 9
+    },
+    {
+      "code": "DPO-S007",
+      "name": "Autorefuerzo",
+      "rawScore": 16,
+      "decile": 7
+    },
+    {
+      "code": "DPO-S004",
+      "name": "Expectativa Profesional",
+      "rawScore": 17,
+      "decile": 8
+    },
+    {
+      "code": "DPO-S001",
+      "name": "Adaptación",
+      "rawScore": 19,
+      "decile": 10
+    },
+    {
+      "code": "DPO-S002",
+      "name": "Mente Abierta",
+      "rawScore": 0,
+      "decile": 1
+    },
+    {
+      "code": "DPO-S008",
+      "name": "Autosupervisión",
+      "rawScore": 8,
+      "decile": 3
+    },
+    {
+      "code": "DPO-S017",
+      "name": "Merecimiento",
+      "rawScore": 13,
+      "decile": 5
+    },
+    {
+      "code": "DPO-S042",
+      "name": "Apertura a oportunidades",
+      "rawScore": 16,
+      "decile": 10
+    },
+    {
+      "code": "DPO-S048",
+      "name": "Sentido de contribución",
+      "rawScore": 9,
+      "decile": 6
+    },
+    {
+      "code": "DPO-S009",
+      "name": "Enfoque",
+      "rawScore": 9,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S023",
+      "name": "Capacidad de reacción",
+      "rawScore": 5,
+      "decile": 3
+    },
+    {
+      "code": "DPO-S038",
+      "name": "Perseverancia",
+      "rawScore": 0,
+      "decile": 1
+    },
+    {
+      "code": "DPO-S040",
+      "name": "Salud Financiera",
+      "rawScore": 15,
+      "decile": 9
+    },
+    {
+      "code": "DPO-S010",
+      "name": "Autoconocimiento",
+      "rawScore": 23,
+      "decile": 10
+    },
+    {
+      "code": "DPO-S029",
+      "name": "Percepción Interpersonal",
+      "rawScore": 13,
+      "decile": 9
+    },
+    {
+      "code": "DPO-S016",
+      "name": "Autoconfianza",
+      "rawScore": 16,
+      "decile": 8
+    },
+    {
+      "code": "DPO-S012",
+      "name": "Temple",
+      "rawScore": 11,
+      "decile": 6
+    },
+    {
+      "code": "DPO-S011",
+      "name": "Autocontrol",
+      "rawScore": 5,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S031",
+      "name": "Consciencia del Entorno",
+      "rawScore": 9,
+      "decile": 5
+    },
+    {
+      "code": "DPO-S003",
+      "name": "Pensamiento divergente",
+      "rawScore": 9,
+      "decile": 5
+    },
+    {
+      "code": "DPO-S014",
+      "name": "Control Percibido",
+      "rawScore": 16,
+      "decile": 6
+    },
+    {
+      "code": "DPO-S015",
+      "name": "Tolerancia al Conflicto",
+      "rawScore": 7,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S013",
+      "name": "Habilidad Administrativa",
+      "rawScore": 15,
+      "decile": 9
+    },
+    {
+      "code": "DPO-S022",
+      "name": "Autonomía",
+      "rawScore": 8,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S047",
+      "name": "Aprovechamiento de Talentos",
+      "rawScore": 11,
+      "decile": 4
+    },
+    {
+      "code": "DPO-S006",
+      "name": "Superación",
+      "rawScore": 17,
+      "decile": 10
+    },
+    {
+      "code": "DPO-S037",
+      "name": "Automejoramiento",
+      "rawScore": 12,
+      "decile": 4
+    },
+    {
+      "code": "DPO-S045",
+      "name": "Visión clara",
+      "rawScore": 12,
+      "decile": 6
+    },
+    {
+      "code": "DPO-S019",
+      "name": "Energía",
+      "rawScore": 6,
+      "decile": 3
+    },
+    {
+      "code": "DPO-S024",
+      "name": "Emprendimiento",
+      "rawScore": 4,
+      "decile": 3
+    },
+    {
+      "code": "DPO-S033",
+      "name": "Visión Sistémica",
+      "rawScore": 16,
+      "decile": 10
+    },
+    {
+      "code": "DPO-S021",
+      "name": "Tenacidad",
+      "rawScore": 14,
+      "decile": 8
+    },
+    {
+      "code": "DPO-S032",
+      "name": "Pensamiento Lógico",
+      "rawScore": 11,
+      "decile": 5
+    },
+    {
+      "code": "DPO-S027",
+      "name": "Rectitud",
+      "rawScore": 13,
+      "decile": 5
+    },
+    {
+      "code": "DPO-S020",
+      "name": "Esfuerzo",
+      "rawScore": 13,
+      "decile": 4
+    },
+    {
+      "code": "DPO-S025",
+      "name": "Compromiso",
+      "rawScore": 13,
+      "decile": 5
+    },
+    {
+      "code": "DPO-S046",
+      "name": "Anteposición de intereses",
+      "rawScore": 14,
+      "decile": 9
+    },
+    {
+      "code": "DPO-S043",
+      "name": "Alineamiento de Acciones",
+      "rawScore": 13,
+      "decile": 8
+    },
+    {
+      "code": "DPO-S026",
+      "name": "Confiabilidad",
+      "rawScore": 18,
+      "decile": 8
+    },
+    {
+      "code": "DPO-S030",
+      "name": "Sociabilidad",
+      "rawScore": 4,
+      "decile": 2
+    },
+    {
+      "code": "DPO-S035",
+      "name": "Participación",
+      "rawScore": 5,
+      "decile": 1
+    }
+  ],
+  "composites": [
+    {
+      "code": "DPO-C015",
+      "name": "Adaptabilidad",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S001",
+          "rawScore": 19,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S002",
+          "rawScore": 0,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S003",
+          "rawScore": 9,
+          "decile": 5
+        }
+      ],
+      "rawScore": 9.333333333333334,
+      "decile": 4
+    },
+    {
+      "code": "DPO-C013",
+      "name": "Alineación y Congruencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S043",
+          "rawScore": 13,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S025",
+          "rawScore": 13,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S009",
+          "rawScore": 9,
+          "decile": 2
+        }
+      ],
+      "rawScore": 11.666666666666666,
+      "decile": 4
+    },
+    {
+      "code": "DPO-C004",
+      "name": "Ambición positiva",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S004",
+          "rawScore": 17,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S005",
+          "rawScore": 7,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S006",
+          "rawScore": 17,
+          "decile": 10
+        }
+      ],
+      "rawScore": 13.666666666666666,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C016",
+      "name": "Anticipación a cambios del entorno",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S001",
+          "rawScore": 19,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S034",
+          "rawScore": 14,
+          "decile": 6
+        },
+        {
+          "code": "DPO-S031",
+          "rawScore": 9,
+          "decile": 5
+        }
+      ],
+      "rawScore": 14,
+      "decile": 8
+    },
+    {
+      "code": "DPO-C021",
+      "name": "Apego a Normas",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S025",
+          "rawScore": 13,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S026",
+          "rawScore": 18,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S027",
+          "rawScore": 13,
+          "decile": 5
+        }
+      ],
+      "rawScore": 14.666666666666666,
+      "decile": 6
+    },
+    {
+      "code": "DPO-C011",
+      "name": "Autodominio",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S046",
+          "rawScore": 14,
+          "decile": 9
+        },
+        {
+          "code": "DPO-S011",
+          "rawScore": 5,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S014",
+          "rawScore": 16,
+          "decile": 6
+        }
+      ],
+      "rawScore": 11.666666666666666,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C012",
+      "name": "Autoregulación emocional",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S010",
+          "rawScore": 23,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S011",
+          "rawScore": 5,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S012",
+          "rawScore": 11,
+          "decile": 6
+        }
+      ],
+      "rawScore": 13,
+      "decile": 8
+    },
+    {
+      "code": "DPO-C025",
+      "name": "Bienestar psicoproductivo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S047",
+          "rawScore": 11,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S040",
+          "rawScore": 15,
+          "decile": 9
+        },
+        {
+          "code": "DPO-S041",
+          "rawScore": 7,
+          "decile": 4
+        }
+      ],
+      "rawScore": 11,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C031",
+      "name": "Competencia financiera",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S014",
+          "rawScore": 16,
+          "decile": 6
+        },
+        {
+          "code": "DPO-S013",
+          "rawScore": 15,
+          "decile": 9
+        },
+        {
+          "code": "DPO-S015",
+          "rawScore": 7,
+          "decile": 2
+        }
+      ],
+      "rawScore": 12.666666666666666,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C029",
+      "name": "Convicción positiva",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S016",
+          "rawScore": 16,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S017",
+          "rawScore": 13,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S018",
+          "rawScore": 3,
+          "decile": 2
+        }
+      ],
+      "rawScore": 10.666666666666666,
+      "decile": 3
+    },
+    {
+      "code": "DPO-C009",
+      "name": "Creatividad Aplicada",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S003",
+          "rawScore": 9,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S029",
+          "rawScore": 13,
+          "decile": 9
+        },
+        {
+          "code": "DPO-S033",
+          "rawScore": 16,
+          "decile": 10
+        }
+      ],
+      "rawScore": 12.666666666666666,
+      "decile": 9
+    },
+    {
+      "code": "DPO-C007",
+      "name": "Determinación y Persistencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S025",
+          "rawScore": 13,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S038",
+          "rawScore": 0,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S021",
+          "rawScore": 14,
+          "decile": 8
+        }
+      ],
+      "rawScore": 9,
+      "decile": 2
+    },
+    {
+      "code": "DPO-C022",
+      "name": "Efectividad personal",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S007",
+          "rawScore": 16,
+          "decile": 7
+        },
+        {
+          "code": "DPO-S008",
+          "rawScore": 8,
+          "decile": 3
+        },
+        {
+          "code": "DPO-S009",
+          "rawScore": 9,
+          "decile": 2
+        }
+      ],
+      "rawScore": 11,
+      "decile": 2
+    },
+    {
+      "code": "DPO-C008",
+      "name": "Empuje",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S019",
+          "rawScore": 6,
+          "decile": 3
+        },
+        {
+          "code": "DPO-S020",
+          "rawScore": 13,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S021",
+          "rawScore": 14,
+          "decile": 8
+        }
+      ],
+      "rawScore": 11,
+      "decile": 4
+    },
+    {
+      "code": "DPO-C005",
+      "name": "Impulso Resolutivo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S016",
+          "rawScore": 16,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S023",
+          "rawScore": 5,
+          "decile": 3
+        },
+        {
+          "code": "DPO-S036",
+          "rawScore": 18,
+          "decile": 9
+        }
+      ],
+      "rawScore": 13,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C006",
+      "name": "Iniciativa",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S022",
+          "rawScore": 8,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S023",
+          "rawScore": 5,
+          "decile": 3
+        },
+        {
+          "code": "DPO-S024",
+          "rawScore": 4,
+          "decile": 3
+        }
+      ],
+      "rawScore": 5.666666666666667,
+      "decile": 1
+    },
+    {
+      "code": "DPO-C002",
+      "name": "Involucramiento",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S035",
+          "rawScore": 5,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S032",
+          "rawScore": 11,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S048",
+          "rawScore": 9,
+          "decile": 6
+        }
+      ],
+      "rawScore": 8.333333333333334,
+      "decile": 2
+    },
+    {
+      "code": "DPO-C030",
+      "name": "Mentalidad Inversionista",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S042",
+          "rawScore": 16,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S031",
+          "rawScore": 9,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S003",
+          "rawScore": 9,
+          "decile": 5
+        }
+      ],
+      "rawScore": 11.333333333333334,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C027",
+      "name": "Merecimiento Proactivo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S022",
+          "rawScore": 8,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S005",
+          "rawScore": 7,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S017",
+          "rawScore": 13,
+          "decile": 5
+        }
+      ],
+      "rawScore": 9.333333333333334,
+      "decile": 2
+    },
+    {
+      "code": "DPO-C023",
+      "name": "Negociación e Influencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S028",
+          "rawScore": 18,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S002",
+          "rawScore": 0,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S015",
+          "rawScore": 7,
+          "decile": 2
+        }
+      ],
+      "rawScore": 8.333333333333334,
+      "decile": 3
+    },
+    {
+      "code": "DPO-C018",
+      "name": "Orientación a resultados",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S016",
+          "rawScore": 16,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S017",
+          "rawScore": 13,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S021",
+          "rawScore": 14,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S045",
+          "rawScore": 12,
+          "decile": 6
+        }
+      ],
+      "rawScore": 13.75,
+      "decile": 7
+    },
+    {
+      "code": "DPO-C020",
+      "name": "Permanencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S025",
+          "rawScore": 13,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S038",
+          "rawScore": 0,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S039",
+          "rawScore": 18,
+          "decile": 9
+        },
+        {
+          "code": "DPO-S021",
+          "rawScore": 14,
+          "decile": 8
+        }
+      ],
+      "rawScore": 11.25,
+      "decile": 8
+    },
+    {
+      "code": "DPO-C032",
+      "name": "Planeación & Organización",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S034",
+          "rawScore": 14,
+          "decile": 6
+        },
+        {
+          "code": "DPO-S009",
+          "rawScore": 9,
+          "decile": 2
+        },
+        {
+          "code": "DPO-S032",
+          "rawScore": 11,
+          "decile": 5
+        }
+      ],
+      "rawScore": 11.333333333333334,
+      "decile": 3
+    },
+    {
+      "code": "DPO-C001",
+      "name": "Proactividad",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S034",
+          "rawScore": 14,
+          "decile": 6
+        },
+        {
+          "code": "DPO-S035",
+          "rawScore": 5,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S036",
+          "rawScore": 18,
+          "decile": 9
+        }
+      ],
+      "rawScore": 12.333333333333334,
+      "decile": 5
+    },
+    {
+      "code": "DPO-C010",
+      "name": "Razonamiento Analítico",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S031",
+          "rawScore": 9,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S032",
+          "rawScore": 11,
+          "decile": 5
+        },
+        {
+          "code": "DPO-S033",
+          "rawScore": 16,
+          "decile": 10
+        }
+      ],
+      "rawScore": 12,
+      "decile": 8
+    },
+    {
+      "code": "DPO-C024",
+      "name": "Relaciones Interpersonales",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S028",
+          "rawScore": 18,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S029",
+          "rawScore": 13,
+          "decile": 9
+        },
+        {
+          "code": "DPO-S030",
+          "rawScore": 4,
+          "decile": 2
+        }
+      ],
+      "rawScore": 11.666666666666666,
+      "decile": 8
+    },
+    {
+      "code": "DPO-C033",
+      "name": "Resiliencia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S037",
+          "rawScore": 12,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S038",
+          "rawScore": 0,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S039",
+          "rawScore": 18,
+          "decile": 9
+        }
+      ],
+      "rawScore": 10,
+      "decile": 1
+    },
+    {
+      "code": "DPO-C017",
+      "name": "Significancia",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S047",
+          "rawScore": 11,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S037",
+          "rawScore": 12,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S048",
+          "rawScore": 9,
+          "decile": 6
+        },
+        {
+          "code": "DPO-S045",
+          "rawScore": 12,
+          "decile": 6
+        }
+      ],
+      "rawScore": 11,
+      "decile": 4
+    },
+    {
+      "code": "DPO-C026",
+      "name": "Superación y Empoderamiento",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S007",
+          "rawScore": 16,
+          "decile": 7
+        },
+        {
+          "code": "DPO-S006",
+          "rawScore": 17,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S021",
+          "rawScore": 14,
+          "decile": 8
+        }
+      ],
+      "rawScore": 15.666666666666666,
+      "decile": 10
+    },
+    {
+      "code": "DPO-C028",
+      "name": "Toma de riesgos",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S042",
+          "rawScore": 16,
+          "decile": 10
+        },
+        {
+          "code": "DPO-S024",
+          "rawScore": 4,
+          "decile": 3
+        },
+        {
+          "code": "DPO-S030",
+          "rawScore": 4,
+          "decile": 2
+        }
+      ],
+      "rawScore": 8,
+      "decile": 4
+    },
+    {
+      "code": "DPO-C019",
+      "name": "Trabajo en Equipo",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S026",
+          "rawScore": 18,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S002",
+          "rawScore": 0,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S035",
+          "rawScore": 5,
+          "decile": 1
+        },
+        {
+          "code": "DPO-S030",
+          "rawScore": 4,
+          "decile": 2
+        }
+      ],
+      "rawScore": 6.75,
+      "decile": 1
+    },
+    {
+      "code": "DPO-C003",
+      "name": "Trayectoria Ascendente",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S037",
+          "rawScore": 12,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S008",
+          "rawScore": 8,
+          "decile": 3
+        },
+        {
+          "code": "DPO-S004",
+          "rawScore": 17,
+          "decile": 8
+        }
+      ],
+      "rawScore": 12.333333333333334,
+      "decile": 5
+    },
+    {
+      "code": "DPO-C014",
+      "name": "Visión estratégica",
+      "calculationMethod": "RAW_MEAN_THEN_NORM",
+      "components": [
+        {
+          "code": "DPO-S043",
+          "rawScore": 13,
+          "decile": 8
+        },
+        {
+          "code": "DPO-S044",
+          "rawScore": 6,
+          "decile": 4
+        },
+        {
+          "code": "DPO-S045",
+          "rawScore": 12,
+          "decile": 6
+        }
+      ],
+      "rawScore": 10.333333333333334,
+      "decile": 6
+    }
+  ],
+  "derivedMetrics": [
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-001",
+      "rawScore": 5,
+      "displayScore": 5,
+      "normalizedScore": 5,
+      "decile": 5,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-002",
+      "rawScore": 7,
+      "displayScore": 7,
+      "normalizedScore": 7,
+      "decile": 7,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-003",
+      "rawScore": 8.5,
+      "displayScore": 8.5,
+      "normalizedScore": 8.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-004",
+      "rawScore": 9,
+      "displayScore": 9,
+      "normalizedScore": 9,
+      "decile": 9,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-005",
+      "rawScore": 7.5,
+      "displayScore": 7.5,
+      "normalizedScore": 7.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-006",
+      "rawScore": 4.5,
+      "displayScore": 4.5,
+      "normalizedScore": 4.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-007",
+      "rawScore": 4,
+      "displayScore": 4,
+      "normalizedScore": 4,
+      "decile": 4,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-008",
+      "rawScore": 7,
+      "displayScore": 7,
+      "normalizedScore": 7,
+      "decile": 7,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-009",
+      "rawScore": 8,
+      "displayScore": 8,
+      "normalizedScore": 8,
+      "decile": 8,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-010",
+      "rawScore": 7.5,
+      "displayScore": 7.5,
+      "normalizedScore": 7.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-011",
+      "rawScore": 5.5,
+      "displayScore": 5.5,
+      "normalizedScore": 5.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-012",
+      "rawScore": 3,
+      "displayScore": 3,
+      "normalizedScore": 3,
+      "decile": 3,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-013",
+      "rawScore": 6,
+      "displayScore": 6,
+      "normalizedScore": 6,
+      "decile": 6,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-014",
+      "rawScore": 9,
+      "displayScore": 9,
+      "normalizedScore": 9,
+      "decile": 9,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-015",
+      "rawScore": 1.5,
+      "displayScore": 1.5,
+      "normalizedScore": 1.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-016",
+      "rawScore": 7,
+      "displayScore": 7,
+      "normalizedScore": 7,
+      "decile": 7,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-017",
+      "rawScore": 7,
+      "displayScore": 7,
+      "normalizedScore": 7,
+      "decile": 7,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-018",
+      "rawScore": 7,
+      "displayScore": 7,
+      "normalizedScore": 7,
+      "decile": 7,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-019",
+      "rawScore": 2,
+      "displayScore": 2,
+      "normalizedScore": 2,
+      "decile": 2,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-020",
+      "rawScore": 2.5,
+      "displayScore": 2.5,
+      "normalizedScore": 2.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    },
+    {
+      "targetType": "DERIVED_METRIC",
+      "targetCode": "DPO-DM-021",
+      "rawScore": 8.5,
+      "displayScore": 8.5,
+      "normalizedScore": 8.5,
+      "decile": null,
+      "status": "CALCULATED_DECILE_MEAN"
+    }
+  ]
+}

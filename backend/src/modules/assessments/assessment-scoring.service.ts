@@ -2,6 +2,8 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
+  Logger,
+  Optional,
   NotFoundException,
 } from "@nestjs/common";
 import type { AuthenticatedUser } from "../../common/auth.types";
@@ -23,10 +25,16 @@ import {
   type ReportAliasDefinition,
   type ScoringRule,
 } from "../scoring/scoring-engine";
+import { AssessmentReportsService } from "../reports/assessment-reports.service";
 
 @Injectable()
 export class AssessmentScoringService {
-  constructor(private readonly prisma: PrismaService) {}
+  private readonly logger = new Logger(AssessmentScoringService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    @Optional() private readonly reports?: AssessmentReportsService,
+  ) {}
 
   async finalize(user: AuthenticatedUser, attemptId: string) {
     const attempt = await this.prisma.attempt.findUnique({
@@ -305,8 +313,9 @@ export class AssessmentScoringService {
       rulesData.map((rule) => [rule.reactive.code, rule.reactiveId]),
     );
 
+    let completedRun;
     try {
-      return await this.prisma.$transaction(
+      completedRun = await this.prisma.$transaction(
         async (tx) => {
           await tx.attempt.update({
             where: { id: attemptId },
@@ -414,6 +423,12 @@ export class AssessmentScoringService {
         .catch(() => undefined);
       throw error;
     }
+    await this.reports?.generateAndEmail(completedRun.id).catch((error: unknown) => {
+      this.logger.error(
+        `El resultado ${completedRun.id} quedó completo, pero no fue posible generar o enviar su reporte: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    });
+    return completedRun;
   }
 }
 

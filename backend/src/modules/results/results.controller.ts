@@ -41,8 +41,9 @@ export class ResultsController {
   get(
     @CurrentUser() user: AuthenticatedUser,
     @Param("id") id: string,
+    @Query("exact") exact?: string,
   ) {
-    return this.results.get(user, id);
+    return this.results.get(user, id, exact === "true" || exact === "1");
   }
 
   @Get("results/:id/audit")

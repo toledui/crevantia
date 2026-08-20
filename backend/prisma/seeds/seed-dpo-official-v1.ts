@@ -61,6 +61,33 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
   const composites = loadOfficialComposites();
   const norm = loadOfficialNorm();
   const assessmentHash = configurationHash(assessment);
+  const previousChildrenAssessment = structuredClone(assessment);
+  const previousChildrenField =
+    previousChildrenAssessment.statisticalControlQuestions.find(
+      ({ code }) => code === "DPO-CTRL-16",
+    );
+  if (!previousChildrenField) throw new Error("DPO_CHILDREN_FIELD_MISSING");
+  previousChildrenField.options = ["Sí / No"];
+  const previousChildrenAssessmentHash = configurationHash(
+    previousChildrenAssessment,
+  );
+  const previousAssessment = structuredClone(previousChildrenAssessment);
+  const previousAcademicAreaField =
+    previousAssessment.statisticalControlQuestions.find(
+      ({ code }) => code === "DPO-CTRL-11",
+    );
+  if (!previousAcademicAreaField)
+    throw new Error("DPO_ACADEMIC_AREA_FIELD_MISSING");
+  previousAcademicAreaField.options = ["Precargado"];
+  const previousAssessmentHash = configurationHash(previousAssessment);
+  const legacyAssessment = structuredClone(previousAssessment);
+  const legacyCityField = legacyAssessment.statisticalControlQuestions.find(
+    ({ code }) => code === "DPO-CTRL-06",
+  );
+  if (!legacyCityField) throw new Error("DPO_CITY_FIELD_MISSING");
+  legacyCityField.inputType = "Combo";
+  legacyCityField.options = ["Precargado"];
+  const legacyAssessmentHash = configurationHash(legacyAssessment);
   const scoringHash = configurationHash({ scoring, scales, composites });
   const normHash = configurationHash(norm);
   const reportHash = configurationHash(composites.reportAliases);
@@ -90,11 +117,134 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
     if (published.length !== 3)
       throw new Error("DPO_OFFICIAL_PARTIALLY_PUBLISHED");
     if (
-      existingAssessment?.configurationHash !== assessmentHash ||
       existingScoring?.configurationHash !== scoringHash ||
       existingNorm?.configurationHash !== normHash
     )
       throw new Error("DPO_OFFICIAL_PUBLISHED_IMMUTABLE_HASH_MISMATCH");
+    if (existingAssessment?.configurationHash !== assessmentHash) {
+      const migrateCity =
+        existingAssessment?.configurationHash === legacyAssessmentHash;
+      const migrateAcademicArea =
+        migrateCity ||
+        existingAssessment?.configurationHash === previousAssessmentHash;
+      const migrateChildren =
+        migrateAcademicArea ||
+        existingAssessment?.configurationHash ===
+          previousChildrenAssessmentHash;
+      if (!migrateChildren)
+        throw new Error("DPO_OFFICIAL_PUBLISHED_IMMUTABLE_HASH_MISMATCH");
+      const cityField = assessment.statisticalControlQuestions.find(
+        ({ code }) => code === "DPO-CTRL-06",
+      );
+      if (!cityField) throw new Error("DPO_CITY_FIELD_MISSING");
+      const academicAreaField = assessment.statisticalControlQuestions.find(
+        ({ code }) => code === "DPO-CTRL-11",
+      );
+      if (!academicAreaField)
+        throw new Error("DPO_ACADEMIC_AREA_FIELD_MISSING");
+      const childrenField = assessment.statisticalControlQuestions.find(
+        ({ code }) => code === "DPO-CTRL-16",
+      );
+      if (!childrenField) throw new Error("DPO_CHILDREN_FIELD_MISSING");
+      await prisma.$transaction(async (tx) => {
+        if (migrateCity) {
+          await tx.demographicField.update({
+            where: {
+              assessmentVersionId_code: {
+                assessmentVersionId: OFFICIAL_DPO_IDS.assessmentVersion,
+                code: cityField.code,
+              },
+            },
+            data: {
+              type: controlFieldType(cityField.code, cityField.inputType),
+              config: {
+                options: cityField.options,
+                sourceRequirement: cityField.sourceRequirement,
+                includeInScoring: false,
+              },
+            },
+          });
+          await tx.auditLog.create({
+            data: {
+              action: "DEMOGRAPHIC_CITY_CHANGED_TO_TEXT",
+              entityType: "DemographicField",
+              entityId: cityField.code,
+              before: { type: "SINGLE_CHOICE", options: ["Precargado"] },
+              after: { type: "TEXT", options: null },
+              reason:
+                "Corrección no psicométrica aplicada sobre la versión publicada actual; no se creó una versión nueva.",
+            },
+          });
+        }
+        if (migrateAcademicArea) {
+          await tx.demographicField.update({
+            where: {
+              assessmentVersionId_code: {
+                assessmentVersionId: OFFICIAL_DPO_IDS.assessmentVersion,
+                code: academicAreaField.code,
+              },
+            },
+            data: {
+              type: controlFieldType(
+                academicAreaField.code,
+                academicAreaField.inputType,
+              ),
+              config: {
+                options: academicAreaField.options,
+                sourceRequirement: academicAreaField.sourceRequirement,
+                includeInScoring: false,
+              },
+            },
+          });
+          await tx.auditLog.create({
+            data: {
+              action: "DEMOGRAPHIC_ACADEMIC_AREAS_PRELOADED",
+              entityType: "DemographicField",
+              entityId: academicAreaField.code,
+              before: { options: ["Precargado"] },
+              after: { options: academicAreaField.options },
+              reason:
+                "Precarga del catálogo académico aplicada sobre la versión publicada actual; no se creó una versión nueva.",
+            },
+          });
+        }
+        await tx.demographicField.update({
+          where: {
+            assessmentVersionId_code: {
+              assessmentVersionId: OFFICIAL_DPO_IDS.assessmentVersion,
+              code: childrenField.code,
+            },
+          },
+          data: {
+            type: controlFieldType(
+              childrenField.code,
+              childrenField.inputType,
+            ),
+            config: {
+              options: childrenField.options,
+              sourceRequirement: childrenField.sourceRequirement,
+              includeInScoring: false,
+            },
+          },
+        });
+        await tx.assessmentVersion.update({
+          where: { id: OFFICIAL_DPO_IDS.assessmentVersion },
+          data: { configurationHash: assessmentHash },
+        });
+        await tx.auditLog.create({
+          data: {
+            action: "DEMOGRAPHIC_CHILDREN_OPTIONS_SPLIT",
+            entityType: "DemographicField",
+            entityId: childrenField.code,
+            before: { options: ["Sí / No"] },
+            after: { options: childrenField.options },
+            reason:
+              "Separación de las respuestas Sí y No aplicada sobre la versión publicada actual; no se creó una versión nueva.",
+          },
+        });
+      });
+    }
+    await synchronizePublishedNormThresholds(prisma, norm);
     await activate(prisma, reportHash);
     await purgeLegacyNorm(prisma);
     return validation;
@@ -607,14 +757,14 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
             },
             update: {
               decile: threshold.decile,
-              lowerBound: threshold.lowerBound,
+              lowerBound: new Prisma.Decimal(String(threshold.lowerBound)),
             },
             create: {
               id: `${targetId}-d${threshold.decile}`,
               normTargetId: targetId,
               decile: threshold.decile,
               ordinal: index + 1,
-              lowerBound: threshold.lowerBound,
+              lowerBound: new Prisma.Decimal(String(threshold.lowerBound)),
             },
           });
         }
@@ -712,6 +862,97 @@ export async function seedDpoOfficialV1(prisma: PrismaClient) {
   );
   await purgeLegacyNorm(prisma);
   return validation;
+}
+
+async function synchronizePublishedNormThresholds(
+  prisma: PrismaClient,
+  norm: ReturnType<typeof loadOfficialNorm>,
+) {
+  const targets = await prisma.normTarget.findMany({
+    where: { normVersionId: OFFICIAL_DPO_IDS.normVersion },
+    include: { thresholds: { orderBy: { ordinal: "asc" } } },
+  });
+  const targetByKey = new Map(
+    targets.map((target) => [
+      `${target.targetType}:${target.targetCode}`,
+      target,
+    ]),
+  );
+  const expectedKeys = new Set(
+    norm.activeTargets.map(
+      (target) => `${normTargetType(target.targetType)}:${target.targetCode}`,
+    ),
+  );
+  const unexpected = [...targetByKey.keys()].filter(
+    (key) => !expectedKeys.has(key),
+  );
+  if (targets.length !== norm.activeTargets.length || unexpected.length)
+    throw new Error(
+      `DPO_PUBLISHED_NORM_TARGET_MISMATCH:${targets.length}:${unexpected.join(",")}`,
+    );
+
+  const changes: Array<{
+    id: string;
+    decile: number;
+    lowerBound: Prisma.Decimal;
+    before: string;
+    after: string;
+  }> = [];
+  for (const sourceTarget of norm.activeTargets) {
+    const key = `${normTargetType(sourceTarget.targetType)}:${sourceTarget.targetCode}`;
+    const target = targetByKey.get(key);
+    if (!target || target.thresholds.length !== sourceTarget.thresholds.length)
+      throw new Error(`DPO_PUBLISHED_NORM_THRESHOLD_COUNT_MISMATCH:${key}`);
+    for (const [index, sourceThreshold] of sourceTarget.thresholds.entries()) {
+      const threshold = target.thresholds[index];
+      if (!threshold || threshold.ordinal !== index + 1)
+        throw new Error(`DPO_PUBLISHED_NORM_THRESHOLD_ORDER_MISMATCH:${key}`);
+      const expected = String(sourceThreshold.lowerBound);
+      if (
+        threshold.decile !== sourceThreshold.decile ||
+        threshold.lowerBound.toString() !== expected
+      )
+        changes.push({
+          id: threshold.id,
+          decile: sourceThreshold.decile,
+          lowerBound: new Prisma.Decimal(expected),
+          before: threshold.lowerBound.toString(),
+          after: expected,
+        });
+    }
+  }
+  if (!changes.length) return { checked: 870, corrected: 0 };
+  await prisma.$transaction(
+    async (tx) => {
+      for (const change of changes)
+        await tx.normThreshold.update({
+          where: { id: change.id },
+          data: {
+            decile: change.decile,
+            lowerBound: change.lowerBound,
+          },
+        });
+      await tx.auditLog.create({
+        data: {
+          action: "DPO_OFFICIAL_NORM_THRESHOLDS_RESYNCHRONIZED",
+          entityType: "NormVersion",
+          entityId: OFFICIAL_DPO_IDS.normVersion,
+          before: { correctedRows: changes.length },
+          after: {
+            checkedTargets: norm.activeTargets.length,
+            checkedThresholds: norm.activeTargets.flatMap(
+              (target) => target.thresholds,
+            ).length,
+            correctedRows: changes.length,
+          },
+          reason:
+            "Persistencia exacta de límites Bundle V2 para lookup EXCEL_BINARY64 sin redondeo previo.",
+        },
+      });
+    },
+    { timeout: 300_000 },
+  );
+  return { checked: 870, corrected: changes.length };
 }
 
 async function purgeLegacyNorm(prisma: PrismaClient) {

@@ -449,9 +449,12 @@ export const ModelName = {
   ForcedChoiceAnswer: 'ForcedChoiceAnswer',
   LikertAnswer: 'LikertAnswer',
   ResultRun: 'ResultRun',
+  AssessmentReport: 'AssessmentReport',
+  AssessmentReportDelivery: 'AssessmentReportDelivery',
   ResultValue: 'ResultValue',
   ReactiveContribution: 'ReactiveContribution',
   FinancialSettings: 'FinancialSettings',
+  SiteSettings: 'SiteSettings',
   StripeSettings: 'StripeSettings',
   EvaluationProduct: 'EvaluationProduct',
   PriceVersion: 'PriceVersion',
@@ -477,7 +480,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentActiveConfiguration" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "resultValue" | "reactiveContribution" | "financialSettings" | "stripeSettings" | "evaluationProduct" | "priceVersion" | "coupon" | "couponRedemption" | "purchaseOrder" | "purchaseItem" | "paymentTransaction" | "paymentEvent" | "legalDocument"
+    modelProps: "user" | "role" | "permission" | "userRole" | "rolePermission" | "session" | "passwordResetToken" | "emailVerificationToken" | "mailSettings" | "consentAcceptance" | "test" | "testVersion" | "section" | "question" | "statement" | "answerOption" | "assignment" | "attempt" | "response" | "pairResponse" | "auditLog" | "assessment" | "assessmentActiveConfiguration" | "assessmentVersion" | "assessmentSection" | "demographicField" | "demographicAnswer" | "pairQuestion" | "reactive" | "likertOptionSet" | "likertOption" | "likertQuestion" | "scoringKey" | "scoringKeyVersion" | "scale" | "likertScoringRule" | "reactiveScoringRule" | "composite" | "compositeComponent" | "derivedMetric" | "derivedMetricVersion" | "normSet" | "normVersion" | "normTarget" | "normThreshold" | "normValidationRun" | "normValidationIssue" | "reportMapping" | "reportMappingVersion" | "forcedChoiceAnswer" | "likertAnswer" | "resultRun" | "assessmentReport" | "assessmentReportDelivery" | "resultValue" | "reactiveContribution" | "financialSettings" | "siteSettings" | "stripeSettings" | "evaluationProduct" | "priceVersion" | "coupon" | "couponRedemption" | "purchaseOrder" | "purchaseItem" | "paymentTransaction" | "paymentEvent" | "legalDocument"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3913,6 +3916,138 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AssessmentReport: {
+      payload: Prisma.$AssessmentReportPayload<ExtArgs>
+      fields: Prisma.AssessmentReportFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AssessmentReportFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AssessmentReportFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>
+        }
+        findFirst: {
+          args: Prisma.AssessmentReportFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AssessmentReportFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>
+        }
+        findMany: {
+          args: Prisma.AssessmentReportFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>[]
+        }
+        create: {
+          args: Prisma.AssessmentReportCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>
+        }
+        createMany: {
+          args: Prisma.AssessmentReportCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AssessmentReportDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>
+        }
+        update: {
+          args: Prisma.AssessmentReportUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>
+        }
+        deleteMany: {
+          args: Prisma.AssessmentReportDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AssessmentReportUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AssessmentReportUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportPayload>
+        }
+        aggregate: {
+          args: Prisma.AssessmentReportAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAssessmentReport>
+        }
+        groupBy: {
+          args: Prisma.AssessmentReportGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssessmentReportGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AssessmentReportCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssessmentReportCountAggregateOutputType> | number
+        }
+      }
+    }
+    AssessmentReportDelivery: {
+      payload: Prisma.$AssessmentReportDeliveryPayload<ExtArgs>
+      fields: Prisma.AssessmentReportDeliveryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AssessmentReportDeliveryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AssessmentReportDeliveryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>
+        }
+        findFirst: {
+          args: Prisma.AssessmentReportDeliveryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AssessmentReportDeliveryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>
+        }
+        findMany: {
+          args: Prisma.AssessmentReportDeliveryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>[]
+        }
+        create: {
+          args: Prisma.AssessmentReportDeliveryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>
+        }
+        createMany: {
+          args: Prisma.AssessmentReportDeliveryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AssessmentReportDeliveryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>
+        }
+        update: {
+          args: Prisma.AssessmentReportDeliveryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>
+        }
+        deleteMany: {
+          args: Prisma.AssessmentReportDeliveryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AssessmentReportDeliveryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AssessmentReportDeliveryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssessmentReportDeliveryPayload>
+        }
+        aggregate: {
+          args: Prisma.AssessmentReportDeliveryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAssessmentReportDelivery>
+        }
+        groupBy: {
+          args: Prisma.AssessmentReportDeliveryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssessmentReportDeliveryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AssessmentReportDeliveryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssessmentReportDeliveryCountAggregateOutputType> | number
+        }
+      }
+    }
     ResultValue: {
       payload: Prisma.$ResultValuePayload<ExtArgs>
       fields: Prisma.ResultValueFieldRefs
@@ -4108,6 +4243,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.FinancialSettingsCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.FinancialSettingsCountAggregateOutputType> | number
+        }
+      }
+    }
+    SiteSettings: {
+      payload: Prisma.$SiteSettingsPayload<ExtArgs>
+      fields: Prisma.SiteSettingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SiteSettingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SiteSettingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>
+        }
+        findFirst: {
+          args: Prisma.SiteSettingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SiteSettingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>
+        }
+        findMany: {
+          args: Prisma.SiteSettingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>[]
+        }
+        create: {
+          args: Prisma.SiteSettingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>
+        }
+        createMany: {
+          args: Prisma.SiteSettingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.SiteSettingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>
+        }
+        update: {
+          args: Prisma.SiteSettingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.SiteSettingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SiteSettingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.SiteSettingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SiteSettingsPayload>
+        }
+        aggregate: {
+          args: Prisma.SiteSettingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSiteSettings>
+        }
+        groupBy: {
+          args: Prisma.SiteSettingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SiteSettingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SiteSettingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SiteSettingsCountAggregateOutputType> | number
         }
       }
     }
@@ -5535,6 +5736,42 @@ export const ResultRunScalarFieldEnum = {
 export type ResultRunScalarFieldEnum = (typeof ResultRunScalarFieldEnum)[keyof typeof ResultRunScalarFieldEnum]
 
 
+export const AssessmentReportScalarFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  status: 'status',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  pdfData: 'pdfData',
+  byteSize: 'byteSize',
+  sha256: 'sha256',
+  configurationVersion: 'configurationVersion',
+  configurationSnapshot: 'configurationSnapshot',
+  error: 'error',
+  generatedAt: 'generatedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssessmentReportScalarFieldEnum = (typeof AssessmentReportScalarFieldEnum)[keyof typeof AssessmentReportScalarFieldEnum]
+
+
+export const AssessmentReportDeliveryScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  recipient: 'recipient',
+  trigger: 'trigger',
+  requestedById: 'requestedById',
+  status: 'status',
+  error: 'error',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssessmentReportDeliveryScalarFieldEnum = (typeof AssessmentReportDeliveryScalarFieldEnum)[keyof typeof AssessmentReportDeliveryScalarFieldEnum]
+
+
 export const ResultValueScalarFieldEnum = {
   id: 'id',
   resultRunId: 'resultRunId',
@@ -5577,6 +5814,42 @@ export const FinancialSettingsScalarFieldEnum = {
 } as const
 
 export type FinancialSettingsScalarFieldEnum = (typeof FinancialSettingsScalarFieldEnum)[keyof typeof FinancialSettingsScalarFieldEnum]
+
+
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  version: 'version',
+  reportDefaultsVersion: 'reportDefaultsVersion',
+  siteName: 'siteName',
+  siteDescription: 'siteDescription',
+  logoData: 'logoData',
+  logoMimeType: 'logoMimeType',
+  faviconData: 'faviconData',
+  faviconMimeType: 'faviconMimeType',
+  reportLogoData: 'reportLogoData',
+  reportLogoMimeType: 'reportLogoMimeType',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  contactWhatsapp: 'contactWhatsapp',
+  contactAddress: 'contactAddress',
+  contactHours: 'contactHours',
+  contactMapUrl: 'contactMapUrl',
+  reportBrandName: 'reportBrandName',
+  reportPromoTitle: 'reportPromoTitle',
+  reportPromoText: 'reportPromoText',
+  reportPromoUrl: 'reportPromoUrl',
+  reportIntroduction: 'reportIntroduction',
+  reportInterpretation: 'reportInterpretation',
+  reportCategories: 'reportCategories',
+  reportDisplayMappings: 'reportDisplayMappings',
+  reportTextBlocks: 'reportTextBlocks',
+  headCode: 'headCode',
+  bodyEndCode: 'bodyEndCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
 
 
 export const StripeSettingsScalarFieldEnum = {
@@ -6361,6 +6634,30 @@ export const ResultRunOrderByRelevanceFieldEnum = {
 export type ResultRunOrderByRelevanceFieldEnum = (typeof ResultRunOrderByRelevanceFieldEnum)[keyof typeof ResultRunOrderByRelevanceFieldEnum]
 
 
+export const AssessmentReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  sha256: 'sha256',
+  error: 'error'
+} as const
+
+export type AssessmentReportOrderByRelevanceFieldEnum = (typeof AssessmentReportOrderByRelevanceFieldEnum)[keyof typeof AssessmentReportOrderByRelevanceFieldEnum]
+
+
+export const AssessmentReportDeliveryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  recipient: 'recipient',
+  trigger: 'trigger',
+  requestedById: 'requestedById',
+  error: 'error'
+} as const
+
+export type AssessmentReportDeliveryOrderByRelevanceFieldEnum = (typeof AssessmentReportDeliveryOrderByRelevanceFieldEnum)[keyof typeof AssessmentReportDeliveryOrderByRelevanceFieldEnum]
+
+
 export const ResultValueOrderByRelevanceFieldEnum = {
   id: 'id',
   resultRunId: 'resultRunId',
@@ -6388,6 +6685,32 @@ export const FinancialSettingsOrderByRelevanceFieldEnum = {
 } as const
 
 export type FinancialSettingsOrderByRelevanceFieldEnum = (typeof FinancialSettingsOrderByRelevanceFieldEnum)[keyof typeof FinancialSettingsOrderByRelevanceFieldEnum]
+
+
+export const SiteSettingsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  siteDescription: 'siteDescription',
+  logoMimeType: 'logoMimeType',
+  faviconMimeType: 'faviconMimeType',
+  reportLogoMimeType: 'reportLogoMimeType',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  contactWhatsapp: 'contactWhatsapp',
+  contactAddress: 'contactAddress',
+  contactHours: 'contactHours',
+  contactMapUrl: 'contactMapUrl',
+  reportBrandName: 'reportBrandName',
+  reportPromoTitle: 'reportPromoTitle',
+  reportPromoText: 'reportPromoText',
+  reportPromoUrl: 'reportPromoUrl',
+  reportIntroduction: 'reportIntroduction',
+  reportInterpretation: 'reportInterpretation',
+  headCode: 'headCode',
+  bodyEndCode: 'bodyEndCode'
+} as const
+
+export type SiteSettingsOrderByRelevanceFieldEnum = (typeof SiteSettingsOrderByRelevanceFieldEnum)[keyof typeof SiteSettingsOrderByRelevanceFieldEnum]
 
 
 export const StripeSettingsOrderByRelevanceFieldEnum = {
@@ -6657,6 +6980,27 @@ export type EnumResultRunStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'AssessmentReportStatus'
+ */
+export type EnumAssessmentReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AssessmentReportStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'Bytes'
+ */
+export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+    
+
+
+/**
+ * Reference to a field of type 'ReportDeliveryStatus'
+ */
+export type EnumReportDeliveryStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReportDeliveryStatus'>
+    
+
+
+/**
  * Reference to a field of type 'ReactiveSelection'
  */
 export type EnumReactiveSelectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReactiveSelection'>
@@ -6886,9 +7230,12 @@ export type GlobalOmitConfig = {
   forcedChoiceAnswer?: Prisma.ForcedChoiceAnswerOmit
   likertAnswer?: Prisma.LikertAnswerOmit
   resultRun?: Prisma.ResultRunOmit
+  assessmentReport?: Prisma.AssessmentReportOmit
+  assessmentReportDelivery?: Prisma.AssessmentReportDeliveryOmit
   resultValue?: Prisma.ResultValueOmit
   reactiveContribution?: Prisma.ReactiveContributionOmit
   financialSettings?: Prisma.FinancialSettingsOmit
+  siteSettings?: Prisma.SiteSettingsOmit
   stripeSettings?: Prisma.StripeSettingsOmit
   evaluationProduct?: Prisma.EvaluationProductOmit
   priceVersion?: Prisma.PriceVersionOmit

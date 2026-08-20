@@ -28,7 +28,11 @@
     "seed:dpo:v1": "npm run seed:dpo:v1 --workspace backend",
     "validate:dpo:v1": "npm run validate:dpo:v1 --workspace backend",
     "verify:dpo:v1:db": "npm run verify:dpo:v1:db --workspace backend",
-    "test:dpo": "npm run test:dpo --workspace backend"
+    "test:dpo": "npm run test:dpo --workspace backend",
+    "test:dpo:case1": "npm run test:dpo:case1 --workspace backend",
+    "report:dpo:case1": "npm run report:dpo:case1 --workspace backend",
+    "persist:dpo:case1": "npm run persist:dpo:case1 --workspace backend --",
+    "correct:dpo:case1:p039": "npm run correct:dpo:case1:p039 --workspace backend --"
   },
   "devDependencies": {
     "prettier": "^3.6.2"

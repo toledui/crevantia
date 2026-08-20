@@ -222,6 +222,28 @@ export class MailService {
     );
   }
 
+  async sendAssessmentReportEmail(
+    to: string,
+    firstName: string,
+    assessmentName: string,
+    pdfBuffer: Buffer,
+    filename: string,
+  ) {
+    const link = `${this.config.getOrThrow<string>('FRONTEND_URL')}/panel`;
+    await this.send(
+      to,
+      `Tu reporte de ${assessmentName} está listo`,
+      this.template(
+        `Hola, ${this.escape(firstName)}`,
+        `Tu evaluación <strong>${this.escape(assessmentName)}</strong> ha finalizado correctamente.<br><br>Adjunto encontrarás tu reporte individual en PDF. También puedes descargarlo en cualquier momento o solicitar un nuevo envío desde tu panel personal.`,
+        'Ir a mi panel',
+        link,
+        'Este documento contiene información personal. Te recomendamos conservarlo en un lugar seguro.',
+      ),
+      [{ filename, content: pdfBuffer, contentType: 'application/pdf' }],
+    );
+  }
+
   async sendPendingPaymentReminderEmail(
     to: string,
     firstName: string,

@@ -149,6 +149,24 @@ export const ResultRunStatus = {
 export type ResultRunStatus = (typeof ResultRunStatus)[keyof typeof ResultRunStatus]
 
 
+export const AssessmentReportStatus = {
+  GENERATING: 'GENERATING',
+  READY: 'READY',
+  FAILED: 'FAILED'
+} as const
+
+export type AssessmentReportStatus = (typeof AssessmentReportStatus)[keyof typeof AssessmentReportStatus]
+
+
+export const ReportDeliveryStatus = {
+  PENDING: 'PENDING',
+  SENT: 'SENT',
+  FAILED: 'FAILED'
+} as const
+
+export type ReportDeliveryStatus = (typeof ReportDeliveryStatus)[keyof typeof ReportDeliveryStatus]
+
+
 export const ReactiveSelection = {
   MORE: 'MORE',
   LESS: 'LESS'

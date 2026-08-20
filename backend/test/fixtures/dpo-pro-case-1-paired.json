@@ -1,0 +1,687 @@
+{
+  "schemaVersion": "1.0.0",
+  "case": {
+    "code": "DPO_PRO_CASE_1_PAIRED_V2",
+    "sourceWorkbook": "CREVANTIA_DPO_CODEX_BUNDLE_V2/Caso de prueba 1 DPO-PRO.xlsx",
+    "sourceSheet": "Respuestas",
+    "sourceRange": "N1:MK2",
+    "sourceWorkbookSha256": "2c11a66f897312fdd29581d7caa1ac4e4cea69b3b0df1d70052a2368e2a59db4",
+    "description": "Vector pareado histórico del Caso 1, con DPO-P039 = DPO-R077 MORE.",
+    "answerCount": 168,
+    "answersSha256": "2b6af7541e70fa8d929a7da9db4ef46b4a1d67abc3d26f788da22253be24085a"
+  },
+  "answers": [
+    {
+      "pairCode": "DPO-P001",
+      "selectedMoreReactiveCode": "DPO-R002"
+    },
+    {
+      "pairCode": "DPO-P002",
+      "selectedMoreReactiveCode": "DPO-R004"
+    },
+    {
+      "pairCode": "DPO-P003",
+      "selectedMoreReactiveCode": "DPO-R005"
+    },
+    {
+      "pairCode": "DPO-P004",
+      "selectedMoreReactiveCode": "DPO-R008"
+    },
+    {
+      "pairCode": "DPO-P005",
+      "selectedMoreReactiveCode": "DPO-R010"
+    },
+    {
+      "pairCode": "DPO-P006",
+      "selectedMoreReactiveCode": "DPO-R011"
+    },
+    {
+      "pairCode": "DPO-P007",
+      "selectedMoreReactiveCode": "DPO-R014"
+    },
+    {
+      "pairCode": "DPO-P008",
+      "selectedMoreReactiveCode": "DPO-R015"
+    },
+    {
+      "pairCode": "DPO-P009",
+      "selectedMoreReactiveCode": "DPO-R017"
+    },
+    {
+      "pairCode": "DPO-P010",
+      "selectedMoreReactiveCode": "DPO-R019"
+    },
+    {
+      "pairCode": "DPO-P011",
+      "selectedMoreReactiveCode": "DPO-R022"
+    },
+    {
+      "pairCode": "DPO-P012",
+      "selectedMoreReactiveCode": "DPO-R023"
+    },
+    {
+      "pairCode": "DPO-P013",
+      "selectedMoreReactiveCode": "DPO-R025"
+    },
+    {
+      "pairCode": "DPO-P014",
+      "selectedMoreReactiveCode": "DPO-R027"
+    },
+    {
+      "pairCode": "DPO-P015",
+      "selectedMoreReactiveCode": "DPO-R029"
+    },
+    {
+      "pairCode": "DPO-P016",
+      "selectedMoreReactiveCode": "DPO-R032"
+    },
+    {
+      "pairCode": "DPO-P017",
+      "selectedMoreReactiveCode": "DPO-R033"
+    },
+    {
+      "pairCode": "DPO-P018",
+      "selectedMoreReactiveCode": "DPO-R036"
+    },
+    {
+      "pairCode": "DPO-P019",
+      "selectedMoreReactiveCode": "DPO-R038"
+    },
+    {
+      "pairCode": "DPO-P020",
+      "selectedMoreReactiveCode": "DPO-R040"
+    },
+    {
+      "pairCode": "DPO-P021",
+      "selectedMoreReactiveCode": "DPO-R041"
+    },
+    {
+      "pairCode": "DPO-P022",
+      "selectedMoreReactiveCode": "DPO-R043"
+    },
+    {
+      "pairCode": "DPO-P023",
+      "selectedMoreReactiveCode": "DPO-R046"
+    },
+    {
+      "pairCode": "DPO-P024",
+      "selectedMoreReactiveCode": "DPO-R048"
+    },
+    {
+      "pairCode": "DPO-P025",
+      "selectedMoreReactiveCode": "DPO-R049"
+    },
+    {
+      "pairCode": "DPO-P026",
+      "selectedMoreReactiveCode": "DPO-R051"
+    },
+    {
+      "pairCode": "DPO-P027",
+      "selectedMoreReactiveCode": "DPO-R054"
+    },
+    {
+      "pairCode": "DPO-P028",
+      "selectedMoreReactiveCode": "DPO-R055"
+    },
+    {
+      "pairCode": "DPO-P029",
+      "selectedMoreReactiveCode": "DPO-R058"
+    },
+    {
+      "pairCode": "DPO-P030",
+      "selectedMoreReactiveCode": "DPO-R059"
+    },
+    {
+      "pairCode": "DPO-P031",
+      "selectedMoreReactiveCode": "DPO-R062"
+    },
+    {
+      "pairCode": "DPO-P032",
+      "selectedMoreReactiveCode": "DPO-R064"
+    },
+    {
+      "pairCode": "DPO-P033",
+      "selectedMoreReactiveCode": "DPO-R065"
+    },
+    {
+      "pairCode": "DPO-P034",
+      "selectedMoreReactiveCode": "DPO-R067"
+    },
+    {
+      "pairCode": "DPO-P035",
+      "selectedMoreReactiveCode": "DPO-R069"
+    },
+    {
+      "pairCode": "DPO-P036",
+      "selectedMoreReactiveCode": "DPO-R071"
+    },
+    {
+      "pairCode": "DPO-P037",
+      "selectedMoreReactiveCode": "DPO-R074"
+    },
+    {
+      "pairCode": "DPO-P038",
+      "selectedMoreReactiveCode": "DPO-R076"
+    },
+    {
+      "pairCode": "DPO-P039",
+      "selectedMoreReactiveCode": "DPO-R077"
+    },
+    {
+      "pairCode": "DPO-P040",
+      "selectedMoreReactiveCode": "DPO-R080"
+    },
+    {
+      "pairCode": "DPO-P041",
+      "selectedMoreReactiveCode": "DPO-R081"
+    },
+    {
+      "pairCode": "DPO-P042",
+      "selectedMoreReactiveCode": "DPO-R083"
+    },
+    {
+      "pairCode": "DPO-P043",
+      "selectedMoreReactiveCode": "DPO-R085"
+    },
+    {
+      "pairCode": "DPO-P044",
+      "selectedMoreReactiveCode": "DPO-R087"
+    },
+    {
+      "pairCode": "DPO-P045",
+      "selectedMoreReactiveCode": "DPO-R089"
+    },
+    {
+      "pairCode": "DPO-P046",
+      "selectedMoreReactiveCode": "DPO-R091"
+    },
+    {
+      "pairCode": "DPO-P047",
+      "selectedMoreReactiveCode": "DPO-R093"
+    },
+    {
+      "pairCode": "DPO-P048",
+      "selectedMoreReactiveCode": "DPO-R095"
+    },
+    {
+      "pairCode": "DPO-P049",
+      "selectedMoreReactiveCode": "DPO-R097"
+    },
+    {
+      "pairCode": "DPO-P050",
+      "selectedMoreReactiveCode": "DPO-R100"
+    },
+    {
+      "pairCode": "DPO-P051",
+      "selectedMoreReactiveCode": "DPO-R102"
+    },
+    {
+      "pairCode": "DPO-P052",
+      "selectedMoreReactiveCode": "DPO-R103"
+    },
+    {
+      "pairCode": "DPO-P053",
+      "selectedMoreReactiveCode": "DPO-R105"
+    },
+    {
+      "pairCode": "DPO-P054",
+      "selectedMoreReactiveCode": "DPO-R107"
+    },
+    {
+      "pairCode": "DPO-P055",
+      "selectedMoreReactiveCode": "DPO-R109"
+    },
+    {
+      "pairCode": "DPO-P056",
+      "selectedMoreReactiveCode": "DPO-R112"
+    },
+    {
+      "pairCode": "DPO-P057",
+      "selectedMoreReactiveCode": "DPO-R113"
+    },
+    {
+      "pairCode": "DPO-P058",
+      "selectedMoreReactiveCode": "DPO-R115"
+    },
+    {
+      "pairCode": "DPO-P059",
+      "selectedMoreReactiveCode": "DPO-R117"
+    },
+    {
+      "pairCode": "DPO-P060",
+      "selectedMoreReactiveCode": "DPO-R119"
+    },
+    {
+      "pairCode": "DPO-P061",
+      "selectedMoreReactiveCode": "DPO-R121"
+    },
+    {
+      "pairCode": "DPO-P062",
+      "selectedMoreReactiveCode": "DPO-R124"
+    },
+    {
+      "pairCode": "DPO-P063",
+      "selectedMoreReactiveCode": "DPO-R125"
+    },
+    {
+      "pairCode": "DPO-P064",
+      "selectedMoreReactiveCode": "DPO-R128"
+    },
+    {
+      "pairCode": "DPO-P065",
+      "selectedMoreReactiveCode": "DPO-R129"
+    },
+    {
+      "pairCode": "DPO-P066",
+      "selectedMoreReactiveCode": "DPO-R131"
+    },
+    {
+      "pairCode": "DPO-P067",
+      "selectedMoreReactiveCode": "DPO-R133"
+    },
+    {
+      "pairCode": "DPO-P068",
+      "selectedMoreReactiveCode": "DPO-R135"
+    },
+    {
+      "pairCode": "DPO-P069",
+      "selectedMoreReactiveCode": "DPO-R137"
+    },
+    {
+      "pairCode": "DPO-P070",
+      "selectedMoreReactiveCode": "DPO-R140"
+    },
+    {
+      "pairCode": "DPO-P071",
+      "selectedMoreReactiveCode": "DPO-R142"
+    },
+    {
+      "pairCode": "DPO-P072",
+      "selectedMoreReactiveCode": "DPO-R143"
+    },
+    {
+      "pairCode": "DPO-P073",
+      "selectedMoreReactiveCode": "DPO-R146"
+    },
+    {
+      "pairCode": "DPO-P074",
+      "selectedMoreReactiveCode": "DPO-R148"
+    },
+    {
+      "pairCode": "DPO-P075",
+      "selectedMoreReactiveCode": "DPO-R150"
+    },
+    {
+      "pairCode": "DPO-P076",
+      "selectedMoreReactiveCode": "DPO-R151"
+    },
+    {
+      "pairCode": "DPO-P077",
+      "selectedMoreReactiveCode": "DPO-R153"
+    },
+    {
+      "pairCode": "DPO-P078",
+      "selectedMoreReactiveCode": "DPO-R155"
+    },
+    {
+      "pairCode": "DPO-P079",
+      "selectedMoreReactiveCode": "DPO-R158"
+    },
+    {
+      "pairCode": "DPO-P080",
+      "selectedMoreReactiveCode": "DPO-R159"
+    },
+    {
+      "pairCode": "DPO-P081",
+      "selectedMoreReactiveCode": "DPO-R162"
+    },
+    {
+      "pairCode": "DPO-P082",
+      "selectedMoreReactiveCode": "DPO-R164"
+    },
+    {
+      "pairCode": "DPO-P083",
+      "selectedMoreReactiveCode": "DPO-R165"
+    },
+    {
+      "pairCode": "DPO-P084",
+      "selectedMoreReactiveCode": "DPO-R167"
+    },
+    {
+      "pairCode": "DPO-P085",
+      "selectedMoreReactiveCode": "DPO-R169"
+    },
+    {
+      "pairCode": "DPO-P086",
+      "selectedMoreReactiveCode": "DPO-R172"
+    },
+    {
+      "pairCode": "DPO-P087",
+      "selectedMoreReactiveCode": "DPO-R173"
+    },
+    {
+      "pairCode": "DPO-P088",
+      "selectedMoreReactiveCode": "DPO-R175"
+    },
+    {
+      "pairCode": "DPO-P089",
+      "selectedMoreReactiveCode": "DPO-R177"
+    },
+    {
+      "pairCode": "DPO-P090",
+      "selectedMoreReactiveCode": "DPO-R179"
+    },
+    {
+      "pairCode": "DPO-P091",
+      "selectedMoreReactiveCode": "DPO-R181"
+    },
+    {
+      "pairCode": "DPO-P092",
+      "selectedMoreReactiveCode": "DPO-R183"
+    },
+    {
+      "pairCode": "DPO-P093",
+      "selectedMoreReactiveCode": "DPO-R186"
+    },
+    {
+      "pairCode": "DPO-P094",
+      "selectedMoreReactiveCode": "DPO-R188"
+    },
+    {
+      "pairCode": "DPO-P095",
+      "selectedMoreReactiveCode": "DPO-R189"
+    },
+    {
+      "pairCode": "DPO-P096",
+      "selectedMoreReactiveCode": "DPO-R191"
+    },
+    {
+      "pairCode": "DPO-P097",
+      "selectedMoreReactiveCode": "DPO-R194"
+    },
+    {
+      "pairCode": "DPO-P098",
+      "selectedMoreReactiveCode": "DPO-R196"
+    },
+    {
+      "pairCode": "DPO-P099",
+      "selectedMoreReactiveCode": "DPO-R198"
+    },
+    {
+      "pairCode": "DPO-P100",
+      "selectedMoreReactiveCode": "DPO-R199"
+    },
+    {
+      "pairCode": "DPO-P101",
+      "selectedMoreReactiveCode": "DPO-R201"
+    },
+    {
+      "pairCode": "DPO-P102",
+      "selectedMoreReactiveCode": "DPO-R204"
+    },
+    {
+      "pairCode": "DPO-P103",
+      "selectedMoreReactiveCode": "DPO-R206"
+    },
+    {
+      "pairCode": "DPO-P104",
+      "selectedMoreReactiveCode": "DPO-R207"
+    },
+    {
+      "pairCode": "DPO-P105",
+      "selectedMoreReactiveCode": "DPO-R210"
+    },
+    {
+      "pairCode": "DPO-P106",
+      "selectedMoreReactiveCode": "DPO-R211"
+    },
+    {
+      "pairCode": "DPO-P107",
+      "selectedMoreReactiveCode": "DPO-R213"
+    },
+    {
+      "pairCode": "DPO-P108",
+      "selectedMoreReactiveCode": "DPO-R216"
+    },
+    {
+      "pairCode": "DPO-P109",
+      "selectedMoreReactiveCode": "DPO-R217"
+    },
+    {
+      "pairCode": "DPO-P110",
+      "selectedMoreReactiveCode": "DPO-R219"
+    },
+    {
+      "pairCode": "DPO-P111",
+      "selectedMoreReactiveCode": "DPO-R221"
+    },
+    {
+      "pairCode": "DPO-P112",
+      "selectedMoreReactiveCode": "DPO-R224"
+    },
+    {
+      "pairCode": "DPO-P113",
+      "selectedMoreReactiveCode": "DPO-R225"
+    },
+    {
+      "pairCode": "DPO-P114",
+      "selectedMoreReactiveCode": "DPO-R228"
+    },
+    {
+      "pairCode": "DPO-P115",
+      "selectedMoreReactiveCode": "DPO-R230"
+    },
+    {
+      "pairCode": "DPO-P116",
+      "selectedMoreReactiveCode": "DPO-R231"
+    },
+    {
+      "pairCode": "DPO-P117",
+      "selectedMoreReactiveCode": "DPO-R233"
+    },
+    {
+      "pairCode": "DPO-P118",
+      "selectedMoreReactiveCode": "DPO-R235"
+    },
+    {
+      "pairCode": "DPO-P119",
+      "selectedMoreReactiveCode": "DPO-R238"
+    },
+    {
+      "pairCode": "DPO-P120",
+      "selectedMoreReactiveCode": "DPO-R239"
+    },
+    {
+      "pairCode": "DPO-P121",
+      "selectedMoreReactiveCode": "DPO-R241"
+    },
+    {
+      "pairCode": "DPO-P122",
+      "selectedMoreReactiveCode": "DPO-R243"
+    },
+    {
+      "pairCode": "DPO-P123",
+      "selectedMoreReactiveCode": "DPO-R246"
+    },
+    {
+      "pairCode": "DPO-P124",
+      "selectedMoreReactiveCode": "DPO-R248"
+    },
+    {
+      "pairCode": "DPO-P125",
+      "selectedMoreReactiveCode": "DPO-R250"
+    },
+    {
+      "pairCode": "DPO-P126",
+      "selectedMoreReactiveCode": "DPO-R251"
+    },
+    {
+      "pairCode": "DPO-P127",
+      "selectedMoreReactiveCode": "DPO-R253"
+    },
+    {
+      "pairCode": "DPO-P128",
+      "selectedMoreReactiveCode": "DPO-R256"
+    },
+    {
+      "pairCode": "DPO-P129",
+      "selectedMoreReactiveCode": "DPO-R257"
+    },
+    {
+      "pairCode": "DPO-P130",
+      "selectedMoreReactiveCode": "DPO-R260"
+    },
+    {
+      "pairCode": "DPO-P131",
+      "selectedMoreReactiveCode": "DPO-R261"
+    },
+    {
+      "pairCode": "DPO-P132",
+      "selectedMoreReactiveCode": "DPO-R263"
+    },
+    {
+      "pairCode": "DPO-P133",
+      "selectedMoreReactiveCode": "DPO-R265"
+    },
+    {
+      "pairCode": "DPO-P134",
+      "selectedMoreReactiveCode": "DPO-R268"
+    },
+    {
+      "pairCode": "DPO-P135",
+      "selectedMoreReactiveCode": "DPO-R270"
+    },
+    {
+      "pairCode": "DPO-P136",
+      "selectedMoreReactiveCode": "DPO-R271"
+    },
+    {
+      "pairCode": "DPO-P137",
+      "selectedMoreReactiveCode": "DPO-R273"
+    },
+    {
+      "pairCode": "DPO-P138",
+      "selectedMoreReactiveCode": "DPO-R276"
+    },
+    {
+      "pairCode": "DPO-P139",
+      "selectedMoreReactiveCode": "DPO-R278"
+    },
+    {
+      "pairCode": "DPO-P140",
+      "selectedMoreReactiveCode": "DPO-R280"
+    },
+    {
+      "pairCode": "DPO-P141",
+      "selectedMoreReactiveCode": "DPO-R281"
+    },
+    {
+      "pairCode": "DPO-P142",
+      "selectedMoreReactiveCode": "DPO-R284"
+    },
+    {
+      "pairCode": "DPO-P143",
+      "selectedMoreReactiveCode": "DPO-R286"
+    },
+    {
+      "pairCode": "DPO-P144",
+      "selectedMoreReactiveCode": "DPO-R287"
+    },
+    {
+      "pairCode": "DPO-P145",
+      "selectedMoreReactiveCode": "DPO-R290"
+    },
+    {
+      "pairCode": "DPO-P146",
+      "selectedMoreReactiveCode": "DPO-R291"
+    },
+    {
+      "pairCode": "DPO-P147",
+      "selectedMoreReactiveCode": "DPO-R293"
+    },
+    {
+      "pairCode": "DPO-P148",
+      "selectedMoreReactiveCode": "DPO-R295"
+    },
+    {
+      "pairCode": "DPO-P149",
+      "selectedMoreReactiveCode": "DPO-R297"
+    },
+    {
+      "pairCode": "DPO-P150",
+      "selectedMoreReactiveCode": "DPO-R299"
+    },
+    {
+      "pairCode": "DPO-P151",
+      "selectedMoreReactiveCode": "DPO-R301"
+    },
+    {
+      "pairCode": "DPO-P152",
+      "selectedMoreReactiveCode": "DPO-R304"
+    },
+    {
+      "pairCode": "DPO-P153",
+      "selectedMoreReactiveCode": "DPO-R305"
+    },
+    {
+      "pairCode": "DPO-P154",
+      "selectedMoreReactiveCode": "DPO-R307"
+    },
+    {
+      "pairCode": "DPO-P155",
+      "selectedMoreReactiveCode": "DPO-R310"
+    },
+    {
+      "pairCode": "DPO-P156",
+      "selectedMoreReactiveCode": "DPO-R311"
+    },
+    {
+      "pairCode": "DPO-P157",
+      "selectedMoreReactiveCode": "DPO-R313"
+    },
+    {
+      "pairCode": "DPO-P158",
+      "selectedMoreReactiveCode": "DPO-R315"
+    },
+    {
+      "pairCode": "DPO-P159",
+      "selectedMoreReactiveCode": "DPO-R317"
+    },
+    {
+      "pairCode": "DPO-P160",
+      "selectedMoreReactiveCode": "DPO-R319"
+    },
+    {
+      "pairCode": "DPO-P161",
+      "selectedMoreReactiveCode": "DPO-R321"
+    },
+    {
+      "pairCode": "DPO-P162",
+      "selectedMoreReactiveCode": "DPO-R324"
+    },
+    {
+      "pairCode": "DPO-P163",
+      "selectedMoreReactiveCode": "DPO-R325"
+    },
+    {
+      "pairCode": "DPO-P164",
+      "selectedMoreReactiveCode": "DPO-R327"
+    },
+    {
+      "pairCode": "DPO-P165",
+      "selectedMoreReactiveCode": "DPO-R329"
+    },
+    {
+      "pairCode": "DPO-P166",
+      "selectedMoreReactiveCode": "DPO-R332"
+    },
+    {
+      "pairCode": "DPO-P167",
+      "selectedMoreReactiveCode": "DPO-R334"
+    },
+    {
+      "pairCode": "DPO-P168",
+      "selectedMoreReactiveCode": "DPO-R336"
+    }
+  ]
+}

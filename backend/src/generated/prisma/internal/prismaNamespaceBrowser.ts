@@ -103,9 +103,12 @@ export const ModelName = {
   ForcedChoiceAnswer: 'ForcedChoiceAnswer',
   LikertAnswer: 'LikertAnswer',
   ResultRun: 'ResultRun',
+  AssessmentReport: 'AssessmentReport',
+  AssessmentReportDelivery: 'AssessmentReportDelivery',
   ResultValue: 'ResultValue',
   ReactiveContribution: 'ReactiveContribution',
   FinancialSettings: 'FinancialSettings',
+  SiteSettings: 'SiteSettings',
   StripeSettings: 'StripeSettings',
   EvaluationProduct: 'EvaluationProduct',
   PriceVersion: 'PriceVersion',
@@ -859,6 +862,42 @@ export const ResultRunScalarFieldEnum = {
 export type ResultRunScalarFieldEnum = (typeof ResultRunScalarFieldEnum)[keyof typeof ResultRunScalarFieldEnum]
 
 
+export const AssessmentReportScalarFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  status: 'status',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  pdfData: 'pdfData',
+  byteSize: 'byteSize',
+  sha256: 'sha256',
+  configurationVersion: 'configurationVersion',
+  configurationSnapshot: 'configurationSnapshot',
+  error: 'error',
+  generatedAt: 'generatedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssessmentReportScalarFieldEnum = (typeof AssessmentReportScalarFieldEnum)[keyof typeof AssessmentReportScalarFieldEnum]
+
+
+export const AssessmentReportDeliveryScalarFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  recipient: 'recipient',
+  trigger: 'trigger',
+  requestedById: 'requestedById',
+  status: 'status',
+  error: 'error',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssessmentReportDeliveryScalarFieldEnum = (typeof AssessmentReportDeliveryScalarFieldEnum)[keyof typeof AssessmentReportDeliveryScalarFieldEnum]
+
+
 export const ResultValueScalarFieldEnum = {
   id: 'id',
   resultRunId: 'resultRunId',
@@ -901,6 +940,42 @@ export const FinancialSettingsScalarFieldEnum = {
 } as const
 
 export type FinancialSettingsScalarFieldEnum = (typeof FinancialSettingsScalarFieldEnum)[keyof typeof FinancialSettingsScalarFieldEnum]
+
+
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  version: 'version',
+  reportDefaultsVersion: 'reportDefaultsVersion',
+  siteName: 'siteName',
+  siteDescription: 'siteDescription',
+  logoData: 'logoData',
+  logoMimeType: 'logoMimeType',
+  faviconData: 'faviconData',
+  faviconMimeType: 'faviconMimeType',
+  reportLogoData: 'reportLogoData',
+  reportLogoMimeType: 'reportLogoMimeType',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  contactWhatsapp: 'contactWhatsapp',
+  contactAddress: 'contactAddress',
+  contactHours: 'contactHours',
+  contactMapUrl: 'contactMapUrl',
+  reportBrandName: 'reportBrandName',
+  reportPromoTitle: 'reportPromoTitle',
+  reportPromoText: 'reportPromoText',
+  reportPromoUrl: 'reportPromoUrl',
+  reportIntroduction: 'reportIntroduction',
+  reportInterpretation: 'reportInterpretation',
+  reportCategories: 'reportCategories',
+  reportDisplayMappings: 'reportDisplayMappings',
+  reportTextBlocks: 'reportTextBlocks',
+  headCode: 'headCode',
+  bodyEndCode: 'bodyEndCode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
 
 
 export const StripeSettingsScalarFieldEnum = {
@@ -1685,6 +1760,30 @@ export const ResultRunOrderByRelevanceFieldEnum = {
 export type ResultRunOrderByRelevanceFieldEnum = (typeof ResultRunOrderByRelevanceFieldEnum)[keyof typeof ResultRunOrderByRelevanceFieldEnum]
 
 
+export const AssessmentReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  resultRunId: 'resultRunId',
+  filename: 'filename',
+  mimeType: 'mimeType',
+  sha256: 'sha256',
+  error: 'error'
+} as const
+
+export type AssessmentReportOrderByRelevanceFieldEnum = (typeof AssessmentReportOrderByRelevanceFieldEnum)[keyof typeof AssessmentReportOrderByRelevanceFieldEnum]
+
+
+export const AssessmentReportDeliveryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportId: 'reportId',
+  recipient: 'recipient',
+  trigger: 'trigger',
+  requestedById: 'requestedById',
+  error: 'error'
+} as const
+
+export type AssessmentReportDeliveryOrderByRelevanceFieldEnum = (typeof AssessmentReportDeliveryOrderByRelevanceFieldEnum)[keyof typeof AssessmentReportDeliveryOrderByRelevanceFieldEnum]
+
+
 export const ResultValueOrderByRelevanceFieldEnum = {
   id: 'id',
   resultRunId: 'resultRunId',
@@ -1712,6 +1811,32 @@ export const FinancialSettingsOrderByRelevanceFieldEnum = {
 } as const
 
 export type FinancialSettingsOrderByRelevanceFieldEnum = (typeof FinancialSettingsOrderByRelevanceFieldEnum)[keyof typeof FinancialSettingsOrderByRelevanceFieldEnum]
+
+
+export const SiteSettingsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  siteDescription: 'siteDescription',
+  logoMimeType: 'logoMimeType',
+  faviconMimeType: 'faviconMimeType',
+  reportLogoMimeType: 'reportLogoMimeType',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  contactWhatsapp: 'contactWhatsapp',
+  contactAddress: 'contactAddress',
+  contactHours: 'contactHours',
+  contactMapUrl: 'contactMapUrl',
+  reportBrandName: 'reportBrandName',
+  reportPromoTitle: 'reportPromoTitle',
+  reportPromoText: 'reportPromoText',
+  reportPromoUrl: 'reportPromoUrl',
+  reportIntroduction: 'reportIntroduction',
+  reportInterpretation: 'reportInterpretation',
+  headCode: 'headCode',
+  bodyEndCode: 'bodyEndCode'
+} as const
+
+export type SiteSettingsOrderByRelevanceFieldEnum = (typeof SiteSettingsOrderByRelevanceFieldEnum)[keyof typeof SiteSettingsOrderByRelevanceFieldEnum]
 
 
 export const StripeSettingsOrderByRelevanceFieldEnum = {

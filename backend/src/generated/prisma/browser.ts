@@ -129,7 +129,7 @@ export type AuditLog = Prisma.AuditLogModel
 export type Assessment = Prisma.AssessmentModel
 /**
  * Model AssessmentActiveConfiguration
- *
+ * 
  */
 export type AssessmentActiveConfiguration = Prisma.AssessmentActiveConfigurationModel
 /**
@@ -278,6 +278,16 @@ export type LikertAnswer = Prisma.LikertAnswerModel
  */
 export type ResultRun = Prisma.ResultRunModel
 /**
+ * Model AssessmentReport
+ * 
+ */
+export type AssessmentReport = Prisma.AssessmentReportModel
+/**
+ * Model AssessmentReportDelivery
+ * 
+ */
+export type AssessmentReportDelivery = Prisma.AssessmentReportDeliveryModel
+/**
  * Model ResultValue
  * 
  */
@@ -292,6 +302,11 @@ export type ReactiveContribution = Prisma.ReactiveContributionModel
  * 
  */
 export type FinancialSettings = Prisma.FinancialSettingsModel
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel
 /**
  * Model StripeSettings
  * 

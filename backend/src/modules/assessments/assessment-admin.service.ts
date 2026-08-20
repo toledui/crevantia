@@ -15,6 +15,7 @@ import {
   CloneAssessmentVersionDto,
   CreateAssessmentDto,
   ReplaceAssessmentContentDto,
+  UpdateDemographicOptionsDto,
   UpdateAssessmentDto,
 } from "./assessment-admin.dto";
 
@@ -114,6 +115,58 @@ export class AssessmentAdminService {
         orderBy: [{ name: "asc" }, { code: "asc" }],
         select: { id: true, code: true, name: true, description: true },
       }),
+    };
+  }
+
+  async updateDemographicOptions(
+    actorId: string,
+    versionId: string,
+    fieldId: string,
+    dto: UpdateDemographicOptionsDto,
+  ) {
+    const options = [
+      ...new Set(dto.options.map((option) => option.trim()).filter(Boolean)),
+    ];
+    if (!options.length)
+      throw new BadRequestException("Agrega al menos una opción de selección.");
+    const field = await this.prisma.demographicField.findFirst({
+      where: { id: fieldId, assessmentVersionId: versionId },
+    });
+    if (!field) throw new NotFoundException("El campo estadístico no existe.");
+    if (field.type !== "SINGLE_CHOICE")
+      throw new BadRequestException(
+        "Solo los campos de selección única admiten opciones.",
+      );
+    const currentConfig =
+      field.config &&
+      typeof field.config === "object" &&
+      !Array.isArray(field.config)
+        ? field.config
+        : {};
+    const updated = await this.prisma.$transaction(async (tx) => {
+      const result = await tx.demographicField.update({
+        where: { id: field.id },
+        data: { config: asJson({ ...currentConfig, options }) },
+      });
+      await tx.auditLog.create({
+        data: {
+          actorId,
+          action: "DEMOGRAPHIC_OPTIONS_UPDATED",
+          entityType: "DemographicField",
+          entityId: field.id,
+          before: { options: demographicConfigOptions(field.config) },
+          after: { options },
+          reason:
+            "Actualización de catálogo de respuesta sin alterar la estructura ni la puntuación de la versión.",
+        },
+      });
+      return result;
+    });
+    return {
+      id: updated.id,
+      versionId,
+      options,
+      message: "Opciones actualizadas en la versión actual.",
     };
   }
 
@@ -1485,6 +1538,14 @@ function asJson(
   return value
     ? (JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue)
     : undefined;
+}
+
+function demographicConfigOptions(value: Prisma.JsonValue | null) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+  const options = value.options;
+  return Array.isArray(options)
+    ? options.filter((option): option is string => typeof option === "string")
+    : [];
 }
 
 async function resetUnfinishedAttempts(

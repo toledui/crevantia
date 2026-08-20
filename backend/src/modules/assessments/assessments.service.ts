@@ -35,7 +35,20 @@ export class AssessmentsService {
               where: { isOfficial: true },
               orderBy: { calculatedAt: "desc" },
               take: 1,
-              select: { id: true },
+              select: {
+                id: true,
+                report: {
+                  select: {
+                    status: true,
+                    generatedAt: true,
+                    deliveries: {
+                      orderBy: { createdAt: "desc" },
+                      take: 1,
+                      select: { status: true, sentAt: true },
+                    },
+                  },
+                },
+              },
             },
           },
         },

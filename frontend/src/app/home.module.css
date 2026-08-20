@@ -114,6 +114,13 @@
 .faq summary i { font-size: 20px; font-style: normal; transition: transform .2s ease; }
 .faq details[open] summary i { transform: rotate(45deg); }
 .faq details p { margin: 0; padding: 0 20px 18px; color: #737d8b; font-size: 13px; line-height: 1.65; }
+.contactLayout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 42px; align-items: start; }
+.contactGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.contactCard { min-height: 150px; display: flex; flex-direction: column; align-items: flex-start; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 12px 30px rgba(8, 11, 18, .04); }
+.contactCard small { margin-bottom: 16px; color: #8a93a1; font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.contactCard strong { color: var(--night); font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
+.contactCard span, .contactCard > a { margin-top: auto; padding-top: 18px; color: var(--indigo); font-size: 12px; font-weight: 800; }
+.contactCard p { margin: 8px 0 0; color: #737d8b; font-size: 12px; line-height: 1.55; }
 .cta { padding: 72px 0 88px; }
 .ctaBox { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 44px; border-radius: 28px; color: #fff; background: linear-gradient(140deg, rgba(48, 43, 120, .98), rgba(8, 11, 18, .99)); box-shadow: var(--shadow); }
 .ctaBox h2 { margin: 0 0 10px; font-size: 36px; }
@@ -128,6 +135,7 @@
   .benefitsGrid { grid-template-columns: 1fr 1fr; }
   .process { grid-template-columns: 1fr 1fr; }
   .priceCard { max-width: 520px; }
+  .contactLayout { grid-template-columns: 1fr; }
 }
 @media (max-width: 780px) {
   .navLinks, .navActions .buttonOutline { display: none; }
@@ -141,6 +149,7 @@
   .hero { padding-top: 48px; }
   .heroGrid { gap: 32px; }
   .benefitsGrid, .included, .facts { grid-template-columns: 1fr; }
+  .contactGrid { grid-template-columns: 1fr; }
   .ctaBox { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 560px) {

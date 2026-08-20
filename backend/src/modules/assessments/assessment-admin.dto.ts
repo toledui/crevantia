@@ -58,6 +58,15 @@ export class DemographicFieldAdminDto {
   @IsOptional() @IsObject() config?: Record<string, unknown>;
 }
 
+export class UpdateDemographicOptionsDto {
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(300)
+  @IsString({ each: true })
+  @MaxLength(255, { each: true })
+  options!: string[];
+}
+
 export class ReactiveScoringAdminDto {
   @IsString() @IsNotEmpty() @MaxLength(80) @Matches(CODE) scaleCode!: string;
   @IsIn(Object.values(ScoringPolarity)) polarity!: ScoringPolarity;

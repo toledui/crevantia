@@ -112,6 +112,18 @@ enum ResultRunStatus {
   FAILED
 }
 
+enum AssessmentReportStatus {
+  GENERATING
+  READY
+  FAILED
+}
+
+enum ReportDeliveryStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
 enum ReactiveSelection {
   MORE
   LESS
@@ -976,10 +988,49 @@ model ResultRun {
   requestedBy                User?                  @relation("ResultRunRequestedBy", fields: [requestedById], references: [id], onDelete: SetNull)
   values                     ResultValue[]
   contributions              ReactiveContribution[]
+  report                     AssessmentReport?
 
   @@index([attemptId, calculatedAt])
   @@index([normVersionId])
   @@index([recalculationOfResultRunId])
+}
+
+model AssessmentReport {
+  id                    String                 @id @default(cuid())
+  resultRunId           String                 @unique
+  status                AssessmentReportStatus @default(GENERATING)
+  filename              String                 @db.VarChar(255)
+  mimeType              String                 @default("application/pdf") @db.VarChar(100)
+  pdfData               Bytes?                 @db.LongBlob
+  byteSize              Int?
+  sha256                 String?                @db.Char(64)
+  configurationVersion  Int
+  configurationSnapshot Json
+  error                  String?                @db.Text
+  generatedAt           DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  resultRun             ResultRun              @relation(fields: [resultRunId], references: [id], onDelete: Cascade)
+  deliveries            AssessmentReportDelivery[]
+
+  @@index([status, createdAt])
+}
+
+model AssessmentReportDelivery {
+  id            String               @id @default(cuid())
+  reportId      String
+  recipient     String               @db.VarChar(191)
+  trigger       String               @db.VarChar(40)
+  requestedById String?              @db.VarChar(191)
+  status        ReportDeliveryStatus @default(PENDING)
+  error         String?              @db.Text
+  sentAt        DateTime?
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  report        AssessmentReport     @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@index([reportId, createdAt])
+  @@index([recipient, createdAt])
 }
 
 model ResultValue {
@@ -1038,6 +1089,39 @@ model FinancialSettings {
   pricesIncludeTax Boolean  @default(false)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+}
+
+model SiteSettings {
+  id                    String   @id @default("default") @db.VarChar(20)
+  version               Int      @default(1)
+  reportDefaultsVersion Int      @default(0)
+  siteName              String   @default("Crevantia") @db.VarChar(120)
+  siteDescription       String   @default("Plataforma de evaluaciones Crevantia") @db.VarChar(500)
+  logoData              Bytes?   @db.LongBlob
+  logoMimeType          String?  @db.VarChar(100)
+  faviconData           Bytes?   @db.LongBlob
+  faviconMimeType       String?  @db.VarChar(100)
+  reportLogoData        Bytes?   @db.LongBlob
+  reportLogoMimeType    String?  @db.VarChar(100)
+  contactEmail          String?  @db.VarChar(191)
+  contactPhone          String?  @db.VarChar(60)
+  contactWhatsapp       String?  @db.VarChar(60)
+  contactAddress        String?  @db.VarChar(500)
+  contactHours          String?  @db.VarChar(255)
+  contactMapUrl         String?  @db.Text
+  reportBrandName       String?  @db.VarChar(160)
+  reportPromoTitle      String?  @db.VarChar(255)
+  reportPromoText       String?  @db.LongText
+  reportPromoUrl        String?  @db.Text
+  reportIntroduction    String?  @db.LongText
+  reportInterpretation  String?  @db.LongText
+  reportCategories      Json?
+  reportDisplayMappings Json?
+  reportTextBlocks      Json?
+  headCode              String?  @db.LongText
+  bodyEndCode           String?  @db.LongText
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
 }
 
 model StripeSettings {

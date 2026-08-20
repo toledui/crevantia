@@ -21,8 +21,86 @@ import { ListAdminResultsDto } from "./admin-results.dto";
 export class ResultsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async get(user: AuthenticatedUser, id: string) {
-    const result = await this.prisma.resultRun.findUnique({
+  async get(user: AuthenticatedUser, id: string, exact = false) {
+    const requestedResult = await this.findResultRun(id);
+    if (!requestedResult)
+      throw new NotFoundException("El resultado no existe.");
+    this.assertAccess(
+      user,
+      requestedResult.attempt.assignment.userId,
+      "result.read",
+    );
+
+    const originalResultRunId =
+      requestedResult.recalculationOfResultRunId ?? requestedResult.id;
+    const resultHistory = await this.prisma.resultRun.findMany({
+      where: {
+        status: ResultRunStatus.COMPLETED,
+        OR: [
+          { id: originalResultRunId },
+          { recalculationOfResultRunId: originalResultRunId },
+        ],
+      },
+      orderBy: [{ calculatedAt: "asc" }, { id: "asc" }],
+      select: {
+        id: true,
+        isOfficial: true,
+        recalculationOfResultRunId: true,
+        calculatedAt: true,
+        reason: true,
+        configurationHash: true,
+        normVersion: {
+          select: {
+            version: true,
+            normSet: { select: { code: true, name: true } },
+          },
+        },
+      },
+    });
+    const latestResultRunId = resultHistory.at(-1)?.id ?? requestedResult.id;
+    const result =
+      !exact && latestResultRunId !== requestedResult.id
+        ? await this.findResultRun(latestResultRunId)
+        : requestedResult;
+    if (!result) throw new NotFoundException("El resultado no existe.");
+
+    const targetCodes = result.values.map(({ targetCode }) => targetCode);
+    const [scales, composites, derivedMetrics] = await Promise.all([
+      this.prisma.scale.findMany({
+        where: { code: { in: targetCodes } },
+        select: { code: true, name: true },
+      }),
+      this.prisma.composite.findMany({
+        where: { code: { in: targetCodes } },
+        select: { code: true, name: true },
+      }),
+      this.prisma.derivedMetric.findMany({
+        where: { code: { in: targetCodes } },
+        select: { code: true, name: true },
+      }),
+    ]);
+    const names = new Map(
+      [...scales, ...composites, ...derivedMetrics].map(({ code, name }) => [
+        code,
+        name,
+      ]),
+    );
+    names.set("LIKERT-TOTAL", "Total de Gestión de recursos");
+    return {
+      ...result,
+      requestedResultRunId: id,
+      displayedResultRunId: result.id,
+      isLatestResultRun: result.id === latestResultRunId,
+      resultHistory,
+      values: result.values.map((value) => ({
+        ...value,
+        targetName: names.get(value.targetCode) ?? value.targetCode,
+      })),
+    };
+  }
+
+  private findResultRun(id: string) {
+    return this.prisma.resultRun.findUnique({
       where: { id },
       include: {
         attempt: { include: { assignment: { select: { userId: true } } } },
@@ -37,6 +115,7 @@ export class ResultsService {
         },
         values: { orderBy: [{ targetType: "asc" }, { targetCode: "asc" }] },
         recalculations: {
+          orderBy: { calculatedAt: "desc" },
           select: {
             id: true,
             normVersionId: true,
@@ -46,9 +125,6 @@ export class ResultsService {
         },
       },
     });
-    if (!result) throw new NotFoundException("El resultado no existe.");
-    this.assertAccess(user, result.attempt.assignment.userId, "result.read");
-    return result;
   }
 
   async audit(user: AuthenticatedUser, id: string) {

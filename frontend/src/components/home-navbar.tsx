@@ -1,12 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ClipboardList, LogOut } from 'lucide-react';
 import { apiFetch, logout } from '@/lib/api';
 import styles from '@/app/home.module.css';
+import { useSiteSettings } from '@/components/site-settings-provider';
 
 interface AuthenticatedUser {
   id: string;
@@ -17,6 +17,7 @@ interface AuthenticatedUser {
 }
 
 export function HomeNavbar() {
+  const site = useSiteSettings();
   const router = useRouter();
   const [user, setUser] = useState<AuthenticatedUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -69,14 +70,12 @@ export function HomeNavbar() {
   return (
     <header className={styles.navbar}>
       <div className={`${styles.container} ${styles.navInner}`}>
-        <Link href="/" className={styles.logoLink} aria-label="Ir al inicio de Crevantia">
-          <Image
+        <Link href="/" className={styles.logoLink} aria-label={`Ir al inicio de ${site.siteName}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             className={styles.logo}
-            src="/branding/logo-crevantia.png"
-            alt="Crevantia"
-            width={1600}
-            height={416}
-            priority
+            src={site.logoUrl}
+            alt={site.siteName}
           />
         </Link>
 
@@ -85,6 +84,7 @@ export function HomeNavbar() {
           <Link href="/#como-funciona">Cómo funciona</Link>
           <Link href="/#precio">Precio</Link>
           <Link href="/#faq">Preguntas frecuentes</Link>
+          <Link href="/#contacto">Contacto</Link>
         </nav>
 
         <div className={styles.navActions}>
@@ -275,6 +275,7 @@ export function HomeNavbar() {
             <Link href="/#como-funciona">Cómo funciona</Link>
             <Link href="/#precio">Precio</Link>
             <Link href="/#faq">Preguntas frecuentes</Link>
+            <Link href="/#contacto">Contacto</Link>
             {user ? (
               <>
                 <Link href="/panel">Mi Panel ({user.firstName})</Link>

@@ -1,14 +1,18 @@
 import "dotenv/config";
 import * as argon2 from "argon2";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import {
   PrismaClient,
+  type Prisma,
   QuestionType,
   TestVersionStatus,
   UserStatus,
 } from "../src/generated/prisma/client";
 import { seedDpoOfficialV1 } from "./seeds/seed-dpo-official-v1";
 import { dpoPermissions } from "./seeds/seed-dpo-permissions";
+import { PROVISIONAL_REPORT_TEXT_BLOCKS } from "../src/modules/site-settings/provisional-report-defaults";
 
 function databaseAdapter() {
   const url = new URL(
@@ -395,11 +399,66 @@ async function seedCommerce() {
   });
 }
 
+async function seedSiteSettings() {
+  const logo = Uint8Array.from(await readFile(resolve(__dirname, "../../frontend/public/branding/logo-crevantia.png")));
+  const active = await prisma.assessmentActiveConfiguration.findFirst({ select: { normVersionId: true } });
+  const targets = active ? await prisma.normTarget.findMany({ where: { normVersionId: active.normVersionId }, orderBy: [{ targetType: "asc" }, { targetCode: "asc" }] }) : [];
+  const mappings = targets.map((target) => ({
+    targetType: target.targetType,
+    targetCode: target.targetCode,
+    displayName: target.name,
+    section: reportSectionFor(target.targetType),
+  }));
+  const categories = [
+    { label: "Brisa", description: "Intensidad baja dentro de la escala interpretativa.", color: "#55b6c7" },
+    { label: "Viento", description: "Intensidad moderada dentro de la escala interpretativa.", color: "#4b8fd3" },
+    { label: "Ráfaga", description: "Intensidad alta dentro de la escala interpretativa.", color: "#6a5acd" },
+    { label: "Huracán", description: "Intensidad muy alta dentro de la escala interpretativa.", color: "#302b78" },
+  ];
+  const existing = await prisma.siteSettings.findUnique({ where: { id: "default" } });
+  if (!existing) {
+    await prisma.siteSettings.create({ data: {
+      id: "default", reportDefaultsVersion: 1,
+      siteName: "Crevantia", siteDescription: "Plataforma de evaluaciones Crevantia",
+      logoData: logo, logoMimeType: "image/png", faviconData: logo, faviconMimeType: "image/png",
+      reportLogoData: logo, reportLogoMimeType: "image/png", contactEmail: "contacto@crevantia.com",
+      reportBrandName: "PsicoFinanzas", reportPromoTitle: "Prospera©",
+      reportPromoText: PROVISIONAL_REPORT_TEXT_BLOCKS[5]?.content ?? null,
+      reportPromoUrl: "https://www.psicofinanzas.com",
+      reportIntroduction: PROVISIONAL_REPORT_TEXT_BLOCKS.slice(1, 3).map((block) => block.content).join("\n\n"),
+      reportInterpretation: PROVISIONAL_REPORT_TEXT_BLOCKS.slice(3, 5).map((block) => block.content).join("\n\n"),
+      reportCategories: asJson(categories), reportDisplayMappings: asJson(mappings), reportTextBlocks: asJson(PROVISIONAL_REPORT_TEXT_BLOCKS),
+    }});
+    return;
+  }
+  await prisma.siteSettings.update({ where: { id: "default" }, data: {
+    ...(!existing.logoData ? { logoData: logo, logoMimeType: "image/png" } : {}),
+    ...(!existing.faviconData ? { faviconData: logo, faviconMimeType: "image/png" } : {}),
+    ...(!existing.reportLogoData ? { reportLogoData: logo, reportLogoMimeType: "image/png" } : {}),
+    ...(!existing.reportCategories ? { reportCategories: asJson(categories) } : {}),
+    ...(!existing.reportDisplayMappings ? { reportDisplayMappings: asJson(mappings) } : {}),
+    ...(!existing.reportTextBlocks ? { reportTextBlocks: asJson(PROVISIONAL_REPORT_TEXT_BLOCKS) } : {}),
+  }});
+}
+
+function asJson(value: unknown): Prisma.InputJsonValue {
+  return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+}
+
+function reportSectionFor(targetType: string) {
+  if (targetType === "SCALE") return "20 precursores de comportamiento";
+  if (targetType === "COMPOSITE") return "Capacidades y dimensiones financieras";
+  if (targetType === "DERIVED_METRIC") return "Habilidad y potencial financiero";
+  if (targetType.startsWith("LIKERT")) return "Cuadrantes de realización";
+  return "Resultados del reporte";
+}
+
 async function main() {
   await seedIdentity();
   await seedDemoTest();
   await seedDpoOfficialV1(prisma);
   await seedCommerce();
+  await seedSiteSettings();
   console.log("Seed de Crevantia completado.");
 }
 

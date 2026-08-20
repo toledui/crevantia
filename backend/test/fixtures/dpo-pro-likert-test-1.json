@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0.0",
+  "case": {
+    "code": "DPO_PRO_LIKERT_TEST_1",
+    "description": "Fixture independiente para las 25 preguntas Likert de Gestión de recursos.",
+    "answerCount": 25
+  },
+  "likertAnswers": [
+    {
+      "questionCode": "DPO-L001",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L002",
+      "value": 4
+    },
+    {
+      "questionCode": "DPO-L003",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L004",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L005",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L006",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L007",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L008",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L009",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L010",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L011",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L012",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L013",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L014",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L015",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L016",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L017",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L018",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L019",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L020",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L021",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L022",
+      "value": 4
+    },
+    {
+      "questionCode": "DPO-L023",
+      "value": 4
+    },
+    {
+      "questionCode": "DPO-L024",
+      "value": 5
+    },
+    {
+      "questionCode": "DPO-L025",
+      "value": 4
+    }
+  ]
+}

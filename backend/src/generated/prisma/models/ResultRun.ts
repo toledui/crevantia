@@ -276,6 +276,7 @@ export type ResultRunWhereInput = {
   requestedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   values?: Prisma.ResultValueListRelationFilter
   contributions?: Prisma.ReactiveContributionListRelationFilter
+  report?: Prisma.XOR<Prisma.AssessmentReportNullableScalarRelationFilter, Prisma.AssessmentReportWhereInput> | null
 }
 
 export type ResultRunOrderByWithRelationInput = {
@@ -305,6 +306,7 @@ export type ResultRunOrderByWithRelationInput = {
   requestedBy?: Prisma.UserOrderByWithRelationInput
   values?: Prisma.ResultValueOrderByRelationAggregateInput
   contributions?: Prisma.ReactiveContributionOrderByRelationAggregateInput
+  report?: Prisma.AssessmentReportOrderByWithRelationInput
   _relevance?: Prisma.ResultRunOrderByRelevanceInput
 }
 
@@ -338,6 +340,7 @@ export type ResultRunWhereUniqueInput = Prisma.AtLeast<{
   requestedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   values?: Prisma.ResultValueListRelationFilter
   contributions?: Prisma.ReactiveContributionListRelationFilter
+  report?: Prisma.XOR<Prisma.AssessmentReportNullableScalarRelationFilter, Prisma.AssessmentReportWhereInput> | null
 }, "id">
 
 export type ResultRunOrderByWithAggregationInput = {
@@ -404,6 +407,7 @@ export type ResultRunCreateInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateInput = {
@@ -426,6 +430,7 @@ export type ResultRunUncheckedCreateInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUpdateInput = {
@@ -448,6 +453,7 @@ export type ResultRunUpdateInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateInput = {
@@ -470,6 +476,7 @@ export type ResultRunUncheckedUpdateInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunCreateManyInput = {
@@ -917,6 +924,20 @@ export type ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput = {
   deleteMany?: Prisma.ResultRunScalarWhereInput | Prisma.ResultRunScalarWhereInput[]
 }
 
+export type ResultRunCreateNestedOneWithoutReportInput = {
+  create?: Prisma.XOR<Prisma.ResultRunCreateWithoutReportInput, Prisma.ResultRunUncheckedCreateWithoutReportInput>
+  connectOrCreate?: Prisma.ResultRunCreateOrConnectWithoutReportInput
+  connect?: Prisma.ResultRunWhereUniqueInput
+}
+
+export type ResultRunUpdateOneRequiredWithoutReportNestedInput = {
+  create?: Prisma.XOR<Prisma.ResultRunCreateWithoutReportInput, Prisma.ResultRunUncheckedCreateWithoutReportInput>
+  connectOrCreate?: Prisma.ResultRunCreateOrConnectWithoutReportInput
+  upsert?: Prisma.ResultRunUpsertWithoutReportInput
+  connect?: Prisma.ResultRunWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ResultRunUpdateToOneWithWhereWithoutReportInput, Prisma.ResultRunUpdateWithoutReportInput>, Prisma.ResultRunUncheckedUpdateWithoutReportInput>
+}
+
 export type ResultRunCreateNestedOneWithoutValuesInput = {
   create?: Prisma.XOR<Prisma.ResultRunCreateWithoutValuesInput, Prisma.ResultRunUncheckedCreateWithoutValuesInput>
   connectOrCreate?: Prisma.ResultRunCreateOrConnectWithoutValuesInput
@@ -964,6 +985,7 @@ export type ResultRunCreateWithoutRequestedByInput = {
   recalculations?: Prisma.ResultRunCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutRequestedByInput = {
@@ -985,6 +1007,7 @@ export type ResultRunUncheckedCreateWithoutRequestedByInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutRequestedByInput = {
@@ -1054,6 +1077,7 @@ export type ResultRunCreateWithoutAttemptInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutAttemptInput = {
@@ -1075,6 +1099,7 @@ export type ResultRunUncheckedCreateWithoutAttemptInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutAttemptInput = {
@@ -1122,6 +1147,7 @@ export type ResultRunCreateWithoutAssessmentVersionInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutAssessmentVersionInput = {
@@ -1143,6 +1169,7 @@ export type ResultRunUncheckedCreateWithoutAssessmentVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutAssessmentVersionInput = {
@@ -1190,6 +1217,7 @@ export type ResultRunCreateWithoutScoringKeyVersionInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutScoringKeyVersionInput = {
@@ -1211,6 +1239,7 @@ export type ResultRunUncheckedCreateWithoutScoringKeyVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutScoringKeyVersionInput = {
@@ -1258,6 +1287,7 @@ export type ResultRunCreateWithoutNormVersionInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutNormVersionInput = {
@@ -1279,6 +1309,7 @@ export type ResultRunUncheckedCreateWithoutNormVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutNormVersionInput = {
@@ -1326,6 +1357,7 @@ export type ResultRunCreateWithoutReportMappingVersionInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutReportMappingVersionInput = {
@@ -1347,6 +1379,7 @@ export type ResultRunUncheckedCreateWithoutReportMappingVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutReportMappingVersionInput = {
@@ -1394,6 +1427,7 @@ export type ResultRunCreateWithoutRecalculationsInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutRecalculationsInput = {
@@ -1415,6 +1449,7 @@ export type ResultRunUncheckedCreateWithoutRecalculationsInput = {
   calculatedAt?: Date | string
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutRecalculationsInput = {
@@ -1441,6 +1476,7 @@ export type ResultRunCreateWithoutRecalculationOfInput = {
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutRecalculationOfInput = {
@@ -1462,6 +1498,7 @@ export type ResultRunUncheckedCreateWithoutRecalculationOfInput = {
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutRecalculationOfInput = {
@@ -1504,6 +1541,7 @@ export type ResultRunUpdateWithoutRecalculationsInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutRecalculationsInput = {
@@ -1525,6 +1563,7 @@ export type ResultRunUncheckedUpdateWithoutRecalculationsInput = {
   calculatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUpsertWithWhereUniqueWithoutRecalculationOfInput = {
@@ -1541,6 +1580,110 @@ export type ResultRunUpdateWithWhereUniqueWithoutRecalculationOfInput = {
 export type ResultRunUpdateManyWithWhereWithoutRecalculationOfInput = {
   where: Prisma.ResultRunScalarWhereInput
   data: Prisma.XOR<Prisma.ResultRunUpdateManyMutationInput, Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfInput>
+}
+
+export type ResultRunCreateWithoutReportInput = {
+  id?: string
+  engineVersion: string
+  configurationHash: string
+  inputHash?: string | null
+  status?: $Enums.ResultRunStatus
+  isOfficial?: boolean
+  reason?: string | null
+  diagnostics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  calculatedAt?: Date | string
+  attempt: Prisma.AttemptCreateNestedOneWithoutResultRunsInput
+  assessmentVersion: Prisma.AssessmentVersionCreateNestedOneWithoutResultRunsInput
+  scoringKeyVersion: Prisma.ScoringKeyVersionCreateNestedOneWithoutResultRunsInput
+  normVersion: Prisma.NormVersionCreateNestedOneWithoutResultRunsInput
+  reportMappingVersion?: Prisma.ReportMappingVersionCreateNestedOneWithoutResultRunsInput
+  recalculationOf?: Prisma.ResultRunCreateNestedOneWithoutRecalculationsInput
+  recalculations?: Prisma.ResultRunCreateNestedManyWithoutRecalculationOfInput
+  requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
+  values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
+  contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+}
+
+export type ResultRunUncheckedCreateWithoutReportInput = {
+  id?: string
+  attemptId: string
+  assessmentVersionId: string
+  scoringKeyVersionId: string
+  normVersionId: string
+  reportMappingVersionId?: string | null
+  engineVersion: string
+  configurationHash: string
+  inputHash?: string | null
+  status?: $Enums.ResultRunStatus
+  isOfficial?: boolean
+  recalculationOfResultRunId?: string | null
+  reason?: string | null
+  requestedById?: string | null
+  diagnostics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  calculatedAt?: Date | string
+  recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
+  values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
+  contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+}
+
+export type ResultRunCreateOrConnectWithoutReportInput = {
+  where: Prisma.ResultRunWhereUniqueInput
+  create: Prisma.XOR<Prisma.ResultRunCreateWithoutReportInput, Prisma.ResultRunUncheckedCreateWithoutReportInput>
+}
+
+export type ResultRunUpsertWithoutReportInput = {
+  update: Prisma.XOR<Prisma.ResultRunUpdateWithoutReportInput, Prisma.ResultRunUncheckedUpdateWithoutReportInput>
+  create: Prisma.XOR<Prisma.ResultRunCreateWithoutReportInput, Prisma.ResultRunUncheckedCreateWithoutReportInput>
+  where?: Prisma.ResultRunWhereInput
+}
+
+export type ResultRunUpdateToOneWithWhereWithoutReportInput = {
+  where?: Prisma.ResultRunWhereInput
+  data: Prisma.XOR<Prisma.ResultRunUpdateWithoutReportInput, Prisma.ResultRunUncheckedUpdateWithoutReportInput>
+}
+
+export type ResultRunUpdateWithoutReportInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  engineVersion?: Prisma.StringFieldUpdateOperationsInput | string
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  inputHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumResultRunStatusFieldUpdateOperationsInput | $Enums.ResultRunStatus
+  isOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  diagnostics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  calculatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attempt?: Prisma.AttemptUpdateOneRequiredWithoutResultRunsNestedInput
+  assessmentVersion?: Prisma.AssessmentVersionUpdateOneRequiredWithoutResultRunsNestedInput
+  scoringKeyVersion?: Prisma.ScoringKeyVersionUpdateOneRequiredWithoutResultRunsNestedInput
+  normVersion?: Prisma.NormVersionUpdateOneRequiredWithoutResultRunsNestedInput
+  reportMappingVersion?: Prisma.ReportMappingVersionUpdateOneWithoutResultRunsNestedInput
+  recalculationOf?: Prisma.ResultRunUpdateOneWithoutRecalculationsNestedInput
+  recalculations?: Prisma.ResultRunUpdateManyWithoutRecalculationOfNestedInput
+  requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
+  values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
+  contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+}
+
+export type ResultRunUncheckedUpdateWithoutReportInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  assessmentVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  scoringKeyVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  normVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  reportMappingVersionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engineVersion?: Prisma.StringFieldUpdateOperationsInput | string
+  configurationHash?: Prisma.StringFieldUpdateOperationsInput | string
+  inputHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumResultRunStatusFieldUpdateOperationsInput | $Enums.ResultRunStatus
+  isOfficial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recalculationOfResultRunId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  requestedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  diagnostics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  calculatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
+  values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
+  contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
 }
 
 export type ResultRunCreateWithoutValuesInput = {
@@ -1562,6 +1705,7 @@ export type ResultRunCreateWithoutValuesInput = {
   recalculations?: Prisma.ResultRunCreateNestedManyWithoutRecalculationOfInput
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   contributions?: Prisma.ReactiveContributionCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutValuesInput = {
@@ -1583,6 +1727,7 @@ export type ResultRunUncheckedCreateWithoutValuesInput = {
   calculatedAt?: Date | string
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   contributions?: Prisma.ReactiveContributionUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutValuesInput = {
@@ -1620,6 +1765,7 @@ export type ResultRunUpdateWithoutValuesInput = {
   recalculations?: Prisma.ResultRunUpdateManyWithoutRecalculationOfNestedInput
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutValuesInput = {
@@ -1641,6 +1787,7 @@ export type ResultRunUncheckedUpdateWithoutValuesInput = {
   calculatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunCreateWithoutContributionsInput = {
@@ -1662,6 +1809,7 @@ export type ResultRunCreateWithoutContributionsInput = {
   recalculations?: Prisma.ResultRunCreateNestedManyWithoutRecalculationOfInput
   requestedBy?: Prisma.UserCreateNestedOneWithoutRecalculationsRequestedInput
   values?: Prisma.ResultValueCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunUncheckedCreateWithoutContributionsInput = {
@@ -1683,6 +1831,7 @@ export type ResultRunUncheckedCreateWithoutContributionsInput = {
   calculatedAt?: Date | string
   recalculations?: Prisma.ResultRunUncheckedCreateNestedManyWithoutRecalculationOfInput
   values?: Prisma.ResultValueUncheckedCreateNestedManyWithoutResultRunInput
+  report?: Prisma.AssessmentReportUncheckedCreateNestedOneWithoutResultRunInput
 }
 
 export type ResultRunCreateOrConnectWithoutContributionsInput = {
@@ -1720,6 +1869,7 @@ export type ResultRunUpdateWithoutContributionsInput = {
   recalculations?: Prisma.ResultRunUpdateManyWithoutRecalculationOfNestedInput
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutContributionsInput = {
@@ -1741,6 +1891,7 @@ export type ResultRunUncheckedUpdateWithoutContributionsInput = {
   calculatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunCreateManyRequestedByInput = {
@@ -1780,6 +1931,7 @@ export type ResultRunUpdateWithoutRequestedByInput = {
   recalculations?: Prisma.ResultRunUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutRequestedByInput = {
@@ -1801,6 +1953,7 @@ export type ResultRunUncheckedUpdateWithoutRequestedByInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutRequestedByInput = {
@@ -1858,6 +2011,7 @@ export type ResultRunUpdateWithoutAttemptInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutAttemptInput = {
@@ -1879,6 +2033,7 @@ export type ResultRunUncheckedUpdateWithoutAttemptInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutAttemptInput = {
@@ -1936,6 +2091,7 @@ export type ResultRunUpdateWithoutAssessmentVersionInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutAssessmentVersionInput = {
@@ -1957,6 +2113,7 @@ export type ResultRunUncheckedUpdateWithoutAssessmentVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutAssessmentVersionInput = {
@@ -2014,6 +2171,7 @@ export type ResultRunUpdateWithoutScoringKeyVersionInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutScoringKeyVersionInput = {
@@ -2035,6 +2193,7 @@ export type ResultRunUncheckedUpdateWithoutScoringKeyVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutScoringKeyVersionInput = {
@@ -2092,6 +2251,7 @@ export type ResultRunUpdateWithoutNormVersionInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutNormVersionInput = {
@@ -2113,6 +2273,7 @@ export type ResultRunUncheckedUpdateWithoutNormVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutNormVersionInput = {
@@ -2170,6 +2331,7 @@ export type ResultRunUpdateWithoutReportMappingVersionInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutReportMappingVersionInput = {
@@ -2191,6 +2353,7 @@ export type ResultRunUncheckedUpdateWithoutReportMappingVersionInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutReportMappingVersionInput = {
@@ -2248,6 +2411,7 @@ export type ResultRunUpdateWithoutRecalculationOfInput = {
   requestedBy?: Prisma.UserUpdateOneWithoutRecalculationsRequestedNestedInput
   values?: Prisma.ResultValueUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateWithoutRecalculationOfInput = {
@@ -2269,6 +2433,7 @@ export type ResultRunUncheckedUpdateWithoutRecalculationOfInput = {
   recalculations?: Prisma.ResultRunUncheckedUpdateManyWithoutRecalculationOfNestedInput
   values?: Prisma.ResultValueUncheckedUpdateManyWithoutResultRunNestedInput
   contributions?: Prisma.ReactiveContributionUncheckedUpdateManyWithoutResultRunNestedInput
+  report?: Prisma.AssessmentReportUncheckedUpdateOneWithoutResultRunNestedInput
 }
 
 export type ResultRunUncheckedUpdateManyWithoutRecalculationOfInput = {
@@ -2365,6 +2530,7 @@ export type ResultRunSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   requestedBy?: boolean | Prisma.ResultRun$requestedByArgs<ExtArgs>
   values?: boolean | Prisma.ResultRun$valuesArgs<ExtArgs>
   contributions?: boolean | Prisma.ResultRun$contributionsArgs<ExtArgs>
+  report?: boolean | Prisma.ResultRun$reportArgs<ExtArgs>
   _count?: boolean | Prisma.ResultRunCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["resultRun"]>
 
@@ -2401,6 +2567,7 @@ export type ResultRunInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   requestedBy?: boolean | Prisma.ResultRun$requestedByArgs<ExtArgs>
   values?: boolean | Prisma.ResultRun$valuesArgs<ExtArgs>
   contributions?: boolean | Prisma.ResultRun$contributionsArgs<ExtArgs>
+  report?: boolean | Prisma.ResultRun$reportArgs<ExtArgs>
   _count?: boolean | Prisma.ResultRunCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2417,6 +2584,7 @@ export type $ResultRunPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     requestedBy: Prisma.$UserPayload<ExtArgs> | null
     values: Prisma.$ResultValuePayload<ExtArgs>[]
     contributions: Prisma.$ReactiveContributionPayload<ExtArgs>[]
+    report: Prisma.$AssessmentReportPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2785,6 +2953,7 @@ export interface Prisma__ResultRunClient<T, Null = never, ExtArgs extends runtim
   requestedBy<T extends Prisma.ResultRun$requestedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ResultRun$requestedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   values<T extends Prisma.ResultRun$valuesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ResultRun$valuesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   contributions<T extends Prisma.ResultRun$contributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ResultRun$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReactiveContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  report<T extends Prisma.ResultRun$reportArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ResultRun$reportArgs<ExtArgs>>): Prisma.Prisma__AssessmentReportClient<runtime.Types.Result.GetResult<Prisma.$AssessmentReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3304,6 +3473,25 @@ export type ResultRun$contributionsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.ReactiveContributionScalarFieldEnum | Prisma.ReactiveContributionScalarFieldEnum[]
+}
+
+/**
+ * ResultRun.report
+ */
+export type ResultRun$reportArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssessmentReport
+   */
+  select?: Prisma.AssessmentReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssessmentReport
+   */
+  omit?: Prisma.AssessmentReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssessmentReportInclude<ExtArgs> | null
+  where?: Prisma.AssessmentReportWhereInput
 }
 
 /**

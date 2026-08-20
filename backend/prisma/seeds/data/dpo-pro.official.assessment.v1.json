@@ -117,10 +117,8 @@
       "code": "DPO-CTRL-06",
       "order": 6,
       "text": "¿En qué ciudad resides actualmente?",
-      "inputType": "Combo",
-      "options": [
-        "Precargado"
-      ],
+      "inputType": "Texto",
+      "options": null,
       "required": true,
       "sourceRequirement": "Requerida",
       "includeInScoring": false
@@ -203,7 +201,23 @@
       "text": "¿Cuál es tu principal área de formación académica?",
       "inputType": "Combo",
       "options": [
-        "Precargado"
+        "Educación y pedagogía",
+        "Artes, diseño y humanidades",
+        "Ciencias sociales, políticas y del comportamiento",
+        "Comunicación, periodismo e información",
+        "Administración, negocios, contabilidad y finanzas",
+        "Derecho y estudios jurídicos",
+        "Ciencias naturales, biológicas y ambientales",
+        "Matemáticas y estadística",
+        "Tecnologías de la información y comunicación",
+        "Ingeniería, manufactura y construcción",
+        "Agronomía, silvicultura, pesca y veterinaria",
+        "Medicina y ciencias de la salud",
+        "Psicología y bienestar",
+        "Servicios, turismo, deportes y seguridad",
+        "Formación técnica u oficios",
+        "Otra área de formación",
+        "No cuento con formación académica especializada"
       ],
       "required": true,
       "sourceRequirement": "Requerida",
@@ -265,7 +279,8 @@
       "text": "¿Tienes hijos?",
       "inputType": "Combo",
       "options": [
-        "Sí / No"
+        "Sí",
+        "No"
       ],
       "required": false,
       "sourceRequirement": "Opcional",

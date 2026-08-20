@@ -5,9 +5,10 @@ import { AssessmentAdminController } from "./assessment-admin.controller";
 import { AssessmentAdminService } from "./assessment-admin.service";
 import { AssessmentScoringService } from "./assessment-scoring.service";
 import { AssessmentsService } from "./assessments.service";
+import { AssessmentReportsModule } from "../reports/assessment-reports.module";
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, AssessmentReportsModule],
   controllers: [AssessmentsController, AssessmentAdminController],
   providers: [
     AssessmentsService,

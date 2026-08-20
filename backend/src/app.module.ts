@@ -21,6 +21,7 @@ import { FinancialModule } from './modules/financial/financial.module';
 import { CommerceModule } from './modules/commerce/commerce.module';
 import { StripeModule } from './modules/stripe/stripe.module';
 import { LegalModule } from './modules/legal/legal.module';
+import { SiteSettingsModule } from './modules/site-settings/site-settings.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { LegalModule } from './modules/legal/legal.module';
     CommerceModule,
     StripeModule,
     LegalModule,
+    SiteSettingsModule,
   ],
   controllers: [AdminController],
   providers: [

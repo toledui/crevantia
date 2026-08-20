@@ -18,6 +18,11 @@
     "seed:dpo:v1": "tsx prisma/seeds/seed-dpo-official-v1.ts",
     "validate:dpo:v1": "tsx prisma/seeds/validate-dpo-v1.ts",
     "verify:dpo:v1:db": "tsx prisma/seeds/verify-dpo-v1-db.ts",
+    "preload:country-options": "tsx prisma/seeds/preload-country-options.ts",
+    "test:dpo:case1": "jest --runInBand test/dpo-pro-case1.spec.ts",
+    "report:dpo:case1": "tsx scripts/dpo-case1-result.ts",
+    "persist:dpo:case1": "tsx scripts/persist-dpo-case1-result.ts",
+    "correct:dpo:case1:p039": "tsx scripts/correct-dpo-case1-p039.ts",
     "test:dpo": "jest --runInBand test/dpo-pro.golden.spec.ts test/dpo-pro-official-v1.spec.ts"
   },
   "dependencies": {

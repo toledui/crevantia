@@ -194,6 +194,29 @@ export async function apiUpload<T>(
   }
 }
 
+export async function apiDownload(path: string): Promise<{ blob: Blob; filename: string }> {
+  let token = getAccessToken();
+  if (!token) token = await refreshAccessToken().catch(() => null);
+
+  const fetchFile = (accessToken: string | null) => fetch(`${API_URL}${path}`, {
+    credentials: "include",
+    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+  });
+  let response = await fetchFile(token);
+  if ([401, 403].includes(response.status)) {
+    const refreshed = await refreshAccessToken().catch(() => null);
+    if (refreshed) response = await fetchFile(refreshed);
+  }
+  if (!response.ok) {
+    const body = (await response.json().catch(() => null)) as { message?: string | string[] } | null;
+    const message = Array.isArray(body?.message) ? body.message[0] : body?.message;
+    throw new ApiError(message ?? "No fue posible descargar el archivo.", response.status);
+  }
+  const disposition = response.headers.get("content-disposition") ?? "";
+  const filename = disposition.match(/filename="?([^";]+)"?/i)?.[1] ?? "reporte.pdf";
+  return { blob: await response.blob(), filename };
+}
+
 export async function logout() {
   await request<{ success: boolean }>("/auth/logout", { method: "POST" });
   setAccessToken(null);

@@ -384,6 +384,34 @@ export function TestsAdminPanel() {
     }
   }
 
+  async function saveDemographicOptions(index: number) {
+    if (!draft || !assessment || !selectedVersion) return;
+    const field = draft.demographics[index];
+    const options = field ? demographicOptions(field) : [];
+    if (!field?.id || !options.length) {
+      setError("Agrega al menos una opción antes de guardar.");
+      return;
+    }
+    startBusy();
+    try {
+      await apiFetch(
+        `/admin/assessments/versions/${selectedVersion.id}/demographics/${field.id}/options`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ options }),
+        },
+      );
+      setMessage(
+        `Opciones de “${field.label}” actualizadas en la versión ${selectedVersion.version}, sin generar una versión nueva.`,
+      );
+      await loadAll(assessment.id, selectedVersion.id);
+    } catch (reason) {
+      setError(errorText(reason));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function validateVersion() {
     if (!selectedVersion) return;
     startBusy();
@@ -916,7 +944,10 @@ export function TestsAdminPanel() {
                       <p>
                         Puedes revisar y modificar los valores. Al guardar, se
                         creará automáticamente un nuevo borrador; esta versión y
-                        sus resultados históricos permanecerán intactos.
+                        sus resultados históricos permanecerán intactos. Las
+                        opciones de los campos de selección son la excepción:
+                        usa “Guardar opciones en esta versión” para actualizar
+                        únicamente su catálogo sin crear otra versión.
                       </p>
                     </aside>
                   )}
@@ -1036,6 +1067,13 @@ export function TestsAdminPanel() {
                                 onChange={(event) =>
                                   updateDemographic(index, {
                                     type: event.target.value,
+                                    config:
+                                      event.target.value === "SINGLE_CHOICE"
+                                        ? withDemographicOptions(
+                                            field.config,
+                                            demographicOptions(field),
+                                          )
+                                        : field.config,
                                   })
                                 }
                               >
@@ -1090,6 +1128,57 @@ export function TestsAdminPanel() {
                               >
                                 ×
                               </button>
+                              {field.type === "SINGLE_CHOICE" && (
+                                <label className="demographic-options-field">
+                                  <span>
+                                    Opciones de selección ·{" "}
+                                    {demographicOptions(field).length}
+                                  </span>
+                                  <textarea
+                                    rows={Math.min(
+                                      Math.max(
+                                        demographicOptions(field).length,
+                                        3,
+                                      ),
+                                      10,
+                                    )}
+                                    value={demographicOptions(field).join("\n")}
+                                    placeholder={
+                                      "Escribe o pega una opción por línea"
+                                    }
+                                    onChange={(event) =>
+                                      updateDemographic(index, {
+                                        config: withDemographicOptions(
+                                          field.config,
+                                          event.target.value
+                                            .split(/\r?\n/)
+                                            .map((option) => option.trim())
+                                            .filter(Boolean),
+                                        ),
+                                      })
+                                    }
+                                  />
+                                  <small>
+                                    Puedes pegar una lista completa; cada línea
+                                    se mostrará como una opción.
+                                  </small>
+                                  {!selectedVersion.editable && field.id && (
+                                    <button
+                                      type="button"
+                                      className="secondary-button demographic-options-save"
+                                      disabled={
+                                        busy ||
+                                        demographicOptions(field).length === 0
+                                      }
+                                      onClick={() =>
+                                        void saveDemographicOptions(index)
+                                      }
+                                    >
+                                      Guardar opciones en esta versión
+                                    </button>
+                                  )}
+                                </label>
+                              )}
                             </article>
                           ))}
                         </div>
@@ -2694,6 +2783,21 @@ function matchesQuestion(question: Question, query: string) {
 }
 function clone<T>(value: T): T {
   return structuredClone(value);
+}
+function demographicOptions(field: Demographic) {
+  const options = field.config?.options;
+  return Array.isArray(options)
+    ? options.filter(
+        (option): option is string =>
+          typeof option === "string" && option.trim().length > 0,
+      )
+    : [];
+}
+function withDemographicOptions(
+  config: Demographic["config"],
+  options: string[],
+) {
+  return { ...(config ?? {}), options: [...new Set(options)] };
 }
 function normalizeOrders<T extends { order: number }>(items: T[]) {
   return items.map((item, index) => ({ ...item, order: index + 1 }));
