@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { ConfigService } from "@nestjs/config";
 import { PrismaService } from "../../src/database/prisma.service";
-import type { Prisma } from "../../src/generated/prisma/client";
+import type { Prisma, PrismaClient } from "../../src/generated/prisma/client";
 import { OFFICIAL_DPO_IDS } from "./seed-dpo-official-v1";
 
 const ISO_REGION_CODES =
@@ -19,48 +19,62 @@ export function countryOptions() {
   return [mexico, ...remaining, "Otro país o territorio"];
 }
 
+export async function preloadCountryOptions(prisma: PrismaClient) {
+  const field = await prisma.demographicField.findFirst({
+    where: {
+      assessmentVersionId: OFFICIAL_DPO_IDS.assessmentVersion,
+      code: "DPO-CTRL-05",
+    },
+  });
+  if (!field) throw new Error("DPO_COUNTRY_FIELD_NOT_FOUND");
+  const config =
+    field.config &&
+    typeof field.config === "object" &&
+    !Array.isArray(field.config)
+      ? field.config
+      : {};
+  const options = countryOptions();
+  const currentOptions = Array.isArray(config.options) ? config.options : [];
+  if (JSON.stringify(currentOptions) === JSON.stringify(options))
+    return {
+      updated: false,
+      optionCount: options.length,
+      fieldCode: field.code,
+    };
+
+  await prisma.$transaction(async (tx) => {
+    await tx.demographicField.update({
+      where: { id: field.id },
+      data: {
+        config: JSON.parse(
+          JSON.stringify({ ...config, options }),
+        ) as Prisma.InputJsonValue,
+      },
+    });
+    await tx.auditLog.create({
+      data: {
+        action: "DEMOGRAPHIC_COUNTRY_CATALOG_PRELOADED",
+        entityType: "DemographicField",
+        entityId: field.id,
+        before: { options: currentOptions },
+        after: { optionCount: options.length },
+        reason:
+          "Precarga operativa del catálogo de países en la versión actual; no se creó una versión de evaluación.",
+      },
+    });
+  });
+  return { updated: true, optionCount: options.length, fieldCode: field.code };
+}
+
 async function main() {
   const prisma = new PrismaService(
     new ConfigService({ DATABASE_URL: process.env.DATABASE_URL }),
   );
   await prisma.onModuleInit();
   try {
-    const field = await prisma.demographicField.findFirst({
-      where: {
-        assessmentVersionId: OFFICIAL_DPO_IDS.assessmentVersion,
-        code: "DPO-CTRL-05",
-      },
-    });
-    if (!field) throw new Error("DPO_COUNTRY_FIELD_NOT_FOUND");
-    const config =
-      field.config &&
-      typeof field.config === "object" &&
-      !Array.isArray(field.config)
-        ? field.config
-        : {};
-    const options = countryOptions();
-    await prisma.$transaction(async (tx) => {
-      await tx.demographicField.update({
-        where: { id: field.id },
-        data: {
-          config: JSON.parse(
-            JSON.stringify({ ...config, options }),
-          ) as Prisma.InputJsonValue,
-        },
-      });
-      await tx.auditLog.create({
-        data: {
-          action: "DEMOGRAPHIC_COUNTRY_CATALOG_PRELOADED",
-          entityType: "DemographicField",
-          entityId: field.id,
-          after: { optionCount: options.length },
-          reason:
-            "Precarga operativa del catálogo de países en la versión actual; no se creó una versión de evaluación.",
-        },
-      });
-    });
+    const result = await preloadCountryOptions(prisma);
     console.log(
-      `Catálogo actualizado: ${options.length} opciones en ${field.code}; versión conservada ${OFFICIAL_DPO_IDS.assessmentVersion}.`,
+      `Catálogo ${result.updated ? "actualizado" : "ya vigente"}: ${result.optionCount} opciones en ${result.fieldCode}; versión conservada ${OFFICIAL_DPO_IDS.assessmentVersion}.`,
     );
   } finally {
     await prisma.onModuleDestroy();
