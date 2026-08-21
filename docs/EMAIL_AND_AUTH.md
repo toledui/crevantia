@@ -58,5 +58,4 @@ PATCH /api/v1/admin/settings/mail
 POST  /api/v1/admin/settings/mail/test
 ```
 
-Los tres endpoints administrativos requieren el rol `SUPERADMIN`.
-
+Los tres endpoints administrativos requieren el permiso `mail.settings.manage`; el rol `SUPERADMIN` lo supera de forma protegida.

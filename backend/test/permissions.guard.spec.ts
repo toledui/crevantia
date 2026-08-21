@@ -3,11 +3,11 @@ import { Reflector } from '@nestjs/core';
 import { PermissionsGuard } from '../src/common/permissions.guard';
 
 describe('PermissionsGuard', () => {
-  function context(permissions?: string[]) {
+  function context(permissions?: string[], roles: string[] = []) {
     return {
       getHandler: () => null,
       getClass: () => null,
-      switchToHttp: () => ({ getRequest: () => ({ user: { permissions } }) }),
+      switchToHttp: () => ({ getRequest: () => ({ user: { permissions, roles } }) }),
     } as unknown as ExecutionContext;
   }
 
@@ -24,5 +24,10 @@ describe('PermissionsGuard', () => {
   it('rechaza tokens anteriores que no incluyen permisos', () => {
     const reflector = { getAllAndOverride: jest.fn().mockReturnValue(['admin.access']) } as unknown as Reflector;
     expect(() => new PermissionsGuard(reflector).canActivate(context())).toThrow(ForbiddenException);
+  });
+
+  it('no permite elevar privilegios mediante el alias SUPER_ADMIN', () => {
+    const reflector = { getAllAndOverride: jest.fn().mockReturnValue(['settings.manage']) } as unknown as Reflector;
+    expect(() => new PermissionsGuard(reflector).canActivate(context([], ['SUPER_ADMIN']))).toThrow(ForbiddenException);
   });
 });

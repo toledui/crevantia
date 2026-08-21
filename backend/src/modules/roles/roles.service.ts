@@ -1,4 +1,5 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import type { AuthenticatedUser } from '../../common/auth.types';
 import { PrismaService } from '../../database/prisma.service';
 import { CreateRoleDto, UpdateRoleDto } from './roles.dto';
 
@@ -25,30 +26,31 @@ export class RolesService {
     };
   }
 
-  async create(actorId: string, dto: CreateRoleDto) {
+  async create(actor: AuthenticatedUser, dto: CreateRoleDto) {
     const code = dto.code.trim().toUpperCase();
+    if (code === 'SUPERADMIN' || code === 'SUPER_ADMIN') throw new BadRequestException('Ese código está reservado para el superadministrador del sistema.');
     if (await this.prisma.role.findUnique({ where: { code }, select: { id: true } })) throw new ConflictException('Ya existe un rol con ese código.');
-    await this.assertPermissions(dto.permissionIds);
+    await this.assertPermissionAssignment(actor, dto.permissionIds);
 
     return this.prisma.$transaction(async (tx) => {
       const role = await tx.role.create({ data: { code, name: dto.name.trim(), description: dto.description?.trim() || null } });
       if (dto.permissionIds.length) await tx.rolePermission.createMany({ data: dto.permissionIds.map((permissionId) => ({ roleId: role.id, permissionId })) });
-      await tx.auditLog.create({ data: { actorId, action: 'ROLE_CREATED', entityType: 'Role', entityId: role.id, metadata: { code, permissionIds: dto.permissionIds } } });
+      await tx.auditLog.create({ data: { actorId: actor.sub, action: 'ROLE_CREATED', entityType: 'Role', entityId: role.id, metadata: { code, permissionIds: dto.permissionIds } } });
       return role;
     });
   }
 
-  async update(actorId: string, id: string, dto: UpdateRoleDto) {
+  async update(actor: AuthenticatedUser, id: string, dto: UpdateRoleDto) {
     const role = await this.prisma.role.findUnique({ where: { id }, select: { id: true, code: true, isSystem: true } });
     if (!role) throw new NotFoundException('El rol no existe.');
-    if (role.code === 'SUPERADMIN') throw new BadRequestException('Los permisos del superadministrador están protegidos.');
-    await this.assertPermissions(dto.permissionIds);
+    if (role.code === 'SUPERADMIN' || role.code === 'SUPER_ADMIN') throw new BadRequestException('Los permisos del superadministrador están protegidos.');
+    await this.assertPermissionAssignment(actor, dto.permissionIds);
 
     return this.prisma.$transaction(async (tx) => {
       await tx.role.update({ where: { id }, data: { name: dto.name.trim(), description: dto.description?.trim() || null } });
       await tx.rolePermission.deleteMany({ where: { roleId: id } });
       if (dto.permissionIds.length) await tx.rolePermission.createMany({ data: dto.permissionIds.map((permissionId) => ({ roleId: id, permissionId })) });
-      await tx.auditLog.create({ data: { actorId, action: 'ROLE_UPDATED', entityType: 'Role', entityId: id, metadata: { code: role.code, permissionIds: dto.permissionIds } } });
+      await tx.auditLog.create({ data: { actorId: actor.sub, action: 'ROLE_UPDATED', entityType: 'Role', entityId: id, metadata: { code: role.code, permissionIds: dto.permissionIds } } });
       return { success: true };
     });
   }
@@ -66,8 +68,15 @@ export class RolesService {
     return { success: true };
   }
 
-  private async assertPermissions(permissionIds: string[]) {
-    const count = await this.prisma.permission.count({ where: { id: { in: permissionIds } } });
-    if (count !== permissionIds.length) throw new BadRequestException('Uno o más permisos no existen.');
+  private async assertPermissionAssignment(actor: AuthenticatedUser, permissionIds: string[]) {
+    const permissions = await this.prisma.permission.findMany({
+      where: { id: { in: permissionIds } },
+      select: { id: true, code: true },
+    });
+    if (permissions.length !== permissionIds.length) throw new BadRequestException('Uno o más permisos no existen.');
+    if (actor.roles.includes('SUPERADMIN')) return;
+    if (permissions.some(({ code }) => !actor.permissions.includes(code))) {
+      throw new ForbiddenException('No puedes conceder permisos que no tienes.');
+    }
   }
 }

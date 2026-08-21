@@ -14,7 +14,7 @@ export class RolesController {
   constructor(private readonly roles: RolesService) {}
 
   @Get() list() { return this.roles.list(); }
-  @Post() create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateRoleDto) { return this.roles.create(user.sub, dto); }
-  @Patch(':id') update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: UpdateRoleDto) { return this.roles.update(user.sub, id, dto); }
+  @Post() create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateRoleDto) { return this.roles.create(user, dto); }
+  @Patch(':id') update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: UpdateRoleDto) { return this.roles.update(user, id, dto); }
   @Delete(':id') remove(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) { return this.roles.remove(user.sub, id); }
 }

@@ -12,7 +12,12 @@ import {
 } from "../src/generated/prisma/client";
 import { seedDpoOfficialV1 } from "./seeds/seed-dpo-official-v1";
 import { seedReportStudioV1 } from "./seeds/seed-report-studio-v1";
-import { dpoPermissions } from "./seeds/seed-dpo-permissions";
+import {
+  deprecatedPermissionCodes,
+  permissionCatalog,
+  restrictedAdminPermissions,
+  type PermissionCode,
+} from "./seeds/permission-catalog";
 import { preloadCountryOptions } from "./seeds/preload-country-options";
 import { PROVISIONAL_REPORT_TEXT_BLOCKS } from "../src/modules/site-settings/provisional-report-defaults";
 
@@ -32,38 +37,8 @@ function databaseAdapter() {
 
 const prisma = new PrismaClient({ adapter: databaseAdapter() });
 
-const permissions = {
-  "admin.access": "Acceder al panel administrativo.",
-  "dashboard.read": "Consultar el resumen ejecutivo.",
-  "users.read": "Consultar usuarios.",
-  "users.create": "Crear usuarios.",
-  "users.update": "Editar usuarios.",
-  "users.disable": "Deshabilitar usuarios.",
-  "assignments.create": "Crear asignaciones de evaluaciones.",
-  "attempts.read": "Consultar intentos de evaluación.",
-  "attempts.monitor": "Supervisar evaluaciones en curso.",
-  "results.read": "Consultar resultados.",
-  "reports.download": "Descargar reportes.",
-  "payments.read": "Consultar pagos y transacciones.",
-  "payments.manage": "Gestionar y conciliar pagos.",
-  "pricing.manage": "Administrar precios, impuestos y catálogo comercial.",
-  "coupons.manage": "Crear, activar y administrar cupones de descuento.",
-  "payments.refund": "Emitir y procesar reembolsos de compras.",
-  "settings.update": "Modificar ajustes generales.",
-  "settings.manage": "Administrar ajustes del sistema, pasarelas y finanzas.",
-  "mail.settings.manage": "Configurar y probar el servidor de correo.",
-  "stripe.settings.manage": "Configurar y probar la pasarela Stripe.",
-  "logs.read": "Consultar registros técnicos y auditoría.",
-  "roles.manage": "Crear roles y asignar permisos.",
-  "tests.read": "Consultar pruebas, versiones, secciones y reactivos.",
-  "tests.manage": "Crear y editar pruebas y versiones en borrador.",
-  "tests.import": "Importar contenido de pruebas desde archivos autorizados.",
-  "tests.publish": "Publicar y archivar versiones de pruebas.",
-  ...dpoPermissions,
-} as const;
-
 async function seedIdentity() {
-  for (const [code, description] of Object.entries(permissions)) {
+  for (const [code, description] of Object.entries(permissionCatalog)) {
     await prisma.permission.upsert({
       where: { code },
       update: { description },
@@ -71,12 +46,19 @@ async function seedIdentity() {
     });
   }
 
-  const allPermissions = await prisma.permission.findMany();
+  await prisma.permission.deleteMany({
+    where: { code: { in: [...deprecatedPermissionCodes] } },
+  });
+
+  const allPermissions = await prisma.permission.findMany({
+    where: { code: { in: Object.keys(permissionCatalog) } },
+  });
   const superadmin = await prisma.role.upsert({
     where: { code: "SUPERADMIN" },
     update: {
       name: "Superadministrador",
       description: "Control total de la plataforma y sus ajustes.",
+      isSystem: true,
     },
     create: {
       code: "SUPERADMIN",
@@ -90,6 +72,7 @@ async function seedIdentity() {
     update: {
       name: "Administrador",
       description: "Operación diaria sin acceso a ajustes críticos.",
+      isSystem: true,
     },
     create: {
       code: "ADMIN",
@@ -98,11 +81,12 @@ async function seedIdentity() {
       isSystem: true,
     },
   });
-  await prisma.role.upsert({
+  const regularUser = await prisma.role.upsert({
     where: { code: "USER" },
     update: {
       name: "Usuario",
       description: "Acceso al panel personal y sus evaluaciones.",
+      isSystem: true,
     },
     create: {
       code: "USER",
@@ -119,28 +103,19 @@ async function seedIdentity() {
     })),
     skipDuplicates: true,
   });
+  await prisma.rolePermission.deleteMany({
+    where: {
+      roleId: admin.id,
+      permission: { code: { in: [...restrictedAdminPermissions] } },
+    },
+  });
   await prisma.rolePermission.createMany({
     data: allPermissions
-      .filter(
-        (permission) =>
-          ![
-            "settings.update",
-            "settings.manage",
-            "mail.settings.manage",
-            "stripe.settings.manage",
-            "roles.manage",
-            "tests.publish",
-            "scoring.manage",
-            "norm.approve",
-            "norm.publish",
-            "norm.archive",
-            "result.recalculate",
-            "result.audit",
-          ].includes(permission.code),
-      )
+      .filter((permission) => !restrictedAdminPermissions.has(permission.code as PermissionCode))
       .map((permission) => ({ roleId: admin.id, permissionId: permission.id })),
     skipDuplicates: true,
   });
+  await prisma.rolePermission.deleteMany({ where: { roleId: regularUser.id } });
 
   const email = (
     process.env.ADMIN_EMAIL ?? "contacto@crevantia.com"

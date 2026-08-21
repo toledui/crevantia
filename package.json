@@ -30,6 +30,7 @@
     "export:report-studio:seed": "npm run export:report-studio:seed --workspace backend",
     "validate:dpo:v1": "npm run validate:dpo:v1 --workspace backend",
     "verify:dpo:v1:db": "npm run verify:dpo:v1:db --workspace backend",
+    "verify:rbac": "npm run verify:rbac --workspace backend",
     "test:dpo": "npm run test:dpo --workspace backend",
     "test:dpo:case1": "npm run test:dpo:case1 --workspace backend",
     "report:dpo:case1": "npm run report:dpo:case1 --workspace backend",

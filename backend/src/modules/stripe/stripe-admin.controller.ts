@@ -13,19 +13,19 @@ export class StripeAdminController {
   constructor(private readonly stripeService: StripeService) {}
 
   @Get()
-  @Permissions('admin.access', 'settings.manage')
+  @Permissions('admin.access', 'stripe.settings.manage')
   getSettings() {
     return this.stripeService.getAdminSettings();
   }
 
   @Patch()
-  @Permissions('admin.access', 'settings.manage')
+  @Permissions('admin.access', 'stripe.settings.manage')
   updateSettings(@CurrentUser() user: AuthenticatedUser, @Body() dto: UpdateStripeSettingsDto) {
     return this.stripeService.updateAdminSettings(user.sub, dto);
   }
 
   @Post('test')
-  @Permissions('admin.access', 'settings.manage')
+  @Permissions('admin.access', 'stripe.settings.manage')
   testConnection(@CurrentUser() user: AuthenticatedUser, @Body() dto?: TestStripeSettingsDto) {
     return this.stripeService.testConnection(user.sub, dto);
   }

@@ -20,6 +20,7 @@
     "export:report-studio:seed": "tsx prisma/seeds/export-report-studio-snapshot.ts",
     "validate:dpo:v1": "tsx prisma/seeds/validate-dpo-v1.ts",
     "verify:dpo:v1:db": "tsx prisma/seeds/verify-dpo-v1-db.ts",
+    "verify:rbac": "tsx scripts/verify-rbac.ts",
     "preload:country-options": "tsx prisma/seeds/preload-country-options.ts",
     "test:dpo:case1": "jest --runInBand test/dpo-pro-case1.spec.ts",
     "report:dpo:case1": "tsx scripts/dpo-case1-result.ts",

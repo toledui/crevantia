@@ -20,5 +20,9 @@ describe('RolesGuard', () => {
     const reflector = { getAllAndOverride: jest.fn().mockReturnValue(['ADMIN']) } as unknown as Reflector;
     expect(() => new RolesGuard(reflector).canActivate(context(['USER']))).toThrow(ForbiddenException);
   });
-});
 
+  it('no trata el alias SUPER_ADMIN como superadministrador', () => {
+    const reflector = { getAllAndOverride: jest.fn().mockReturnValue(['ADMIN']) } as unknown as Reflector;
+    expect(() => new RolesGuard(reflector).canActivate(context(['SUPER_ADMIN']))).toThrow(ForbiddenException);
+  });
+});

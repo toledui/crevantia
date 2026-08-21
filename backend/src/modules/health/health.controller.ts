@@ -15,7 +15,7 @@ export class HealthController {
 
   @Get('admin/system-health')
   @UseGuards(AccessTokenGuard, PermissionsGuard)
-  @Permissions('admin.access')
+  @Permissions('admin.access', 'system.health.read')
   getSystemHealth() {
     return this.healthService.getSystemHealth();
   }

@@ -62,7 +62,7 @@ export function HomeNavbar() {
     router.refresh();
   }
 
-  const isAdmin = user?.roles?.some((r) => ['ADMIN', 'SUPERADMIN', 'SUPER_ADMIN'].includes(r));
+  const isAdmin = user?.roles?.some((r) => ['ADMIN', 'SUPERADMIN'].includes(r));
   const initials = user
     ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase()
     : 'U';

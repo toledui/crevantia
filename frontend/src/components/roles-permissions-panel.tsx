@@ -9,7 +9,25 @@ interface Role { id: string; code: string; name: string; description: string | n
 interface AccessData { roles: Role[]; permissions: Permission[] }
 
 const moduleNames: Record<string, string> = {
-  admin: 'Administración', dashboard: 'Dashboard', users: 'Usuarios', assignments: 'Asignaciones', attempts: 'Evaluaciones', results: 'Resultados', reports: 'Reportes', payments: 'Pagos', settings: 'Configuración', mail: 'Correo', logs: 'Registros', roles: 'Roles y permisos',
+  admin: 'Administración',
+  dashboard: 'Dashboard',
+  users: 'Usuarios',
+  assignments: 'Asignaciones',
+  attempts: 'Evaluaciones e intentos',
+  assessment: 'Diseño de evaluaciones',
+  tests: 'Pruebas y reactivos',
+  scoring: 'Puntuación',
+  norm: 'Normas y baremos',
+  result: 'Resultados',
+  report_studio: 'Report Studio',
+  payments: 'Pagos',
+  pricing: 'Productos y precios',
+  coupons: 'Cupones',
+  settings: 'Configuración general',
+  mail: 'Correo',
+  stripe: 'Stripe',
+  system: 'Estado del sistema',
+  roles: 'Roles y permisos',
 };
 
 export function RolesPermissionsPanel() {
@@ -71,7 +89,7 @@ export function RolesPermissionsPanel() {
   }
 
   const role = creating ? undefined : selected;
-  const locked = role?.code === 'SUPERADMIN';
+  const locked = role?.code === 'SUPERADMIN' || role?.code === 'SUPER_ADMIN';
 
   return (
     <section className="settings-section access-section">
@@ -102,7 +120,7 @@ export function RolesPermissionsPanel() {
         <header><div><h3>{creating ? 'Crear nuevo rol' : role?.name}</h3><p>{locked ? 'Este rol conserva siempre todos los permisos.' : 'Selecciona las acciones que podrá realizar este rol.'}</p></div>{role?.isSystem && <span>Rol del sistema</span>}</header>
         {creating && <label className="role-field">Código<input name="code" placeholder="EJ. SOPORTE" pattern="[A-Z][A-Z0-9_]*" maxLength={50} required/></label>}
         <div className="role-fields"><label className="role-field">Nombre<input name="name" defaultValue={role?.name} maxLength={100} required disabled={locked}/></label><label className="role-field">Descripción<input name="description" defaultValue={role?.description ?? ''} maxLength={255} disabled={locked}/></label></div>
-        <div className="permissions-head"><strong>Permisos</strong><span>{role?.permissionIds.length ?? 0} de {data.permissions.length} asignados</span></div>
+        <div className="permissions-head"><strong>Permisos</strong><span>{locked ? data.permissions.length : role?.permissionIds.length ?? 0} de {data.permissions.length} asignados</span></div>
         <div className="permission-groups">{grouped.map(([permissionModule, permissions]) => <fieldset key={permissionModule}><legend>{moduleNames[permissionModule] ?? permissionModule}</legend>{permissions.map((permission) => <label key={permission.id}><input type="checkbox" name="permissionIds" value={permission.id} defaultChecked={locked || role?.permissionIds.includes(permission.id)} disabled={locked}/><span><strong>{permission.code}</strong><small>{permission.description}</small></span></label>)}</fieldset>)}</div>
         <footer><div>{role && !role.isSystem && <button className="danger-button" type="button" onClick={() => void remove()} disabled={saving}>Eliminar rol</button>}</div><div className="role-actions">{creating && <button className="secondary-button" type="button" onClick={() => setCreating(false)}>Cancelar</button>}<button className="primary-button compact" disabled={saving || locked}>{saving ? 'Guardando…' : creating ? 'Crear rol' : 'Guardar permisos'}</button></div></footer>
       </form>

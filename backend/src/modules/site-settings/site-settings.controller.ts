@@ -5,8 +5,8 @@ import type { Response } from 'express';
 import { AccessTokenGuard } from '../../common/access-token.guard';
 import type { AuthenticatedUser } from '../../common/auth.types';
 import { CurrentUser } from '../../common/current-user.decorator';
-import { Roles } from '../../common/roles.decorator';
-import { RolesGuard } from '../../common/roles.guard';
+import { Permissions } from '../../common/permissions.decorator';
+import { PermissionsGuard } from '../../common/permissions.guard';
 import { SubmitContactFormDto, UpdateCustomCodeDto, UpdateReportSettingsDto, UpdateSiteSettingsDto } from './site-settings.dto';
 import { SiteSettingsService } from './site-settings.service';
 
@@ -32,8 +32,8 @@ export class PublicContactController {
 }
 
 @Controller('admin/settings/site')
-@UseGuards(AccessTokenGuard, RolesGuard)
-@Roles('SUPERADMIN', 'SUPER_ADMIN')
+@UseGuards(AccessTokenGuard, PermissionsGuard)
+@Permissions('admin.access', 'settings.update')
 export class SiteSettingsController {
   constructor(private readonly settings: SiteSettingsService) {}
   @Get() get() { return this.settings.getSiteAdmin(); }
@@ -46,8 +46,8 @@ export class SiteSettingsController {
 }
 
 @Controller('admin/settings/report')
-@UseGuards(AccessTokenGuard, RolesGuard)
-@Roles('SUPERADMIN', 'SUPER_ADMIN')
+@UseGuards(AccessTokenGuard, PermissionsGuard)
+@Permissions('admin.access', 'settings.update')
 export class ReportSettingsController {
   constructor(private readonly settings: SiteSettingsService) {}
   @Get() get() { return this.settings.getReportAdmin(); }
@@ -57,8 +57,8 @@ export class ReportSettingsController {
 }
 
 @Controller('admin/settings/custom-code')
-@UseGuards(AccessTokenGuard, RolesGuard)
-@Roles('SUPERADMIN', 'SUPER_ADMIN')
+@UseGuards(AccessTokenGuard, PermissionsGuard)
+@Permissions('admin.access', 'settings.manage')
 export class CustomCodeSettingsController {
   constructor(private readonly settings: SiteSettingsService) {}
   @Get() get() { return this.settings.getCustomCode(); }

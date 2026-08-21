@@ -4,14 +4,14 @@ import type { Response } from 'express';
 import { AccessTokenGuard } from '../../common/access-token.guard';
 import type { AuthenticatedUser } from '../../common/auth.types';
 import { CurrentUser } from '../../common/current-user.decorator';
-import { Roles } from '../../common/roles.decorator';
-import { RolesGuard } from '../../common/roles.guard';
+import { Permissions } from '../../common/permissions.decorator';
+import { PermissionsGuard } from '../../common/permissions.guard';
 import { CreateReportTemplateDto, CreateVersionDto, GenerateReportDto, SaveReportRevisionDto, UpdateBindingDto, UpdateReportVersionDto, UpdateTemplateLinkDto } from './report-studio.dto';
 import { ReportStudioService } from './report-studio.service';
 
 @Controller('admin/report-studio')
-@UseGuards(AccessTokenGuard, RolesGuard)
-@Roles('SUPERADMIN', 'SUPER_ADMIN')
+@UseGuards(AccessTokenGuard, PermissionsGuard)
+@Permissions('admin.access', 'report_studio.manage')
 export class ReportStudioController {
   constructor(private readonly studio: ReportStudioService) {}
 

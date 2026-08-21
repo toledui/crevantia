@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 import { AccessTokenGuard } from '../../common/access-token.guard';
 import { CurrentUser } from '../../common/current-user.decorator';
 import type { AuthenticatedUser } from '../../common/auth.types';
@@ -28,14 +28,14 @@ export class LegalController {
 
   @Get('admin/legal')
   @UseGuards(AccessTokenGuard, PermissionsGuard)
-  @Permissions('admin.access')
+  @Permissions('admin.access', 'settings.update')
   getAdminDocuments() {
     return this.legalService.getAllDocuments();
   }
 
   @Put('admin/legal')
   @UseGuards(AccessTokenGuard, PermissionsGuard)
-  @Permissions('admin.access')
+  @Permissions('admin.access', 'settings.update')
   updateDocument(
     @CurrentUser() user: AuthenticatedUser,
     @Body() dto: UpdateLegalDocumentDto,

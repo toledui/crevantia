@@ -13,7 +13,7 @@ export class PermissionsGuard implements CanActivate {
     if (!required?.length) return true;
     const { user } = context.switchToHttp().getRequest<Request & { user: AuthenticatedUser }>();
     if (!user) throw new ForbiddenException('Usuario no autenticado.');
-    if (user.roles?.includes('SUPERADMIN') || user.roles?.includes('SUPER_ADMIN') || user.permissions?.includes('*')) {
+    if (user.roles?.includes('SUPERADMIN') || user.permissions?.includes('*')) {
       return true;
     }
     if (required.every((permission) => user.permissions?.includes(permission))) return true;

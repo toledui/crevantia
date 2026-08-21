@@ -17,8 +17,21 @@ La administración de accesos está disponible en `/admin/configuracion/roles`.
 
 Los roles personalizados pueden crearse y eliminarse. No se permite eliminar un rol personalizado mientras tenga usuarios asignados.
 
+## Sincronización del seed
+
+- El catálogo oficial vive en `backend/prisma/seeds/permission-catalog.ts`.
+- `npm run db:seed` crea o actualiza todos los permisos, garantiza que `SUPERADMIN`, `ADMIN` y `USER` sean roles del sistema y retira códigos históricos sin una acción vigente.
+- `SUPERADMIN` recibe todas las capacidades y conserva el bypass protegido del backend.
+- `ADMIN` recibe el conjunto operativo predeterminado, pero no ajustes críticos, publicación de normas, recalificación, Report Studio ni administración de roles.
+- `USER` no recibe permisos administrativos.
+- El seed retira de `ADMIN` cualquier permiso que haya pasado a la lista crítica, evitando conservar accesos de una ejecución anterior.
+
+El código `SUPER_ADMIN` está reservado como alias histórico y no puede crearse como rol personalizado. No concede privilegios de superadministración.
+
+Después del seed, ejecuta `npm run verify:rbac` para comprobar el catálogo, los roles del sistema, los permisos críticos y la ausencia de códigos obsoletos directamente contra MySQL.
+
 ## Incorporar módulos nuevos
 
-Cada módulo debe declarar permisos estables en `backend/prisma/seed.ts`, proteger sus endpoints con `@Permissions(...)` y ejecutar `npm run db:seed` después del despliegue. Los permisos aparecen automáticamente en el editor de roles.
+Cada módulo debe declarar permisos estables en `backend/prisma/seeds/permission-catalog.ts`, proteger sus endpoints con `@Permissions(...)` y ejecutar `npm run db:seed` después del despliegue. Los permisos aparecen automáticamente en el editor de roles.
 
 Los códigos de permiso no se crean manualmente desde el panel: únicamente deben existir cuando hay una acción real en el backend que los aplica.
