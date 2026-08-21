@@ -12,41 +12,50 @@ interface Props {
   onSelectBlock?: (id: string) => void;
   zoom?: number;
   printMode?: boolean;
+  dropPreview?: { type:string; mode:'FLOW'|'ABSOLUTE'; index:number; x?:number; y?:number; width:number; height:number } | null;
 }
 
-export function ReportRenderer({ layout, data, theme = {}, bindings = [], selectedPageId, selectedBlockId, onSelectBlock, zoom = 1, printMode }: Props) {
+export function ReportRenderer({ layout, data, theme = {}, bindings = [], selectedPageId, selectedBlockId, onSelectBlock, zoom = 1, printMode, dropPreview }: Props) {
   const pages = selectedPageId ? layout.pages.filter((page) => page.pageId === selectedPageId) : layout.pages;
   const colors = (theme.colors ?? {}) as JsonObject;
   const vars = { '--rs-indigo': String(colors.indigo ?? '#302B78'), '--rs-cyan': String(colors.cyan ?? '#00C2E8'), '--rs-honey': String(colors.honey ?? '#D6A94F') } as CSSProperties;
   return (
     <div className={`${styles.document}${printMode ? ` ${styles.printDocument}` : ''}`} style={vars} data-report-ready="true">
       {pages.map((page, pageIndex) => (
-        <ReportPageView key={page.pageId} page={page} pageIndex={page.referencePage ? page.referencePage - 1 : pageIndex} total={layout.pages.length} data={data} bindings={bindings} selectedBlockId={selectedBlockId} onSelectBlock={onSelectBlock} zoom={printMode ? 1 : zoom} />
+        <ReportPageView key={page.pageId} page={page} pageIndex={page.referencePage ? page.referencePage - 1 : pageIndex} total={layout.pages.length} data={data} bindings={bindings} selectedBlockId={selectedBlockId} onSelectBlock={onSelectBlock} zoom={printMode ? 1 : zoom} dropPreview={printMode?null:dropPreview} />
       ))}
     </div>
   );
 }
 
-function ReportPageView({ page, pageIndex, total, data, bindings, selectedBlockId, onSelectBlock, zoom }: { page: ReportPage; pageIndex: number; total: number; data: PreviewData; bindings: JsonObject[]; selectedBlockId?: string | null; onSelectBlock?: (id: string) => void; zoom: number }) {
+function ReportPageView({ page, pageIndex, total, data, bindings, selectedBlockId, onSelectBlock, zoom, dropPreview }: { page: ReportPage; pageIndex: number; total: number; data: PreviewData; bindings: JsonObject[]; selectedBlockId?: string | null; onSelectBlock?: (id: string) => void; zoom: number; dropPreview?:Props['dropPreview'] }) {
   const size = page.pageSize === 'A4' ? styles.a4 : styles.letter;
   const dataPage = page.blocks.some((block) => DATA_VISUAL_TYPES.has(block.type));
   return (
     <article data-report-page className={`${styles.reportPage} ${size} ${page.layoutMode === 'ABSOLUTE_LAYOUT' ? styles.absolute : styles.flow}${dataPage ? ` ${styles.dataPage}` : ''}`} style={{ transform: `scale(${zoom})`, transformOrigin: 'top center', marginBottom: `${(zoom - 1) * (page.pageSize === 'A4' ? 1123 : 1056) + 28}px` }}>
       {page.header?.enabled && <header className={styles.pageHeader}><span className={styles.logoMark}>CREVANTIA</span><span>{page.sectionName}</span></header>}
-      <div className={styles.pageBody}>
+      <div className={styles.pageBody} data-report-page-body="true">
         {page.blocks.map((block, index) => {
-          if ((block.settings as JsonObject | undefined)?.hidden) return null;
-          if (block.type === 'RICH_TEXT' && block.role === 'SOURCE_COPY' && (page.sectionCode === 'COVER' || page.blocks.some((item) => item.type === 'SUMMARY_MATRIX'))) return null;
           const id = block.id ?? `${block.type.toLowerCase()}-${index + 1}`;
-          return <Block key={id} block={block} page={page} data={data} bindings={bindings} selected={selectedBlockId === id} onClick={onSelectBlock ? () => onSelectBlock(id) : undefined} />;
+          const insertion = dropPreview?.mode==='FLOW'&&dropPreview.index===index&&<DropPositionPreview preview={dropPreview}/>;
+          if ((block.settings as JsonObject | undefined)?.hidden) return insertion ? <Fragment key={`drop-${id}`}>{insertion}</Fragment> : null;
+          if (block.type === 'RICH_TEXT' && block.role === 'SOURCE_COPY' && (page.sectionCode === 'COVER' || page.blocks.some((item) => item.type === 'SUMMARY_MATRIX'))) return insertion ? <Fragment key={`drop-${id}`}>{insertion}</Fragment> : null;
+          return <Fragment key={id}>{insertion}<Block block={block} blockIndex={index} page={page} data={data} bindings={bindings} selected={selectedBlockId === id} onClick={onSelectBlock ? () => onSelectBlock(id) : undefined} /></Fragment>;
         })}
+        {dropPreview?.mode==='FLOW'&&dropPreview.index>=page.blocks.length&&<DropPositionPreview preview={dropPreview}/>}
+        {dropPreview?.mode==='ABSOLUTE'&&<DropPositionPreview preview={dropPreview}/>}
       </div>
       {page.footer?.enabled && <footer className={styles.pageFooter}><span>Diagnóstico de Perfil Psicofinanciero</span><span>{page.footer.pageNumber ?? pageIndex} / {total - 1}</span></footer>}
     </article>
   );
 }
 
-function Block({ block, page, data, bindings, selected, onClick }: { block: ReportBlock; page: ReportPage; data: PreviewData; bindings: JsonObject[]; selected?: boolean; onClick?: () => void }) {
+function DropPositionPreview({preview}:{preview:NonNullable<Props['dropPreview']>}) {
+  const absolute=preview.mode==='ABSOLUTE';
+  return <div className={`${styles.dropPosition}${absolute?` ${styles.dropPositionAbsolute}`:''}`} style={{height:preview.height,width:absolute?preview.width:undefined,left:absolute?preview.x:undefined,top:absolute?preview.y:undefined}}><span>Soltar aquí</span><b>{preview.type.replaceAll('_',' ').toLowerCase()}</b></div>;
+}
+
+function Block({ block, blockIndex, page, data, bindings, selected, onClick }: { block: ReportBlock; blockIndex: number; page: ReportPage; data: PreviewData; bindings: JsonObject[]; selected?: boolean; onClick?: () => void }) {
   const absolute = page.layoutMode === 'ABSOLUTE_LAYOUT' && block.layout;
   const configuredStyle = (block.style ?? {}) as CSSProperties;
   const style: CSSProperties = { ...configuredStyle, ...(absolute ? { position: 'absolute', left: block.layout?.x ?? 52, top: block.layout?.y ?? 96, width: block.layout?.width ?? 690, minHeight: block.layout?.height ?? 80 } : {}) };
@@ -55,7 +64,7 @@ function Block({ block, page, data, bindings, selected, onClick }: { block: Repo
   const needsComparison = block.type === 'MULTI_RADAR_CHART' || block.type === 'POTENTIAL_ABILITY_MATRIX';
   if (!onClick && ((METRIC_REQUIRED_TYPES.has(block.type) && metrics.length === 0) || (needsComparison && (!comparison.primary.length || !comparison.secondary.length)))) return null;
   const content = renderBlock(block, page, data, metrics, comparison);
-  return <section className={`${styles.block} ${selected ? styles.selectedBlock : ''} ${styles[`block${block.type}`] ?? ''}`} style={style} data-block-type={block.type} onClick={onClick} role={onClick ? 'button' : undefined} tabIndex={onClick ? 0 : undefined} onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}>{content}</section>;
+  return <section className={`${styles.block} ${selected ? styles.selectedBlock : ''} ${styles[`block${block.type}`] ?? ''}`} style={style} data-block-type={block.type} data-block-index={blockIndex} onClick={onClick} role={onClick ? 'button' : undefined} tabIndex={onClick ? 0 : undefined} onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}>{content}</section>;
 }
 
 const DATA_VISUAL_TYPES = new Set(['RADAR_CHART','MULTI_RADAR_CHART','DECILE_SCALE_TABLE','QUADRANT_CHART','QUADRANT_RESULT_TABLE','POTENTIAL_ABILITY_MATRIX','SUMMARY_MATRIX']);
@@ -79,7 +88,7 @@ function renderBlock(block: ReportBlock, page: ReportPage, data: PreviewData, me
     case 'HEADER_FOOTER': return <div className={styles.headerFooterPreview}><b>{resolveVariable(String(content.headerText??'CREVANTIA'),data)}</b><span>{resolveVariable(String(content.footerText??'{{assessment.name}}'),data)}</span></div>;
     case 'IMAGE': return content.src ? <figure className={styles.reportImage}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={String(content.src)} alt={String(content.alt ?? '')}/>
+      <img src={String(content.src)} alt={String(content.alt ?? '')} style={{objectFit:String(content.fit??'contain') as CSSProperties['objectFit'],objectPosition:String(content.position??'center'),maxHeight:`${Number(content.maxHeight??520)}px`}}/>
       {Boolean(content.title)&&<figcaption>{String(content.title)}</figcaption>}
     </figure> : <div className={styles.placeholder}>Selecciona el bloque para agregar una imagen</div>;
     case 'PAGE_BREAK': return <div className={styles.pageBreak}>Salto de página</div>;

@@ -27,6 +27,11 @@ export class UpdateReportVersionDto {
   @IsOptional() @IsObject() bindingConfigJson?: Record<string, unknown>;
 }
 
+export class SaveReportRevisionDto {
+  @IsObject() layoutJson!: Record<string, unknown>;
+  @IsObject() bindingConfigJson!: Record<string, unknown>;
+}
+
 export class UpdateBindingDto {
   @IsString() presetCode!: string;
   @IsString() itemKey!: string;

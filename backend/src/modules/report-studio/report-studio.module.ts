@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ReportStudioController, ReportStudioRenderController } from './report-studio.controller';
+import { ReportStudioAssetController, ReportStudioController, ReportStudioRenderController } from './report-studio.controller';
 import { ReportStudioService } from './report-studio.service';
 
 @Module({
-  controllers: [ReportStudioController, ReportStudioRenderController],
+  controllers: [ReportStudioController, ReportStudioRenderController, ReportStudioAssetController],
   providers: [ReportStudioService],
   exports: [ReportStudioService],
 })

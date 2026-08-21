@@ -4,7 +4,7 @@ import { createHash, randomBytes } from 'node:crypto';
 import { chromium } from 'playwright';
 import { Prisma, ReportStudioStatus } from '../../generated/prisma/client';
 import { PrismaService } from '../../database/prisma.service';
-import type { CreateReportTemplateDto, GenerateReportDto, UpdateBindingDto, UpdateReportVersionDto, UpdateTemplateLinkDto } from './report-studio.dto';
+import type { CreateReportTemplateDto, GenerateReportDto, SaveReportRevisionDto, UpdateBindingDto, UpdateReportVersionDto, UpdateTemplateLinkDto } from './report-studio.dto';
 
 type JsonObject = Record<string, unknown>;
 type RenderSession = { expiresAt: number; payload: JsonObject };
@@ -106,6 +106,16 @@ export class ReportStudioService {
     return template;
   }
 
+  async listRevisions(templateId: string) {
+    const template = await this.prisma.reportTemplate.findUnique({ where: { id: templateId }, select: { id: true } });
+    if (!template) throw new NotFoundException('La plantilla no existe.');
+    return this.prisma.reportTemplateVersion.findMany({
+      where: { reportTemplateId: templateId },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, version: true, status: true, pendingBindings: true, configurationHash: true, createdAt: true, updatedAt: true, publishedAt: true },
+    });
+  }
+
   async getVersion(id: string, resultRunId?: string) {
     const version = await this.loadVersion(id);
     return { ...version, previewData: await this.previewData(resultRunId), publication: this.publicationState(version) };
@@ -157,6 +167,18 @@ export class ReportStudioService {
     return updated;
   }
 
+  async saveRevision(actorId: string, id: string, dto: SaveReportRevisionDto) {
+    const source = await this.loadVersion(id);
+    const layout = object(dto.layoutJson);
+    const bindings = normalizeBindings(dto.bindingConfigJson);
+    return this.createPublishedRevision(actorId, source, layout, bindings, 'REPORT_TEMPLATE_REVISION_SAVED');
+  }
+
+  async restoreRevision(actorId: string, id: string) {
+    const source = await this.loadVersion(id);
+    return this.createPublishedRevision(actorId, source, object(source.layoutJson), normalizeBindings(object(source.bindingConfigJson)), 'REPORT_TEMPLATE_REVISION_RESTORED');
+  }
+
   async cloneVersion(actorId: string, id: string, nextVersion: string) {
     const current = await this.loadVersion(id);
     if (!/^\d+\.\d+\.\d+$/.test(nextVersion.trim())) throw new BadRequestException('Usa una versión semántica, por ejemplo 1.1.0.');
@@ -182,6 +204,30 @@ export class ReportStudioService {
       ...targets.map((item) => ({ group: item.targetType, sourceType: item.targetType, sourceCode: item.targetCode, label: item.name })),
       ...derived.map((item) => ({ group: 'DERIVED_METRIC', sourceType: 'DERIVED_METRIC', sourceCode: item.code, label: item.name })),
     ];
+  }
+
+  async uploadAsset(actorId: string, versionId: string, file?: Express.Multer.File) {
+    if (!file) throw new BadRequestException('Selecciona una imagen para adjuntar.');
+    if (!isSupportedImage(file.mimetype, file.buffer)) throw new BadRequestException('Formato no permitido. Usa PNG, JPG o WebP.');
+    const version = await this.loadVersion(versionId);
+    const name = safeAssetName(file.originalname);
+    const sha256 = createHash('sha256').update(file.buffer).digest('hex');
+    const asset = await this.prisma.reportAsset.create({ data: {
+      themeId: version.themeId,
+      name,
+      mimeType: file.mimetype,
+      data: Uint8Array.from(file.buffer),
+      byteSize: file.size,
+      sha256,
+    } });
+    await this.prisma.auditLog.create({ data: { actorId, action: 'REPORT_ASSET_UPLOADED', entityType: 'ReportAsset', entityId: asset.id, metadata: { versionId, name, mimeType: file.mimetype, byteSize: file.size, sha256 } } });
+    return { id: asset.id, name: asset.name, mimeType: asset.mimeType, byteSize: asset.byteSize, url: `/api/v1/report-studio/assets/${asset.id}` };
+  }
+
+  async getAsset(id: string) {
+    const asset = await this.prisma.reportAsset.findUnique({ where: { id }, select: { data: true, mimeType: true } });
+    if (!asset) throw new NotFoundException('La imagen del reporte no existe.');
+    return { data: Buffer.from(asset.data), mimeType: asset.mimeType };
   }
 
   async generatePdf(actorId: string, versionId: string, dto: GenerateReportDto) {
@@ -307,7 +353,35 @@ export class ReportStudioService {
   }
 
   private assertMutable(status: ReportStudioStatus) {
-    if (status === ReportStudioStatus.PUBLISHED || status === ReportStudioStatus.ARCHIVED) throw new ConflictException('Las versiones publicadas son inmutables. Clónala para editar.');
+    if (status === ReportStudioStatus.PUBLISHED || status === ReportStudioStatus.ARCHIVED) throw new ConflictException('Los cambios directos no están permitidos; guarda el contenido como una nueva revisión.');
+  }
+
+  private async createPublishedRevision(actorId: string, source: Awaited<ReturnType<ReportStudioService['loadVersion']>>, layout: JsonObject, bindings: JsonObject, auditAction: string) {
+    const pendingBindings = countPendingBindings(bindings);
+    const configurationHash = hash({ layout, bindings });
+    const revision = await this.prisma.$transaction(async (tx) => {
+      const versions = await tx.reportTemplateVersion.findMany({ where: { reportTemplateId: source.reportTemplateId }, select: { version: true } });
+      const version = nextSemanticVersion(versions.map((item) => item.version));
+      await tx.reportTemplateVersion.updateMany({ where: { reportTemplateId: source.reportTemplateId, status: ReportStudioStatus.PUBLISHED }, data: { status: ReportStudioStatus.ARCHIVED } });
+      if (source.status === ReportStudioStatus.DRAFT) await tx.reportTemplateVersion.update({ where: { id: source.id }, data: { status: ReportStudioStatus.ARCHIVED } });
+      const created = await tx.reportTemplateVersion.create({ data: {
+        reportTemplateId: source.reportTemplateId,
+        version,
+        status: ReportStudioStatus.PUBLISHED,
+        themeId: source.themeId,
+        layoutJson: asJson(layout),
+        bindingConfigJson: asJson(bindings),
+        pendingBindings,
+        configurationHash,
+        createdById: actorId,
+        publishedById: actorId,
+        publishedAt: new Date(),
+      } });
+      await tx.reportTemplate.update({ where: { id: source.reportTemplateId }, data: { status: ReportStudioStatus.PUBLISHED } });
+      return created;
+    });
+    await this.audit(actorId, auditAction, revision.id, { sourceVersionId: source.id, sourceVersion: source.version, newVersion: revision.version, configurationHash, pendingBindings });
+    return this.getVersion(revision.id);
   }
 
   private publicationState(version: { pendingBindings: number; status: ReportStudioStatus }) {
@@ -323,6 +397,22 @@ function object(value: unknown): JsonObject { return value && typeof value === '
 function array<T>(value: unknown): T[] { return Array.isArray(value) ? value as T[] : []; }
 function asJson(value: unknown): Prisma.InputJsonValue { return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue; }
 function hash(value: unknown) { return createHash('sha256').update(JSON.stringify(value)).digest('hex'); }
+function nextSemanticVersion(versions: string[]) {
+  const parsed = versions.map((version) => version.split('.').map(Number)).filter((parts) => parts.length === 3 && parts.every(Number.isFinite));
+  const latest = parsed.sort((left, right) => (right[0]! - left[0]!) || (right[1]! - left[1]!) || (right[2]! - left[2]!))[0] ?? [1, 0, -1];
+  return `${latest[0]}.${latest[1]}.${latest[2]! + 1}`;
+}
+function safeAssetName(value: string) {
+  const printable = Array.from(value.normalize('NFKC')).filter((character) => character.charCodeAt(0) >= 32).join('');
+  const cleaned = printable.replace(/[\\/:*?"<>|]+/g, '-').trim();
+  return (cleaned || 'imagen').slice(0, 180);
+}
+function isSupportedImage(mimeType: string, data: Buffer) {
+  if (mimeType === 'image/png') return data.length >= 8 && data.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+  if (mimeType === 'image/jpeg') return data.length >= 3 && data[0] === 0xff && data[1] === 0xd8 && data[2] === 0xff;
+  if (mimeType === 'image/webp') return data.length >= 12 && data.subarray(0, 4).toString('ascii') === 'RIFF' && data.subarray(8, 12).toString('ascii') === 'WEBP';
+  return false;
+}
 function serializeVersion(version: { id: string; version: string; status: string; layoutJson: unknown; bindingConfigJson: unknown; pendingBindings: number; template: unknown; theme: unknown }) {
   return { id: version.id, version: version.version, status: version.status, layoutJson: version.layoutJson, bindingConfigJson: version.bindingConfigJson, pendingBindings: version.pendingBindings, template: version.template, theme: version.theme };
 }
