@@ -1,5 +1,5 @@
 import { Fragment, type CSSProperties, type ReactNode } from 'react';
-import { comparisonMetricValues, metricValues, resolveVariable, type JsonObject, type PreviewData, type ReportBlock, type ReportLayout, type ReportPage } from '@/lib/report-studio';
+import { comparisonMetricValues, metricValues, resolveVariable, type JsonObject, type PreviewData, type ReportBlock, type ReportHeaderFooterConfig, type ReportLayout, type ReportPage } from '@/lib/report-studio';
 import styles from './report-studio.module.css';
 
 interface Props {
@@ -18,22 +18,31 @@ interface Props {
 export function ReportRenderer({ layout, data, theme = {}, bindings = [], selectedPageId, selectedBlockId, onSelectBlock, zoom = 1, printMode, dropPreview }: Props) {
   const pages = selectedPageId ? layout.pages.filter((page) => page.pageId === selectedPageId) : layout.pages;
   const colors = (theme.colors ?? {}) as JsonObject;
+  const chrome = reportChrome(layout);
   const vars = { '--rs-indigo': String(colors.indigo ?? '#302B78'), '--rs-cyan': String(colors.cyan ?? '#00C2E8'), '--rs-honey': String(colors.honey ?? '#D6A94F') } as CSSProperties;
   return (
     <div className={`${styles.document}${printMode ? ` ${styles.printDocument}` : ''}`} style={vars} data-report-ready="true">
       {pages.map((page, pageIndex) => (
-        <ReportPageView key={page.pageId} page={page} pageIndex={page.referencePage ? page.referencePage - 1 : pageIndex} total={layout.pages.length} data={data} bindings={bindings} selectedBlockId={selectedBlockId} onSelectBlock={onSelectBlock} zoom={printMode ? 1 : zoom} dropPreview={printMode?null:dropPreview} />
+        <ReportPageView key={page.pageId} page={page} pageIndex={page.referencePage ? page.referencePage - 1 : pageIndex} total={layout.pages.length} data={data} bindings={bindings} selectedBlockId={selectedBlockId} onSelectBlock={onSelectBlock} zoom={printMode ? 1 : zoom} dropPreview={printMode?null:dropPreview} chrome={chrome} />
       ))}
     </div>
   );
 }
 
-function ReportPageView({ page, pageIndex, total, data, bindings, selectedBlockId, onSelectBlock, zoom, dropPreview }: { page: ReportPage; pageIndex: number; total: number; data: PreviewData; bindings: JsonObject[]; selectedBlockId?: string | null; onSelectBlock?: (id: string) => void; zoom: number; dropPreview?:Props['dropPreview'] }) {
+function ReportPageView({ page, pageIndex, total, data, bindings, selectedBlockId, onSelectBlock, zoom, dropPreview, chrome }: { page: ReportPage; pageIndex: number; total: number; data: PreviewData; bindings: JsonObject[]; selectedBlockId?: string | null; onSelectBlock?: (id: string) => void; zoom: number; dropPreview?:Props['dropPreview']; chrome: ReportHeaderFooterConfig }) {
   const size = page.pageSize === 'A4' ? styles.a4 : styles.letter;
   const dataPage = page.blocks.some((block) => DATA_VISUAL_TYPES.has(block.type));
+  const cover = page.sectionCode === 'COVER';
+  const showHeader = chrome.headerEnabled && (cover ? chrome.showOnCover : page.header?.enabled !== false);
+  const showFooter = chrome.footerEnabled && (cover ? chrome.showOnCover : page.footer?.enabled !== false);
+  const displayPage = chrome.showOnCover ? pageIndex + 1 : (page.footer?.pageNumber ?? Math.max(1,pageIndex));
+  const displayTotal = chrome.showOnCover ? total : Math.max(1,total - 1);
+  const pageTokens = { number: displayPage, total: displayTotal, sectionName: page.sectionName };
   return (
     <article data-report-page className={`${styles.reportPage} ${size} ${page.layoutMode === 'ABSOLUTE_LAYOUT' ? styles.absolute : styles.flow}${dataPage ? ` ${styles.dataPage}` : ''}`} style={{ transform: `scale(${zoom})`, transformOrigin: 'top center', marginBottom: `${(zoom - 1) * (page.pageSize === 'A4' ? 1123 : 1056) + 28}px` }}>
-      {page.header?.enabled && <header className={styles.pageHeader}><span className={styles.logoMark}>CREVANTIA</span><span>{page.sectionName}</span></header>}
+      {showHeader && <header className={styles.pageHeader}><span className={styles.logoMark}>{chrome.headerKind==='IMAGE'&&chrome.headerImageSrc?
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className={styles.headerLogo} src={chrome.headerImageSrc} alt={chrome.headerImageAlt}/>:resolveChromeText(chrome.headerLeft,data,pageTokens)}</span><span>{resolveChromeText(chrome.headerRight,data,pageTokens)}</span></header>}
       <div className={styles.pageBody} data-report-page-body="true">
         {page.blocks.map((block, index) => {
           const id = block.id ?? `${block.type.toLowerCase()}-${index + 1}`;
@@ -45,9 +54,32 @@ function ReportPageView({ page, pageIndex, total, data, bindings, selectedBlockI
         {dropPreview?.mode==='FLOW'&&dropPreview.index>=page.blocks.length&&<DropPositionPreview preview={dropPreview}/>}
         {dropPreview?.mode==='ABSOLUTE'&&<DropPositionPreview preview={dropPreview}/>}
       </div>
-      {page.footer?.enabled && <footer className={styles.pageFooter}><span>Diagnóstico de Perfil Psicofinanciero</span><span>{page.footer.pageNumber ?? pageIndex} / {total - 1}</span></footer>}
+      {showFooter && <footer className={styles.pageFooter}><span>{resolveChromeText(chrome.footerLeft,data,pageTokens)}</span><span>{resolveChromeText(chrome.footerRight,data,pageTokens)}</span></footer>}
     </article>
   );
+}
+
+function reportChrome(layout:ReportLayout):ReportHeaderFooterConfig {
+  const configured = (layout.document?.headerFooter ?? {}) as Partial<ReportHeaderFooterConfig>;
+  return {
+    headerEnabled: configured.headerEnabled ?? true,
+    headerKind: configured.headerKind ?? 'TEXT',
+    headerLeft: configured.headerLeft ?? 'CREVANTIA',
+    headerImageSrc: configured.headerImageSrc ?? '',
+    headerImageAlt: configured.headerImageAlt ?? 'Logo del reporte',
+    headerRight: configured.headerRight ?? '{{page.sectionName}}',
+    footerEnabled: configured.footerEnabled ?? true,
+    footerLeft: configured.footerLeft ?? 'Diagnóstico de Perfil Psicofinanciero',
+    footerRight: configured.footerRight ?? '{{page.number}} / {{page.total}}',
+    showOnCover: configured.showOnCover ?? false,
+  };
+}
+
+function resolveChromeText(value:string,data:PreviewData,page:{number:number;total:number;sectionName:string}) {
+  return resolveVariable(value
+    .replace(/{{\s*page\.number\s*}}/g,String(page.number))
+    .replace(/{{\s*page\.total\s*}}/g,String(page.total))
+    .replace(/{{\s*page\.sectionName\s*}}/g,page.sectionName),data);
 }
 
 function DropPositionPreview({preview}:{preview:NonNullable<Props['dropPreview']>}) {

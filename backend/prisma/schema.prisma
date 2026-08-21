@@ -1247,8 +1247,13 @@ model SiteSettings {
   faviconMimeType       String?  @db.VarChar(100)
   reportLogoData        Bytes?   @db.LongBlob
   reportLogoMimeType    String?  @db.VarChar(100)
-  contactEmail          String?  @db.VarChar(191)
-  contactPhone          String?  @db.VarChar(60)
+  contactEmail                  String?  @db.VarChar(191)
+  contactFormRecipientEmail     String?  @db.VarChar(191)
+  contactFormRecipientEmails    Json?
+  contactCaptchaProvider         String?  @db.VarChar(20)
+  contactCaptchaSiteKey          String?  @db.VarChar(255)
+  contactCaptchaSecretEncrypted  String?  @db.LongText
+  contactPhone                  String?  @db.VarChar(60)
   contactWhatsapp       String?  @db.VarChar(60)
   contactAddress        String?  @db.VarChar(500)
   contactHours          String?  @db.VarChar(255)

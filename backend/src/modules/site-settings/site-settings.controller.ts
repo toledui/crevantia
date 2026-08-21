@@ -1,12 +1,13 @@
-import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, HttpCode, Param, Patch, Post, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Throttle } from '@nestjs/throttler';
 import type { Response } from 'express';
 import { AccessTokenGuard } from '../../common/access-token.guard';
 import type { AuthenticatedUser } from '../../common/auth.types';
 import { CurrentUser } from '../../common/current-user.decorator';
 import { Roles } from '../../common/roles.decorator';
 import { RolesGuard } from '../../common/roles.guard';
-import { UpdateCustomCodeDto, UpdateReportSettingsDto, UpdateSiteSettingsDto } from './site-settings.dto';
+import { SubmitContactFormDto, UpdateCustomCodeDto, UpdateReportSettingsDto, UpdateSiteSettingsDto } from './site-settings.dto';
 import { SiteSettingsService } from './site-settings.service';
 
 @Controller('public/site-settings')
@@ -18,6 +19,16 @@ export class PublicSiteSettingsController {
     const asset = await this.settings.getAsset(kind);
     response.set({ 'Content-Type': asset.mimeType, 'Cache-Control': 'public, max-age=31536000, immutable' }).send(asset.data);
   }
+}
+
+@Controller('public/contact')
+export class PublicContactController {
+  constructor(private readonly settings: SiteSettingsService) {}
+
+  @Post()
+  @HttpCode(200)
+  @Throttle({ default: { limit: 5, ttl: 60_000 } })
+  submit(@Body() dto: SubmitContactFormDto) { return this.settings.submitContactForm(dto); }
 }
 
 @Controller('admin/settings/site')

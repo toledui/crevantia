@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { HomeNavbar } from '@/components/home-navbar';
 import { HomePricingSlider } from '@/components/home-pricing-slider';
+import { HomeContactForm } from '@/components/home-contact-form';
 import styles from './home.module.css';
 import { getPublicSiteSettings } from '@/lib/site-settings';
 
@@ -118,13 +119,16 @@ export default async function Home() {
         <section className={styles.section} id="contacto">
           <div className={styles.container}>
             <div className={styles.contactLayout}>
-              <div className={styles.sectionHead}><span className={styles.eyebrow}>Estamos para ayudarte</span><h2>Contacto</h2><p>{hasContact ? `Comunícate con el equipo de ${site.siteName} por el medio que te resulte más cómodo.` : 'La información de contacto estará disponible próximamente.'}</p></div>
-              {hasContact && <div className={styles.contactGrid}>
-                {site.contactEmail && <a className={styles.contactCard} href={`mailto:${site.contactEmail}`}><small>Correo electrónico</small><strong>{site.contactEmail}</strong><span>Enviar mensaje →</span></a>}
-                {site.contactPhone && <a className={styles.contactCard} href={`tel:${site.contactPhone.replace(/[^+\d]/g, '')}`}><small>Teléfono</small><strong>{site.contactPhone}</strong><span>Llamar ahora →</span></a>}
-                {site.contactWhatsapp && <a className={styles.contactCard} href={`https://wa.me/${site.contactWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><small>WhatsApp</small><strong>{site.contactWhatsapp}</strong><span>Abrir conversación →</span></a>}
-                {(site.contactAddress || site.contactHours) && <div className={styles.contactCard}><small>Ubicación y horario</small>{site.contactAddress && <strong>{site.contactAddress}</strong>}{site.contactHours && <p>{site.contactHours}</p>}{site.contactMapUrl && <a href={site.contactMapUrl} target="_blank" rel="noreferrer">Ver mapa →</a>}</div>}
-              </div>}
+              <div className={styles.contactContent}>
+                <div className={styles.sectionHead}><span className={styles.eyebrow}>Estamos para ayudarte</span><h2>Contacto</h2><p>{hasContact ? `Comunícate con el equipo de ${site.siteName} por el medio que te resulte más cómodo.` : 'La información de contacto estará disponible próximamente.'}</p></div>
+                {hasContact && <div className={styles.contactGrid}>
+                  {site.contactEmail && <a className={styles.contactCard} href={`mailto:${site.contactEmail}`}><small>Correo electrónico</small><strong>{site.contactEmail}</strong><span>Enviar mensaje →</span></a>}
+                  {site.contactPhone && <a className={styles.contactCard} href={`tel:${site.contactPhone.replace(/[^+\d]/g, '')}`}><small>Teléfono</small><strong>{site.contactPhone}</strong><span>Llamar ahora →</span></a>}
+                  {site.contactWhatsapp && <a className={styles.contactCard} href={`https://wa.me/${site.contactWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"><small>WhatsApp</small><strong>{site.contactWhatsapp}</strong><span>Abrir conversación →</span></a>}
+                  {(site.contactAddress || site.contactHours) && <div className={styles.contactCard}><small>Ubicación y horario</small>{site.contactAddress && <strong>{site.contactAddress}</strong>}{site.contactHours && <p>{site.contactHours}</p>}{site.contactMapUrl && <a href={site.contactMapUrl} target="_blank" rel="noreferrer">Ver mapa →</a>}</div>}
+                </div>}
+              </div>
+              <HomeContactForm captcha={site.contactCaptcha} />
             </div>
           </div>
         </section>

@@ -263,6 +263,22 @@ export class MailService {
     );
   }
 
+  async sendContactFormEmail(recipients: string[], contact: { name: string; email: string; subject: string; message: string }) {
+    const { transporter, fromName, fromAddress } = await this.transporter();
+    const safeName = this.escape(contact.name);
+    const safeEmail = this.escape(contact.email);
+    const safeSubject = this.escape(contact.subject);
+    const safeMessage = this.escape(contact.message).replace(/\n/g, '<br>');
+    await transporter.sendMail({
+      from: { name: fromName, address: fromAddress },
+      to: recipients,
+      replyTo: { name: contact.name, address: contact.email },
+      subject: `Contacto web · ${contact.subject}`,
+      text: `Nombre: ${contact.name}\nCorreo: ${contact.email}\nAsunto: ${contact.subject}\n\n${contact.message}`,
+      html: `<div style="font-family:Arial,sans-serif;color:#20252e;line-height:1.6"><h2 style="color:#302b78">Nuevo mensaje desde el sitio web</h2><p><strong>Nombre:</strong> ${safeName}<br><strong>Correo:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a><br><strong>Asunto:</strong> ${safeSubject}</p><hr style="border:0;border-top:1px solid #e5e7eb"><p>${safeMessage}</p></div>`,
+    });
+  }
+
   private async send(
     to: string,
     subject: string,

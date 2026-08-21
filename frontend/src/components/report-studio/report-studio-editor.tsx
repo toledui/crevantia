@@ -4,12 +4,12 @@ import { DndContext, DragEndEvent, DragMoveEvent, DragOverlay, DragStartEvent, P
 import { arrayMove, horizontalListSortingStrategy, SortableContext, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { JSONContent } from '@tiptap/core';
-import { ArrowLeft, ChevronDown, Copy, Eye, FileDown, Grid3X3, History, Link2, Plus, Redo2, RotateCcw, Save, Search, Settings2, Trash2, Undo2, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { ArrowLeft, ChevronDown, Copy, Eye, FileDown, Grid3X3, History, Link2, PanelTop, Plus, Redo2, RotateCcw, Save, Search, Settings2, Trash2, Undo2, X, ZoomIn, ZoomOut } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { apiDownload, apiFetch, apiUpload } from '@/lib/api';
-import { blockId, REPORT_COMPONENTS, type JsonObject, type ReportBlock, type ReportLayout, type ReportPage, type ReportVersionResponse } from '@/lib/report-studio';
+import { blockId, REPORT_COMPONENTS, type JsonObject, type ReportBlock, type ReportHeaderFooterConfig, type ReportLayout, type ReportPage, type ReportVersionResponse } from '@/lib/report-studio';
 import { ReportRenderer } from './report-renderer';
 import { RichTextEditor } from './rich-text-editor';
 import { componentLabels, ReportComponentIcon } from './report-component-icon';
@@ -24,6 +24,8 @@ const DYNAMIC_FIELDS = [
   ['{{person.fullName}}', 'Nombre completo'], ['{{person.firstName}}', 'Nombre'], ['{{assessment.name}}', 'Nombre de la evaluación'],
   ['{{assessment.completedAt|monthYear}}', 'Mes de aplicación'], ['{{report.generatedAt|monthYear}}', 'Mes de generación'],
 ] as const;
+const HEADER_FOOTER_FIELDS = [...DYNAMIC_FIELDS, ['{{page.sectionName}}','Nombre de la sección'], ['{{page.number}}','Número de página'], ['{{page.total}}','Total de páginas']] as const;
+const DEFAULT_HEADER_FOOTER:ReportHeaderFooterConfig = { headerEnabled:true, headerKind:'TEXT', headerLeft:'CREVANTIA', headerImageSrc:'', headerImageAlt:'Logo del reporte', headerRight:'{{page.sectionName}}', footerEnabled:true, footerLeft:'Diagnóstico de Perfil Psicofinanciero', footerRight:'{{page.number}} / {{page.total}}', showOnCover:false };
 
 export function ReportStudioEditor({ versionId }: { versionId: string }) {
   const router = useRouter();
@@ -44,6 +46,7 @@ export function ReportStudioEditor({ versionId }: { versionId: string }) {
   const [history, setHistory] = useState<ReportLayout[]>([]);
   const [future, setFuture] = useState<ReportLayout[]>([]);
   const [revisionsOpen,setRevisionsOpen]=useState(false);
+  const [chromeOpen,setChromeOpen]=useState(false);
   const [revisions,setRevisions]=useState<RevisionItem[]>([]);
   const [revisionSearch,setRevisionSearch]=useState('');
   const [activeLibraryType,setActiveLibraryType]=useState<string|null>(null);
@@ -78,11 +81,21 @@ export function ReportStudioEditor({ versionId }: { versionId: string }) {
   const selectedPage = layout?.pages.find((page) => page.pageId === selectedPageId);
   const selectedBlockIndex = selectedPage?.blocks.findIndex((block,index)=>blockId(block,index)===selectedBlockId) ?? -1;
   const selectedBlock = selectedBlockIndex >= 0 ? selectedPage?.blocks[selectedBlockIndex] : undefined;
+  const headerFooter = { ...DEFAULT_HEADER_FOOTER, ...((layout?.document?.headerFooter ?? {}) as Partial<ReportHeaderFooterConfig>) };
 
   const addBlock = useCallback((type: string, target?: DropPreview|null) => {
+    if (type === 'HEADER_FOOTER') { setChromeOpen(true); return; }
     if (!selectedPageId) return; const id=`${type.toLowerCase()}-${crypto.randomUUID()}`;
     changeLayout((current) => { const page=current.pages.find(item=>item.pageId===selectedPageId);if(!page)return current;const block=newBlock(id,type,page.layoutMode==='FLOW_LAYOUT');if(page.layoutMode==='ABSOLUTE_LAYOUT'&&target?.mode==='ABSOLUTE')block.layout={x:target.x??52,y:target.y??96,width:target.width,height:target.height};if(page.layoutMode==='FLOW_LAYOUT'&&target?.mode==='FLOW')page.blocks.splice(Math.min(target.index,page.blocks.length),0,block);else page.blocks.push(block);return current; }); setSelectedBlockId(id); setActiveTab(type.includes('CHART')||type.includes('TABLE')||type.includes('MATRIX')?'DATA':'CONTENT');
   }, [changeLayout,selectedPageId]);
+
+  const updateHeaderFooter = useCallback((patch:Partial<ReportHeaderFooterConfig>) => {
+    changeLayout((current) => {
+      const configured = (current.document?.headerFooter ?? {}) as Partial<ReportHeaderFooterConfig>;
+      current.document = { ...current.document, headerFooter: { ...DEFAULT_HEADER_FOOTER, ...configured, ...patch } };
+      return current;
+    });
+  },[changeLayout]);
 
   const updateBlock = (patch: Partial<ReportBlock>) => changeLayout((current)=>{const page=current.pages.find(item=>item.pageId===selectedPageId); if(page&&selectedBlockIndex>=0) page.blocks[selectedBlockIndex]={...page.blocks[selectedBlockIndex]!,...patch}; return current;});
   const deleteBlock = useCallback(()=>{if(selectedBlockIndex<0)return;changeLayout(current=>{const page=current.pages.find(item=>item.pageId===selectedPageId);page?.blocks.splice(selectedBlockIndex,1);return current;});setSelectedBlockId(null);},[changeLayout,selectedBlockIndex,selectedPageId]);
@@ -156,13 +169,14 @@ export function ReportStudioEditor({ versionId }: { versionId: string }) {
       <header className={styles.toolbar}>
         <div className={styles.titleArea}><Link href="/admin/report-studio" aria-label="Volver"><ArrowLeft/></Link><div><small>REPORT STUDIO</small><strong>{version.template.name}</strong></div><span>{version.version} · {version.status}</span></div>
         <div className={styles.historyTools}><button type="button" onClick={undo} disabled={!history.length}><Undo2/> Deshacer</button><button type="button" onClick={redo} disabled={!future.length}><Redo2/> Rehacer</button></div>
-        <div className={styles.toolbarActions}><span className={styles.saveState}>{savedState==='saving'?'Creando revisión…':savedState==='dirty'?'Cambios sin publicar':'Versión publicada'}</span><button type="button" onClick={()=>void openRevisions()}><History/> Versiones</button><button type="button" onClick={()=>setLinkOpen(true)}><Settings2/> Vinculación</button><button type="button" onClick={()=>setPreview(true)}><Eye/> Vista previa</button><button type="button" onClick={()=>void generatePdf()}><FileDown/> PDF</button>{savedState==='dirty'&&<button type="button" className={styles.discardChanges} onClick={discardChanges}><RotateCcw/> Descartar cambios</button>}<button className={styles.publish} type="button" disabled={savedState!=='dirty'} title={savedState==='saved'?'No hay cambios pendientes':undefined} onClick={()=>void save()}><Save/> Guardar y publicar</button></div>
+        <div className={styles.toolbarActions}><span className={styles.saveState}>{savedState==='saving'?'Creando revisión…':savedState==='dirty'?'Cambios sin publicar':'Versión publicada'}</span><button type="button" onClick={()=>void openRevisions()}><History/> Versiones</button><button type="button" onClick={()=>setChromeOpen(true)}><PanelTop/> Encabezado y pie</button><button type="button" onClick={()=>setLinkOpen(true)}><Settings2/> Vinculación</button><button type="button" onClick={()=>setPreview(true)}><Eye/> Vista previa</button><button type="button" onClick={()=>void generatePdf()}><FileDown/> PDF</button>{savedState==='dirty'&&<button type="button" className={styles.discardChanges} onClick={discardChanges}><RotateCcw/> Descartar cambios</button>}<button className={styles.publish} type="button" disabled={savedState!=='dirty'} title={savedState==='saved'?'No hay cambios pendientes':undefined} onClick={()=>void save()}><Save/> Guardar y publicar</button></div>
       </header>
       <aside className={styles.library}><div className={styles.panelHeading}><span>Componentes</span><button><Search/></button></div>{['Contenido','Resultados','Especiales'].map(group=><section key={group}><h3>{group}<ChevronDown/></h3>{REPORT_COMPONENTS.filter(([category])=>category===group).map(([,type])=><LibraryItem key={type} type={type} onAdd={()=>addBlock(type)}/>)}</section>)}</aside>
       <main className={styles.workspace}><div className={styles.canvasTools}><button><Grid3X3/> Guías</button><div><button onClick={()=>setZoom(Math.max(.4,zoom-.1))}><ZoomOut/></button><span>{Math.round(zoom*100)}%</span><button onClick={()=>setZoom(Math.min(1.2,zoom+.1))}><ZoomIn/></button></div></div><CanvasDrop><ReportRenderer layout={layout} data={version.previewData} theme={version.theme?.configJson} bindings={bindings} selectedPageId={selectedPageId} selectedBlockId={selectedBlockId} onSelectBlock={setSelectedBlockId} zoom={zoom} dropPreview={dropPreview}/></CanvasDrop></main>
       <aside className={styles.inspector}><div className={styles.panelHeading}><span>Propiedades</span>{selectedBlock&&<em>{selectedBlock.type}</em>}</div>{selectedBlock?<><nav>{(['CONTENT','DATA','STYLE','LAYOUT','VISIBILITY'] as const).map(tab=><button className={activeTab===tab?styles.activeTab:''} key={tab} onClick={()=>setActiveTab(tab)}>{tab}</button>)}</nav><Inspector tab={activeTab} block={selectedBlock} inheritedText={selectedPage?.sourceText} options={options} bindings={bindings} versionId={version.id} onChange={updateBlock}/><div className={styles.blockActions}><button onClick={duplicateBlock}><Copy/>Duplicar</button><button className={styles.danger} onClick={deleteBlock}>Eliminar</button></div></>:<div className={styles.emptyInspector}>Selecciona un bloque para editar su contenido, datos y apariencia.</div>}{activeTab==='DATA'&&selectedBlock?.bindingPreset&&<PendingBindings presetCode={selectedBlock.bindingPreset} bindings={bindings} options={options} onChange={(next)=>{setBindings(next);setSavedState('dirty');}}/>}</aside>
       <footer className={styles.pagesStrip}><span>PÁGINAS · {layout.pages.length}</span><SortableContext items={layout.pages.map(page=>`page:${page.pageId}`)} strategy={horizontalListSortingStrategy}>{layout.pages.map((page,index)=><PageThumb key={page.pageId} page={page} index={index} active={page.pageId===selectedPageId} onClick={()=>{setSelectedPageId(page.pageId);setSelectedBlockId(null);}}/>)}</SortableContext><button className={styles.addPage} type="button" aria-label="Agregar página" title="Agregar página" onClick={()=>changeLayout(current=>{const page:ReportPage={pageId:`page-${crypto.randomUUID()}`,sectionCode:'CUSTOM',sectionName:'Nueva página',layoutMode:'FLOW_LAYOUT',pageSize:selectedPage?.pageSize??'LETTER',blocks:[]};current.pages.push(page);setSelectedPageId(page.pageId);setSelectedBlockId(null);return current;})}><Plus/></button><button className={styles.deletePage} type="button" aria-label="Eliminar página seleccionada" title={layout.pages.length<=1?'El reporte debe conservar al menos una página':'Eliminar página seleccionada'} disabled={layout.pages.length<=1} onClick={deletePage}><Trash2/></button></footer>
       {linkOpen&&<div className={styles.linkBackdrop}><section className={styles.linkDialog}><header><div><span>VINCULACIÓN DEL REPORTE</span><h2>{version.template.name}</h2><p>Esta relación determina qué plantilla publicada se utiliza para cada resultado.</p></div><button onClick={()=>setLinkOpen(false)} aria-label="Cerrar"><X/></button></header><div className={styles.linkFields}><label>Prueba<select value={linkForm.testId} onChange={e=>setLinkForm({...linkForm,testId:e.target.value})}>{catalog.tests.map(item=><option key={item.id} value={item.id}>{item.name} · {item.code}</option>)}</select></label><label>Evaluación<select value={linkForm.assessmentId} onChange={e=>setLinkForm({...linkForm,assessmentId:e.target.value})}><option value="">Cualquier evaluación compatible</option>{catalog.assessments.map(item=><option key={item.id} value={item.id}>{item.name} · {item.code}</option>)}</select></label><label>Idioma<input value={linkForm.language} onChange={e=>setLinkForm({...linkForm,language:e.target.value})}/></label><label>Audiencia<select value={linkForm.audience} onChange={e=>setLinkForm({...linkForm,audience:e.target.value})}><option value="INDIVIDUAL">Individual</option><option value="BUSINESS">Empresarial</option><option value="SUMMARY">Resumen</option></select></label></div><div className={styles.linkNotice}><Link2/>La versión publicada será seleccionada automáticamente y se validará contra la prueba antes de generar el PDF.</div><footer><button onClick={()=>setLinkOpen(false)}>Cancelar</button><button className={styles.linkSave} disabled={linkSaving||!linkForm.testId} onClick={()=>void saveLink()}>{linkSaving?'Guardando…':'Guardar vinculación'}</button></footer></section></div>}
+      {chromeOpen&&<div className={styles.linkBackdrop}><section className={styles.linkDialog}><header><div><span>CONFIGURACIÓN DEL DOCUMENTO</span><h2>Encabezado y pie del PDF</h2><p>Estos valores se aplican al canvas, la vista previa y el archivo descargado.</p></div><button onClick={()=>setChromeOpen(false)} aria-label="Cerrar"><X/></button></header><div className={`${styles.linkFields} ${styles.chromeFields}`}><label className={styles.switchRow}><input type="checkbox" checked={headerFooter.headerEnabled} onChange={event=>updateHeaderFooter({headerEnabled:event.target.checked})}/><span>Mostrar encabezado</span></label><label className={styles.switchRow}><input type="checkbox" checked={headerFooter.footerEnabled} onChange={event=>updateHeaderFooter({footerEnabled:event.target.checked})}/><span>Mostrar pie de página</span></label><div className={styles.headerPrimaryFields}><label>Contenido principal del encabezado<select value={headerFooter.headerKind} onChange={event=>updateHeaderFooter({headerKind:event.target.value as 'TEXT'|'IMAGE'})}><option value="TEXT">Título o texto</option><option value="IMAGE">Imagen o logo</option></select></label>{headerFooter.headerKind==='TEXT'?<TextContentField label="Título del encabezado" value={headerFooter.headerLeft} dynamic variables={HEADER_FOOTER_FIELDS} onChange={value=>updateHeaderFooter({headerLeft:value})}/>:<HeaderLogoInput versionId={version.id} src={headerFooter.headerImageSrc} alt={headerFooter.headerImageAlt} onChange={(src,alt)=>updateHeaderFooter({headerImageSrc:src,headerImageAlt:alt})}/>}</div><TextContentField label="Encabezado derecho" value={headerFooter.headerRight} dynamic variables={HEADER_FOOTER_FIELDS} onChange={value=>updateHeaderFooter({headerRight:value})}/><TextContentField label="Pie izquierdo" value={headerFooter.footerLeft} dynamic variables={HEADER_FOOTER_FIELDS} onChange={value=>updateHeaderFooter({footerLeft:value})}/><TextContentField label="Pie derecho y numeración" value={headerFooter.footerRight} dynamic variables={HEADER_FOOTER_FIELDS} onChange={value=>updateHeaderFooter({footerRight:value})}/><label className={styles.switchRow}><input type="checkbox" checked={headerFooter.showOnCover} onChange={event=>updateHeaderFooter({showOnCover:event.target.checked})}/><span>Mostrar también en la portada</span></label></div><div className={styles.linkNotice}><PanelTop/>El logo se ajusta automáticamente a un máximo de 112 × 22 px para conservar la altura editorial del encabezado.</div><footer><button onClick={()=>updateHeaderFooter(DEFAULT_HEADER_FOOTER)}>Restablecer</button><button className={styles.linkSave} onClick={()=>setChromeOpen(false)}>Listo</button></footer></section></div>}
       {revisionsOpen&&<div className={styles.linkBackdrop}><section className={styles.revisionsDialog}><header><div><span>HISTORIAL INMUTABLE</span><h2>Versiones del reporte</h2><p>Restaurar crea una revisión publicada nueva; nunca modifica la versión elegida.</p></div><button onClick={()=>setRevisionsOpen(false)} aria-label="Cerrar"><X/></button></header><label className={styles.revisionSearch}><Search/><input value={revisionSearch} placeholder="Buscar versión…" onChange={event=>setRevisionSearch(event.target.value)}/></label><div className={styles.revisionList}>{revisions.filter(item=>item.version.includes(revisionSearch.trim())).map(item=><article key={item.id} className={item.id===version.id?styles.currentRevision:''}><div><b>Versión {item.version}</b><span>{new Date(item.publishedAt??item.createdAt).toLocaleString('es-MX')} · {item.status}</span><small>{item.pendingBindings} datos opcionales · {item.configurationHash.slice(0,10)}</small></div>{item.id===version.id?<em>Actual</em>:<button type="button" onClick={()=>void restoreRevision(item)}><RotateCcw/> Restaurar</button>}</article>)}</div></section></div>}
     </div>
     <DragOverlay dropAnimation={null}>{activeLibraryType&&<div className={styles.dragGhost}><span><ReportComponentIcon type={activeLibraryType}/></span>{componentLabels[activeLibraryType]??activeLibraryType}</div>}</DragOverlay>
@@ -208,6 +222,33 @@ function ContentInspector({block,content,inheritedText,versionId,onChange}:{bloc
 
 interface UploadedReportAsset { id:string; name:string; mimeType:string; byteSize:number; url:string }
 
+function HeaderLogoInput({versionId,src,alt,onChange}:{versionId:string;src:string;alt:string;onChange:(src:string,alt:string)=>void}) {
+  const [uploading,setUploading]=useState(false);
+  const [error,setError]=useState('');
+  async function upload(file:File|undefined) {
+    if(!file)return;
+    if(file.size>5*1024*1024){setError('El logo supera el límite de 5 MB.');return;}
+    setUploading(true);setError('');
+    try{
+      const formData=new FormData();formData.append('file',file);
+      const asset=await apiUpload<UploadedReportAsset>(`/admin/report-studio/versions/${versionId}/assets`,formData);
+      onChange(asset.url,alt||asset.name);
+    }catch(reason){setError(reason instanceof Error?reason.message:'No fue posible adjuntar el logo.');}
+    finally{setUploading(false);}
+  }
+  return <div className={`${styles.contentField} ${styles.headerLogoInput}`}>
+    {src&&<div className={styles.headerLogoPreview}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt}/><span>Vista previa a tamaño del encabezado</span>
+    </div>}
+    <div className={styles.imageActions}><label className={styles.uploadButton}>{uploading?'Subiendo…':src?'Reemplazar logo':'Adjuntar logo'}<input type="file" accept="image/png,image/jpeg,image/webp" disabled={uploading} onChange={event=>{void upload(event.target.files?.[0]);event.target.value='';}}/></label>{src&&<button type="button" onClick={()=>onChange('',alt)}>Quitar</button>}</div>
+    <small>PNG, JPG o WebP · máximo 5 MB.</small>
+    {error&&<p className={styles.uploadError}>{error}</p>}
+    <label>URL del logo<input value={src} placeholder="https://…" onChange={event=>onChange(event.target.value,alt)}/></label>
+    <label>Texto alternativo<input value={alt} onChange={event=>onChange(src,event.target.value)}/></label>
+  </div>;
+}
+
 function ImageContentInspector({content,versionId,onChange}:{content:JsonObject;versionId:string;onChange:(content:JsonObject)=>void}) {
   const [uploading,setUploading]=useState(false);
   const [error,setError]=useState('');
@@ -243,12 +284,12 @@ function ImageContentInspector({content,versionId,onChange}:{content:JsonObject;
   </div>;
 }
 
-function TextContentField({label,value,onChange,multiline,dynamic}:{label:string;value:string;onChange:(value:string)=>void;multiline?:boolean;dynamic?:boolean}) {
-  return <div className={styles.contentField}><label>{label}{multiline?<textarea rows={4} value={value} onChange={event=>onChange(event.target.value)}/>:<input value={value} onChange={event=>onChange(event.target.value)}/>}</label>{dynamic&&<VariablePicker onInsert={token=>onChange(`${value}${value?' ':''}${token}`)}/>}</div>;
+function TextContentField({label,value,onChange,multiline,dynamic,variables=DYNAMIC_FIELDS}:{label:string;value:string;onChange:(value:string)=>void;multiline?:boolean;dynamic?:boolean;variables?:ReadonlyArray<readonly [string,string]>}) {
+  return <div className={styles.contentField}><label>{label}{multiline?<textarea rows={4} value={value} onChange={event=>onChange(event.target.value)}/>:<input value={value} onChange={event=>onChange(event.target.value)}/>}</label>{dynamic&&<VariablePicker variables={variables} onInsert={token=>onChange(`${value}${value?' ':''}${token}`)}/>}</div>;
 }
 
-function VariablePicker({onInsert}:{onInsert:(value:string)=>void}) {
-  return <select className={styles.variablePicker} value="" onChange={event=>{if(event.target.value)onInsert(event.target.value);}}><option value="">+ Insertar variable…</option>{DYNAMIC_FIELDS.map(([value,label])=><option key={value} value={value}>{label}</option>)}</select>;
+function VariablePicker({onInsert,variables=DYNAMIC_FIELDS}:{onInsert:(value:string)=>void;variables?:ReadonlyArray<readonly [string,string]>}) {
+  return <select className={styles.variablePicker} value="" onChange={event=>{if(event.target.value)onInsert(event.target.value);}}><option value="">+ Insertar variable…</option>{variables.map(([value,label])=><option key={value} value={value}>{label}</option>)}</select>;
 }
 
 function dropPreviewSize(type:string) {

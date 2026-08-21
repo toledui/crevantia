@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsArray, IsEmail, IsHexColor, IsInt, IsOptional, IsString, IsUrl, Max, MaxLength, Min, ValidateNested } from 'class-validator';
+import { ArrayMaxSize, IsArray, IsEmail, IsHexColor, IsIn, IsInt, IsOptional, IsString, IsUrl, Max, MaxLength, Min, ValidateNested } from 'class-validator';
 
 export class ReportCategoryDto {
   @IsString() @MaxLength(80) label!: string;
@@ -26,11 +26,24 @@ export class UpdateSiteSettingsDto {
   @IsString() @MaxLength(120) siteName!: string;
   @IsString() @MaxLength(500) siteDescription!: string;
   @IsOptional() @IsEmail() @MaxLength(191) contactEmail?: string;
+  @IsOptional() @IsArray() @ArrayMaxSize(10) @IsEmail({}, { each: true }) @MaxLength(191, { each: true }) contactFormRecipientEmails?: string[];
+  @IsOptional() @IsIn(['turnstile', 'recaptcha']) contactCaptchaProvider?: 'turnstile' | 'recaptcha';
+  @IsOptional() @IsString() @MaxLength(255) contactCaptchaSiteKey?: string;
+  @IsOptional() @IsString() @MaxLength(1000) contactCaptchaSecret?: string;
   @IsOptional() @IsString() @MaxLength(60) contactPhone?: string;
   @IsOptional() @IsString() @MaxLength(60) contactWhatsapp?: string;
   @IsOptional() @IsString() @MaxLength(500) contactAddress?: string;
   @IsOptional() @IsString() @MaxLength(255) contactHours?: string;
   @IsOptional() @IsUrl({ require_protocol: true }) @MaxLength(2000) contactMapUrl?: string;
+}
+
+export class SubmitContactFormDto {
+  @IsString() @MaxLength(120) name!: string;
+  @IsEmail() @MaxLength(191) email!: string;
+  @IsOptional() @IsString() @MaxLength(180) subject?: string;
+  @IsString() @MaxLength(5000) message!: string;
+  @IsOptional() @IsString() @MaxLength(4000) captchaToken?: string;
+  @IsOptional() @IsString() @MaxLength(0) website?: string;
 }
 
 export class UpdateReportSettingsDto {

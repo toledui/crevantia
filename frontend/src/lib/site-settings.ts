@@ -12,6 +12,7 @@ export interface PublicSiteSettings {
   contactAddress: string | null;
   contactHours: string | null;
   contactMapUrl: string | null;
+  contactCaptcha: { provider: string; siteKey: string } | null;
   headCode: string | null;
   bodyEndCode: string | null;
   updatedAt: string | null;
@@ -29,6 +30,7 @@ export const defaultSiteSettings: PublicSiteSettings = {
   contactAddress: null,
   contactHours: null,
   contactMapUrl: null,
+  contactCaptcha: null,
   headCode: null,
   bodyEndCode: null,
   updatedAt: null,

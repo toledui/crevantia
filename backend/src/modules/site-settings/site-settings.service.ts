@@ -1,7 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
-import type { Prisma } from '../../generated/prisma/client';
-import { UpdateReportSettingsDto, UpdateSiteSettingsDto } from './site-settings.dto';
+import { Prisma } from '../../generated/prisma/client';
+import { EncryptionService } from '../mail/encryption.service';
+import { MailService } from '../mail/mail.service';
+import { SubmitContactFormDto, UpdateReportSettingsDto, UpdateSiteSettingsDto } from './site-settings.dto';
 import { PROVISIONAL_REPORT_TEXT_BLOCKS } from './provisional-report-defaults';
 
 const DEFAULT_CATEGORIES = [
@@ -11,9 +13,21 @@ const DEFAULT_CATEGORIES = [
   { label: 'Huracán', description: 'Intensidad muy alta dentro de la escala interpretativa.', color: '#302b78' },
 ];
 
+type ContactFormSettings = {
+  contactFormRecipientEmail: string | null;
+  contactFormRecipientEmails: unknown;
+  contactCaptchaProvider: string | null;
+  contactCaptchaSiteKey: string | null;
+  contactCaptchaSecretEncrypted: string | null;
+};
+
 @Injectable()
 export class SiteSettingsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly encryption: EncryptionService,
+    private readonly mail: MailService,
+  ) {}
 
   private async ensure() {
     let settings = await this.prisma.siteSettings.findUnique({ where: { id: 'default' } });
@@ -55,7 +69,24 @@ export class SiteSettingsService {
 
   private clean(value?: string) { return value?.trim() || null; }
 
-  private serializeSite(settings: Awaited<ReturnType<SiteSettingsService['ensure']>>) {
+  private contactSettings(settings: object): ContactFormSettings {
+    return settings as ContactFormSettings;
+  }
+
+  private async withContactSettings<T extends object>(settings: T): Promise<T & ContactFormSettings> {
+    const rows = await this.prisma.$queryRaw<ContactFormSettings[]>(Prisma.sql`SELECT contactFormRecipientEmail, contactFormRecipientEmails, contactCaptchaProvider, contactCaptchaSiteKey, contactCaptchaSecretEncrypted FROM SiteSettings WHERE id = 'default'`);
+    return Object.assign(settings, rows[0] ?? { contactFormRecipientEmail: null, contactFormRecipientEmails: null, contactCaptchaProvider: null, contactCaptchaSiteKey: null, contactCaptchaSecretEncrypted: null });
+  }
+
+  private recipientEmails(settings: Awaited<ReturnType<SiteSettingsService['ensure']>>) {
+    const contact = this.contactSettings(settings);
+    const values: unknown[] = Array.isArray(contact.contactFormRecipientEmails) ? contact.contactFormRecipientEmails : [];
+    const emails = values.filter((value): value is string => typeof value === 'string').map((value) => value.trim().toLowerCase()).filter(Boolean);
+    return [...new Set(emails.length ? emails : (contact.contactFormRecipientEmail ? [contact.contactFormRecipientEmail] : []))];
+  }
+
+  private serializeSite(settings: Awaited<ReturnType<SiteSettingsService['ensure']>>, includeAdminContactSettings = false) {
+    const contact = this.contactSettings(settings);
     const base = {
       version: settings.version, reportDefaultsVersion: settings.reportDefaultsVersion, siteName: settings.siteName, siteDescription: settings.siteDescription,
       logoUrl: settings.logoData ? `/api/v1/public/site-settings/logo?v=${settings.version}` : '/branding/logo-crevantia.png',
@@ -64,7 +95,21 @@ export class SiteSettingsService {
       contactAddress: settings.contactAddress, contactHours: settings.contactHours, contactMapUrl: settings.contactMapUrl,
       updatedAt: settings.updatedAt,
     };
-    return base;
+    if (!includeAdminContactSettings) {
+      return {
+        ...base,
+        contactCaptcha: contact.contactCaptchaProvider && contact.contactCaptchaSiteKey
+          ? { provider: contact.contactCaptchaProvider, siteKey: contact.contactCaptchaSiteKey }
+          : null,
+      };
+    }
+    return {
+      ...base,
+      contactFormRecipientEmails: this.recipientEmails(settings),
+      contactCaptchaProvider: contact.contactCaptchaProvider,
+      contactCaptchaSiteKey: contact.contactCaptchaSiteKey,
+      hasContactCaptchaSecret: Boolean(contact.contactCaptchaSecretEncrypted),
+    };
   }
 
   private serializeReport(settings: Awaited<ReturnType<SiteSettingsService['ensure']>>) {
@@ -80,21 +125,61 @@ export class SiteSettingsService {
   }
 
   async getPublic() {
-    const settings = await this.ensure();
+    const settings = await this.withContactSettings(await this.ensure());
     return { ...this.serializeSite(settings), headCode: settings.headCode, bodyEndCode: settings.bodyEndCode };
   }
-  async getSiteAdmin() { return this.serializeSite(await this.ensure()); }
+  async getSiteAdmin() { return this.serializeSite(await this.withContactSettings(await this.ensure()), true); }
   async getReportAdmin() { return this.serializeReport(await this.ensure()); }
 
   async updateSite(actorId: string, dto: UpdateSiteSettingsDto) {
     const before = await this.ensure();
     const updated = await this.prisma.siteSettings.update({ where: { id: 'default' }, data: {
       version: { increment: 1 }, siteName: dto.siteName.trim(), siteDescription: dto.siteDescription.trim(),
-      contactEmail: this.clean(dto.contactEmail), contactPhone: this.clean(dto.contactPhone), contactWhatsapp: this.clean(dto.contactWhatsapp),
+      contactEmail: this.clean(dto.contactEmail),
+      contactPhone: this.clean(dto.contactPhone), contactWhatsapp: this.clean(dto.contactWhatsapp),
       contactAddress: this.clean(dto.contactAddress), contactHours: this.clean(dto.contactHours), contactMapUrl: this.clean(dto.contactMapUrl),
     }});
+    const recipients = dto.contactFormRecipientEmails ? dto.contactFormRecipientEmails.map((email) => email.trim().toLowerCase()).filter(Boolean) : [];
+    const provider = this.clean(dto.contactCaptchaProvider);
+    const siteKey = this.clean(dto.contactCaptchaSiteKey);
+    const secret = !provider ? null : dto.contactCaptchaSecret !== undefined ? (this.clean(dto.contactCaptchaSecret) ? this.encryption.encrypt(dto.contactCaptchaSecret.trim()) : null) : undefined;
+    if (secret === undefined) await this.prisma.$executeRaw(Prisma.sql`UPDATE SiteSettings SET contactFormRecipientEmails = ${JSON.stringify(recipients)}, contactCaptchaProvider = ${provider}, contactCaptchaSiteKey = ${siteKey} WHERE id = 'default'`);
+    else await this.prisma.$executeRaw(Prisma.sql`UPDATE SiteSettings SET contactFormRecipientEmails = ${JSON.stringify(recipients)}, contactCaptchaProvider = ${provider}, contactCaptchaSiteKey = ${siteKey}, contactCaptchaSecretEncrypted = ${secret} WHERE id = 'default'`);
     await this.prisma.auditLog.create({ data: { actorId, action: 'SITE_SETTINGS_UPDATED', entityType: 'SiteSettings', entityId: 'default', before: { version: before.version, siteName: before.siteName }, after: { version: updated.version, siteName: updated.siteName } } });
-    return this.serializeSite(updated);
+    return this.serializeSite(await this.withContactSettings(updated), true);
+  }
+
+  async submitContactForm(dto: SubmitContactFormDto) {
+    const settings = await this.withContactSettings(await this.ensure());
+    if (dto.website) return { success: true };
+    const recipients = this.recipientEmails(settings);
+    if (!recipients.length) throw new ServiceUnavailableException('El formulario de contacto no tiene destinatarios configurados.');
+    await this.verifyContactCaptcha(settings, dto.captchaToken);
+    const name = dto.name.trim();
+    const email = dto.email.trim().toLowerCase();
+    const subject = dto.subject?.trim() || 'Consulta desde el sitio web';
+    await this.mail.sendContactFormEmail(recipients, { name, email, subject, message: dto.message.trim() });
+    return { success: true };
+  }
+
+  private async verifyContactCaptcha(settings: Awaited<ReturnType<SiteSettingsService['ensure']>>, token?: string) {
+    const contact = this.contactSettings(settings);
+    const provider = contact.contactCaptchaProvider;
+    if (!provider && !contact.contactCaptchaSiteKey && !contact.contactCaptchaSecretEncrypted) return;
+    if (!provider || !contact.contactCaptchaSiteKey || !contact.contactCaptchaSecretEncrypted) throw new ServiceUnavailableException('La protección antispam del formulario está incompleta.');
+    if (!token) throw new BadRequestException('Completa la verificación antispam.');
+    const secret = this.encryption.decrypt(contact.contactCaptchaSecretEncrypted);
+    const endpoint = provider === 'turnstile'
+      ? 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+      : 'https://www.google.com/recaptcha/api/siteverify';
+    try {
+      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ secret, response: token }) });
+      const result = await response.json() as { success?: boolean };
+      if (!result.success) throw new BadRequestException('No fue posible validar la verificación antispam.');
+    } catch (error) {
+      if (error instanceof BadRequestException) throw error;
+      throw new ServiceUnavailableException('No fue posible validar la protección antispam. Intenta nuevamente.');
+    }
   }
 
   async updateReport(actorId: string, dto: UpdateReportSettingsDto) {
@@ -133,7 +218,7 @@ export class SiteSettingsService {
         ? { faviconData: Uint8Array.from(file.buffer), faviconMimeType: file.mimetype, version: { increment: 1 } }
         : { reportLogoData: Uint8Array.from(file.buffer), reportLogoMimeType: file.mimetype, version: { increment: 1 } } });
     await this.prisma.auditLog.create({ data: { actorId, action: 'SITE_ASSET_UPDATED', entityType: 'SiteSettings', entityId: 'default', metadata: { kind, mimeType: file.mimetype, bytes: file.size, version: updated.version } } });
-    return kind === 'report-logo' ? this.serializeReport(updated) : this.serializeSite(updated);
+    return kind === 'report-logo' ? this.serializeReport(updated) : this.serializeSite(await this.withContactSettings(updated), true);
   }
 
   async getAsset(kind: 'logo' | 'favicon' | 'report-logo') {

@@ -7,20 +7,21 @@ import { apiFetch, apiUpload } from '@/lib/api';
 
 interface SiteContactSettings {
   version: number; reportDefaultsVersion: number; siteName: string; siteDescription: string; logoUrl: string; faviconUrl: string;
-  contactEmail: string | null; contactPhone: string | null; contactWhatsapp: string | null;
-  contactAddress: string | null; contactHours: string | null; contactMapUrl: string | null; updatedAt: string | null;
+  contactEmail: string | null; contactFormRecipientEmails: string[]; contactPhone: string | null; contactWhatsapp: string | null;
+  contactAddress: string | null; contactHours: string | null; contactMapUrl: string | null; contactCaptchaProvider: 'turnstile' | 'recaptcha' | null; contactCaptchaSiteKey: string | null; hasContactCaptchaSecret: boolean; updatedAt: string | null;
 }
 
-const initial: SiteContactSettings = { version: 1, reportDefaultsVersion: 0, siteName: 'Crevantia', siteDescription: 'Plataforma de evaluaciones Crevantia', logoUrl: '/branding/logo-crevantia.png', faviconUrl: '/branding/logo-crevantia.png', contactEmail: null, contactPhone: null, contactWhatsapp: null, contactAddress: null, contactHours: null, contactMapUrl: null, updatedAt: null };
+const initial: SiteContactSettings = { version: 1, reportDefaultsVersion: 0, siteName: 'Crevantia', siteDescription: 'Plataforma de evaluaciones Crevantia', logoUrl: '/branding/logo-crevantia.png', faviconUrl: '/branding/logo-crevantia.png', contactEmail: null, contactFormRecipientEmails: [], contactPhone: null, contactWhatsapp: null, contactAddress: null, contactHours: null, contactMapUrl: null, contactCaptchaProvider: null, contactCaptchaSiteKey: null, hasContactCaptchaSecret: false, updatedAt: null };
 const optional = ['contactEmail', 'contactPhone', 'contactWhatsapp', 'contactAddress', 'contactHours', 'contactMapUrl'] as const;
 
 export function SiteContactSettingsPanel() {
   const [data, setData] = useState(initial);
+  const [recipientInput, setRecipientInput] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState<'logo' | 'favicon' | null>(null);
   const [message, setMessage] = useState(''); const [error, setError] = useState('');
-  useEffect(() => { apiFetch<SiteContactSettings>('/admin/settings/site').then(setData).catch((reason: unknown) => setError(reason instanceof Error ? reason.message : 'No fue posible cargar la configuración.')).finally(() => setLoading(false)); }, []);
+  useEffect(() => { apiFetch<Partial<SiteContactSettings>>('/admin/settings/site').then((settings) => { const contactFormRecipientEmails = Array.isArray(settings.contactFormRecipientEmails) ? settings.contactFormRecipientEmails : []; setData({ ...initial, ...settings, contactFormRecipientEmails }); setRecipientInput(contactFormRecipientEmails.join(', ')); }).catch((reason: unknown) => setError(reason instanceof Error ? reason.message : 'No fue posible cargar la configuración.')).finally(() => setLoading(false)); }, []);
   function field<K extends keyof SiteContactSettings>(key: K, value: SiteContactSettings[K]) { setData((current) => ({ ...current, [key]: value })); }
 
   async function upload(kind: 'logo' | 'favicon', event: ChangeEvent<HTMLInputElement>) {
@@ -33,8 +34,12 @@ export function SiteContactSettingsPanel() {
 
   async function save(event: FormEvent) {
     event.preventDefault(); setSaving(true); setError(''); setMessage('');
-    const payload: Record<string, unknown> = { siteName: data.siteName, siteDescription: data.siteDescription };
+    const payload: Record<string, unknown> = { siteName: data.siteName, siteDescription: data.siteDescription, contactFormRecipientEmails: recipientInput.split(/[\n,;]+/).map((email) => email.trim()).filter(Boolean) };
     for (const key of optional) payload[key] = data[key]?.trim() || undefined;
+    payload.contactCaptchaProvider = data.contactCaptchaProvider || undefined;
+    payload.contactCaptchaSiteKey = data.contactCaptchaSiteKey?.trim() || undefined;
+    const captchaSecret = (document.getElementById('contact-captcha-secret') as HTMLInputElement | null)?.value.trim();
+    if (captchaSecret !== undefined && captchaSecret !== '') payload.contactCaptchaSecret = captchaSecret;
     try { setData(await apiFetch<SiteContactSettings>('/admin/settings/site', { method: 'PATCH', body: JSON.stringify(payload) })); setMessage('Sitio e información de contacto publicados correctamente.'); }
     catch (reason) { setError(reason instanceof Error ? reason.message : 'No fue posible guardar la configuración.'); }
     finally { setSaving(false); }
@@ -50,7 +55,10 @@ export function SiteContactSettingsPanel() {
         <div className="settings-grid two-columns"><label>Nombre del sitio<input required maxLength={120} value={data.siteName} onChange={(e) => field('siteName', e.target.value)} /></label><label>Descripción del sitio<textarea required maxLength={500} rows={3} value={data.siteDescription} onChange={(e) => field('siteDescription', e.target.value)} /></label></div>
       </section>
       <section className="panel settings-card"><div className="settings-section-head"><div><h2>Información de contacto</h2><p>Los campos completados se muestran automáticamente en la sección de contacto de la página inicial.</p></div></div>
-        <div className="settings-grid two-columns"><TextField label="Correo" type="email" value={data.contactEmail} onChange={(value) => field('contactEmail', value)} /><TextField label="Teléfono" value={data.contactPhone} onChange={(value) => field('contactPhone', value)} /><TextField label="WhatsApp" value={data.contactWhatsapp} placeholder="5215512345678" onChange={(value) => field('contactWhatsapp', value)} /><TextField label="Horario de atención" value={data.contactHours} onChange={(value) => field('contactHours', value)} /><label>Dirección<textarea rows={3} value={data.contactAddress ?? ''} onChange={(e) => field('contactAddress', e.target.value)} /></label><TextField label="Enlace de mapa" type="url" value={data.contactMapUrl} placeholder="https://maps.google.com/..." onChange={(value) => field('contactMapUrl', value)} /></div>
+        <div className="settings-grid two-columns"><TextField label="Correo público" type="email" value={data.contactEmail} onChange={(value) => field('contactEmail', value)} /><label>Correos de destino del formulario<textarea rows={3} value={recipientInput} placeholder="ventas@ejemplo.com, soporte@ejemplo.com" onChange={(e) => setRecipientInput(e.target.value)} /><small>Sepáralos por comas. Todos recibirán cada mensaje.</small></label><TextField label="Teléfono" value={data.contactPhone} onChange={(value) => field('contactPhone', value)} /><TextField label="WhatsApp" value={data.contactWhatsapp} placeholder="5215512345678" onChange={(value) => field('contactWhatsapp', value)} /><TextField label="Horario de atención" value={data.contactHours} onChange={(value) => field('contactHours', value)} /><label>Dirección<textarea rows={3} value={data.contactAddress ?? ''} onChange={(e) => field('contactAddress', e.target.value)} /></label><TextField label="Enlace de mapa" type="url" value={data.contactMapUrl} placeholder="https://maps.google.com/..." onChange={(value) => field('contactMapUrl', value)} /></div>
+      </section>
+      <section className="panel settings-card"><div className="settings-section-head"><div><h2>Protección antispam del formulario</h2><p>Activa Cloudflare Turnstile o Google reCAPTCHA para validar cada mensaje antes de enviarlo.</p></div></div>
+        <div className="settings-grid two-columns"><label>Proveedor<select value={data.contactCaptchaProvider ?? ''} onChange={(e) => field('contactCaptchaProvider', (e.target.value || null) as SiteContactSettings['contactCaptchaProvider'])}><option value="">Sin protección adicional</option><option value="turnstile">Cloudflare Turnstile</option><option value="recaptcha">Google reCAPTCHA</option></select></label><TextField label="Clave pública (site key)" value={data.contactCaptchaSiteKey} onChange={(value) => field('contactCaptchaSiteKey', value)} /><label>Clave secreta<input id="contact-captcha-secret" type="password" autoComplete="new-password" placeholder={data.hasContactCaptchaSecret ? 'Configurada; escribe para reemplazarla' : 'Clave secreta'} /></label></div>
       </section>
       <div className="settings-sticky-actions"><span>{data.updatedAt ? `Última publicación: ${new Date(data.updatedAt).toLocaleString('es-MX')}` : 'Configuración inicial'}</span><button className="primary-button compact" disabled={saving || Boolean(uploading)}>{saving ? 'Publicando…' : 'Guardar sitio y contacto'}</button></div>
     </form>

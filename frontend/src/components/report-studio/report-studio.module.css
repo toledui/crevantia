@@ -106,6 +106,21 @@
 .dragGhost svg { width: 16px; height: 16px; }
 .discardChanges { border-color: #efd3d6 !important; background: #fff8f8 !important; color: #9f3d47 !important; }
 .discardChanges:hover { background: #fdecef !important; }
+.chromeFields { align-items: start; }
+.chromeFields > label.switchRow { width: 100%; box-sizing: border-box; color: #cdd5df; }
+.headerPrimaryFields { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
+.headerPrimaryFields > label { display: flex; flex-direction: column; gap: 6px; color: #93a0b2; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+.headerPrimaryFields > label select { width: 100%; }
+.chromeFields .contentField { width: 100%; }
+.chromeFields .contentField label { display: flex; flex-direction: column; gap: 6px; color: #93a0b2; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+.chromeFields .contentField input,.chromeFields .contentField select { box-sizing: border-box; width: 100%; border: 1px solid #354051; border-radius: 7px; background: #191f2b; color: #eef2f6; padding: 10px; font-size: 11px; }
+.chromeFields .contentField select { margin-top: 6px; color: #9ca9ba; }
+.headerLogo { display: block; width: auto; max-width: 112px; height: auto; max-height: 22px; object-fit: contain; object-position: left center; }
+.headerLogoInput { grid-column: auto; display: flex; flex-direction: column; gap: 8px; }
+.headerLogoInput small { color: #8290a2; font-size: 9px; }
+.headerLogoPreview { display: flex; min-height: 38px; align-items: center; gap: 12px; padding: 8px; border: 1px solid #354051; border-radius: 7px; background: #fff; color: #5e6b7c; }
+.headerLogoPreview img { width: auto; max-width: 112px; height: auto; max-height: 22px; object-fit: contain; }
+.headerLogoPreview span { font-size: 9px; }
 @keyframes dropPulse { from { border-color: #00c2e8; background: rgba(0,194,232,.09); } to { border-color: #007f9d; background: rgba(0,194,232,.17); } }
 .revisionsDialog { width: min(620px,calc(100vw - 40px)); max-height: 78vh; overflow: hidden; border: 1px solid #303846; border-radius: 12px; background: #10141d; color: #e5eaf0; box-shadow: 0 24px 70px #0009; }
 .revisionsDialog > header { display: flex; justify-content: space-between; gap: 20px; padding: 20px 22px 15px; border-bottom: 1px solid #2b3340; }

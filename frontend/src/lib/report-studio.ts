@@ -23,11 +23,24 @@ export interface ReportPage {
   sectionName: string;
   layoutMode: 'FLOW_LAYOUT' | 'ABSOLUTE_LAYOUT';
   pageSize: 'LETTER' | 'A4';
-  header?: { enabled?: boolean };
+  header?: { enabled?: boolean; logoFromTheme?: boolean };
   footer?: { enabled?: boolean; pageNumber?: number | null };
   blocks: ReportBlock[];
   sourceText?: string;
   copyStatus?: string;
+}
+
+export interface ReportHeaderFooterConfig {
+  headerEnabled: boolean;
+  headerKind: 'TEXT' | 'IMAGE';
+  headerLeft: string;
+  headerImageSrc: string;
+  headerImageAlt: string;
+  headerRight: string;
+  footerEnabled: boolean;
+  footerLeft: string;
+  footerRight: string;
+  showOnCover: boolean;
 }
 
 export interface ReportLayout {

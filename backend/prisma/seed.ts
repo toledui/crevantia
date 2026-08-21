@@ -11,6 +11,7 @@ import {
   UserStatus,
 } from "../src/generated/prisma/client";
 import { seedDpoOfficialV1 } from "./seeds/seed-dpo-official-v1";
+import { seedReportStudioV1 } from "./seeds/seed-report-studio-v1";
 import { dpoPermissions } from "./seeds/seed-dpo-permissions";
 import { preloadCountryOptions } from "./seeds/preload-country-options";
 import { PROVISIONAL_REPORT_TEXT_BLOCKS } from "../src/modules/site-settings/provisional-report-defaults";
@@ -521,8 +522,10 @@ async function main() {
   await seedDemoTest();
   await seedDpoOfficialV1(prisma);
   await preloadCountryOptions(prisma);
+  const reportStudio = await seedReportStudioV1(prisma);
   await seedCommerce();
   await seedSiteSettings();
+  console.log("Report Studio precargado:", reportStudio);
   console.log("Seed de Crevantia completado.");
 }
 

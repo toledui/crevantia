@@ -17,6 +17,7 @@
     "seed:dpo": "tsx prisma/seeds/seed-dpo-official-v1.ts",
     "seed:dpo:v1": "tsx prisma/seeds/seed-dpo-official-v1.ts",
     "seed:report-studio:v1": "tsx prisma/seeds/seed-report-studio-v1.ts",
+    "export:report-studio:seed": "tsx prisma/seeds/export-report-studio-snapshot.ts",
     "validate:dpo:v1": "tsx prisma/seeds/validate-dpo-v1.ts",
     "verify:dpo:v1:db": "tsx prisma/seeds/verify-dpo-v1-db.ts",
     "preload:country-options": "tsx prisma/seeds/preload-country-options.ts",
